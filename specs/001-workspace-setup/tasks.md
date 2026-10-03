@@ -23,4 +23,4 @@
 - [x] R003 Workspace resolver/configuration, Turbo cache and Docker prune.
 - [x] R004 Testable release manifest, QA prerequisite and retry/version policy.
 - [x] R005 Push-only tested candidate pipeline, workflow lint and dependency maintenance.
-- [ ] R006 Full verification, convergence, personal commit/push and hosted checks.
+- [x] R006 Full verification, convergence, personal commit/push and hosted checks.
