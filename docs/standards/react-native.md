@@ -22,4 +22,4 @@ Inject API/storage/analytics interfaces through factories, props, or typed React
 - Define offline/error/retry behavior, safe areas, keyboard handling, and navigation semantics in feature specs.
 - Test components and hooks behavior, visual variants, API adapters, and critical device journeys. Include theme, text-size, and accessibility states in design acceptance criteria.
 
-Expo versus bare React Native remains a separate decision; this guidance does not select or install a mobile framework.
+WEA-6 selects Expo SDK 57 for the mobile scaffold. Signed native builds and device validation remain separate release work.

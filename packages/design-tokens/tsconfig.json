@@ -7,5 +7,6 @@
     "module": "ESNext",
     "moduleResolution": "bundler"
   },
-  "include": ["index.ts"]
+  "include": ["index.ts"],
+  "extends": "@weave/typescript-config/base.json"
 }

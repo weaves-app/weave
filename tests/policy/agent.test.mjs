@@ -55,3 +55,52 @@ test('S10 missing/foreign feature state cannot authorize an implementation branc
   assert.equal(isScenarioConfirmed(state, 'feat/WEA-7/setup'), false);
   assert.equal(isScenarioConfirmed({...state, scenarioIds: []}, 'feat/WEA-6/setup'), false);
 });
+
+test('S15 read-only shell syntax passes while output files remain gated', () => {
+  for (const command of [
+    'rg foo apps/ 2>&1',
+    'node -e "x=>x" scripts/example.mjs',
+    'node -e "1>=0" apps/example.ts',
+    'echo "cp apps/a.ts"',
+  ]) {
+    assert.equal(
+      evaluateTool({tool_name: 'Bash', tool_input: {command}}, 'feat/WEA-6/setup', false),
+      null,
+      command,
+    );
+  }
+  for (const command of ['echo x > apps/a.ts', 'echo x >> apps/a.ts', 'cp /tmp/a apps/a.ts']) {
+    assert.ok(
+      evaluateTool({tool_name: 'Bash', tool_input: {command}}, 'feat/WEA-6/setup', false),
+      command,
+    );
+  }
+});
+
+test('S15 edit tools inspect destinations rather than documentation contents', () => {
+  assert.equal(
+    evaluateTool(
+      {
+        tool_name: 'Write',
+        tool_input: {
+          file_path: 'specs/example/spec.md',
+          content: 'Describe apps/api/ and scripts/',
+        },
+      },
+      'feat/WEA-6/setup',
+      false,
+    ),
+    null,
+  );
+  for (const tool_name of ['Write', 'Edit', 'NotebookEdit'])
+    assert.ok(
+      evaluateTool(
+        {
+          tool_name,
+          tool_input: {file_path: 'apps/mobile/App.tsx', notebook_path: 'apps/mobile/demo.ipynb'},
+        },
+        'feat/WEA-6/setup',
+        false,
+      ),
+    );
+});

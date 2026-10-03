@@ -4,7 +4,7 @@ One npm/Turborepo workspace: Next.js web, NestJS modular monolith API, Expo Reac
 
 ## Start
 
-Use Node 24 LTS, npm 11 and Docker Desktop with Compose. Before committing, configure your **own personal** name/email in this clone; Weave must not use the company ashr8 identity.
+Use Node 24 LTS, npm 11 and Docker Desktop with Compose. Before committing, configure your **own personal** name/email in this clone; Weave must use the contributor’s repository-local personal identity.
 
 ```sh
 git config --local user.name "YOUR_PERSONAL_NAME"
@@ -68,3 +68,7 @@ specs/                   Ticket specs, scenarios, tasks, evidence
 Concrete dependencies are bound in Nest composition factories. Domain/application consumers use interface ports; cross-module communication uses published contracts. Server environments configure images at runtime, and official releases promote the same digests.
 
 Read [standards](docs/standards/README.md), [Google rule mapping](docs/standards/google-rule-mapping.md), [delivery automation](docs/standards/automation.md), [component catalogue](docs/standards/component-catalogue.md) and [dependency audit disclosure](docs/standards/dependency-security.md). AWS deployment, Linear release credentials, signed native publication and restrictive tag-creation automation identity remain separate environment decisions.
+
+## Review and maintenance
+
+Codex and Claude use the same rules and Spec Kit skills. See docs/standards/hooks.md for trust and local identity configuration. Turbo runs workspace lint/types/tests/build with shared config packages; pure unit tests are cached, live integration is not. See docs/standards/automation.md for tested-digest releases, QA prerequisites and dependency proposal adoption. Preserve THIRD_PARTY_NOTICES.md when distributing the applicable Expo scaffold.

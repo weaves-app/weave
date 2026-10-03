@@ -1,14 +1,28 @@
 import {readFileSync} from 'node:fs';
 import {execFileSync} from 'node:child_process';
+import {validatePromotion} from './release-manifest.mjs';
 const manifest = JSON.parse(readFileSync('release-manifest.json', 'utf8'));
 const repository = process.env.GITHUB_REPOSITORY;
 const environment = process.env.TARGET_ENVIRONMENT;
-if (
-  manifest.repository !== repository ||
-  manifest.version !== process.env.VERSION ||
-  !['qa', 'production'].includes(environment)
-)
-  throw new Error('Release manifest mismatch.');
+const qa = {};
+if (environment === 'production')
+  for (const app of ['api', 'web']) {
+    qa[app] = JSON.parse(
+      execFileSync(
+        'docker',
+        [
+          'buildx',
+          'imagetools',
+          'inspect',
+          `ghcr.io/${repository}-${app}:qa`,
+          '--format',
+          '{{json .Manifest.Digest}}',
+        ],
+        {encoding: 'utf8'},
+      ),
+    );
+  }
+validatePromotion(manifest, {repository, version: process.env.VERSION, environment, qa});
 for (const app of ['api', 'web']) {
   const image = manifest.images[app];
   const expected = `ghcr.io/${repository}-${app}@sha256:`;

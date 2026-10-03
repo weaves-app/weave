@@ -58,3 +58,17 @@ test('S04 rejects resolved controller imports from the application layer', () =>
     }).length,
   );
 });
+
+test('S14 resolves aliases within their owning workspace', () => {
+  const sources = {
+    'apps/mobile/src/a.ts': "import {b} from '@/b'; export const a = b;",
+    'apps/mobile/src/b.ts': "import {a} from './a'; export const b = a;",
+  };
+  const errors = inspectSources(sources, {
+    'apps/mobile': {module: 'esnext', moduleResolution: 'bundler', paths: {'@/*': ['./src/*']}},
+  });
+  assert.ok(
+    errors.some((error) => error.includes('Import cycle')),
+    errors.join('\n'),
+  );
+});

@@ -4,6 +4,13 @@
   "private": true,
   "exports": "./index.ts",
   "scripts": {
-    "typecheck": "tsc --noEmit --strict --skipLibCheck index.ts"
-  }
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "@weave/typescript-config": "*",
+    "@weave/eslint-config": "*",
+    "typescript": "6.0.3"
+  },
+  "type": "module"
 }

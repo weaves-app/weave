@@ -15,7 +15,18 @@ const localName = execFileSync('git', ['config', '--local', '--get', 'user.name'
 const localEmail = execFileSync('git', ['config', '--local', '--get', 'user.email'], {
   encoding: 'utf8',
 }).trim();
-if (/ashr8/i.test(localName)) error ??= 'Company identity ashr8 is not permitted for Weave.';
+const forbiddenResult = spawnSync(
+  'git',
+  ['config', '--local', '--get-all', 'weave.forbiddenIdentity'],
+  {encoding: 'utf8'},
+);
+const forbidden = forbiddenResult.status === 0 ? forbiddenResult.stdout.trim().split('\n') : [];
+if (
+  forbidden.some((identity) =>
+    [localName, localEmail].some((value) => value.toLowerCase() === identity.toLowerCase()),
+  )
+)
+  error ??= 'Repository-local forbidden identity is not permitted.';
 for (const identity of ['GIT_AUTHOR_IDENT', 'GIT_COMMITTER_IDENT']) {
   const value = execFileSync('git', ['var', identity], {encoding: 'utf8'});
   if (!value.startsWith(`${localName} <${localEmail}>`))
@@ -51,7 +62,7 @@ if (!error && process.argv[2] === 'push') {
       encoding: 'utf8',
       env,
     }).trim();
-    const identityError = validateGithubAccount(expected, actual);
+    const identityError = validateGithubAccount(expected, actual, forbidden);
     if (identityError) {
       console.error(identityError);
       process.exitCode = 1;

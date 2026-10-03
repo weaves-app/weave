@@ -1,15 +1,16 @@
+FROM node:24-bookworm-slim AS prune
+WORKDIR /app
+RUN npm install --global npm@11.19.0 turbo@2.11.7 --ignore-scripts
+COPY . .
+RUN turbo prune @weave/api --docker
 FROM node:24-bookworm-slim AS build
 WORKDIR /app
-COPY package.json package-lock.json ./
-COPY apps/api/package.json apps/api/package.json
-COPY apps/web/package.json apps/web/package.json
-COPY apps/mobile/package.json apps/mobile/package.json
-COPY packages/design-tokens/package.json packages/design-tokens/package.json
-RUN npm ci --ignore-scripts --workspace=@weave/api --include-workspace-root
-COPY apps/api apps/api
-# Generation/build need a URL shape, never a live database or production secret.
+RUN npm install --global npm@11.19.0 --ignore-scripts
+COPY --from=prune /app/out/json/ ./
+RUN npm ci --ignore-scripts
+COPY --from=prune /app/out/full/ ./
 RUN DATABASE_URL=postgresql://build:build@localhost/build npm run build --workspace=@weave/api
-RUN npm prune --omit=dev --ignore-scripts --workspace=@weave/api --include-workspace-root
+RUN npm prune --omit=dev --ignore-scripts
 FROM node:24-bookworm-slim
 ENV NODE_ENV=production PORT=3001
 WORKDIR /app

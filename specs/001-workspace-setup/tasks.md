@@ -15,3 +15,12 @@
 ## Phase 1: Convergence
 
 - [x] T012 Verify hosted CI and enable observed required statuses on both branches per S11 and success criteria (partial); preserve maintainers' develop-quality bypass and confirm release-tag mutation guards per S12.
+
+## Review remediation
+
+- [x] R001 Generic local identity guards; remove tracked identity details.
+- [x] R002 Hook regression tests and Claude compatibility.
+- [x] R003 Workspace resolver/configuration, Turbo cache and Docker prune.
+- [x] R004 Testable release manifest, QA prerequisite and retry/version policy.
+- [x] R005 Push-only tested candidate pipeline, workflow lint and dependency maintenance.
+- [ ] R006 Full verification, convergence, personal commit/push and hosted checks.

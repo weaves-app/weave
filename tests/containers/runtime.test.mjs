@@ -3,6 +3,11 @@ import {test} from 'node:test';
 import {execFileSync} from 'node:child_process';
 import {randomUUID} from 'node:crypto';
 import {setTimeout as delay} from 'node:timers/promises';
+const platform = process.env.IMAGE_PLATFORM;
+const images = {
+  api: process.env.API_IMAGE || 'weave-api:test',
+  web: process.env.WEB_IMAGE || 'weave-web:test',
+};
 const docker = (...args) =>
   execFileSync(
     'docker',
@@ -25,6 +30,22 @@ async function wait(url) {
   throw new Error(`Startup timeout: ${url}`);
 }
 void test('Production containers run as nonroot, connect web to API and keep liveness during outage', async (t) => {
+  console.log('Testing immutable candidates:', images, 'platform:', platform || 'native');
+  if (process.env.EXPECTED_REVISION)
+    for (const app of ['api', 'web']) {
+      const revision = docker(
+        'image',
+        'inspect',
+        images[app],
+        '--format',
+        '{{index .Config.Labels "org.opencontainers.image.revision"}}',
+      );
+      assert.equal(
+        revision,
+        process.env.EXPECTED_REVISION,
+        `${app} candidate belongs to this commit`,
+      );
+    }
   const suffix = randomUUID();
   const network = `weave-test-${suffix}`;
   const api = `weave-api-${suffix}`;
@@ -42,6 +63,7 @@ void test('Production containers run as nonroot, connect web to API and keep liv
   });
   docker(
     'run',
+    ...(platform ? ['--platform', platform] : []),
     '-d',
     '--name',
     api,
@@ -51,7 +73,7 @@ void test('Production containers run as nonroot, connect web to API and keep liv
     '127.0.0.1::3001',
     '-e',
     'DATABASE_URL=postgresql://invalid:invalid@127.0.0.1:1/invalid',
-    'weave-api:test',
+    images.api,
   );
   const apiUrl = `http://${docker('port', api, '3001/tcp')}`;
   const health = await wait(`${apiUrl}/api/health`);
@@ -60,6 +82,7 @@ void test('Production containers run as nonroot, connect web to API and keep liv
   assert.equal(docker('exec', api, 'id', '-u'), '1000');
   docker(
     'run',
+    ...(platform ? ['--platform', platform] : []),
     '-d',
     '--name',
     web,
@@ -69,7 +92,7 @@ void test('Production containers run as nonroot, connect web to API and keep liv
     '127.0.0.1::3000',
     '-e',
     `API_URL=http://${api}:3001`,
-    'weave-web:test',
+    images.web,
   );
   const page = await wait(`http://${docker('port', web, '3000/tcp')}`);
   assert.match(await page.text(), /Connected/);

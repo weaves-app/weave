@@ -47,9 +47,9 @@ export function validatePullRequest({base, head, sameRepository}) {
   if (base === 'develop') return validateBranch(head);
   return 'PR target must be develop or main.';
 }
-export function validateGithubAccount(expected, actual) {
+export function validateGithubAccount(expected, actual, forbidden = []) {
   return expected &&
-    expected.toLowerCase() !== 'ashr8' &&
+    !forbidden.some((identity) => identity.toLowerCase() === expected.toLowerCase()) &&
     expected.toLowerCase() === actual?.toLowerCase()
     ? null
     : `Refusing publication: expected personal GitHub account ${expected || '(unset)'}, authenticated as ${actual || '(unknown)'}.`;

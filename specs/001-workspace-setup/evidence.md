@@ -24,3 +24,15 @@ S10 publication identity: a permissive validator failed the company-account asse
 S11 first hosted run: policy and production containers passed. PostgreSQL service setup failed because the runner argument parser did not accept single-quoted health commands; quality failed because a fresh checkout had no generated Prisma types before typed lint. Corrected service quoting and added prelint generation without weakening checks. CI pins npm to the declared workspace version. The four observed Actions checks are required on both branches; the maintainers develop-quality bypass remains unchanged.
 
 S11 hosted completion: run 37115954198 at 43a9bbb passed policy, quality, integration, containers and required. CODEOWNERS API validation returned an empty errors list. Required statuses are policy/quality/integration/containers with Actions app 15368 and strict branch freshness. PR #1 requires review; no merge or bypass is claimed. A subsequent documentation-only head must also pass before merging.
+
+## Review remediation evidence (2026-10-03)
+
+- S13: forbidden-account assertion failed against the permissive local-policy seam before implementation; local forbidden account and mismatched/missing account tests now pass. Public identity details removed from tracked content; history retained.
+- S14: alias-cycle assertion failed before per-workspace resolution; now passes alongside existing boundaries/DI fixtures. Shared lint/type checks pass. Both pruned image builds passed after correcting TS6 source-root configuration. Cache reuse and runtime verification follow below.
+- S15: read-only descriptor/arrow assertions and a spec-write-with-source-text assertion failed before classifier fixes; now pass. Claude event handler fixtures pass; no interactive agent-session trust is claimed.
+- S16: permissive manifest/promotion/retry stubs failed meaningful assertions before validation implementation; malformed inputs and mismatched QA/retry digests now reject. Release flow and registry attestation execution remain push-only and are not claimed as performed from this feature PR.
+- S17: development breaking change expected 0.3.0 but returned 1.0.0 before versioning fix; now passes. Unscoped dependency proposals failed rejection assertions before implementation; guard passes. New CI/security/dependency configuration is undergoing final verification.
+
+Final local remediation: npm run verify passed (all workspace builds including iOS/Android exports); live integration 3/3 passed; pruned nonroot container runtime passed. Actionlint syntax and offline zizmor report no unsuppressed findings. Draft-recovery test failed against the permissive stub before implementation, then verified that only matching incomplete drafts can recover absent assets. Updated hosted checks remain pending until push.
+
+Cache verification: repeated lint/typecheck/unit tasks were 13/13 cache hits. A temporary shared-token source comment changed the web/mobile lint and test hashes in Turbo dry-run JSON; the source was restored immediately. Final sequential verify and live integration passed; workflow lint has no unsuppressed findings.

@@ -2,18 +2,38 @@ import ts from 'typescript';
 import path from 'node:path';
 // Inspects authored API constructors and imports. Module composition factories are
 // deliberately outside the constructor rule; TypeScript checks their contracts.
-export function inspectSources(sources) {
+export function inspectSources(sources, workspaceOptions = {}) {
   const files = Object.fromEntries(
     Object.entries(sources).map(([file, source]) => [path.resolve(file), source]),
   );
   const options = {
     strict: true,
     target: ts.ScriptTarget.ESNext,
-    moduleResolution: ts.ModuleResolutionKind.Node10,
+    module: ts.ModuleKind.Node16,
+    moduleResolution: ts.ModuleResolutionKind.Node16,
     experimentalDecorators: true,
     skipLibCheck: true,
-    baseUrl: path.resolve('apps/web'),
-    paths: {'@/*': ['./src/*']},
+  };
+  const optionsForFile = (file) => {
+    const relative = path.relative(process.cwd(), file).replaceAll(path.sep, '/');
+    const root = /^(apps|packages)\/[^/]+/.exec(relative)?.[0];
+    if (root && workspaceOptions[root])
+      return {
+        ...options,
+        ...ts.parseJsonConfigFileContent(
+          {compilerOptions: workspaceOptions[root]},
+          ts.sys,
+          path.resolve(root),
+        ).options,
+      };
+    const config = ts.findConfigFile(path.dirname(file), ts.sys.fileExists);
+    if (!config) return options;
+    const json = ts.readConfigFile(config, ts.sys.readFile);
+    if (json.error) throw new Error(ts.flattenDiagnosticMessageText(json.error.messageText, '\n'));
+    return {
+      ...options,
+      ...ts.parseJsonConfigFileContent(json.config, ts.sys, path.dirname(config)).options,
+    };
   };
   const host = ts.createCompilerHost(options);
   const read = host.readFile.bind(host);
@@ -28,11 +48,20 @@ export function inspectSources(sources) {
     const text = host.readFile(file);
     return text === undefined ? undefined : ts.createSourceFile(file, text, version, true);
   };
-  const program = ts.createProgram(Object.keys(files), options, host);
-  const checker = program.getTypeChecker();
+  const programs = new Map();
+  const programForFile = (file) => {
+    const localOptions = optionsForFile(file);
+    const key = JSON.stringify(localOptions);
+    if (!programs.has(key))
+      programs.set(key, ts.createProgram(Object.keys(files), localOptions, host));
+    return programs.get(key);
+  };
   const errors = [];
   const edges = new Map();
   for (const file of Object.keys(files)) {
+    const program = programForFile(file);
+    const checker = program.getTypeChecker();
+    const localOptions = optionsForFile(file);
     const source = program.getSourceFile(file);
     const relative = path.relative(process.cwd(), file).replaceAll(path.sep, '/');
     const originModule = /\/modules\/([^/]+)\//.exec(relative)?.[1];
@@ -42,7 +71,7 @@ export function inspectSources(sources) {
         `${relative}:${source.getLineAndCharacterOfPosition(node.getStart()).line + 1}: ${message}`,
       );
     const dependency = (node, specifier) => {
-      const resolved = ts.resolveModuleName(specifier, file, options, host).resolvedModule
+      const resolved = ts.resolveModuleName(specifier, file, localOptions, host).resolvedModule
         ?.resolvedFileName;
       const target = resolved
         ? path.relative(process.cwd(), resolved).replaceAll(path.sep, '/')

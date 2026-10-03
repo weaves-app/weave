@@ -1,0 +1,15 @@
+name: Set up Weave workspace
+description: Install the Node/npm versions declared by this repository
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+      with:
+        node-version-file: .nvmrc
+        cache: npm
+    - shell: bash
+      run:
+        | # zizmor: ignore[adhoc-packages] -- Validated exact npm version from packageManager, with lifecycle scripts disabled.
+        npm_version=$(node -p 'const value=require("./package.json").packageManager; if(!/^npm@\d+\.\d+\.\d+$/.test(value))throw new Error("Invalid npm version"); value.slice(4)')
+        npm install --global "npm@$npm_version" --ignore-scripts
+        npm ci

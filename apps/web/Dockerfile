@@ -1,13 +1,14 @@
+FROM node:24-bookworm-slim AS prune
+WORKDIR /app
+RUN npm install --global npm@11.19.0 turbo@2.11.7 --ignore-scripts
+COPY . .
+RUN turbo prune @weave/web --docker
 FROM node:24-bookworm-slim AS build
 WORKDIR /app
-COPY package.json package-lock.json ./
-COPY apps/api/package.json apps/api/package.json
-COPY apps/web/package.json apps/web/package.json
-COPY apps/mobile/package.json apps/mobile/package.json
-COPY packages/design-tokens/package.json packages/design-tokens/package.json
-RUN npm ci --ignore-scripts --workspace=@weave/web --include-workspace-root
-COPY apps/web apps/web
-COPY packages/design-tokens packages/design-tokens
+RUN npm install --global npm@11.19.0 --ignore-scripts
+COPY --from=prune /app/out/json/ ./
+RUN npm ci --ignore-scripts
+COPY --from=prune /app/out/full/ ./
 ENV NEXT_TELEMETRY_DISABLED=1
 RUN npm run build --workspace=@weave/web
 FROM node:24-bookworm-slim

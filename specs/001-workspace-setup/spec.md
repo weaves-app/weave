@@ -31,3 +31,13 @@ Coverage: valid, rejection, dependency unavailable, malformed input, repeat oper
 ## Success criteria
 
 All automated validation passes locally and in GitHub CI. PR links WEA-6 and artifacts. No secret/generated dependency directories committed. Main/develop protections and required checks are verified via API. Expo native bundles are exported and mobile component tests run; simulator checks only claimed if performed.
+
+## Approved review remediation
+
+User approved on 2026-10-03. Existing WEA-6 scope; no unrelated product changes.
+
+- S13: Personal credentials are validated with local forbidden identities; missing/mismatched/forbidden credentials fail closed. Public files contain generic identities only. Existing Git history is preserved.
+- S14: Workspace lint/types/tests/build use shared configuration and Turbo. Unchanged unit checks hit cache; source/shared config changes invalidate dependents. Live integration is uncached. API/web pruned containers retain nonroot and health behavior.
+- S15: Codex and Claude share rules/hooks. Read-only shell arrows, comparisons and descriptor duplication pass; unconfirmed source writes fail. Missing/foreign feature state fails closed.
+- S16: Push artifacts are built once, tested by immutable reference before official release; every published platform is tested. PRs never publish. Production requires matching QA evidence; malformed/mismatched manifests and partial releases are rejected or safely resumed without overwriting a version.
+- S17: CI lints workflows, limits credentials/timeouts, summarizes audits, separates mobile, retains artifacts explicitly and updates dependencies through a controlled ticket/spec process. Breaking changes in 0.x bump minor; 1.0 requires an explicit release decision.

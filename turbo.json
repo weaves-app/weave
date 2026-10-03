@@ -18,10 +18,32 @@
       "env": ["DATABASE_URL"]
     },
     "test": {
-      "dependsOn": ["^build"],
+      "dependsOn": ["^typecheck"],
+      "outputs": []
+    },
+    "lint": {
+      "dependsOn": ["^lint"],
+      "outputs": []
+    },
+    "db:generate": {
+      "outputs": ["src/generated/**"],
+      "env": ["DATABASE_URL"]
+    },
+    "@weave/api#lint": {
+      "dependsOn": ["^lint", "db:generate"],
+      "outputs": []
+    },
+    "@weave/api#typecheck": {
+      "dependsOn": ["^typecheck", "db:generate"],
       "outputs": [],
-      "cache": false
+      "env": ["DATABASE_URL"]
     }
   },
-  "globalDependencies": ["tsconfig*.json", "eslint.config.mjs", "package-lock.json"]
+  "globalDependencies": [
+    "tsconfig*.json",
+    "eslint.config.mjs",
+    "package-lock.json",
+    "scripts/**",
+    "tests/policy/**"
+  ]
 }

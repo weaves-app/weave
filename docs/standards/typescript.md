@@ -11,3 +11,5 @@ Adopted narrow exceptions: default exports only where Next.js route/config, Expo
 Implemented enforcement: type-aware typescript-eslint, React Hooks and Next rules, formatter settings aligned to the adopted policy, and a rule-to-tool matrix. [Typed linting](https://typescript-eslint.io/getting-started/typed-linting/).
 
 Keep strict mode. Evaluate noUncheckedIndexedAccess, noImplicitOverride, noFallthroughCasesInSwitch, and exactOptionalPropertyTypes with generated/client types before enabling. Validate external JSON at runtime; static types do not validate responses. Await promises or intentionally handle rejections; do not silently swallow errors. Production code, tests, and examples should share style, with explicit narrow test exceptions only when needed.
+
+Shared compiler profiles live in @weave/typescript-config. Authored workspace compilation/linting uses TypeScript 6.0.3. Nest CLI's internal 5.9.3 dependency is a documented tooling exception; authored API compilation validates with 6.0.3. Next retains its framework-compatible ES2017 target; strictness is shared, not identical module/runtime settings across platforms.

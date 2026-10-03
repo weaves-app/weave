@@ -5,13 +5,15 @@ const git = (...args) => execFileSync('git', args, {encoding: 'utf8'}).trim();
 const tags = git('tag', '--list', 'v*', '--sort=-version:refname')
   .split('\n')
   .filter((tag) => /^v\d+\.\d+\.\d+$/.test(tag));
-const previous = tags[0];
+const head = git('rev-parse', 'HEAD');
+const existing = tags.find((tag) => git('rev-parse', `${tag}^{commit}`) === head);
+const previous = tags.find((tag) => tag !== existing);
 if (previous) execFileSync('git', ['merge-base', '--is-ancestor', previous, 'HEAD']);
 const range = previous ? `${previous}..HEAD` : 'HEAD';
 const commits = git('log', '--no-merges', '--format=%s', range)
   .split('\n')
   .filter((value) => /^[a-z]+(?:\([^)]*\))?!?: /.test(value));
-const version = nextVersion(previous?.slice(1) ?? '0.0.0', commits);
+const version = existing?.slice(1) ?? nextVersion(previous?.slice(1) ?? '0.0.0', commits);
 if (!version) throw new Error('No releasable commits.');
 writeFileSync(
   'CHANGELOG.release.md',

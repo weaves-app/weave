@@ -12,12 +12,14 @@
   },
   "devDependencies": {
     "@types/react": "~19.2.2",
-    "typescript": "~6.0.3",
+    "typescript": "6.0.3",
     "jest": "^29.7.0",
     "jest-expo": "~57.0.5",
     "@types/jest": "^29.5.14",
     "react-test-renderer": "19.2.3",
-    "@testing-library/react-native": "^13.3.3"
+    "@testing-library/react-native": "^13.3.3",
+    "@weave/typescript-config": "*",
+    "@weave/eslint-config": "*"
   },
   "scripts": {
     "start": "expo start",
@@ -27,7 +29,8 @@
     "dev": "expo start",
     "typecheck": "tsc --noEmit",
     "test": "jest --runInBand",
-    "build": "expo export --platform ios --platform android"
+    "build": "expo export --platform ios --platform android",
+    "lint": "eslint ."
   },
   "private": true,
   "jest": {

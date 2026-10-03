@@ -4,8 +4,11 @@ export function nextVersion(previous, commits) {
   if (!commits.length) return null;
   let [major, minor, patch] = previous.split('.').map(Number);
   if (commits.some((commit) => /^[a-z]+(?:\([^)]*\))?!:/.test(commit))) {
-    major++;
-    minor = 0;
+    if (major === 0) minor++;
+    else {
+      major++;
+      minor = 0;
+    }
     patch = 0;
   } else if (commits.some((commit) => /^feat(?:\([^)]*\))?:/.test(commit))) {
     minor++;

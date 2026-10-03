@@ -13,3 +13,7 @@ test('S12 main releases classify Conventional Commits by highest impact', () => 
   assert.equal(nextVersion('1.2.3', []), null);
   assert.throws(() => nextVersion('bad', ['feat: add x [WEA-6]']));
 });
+
+test('S17 breaking changes stay in development versions until explicit 1.0', () => {
+  assert.equal(nextVersion('0.2.3', ['feat!: remove old contract [WEA-6]']), '0.3.0');
+});
