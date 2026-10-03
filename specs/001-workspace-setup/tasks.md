@@ -9,9 +9,9 @@
 - [x] T007 Write mobile primitive behavior tests; implement token-based Expo starter; verify green.
 - [x] T008 Configure shared lint/format, scoped instructions, Git/agent hooks and template adaptations.
 - [x] T009 Add CI, PostgreSQL checks, Dockerfiles, code owners and release-tag protections.
-- [ ] T010 Verify all checks, write convergence report, commit personally, push and open PR to develop.
+- [x] T010 Verify all checks, write convergence report, commit personally, push and open PR to develop.
 - [ ] T011 Observe GitHub checks and activate exact required statuses on main/develop; merge PR after passing checks and eligible review.
 
 ## Phase 1: Convergence
 
-- [ ] T012 Verify hosted CI and enable observed required statuses on both branches per S11 and success criteria (partial); preserve maintainers' develop-quality bypass and confirm release-tag mutation guards per S12.
+- [x] T012 Verify hosted CI and enable observed required statuses on both branches per S11 and success criteria (partial); preserve maintainers' develop-quality bypass and confirm release-tag mutation guards per S12.
