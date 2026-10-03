@@ -1,0 +1,28 @@
+name: Promote released images
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Existing official stable version (for example 0.1.0)
+        required: true
+      environment:
+        type: choice
+        options: [qa, production]
+        required: true
+permissions:
+  contents: read
+  packages: write
+jobs:
+  promote:
+    if: github.ref == 'refs/heads/main'
+    uses: ./.github/workflows/promote-image.yml
+    with:
+      version: ${{ inputs.version }}
+      environment: ${{ inputs.environment }}
+  production:
+    needs: promote
+    if: github.ref == 'refs/heads/main' && inputs.environment == 'qa'
+    uses: ./.github/workflows/promote-image.yml
+    with:
+      version: ${{ inputs.version }}
+      environment: production

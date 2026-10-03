@@ -1,0 +1,4 @@
+# API
+
+Read root AGENTS.md and docs/standards/{nestjs,architecture,typescript,testing-and-delivery}.md.
+A modular monolith: domain/application, infrastructure adapters, controllers and composition root per bounded context. Domain/application depend on consumer-owned interfaces. Nest @Inject uses exported symbol tokens; factory providers wire concrete classes. Validate DTOs at entrypoints once endpoints accept input; no ORM types in ports. Use transaction boundaries in application use cases. Expose contracts, not internals. Health module factories are the initial composition example. Prisma generated code is excluded from authored checks. Apply committed migrations explicitly; never use migrate dev in deployed environments. Test use cases through interfaces, wiring through the live HTTP app, and persistence against PostgreSQL.

@@ -1,0 +1,12 @@
+**/node_modules
+**/.next
+**/dist
+**/.expo
+**/.turbo
+**/coverage
+.git
+**/.env*
+**/generated
+.agents
+.codex
+.specify

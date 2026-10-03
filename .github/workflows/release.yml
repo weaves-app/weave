@@ -1,0 +1,95 @@
+name: Publish images and releases
+on:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+    branches: [main, develop]
+permissions:
+  contents: write
+  packages: write
+  actions: write
+concurrency:
+  group: publish-${{ github.event.workflow_run.head_branch }}
+  cancel-in-progress: false
+jobs:
+  publish:
+    if: github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push' && github.event.workflow_run.head_repository.full_name == github.repository
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.release.outputs.version }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+          fetch-depth: 0
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .nvmrc
+      - name: Calculate official version and changelog
+        id: release
+        if: github.event.workflow_run.head_branch == 'main'
+        run: node scripts/release-metadata.mjs
+      - name: Reject an existing official version
+        if: github.event.workflow_run.head_branch == 'main'
+        env:
+          VERSION: ${{ steps.release.outputs.version }}
+        run: |
+          if git rev-parse "refs/tags/v$VERSION" >/dev/null 2>&1; then
+            echo 'Official version already exists; never overwrite it.' >&2
+            exit 1
+          fi
+      - uses: docker/setup-qemu-action@99012661954931238ded8c8b007157a8430204e1 # v4.4.0
+      - uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
+      - uses: docker/login-action@dbcb813823bdd20940b903addbd779551569679f # v4.6.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
+        id: api
+        with:
+          context: .
+          file: apps/api/Dockerfile
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: ghcr.io/${{ github.repository }}-api:sha-${{ github.event.workflow_run.head_sha }}
+      - uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
+        id: web
+        with:
+          context: .
+          file: apps/web/Dockerfile
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: ghcr.io/${{ github.repository }}-web:sha-${{ github.event.workflow_run.head_sha }}
+      - name: Record immutable artifact identities
+        env:
+          REPOSITORY: ${{ github.repository }}
+          COMMIT: ${{ github.event.workflow_run.head_sha }}
+          API_DIGEST: ${{ steps.api.outputs.digest }}
+          WEB_DIGEST: ${{ steps.web.outputs.digest }}
+          VERSION: ${{ steps.release.outputs.version }}
+        run: |
+          node -e 'const e=process.env; require("fs").writeFileSync("release-manifest.json",JSON.stringify({repository:e.REPOSITORY,commit:e.COMMIT,version:e.VERSION||null,images:{api:`ghcr.io/${e.REPOSITORY}-api@${e.API_DIGEST}`,web:`ghcr.io/${e.REPOSITORY}-web@${e.WEB_DIGEST}`}},null,2))'
+      - name: Publish official immutable version aliases and GitHub release
+        if: github.event.workflow_run.head_branch == 'main'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPOSITORY: ${{ github.repository }}
+          COMMIT: ${{ github.event.workflow_run.head_sha }}
+          VERSION: ${{ steps.release.outputs.version }}
+          API_DIGEST: ${{ steps.api.outputs.digest }}
+          WEB_DIGEST: ${{ steps.web.outputs.digest }}
+        run: |
+          docker buildx imagetools create --prefer-index=false -t "ghcr.io/$REPOSITORY-api:$VERSION" "ghcr.io/$REPOSITORY-api@$API_DIGEST"
+          docker buildx imagetools create --prefer-index=false -t "ghcr.io/$REPOSITORY-web:$VERSION" "ghcr.io/$REPOSITORY-web@$WEB_DIGEST"
+          gh release create "v$VERSION" release-manifest.json CHANGELOG.release.md --target "$COMMIT" --title "v$VERSION" --notes-file CHANGELOG.release.md
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: image-manifest-${{ github.event.workflow_run.head_sha }}
+          path: release-manifest.json
+      - name: Start main-scoped QA then approved production promotion
+        if: github.event.workflow_run.head_branch == 'main'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION: ${{ steps.release.outputs.version }}
+        run: gh workflow run promote.yml --repo "$GITHUB_REPOSITORY" --ref main -f "version=$VERSION" -f environment=qa

@@ -1,0 +1,27 @@
+{
+  "$schema": "https://turborepo.com/schema.json",
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**", ".next/**", "!.next/cache/**", "!.next/dev/**"],
+      "env": ["DATABASE_URL", "API_URL"],
+      "inputs": ["$TURBO_DEFAULT$", "$TURBO_ROOT$/package-lock.json"]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true,
+      "env": ["DATABASE_URL", "PORT", "FRONTEND_URL", "API_URL"]
+    },
+    "typecheck": {
+      "dependsOn": ["^typecheck"],
+      "outputs": [],
+      "env": ["DATABASE_URL"]
+    },
+    "test": {
+      "dependsOn": ["^build"],
+      "outputs": [],
+      "cache": false
+    }
+  },
+  "globalDependencies": ["tsconfig*.json", "eslint.config.mjs", "package-lock.json"]
+}

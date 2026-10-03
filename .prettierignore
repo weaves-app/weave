@@ -1,0 +1,15 @@
+node_modules
+package-lock.json
+.next
+dist
+.turbo
+.expo
+coverage
+apps/api/src/generated
+.agents
+.specify/scripts
+.specify/templates
+.specify/workflows
+.specify/presets
+
+apps/web/next-env.d.ts
