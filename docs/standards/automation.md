@@ -1,6 +1,6 @@
 # GitHub delivery automation
 
-- `CI` runs policy, quality, integration and containers on every PR to develop/main and every push to either. `required` fails when any gate fails or skips. No path filters bypass the gate.
+- `CI` runs policy, quality, integration and containers on every PR to develop/main and every push to either. `required` fails when any gate fails or skips. The four observed GitHub Actions checks (`policy`, `quality`, `integration`, `containers`, App 15368) are required on both branches with strict up-to-date checking. No path filters bypass the gate.
 - CODEOWNERS names `@weaves-app/weave-maintainers`. Rulesets require review. The requested develop-quality team bypass remains; maintainers must not use it to hide failures.
 - PRs into develop require `feat|fix|bugfix|hotfix/WEA-N/slug`, matching imperative Conventional Commit title, Linear/spec/evidence links, and current develop ancestry. Same-repository develop alone may enter main. Release PRs use merge commits to preserve ancestry; feature PRs use squash.
 - Configure squash message as title only to keep one-line commit messages. Main release merge commits are a documented GitHub-generated exception to authored Conventional Commits; classification reads non-merge commits.
