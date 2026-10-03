@@ -18,3 +18,7 @@ CI runs full suite, fresh and repeat Prisma migration validation, production bui
 6. Run verify, live PostgreSQL integration, container runtime and hosted CI; update convergence then push personally to existing PR.
 
 Constitution check: approved BDD recorded, behavior tests precede code, interface boundaries unchanged, no history rewrite/protection bypass, main-only versions/runtime configuration.
+
+## Round 2 implementation plan
+
+Preserve release behavior while extracting the Docker composite and deriving versions inside Docker. Narrow Turbo inputs with a package-specific root ESLint dependency. Test optional Git config and missing-QA CLI behavior before implementation. Group architecture roots by compiler options, declare ESLint peers, then verify local checks, cache experiments, images and hosted PR checks. No release concurrency policy change or protected-branch bypass.

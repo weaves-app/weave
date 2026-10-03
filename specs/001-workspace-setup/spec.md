@@ -41,3 +41,15 @@ User approved on 2026-10-03. Existing WEA-6 scope; no unrelated product changes.
 - S15: Codex and Claude share rules/hooks. Read-only shell arrows, comparisons and descriptor duplication pass; unconfirmed source writes fail. Missing/foreign feature state fails closed.
 - S16: Push artifacts are built once, tested by immutable reference before official release; every published platform is tested. PRs never publish. Production requires matching QA evidence; malformed/mismatched manifests and partial releases are rejected or safely resumed without overwriting a version.
 - S17: CI lints workflows, limits credentials/timeouts, summarizes audits, separates mobile, retains artifacts explicitly and updates dependencies through a controlled ticket/spec process. Breaking changes in 0.x bump minor; 1.0 requires an explicit release decision.
+
+## Round 2 review scenarios
+
+S18 happy: shared image action preserves PR loading and push tags, platforms, provenance and digest outputs. Edge: reuse existing SHA candidates.
+S19 happy: workspace cache survives root policy edits; shared token edits invalidate dependents. Root ESLint changes still invalidate its actual consumer.
+S20 happy: Docker tool versions follow packageManager and the resolved lockfile without build arguments.
+S21 happy: optional local GitHub profile may be absent; explicit profiles work. Sad: Git errors fail closed.
+S22 sad: missing QA aliases block production with the policy message before any registry mutation. Happy: shared registry lookup validates digests.
+S23 happy: configuration-scoped architecture programs preserve all existing violations and run efficiently.
+S24 happy: ESLint configuration declares its host dependency and aligned parser range.
+
+Round 2 authorization: user explicitly requested these review fixes on 2026-10-03. Preserve concurrency policy; report R4 future tooling and R8 batching decisions separately.

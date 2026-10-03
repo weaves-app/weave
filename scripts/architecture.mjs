@@ -48,12 +48,22 @@ export function inspectSources(sources, workspaceOptions = {}) {
     const text = host.readFile(file);
     return text === undefined ? undefined : ts.createSourceFile(file, text, version, true);
   };
-  const programs = new Map();
-  const programForFile = (file) => {
+  const groups = new Map();
+  const fileOptions = new Map();
+  for (const file of Object.keys(files)) {
     const localOptions = optionsForFile(file);
     const key = JSON.stringify(localOptions);
-    if (!programs.has(key))
-      programs.set(key, ts.createProgram(Object.keys(files), localOptions, host));
+    fileOptions.set(file, {key, options: localOptions});
+    if (!groups.has(key)) groups.set(key, {options: localOptions, roots: []});
+    groups.get(key).roots.push(file);
+  }
+  const programs = new Map();
+  const programForFile = (file) => {
+    const {key} = fileOptions.get(file);
+    if (!programs.has(key)) {
+      const group = groups.get(key);
+      programs.set(key, ts.createProgram(group.roots, group.options, host));
+    }
     return programs.get(key);
   };
   const errors = [];
@@ -61,7 +71,7 @@ export function inspectSources(sources, workspaceOptions = {}) {
   for (const file of Object.keys(files)) {
     const program = programForFile(file);
     const checker = program.getTypeChecker();
-    const localOptions = optionsForFile(file);
+    const localOptions = fileOptions.get(file).options;
     const source = program.getSourceFile(file);
     const relative = path.relative(process.cwd(), file).replaceAll(path.sep, '/');
     const originModule = /\/modules\/([^/]+)\//.exec(relative)?.[1];

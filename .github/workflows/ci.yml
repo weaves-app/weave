@@ -124,40 +124,21 @@ jobs:
           package-manager-cache: false
       - uses: docker/setup-qemu-action@99012661954931238ded8c8b007157a8430204e1 # v4.4.0
       - uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
-      - uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
+      - uses: ./.github/actions/build-image # zizmor: ignore[self-repository] -- Build with the reviewed action from the matching checkout.
         id: api
         with:
-          context: .
-          file: apps/api/Dockerfile
-          platforms: ${{ github.event_name == 'push' && 'linux/amd64,linux/arm64' || 'linux/amd64' }}
-          push: ${{ github.event_name == 'push' }}
-          load: ${{ github.event_name != 'push' }}
-          tags: ${{ github.event_name == 'push' && format('ghcr.io/{0}-api:sha-{1}', github.repository, github.sha) || 'weave-api:test' }}
-          labels: |
-            org.opencontainers.image.source=https://github.com/${{ github.repository }}
-            org.opencontainers.image.revision=${{ github.sha }}
-          cache-from: type=gha,scope=api
-          cache-to: type=gha,mode=max,scope=api
-          provenance: ${{ github.event_name == 'push' && 'mode=max' || 'false' }}
-          sbom: ${{ github.event_name == 'push' }}
-      - uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
+          app: api
+          push: 'false'
+          platforms: linux/amd64
+          tags: weave-api:test
+      - uses: ./.github/actions/build-image # zizmor: ignore[self-repository] -- Build with the reviewed action from the matching checkout.
         id: web
         with:
-          context: .
-          file: apps/web/Dockerfile
-          platforms: ${{ github.event_name == 'push' && 'linux/amd64,linux/arm64' || 'linux/amd64' }}
-          push: ${{ github.event_name == 'push' }}
-          load: ${{ github.event_name != 'push' }}
-          tags: ${{ github.event_name == 'push' && format('ghcr.io/{0}-web:sha-{1}', github.repository, github.sha) || 'weave-web:test' }}
-          labels: |
-            org.opencontainers.image.source=https://github.com/${{ github.repository }}
-            org.opencontainers.image.revision=${{ github.sha }}
-          cache-from: type=gha,scope=web
-          cache-to: type=gha,mode=max,scope=web
-          provenance: ${{ github.event_name == 'push' && 'mode=max' || 'false' }}
-          sbom: ${{ github.event_name == 'push' }}
+          app: web
+          push: 'false'
+          platforms: linux/amd64
+          tags: weave-web:test
       - name: Test PR containers
-        if: github.event_name != 'push'
         run: node --test tests/containers/*.test.mjs
   candidate:
     name: candidate
@@ -184,55 +165,31 @@ jobs:
       - uses: docker/setup-qemu-action@99012661954931238ded8c8b007157a8430204e1 # v4.4.0
       - uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
       - uses: docker/login-action@dbcb813823bdd20940b903addbd779551569679f # v4.6.0
-        if: github.event_name == 'push'
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - id: lookup
-        if: github.event_name == 'push'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: node scripts/candidate-images.mjs
-      - uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
+      - uses: ./.github/actions/build-image # zizmor: ignore[self-repository] -- Build with the reviewed action from the matching checkout.
         id: api
-        if: github.event_name != 'push' || steps.lookup.outputs.api == ''
+        if: steps.lookup.outputs.api == ''
         with:
-          context: .
-          file: apps/api/Dockerfile
-          platforms: ${{ github.event_name == 'push' && 'linux/amd64,linux/arm64' || 'linux/amd64' }}
-          push: ${{ github.event_name == 'push' }}
-          load: ${{ github.event_name != 'push' }}
-          tags: ${{ github.event_name == 'push' && format('ghcr.io/{0}-api:sha-{1}', github.repository, github.sha) || 'weave-api:test' }}
-          labels: |
-            org.opencontainers.image.source=https://github.com/${{ github.repository }}
-            org.opencontainers.image.revision=${{ github.sha }}
-          cache-from: type=gha,scope=api
-          cache-to: type=gha,mode=max,scope=api
-          provenance: ${{ github.event_name == 'push' && 'mode=max' || 'false' }}
-          sbom: ${{ github.event_name == 'push' }}
-      - uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
+          app: api
+          push: 'true'
+          platforms: linux/amd64,linux/arm64
+          tags: ghcr.io/${{ github.repository }}-api:sha-${{ github.sha }}
+      - uses: ./.github/actions/build-image # zizmor: ignore[self-repository] -- Build with the reviewed action from the matching checkout.
         id: web
-        if: github.event_name != 'push' || steps.lookup.outputs.web == ''
+        if: steps.lookup.outputs.web == ''
         with:
-          context: .
-          file: apps/web/Dockerfile
-          platforms: ${{ github.event_name == 'push' && 'linux/amd64,linux/arm64' || 'linux/amd64' }}
-          push: ${{ github.event_name == 'push' }}
-          load: ${{ github.event_name != 'push' }}
-          tags: ${{ github.event_name == 'push' && format('ghcr.io/{0}-web:sha-{1}', github.repository, github.sha) || 'weave-web:test' }}
-          labels: |
-            org.opencontainers.image.source=https://github.com/${{ github.repository }}
-            org.opencontainers.image.revision=${{ github.sha }}
-          cache-from: type=gha,scope=web
-          cache-to: type=gha,mode=max,scope=web
-          provenance: ${{ github.event_name == 'push' && 'mode=max' || 'false' }}
-          sbom: ${{ github.event_name == 'push' }}
-      - name: Test PR containers
-        if: github.event_name != 'push'
-        run: node --test tests/containers/*.test.mjs
+          app: web
+          push: 'true'
+          platforms: linux/amd64,linux/arm64
+          tags: ghcr.io/${{ github.repository }}-web:sha-${{ github.sha }}
       - name: Test every published platform by digest
-        if: github.event_name == 'push'
         env:
           API_DIGEST: ${{ steps.api.outputs.digest || steps.lookup.outputs.api }}
           WEB_DIGEST: ${{ steps.web.outputs.digest || steps.lookup.outputs.web }}
@@ -245,13 +202,11 @@ jobs:
             EXPECTED_REVISION="$GITHUB_SHA" IMAGE_PLATFORM="$platform" node --test tests/containers/*.test.mjs
           done
       - uses: actions/attest-build-provenance@4d101475d8b20a2381f78447822ac1eab6504dd8 # v4.2.2
-        if: github.event_name == 'push'
         with:
           subject-name: ghcr.io/${{ github.repository }}-api
           subject-digest: ${{ steps.api.outputs.digest || steps.lookup.outputs.api }}
           push-to-registry: true
       - uses: actions/attest-build-provenance@4d101475d8b20a2381f78447822ac1eab6504dd8 # v4.2.2
-        if: github.event_name == 'push'
         with:
           subject-name: ghcr.io/${{ github.repository }}-web
           subject-digest: ${{ steps.web.outputs.digest || steps.lookup.outputs.web }}

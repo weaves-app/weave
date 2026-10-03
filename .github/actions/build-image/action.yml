@@ -1,0 +1,38 @@
+name: Build application image
+description: Build or publish the application with shared cache and provenance settings.
+inputs:
+  app:
+    description: Application name (api or web).
+    required: true
+  push:
+    description: Publish to registry; otherwise load locally.
+    required: true
+  tags:
+    description: Image tags.
+    required: true
+  platforms:
+    description: Target platforms.
+    default: linux/amd64
+outputs:
+  digest:
+    description: Built image digest.
+    value: ${{ steps.build.outputs.digest }}
+runs:
+  using: composite
+  steps:
+    - uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
+      id: build
+      with:
+        context: .
+        file: apps/${{ inputs.app }}/Dockerfile
+        platforms: ${{ inputs.platforms }}
+        push: ${{ inputs.push == 'true' }}
+        load: ${{ inputs.push != 'true' }}
+        tags: ${{ inputs.tags }}
+        labels: |
+          org.opencontainers.image.source=https://github.com/${{ github.repository }}
+          org.opencontainers.image.revision=${{ github.sha }}
+        cache-from: type=gha,scope=${{ inputs.app }}
+        cache-to: type=gha,mode=max,scope=${{ inputs.app }}
+        provenance: ${{ inputs.push == 'true' && 'mode=max' || 'false' }}
+        sbom: ${{ inputs.push == 'true' }}

@@ -14,3 +14,7 @@
 - Weekly Dependabot proposals update npm/framework groups and SHA-pinned Actions, with a 7-day normal-update cooldown. Proposal PRs intentionally fail ticket/spec merge policy until adopted into a new Linear ticket with `npm run deps:adopt -- PR_NUMBER WEA-N`. That helper verifies author/repository/file scope, branches from develop and prepares unconfirmed scenario artifacts plus a local ignored patch. After agreement, `npm run deps:adopt -- PR_NUMBER WEA-N --apply` checks the ticket state before applying it. It does not commit/push/merge or waive checks. Confirm scenarios, verify the update, then open the normal reviewed ticket PR. Never reuse WEA-6 for future updates.
 
 AWS runtime integration, native signing/device/store validation and Linear release API integration remain separate environment work. No release or deployment is claimed from PR validation alone.
+
+## Main release queue limitation
+
+The current main concurrency group retains one running and one pending workflow. A later merge can replace an older pending run. Those changes remain in Git and ship in the next successful release, but the replaced commit receives no individual release/tag. Avoid burst merges when a release for each main commit is required. R8 is a maintainer decision: retaining batching is recommended for the current develop-to-main release flow; no concurrency policy change has been made.

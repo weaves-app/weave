@@ -1,4 +1,5 @@
-import {execFileSync, spawnSync} from 'node:child_process';
+import {localConfig} from './git-config.mjs';
+import {execFileSync} from 'node:child_process';
 import {readFileSync} from 'node:fs';
 import {validateBranch, validateCommit, validateGithubAccount} from './policy.mjs';
 const branch = execFileSync('git', ['branch', '--show-current'], {encoding: 'utf8'}).trim();
@@ -15,12 +16,7 @@ const localName = execFileSync('git', ['config', '--local', '--get', 'user.name'
 const localEmail = execFileSync('git', ['config', '--local', '--get', 'user.email'], {
   encoding: 'utf8',
 }).trim();
-const forbiddenResult = spawnSync(
-  'git',
-  ['config', '--local', '--get-all', 'weave.forbiddenIdentity'],
-  {encoding: 'utf8'},
-);
-const forbidden = forbiddenResult.status === 0 ? forbiddenResult.stdout.trim().split('\n') : [];
+const forbidden = localConfig('weave.forbiddenIdentity', {all: true}).split('\n').filter(Boolean);
 if (
   forbidden.some((identity) =>
     [localName, localEmail].some((value) => value.toLowerCase() === identity.toLowerCase()),
@@ -38,11 +34,7 @@ if (error) {
 }
 
 if (!error && process.argv[2] === 'push') {
-  const config = (key) => {
-    const result = spawnSync('git', ['config', '--local', '--get', key], {encoding: 'utf8'});
-    return result.status === 0 ? result.stdout.trim() : '';
-  };
-  const expected = config('weave.githubUser');
+  const expected = localConfig('weave.githubUser');
   if (!expected)
     throw new Error(
       'Set git config --local weave.githubUser YOUR_PERSONAL_GITHUB_LOGIN before pushing.',
@@ -50,7 +42,7 @@ if (!error && process.argv[2] === 'push') {
   const env = {...process.env};
   delete env.GH_TOKEN;
   delete env.GITHUB_TOKEN;
-  const configDirectory = config('weave.ghConfigDir');
+  const configDirectory = localConfig('weave.ghConfigDir');
   if (configDirectory) env.GH_CONFIG_DIR = configDirectory;
   try {
     env.GH_TOKEN = execFileSync(

@@ -37,13 +37,12 @@
       "dependsOn": ["^typecheck", "db:generate"],
       "outputs": [],
       "env": ["DATABASE_URL"]
+    },
+    "@weave/eslint-config#lint": {
+      "dependsOn": ["^lint"],
+      "outputs": [],
+      "inputs": ["$TURBO_DEFAULT$", "$TURBO_ROOT$/eslint.config.mjs"]
     }
   },
-  "globalDependencies": [
-    "tsconfig*.json",
-    "eslint.config.mjs",
-    "package-lock.json",
-    "scripts/**",
-    "tests/policy/**"
-  ]
+  "globalDependencies": ["package-lock.json"]
 }

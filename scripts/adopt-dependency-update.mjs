@@ -1,3 +1,4 @@
+import {localConfig} from './git-config.mjs';
 import {execFileSync} from 'node:child_process';
 import {writeFileSync, readFileSync, mkdirSync, mkdtempSync, rmSync} from 'node:fs';
 import {tmpdir} from 'node:os';
@@ -25,7 +26,9 @@ if (mode === '--apply') {
 if (mode) throw new Error('Unknown mode.');
 if (git('status', '--porcelain')) throw new Error('Dependency adoption requires a clean checkout.');
 const expected = git('config', '--local', '--get', 'weave.githubUser');
-const env = {...process.env, GH_CONFIG_DIR: git('config', '--local', '--get', 'weave.ghConfigDir')};
+const env = {...process.env};
+const configDirectory = localConfig('weave.ghConfigDir');
+if (configDirectory) env.GH_CONFIG_DIR = configDirectory;
 delete env.GH_TOKEN;
 delete env.GITHUB_TOKEN;
 const gh = (...args) => execFileSync('gh', args, {encoding: 'utf8', env});

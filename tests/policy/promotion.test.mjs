@@ -1,3 +1,7 @@
+import {mkdtempSync, writeFileSync, chmodSync, rmSync} from 'node:fs';
+import {tmpdir} from 'node:os';
+import path from 'node:path';
+import {spawnSync} from 'node:child_process';
 import assert from 'node:assert/strict';
 import {test} from 'node:test';
 import {
@@ -76,4 +80,33 @@ test('S16 only matching incomplete drafts may recover missing assets', async () 
   assert.throws(() =>
     validateReleaseState(expected, {isDraft: true, targetCommitish: 'other'}, false),
   );
+});
+
+test('S22 missing QA aliases fail with the production policy message before mutation', () => {
+  const directory = mkdtempSync(path.join(tmpdir(), 'weave-qa-'));
+  try {
+    writeFileSync(path.join(directory, 'release-manifest.json'), JSON.stringify(expected));
+    const docker = path.join(directory, 'docker');
+    writeFileSync(
+      docker,
+      '#!/bin/sh\nif [ "$3" = "inspect" ]; then echo "manifest unknown" >&2; exit 1; fi\necho "UNEXPECTED_MUTATION" >&2; exit 2\n',
+    );
+    chmodSync(docker, 0o755);
+    const result = spawnSync(process.execPath, [path.resolve('scripts/promote-images.mjs')], {
+      cwd: directory,
+      encoding: 'utf8',
+      env: {
+        ...process.env,
+        PATH: `${directory}:${process.env.PATH}`,
+        GITHUB_REPOSITORY: repository,
+        TARGET_ENVIRONMENT: 'production',
+        VERSION: '0.1.0',
+      },
+    });
+    assert.notEqual(result.status, 0);
+    assert.match(result.stderr, /Production requires matching QA digest/);
+    assert.doesNotMatch(result.stderr, /UNEXPECTED_MUTATION/);
+  } finally {
+    rmSync(directory, {recursive: true, force: true});
+  }
 });

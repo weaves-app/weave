@@ -1,12 +1,13 @@
 FROM node:24-bookworm-slim AS prune
 WORKDIR /app
-RUN npm install --global npm@11.19.0 turbo@2.11.7 --ignore-scripts
+COPY package.json package-lock.json ./
+RUN node -e 'const {execFileSync}=require("node:child_process"); const npm=require("./package.json").packageManager; const turbo=require("./package-lock.json").packages["node_modules/turbo"].version; if(!/^npm@\d+\.\d+\.\d+$/.test(npm)||!/^\d+\.\d+\.\d+$/.test(turbo))throw Error("Invalid locked tool versions"); execFileSync("npm",["install","--global",npm,"turbo@"+turbo,"--ignore-scripts"],{stdio:"inherit"})'
 COPY . .
 RUN turbo prune @weave/api --docker
 FROM node:24-bookworm-slim AS build
 WORKDIR /app
-RUN npm install --global npm@11.19.0 --ignore-scripts
 COPY --from=prune /app/out/json/ ./
+RUN node -e 'const {execFileSync}=require("node:child_process"); const npm=require("./package.json").packageManager; if(!/^npm@\d+\.\d+\.\d+$/.test(npm))throw Error("Invalid packageManager"); execFileSync("npm",["install","--global",npm,"--ignore-scripts"],{stdio:"inherit"})'
 RUN npm ci --ignore-scripts
 COPY --from=prune /app/out/full/ ./
 RUN DATABASE_URL=postgresql://build:build@localhost/build npm run build --workspace=@weave/api

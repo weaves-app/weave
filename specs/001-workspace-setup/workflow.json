@@ -1,7 +1,7 @@
 {
   "ticket": "WEA-6",
   "scenariosConfirmed": true,
-  "confirmation": "User approved review remediation plan and implementation on 2026-10-03, including mandatory Claude support",
+  "confirmation": "User approved review remediation plan and implementation on 2026-10-03, including mandatory Claude support; user requested Round 2 fixes on 2026-10-03",
   "scenarioIds": [
     "S01",
     "S02",
@@ -19,6 +19,13 @@
     "S14",
     "S15",
     "S16",
-    "S17"
+    "S17",
+    "S18",
+    "S19",
+    "S20",
+    "S21",
+    "S22",
+    "S23",
+    "S24"
   ]
 }
