@@ -18,3 +18,5 @@ All observations below are from actual tool runs on 2026-10-03; not reconstructe
 | S12 release           | Version stub returned 0.0.0 instead of patch version                   | Highest-impact major/minor/patch, first version, invalid SemVer and no commits tests pass; remote version tag update/deletion protection enabled without bypass                                                     |
 
 An initial missing-module run and renderer setup failure were tooling failures, not meaningful behavioral red. All behavioral tests above subsequently ran with expected assertions before the corresponding implementation. Live integration is verification of existing/changed wiring, not a retroactive TDD claim. Native-device tests and real releases/promotions are not claimed.
+
+S10 publication identity: a permissive validator failed the company-account assertion before implementation. Expected/mismatched/missing/company identity cases now pass. The pre-push hook verifies the live GitHub API identity and fails closed; the earlier rejected push made no remote changes.

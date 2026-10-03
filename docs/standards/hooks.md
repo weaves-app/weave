@@ -4,7 +4,7 @@
 | ------------------ | ----------------------------------------------------------------------------------------------- | --------------------------- |
 | Git pre-commit     | Validate working branch/personal identity, staged lint/format, API boundaries/DI, SDD artifacts | Yes                         |
 | Git commit-msg     | One-line imperative Conventional Commit, ticket matches branch                                  | Yes                         |
-| Git pre-push       | Branch/identity, full lint/typecheck/tests                                                      | Yes                         |
+| Git pre-push       | Branch/author/committer and actual authenticated GitHub account, full lint/typecheck/tests      | Yes                         |
 | Git post-commit    | Remind that CI/review still apply                                                               | No                          |
 | Codex SessionStart | Load constitution/workflow context                                                              | Context                     |
 | Codex PreToolUse   | Recognized source edits require ticket branch and confirmed BDD scope                           | Yes, for covered tool calls |
@@ -20,3 +20,5 @@ Pre-tool command recognition is intentionally limited; arbitrary shell/Python/MC
 Do not use post-commit/post-tool hooks to auto-push, amend commits, mutate Linear tickets or deploy. Spec Kit extension hooks are a separate workflow system; none are registered in this version. Canonical instructions live in AGENTS.md/constitution/standards, not duplicated agent-specific policy files.
 
 The active Spec Kit pointer is machine-local and intentionally ignored upstream. A fresh clone or mismatched ticket does not authorize source edits; select/create the feature first. Session context and investigation still work without a pointer.
+
+Pre-push reads your repository-local `weave.githubUser`, resolves its scoped gh credential and verifies `/user` against that login. Missing credentials, mismatched labels and the company account block publication. An optional local `weave.ghConfigDir` selects an isolated gh profile. No token is logged or committed. Git credential configuration must use the same profile; the setup owner verifies that mapping before publishing.

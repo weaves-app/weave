@@ -1,6 +1,6 @@
-import {execFileSync} from 'node:child_process';
+import {execFileSync, spawnSync} from 'node:child_process';
 import {readFileSync} from 'node:fs';
-import {validateBranch, validateCommit} from './policy.mjs';
+import {validateBranch, validateCommit, validateGithubAccount} from './policy.mjs';
 const branch = execFileSync('git', ['branch', '--show-current'], {encoding: 'utf8'}).trim();
 let error = validateBranch(branch);
 if (process.argv[2] === 'commit') {
@@ -24,4 +24,40 @@ for (const identity of ['GIT_AUTHOR_IDENT', 'GIT_COMMITTER_IDENT']) {
 if (error) {
   console.error(error);
   process.exitCode = 1;
+}
+
+if (!error && process.argv[2] === 'push') {
+  const config = (key) => {
+    const result = spawnSync('git', ['config', '--local', '--get', key], {encoding: 'utf8'});
+    return result.status === 0 ? result.stdout.trim() : '';
+  };
+  const expected = config('weave.githubUser');
+  if (!expected)
+    throw new Error(
+      'Set git config --local weave.githubUser YOUR_PERSONAL_GITHUB_LOGIN before pushing.',
+    );
+  const env = {...process.env};
+  delete env.GH_TOKEN;
+  delete env.GITHUB_TOKEN;
+  const configDirectory = config('weave.ghConfigDir');
+  if (configDirectory) env.GH_CONFIG_DIR = configDirectory;
+  try {
+    env.GH_TOKEN = execFileSync(
+      'gh',
+      ['auth', 'token', '--hostname', 'github.com', '--user', expected],
+      {encoding: 'utf8', env},
+    ).trim();
+    const actual = execFileSync('gh', ['api', 'user', '--jq', '.login'], {
+      encoding: 'utf8',
+      env,
+    }).trim();
+    const identityError = validateGithubAccount(expected, actual);
+    if (identityError) {
+      console.error(identityError);
+      process.exitCode = 1;
+    }
+  } catch {
+    console.error('Cannot verify the personal GitHub credential; publication is blocked.');
+    process.exitCode = 1;
+  }
 }

@@ -1,6 +1,6 @@
 #!/bin/sh
 set -eu
-node scripts/git-policy.mjs
+node scripts/git-policy.mjs push
 npm run lint
 npm run typecheck
 npm test

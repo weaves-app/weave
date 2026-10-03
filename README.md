@@ -9,6 +9,7 @@ Use Node 24 LTS, npm 11 and Docker Desktop with Compose. Before committing, conf
 ```sh
 git config --local user.name "YOUR_PERSONAL_NAME"
 git config --local user.email "YOUR_PERSONAL_EMAIL"
+git config --local weave.githubUser "YOUR_PERSONAL_GITHUB_LOGIN"
 npm ci
 cp apps/api/.env.example apps/api/.env
 cp apps/web/.env.example apps/web/.env.local
