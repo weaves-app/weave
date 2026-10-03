@@ -50,3 +50,5 @@ Hosted remediation: run 37120204211 at f77f995 passed policy, quality, integrati
 - S24: shared ESLint declares peer and development host dependencies; root and package typescript-eslint ranges aligned to ^8.71.0, lockfile refreshed. Root verification passes, including lint, formatting, types, tests and all three app builds. Database integration: 3/3 passed.
 
 Raw local logs are in /private/tmp/weave-round2-*.log; durable findings and result summaries are in review-remediation.md.
+
+Hosted Round 2 verification: implementation commit d2257dc passed run [37122498180](https://github.com/weaves-app/weave/actions/runs/37122498180): policy, quality, integration, mobile, container-pr, containers and required all succeeded. Candidate/publish correctly skipped on the PR event. Final documentation-head checks are verified separately on PR #1 before reporting readiness. Merge remains subject to eligible review.

@@ -18,3 +18,5 @@ AWS runtime integration, native signing/device/store validation and Linear relea
 ## Main release queue limitation
 
 The current main concurrency group retains one running and one pending workflow. A later merge can replace an older pending run. Those changes remain in Git and ship in the next successful release, but the replaced commit receives no individual release/tag. Avoid burst merges when a release for each main commit is required. R8 is a maintainer decision: retaining batching is recommended for the current develop-to-main release flow; no concurrency policy change has been made.
+
+[Current GitHub documentation](https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/control-workflow-concurrency) also supports `queue: max` (up to 100 pending runs; incompatible with cancel-in-progress true). This is a further R8 option for main; queue order follows when runs begin waiting and is not a guarantee of dispatch/commit order. Any adoption must preserve release ordering and be validated with supported workflow tooling. It is not enabled by this remediation.

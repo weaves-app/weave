@@ -31,4 +31,4 @@
 - [x] R008 Extract image action, narrow cache inputs and derive Docker tool versions (S18–S20).
 - [x] R009 Share Git config and registry helpers; group compiler roots; declare ESLint host (S21–S24).
 - [x] R010 Verify and document verdicts/decisions; publish personally to the existing PR.
-- [ ] R011 Observe hosted checks for the Round 2 published commit before merge.
+- [x] R011 Observe hosted checks for the Round 2 published commit before merge.
