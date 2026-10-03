@@ -1,14 +1,22 @@
 import {readFileSync, existsSync} from 'node:fs';
 import {execFileSync} from 'node:child_process';
 import path from 'node:path';
-import {evaluateTool} from './agent-policy.mjs';
+import {evaluateTool, isScenarioConfirmed} from './agent-policy.mjs';
 const event = JSON.parse(readFileSync(0, 'utf8'));
 process.chdir(execFileSync('git', ['rev-parse', '--show-toplevel'], {encoding: 'utf8'}).trim());
 const branch = execFileSync('git', ['branch', '--show-current'], {encoding: 'utf8'}).trim();
-const feature = JSON.parse(readFileSync('.specify/feature.json', 'utf8')).feature_directory;
-const workflow = path.join(feature, 'workflow.json');
-const confirmed =
-  existsSync(workflow) && JSON.parse(readFileSync(workflow, 'utf8')).scenariosConfirmed === true;
+let state;
+try {
+  const feature = JSON.parse(readFileSync('.specify/feature.json', 'utf8')).feature_directory;
+  const directory = path.resolve(feature);
+  if (directory.startsWith(path.resolve('specs') + path.sep)) {
+    const workflow = path.join(directory, 'workflow.json');
+    if (existsSync(workflow)) state = JSON.parse(readFileSync(workflow, 'utf8'));
+  }
+} catch {
+  /* A fresh clone has no machine-local feature pointer; fail closed for source edits. */
+}
+const confirmed = isScenarioConfirmed(state, branch);
 const name = event.hook_event_name;
 if (name === 'PreToolUse') {
   const reason = evaluateTool(event, branch, confirmed);

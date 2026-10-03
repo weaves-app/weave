@@ -15,3 +15,14 @@ export function evaluateTool(event, branch, confirmed) {
   }
   return null;
 }
+export function isScenarioConfirmed(state, branch) {
+  return Boolean(
+    state &&
+    state.ticket === /WEA-\d+/.exec(branch)?.[0] &&
+    state.scenariosConfirmed === true &&
+    typeof state.confirmation === 'string' &&
+    state.confirmation.length > 0 &&
+    Array.isArray(state.scenarioIds) &&
+    state.scenarioIds.length > 0,
+  );
+}

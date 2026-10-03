@@ -18,3 +18,5 @@ Codex 0.159.3 reports hooks enabled. Checked-in `.codex/hooks.json` runs the rep
 Pre-tool command recognition is intentionally limited; arbitrary shell/Python/MCP writes cannot be made secure through regex inspection. It is assistance, not a filesystem security boundary. Tests cover recognized source edits, read-only commands, specs and missing scenario confirmation. Stop is advisory to avoid infinite verification loops on ordinary questions. CI/branch permissions are the durable merge gate. TDD chronology, SOLID, DRY and semantic BDD coverage require evidence and review.
 
 Do not use post-commit/post-tool hooks to auto-push, amend commits, mutate Linear tickets or deploy. Spec Kit extension hooks are a separate workflow system; none are registered in this version. Canonical instructions live in AGENTS.md/constitution/standards, not duplicated agent-specific policy files.
+
+The active Spec Kit pointer is machine-local and intentionally ignored upstream. A fresh clone or mismatched ticket does not authorize source edits; select/create the feature first. Session context and investigation still work without a pointer.

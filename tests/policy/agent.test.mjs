@@ -41,3 +41,17 @@ test('S10 tool guard permits investigation and specs, gates source edits', () =>
     null,
   );
 });
+
+test('S10 missing/foreign feature state cannot authorize an implementation branch', async () => {
+  const {isScenarioConfirmed} = await import('../../scripts/agent-policy.mjs');
+  const state = {
+    ticket: 'WEA-6',
+    scenariosConfirmed: true,
+    confirmation: 'User continuation',
+    scenarioIds: ['S10'],
+  };
+  assert.equal(isScenarioConfirmed(state, 'feat/WEA-6/setup'), true);
+  assert.equal(isScenarioConfirmed(undefined, 'feat/WEA-6/setup'), false);
+  assert.equal(isScenarioConfirmed(state, 'feat/WEA-7/setup'), false);
+  assert.equal(isScenarioConfirmed({...state, scenarioIds: []}, 'feat/WEA-6/setup'), false);
+});
