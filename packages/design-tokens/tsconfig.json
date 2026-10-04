@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "target": "ES2023",
+    "module": "ESNext",
+    "moduleResolution": "bundler"
+  },
+  "include": ["index.ts"],
+  "extends": "@weave/typescript-config/base.json"
+}

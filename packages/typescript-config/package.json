@@ -1,0 +1,13 @@
+{
+  "name": "@weave/typescript-config",
+  "private": true,
+  "version": "0.0.0",
+  "peerDependencies": {
+    "@react-native/typescript-config": "0.86.3"
+  },
+  "peerDependenciesMeta": {
+    "@react-native/typescript-config": {
+      "optional": true
+    }
+  }
+}

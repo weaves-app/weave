@@ -1,0 +1,2 @@
+#!/bin/sh
+printf '%s\n' 'Weave: commit recorded. CI and maintainer review are still required.'

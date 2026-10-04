@@ -1,0 +1,6 @@
+# Mobile
+
+Read root AGENTS.md and docs/standards/{react-native,typescript,testing-and-delivery}.md.
+Use vanilla React Native with the Community CLI; keep React, renderer and version-matched RN tooling compatible. Commit android/ and ios/ source projects; generated builds, Pods, local SDK paths and signing keys stay untracked. Native projects resolve hoisted workspace dependencies. Android debug signing is developer-local; production signing is separate.
+Reuse src/components primitives and @weave/design-tokens, documenting variants and disabled/loading/error states. Keep domain/network logic outside view components. Use accessible labels/roles, touch targets, safe areas and keyboard-aware forms. Use FlatList for large collections; stable keys, memoization only after measuring. Components compose screens; do not turn every non-UI operation into a component.
+React Native Jest preset and Testing Library verify behavior. Metro bundles and native Android/iOS compile checks are required, but do not establish device correctness. Signed/device/store release validation requires a separate plan. App.tsx uses named exports. Babel/Metro configuration use the framework CommonJS configuration format; generated native platform source follows the official template conventions.

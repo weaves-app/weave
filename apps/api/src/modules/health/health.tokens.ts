@@ -1,0 +1,2 @@
+export const DATABASE_HEALTH = Symbol('DATABASE_HEALTH');
+export const APPLICATION_HEALTH = Symbol('APPLICATION_HEALTH');

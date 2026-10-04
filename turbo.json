@@ -1,0 +1,48 @@
+{
+  "$schema": "https://turborepo.com/schema.json",
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**", ".next/**", "!.next/cache/**", "!.next/dev/**"],
+      "env": ["DATABASE_URL", "API_URL"],
+      "inputs": ["$TURBO_DEFAULT$", "$TURBO_ROOT$/package-lock.json"]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true,
+      "env": ["DATABASE_URL", "PORT", "FRONTEND_URL", "API_URL"]
+    },
+    "typecheck": {
+      "dependsOn": ["^typecheck"],
+      "outputs": [],
+      "env": ["DATABASE_URL"]
+    },
+    "test": {
+      "dependsOn": ["^typecheck"],
+      "outputs": []
+    },
+    "lint": {
+      "dependsOn": ["^lint"],
+      "outputs": []
+    },
+    "db:generate": {
+      "outputs": ["src/generated/**"],
+      "env": ["DATABASE_URL"]
+    },
+    "@weave/api#lint": {
+      "dependsOn": ["^lint", "db:generate"],
+      "outputs": []
+    },
+    "@weave/api#typecheck": {
+      "dependsOn": ["^typecheck", "db:generate"],
+      "outputs": [],
+      "env": ["DATABASE_URL"]
+    },
+    "@weave/eslint-config#lint": {
+      "dependsOn": ["^lint"],
+      "outputs": [],
+      "inputs": ["$TURBO_DEFAULT$", "$TURBO_ROOT$/eslint.config.mjs"]
+    }
+  },
+  "globalDependencies": ["package-lock.json"]
+}

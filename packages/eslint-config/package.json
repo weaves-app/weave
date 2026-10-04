@@ -1,0 +1,20 @@
+{
+  "name": "@weave/eslint-config",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "exports": "./index.mjs",
+  "dependencies": {
+    "typescript-eslint": "^8.71.0",
+    "eslint-plugin-react-hooks": "^7.0.0"
+  },
+  "scripts": {
+    "lint": "eslint ."
+  },
+  "peerDependencies": {
+    "eslint": "^9.39.0"
+  },
+  "devDependencies": {
+    "eslint": "^9.39.0"
+  }
+}

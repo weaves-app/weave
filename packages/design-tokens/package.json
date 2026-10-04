@@ -1,0 +1,16 @@
+{
+  "name": "@weave/design-tokens",
+  "version": "0.0.0",
+  "private": true,
+  "exports": "./index.ts",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "@weave/typescript-config": "*",
+    "@weave/eslint-config": "*",
+    "typescript": "6.0.3"
+  },
+  "type": "module"
+}

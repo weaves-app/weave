@@ -1,0 +1,364 @@
+name: CI
+on:
+  pull_request:
+    branches: [develop, main]
+  push:
+    branches: [develop, main]
+permissions:
+  contents: read
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+env:
+  DATABASE_URL: postgresql://weave:weave_local@localhost:5432/weave?schema=public
+  TURBO_TELEMETRY_DISABLED: '1'
+jobs:
+  policy:
+    name: policy
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: ./.github/actions/setup # zizmor: ignore[self-repository] -- Deliberately use the checked-out feature workflow and its matching local setup.
+      - uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
+        with:
+          enable-cache: false
+      - run: bash scripts/workflow-lint.sh
+      - run: npm run test:policy
+      - run: node scripts/check-sdd.mjs
+      - if: github.event_name == 'pull_request'
+        run: node scripts/pr-policy.mjs
+  quality:
+    name: quality
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup # zizmor: ignore[self-repository] -- Deliberately use the checked-out feature workflow and its matching local setup.
+      - uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: .turbo
+          key: turbo-${{ runner.os }}-${{ github.job }}-${{ github.sha }}
+          restore-keys: turbo-${{ runner.os }}-${{ github.job }}-
+      - run: npm run lint
+      - run: npm run format:check
+      - run: npm run typecheck
+      - run: npm test
+      - name: Dependency audit report
+        run: npm audit --json > dependency-audit.json || true
+      - run: node scripts/audit-summary.mjs
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        if: always()
+        with:
+          name: dependency-audit
+          path: dependency-audit.json
+          retention-days: 7
+  integration:
+    name: integration
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_USER: weave
+          POSTGRES_PASSWORD: weave_local
+          POSTGRES_DB: weave
+        ports: ['5432:5432']
+        options: --health-cmd="pg_isready -U weave -d weave" --health-interval=5s --health-timeout=5s --health-retries=10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup # zizmor: ignore[self-repository] -- Deliberately use the checked-out feature workflow and its matching local setup.
+      - uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: .turbo
+          key: turbo-${{ runner.os }}-${{ github.job }}-${{ github.sha }}
+          restore-keys: turbo-${{ runner.os }}-${{ github.job }}-
+      - run: npm run db:deploy
+      - run: npm run db:deploy
+      - run: npx turbo run build --filter=@weave/api --filter=@weave/web
+      - run: npm run test:integration
+  mobile-js:
+    name: mobile-js
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup # zizmor: ignore[self-repository] -- Deliberately use the checked-out feature workflow and its matching local setup.
+      - uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: .turbo
+          key: turbo-${{ runner.os }}-${{ github.job }}-${{ github.sha }}
+          restore-keys: turbo-${{ runner.os }}-${{ github.job }}-
+      - run: npx turbo run build --filter=@weave/mobile
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: mobile-bundles
+          path: apps/mobile/dist
+          retention-days: 7
+  mobile-native:
+    name: mobile-native (${{ matrix.platform }})
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: android
+            runner: ubuntu-latest
+          - platform: ios
+            runner: macos-15
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup # zizmor: ignore[self-repository] -- Native checks use the matching reviewed workspace setup.
+      - if: matrix.platform == 'android'
+        uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6.0.1
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Validate Gradle wrapper
+        if: matrix.platform == 'android'
+        uses: gradle/actions/wrapper-validation@3f5f9adaf7d9fecd50b5935e54106014257a94e6 # v6.4.0
+      - name: Restore Gradle build cache
+        if: matrix.platform == 'android'
+        uses: gradle/actions/setup-gradle@3f5f9adaf7d9fecd50b5935e54106014257a94e6 # v6.4.0
+        with:
+          cache-read-only: ${{ github.ref != format('refs/heads/{0}', github.event.repository.default_branch) }}
+      - name: Compile Android debug APK
+        if: matrix.platform == 'android'
+        run: npm run native:android --workspace=@weave/mobile -- --build-cache -PreactNativeArchitectures=x86_64
+      - if: matrix.platform == 'ios'
+        uses: ruby/setup-ruby@14594264cd68ce8a2345dd349bc3d138a4ef85c8 # v1.327.0
+        with:
+          ruby-version: '3.3'
+          working-directory: apps/mobile
+          bundler-cache: true
+      - name: Restore locked iOS Pods
+        if: matrix.platform == 'ios'
+        id: pods
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: apps/mobile/ios/Pods
+          key: pods-${{ runner.os }}-${{ runner.arch }}-macos15-${{ hashFiles('apps/mobile/ios/Podfile.lock', 'apps/mobile/Gemfile.lock', 'package-lock.json', 'apps/mobile/ios/Podfile') }}
+      - name: Install iOS native dependencies
+        if: matrix.platform == 'ios'
+        working-directory: apps/mobile/ios
+        run: bundle exec pod install --deployment
+      - name: Compile unsigned iOS simulator app
+        if: matrix.platform == 'ios'
+        run: npm run native:ios --workspace=@weave/mobile
+      - name: Save trusted iOS Pods
+        if: matrix.platform == 'ios' && github.ref == format('refs/heads/{0}', github.event.repository.default_branch) && steps.pods.outputs.cache-hit != 'true'
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: apps/mobile/ios/Pods
+          key: ${{ steps.pods.outputs.cache-primary-key }}
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: mobile-native-${{ matrix.platform }}
+          path: ${{ matrix.platform == 'android' && 'apps/mobile/android/app/build/outputs/apk/debug/*.apk' || 'apps/mobile/ios/build/Build/Products/Debug-iphonesimulator/Weave.app' }}
+          if-no-files-found: error
+          retention-days: 7
+  mobile:
+    name: mobile
+    if: always()
+    needs: [mobile-js, mobile-native]
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Require bundles and both native platform builds
+        env:
+          RESULTS: ${{ toJSON(needs) }}
+        run: node -e 'if(Object.values(JSON.parse(process.env.RESULTS)).some(job=>job.result!=="success"))process.exit(1)'
+  container-pr:
+    name: container-pr
+    if: github.event_name == 'pull_request'
+    needs: [policy, quality, integration, mobile]
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .nvmrc
+          package-manager-cache: false
+      - uses: docker/setup-qemu-action@99012661954931238ded8c8b007157a8430204e1 # v4.4.0
+      - uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
+      - uses: ./.github/actions/build-image # zizmor: ignore[self-repository] -- Build with the reviewed action from the matching checkout.
+        id: api
+        with:
+          app: api
+          push: 'false'
+          platforms: linux/amd64
+          tags: weave-api:test
+      - uses: ./.github/actions/build-image # zizmor: ignore[self-repository] -- Build with the reviewed action from the matching checkout.
+        id: web
+        with:
+          app: web
+          push: 'false'
+          platforms: linux/amd64
+          tags: weave-web:test
+      - name: Test PR containers
+        run: node --test tests/containers/*.test.mjs
+  candidate:
+    name: candidate
+    if: github.event_name == 'push'
+    needs: [policy, quality, integration, mobile]
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+      attestations: write
+    outputs:
+      api: ${{ steps.api.outputs.digest || steps.lookup.outputs.api }}
+      web: ${{ steps.web.outputs.digest || steps.lookup.outputs.web }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .nvmrc
+          package-manager-cache: false
+      - uses: docker/setup-qemu-action@99012661954931238ded8c8b007157a8430204e1 # v4.4.0
+      - uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
+      - uses: docker/login-action@dbcb813823bdd20940b903addbd779551569679f # v4.6.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - id: lookup
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/candidate-images.mjs
+      - uses: ./.github/actions/build-image # zizmor: ignore[self-repository] -- Build with the reviewed action from the matching checkout.
+        id: api
+        if: steps.lookup.outputs.api == ''
+        with:
+          app: api
+          push: 'true'
+          platforms: linux/amd64,linux/arm64
+          tags: ghcr.io/${{ github.repository }}-api:sha-${{ github.sha }}
+      - uses: ./.github/actions/build-image # zizmor: ignore[self-repository] -- Build with the reviewed action from the matching checkout.
+        id: web
+        if: steps.lookup.outputs.web == ''
+        with:
+          app: web
+          push: 'true'
+          platforms: linux/amd64,linux/arm64
+          tags: ghcr.io/${{ github.repository }}-web:sha-${{ github.sha }}
+      - name: Test every published platform by digest
+        env:
+          API_DIGEST: ${{ steps.api.outputs.digest || steps.lookup.outputs.api }}
+          WEB_DIGEST: ${{ steps.web.outputs.digest || steps.lookup.outputs.web }}
+        run: |
+          export API_IMAGE="ghcr.io/$GITHUB_REPOSITORY-api@$API_DIGEST"
+          export WEB_IMAGE="ghcr.io/$GITHUB_REPOSITORY-web@$WEB_DIGEST"
+          for platform in linux/amd64 linux/arm64; do
+            docker pull --platform "$platform" "$API_IMAGE"
+            docker pull --platform "$platform" "$WEB_IMAGE"
+            EXPECTED_REVISION="$GITHUB_SHA" IMAGE_PLATFORM="$platform" node --test tests/containers/*.test.mjs
+          done
+      - uses: actions/attest-build-provenance@4d101475d8b20a2381f78447822ac1eab6504dd8 # v4.2.2
+        with:
+          subject-name: ghcr.io/${{ github.repository }}-api
+          subject-digest: ${{ steps.api.outputs.digest || steps.lookup.outputs.api }}
+          push-to-registry: true
+      - uses: actions/attest-build-provenance@4d101475d8b20a2381f78447822ac1eab6504dd8 # v4.2.2
+        with:
+          subject-name: ghcr.io/${{ github.repository }}-web
+          subject-digest: ${{ steps.web.outputs.digest || steps.lookup.outputs.web }}
+          push-to-registry: true
+  containers:
+    name: containers
+    if: always()
+    needs: [container-pr, candidate]
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      api: ${{ needs.candidate.outputs.api }}
+      web: ${{ needs.candidate.outputs.web }}
+    steps:
+      - name: Require the event's container verification
+        env:
+          EVENT: ${{ github.event_name }}
+          PR_RESULT: ${{ needs.container-pr.result }}
+          PUSH_RESULT: ${{ needs.candidate.result }}
+        run: node -e 'const e=process.env; if((e.EVENT==="pull_request"?e.PR_RESULT:e.PUSH_RESULT)!=="success")process.exit(1)'
+  required:
+    name: required
+    if: always()
+    needs: [policy, quality, integration, mobile, containers]
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Require every gate to succeed
+        env:
+          RESULTS: ${{ toJSON(needs) }}
+        run: node -e 'const jobs=JSON.parse(process.env.RESULTS); if(Object.values(jobs).some(job=>job.result!=="success")) process.exit(1)'
+  publish:
+    name: publish
+    needs: [required, containers]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+      packages: write
+      actions: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .nvmrc
+          package-manager-cache: false
+      - uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
+      - uses: docker/login-action@dbcb813823bdd20940b903addbd779551569679f # v4.6.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Calculate official version and changelog
+        id: release
+        run: node scripts/release-metadata.mjs
+      - name: Record tested release digests
+        env:
+          VERSION: ${{ steps.release.outputs.version }}
+          API_DIGEST: ${{ needs.containers.outputs.api }}
+          WEB_DIGEST: ${{ needs.containers.outputs.web }}
+        run: node scripts/release-manifest.mjs
+      - name: Publish or resume the immutable release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/publish-release.mjs
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: release-manifest-${{ github.sha }}
+          path: release-manifest.json
+          retention-days: 30
+      - name: Start QA then approved production promotion
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION: ${{ steps.release.outputs.version }}
+        run: gh workflow run promote.yml --repo "$GITHUB_REPOSITORY" --ref main -f "version=$VERSION" -f environment=qa
