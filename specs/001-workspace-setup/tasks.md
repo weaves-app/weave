@@ -39,4 +39,4 @@
 - [x] M002 Replace Expo tooling, migrate shared TS config and preserve component behavior.
 - [x] M003 Adopt native projects with workspace paths, safe debug signing and ignored native outputs.
 - [x] M004 Add native platform CI checks under mobile gate and update standards/agents.
-- [ ] M005 Verify bundles/tests/integration/workflows, publish personally and observe hosted native checks.
+- [x] M005 Verify bundles/tests/integration/workflows, publish personally and observe hosted native checks.

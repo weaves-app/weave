@@ -17,3 +17,5 @@ Root `npm run verify` runs types/component tests and Metro production bundling f
 Metro watches shared workspaces and resolves the root node_modules to avoid duplicate React installations. Android Gradle explicitly resolves hoisted RN/codegen/CLI; iOS uses the official hoisting-aware Podfile. The application name Weave matches AppRegistry and both native launchers. Native configuration and SDK integrations require platform-specific review.
 
 Release builds have no debug signing configured. Add protected production signing and store identifiers in a dedicated release ticket; never commit release signing credentials. CI artifacts are development/compilation artifacts and must not be shipped as store releases.
+
+Gemfile.lock and ios/Podfile.lock are committed for reproducible native installs. CI uses `bundle exec pod install --deployment`; after adopting a native dependency under its own ticket, update the lockfile locally with pod install and review the change.

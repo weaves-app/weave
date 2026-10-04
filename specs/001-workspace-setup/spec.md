@@ -3,7 +3,7 @@
 Ticket: https://linear.app/weaveapp/issue/WEA-6/set-up-workspace-coding-standards-and-spec-driven-development
 Branch: feat/WEA-6/setup-development-workflow
 Created: 2026-10-03
-Status: scope confirmed by user instruction to continue; Expo selected
+Status: scope confirmed; vanilla React Native selected on 2026-10-04
 
 ## User scenarios
 
@@ -30,7 +30,7 @@ Coverage: valid, rejection, dependency unavailable, malformed input, repeat oper
 
 ## Success criteria
 
-All automated validation passes locally and in GitHub CI. PR links WEA-6 and artifacts. No secret/generated dependency directories committed. Main/develop protections and required checks are verified via API. Expo native bundles are exported and mobile component tests run; simulator checks only claimed if performed.
+All automated validation passes locally and in GitHub CI. PR links WEA-6 and artifacts. No secret/generated dependency directories committed. Main/develop protections and required checks are verified via API. Metro Android/iOS bundles, mobile component tests and native platform compile checks pass; simulator/device execution is only claimed if performed.
 
 ## Approved review remediation
 
