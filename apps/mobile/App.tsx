@@ -1,10 +1,10 @@
 import {useState} from 'react';
-import {StatusBar} from 'expo-status-bar';
+import {StatusBar} from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {Button} from './src/components/button';
 import {Screen} from './src/components/screen';
 import {Typography} from './src/components/typography';
-export default function App(): React.JSX.Element {
+export function App(): React.JSX.Element {
   const [ready, setReady] = useState(false);
   return (
     <SafeAreaProvider>
@@ -15,7 +15,7 @@ export default function App(): React.JSX.Element {
           label={ready ? 'Ready to weave' : 'Explore workspace'}
           onPress={() => setReady(true)}
         />
-        <StatusBar style="dark" />
+        <StatusBar barStyle="dark-content" />
       </Screen>
     </SafeAreaProvider>
   );

@@ -1,6 +1,6 @@
 # Weave
 
-One npm/Turborepo workspace: Next.js web, NestJS modular monolith API, Expo React Native mobile, Prisma and PostgreSQL in Docker. Shared semantic design tokens live in `packages/design-tokens`.
+One npm/Turborepo workspace: Next.js web, NestJS modular monolith API, vanilla React Native mobile, Prisma and PostgreSQL in Docker. Shared semantic design tokens live in `packages/design-tokens`.
 
 ## Start
 
@@ -18,7 +18,7 @@ npm run db:deploy
 npm run dev
 ```
 
-Web: http://localhost:3000. API: http://localhost:3001/api/health; database readiness: `/api/health/ready`. Expo displays its simulator/device connection instructions. To start one app: `npm run dev --workspace=@weave/mobile` (or api/web).
+Web: http://localhost:3000. API: http://localhost:3001/api/health; database readiness: `/api/health/ready`. Mobile uses Metro; launch Android/iOS separately after installing the native toolchains (see apps/mobile/README.md). To start one app: `npm run dev --workspace=@weave/mobile` (or api/web).
 
 If `DOCKER_HOST` points to another engine on macOS, explicitly use `docker --context desktop-linux compose up -d --wait`; do not change global configuration for unrelated projects. Local credentials are development-only. Environment examples are committed; actual environment files are ignored.
 
@@ -30,7 +30,7 @@ npm run db:deploy
 npm run test:integration
 ```
 
-`verify` runs lint/architecture/DI, formatting, strict types, policy/application/component tests, and all app builds. Integration needs migrated PostgreSQL and verifies live HTTP/web wiring and persistence. Mobile build exports Android/iOS JavaScript bundles; signed native builds and device/store checks require their own tooling and release plan.
+`verify` runs lint/architecture/DI, formatting, strict types, policy/application/component tests, and all app builds. Integration needs migrated PostgreSQL and verifies live HTTP/web wiring and persistence. Mobile build generates Android/iOS Metro JavaScript bundles. CI also compiles Android debug and unsigned iOS simulator apps; signed builds and device/store checks require their own release plan.
 
 Container verification:
 
@@ -57,7 +57,7 @@ On Docker Desktop with an overridden Docker host, add `--context desktop-linux` 
 ```text
 apps/api/                Nest modules, Prisma schema/migrations
 apps/web/                Next App Router
-apps/mobile/             Expo, reusable native components
+apps/mobile/             React Native CLI, native projects, reusable components
 packages/design-tokens/  Platform-neutral semantic tokens
 scripts/                 Policy/architecture/hooks/release helpers
 specs/                   Ticket specs, scenarios, tasks, evidence
@@ -71,4 +71,4 @@ Read [standards](docs/standards/README.md), [Google rule mapping](docs/standards
 
 ## Review and maintenance
 
-Codex and Claude use the same rules and Spec Kit skills. See docs/standards/hooks.md for trust and local identity configuration. Turbo runs workspace lint/types/tests/build with shared config packages; pure unit tests are cached, live integration is not. See docs/standards/automation.md for tested-digest releases, QA prerequisites and dependency proposal adoption. Preserve THIRD_PARTY_NOTICES.md when distributing the applicable Expo scaffold.
+Codex and Claude use the same rules and Spec Kit skills. See docs/standards/hooks.md for trust and local identity configuration. Turbo runs workspace lint/types/tests/build with shared config packages; pure unit tests are cached, live integration is not. See docs/standards/automation.md for tested-digest releases, QA prerequisites and dependency proposal adoption. Preserve THIRD_PARTY_NOTICES.md when distributing the applicable template material.

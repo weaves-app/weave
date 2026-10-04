@@ -14,3 +14,20 @@ coverage/
 *.log
 .codex/.hook-state/
 .specify/proposals/
+
+# Native generated outputs and developer-specific settings.
+**/android/.gradle/
+**/android/.kotlin/
+**/android/local.properties
+**/android/**/build/
+**/android/**/.cxx/
+**/ios/Pods/
+**/ios/build/
+**/ios/*.xcworkspace/
+**/ios/**/*.xcuserstate
+**/ios/**/xcuserdata/
+**/.bundle/
+**/vendor/bundle/
+**/*.keystore
+**/*.jks
+**/.xcode.env.local

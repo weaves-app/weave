@@ -3,7 +3,7 @@
 | Policy                                          | Automated enforcement                                                     | Review                                                      |
 | ----------------------------------------------- | ------------------------------------------------------------------------- | ----------------------------------------------------------- |
 | Single quotes, semicolons, two-space formatting | Prettier                                                                  | Readability                                                 |
-| Named exports                                   | ESLint restricted default exports                                         | Next/Expo entrypoint and Prisma config exceptions only      |
+| Named exports                                   | ESLint restricted default exports                                         | Next entrypoint and Prisma config exceptions only           |
 | Object contracts use interfaces                 | consistent-type-definitions, constructor AST interface checks             | Port ownership/semantics                                    |
 | Strict types and safe unknown boundaries        | strict compiler, no-explicit-any, no-unsafe rules, no non-null assertions | External-input validation coverage                          |
 | Await/handle promises                           | no-floating-promises, no-misused-promises                                 | Error semantics                                             |

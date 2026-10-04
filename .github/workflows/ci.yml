@@ -86,8 +86,8 @@ jobs:
       - run: npm run db:deploy
       - run: npx turbo run build --filter=@weave/api --filter=@weave/web
       - run: npm run test:integration
-  mobile:
-    name: mobile
+  mobile-js:
+    name: mobile-js
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -106,6 +106,65 @@ jobs:
           name: mobile-bundles
           path: apps/mobile/dist
           retention-days: 7
+  mobile-native:
+    name: mobile-native (${{ matrix.platform }})
+    needs: [mobile-js]
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: android
+            runner: ubuntu-latest
+          - platform: ios
+            runner: macos-15
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup # zizmor: ignore[self-repository] -- Native checks use the matching reviewed workspace setup.
+      - if: matrix.platform == 'android'
+        uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6.0.1
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Compile Android debug APK
+        if: matrix.platform == 'android'
+        run: npm run native:android --workspace=@weave/mobile -- -PreactNativeArchitectures=x86_64
+      - if: matrix.platform == 'ios'
+        uses: ruby/setup-ruby@14594264cd68ce8a2345dd349bc3d138a4ef85c8 # v1.327.0
+        with:
+          ruby-version: '3.3'
+          working-directory: apps/mobile
+          bundler-cache: true
+      - name: Install iOS native dependencies
+        if: matrix.platform == 'ios'
+        working-directory: apps/mobile/ios
+        run: bundle exec pod install
+      - name: Compile unsigned iOS simulator app
+        if: matrix.platform == 'ios'
+        run: npm run native:ios --workspace=@weave/mobile
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: mobile-native-${{ matrix.platform }}
+          path: |
+            apps/mobile/android/app/build/outputs/apk/debug/*.apk
+            apps/mobile/ios/build/Build/Products/Debug-iphonesimulator/Weave.app
+            apps/mobile/Gemfile.lock
+            apps/mobile/ios/Podfile.lock
+          retention-days: 7
+  mobile:
+    name: mobile
+    if: always()
+    needs: [mobile-js, mobile-native]
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Require bundles and both native platform builds
+        env:
+          RESULTS: ${{ toJSON(needs) }}
+        run: node -e 'if(Object.values(JSON.parse(process.env.RESULTS)).some(job=>job.result!=="success"))process.exit(1)'
   container-pr:
     name: container-pr
     if: github.event_name == 'pull_request'

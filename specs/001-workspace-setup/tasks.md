@@ -32,3 +32,11 @@
 - [x] R009 Share Git config and registry helpers; group compiler roots; declare ESLint host (S21–S24).
 - [x] R010 Verify and document verdicts/decisions; publish personally to the existing PR.
 - [x] R011 Observe hosted checks for the Round 2 published commit before merge.
+
+## Vanilla React Native migration
+
+- [x] M001 Specify S25–S28 and reproduce native registration RED before source edits.
+- [x] M002 Replace Expo tooling, migrate shared TS config and preserve component behavior.
+- [x] M003 Adopt native projects with workspace paths, safe debug signing and ignored native outputs.
+- [x] M004 Add native platform CI checks under mobile gate and update standards/agents.
+- [ ] M005 Verify bundles/tests/integration/workflows, publish personally and observe hosted native checks.

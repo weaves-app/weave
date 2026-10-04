@@ -22,3 +22,7 @@ Constitution check: approved BDD recorded, behavior tests precede code, interfac
 ## Round 2 implementation plan
 
 Preserve release behavior while extracting the Docker composite and deriving versions inside Docker. Narrow Turbo inputs with a package-specific root ESLint dependency. Test optional Git config and missing-QA CLI behavior before implementation. Group architecture roots by compiler options, declare ESLint peers, then verify local checks, cache experiments, images and hosted PR checks. No release concurrency policy change or protected-branch bypass.
+
+## Vanilla React Native plan
+
+Keep RN 0.86.3/React 19.2.3 matched to the official template; adopt its native Android/iOS projects with hoisted dependency paths and explicit TS entrypoint. Replace Expo registration/status bar, Babel/Metro/Jest/TS tooling and scripts. Preserve native component tests; add a behavioral entrypoint RED test. Commit source native projects; ignore generated builds, pods, local SDK paths and signing material. Turbo build produces both JS bundles; CI adds native debug Android and unsigned iOS simulator compilation behind the existing mobile required status. Update active standards/agents and constitution exceptions, retain historical evidence and third-party notices. Local native SDKs are absent, so native verification runs in CI.

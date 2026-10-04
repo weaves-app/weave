@@ -13,3 +13,22 @@ apps/api/src/generated
 .specify/presets
 
 apps/web/next-env.d.ts
+
+# Native generated outputs and developer-specific settings.
+**/android/.gradle/
+**/android/.kotlin/
+**/android/local.properties
+**/android/**/build/
+**/android/**/.cxx/
+**/ios/Pods/
+**/ios/build/
+**/ios/*.xcworkspace/
+**/ios/**/*.xcuserstate
+**/ios/**/xcuserdata/
+**/.bundle/
+**/vendor/bundle/
+**/*.keystore
+**/*.jks
+**/.xcode.env.local
+apps/mobile/android/
+apps/mobile/ios/

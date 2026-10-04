@@ -52,3 +52,15 @@ Hosted remediation: run 37120204211 at f77f995 passed policy, quality, integrati
 Raw local logs are in /private/tmp/weave-round2-*.log; durable findings and result summaries are in review-remediation.md.
 
 Hosted Round 2 verification: implementation commit d2257dc passed run [37122498180](https://github.com/weaves-app/weave/actions/runs/37122498180): policy, quality, integration, mobile, container-pr, containers and required all succeeded. Candidate/publish correctly skipped on the PR event. Final documentation-head checks are verified separately on PR #1 before reporting readiness. Merge remains subject to eligible review.
+
+## Vanilla React Native evidence
+
+S25 meaningful RED before source edits: native registration expected Weave, received [LogBox, main]. GREEN: React Native preset runs registration plus existing button/typography behavior, 3/3 passed. Native and JS names now match. No tooling failure was used as behavioral RED.
+
+S26 clean npm ci succeeded; both Metro production bundles and maps generated after removing stale dist. RN CLI/type/lint tests and npm run verify passed (all three app builds). React 19.2.3 and RN 0.86.3 are deduplicated; Expo/jest-expo/expo-status-bar are absent from the lockfile. Shared tokens were bundled through the hoisting-aware Metro configuration.
+
+S27 react-native config resolves repo-root node_modules/react-native, apps/mobile/android and ios, com.weave, and the safe-area native dependency. Android Gradle paths point to the hoisted RN/codegen/CLI; TypeScript entry file is explicit for both Gradle and Xcode bundling. Native source directories are tracked; generated builds/Pods/local settings/signing keys are ignored. Template debug keystore removed; production signing does not use debug credentials. Gemfile.lock generated with isolated Ruby 3.3 for Linux/macOS platforms. Native compilation is not claimed until hosted results.
+
+S28 actionlint/zizmor and workflow-lint.sh pass. Mobile required aggregator depends on JS bundle job and native Android/iOS matrix and rejects failed/skipped prerequisites. Android CI builds x86_64 debug; iOS builds unsigned simulator. No real-device or signed/store release result is claimed. Hosted native results follow after push.
+
+Repository verification: npm run verify passed, including 24 root policy tests, 2 API tests, 1 web test and 3 native tests. Live PostgreSQL/API/web integration passed 3/3. A sandbox Prisma cache-write failure was retried with the required execution permission; it is not behavioral RED. Initial incremental npm install temporarily removed the existing Jest executable link; a clean npm ci restored and verified the installation.

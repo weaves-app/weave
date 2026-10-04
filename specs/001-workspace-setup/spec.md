@@ -53,3 +53,12 @@ S23 happy: configuration-scoped architecture programs preserve all existing viol
 S24 happy: ESLint configuration declares its host dependency and aligned parser range.
 
 Round 2 authorization: user explicitly requested these review fixes on 2026-10-03. Preserve concurrency policy; report R4 future tooling and R8 batching decisions separately.
+
+## Vanilla React Native amendment
+
+User selected vanilla React Native on 2026-10-04 following the mobile developer recommendation. This replaces the Expo choice within the still-open WEA-6 scaffold PR.
+
+S25 happy: native entrypoint registers Weave and existing reusable components retain behavior.
+S26 happy: Metro builds Android/iOS production JavaScript bundles with shared workspace tokens and one React installation. Sad: bundling errors fail the build.
+S27 happy: committed Android/iOS projects resolve hoisted dependencies and autolink safe-area native code. Edge: native outputs/local paths are ignored; debug signing cannot masquerade as production release signing.
+S28 happy: CI mobile gate requires JS bundles and both native platform compile checks; failed or skipped platform verification blocks the gate. Signed/device/store release work remains separate.

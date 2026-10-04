@@ -55,13 +55,7 @@ export function createConfig(directory, project = 'tsconfig.json') {
       rules: hooks.configs.recommended.rules,
     },
     {
-      files: [
-        'src/app/**/page.tsx',
-        'src/app/**/layout.tsx',
-        'App.tsx',
-        'prisma.config.ts',
-        'next.config.ts',
-      ],
+      files: ['src/app/**/page.tsx', 'src/app/**/layout.tsx', 'prisma.config.ts', 'next.config.ts'],
       rules: {
         'no-restricted-syntax': [
           'error',

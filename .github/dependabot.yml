@@ -19,12 +19,12 @@ updates:
     schedule:
       interval: weekly
     groups:
-      expo:
+      react-native:
         patterns:
           [
-            'expo*',
             'react-native*',
-            'jest-expo',
+            '@react-native/*',
+            '@react-native-community/*',
             '@testing-library/react-native',
             'react-test-renderer',
             'react',
