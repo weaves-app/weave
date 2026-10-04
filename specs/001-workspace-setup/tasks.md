@@ -47,4 +47,4 @@
 - [x] R013 Verify wrapper integrity, add safe native caches/parallel jobs/strict artifacts (S29/S30).
 - [x] R014 Apply measured Metro verdict and trim ignores/document versioning (S31/S33).
 - [ ] R015 Await controlled identifier, write policy RED, update native projects and verify IDs (S32).
-- [ ] R016 Verify locally, publish personally and observe both hosted native legs; document verdicts/timings.
+- [x] R016 Verify M2–M7 locally, publish personally and observe both hosted native legs; document verdicts/timings. M1 remains R015.
