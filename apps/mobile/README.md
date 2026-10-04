@@ -5,7 +5,7 @@ Vanilla React Native 0.86.3 / React 19.2.3, Community CLI, committed Android/iOS
 ## Development
 
 - Android: JDK 17, Android SDK platform/build tools 36, NDK 27.1.12297006, emulator or device. Set ANDROID_HOME to your SDK; local.properties stays ignored.
-- iOS: full Xcode with a compatible iOS SDK, Ruby/Bundler and CocoaPods. Command Line Tools alone cannot compile iOS.
+- iOS: full Xcode with a compatible iOS SDK, Ruby 3.3 (matching CI), Bundler 2.5.22 and the locked CocoaPods dependencies. Command Line Tools alone cannot compile iOS.
 - Run `npm run dev --workspace=@weave/mobile` from the root for Metro.
 - Android: `npm run android --workspace=@weave/mobile` in another terminal.
 - iOS: from apps/mobile run `bundle install`; from ios run `bundle exec pod install`. Then root `npm run ios --workspace=@weave/mobile`.
