@@ -62,3 +62,15 @@ S25 happy: native entrypoint registers Weave and existing reusable components re
 S26 happy: Metro builds Android/iOS production JavaScript bundles with shared workspace tokens and one React installation. Sad: bundling errors fail the build.
 S27 happy: committed Android/iOS projects resolve hoisted dependencies and autolink safe-area native code. Edge: native outputs/local paths are ignored; debug signing cannot masquerade as production release signing.
 S28 happy: CI mobile gate requires JS bundles and both native platform compile checks; failed or skipped platform verification blocks the gate. Signed/device/store release work remains separate.
+
+## Round 3 native review scope
+
+User requested Round 3 fixes on 2026-10-04. Preserve the working native template and signing separation.
+
+S29 happy: wrapper validation precedes Android execution and the official distribution checksum passes. Sad: a corrupted checksum rejects a fresh distribution before execution.
+S30 happy: native builds run independently of JS bundles and remain required by the mobile gate. Edge: PR caches are read-only; iOS dependency installation still validates committed locks after restore; absent native artifacts fail upload.
+S31 happy: measure original/narrow Metro startup and retain a change only with measurable improvement and passing bundles/components. Otherwise leave watch scope unchanged.
+S32 happy: Android and iOS identifiers agree with the maintainer-selected controlled domain. Sad: template identifiers or divergence fail policy and compiled artifact checks. Pending domain/identifier answer; do not implement an invented ID.
+S33 happy: mobile ignores reflect npm; standards explicitly defer SemVer/store build-number automation to a separate mobile release ticket.
+
+Public seams: Gradle distribution verification, native configuration policy, hosted native outputs, Metro health readiness and existing component/bundle tests. No new application behavior.

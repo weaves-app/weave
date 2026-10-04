@@ -40,3 +40,11 @@
 - [x] M003 Adopt native projects with workspace paths, safe debug signing and ignored native outputs.
 - [x] M004 Add native platform CI checks under mobile gate and update standards/agents.
 - [x] M005 Verify bundles/tests/integration/workflows, publish personally and observe hosted native checks.
+
+## Round 3 remediation
+
+- [x] R012 Record scenarios, inspect findings and measure Metro (S29–S33).
+- [x] R013 Verify wrapper integrity, add safe native caches/parallel jobs/strict artifacts (S29/S30).
+- [x] R014 Apply measured Metro verdict and trim ignores/document versioning (S31/S33).
+- [ ] R015 Await controlled identifier, write policy RED, update native projects and verify IDs (S32).
+- [ ] R016 Verify locally, publish personally and observe both hosted native legs; document verdicts/timings.

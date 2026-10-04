@@ -68,3 +68,11 @@ Repository verification: npm run verify passed, including 24 root policy tests, 
 Native hosted verification at 613cfc8, run [37186642589](https://github.com/weaves-app/weave/actions/runs/37186642589): mobile-js, Android native and iOS native jobs passed. Android compiled x86_64 debug APK; iOS compiled unsigned simulator app after locked Ruby/CocoaPods installation. Quality and integration also passed. Policy failed because the previous PR description formatted the required plain Spec/Evidence labels with backticks; those labels were restored and the final update triggers a fresh event. The failed run is not reported as passing CI. Both local production Docker images and runtime validation passed 1/1 with the updated lockfile.
 
 The successful iOS job artifact supplied ios/Podfile.lock; it is now committed with relative workspace dependency paths. CI uses pod install --deployment to reject resolver drift. Native source compilation was observed on both platforms; final required statuses are checked at the published head on PR #1 before handoff. No signed/device/store release claim is made.
+
+## Round 3 review evidence (2026-10-04)
+
+S31: alternating original/narrow Metro starts with --reset-cache --no-interactive, same host and port, polling /status readiness. Original 0.847/0.935 seconds; narrowed 0.633/0.637 seconds. Original restored after measurement before applying the accepted change. Full verify subsequently passes both native bundles and all three mobile tests. Small startup sample, not simulator/device performance evidence.
+
+S29/S30/S33: official Gradle checksum retrieved from services.gradle.org; immutable v6.4.0 action commit resolved through official GitHub tag. Wrapper validation precedes execution. Native cache writes restricted to default branch; CocoaPods installation remains locked after restore. Parallel native checks retain aggregate mobile requirement; artifacts fail closed if outputs absent. Mobile SemVer automation is explicitly deferred. npm run verify, npm run test:integration (3/3), and bash scripts/workflow-lint.sh all pass. Logs: /private/tmp/weave-round3-{verify,integration,workflows}.log.
+
+S32: controlled identifier clarification is outstanding. Existing inconsistent identifiers remain a tracked pre-release blocker; no invented domain ownership is assumed.

@@ -31,3 +31,9 @@ Commit Android/iOS source projects and review native configuration changes. Keep
 Run Metro with `npm run dev --workspace=@weave/mobile`, then `npm run android --workspace=@weave/mobile` or `npm run ios --workspace=@weave/mobile` with the appropriate SDK/device. iOS requires `bundle install` from apps/mobile and `bundle exec pod install` from apps/mobile/ios. See apps/mobile/README.md for prerequisites and compile commands.
 
 CI builds both Metro JS bundles, an Android debug APK and an unsigned iOS simulator app. These are compilation artifacts, not store releases or device acceptance evidence. Release signing, real-device accessibility/performance testing and SemVer/store version mapping require their own release plan. Framework CommonJS config and official generated native source retain their upstream conventions; authored TypeScript remains subject to shared rules. App uses a named export.
+
+## Mobile release versioning follow-up
+
+A dedicated mobile release ticket will derive Android versionName and iOS MARKETING_VERSION from the main release SemVer, and assign monotonically increasing Android versionCode and iOS CURRENT_PROJECT_VERSION build numbers. The current template numbers are scaffold values, not store release versions. The maintainer decides when to start that ticket, before the first store release; WEA-6 does not implement versioning or signing automation.
+
+Native CI verifies the committed Gradle wrapper and official distribution checksum before Android execution. Gradle/Pods cache writes are restricted to the default branch; PRs restore only. Pod installation always validates committed locks, including after a cache hit. Native compilation runs alongside JS bundling; the mobile gate requires both platforms and bundles. DerivedData/ccache are not enabled without measurements.

@@ -1,4 +1,4 @@
-# Learn more https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files
+# Mobile dependencies, generated files and local secrets
 
 # dependencies
 node_modules/
@@ -20,8 +20,6 @@ dist/
 
 # debug
 npm-debug.*
-yarn-debug.*
-yarn-error.*
 
 # macOS
 .DS_Store
