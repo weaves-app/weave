@@ -1,0 +1,13 @@
+{
+  "ticket": "WEA-8",
+  "scenariosConfirmed": true,
+  "confirmation": "User approved WEA-8 scope and S01-S06 acceptance scenarios with 'ok implement using mattpocock-skills:implement' on 2026-10-04.",
+  "scenarioIds": ["S01", "S02", "S03", "S04", "S05", "S06"],
+  "publicTestSeams": [
+    "pnpm install --frozen-lockfile",
+    "pnpm run verify and database integration",
+    "Docker build and runtime health",
+    "Metro bundle and native compile commands",
+    "validateDependencyProposal and audit-summary CLI"
+  ]
+}

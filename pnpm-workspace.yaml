@@ -1,0 +1,18 @@
+packages:
+  - 'apps/*'
+  - 'packages/*'
+
+# Native Gradle paths and Metro expect root-level dependencies.
+nodeLinker: hoisted
+
+# Preserve the renderer alignment from the npm workspace.
+overrides:
+  react: '19.2.3'
+  react-dom: '19.2.3'
+
+# Permit only the dependency lifecycle scripts required by this toolchain.
+allowBuilds:
+  '@prisma/engines': true
+  esbuild: true
+  fsevents: true
+  prisma: true

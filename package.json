@@ -1,31 +1,27 @@
 {
   "name": "weave",
   "private": true,
-  "packageManager": "npm@11.19.0",
+  "packageManager": "pnpm@11.1.1",
   "engines": {
     "node": ">=22.12.0"
   },
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
   "scripts": {
     "dev": "turbo run dev",
     "build": "turbo run build",
     "typecheck": "turbo run typecheck",
     "db:up": "docker compose up -d --wait",
     "db:down": "docker compose down",
-    "db:generate": "npm run db:generate --workspace=@weave/api",
-    "db:migrate": "npm run db:migrate --workspace=@weave/api --",
-    "db:studio": "npm run db:studio --workspace=@weave/api",
-    "db:deploy": "npm run db:deploy --workspace=@weave/api",
-    "test": "npm run test:policy && turbo run test",
+    "db:generate": "pnpm --filter @weave/api run db:generate",
+    "db:migrate": "pnpm --filter @weave/api run db:migrate",
+    "db:studio": "pnpm --filter @weave/api run db:studio",
+    "db:deploy": "pnpm --filter @weave/api run db:deploy",
+    "test": "pnpm run test:policy && turbo run test",
     "test:policy": "node --test tests/policy/*.test.mjs",
     "lint": "turbo run lint && eslint scripts tests && node scripts/check-architecture.mjs",
     "format:check": "prettier --check .",
     "format": "prettier --write .",
     "prepare": "node scripts/install-hooks.mjs",
-    "verify": "npm run lint && npm run format:check && npm run typecheck && npm test && npm run build",
+    "verify": "pnpm run lint && pnpm run format:check && pnpm run typecheck && pnpm test && pnpm run build",
     "test:integration": "node --test tests/integration/*.test.mjs",
     "deps:adopt": "node scripts/adopt-dependency-update.mjs"
   },
@@ -38,9 +34,5 @@
     "eslint-plugin-react-hooks": "^7.0.0",
     "prettier": "^3.8.0",
     "lint-staged": "^16.3.0"
-  },
-  "overrides": {
-    "react": "19.2.3",
-    "react-dom": "19.2.3"
   }
 }

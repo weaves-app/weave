@@ -28,7 +28,7 @@ jobs:
         with:
           enable-cache: false
       - run: bash scripts/workflow-lint.sh
-      - run: npm run test:policy
+      - run: pnpm run test:policy
       - run: node scripts/check-sdd.mjs
       - if: github.event_name == 'pull_request'
         run: node scripts/pr-policy.mjs
@@ -46,12 +46,12 @@ jobs:
           path: .turbo
           key: turbo-${{ runner.os }}-${{ github.job }}-${{ github.sha }}
           restore-keys: turbo-${{ runner.os }}-${{ github.job }}-
-      - run: npm run lint
-      - run: npm run format:check
-      - run: npm run typecheck
-      - run: npm test
+      - run: pnpm run lint
+      - run: pnpm run format:check
+      - run: pnpm run typecheck
+      - run: pnpm test
       - name: Dependency audit report
-        run: npm audit --json > dependency-audit.json || true
+        run: pnpm audit --json > dependency-audit.json || true
       - run: node scripts/audit-summary.mjs
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         if: always()
@@ -82,10 +82,10 @@ jobs:
           path: .turbo
           key: turbo-${{ runner.os }}-${{ github.job }}-${{ github.sha }}
           restore-keys: turbo-${{ runner.os }}-${{ github.job }}-
-      - run: npm run db:deploy
-      - run: npm run db:deploy
-      - run: npx turbo run build --filter=@weave/api --filter=@weave/web
-      - run: npm run test:integration
+      - run: pnpm run db:deploy
+      - run: pnpm run db:deploy
+      - run: pnpm exec turbo run build --filter=@weave/api --filter=@weave/web
+      - run: pnpm run test:integration
   mobile-js:
     name: mobile-js
     runs-on: ubuntu-latest
@@ -100,7 +100,7 @@ jobs:
           path: .turbo
           key: turbo-${{ runner.os }}-${{ github.job }}-${{ github.sha }}
           restore-keys: turbo-${{ runner.os }}-${{ github.job }}-
-      - run: npx turbo run build --filter=@weave/mobile
+      - run: pnpm exec turbo run build --filter=@weave/mobile
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: mobile-bundles
@@ -138,7 +138,7 @@ jobs:
           cache-read-only: ${{ github.ref != format('refs/heads/{0}', github.event.repository.default_branch) }}
       - name: Compile Android debug APK
         if: matrix.platform == 'android'
-        run: npm run native:android --workspace=@weave/mobile -- --build-cache -PreactNativeArchitectures=x86_64
+        run: pnpm --filter @weave/mobile run native:android --build-cache -PreactNativeArchitectures=x86_64
       - if: matrix.platform == 'ios'
         uses: ruby/setup-ruby@14594264cd68ce8a2345dd349bc3d138a4ef85c8 # v1.327.0
         with:
@@ -151,14 +151,14 @@ jobs:
         uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: apps/mobile/ios/Pods
-          key: pods-${{ runner.os }}-${{ runner.arch }}-macos15-${{ hashFiles('apps/mobile/ios/Podfile.lock', 'apps/mobile/Gemfile.lock', 'package-lock.json', 'apps/mobile/ios/Podfile') }}
+          key: pods-${{ runner.os }}-${{ runner.arch }}-macos15-${{ hashFiles('apps/mobile/ios/Podfile.lock', 'apps/mobile/Gemfile.lock', 'pnpm-lock.yaml', 'apps/mobile/ios/Podfile') }}
       - name: Install iOS native dependencies
         if: matrix.platform == 'ios'
         working-directory: apps/mobile/ios
         run: bundle exec pod install --deployment
       - name: Compile unsigned iOS simulator app
         if: matrix.platform == 'ios'
-        run: npm run native:ios --workspace=@weave/mobile
+        run: pnpm --filter @weave/mobile run native:ios
       - name: Save trusted iOS Pods
         if: matrix.platform == 'ios' && github.ref == format('refs/heads/{0}', github.event.repository.default_branch) && steps.pods.outputs.cache-hit != 'true'
         uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0

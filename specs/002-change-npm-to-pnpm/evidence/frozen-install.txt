@@ -1,0 +1,68 @@
+Scope: all 7 workspace projects
+Lockfile is up to date, resolution step is skipped
+Packages: +1111
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Progress: resolved 0, reused 1, downloaded 0, added 0
+Progress: resolved 0, reused 700, downloaded 23, added 723
+Progress: resolved 0, reused 700, downloaded 64, added 782
+[WARN] Tarball download average speed 41 KiB/s (size 55 KiB) is below 50 KiB/s: https://registry.npmjs.org/@nestjs/cli/-/cli-11.0.24.tgz (GET)
+[WARN] Tarball download average speed 10 KiB/s (size 15 KiB) is below 50 KiB/s: https://registry.npmjs.org/@nestjs/platform-express/-/platform-express-11.2.7.tgz (GET)
+[WARN] Tarball download average speed 30 KiB/s (size 38 KiB) is below 50 KiB/s: https://registry.npmjs.org/pg-protocol/-/pg-protocol-1.16.1.tgz (GET)
+Progress: resolved 0, reused 700, downloaded 95, added 821
+Progress: resolved 0, reused 700, downloaded 135, added 870
+Progress: resolved 0, reused 700, downloaded 170, added 907
+[WARN] Tarball download average speed 17 KiB/s (size 19 KiB) is below 50 KiB/s: https://registry.npmjs.org/@babel/plugin-transform-react-jsx/-/plugin-transform-react-jsx-7.29.7.tgz (GET)
+Progress: resolved 0, reused 700, downloaded 193, added 936
+Progress: resolved 0, reused 700, downloaded 203, added 948
+Progress: resolved 0, reused 700, downloaded 215, added 961
+Progress: resolved 0, reused 700, downloaded 225, added 971
+[WARN] Tarball download average speed 39 KiB/s (size 55 KiB) is below 50 KiB/s: https://registry.npmjs.org/hermes-estree/-/hermes-estree-0.36.0.tgz (GET)
+[WARN] Tarball download average speed 13 KiB/s (size 50 KiB) is below 50 KiB/s: https://registry.npmjs.org/webpack-sources/-/webpack-sources-3.6.0.tgz (GET)
+Progress: resolved 0, reused 700, downloaded 240, added 994
+[WARN] Tarball download average speed 8 KiB/s (size 10 KiB) is below 50 KiB/s: https://registry.npmjs.org/metro-cache/-/metro-cache-0.84.5.tgz (GET)
+Progress: resolved 0, reused 700, downloaded 257, added 1012
+[WARN] Tarball download average speed 49 KiB/s (size 322 KiB) is below 50 KiB/s: https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001814.tgz (GET)
+[WARN] Tarball download average speed 24 KiB/s (size 39 KiB) is below 50 KiB/s: https://registry.npmjs.org/confbox/-/confbox-0.2.4.tgz (GET)
+Progress: resolved 0, reused 700, downloaded 279, added 1035
+Progress: resolved 0, reused 700, downloaded 299, added 1059
+Progress: resolved 0, reused 700, downloaded 322, added 1083
+Progress: resolved 0, reused 700, downloaded 331, added 1092
+Progress: resolved 0, reused 700, downloaded 332, added 1092
+Progress: resolved 0, reused 700, downloaded 333, added 1094
+Progress: resolved 0, reused 700, downloaded 334, added 1094
+Progress: resolved 0, reused 700, downloaded 334, added 1095
+[WARN] Tarball download average speed 16 KiB/s (size 242 KiB) is below 50 KiB/s: https://registry.npmjs.org/@prisma/get-platform/-/get-platform-7.10.0.tgz (GET)
+Progress: resolved 0, reused 700, downloaded 335, added 1095
+Progress: resolved 0, reused 700, downloaded 335, added 1096
+Progress: resolved 0, reused 700, downloaded 336, added 1096
+Progress: resolved 0, reused 700, downloaded 336, added 1097
+Progress: resolved 0, reused 700, downloaded 337, added 1097
+Progress: resolved 0, reused 700, downloaded 337, added 1100
+[WARN] Tarball download average speed 39 KiB/s (size 969 KiB) is below 50 KiB/s: https://registry.npmjs.org/@prisma/query-plan-executor/-/query-plan-executor-7.2.0.tgz (GET)
+Progress: resolved 0, reused 700, downloaded 338, added 1100
+Progress: resolved 0, reused 700, downloaded 338, added 1101
+Progress: resolved 0, reused 700, downloaded 339, added 1102
+Progress: resolved 0, reused 700, downloaded 340, added 1103
+Progress: resolved 0, reused 700, downloaded 341, added 1104
+Progress: resolved 0, reused 700, downloaded 342, added 1104
+Progress: resolved 0, reused 700, downloaded 342, added 1105
+Progress: resolved 0, reused 700, downloaded 343, added 1105
+Progress: resolved 0, reused 700, downloaded 344, added 1107
+Progress: resolved 0, reused 700, downloaded 345, added 1107
+Progress: resolved 0, reused 700, downloaded 345, added 1108
+Progress: resolved 0, reused 700, downloaded 346, added 1108
+Progress: resolved 0, reused 700, downloaded 346, added 1109
+Progress: resolved 0, reused 700, downloaded 347, added 1109
+Progress: resolved 0, reused 700, downloaded 347, added 1110
+Progress: resolved 0, reused 700, downloaded 348, added 1110
+Progress: resolved 0, reused 700, downloaded 348, added 1111, done
+node_modules/@prisma/engines postinstall$ node scripts/postinstall.js
+node_modules/esbuild postinstall$ node install.js
+node_modules/esbuild postinstall: Done
+node_modules/@prisma/engines postinstall: Done
+node_modules/prisma preinstall$ node scripts/preinstall-entry.js
+node_modules/prisma preinstall: Done
+
+. prepare$ node scripts/install-hooks.mjs
+. prepare: Done
+Done in 1m 3.6s using pnpm v11.1.1
