@@ -52,3 +52,7 @@ Repository-local author/committer identity is Pravin Raj <pravinrajmb@gmail.com>
 Fresh local `pnpm run verify` exited 0 after granting the existing Watchman socket access: lint, formatting, typechecks, 25 policy tests, API/web/mobile tests and API/web/Metro builds passed. [Verify log](evidence/review-verify.txt). The existing temporary PostgreSQL required host shared-memory access; committed migrations had no pending changes and all 3 HTTP/database integration tests passed. [Migrations](evidence/review-migrations.txt), [integration](evidence/review-integration.txt). The temporary PostgreSQL instance is stopped after validation. Initial sandbox restrictions are environment failures, not behavioral RED.
 
 The final explicit configuration also passed an [offline frozen workspace install](evidence/review-frozen-install.txt) without changing pnpm-lock.yaml.
+
+### Requested Matt Pocock two-axis review
+
+Reviewed `git diff 27698fb1a257259e12946e1526e57b1c6fc58836...9c82e5e041b63f6349a69a2d3209bbc1aa734286` with separate standards/spec agents. Commits: 4118b58 migration and 9c82e5e remediation. Standards: zero hard documented violations; one low-priority possible Duplicated Code smell in the identical pnpm bootstrap blocks of both Dockerfiles. Kept the existing bootstrap boundary for this migration; extracting a shared helper is optional maintenance, not a required correction. Spec: zero actionable findings, no missing implementation or scope creep. Fresh container CI remains the validation gate for the changed Dockerfiles.
