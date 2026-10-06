@@ -39,3 +39,7 @@ Implement vertical slices. First prove pnpm lockfile adoption rejected at the ex
 ## Implementation Order
 
 Workspace/configuration → maintenance policy → CI/hooks/docs/containers → verification → two-axis code review → converge → commit. Sequential execution in the current clean ticket checkout, as the user requested implement here.
+
+## PR remediation (2026-10-07)
+
+Run the prune stage on BUILDPLATFORM; only its source/manifests/lockfile cross into the target build stage, which still installs platform-specific dependencies. Retain pnpm's implicit package-age defaults explicitly (1440 minutes, non-strict fallback), verified with a local registry fixture on 11.1.1. Derive active bootstrap commands from packageManager rather than duplicating the pin. Sanitize only WEA-8 contributor path prefixes, with a disclosure; preserve prior feature history and the diagnostic results. Reconcile successful original CI and require fresh CI for this remediation head. Dependabot regeneration occurs after merge and remains subject to support verification.

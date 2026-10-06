@@ -1,0 +1,61 @@
+Implicit pnpm 11 defaults: fresh exact version fallback exit 0
+Progress: resolved 1, reused 0, downloaded 0, added 0
+Progress: resolved 1, reused 0, downloaded 0, added 0, done
+
+Done in 201ms using pnpm v11.1.1
+
+Explicit preserved defaults: fresh exact version fallback exit 0
+Progress: resolved 1, reused 0, downloaded 0, added 0
+Progress: resolved 1, reused 0, downloaded 0, added 0, done
+
+Done in 157ms using pnpm v11.1.1
+
+Fresh exact version published now: must reject exit 1
+[ERR_PNPM_NO_MATURE_MATCHING_VERSION] Version 1.0.0 (released a few seconds ago) of wea8-age-fixture does not meet the minimumReleaseAge constraint
+
+This error happened while installing a direct dependency of <fixture>
+
+The latest release of wea8-age-fixture is "1.0.0". Published at 10/7/2026 12:10:07 AM
+
+If you need the full list of all 1 published versions run "pnpm view wea8-age-fixture versions".
+
+If you want to install the matched version ignoring the time it was published, you can add the package name to the minimumReleaseAgeExclude setting. Read more about it: https://pnpm.io/settings#minimumreleaseageexclude
+
+Fixture preparation with age disabled: create lock and store exit 0
+Progress: resolved 1, reused 0, downloaded 0, added 0
+Packages: +1
++
+Progress: resolved 1, reused 0, downloaded 1, added 1, done
+
+dependencies:
++ wea8-age-fixture 1.0.0
+
+Done in 223ms using pnpm v11.1.1
+
+Frozen install of fresh locked version with explicit 1440: observe exit 0
+Lockfile is up to date, resolution step is skipped
+Progress: resolved 1, reused 0, downloaded 0, added 0
+Packages: +1
++
+Progress: resolved 1, reused 1, downloaded 0, added 1, done
+
+dependencies:
++ wea8-age-fixture 1.0.0
+
+Done in 189ms using pnpm v11.1.1
+
+Frozen registry requests: []
+Offline frozen install: retain locked graph exit 0
+Lockfile is up to date, resolution step is skipped
+Progress: resolved 1, reused 0, downloaded 0, added 0
+Packages: +1
++
+Progress: resolved 1, reused 1, downloaded 0, added 1, done
+
+dependencies:
++ wea8-age-fixture 1.0.0
+
+Done in 192ms using pnpm v11.1.1
+
+Offline registry requests: []
+All probe assertions passed; fixture: <fixture>

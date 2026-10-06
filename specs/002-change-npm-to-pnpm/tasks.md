@@ -22,7 +22,7 @@
 
 ## Phase 5: US2 delivery targets
 
-- [ ] T009 [US2] Convert apps/api/Dockerfile and apps/web/Dockerfile; test pruning, frozen installs, builds and runtime health (S04; FR-004).
+- [x] T009 [US2] Convert apps/api/Dockerfile and apps/web/Dockerfile; test pruning, frozen installs, builds and runtime health (S04; FR-004).
 - [x] T010 [US2] Validate Metro and available native checks through apps/mobile/package.json commands; record unavailable prerequisites (S05; FR-005).
 
 ## Phase 6: Polish and verification
@@ -38,4 +38,14 @@ Setup → foundational → US1 → US3 → US2 → final validation/review. US1 
 
 ## Phase 7: Convergence
 
-- [ ] T015 Validate both Linux images with tests/containers/workspace.test.mjs on working container infrastructure before marking the PR ready; record the result in specs/002-change-npm-to-pnpm/evidence.md per S04/FR-004 (partial).
+- [x] T015 Validate both Linux images with tests/containers/runtime.test.mjs on working container infrastructure before marking the PR ready; record the result in specs/002-change-npm-to-pnpm/evidence.md per S04/FR-004.
+
+## Phase 8: PR review remediation
+
+- [x] T016 Reconcile CI run 37220538960 with T009/T015, evidence, convergence and PR readiness per S04/S05/FR-004/005.
+- [x] T017 Run only Docker prune stages on BUILDPLATFORM; preserve target-platform dependency installation and runtime packaging per S04/FR-004.
+- [x] T018 Clarify and document the package-age policy, verify pinned pnpm frozen/resolution behavior, and qualify Dependabot support per S01/S03/S06/FR-001/003/006.
+- [x] T019 Derive active bootstrap commands from packageManager, correct Metro resolution docs, and sanitize WEA-8 evidence path prefixes per FR-007.
+- [x] T020 Run verification/database integration and record convergence per S02/SC-002/004.
+
+Post-merge operational handoff: close obsolete npm-lockfile Dependabot PRs #2–#6, request a fresh update check and verify its generated pnpm lockfile and CI. Do not close them before the new lockfile is on develop. Dependency adoption still requires a fresh ticket/spec branch. The existing develop candidate-image digest failure requires separate ticket scope.

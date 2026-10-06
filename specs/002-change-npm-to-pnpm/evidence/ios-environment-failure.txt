@@ -18,6 +18,6 @@ A required plugin failed to load. Please ensure system content is up-to-date —
 
 
 xcodebuild failed to load a required plug-in. Ensure your system frameworks are up-to-date by running 'xcodebuild -runFirstLaunch'
-/Users/pravinraj/workspace/weave/apps/mobile:
+<repo>/apps/mobile:
 [ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL] @weave/mobile@0.0.0 native:ios: `xcodebuild -workspace ios/Weave.xcworkspace -scheme Weave -configuration Debug -sdk iphonesimulator -destination "generic/platform=iOS Simulator" -derivedDataPath ios/build CODE_SIGNING_ALLOWED=NO build`
 Exit status 70

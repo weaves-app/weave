@@ -4,13 +4,13 @@ One pnpm/Turborepo workspace: Next.js web, NestJS modular monolith API, vanilla 
 
 ## Start
 
-Use Node 24 LTS, pnpm 11.1.1 and Docker Desktop with Compose. Before committing, configure your **own personal** name/email in this clone; Weave must use the contributor’s repository-local personal identity.
+Use Node 24 LTS, the pnpm version pinned in `package.json#packageManager`, and Docker Desktop with Compose. Before committing, configure your **own personal** name/email in this clone; Weave must use the contributor’s repository-local personal identity.
 
 ```sh
 git config --local user.name "YOUR_PERSONAL_NAME"
 git config --local user.email "YOUR_PERSONAL_EMAIL"
 git config --local weave.githubUser "YOUR_PERSONAL_GITHUB_LOGIN"
-npm install --global pnpm@11.1.1 --ignore-scripts
+node -e 'const {execFileSync}=require("node:child_process"); const pm=require("./package.json").packageManager; if(!/^pnpm@\d+\.\d+\.\d+$/.test(pm))throw Error("Invalid packageManager"); execFileSync("npm",["install","--global",pm,"--ignore-scripts"],{stdio:"inherit"})'
 pnpm install --frozen-lockfile
 cp apps/api/.env.example apps/api/.env
 cp apps/web/.env.example apps/web/.env.local

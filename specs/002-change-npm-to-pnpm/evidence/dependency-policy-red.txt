@@ -19,7 +19,7 @@ test at tests/policy/dependency.test.mjs:23:1
   + 'Dependency proposals may change only manifests, lockfiles and Action pins.'
   - null
   
-      at TestContext.<anonymous> (file:///Users/pravinraj/workspace/weave/tests/policy/dependency.test.mjs:24:10)
+      at TestContext.<anonymous> (file://<repo>/tests/policy/dependency.test.mjs:24:10)
       at Test.runInAsyncScope (node:async_hooks:214:14)
       at Test.run (node:internal/test_runner/test:1062:25)
       at Test.processPendingSubtests (node:internal/test_runner/test:752:18)

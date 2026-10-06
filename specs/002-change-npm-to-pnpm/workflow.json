@@ -9,5 +9,11 @@
     "Docker build and runtime health",
     "Metro bundle and native compile commands",
     "validateDependencyProposal and audit-summary CLI"
-  ]
+  ],
+  "reviewRemediation": {
+    "requestedOn": "2026-10-07",
+    "request": "User requested resolving PR #7 review comments.",
+    "existingScenarios": ["S01", "S02", "S03", "S04", "S05", "S06"],
+    "scope": "Reconcile verified CI readiness, prune on the native build platform, correct active bootstrap/Metro docs, sanitize WEA-8 log path prefixes, and record post-merge bot follow-ups. Explicit age 1440 and strict false preserve existing pnpm 11.1.1 behavior, verified at the existing S01/S06 CLI seams; no new strict age contract is introduced."
+  }
 }

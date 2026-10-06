@@ -1,4 +1,4 @@
-FROM node:24-bookworm-slim AS prune
+FROM --platform=$BUILDPLATFORM node:24-bookworm-slim AS prune
 WORKDIR /app
 COPY . .
 RUN node -e 'const {execFileSync}=require("node:child_process"); const pm=require("./package.json").packageManager; if(!/^pnpm@\d+\.\d+\.\d+$/.test(pm))throw Error("Invalid packageManager"); execFileSync("npm",["install","--global",pm,"--ignore-scripts"],{stdio:"inherit"})'

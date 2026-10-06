@@ -1,11 +1,11 @@
-Command: ANDROID_HOME=/Users/pravinraj/Library/Android/sdk pnpm --filter @weave/mobile run native:android -PreactNativeArchitectures=arm64-v8a
+Command: ANDROID_HOME=<home>/Library/Android/sdk pnpm --filter @weave/mobile run native:android -PreactNativeArchitectures=arm64-v8a
 
 Actual final output:
-w: file:///Users/pravinraj/workspace/weave/node_modules/react-native-safe-area-context/android/src/main/java/com/th3rdwave/safeareacontext/SafeAreaView.kt:9:8 'class UIManagerModule : ReactContextBaseJavaModule, LifecycleEventListener, UIManager' is deprecated. Deprecated in Java.
-w: file:///Users/pravinraj/workspace/weave/node_modules/react-native-safe-area-context/android/src/main/java/com/th3rdwave/safeareacontext/SafeAreaView.kt:50:54 'class UIManagerModule : ReactContextBaseJavaModule, LifecycleEventListener, UIManager' is deprecated. Deprecated in Java.
-w: file:///Users/pravinraj/workspace/weave/node_modules/react-native-safe-area-context/android/src/main/java/com/th3rdwave/safeareacontext/SafeAreaView.kt:59:23 'val uiImplementation: UIImplementation!' is deprecated. Deprecated in Java.
-w: file:///Users/pravinraj/workspace/weave/node_modules/react-native-safe-area-context/android/src/main/java/com/th3rdwave/safeareacontext/SafeAreaViewShadowNode.kt:9:32 'class LayoutShadowNode : ReactShadowNodeImpl' is deprecated. This class is part of Legacy Architecture and will be removed in a future release.
-w: file:///Users/pravinraj/workspace/weave/node_modules/react-native-safe-area-context/android/src/main/java/com/th3rdwave/safeareacontext/SafeAreaViewShadowNode.kt:110:61 'class NativeViewHierarchyOptimizer : Any' is deprecated. This class is part of Legacy Architecture and will be removed in a future release.
+w: file://<repo>/node_modules/react-native-safe-area-context/android/src/main/java/com/th3rdwave/safeareacontext/SafeAreaView.kt:9:8 'class UIManagerModule : ReactContextBaseJavaModule, LifecycleEventListener, UIManager' is deprecated. Deprecated in Java.
+w: file://<repo>/node_modules/react-native-safe-area-context/android/src/main/java/com/th3rdwave/safeareacontext/SafeAreaView.kt:50:54 'class UIManagerModule : ReactContextBaseJavaModule, LifecycleEventListener, UIManager' is deprecated. Deprecated in Java.
+w: file://<repo>/node_modules/react-native-safe-area-context/android/src/main/java/com/th3rdwave/safeareacontext/SafeAreaView.kt:59:23 'val uiImplementation: UIImplementation!' is deprecated. Deprecated in Java.
+w: file://<repo>/node_modules/react-native-safe-area-context/android/src/main/java/com/th3rdwave/safeareacontext/SafeAreaViewShadowNode.kt:9:32 'class LayoutShadowNode : ReactShadowNodeImpl' is deprecated. This class is part of Legacy Architecture and will be removed in a future release.
+w: file://<repo>/node_modules/react-native-safe-area-context/android/src/main/java/com/th3rdwave/safeareacontext/SafeAreaViewShadowNode.kt:110:61 'class NativeViewHierarchyOptimizer : Any' is deprecated. This class is part of Legacy Architecture and will be removed in a future release.
 
 > Task :app:mergeExtDexDebug
 > Task :react-native-safe-area-context:compileDebugJavaWithJavac
@@ -35,7 +35,7 @@ w: file:///Users/pravinraj/workspace/weave/node_modules/react-native-safe-area-c
 > Task :app:createDebugApkListingFileRedirect
 > Task :app:assembleDebug
 
-[Incubating] Problems report is available at: file:///Users/pravinraj/workspace/weave/apps/mobile/android/build/reports/problems/problems-report.html
+[Incubating] Problems report is available at: file://<repo>/apps/mobile/android/build/reports/problems/problems-report.html
 
 Deprecated Gradle features were used in this build, making it incompatible with Gradle 10.
 

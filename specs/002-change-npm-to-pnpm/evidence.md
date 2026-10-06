@@ -29,10 +29,26 @@ Specification → clarify coverage scan → plan → 14 tasks → read-only anal
 
 Code review used separate standards/spec agents against develop SHA 27698fb1a257259e12946e1526e57b1c6fc58836 and the uncommitted migration. Standards: no hard standards breaches or actionable smells; two documentation errors (bootstrap and misspelled install command). Spec: one FR-007 finding covering those documentation errors. Both corrected and formatting checked. No additional implementation defects found. Scope retains historical evidence, audit/security gates and required CI jobs.
 
-## Remaining validation
+## CI validation and PR readiness
 
-Actual container image validation must run on working CI/container infrastructure before PR readiness. iOS compilation needs a functioning Xcode installation; its host failure is explicitly allowed as unavailable native prerequisites under S05. User subsequently requested a PR; publication is being prepared as a draft with the outstanding container/iOS checks disclosed. No deployment or release is authorized.
+Verified on 2026-10-07: [CI run 37220538960](https://github.com/weaves-app/weave/actions/runs/37220538960) succeeded for PR #7 at head 4118b58376464c15706358db4f25d0060e990f07 (merge test run). The [container-pr job](https://github.com/weaves-app/weave/actions/runs/37220538960/job/111490451309) built both Linux amd64 images and passed the existing `tests/containers/runtime.test.mjs` suite. Both native matrix jobs succeeded, including [iOS](https://github.com/weaves-app/weave/actions/runs/37220538960/job/111489792841). Quality, integration, policy, mobile and required gates succeeded; candidate/publish were skipped as expected for a PR.
+
+This closes the original S04/S05 validation gaps and completes T009/T015. The local S04/S05 results above remain the historical account of what this host could execute. Required CI must also pass for subsequent commits; code-owner approval remains required before merge. No deployment or release is authorized.
+
+WEA-8 evidence text logs replace the contributor's checkout/home prefixes with `<repo>`/`<home>` for portability. Commands, outcomes and diagnostic content are otherwise retained; earlier feature evidence is unchanged.
 
 ## Publication identity and local hook
 
 Repository-local author/committer identity is Pravin Raj <pravinrajmb@gmail.com>; expected GitHub user is pravinrajmb. GitHub SSH authentication independently confirmed that personal account. The GitHub CLI is unavailable, so its token-based identity check in the local pre-push hook cannot execute. A one-time hooksPath override is used for publication, as permitted by repository rules for bypassable local hooks. Equivalent lint/typecheck/test checks passed in final verification; required remote CI and code-owner review remain mandatory. Remote develop was fetched before publication.
+
+## PR review remediation (2026-10-07)
+
+- Finding 1: verified the successful original CI run and reconciled T009/T015/readiness records; local historical limitations remain distinguishable from CI results.
+- Finding 2: both prune stages use BUILDPLATFORM. Build/runtime stages retain target-platform Node and freshly installed target dependencies; no prune node_modules is copied. This removes prune emulation, but does not claim the full-repository install layer is now cacheable across source changes. Original image health was verified by CI; the changed Dockerfiles require fresh container-pr CI.
+- Finding 3: the pinned CLI [local-registry probe](evidence/package-age-probe.txt) and [reproducible probe](evidence/package-age-probe.py) verify implicit defaults, equivalent explicit non-strict settings, strict rejection, and clean frozen/offline reinstalls without lock mutation or registry metadata requests. This corrects the review's assumption that pnpm 11.1.1 always refuses a fresh package by default. No application behavior is authored; declarative settings use real CLI verification rather than fabricated behavioral RED.
+- Finding 4: post-merge handoff records obsolete bot PRs #2–#6, update regeneration and CI validation. PR #7 is still open, so those actions are not yet due. GitHub's current supported-ecosystem table lists pnpm through v10; v11 generation remains unverified and is documented as such in ADR 0002.
+- Finding 5: README/quickstart bootstrap derive packageManager; ADR points to the authoritative pin; Metro docs match app-local then root lookup. WEA-8 log prefixes are sanitized with the disclosure above.
+
+Fresh local `pnpm run verify` exited 0 after granting the existing Watchman socket access: lint, formatting, typechecks, 25 policy tests, API/web/mobile tests and API/web/Metro builds passed. [Verify log](evidence/review-verify.txt). The existing temporary PostgreSQL required host shared-memory access; committed migrations had no pending changes and all 3 HTTP/database integration tests passed. [Migrations](evidence/review-migrations.txt), [integration](evidence/review-integration.txt). The temporary PostgreSQL instance is stopped after validation. Initial sandbox restrictions are environment failures, not behavioral RED.
+
+The final explicit configuration also passed an [offline frozen workspace install](evidence/review-frozen-install.txt) without changing pnpm-lock.yaml.

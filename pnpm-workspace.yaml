@@ -2,6 +2,11 @@ packages:
   - 'apps/*'
   - 'packages/*'
 
+# Preserve pnpm 11's 24-hour preference and non-strict fallback.
+# See docs/decisions/0002-pnpm-workspace.md before changing enforcement.
+minimumReleaseAge: 1440
+minimumReleaseAgeStrict: false
+
 # Native Gradle paths and Metro expect root-level dependencies.
 nodeLinker: hoisted
 

@@ -73,3 +73,5 @@ Maintainers keep hooks, audits and bot-adoption rules usable after migration.
 ## Clarifications
 
 2026-10-04: Coverage scan found no material unresolved product decisions. Package-manager version/linker/bootstrap are implementation choices. Existing build/review/security gates remain mandatory.
+
+2026-10-07 PR remediation: retain the existing S01-S06 contract. Package-age configuration documents pnpm 11.1.1's default 24-hour preference with non-strict fallback; a strict package-age gate is outside this migration. Frozen installs preserve the locked graph. Post-merge Dependabot regeneration requires operational verification rather than an assumed support claim.

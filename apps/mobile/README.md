@@ -14,7 +14,7 @@ Vanilla React Native 0.86.3 / React 19.2.3, Community CLI, committed Android/iOS
 
 Root `pnpm run verify` runs types/component tests and Metro production bundling for both platforms. `pnpm --filter @weave/mobile run native:android` assembles a debug APK with a locally generated development key. After installing pods, `pnpm --filter @weave/mobile run native:ios` compiles an unsigned simulator app. Native jobs run in CI and gate the mobile status; Android CI compiles x86_64 for the development emulator, while local Gradle defaults retain the template-supported architectures. These checks do not launch the app on a device.
 
-Metro watches shared workspaces and resolves the root node_modules to avoid duplicate React installations. Android Gradle explicitly resolves hoisted RN/codegen/CLI; iOS uses the official hoisting-aware Podfile. The application name Weave matches AppRegistry and both native launchers. Native configuration and SDK integrations require platform-specific review.
+Metro watches shared workspaces and searches the app's node_modules first for local workspace links, then the hoisted root node_modules for external dependencies. React remains aligned through workspace overrides. Android Gradle explicitly resolves hoisted RN/codegen/CLI; iOS uses the official hoisting-aware Podfile. The application name Weave matches AppRegistry and both native launchers. Native configuration and SDK integrations require platform-specific review.
 
 Release builds have no debug signing configured. Add protected production signing and store identifiers in a dedicated release ticket; never commit release signing credentials. CI artifacts are development/compilation artifacts and must not be shipped as store releases.
 

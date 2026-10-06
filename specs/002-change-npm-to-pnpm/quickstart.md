@@ -1,6 +1,6 @@
 # Validation guide
 
-Use Node 24 and pnpm 11.1.1 (install with `npm install --global pnpm@11.1.1 --ignore-scripts` if needed). Configure your own repository-local personal Git name/email.
+Use Node 24 and the pnpm version pinned in `package.json#packageManager`. Run the bootstrap command in the root README from the repository root if needed. Configure your own repository-local personal Git name/email.
 
 1. `pnpm install --frozen-lockfile` — all seven importers install without lockfile changes.
 2. `pnpm run verify` — lint, format, typecheck, policy/application tests and all builds pass.
