@@ -1,0 +1,35 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "4 · Verify/resend email code",
+  "description": "Controller snapshot is verification; user submits a code or clicks resend.",
+  "steps": [
+    {
+      "file": "apps/web/src/features/auth/presentation/auth-view.tsx",
+      "line": 32,
+      "title": "AuthForm.submit",
+      "description": "Verification submit reads code and calls flow.verify(code).\n\nTransition: DOM submit callback"
+    },
+    {
+      "file": "apps/web/src/features/auth/application/flow.ts",
+      "line": 153,
+      "title": "AuthenticationFlow.verify",
+      "description": "Require verification stage and nonblank code, then run an operation that awaits gateway.verify.\n\nTransition: calls run + verify"
+    },
+    {
+      "file": "apps/web/src/features/auth/infrastructure/clerk-gateway.ts",
+      "line": 86,
+      "title": "createClerkGateway.verify",
+      "description": "Signup uses signUp.verifications.verifyEmailCode; signin uses signIn.mfa.verifyEmailCode. Map refreshed SDK status to Attempt.\n\nTransition: SDK boundary → return Attempt"
+    },
+    {
+      "file": "apps/web/src/features/auth/application/flow.ts",
+      "line": 96,
+      "title": "AuthenticationFlow.advance",
+      "description": "If ready, activate and complete as in journey 3; if still verification, update state and stop.\n\nTransition: returns or joins activation"
+    },
+    {
+      "title": "Branches and stop conditions",
+      "description": "Resend is a separate event: AuthForm onClick → flow.resend → run → gateway.sendCode → signup verifications.sendEmailCode OR signin mfa.sendEmailCode.\n\nIncorrect/expired code and network failures remain visible through run/recovery; no destination is opened on failure.\n\nStart-again or route-change cleanup calls flow.cancel; generation protects against late results."
+    }
+  ]
+}

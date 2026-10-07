@@ -1,0 +1,35 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "5 · Google click → external provider",
+  "description": "User clicks the supplied GoogleButton in AuthForm.",
+  "steps": [
+    {
+      "file": "apps/web/src/features/auth/presentation/google-button.tsx",
+      "line": 5,
+      "title": "GoogleButton",
+      "description": "Button receives onClick from AuthForm; it invokes that callback. The SVG only renders the brand mark.\n\nTransition: DOM click callback"
+    },
+    {
+      "file": "apps/web/src/features/auth/presentation/auth-view.tsx",
+      "line": 22,
+      "title": "AuthForm",
+      "description": "Supplied onClick calls flow.google(); this is a later user event, not a render-time call.\n\nTransition: calls controller"
+    },
+    {
+      "file": "apps/web/src/features/auth/application/flow.ts",
+      "line": 163,
+      "title": "AuthenticationFlow.google",
+      "description": "Only credentials stage permits SSO. run() supplies duplicate guard, pending state and timeout.\n\nTransition: calls gateway.google"
+    },
+    {
+      "file": "apps/web/src/features/auth/infrastructure/clerk-gateway.ts",
+      "line": 63,
+      "title": "createClerkGateway.google",
+      "description": "Choose signIn.sso OR signUp.sso. strategy=oauth_google, callback=/sso-callback, final destination=/organizations. requireSuccess throws SDK errors.\n\nTransition: external SDK/browser handoff"
+    },
+    {
+      "title": "Branches and stop conditions",
+      "description": "The browser leaves Weave for Clerk/Google; /sso-callback is a new request after provider return. It is not a direct function call from google().\n\nA rejection/cancellation can surface as an SDK error or unresolved callback. Callback handling is journey 6; no browser redirect itself proves authenticated access.\n\nDisabled UI and run pending guard prevent duplicate attempts. Invitation mode rejects SSO."
+    }
+  ]
+}

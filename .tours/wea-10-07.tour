@@ -1,0 +1,65 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "7 · Organization picker mount → list → render",
+  "description": "Authenticated user or pending choose-organization session opens /organizations.",
+  "steps": [
+    {
+      "file": "apps/web/src/app/organizations/page.tsx",
+      "line": 7,
+      "title": "Page",
+      "description": "Configuration guard renders ClerkOrganizations mode=choose.\n\nTransition: React route entry"
+    },
+    {
+      "file": "apps/web/src/features/organizations/presentation/clerk-organizations.tsx",
+      "line": 14,
+      "title": "ClerkOrganizations",
+      "description": "useAuth allows pending sessions only here. State initializer creates gateway and flow with SDK port callbacks. Evaluate loaded, signed-in, task and verified-email eligibility.\n\nTransition: initialize composition"
+    },
+    {
+      "file": "apps/web/src/features/organizations/application/flow.ts",
+      "line": 2,
+      "title": "createOrganizationFlow",
+      "description": "Creates snapshot, listeners, accepted-invitation cache and revision guards; returns operations. No listing during factory creation.\n\nTransition: returns flow"
+    },
+    {
+      "file": "apps/web/src/features/organizations/presentation/clerk-organizations.tsx",
+      "line": 14,
+      "title": "ClerkOrganizations",
+      "description": "When eligible and mode=choose, useEffect calls flow.load().\n\nTransition: effect calls load"
+    },
+    {
+      "file": "apps/web/src/features/organizations/application/flow.ts",
+      "line": 55,
+      "title": "createOrganizationFlow.load",
+      "description": "Set loading; await gateway.list raced against deadline. Revision prevents stale result application.\n\nTransition: calls list"
+    },
+    {
+      "file": "apps/web/src/features/organizations/infrastructure/clerk-organizations.ts",
+      "line": 41,
+      "title": "createClerkOrganizationGateway.list",
+      "description": "Promise.all starts membership and pending-invitation pagination concurrently, then merges by org id with membership preference.\n\nTransition: concurrent SDK port calls"
+    },
+    {
+      "file": "apps/web/src/features/organizations/presentation/clerk-organizations.tsx",
+      "line": 14,
+      "title": "ClerkOrganizations",
+      "description": "Port callbacks call clerk.user.getOrganizationMemberships and getOrganizationInvitations; convert SDK pages into contract data. Adapter pages loop until totalCount reached.\n\nTransition: SDK boundary → return pages"
+    },
+    {
+      "file": "apps/web/src/features/organizations/application/flow.ts",
+      "line": 55,
+      "title": "createOrganizationFlow.load",
+      "description": "Returned merged options update snapshot and selection. update notifies subscribers; React rerenders OrganizationView.\n\nTransition: return → subscriber notification"
+    },
+    {
+      "file": "apps/web/src/features/organizations/presentation/organization-view.tsx",
+      "line": 23,
+      "title": "OrganizationView",
+      "description": "useSyncExternalStore reads updated options; render one list or empty/error/loading state.\n\nTransition: React renders result"
+    },
+    {
+      "title": "Branches and stop conditions",
+      "description": "Missing config → AuthUnavailable. Loaded signed out → cancel then replace /sign-in. SDK not loaded → status. Unsupported task or unverified email → setup message/sign-out.\n\nCreate route is an alternate entry with mode=create; it does not run flow.load automatically.\n\nPagination lists memberships and invitations concurrently; neither list is a sequential step after the other. Invalid page data rejects.\n\nFailure → error + loading false + retry; timeout invalidates old revision so late pages cannot overwrite retried data."
+    }
+  ]
+}

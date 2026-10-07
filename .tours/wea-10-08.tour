@@ -1,0 +1,59 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "8 · Existing organization / invitation → activate → Home",
+  "description": "User selects a radio option, then submits Open workspace.",
+  "steps": [
+    {
+      "file": "apps/web/src/features/organizations/presentation/organization-view.tsx",
+      "line": 23,
+      "title": "OrganizationView",
+      "description": "Radio onChange calls flow.select(id); form submit calls flow.open() in choose mode.\n\nTransition: DOM selection + submit"
+    },
+    {
+      "file": "apps/web/src/features/organizations/application/flow.ts",
+      "line": 88,
+      "title": "createOrganizationFlow.open",
+      "description": "run guards duplicates; find selected option. For an unaccepted pending invitation, call gateway.accept first. Membership skips acceptance.\n\nTransition: conditional accept"
+    },
+    {
+      "file": "apps/web/src/features/organizations/infrastructure/clerk-organizations.ts",
+      "line": 60,
+      "title": "createClerkOrganizationGateway.accept",
+      "description": "Look up cached current-user invitation and await invitation.accept(); reject unknown invitation.\n\nTransition: SDK boundary → return"
+    },
+    {
+      "file": "apps/web/src/features/organizations/application/flow.ts",
+      "line": 88,
+      "title": "createOrganizationFlow.open",
+      "description": "Record accepted id; recheck current revision, then await gateway.activate(org.id).\n\nTransition: await activate"
+    },
+    {
+      "file": "apps/web/src/features/organizations/infrastructure/clerk-organizations.ts",
+      "line": 66,
+      "title": "createClerkOrganizationGateway.activate",
+      "description": "Forward to injected port.activate; port is wired by ClerkOrganizations.\n\nTransition: calls port"
+    },
+    {
+      "file": "apps/web/src/features/organizations/presentation/clerk-organizations.tsx",
+      "line": 60,
+      "title": "ClerkOrganizations.activate",
+      "description": "Port activate calls clerk.setActive({organization:id,navigate}); callback requires active session, no currentTask and matching lastActiveOrganizationId. Throw if not ready.\n\nTransition: SDK callback → return"
+    },
+    {
+      "file": "apps/web/src/features/organizations/application/flow.ts",
+      "line": 88,
+      "title": "createOrganizationFlow.open",
+      "description": "Only current revision calls complete() after activation returns.\n\nTransition: completion callback"
+    },
+    {
+      "file": "apps/web/src/features/organizations/presentation/clerk-organizations.tsx",
+      "line": 14,
+      "title": "ClerkOrganizations",
+      "description": "Injected complete callback replaces / and refreshes; new request reaches Home server entry.\n\nTransition: navigation handoff"
+    },
+    {
+      "title": "Branches and stop conditions",
+      "description": "No option selected → error and stop. Existing membership → jump directly to activation; no invitation SDK call.\n\nAcceptance failure → no activation/Home. Activation retry uses accepted set to avoid accepting the same invitation twice.\n\nMutation timeout/cancel invalidates late completion; busy run returns early for repeated submit."
+    }
+  ]
+}

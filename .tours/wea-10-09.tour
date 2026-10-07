@@ -1,0 +1,47 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "9 · Create organization → activate → Home",
+  "description": "User opens /organizations/create and submits a name.",
+  "steps": [
+    {
+      "file": "apps/web/src/app/organizations/create/page.tsx",
+      "line": 5,
+      "title": "Page",
+      "description": "Alternate route renders ClerkOrganizations mode=create after configuration guard.\n\nTransition: React route entry"
+    },
+    {
+      "file": "apps/web/src/features/organizations/presentation/organization-view.tsx",
+      "line": 34,
+      "title": "OrganizationView.submit",
+      "description": "Create-mode submit invokes flow.create(name); controlled input preview is local React state.\n\nTransition: DOM submit callback"
+    },
+    {
+      "file": "apps/web/src/features/organizations/application/flow.ts",
+      "line": 103,
+      "title": "createOrganizationFlow.create",
+      "description": "run guards concurrency; trim/validate 1–80 chars. Reuse state.created on activation retry; otherwise gateway.create(value).\n\nTransition: conditional create"
+    },
+    {
+      "file": "apps/web/src/features/organizations/infrastructure/clerk-organizations.ts",
+      "line": 65,
+      "title": "createClerkOrganizationGateway.create",
+      "description": "Forward to port.create wired in ClerkOrganizations.\n\nTransition: calls port"
+    },
+    {
+      "file": "apps/web/src/features/organizations/presentation/clerk-organizations.tsx",
+      "line": 56,
+      "title": "ClerkOrganizations.create",
+      "description": "Port create awaits clerk.createOrganization({name}); returns id/name with default org:admin role.\n\nTransition: SDK boundary → return option"
+    },
+    {
+      "file": "apps/web/src/features/organizations/application/flow.ts",
+      "line": 103,
+      "title": "createOrganizationFlow.create",
+      "description": "If still current, store created organization, await gateway.activate, then call complete if current. Activation and completion follow journey 8.\n\nTransition: joins activation path"
+    },
+    {
+      "title": "Branches and stop conditions",
+      "description": "Blank/overlong name → validation error, no SDK create. Created snapshot locks the name and changes action to Open workspace for retry.\n\nCreate success + activation failure → preserve created record; next submit retries activation without another create.\n\nCreate gateway result is ignored if revision is stale. Later server Home gate still verifies active org."
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "11 · Session API access decision",
+  "description": "HTTP GET /api/session.",
+  "steps": [
+    {
+      "file": "apps/web/src/app/api/session/route.ts",
+      "line": 4,
+      "title": "GET",
+      "description": "Construct serverSessionGateway; return serveSession(gateway). This API entry is alternate to Home, not invoked by Home.\n\nTransition: HTTP route calls"
+    },
+    {
+      "file": "apps/web/src/features/auth/application/session-response.ts",
+      "line": 3,
+      "title": "serveSession",
+      "description": "Await readAccess(gateway); uses the same identity/read path as journey 10.\n\nTransition: calls shared policy"
+    },
+    {
+      "file": "apps/web/src/features/auth/application/policy.ts",
+      "line": 46,
+      "title": "readAccess",
+      "description": "gateway.read → server SDK port → normalized identity → AccessResult (journey 10).\n\nTransition: returns access"
+    },
+    {
+      "file": "apps/web/src/features/auth/application/session-response.ts",
+      "line": 3,
+      "title": "serveSession",
+      "description": "Return JSON authenticated boolean; authenticated=200, unavailable=503, all other access outcomes=401. Cache-Control=no-store.\n\nTransition: returns HTTP response"
+    },
+    {
+      "title": "Branches and stop conditions",
+      "description": "API does not render ClerkHome or redirect to signup. Client Home and /api/session are separate consumers of shared server policy."
+    }
+  ]
+}
