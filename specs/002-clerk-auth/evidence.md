@@ -1,0 +1,122 @@
+# WEA-10 evidence
+
+2026-10-06: Investigation and specification only. Source implementation has not started because scenario agreement is required by AGENTS.md and docs/standards/testing-and-delivery.md.
+
+- Verified repository: /Users/vishnu/Desktop/Weave, origin https://github.com/weaves-app/weave.git. Existing checkout clean on feat/WEA-6/setup-development-workflow at e9cadec; preserved.
+- Local develop was stale at 7445b35. GitHub read confirmed develop at 27698fb1a257259e12946e1526e57b1c6fc58836; authorized fetch succeeded and updated origin/develop.
+- Created isolated worktree /Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10, branch feat/WEA-10/clerk-auth-nextjs-react-native, based on that refreshed origin/develop.
+- Read full WEA-10 acceptance criteria and WEA-8 delivery pattern. WEA-10 is To do, assigned to Vishnuu C.V, cycle 40ad9e83-3f73-4d5f-a9a8-ea20e8e9e1e5. WEA-8 is In Progress.
+- Read root/scoped rules, constitution, standards index/testing requirements, and local Spec Kit skills. No .specify/extensions.yml exists.
+- Verified vanilla React Native Community CLI stack with native iOS/Android projects. Current manifests list RN 0.86.3, React 19.2.3, Next ^16.3.8. SDK support not yet researched or assumed.
+
+| Scenarios | Status | Required evidence after agreement                                                                     |
+| --------- | ------ | ----------------------------------------------------------------------------------------------------- |
+| S01, S04  | Unrun  | Signup/verification RED/GREEN and authorized live flows                                               |
+| S02, S05  | Unrun  | Login and direct/deep-link protection RED/GREEN                                                       |
+| S03, S06  | Unrun  | Invitation handling RED/GREEN; authorized provider checks and native link handoff                     |
+| S07       | Unrun  | Session restoration/loading/sign-out RED/GREEN and reload/restart checks                              |
+| S08       | Unrun  | Validation, provider/network failures, duplicate/expired/reused invitation and interruption RED/GREEN |
+| S09       | Unrun  | Configuration boundaries and same authorized identity across platforms                                |
+| S10       | Unrun  | Relevant lint/typecheck/tests/build/full verification, native bundles/compiles, final convergence     |
+
+No behavioral RED/GREEN, lint, typechecks, tests, builds, or live UI checks have run. Configuration/SDK/native prerequisites remain to be assessed during planning; missing keys are not yet established. No credentials, accounts, invitations, security settings, source files, pushes, PRs, deployments, or Linear status changes were made.
+
+2026-10-06: User explicitly said "confirm web scenarios". Recorded agreement for S01–S03 and web portions of S07–S10 only. Verified refreshed Linear ticket ownership: Vishnuu owns Next.js; Pravin owns React Native. Native completion remains required for overall WEA-10. No source implementation or tests yet.
+
+Planning/analysis: web FR-001–007 covered by T004–T017, 18 tasks. No critical/high inconsistency; native scope is explicitly delegated, overall delivery remains open. Requirements checklist: 13/13 checked. No extensions.yml hooks. SDK dependencies installed (Clerk 7.9.11 peers match). Policy test seams contain no implementation before RED.
+
+T004/T005: `node --import tsx --test apps/web/test/auth-policy.test.ts`: [RED](policy-red.txt) 0/5 passed, all five expected behavioral assertions failed (entry/identity/wait/failure classification). Minimum implementation then [GREEN](policy-green.txt) 5/5 passed. No imports/tooling failed. Entry defaults shared; gateway framework-free.
+
+T006–T011: coordinator [RED](flow-red.txt) 0/12 passed; expected assertion failures for signup/code/login/restoration/error/concurrency/cancellation/signout/invitation behavior, no tooling/import failures. Implemented gateway-driven coordinator only afterwards; [GREEN](flow-green.txt) 17/17 with prior policy suite. Refactored shared run/advance/error handling while green. Public test seam is createAuthFlow(AuthGateway, FlowOptions).
+
+T014 adapter/server slice: [RED](adapter-server-red.txt) 0/6 assertions passed; missing SDK call/result behavior, error rejection and resource status/no-store failed. Minimum Clerk/session adapters and session response implemented afterwards; [GREEN](adapter-server-green.txt) 6/6 passed. SDK uses supported create(ticket,password) atomically, no recipient email. Server adapter validates unknown auth/user data and matching identity; request errors deny access. Real Clerk acceptance still requires live configuration.
+
+T012/T013 UI: initial root-cwd run had JSX configuration error and is NOT behavioral RED. Corrected TSX_TSCONFIG_PATH to web config without source implementation; [behavioral RED](ui-red.txt) 0/5 failed expected missing labels/alerts/forms/status. Minimum UI then [GREEN](ui-green.txt) 17/17 UI+coordinator checks. Cleanup cancellation now preserves restored verification stage across React Strict Mode effects. Server routes, runtime provider/proxy and SDK composition wired afterward; full verification follows.
+
+2026-10-07 refinement: [entry RED](entry-refinement-red.txt) 0/2 expected assertions (editable email on ticketed signin, missing recoverable signout error); [unverified RED](unverified-red.txt) 0/1 expected Home visibility assertion. Earlier full failing DOM run terminated while formatting a large DOM/fiber assertion; it is not claimed as behavioral evidence. [refinement GREEN](refinement-green.txt) 32/32 passed. Shared SignOutControl replaces duplicate handling; ticket entry always uses invitation mode. Web lint/typecheck subsequently passed (test doubles corrected to readonly status getters; no production type failures).
+
+[recovery RED](recovery-red.txt) 0/2 expected assertions for retry after consumed-ticket finalization failure and timeout loading completion. Implemented stored verified attempt retry (SDK still rechecks completion), 30-second operation deadline, stale generation checks and delayed-session deactivation. Required affected tests run next.
+
+S10 web: [recovery GREEN](recovery-green.txt) 34/34 passed. `npm run verify` initially stopped because DATABASE_URL was absent for Prisma generation; rerun with documented local development URL passed all lint/architecture, formatting, typechecks, policy/workspace tests and builds ([verify.txt](verify.txt)). Web production build has dynamic Home/auth/session routes and Proxy; succeeds without Clerk keys. Existing mobile baseline JS bundles ran only because full verify includes all packages; no mobile auth edits or acceptance claimed.
+
+Database integration [initial run](integration-before-update.txt): 2/3 passed (real database rollback/unique constraint, readiness outage). The old WEA-6 public Connected page assertion failed after intentional replacement with protected Home. Updated HTTP test to retain API liveness/database readiness and assert no-key fail-closed web response, protected session 503/no-store and invitation redirect context. This is test adaptation to the already implemented feature, not claimed as prior implementation RED. No database container/configuration changes; existing documented local PostgreSQL reachable. Docker context read stalled; direct PostgreSQL integration is sufficient and that read is not a pass.
+
+2026-10-07: [database/HTTP integration](integration.txt) 3/3 passed, including actual local PostgreSQL transaction rollback/unique constraint, API readiness outage, production Next missing-configuration fail-closed response and preserved invitation redirect. No `.env.local` exists in the worktree, and CLERK_PUBLISHABLE_KEY/CLERK_SECRET_KEY are absent from execution environment (presence checks only, no secret values read or printed). Live fixtures requested from the user while independent checks continued. No accounts/invitations or settings have been provisioned or changed.
+
+| Scenario       | Current web evidence                                                                                                   | Remaining verification                                                          |
+| -------------- | ---------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| S01            | Passed coordinator/SDK-call/DOM verification tests                                                                     | Blocked: authorized Clerk keys and signup fixture/code                          |
+| S02            | Passed policy, DOM login, SDK trust APIs, protected response tests, production no-config denial                        | Blocked: real existing-user login and signed-out direct URL with configured SDK |
+| S03            | Passed ticket validation/context, no recipient replacement, fail-closed errors, activation retry and DOM identity gate | Blocked: real valid/expired/reused invitation and signed-in different identity  |
+| S07            | Passed unresolved/verified/unverified gates, restoration, cancellation/signout and DOM checks                          | Blocked: real reload/session expiry/signout                                     |
+| S08            | Passed invalid/duplicate/code/network/repeated/timeout/interruption recovery tests                                     | Blocked: provider rejection/live offline/browser checks                         |
+| S09            | Passed web configuration/interface boundaries; no client secret passed                                                 | Blocked: shared authorized application/account and Pravin's native evidence     |
+| S10            | Passed web test suite (35), full verify and integration (3)                                                            | Unrun: remote CI/code-owner review (no publish authorized); blocked live flows  |
+| S04–S06/native | Outside this session's implementation                                                                                  | Pending Pravin; baseline mobile build in verify proves no auth acceptance       |
+
+No push, PR, deployment, Linear status mutation, credential configuration, branch switch, original-checkout changes or auth account/invitation provisioning. Repository-local personal identity remains cvvishnuu/cvishnuu01@gmail.com. Author/committer publishing verification is unrun because there is no publication.
+
+Final source refinement: [signout timeout RED](signout-timeout-red.txt) 0/1 failed expected missing recovery alert/finished loading for a hanging signout. Added a 30-second signout deadline and refactored explicit prop interfaces; [final web GREEN](final-web-tests.txt) 35/35 passed. Mandatory full verify rerun after this last source edit passed ([verify.txt](verify.txt)); final database/HTTP integration against that output passed 3/3 ([integration.txt](integration.txt)). Docs formatting is checked separately after recording results. Stalled diagnostic Docker read stopped without changing containers or configuration.
+
+Convergence outcome: tasks_appended, three external verification/review obligations T019–T021. See [convergence.md](convergence.md). No source gap identified by scoped deterministic checks, but live Clerk behavior/expired-link handoff and joint identity remain unverified. T016 completed its explicit blocker-documentation alternative, not the live checks. Work remains local/uncommitted; no publishing or ticket completion.
+
+## Approved design revision — 2026-10-07
+
+User explicitly approved the rendered-bag design. Specification, revision plan/tasks and owner setup guide updated. S11 Google sad/edge agreement is pending; no source edits or new behavioral RED/GREEN runs have occurred in this revision. Previous 35-test/verify/integration results apply only to previous implementation. Clerk local configuration file remains absent. No CI/publication performed.
+
+Revision behavioral RED: `revision-ui-red.txt` fails on absent branding/Google controls; `revision-adapter-red.txt` fails on absent Google adapter operation, with existing scenarios passing. These are behavioral failures.
+
+Revision GREEN: `revision-green.txt` and `revision-final-web-tests.txt` pass 35/35, including three new UI/configuration tests and one SDK Google operation test; four superseded invitation UI tests were removed, while internal historical invitation tests remain for preserved implementation. `/invite` is no longer a route.
+
+SDK integration correction: Next.js 7.9.11 root declarations do not export HandleSSOCallback although its client UI module does; this was a typecheck failure, not behavioral RED. Use the public @clerk/react 6.17.6 component with a direct exact dependency sharing the existing provider. Final typecheck passes in `revision-typecheck.txt`.
+
+## Revised final verification — 2026-10-07
+
+- Confirmed Google agreement is recorded verbatim in workflow revision; approved design separately recorded. Local identity: cvvishnuu / cvishnuu01@gmail.com; ticket branch unchanged.
+- `revision-verify.txt`: `npm run verify` passed after source refinement, including lint/architecture, formatting, types, policy/workspace tests and builds. Web suite 35/35. Native baseline bundle checks do not establish native auth acceptance.
+- `revision-integration.txt`: actual PostgreSQL + API/Next production HTTP integration 3/3 passed. Public auth/callback routes render branded unavailable state without keys, protected resource is 503/no-store, `/invite` is 404, and legacy ticket query does not redirect to an invitation route.
+- Actual production Next app inspected at local port 4312. Screenshot stored in local design artifacts as `actual-app-unconfigured.png`; bag/logo/copy rendered with unavailable state. This is not a live Clerk auth success or a simulated form harness.
+- Cross-artifact analysis: current scope and tests/tasks map; old invitation wording is historical/deferred. Spec quality checklist remains 13/13. Convergence appends R1–R3 under Phase 10 (T028–T030).
+- Live provider verification is blocked: no `apps/web/.env.local` with owner keys/authorized fixture. Google setup is owner-controlled. No account/security changes, secrets, push, PR, deploy or ticket Done. Remote CI/code-owner review remains mandatory.
+
+## Owner configuration supplied — 2026-10-07
+
+Owner saved ignored `.env.local`; presence and development-prefix format checked without logging values. Restarted actual Next build. Initial 127.0.0.1-only bind could not serve Clerk’s localhost development flow; restart bound to localhost resolved the runtime socket failure. Actual `/sign-up` now renders the branded signup form and Google button with Clerk loaded. No test identity/account or consent created by agent. Email signup/verification/Home/same-account login and Google provider acceptance await owner interaction; previous no-key blocker is superseded by this configured state.
+
+## Reported live regressions — 2026-10-07
+
+S08: `live-errors-red.txt` reproduces error disappearing on SDK-resource/callback rerender (5 pass, 1 behavioral failure: missing alert). Earlier root-directory JSX invocation was a tooling failure, excluded from behavioral RED. Form controller now survives resource updates, rebinds dependencies in a layout effect and resets only on mode change. UI/application affected scenarios: 20/20 in `live-errors-green.txt`.
+
+S11: extracted existing callback markup to a testable view without changing behavior and added non-sensitive DOM diagnostics (status/required field names only). Actual provider callback did not have live acceptance; user reported a hang. Browser session tab had disappeared; fresh diagnostic tab was opened on the same localhost service.
+
+S11 diagnostic: loaded signup status `missing_requirements`, signin `needs_identifier`, missing/unverified fields empty and email-verification status null in fresh diagnostic tab. This is an unresolved/absent attempt, not evidence of pending account verification. Installed `HandleSSOCallback` has no terminal branch for this combination; its one-shot resolver leaves the authored static waiting page indefinitely. Its finalize returned errors were not surfaced either. Exact original Google browser attempt was unavailable after tab removal, so its provider cause is not claimed.
+
+`live-callback-red.txt`: three meaningful callback behavior failures (no retry/error and no completion navigation). `live-callback-green.txt`: callback/UI/application 23/23. Callback now uses public SDK transfer/finalize/existing-session APIs through `OAuthGateway`; returned/thrown errors, unresolved requirements and a bounded wait produce recovery without a fabricated verification status. Additional email verification routes to the existing signup verification form; unsupported requirements remain explicit. Source extraction and subsequent tests in `live-extraction-tests.txt`; diagnostics removed from final UI.
+
+Live fictitious email/password login on localhost:4313 now preserves an alert, but it initially displayed a generic connection message. Installed ClerkAPIResponseError wraps field errors with root code `api_response_error`; our parser prioritized the wrapper and lost `form_identifier_not_found`. `live-wrapper-error-red.txt` reproduces the incorrect generic message; parser now prioritizes the nested provider error. No real password, OTP or Google consent was entered by the agent.
+
+SDK callback adapter boundary tests added for transfer with refreshed snapshots, unresolved/extra/verification requirements, one finalization across repeat calls, and returned errors. These supplement the view RED/GREEN rather than claiming retroactive adapter RED. Static test fixture type issues are tooling findings, not behavioral failures.
+
+Confirmed actual provider blocker: safe code-only diagnostics returned `api_response_error` → `session_exists`. Public Clerk session inspection showed `status: pending`, task `choose-organization`. Thus Google created a pending session, while default `useAuth()` treats pending as signed out; a second signin was rejected because that session already existed. No email verification was pending. The original constant callback text and missing task handling disguised this configuration mismatch. Diagnostic logging is removed.
+
+Owner action needed for the agreed skeletal flow: Clerk Development app → Organizations → Settings → Membership optional (Personal Accounts enabled). Organization onboarding remains deferred, and this session does not change security/membership settings or create an organization. Official guidance: https://clerk.com/docs/guides/organizations/configure . `live-pending-task-red.txt` reproduces missing explicit task UI/callback message. The fix shows the requirement and signout recovery, hides fresh credentials/Home, and preserves server denial until Clerk grants an active session.
+
+Readiness refinement: server-hydrated `useAuth().isLoaded` can precede `clerk.loaded`. Waiting for both prevents initial credentials flashing and callback resolution against unloaded resources. `live-sdk-ready-red.txt` reproduces premature resolver execution/form rendering; final affected scenarios include readiness gating. Live pending-session signout restored anonymous signin successfully; subsequent fictitious-account attempt is checked separately from the prior `session_exists` rejection.
+
+Final web scenario tests: 47/47 (`live-final-web-tests.txt`), typecheck and lint pass. The final live fictitious-email attempt displayed a persistent generic recovery alert (not claimed as specific account-not-found acceptance); prior attempt was confirmed `session_exists`. Real email signup, verification delivery and same-account success have not been performed. Real Google authentication produced the confirmed pending organization session; Google → Home remains blocked by the current owner configuration. Signout from that pending session was observed to restore anonymous signin. Credential-free screenshots in the design visualization directory show the explicit organization blocker and retained login recovery. No user credentials were read, no dashboard settings changed, no commits/PR/CI publication.
+
+Initial whole-repository retry lacked DATABASE_URL and failed Prisma config; excluded from behavioral evidence. Verification is rerun with the documented local database URL, plus integration. Remote CI/code-owner checks remain mandatory and unrun; local passing checks do not substitute.
+
+Final required local checks after the last source edit: `live-final-verify.txt` passed lint/architecture, format, typechecks, policy/workspace tests and production build. `live-final-integration.txt` passed database and HTTP integration 3/3. Final metadata formatting checked separately after evidence updates. App restarted on localhost:4312 with owner keys. Full live happy-path acceptance and remote CI are still unrun.
+
+Organization revision: design and S13–S15/nine presented scenarios explicitly confirmed 2026-10-07. Test seams listed in workflow. RED begins with existing executable OAuth/SDK/server seams; no missing imports counted as behavioral RED.
+
+Organization S13–S15: organization-routing-red.txt records failing Google destination, pending task destination, and missing-org protected resource checks; organization-routing-green.txt passes 18/18. organization-flow-red.txt records five behavioral failures against executable no-op scaffold; organization-flow-green.txt passes 5/5. organization-ui-adapter-red.txt records absent approved UI and absent merged pagination behavior; organization-ui-adapter-green.txt passes 8/8. Initial full integration identified stale pre-revision pending-task expectation and SDK pagination field mismatch; these are integration feedback, not counted as behavioral RED.
+
+S14 stalled loading reproduced in organization-timeout-red.txt (loading remained true). Added bounded request deadline with revision guard; late results cannot replace a retried list. organization-timeout-green.txt records the rerun.
+
+Final organization verification: 57/57 web tests inside organization-final-verify.txt; full npm run verify passed with documented local DATABASE_URL (initial missing-variable setup failure was not a behavioral RED). Database/HTTP integration passed 3/3 in organization-final-integration.txt. Web lint has no remaining authored warnings; typecheck/build passed, including /organizations and /organizations/create. git diff --check passed; repository-local personal identity cvvishnuu/cvishnuu01@gmail.com, branch feat/WEA-10/clerk-auth-nextjs-react-native. Browser direct /organizations while signed out redirected to /sign-in and showed real branded form. Authenticated live Clerk acceptance is pending user sign-in; no real-account success is claimed from mocks. No commit, push, deployment, remote CI or review occurred; required CI/review remains incomplete.
+
+## Review and publication authorized — 2026-10-07
+
+User requested a horizontal, block-by-block Next.js code walkthrough, then a PR into develop. `code-review.md` maps the source journeys; the local interactive companion shows 34 files as 260 individual source blocks with original line references. No application behavior changed for the walkthrough. Repository-local publishing identity and personal GitHub account were verified as cvvishnuu; ignored `.env.local` is excluded. Develop still matches the implementation base. Prior no-publication statements describe earlier checks and are superseded by this authorization. Live authenticated acceptance, native work and code-owner approval remain pending.

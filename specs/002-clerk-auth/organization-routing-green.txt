@@ -1,0 +1,26 @@
+✔ WEA-10 S01 SDK adapter uses email/password then email verification before finalize (1.049375ms)
+✔ WEA-10 S03 SDK invitation request contains ticket/password and no substitute email (0.131792ms)
+✔ WEA-10 S02/S07 SDK Device Trust and signout follow supported APIs (0.154916ms)
+✔ WEA-10 S08 SDK returned error is rejected, incomplete status cannot finalize (0.189125ms)
+✔ WEA-10 S11 Google adapter uses the supported SSO API and protected callback destinations (0.117ms)
+✔ WEA-10 S11 unresolved callback refuses activation; completed callback finalizes only once (2.107041ms)
+✔ WEA-10 S11 transfer reads current SDK snapshot after awaited create (0.28275ms)
+✔ WEA-10 S11 extra fields and verification direct users to actual requirements, never Home (0.237791ms)
+✔ WEA-10 S11 returned finalize errors cannot report Home success (0.376125ms)
+✔ WEA-10 S11 pending organization session explains the blocker and never navigates Home (0.163375ms)
+✔ WEA-10 S03/S08 invitation entry preserves opaque ticket across auth navigation (0.528375ms)
+✔ WEA-10 S03/S08 missing/malformed/ambiguous invitation never falls back to public signup (0.110458ms)
+✔ WEA-10 S02/S07 verified active identity is allowed; unverified or signed-out is denied (0.109083ms)
+✔ WEA-10 S07 unresolved auth exposes no protected result before the provider resolves (0.066875ms)
+✔ WEA-10 S07/S08 provider/network session failure denies access safely (0.074958ms)
+✔ WEA-10 S02/S07 protected resource is no-store and requires verified matching session user (12.474292ms)
+✔ WEA-10 S02 signed-out protected request avoids user lookup; outage is 503 (0.220625ms)
+✔ WEA-10 S15 verified identity without an active organization cannot read protected resources (0.14525ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 198.11125

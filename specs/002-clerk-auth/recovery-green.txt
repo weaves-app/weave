@@ -1,0 +1,46 @@
+
+> @weave/web@0.0.0 test
+> node --import tsx --test test/*.test.ts test/*.test.tsx
+
+✔ WEA-10 S01 SDK adapter uses email/password then email verification before finalize (1.023584ms)
+✔ WEA-10 S03 SDK invitation request contains ticket/password and no substitute email (0.118917ms)
+✔ WEA-10 S02/S07 SDK Device Trust and signout follow supported APIs (0.157041ms)
+✔ WEA-10 S08 SDK returned error is rejected, incomplete status cannot finalize (0.429458ms)
+✔ WEA-10 S01 signup sends verification, never activates before correct code, then opens Home (1.0245ms)
+✔ WEA-10 S01/S08 wrong or expired code is recoverable and resend can be retried (0.292292ms)
+✔ WEA-10 S01/S08 empty/malformed email and missing password/code make no provider calls (0.139125ms)
+✔ WEA-10 S01/S08 unverified provider completion or unsupported requirements cannot activate (0.119792ms)
+✔ WEA-10 S02 password login and Device Trust verification both reach Home (0.163834ms)
+✔ WEA-10 S07 interrupted verification restores without needing password again (0.084583ms)
+✔ WEA-10 S08 duplicate/signup/invalid login/network/rejected-password errors finish loading (0.528209ms)
+✔ WEA-10 S08 repeated submits issue one mutation and cancellation prevents late activation (0.084166ms)
+✔ WEA-10 S07/S08 cancellation during activation clears late session and never navigates (0.087334ms)
+✔ WEA-10 S07 signout awaits provider, clears state and reports recoverable failure (0.120542ms)
+✔ WEA-10 S03 invitation signup supplies only ticket/password and reaches intended Home (0.089666ms)
+✔ WEA-10 S03/S08 missing/expired/reused invitation keeps context and never falls back (0.10225ms)
+✔ WEA-10 S03/S08 failed invitation activation can retry without replaying the consumed ticket (0.105833ms)
+✔ WEA-10 S08 timeout finishes loading and blocks late authentication activation (16.043875ms)
+✔ WEA-10 S03/S08 invitation entry preserves opaque ticket across auth navigation (0.88225ms)
+✔ WEA-10 S03/S08 missing/malformed/ambiguous invitation never falls back to public signup (0.14525ms)
+✔ WEA-10 S02/S07 verified active identity is allowed; unverified or signed-out is denied (0.12575ms)
+✔ WEA-10 S07 unresolved auth exposes no protected result before the provider resolves (0.519541ms)
+✔ WEA-10 S07/S08 provider/network session failure denies access safely (0.111334ms)
+✔ WEA-10 S02/S07 protected resource is no-store and requires verified matching session user (13.931916ms)
+✔ WEA-10 S02 signed-out protected request avoids user lookup; outage is 503 (0.218791ms)
+✔ WEA-10 S01 public form labels/password → verification → Home callback (72.739542ms)
+✔ WEA-10 S03/S08 invalid invitation and signed-in other identity show no signup form (3.831791ms)
+✔ WEA-10 S03 invitation form excludes email replacement and preserves ticket link (9.314833ms)
+✔ WEA-10 S08 pending/error states disable duplicates, finish loading and allow retry (10.371084ms)
+✔ WEA-10 S07 Home stays hidden until auth resolves and after signout; signout failure recovers (9.465792ms)
+✔ WEA-10 S03 ticket preserved on sign-in entry cannot substitute ordinary login (2.631667ms)
+✔ WEA-10 S03/S08 signed-in invitation signout failure is recoverable without reload (4.456459ms)
+✔ WEA-10 S01/S07 signed-in unverified session never renders Home (1.491667ms)
+✔ S07 client accepts valid health and rejects bad responses safely (0.737583ms)
+ℹ tests 34
+ℹ suites 0
+ℹ pass 34
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 741.433167

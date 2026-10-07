@@ -1,0 +1,46 @@
+✖ WEA-10 S07/S08 signout timeout releases loading and offers a retry (153.100625ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 836.365
+
+✖ failing tests:
+
+test at apps/web/test/auth-ui.test.tsx:2:8408
+✖ WEA-10 S07/S08 signout timeout releases loading and offers a retry (153.100625ms)
+  Error: Unable to find role="alert"
+  
+  Ignored nodes: comments, script, style
+  [36m<body>[39m
+    [36m<div>[39m
+      [36m<main[39m
+        [33mclass[39m=[32m"home-page"[39m
+      [36m>[39m
+        [36m<h1>[39m
+          [0mHome[0m
+        [36m</h1>[39m
+        [36m<button[39m
+          [33mdisabled[39m=[32m""[39m
+        [36m>[39m
+          [0mSign out[0m
+        [36m</button>[39m
+        [36m<p[39m
+          [33mrole[39m=[32m"status"[39m
+        [36m>[39m
+          [0mSigning out…[0m
+        [36m</p>[39m
+      [36m</main>[39m
+    [36m</div>[39m
+  [36m</body>[39m
+      at waitForWrapper (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/node_modules/@testing-library/dom/dist/wait-for.js:163:27)
+      at TestContext.<anonymous> (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-ui.test.tsx:185:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    name: 'TestingLibraryElementError'
+  }

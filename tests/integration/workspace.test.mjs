@@ -44,7 +44,7 @@ async function server(t, command, args, options, url) {
   }
   throw new Error(`Server startup timed out: ${output}`);
 }
-void test('S06 HTTP wiring returns liveness and database readiness; web displays connection', async (t) => {
+void test('S06 API liveness/readiness; WEA-10 S02/S03/S08 web denies access without auth configuration', async (t) => {
   const apiPort = await freePort();
   const webPort = await freePort();
   await server(
@@ -65,10 +65,40 @@ void test('S06 HTTP wiring returns liveness and database readiness; web displays
     t,
     process.execPath,
     [path.resolve('node_modules/next/dist/bin/next'), 'start', '--port', webPort],
-    {cwd: 'apps/web', env: {...process.env, API_URL: `http://localhost:${apiPort}`}},
+    {
+      cwd: 'apps/web',
+      env: {
+        ...process.env,
+        API_URL: `http://localhost:${apiPort}`,
+        CLERK_PUBLISHABLE_KEY: '',
+        CLERK_SECRET_KEY: '',
+      },
+    },
     `http://localhost:${webPort}`,
   );
-  assert.match(await (await fetch(`http://localhost:${webPort}`)).text(), /Connected/);
+  const html = await (await fetch(`http://localhost:${webPort}`)).text();
+  assert.match(html, /Authentication unavailable/);
+  assert.doesNotMatch(html, /<h1>Home<\/h1>/);
+  const protectedResponse = await fetch(`http://localhost:${webPort}/api/session`);
+  assert.equal(protectedResponse.status, 503);
+  assert.equal(protectedResponse.headers.get('cache-control'), 'no-store');
+  assert.deepEqual(await protectedResponse.json(), {authenticated: false});
+  for (const route of ['/sign-up', '/sign-in', '/sso-callback']) {
+    const response = await fetch(`http://localhost:${webPort}${route}`);
+    assert.equal(response.status, 200);
+    const authHtml = await response.text();
+    assert.match(authHtml, /Authentication unavailable/);
+    assert.match(authHtml, /Everything, woven together/);
+    assert.match(authHtml, /brand\/logo\.svg/);
+    assert.doesNotMatch(authHtml, /Preview screens|Accept invitation/);
+  }
+  const invitation = await fetch(`http://localhost:${webPort}/invite`, {redirect: 'manual'});
+  assert.equal(invitation.status, 404);
+  const legacyLink = await fetch(
+    `http://localhost:${webPort}/sign-up?__clerk_ticket=opaque-ticket`,
+    {redirect: 'manual'},
+  );
+  assert.equal(legacyLink.status, 200);
 });
 void test('S06 database outage returns 503 readiness and 200 liveness', async (t) => {
   const port = await freePort();

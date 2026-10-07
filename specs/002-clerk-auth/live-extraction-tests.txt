@@ -1,0 +1,48 @@
+
+> @weave/web@0.0.0 test
+> node --import tsx --test test/*.test.ts test/*.test.tsx
+
+✔ WEA-10 S01 SDK adapter uses email/password then email verification before finalize (1.301ms)
+✔ WEA-10 S03 SDK invitation request contains ticket/password and no substitute email (0.33ms)
+✔ WEA-10 S02/S07 SDK Device Trust and signout follow supported APIs (0.475083ms)
+✔ WEA-10 S08 SDK returned error is rejected, incomplete status cannot finalize (0.672417ms)
+✔ WEA-10 S11 Google adapter uses the supported SSO API and protected callback destinations (0.362ms)
+✔ WEA-10 S01 signup sends verification, never activates before correct code, then opens Home (7.528875ms)
+✔ WEA-10 S01/S08 wrong or expired code is recoverable and resend can be retried (0.816209ms)
+✔ WEA-10 S01/S08 empty/malformed email and missing password/code make no provider calls (0.324167ms)
+✔ WEA-10 S01/S08 unverified provider completion or unsupported requirements cannot activate (0.190459ms)
+✔ WEA-10 S02 password login and Device Trust verification both reach Home (0.231042ms)
+✔ WEA-10 S07 interrupted verification restores without needing password again (0.109125ms)
+✔ WEA-10 S08 duplicate/signup/invalid login/network/rejected-password errors finish loading (0.205667ms)
+✔ WEA-10 S08 repeated submits issue one mutation and cancellation prevents late activation (0.101542ms)
+✔ WEA-10 S07/S08 cancellation during activation clears late session and never navigates (0.113667ms)
+✔ WEA-10 S07 signout awaits provider, clears state and reports recoverable failure (0.148334ms)
+✔ WEA-10 S03 invitation signup supplies only ticket/password and reaches intended Home (0.11675ms)
+✔ WEA-10 S03/S08 missing/expired/reused invitation keeps context and never falls back (0.344916ms)
+✔ WEA-10 S03/S08 failed invitation activation can retry without replaying the consumed ticket (0.369917ms)
+✔ WEA-10 S08 timeout finishes loading and blocks late authentication activation (17.322625ms)
+✔ WEA-10 S11/S12 branded Google signup rejects duplicate clicks, then recovers provider failure (87.717875ms)
+✔ WEA-10 S11 Google signin starts provider authentication without premature Home (11.744167ms)
+✔ WEA-10 S12 missing configuration retains branding and offers no fake signup success (20.911709ms)
+✔ WEA-10 S03/S08 invitation entry preserves opaque ticket across auth navigation (0.447416ms)
+✔ WEA-10 S03/S08 missing/malformed/ambiguous invitation never falls back to public signup (0.098958ms)
+✔ WEA-10 S02/S07 verified active identity is allowed; unverified or signed-out is denied (0.105084ms)
+✔ WEA-10 S07 unresolved auth exposes no protected result before the provider resolves (0.082ms)
+✔ WEA-10 S07/S08 provider/network session failure denies access safely (0.07225ms)
+✔ WEA-10 S02/S07 protected resource is no-store and requires verified matching session user (13.655333ms)
+✔ WEA-10 S02 signed-out protected request avoids user lookup; outage is 503 (0.223417ms)
+✔ WEA-10 S01 public form labels/password → verification → Home callback (99.360959ms)
+✔ WEA-10 S08 pending/error states disable duplicates, finish loading and allow retry (35.869167ms)
+✔ WEA-10 S07 Home stays hidden until auth resolves and after signout; signout failure recovers (11.12075ms)
+✔ WEA-10 S01/S07 signed-in unverified session never renders Home (1.729958ms)
+✔ WEA-10 S07/S08 signout timeout releases loading and offers a retry (10.013208ms)
+✔ WEA-10 S08 unknown-account error survives refreshed SDK resources and callbacks (15.275917ms)
+✔ S07 client accepts valid health and rejects bad responses safely (0.491375ms)
+ℹ tests 36
+ℹ suites 0
+ℹ pass 36
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 948.332417

@@ -1,0 +1,10 @@
+specs/002-clerk-auth/convergence.md 19ms
+specs/002-clerk-auth/data-model.md 3ms (unchanged)
+specs/002-clerk-auth/evidence.md 21ms (unchanged)
+specs/002-clerk-auth/plan.md 9ms (unchanged)
+specs/002-clerk-auth/quickstart.md 3ms (unchanged)
+specs/002-clerk-auth/research.md 6ms (unchanged)
+specs/002-clerk-auth/spec.md 20ms (unchanged)
+specs/002-clerk-auth/tasks.md 11ms (unchanged)
+specs/002-clerk-auth/contracts/web-auth.md 2ms (unchanged)
+specs/002-clerk-auth/workflow.json 12ms
