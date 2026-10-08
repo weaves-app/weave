@@ -60,3 +60,7 @@ Add a shared, dependency-free ESLint readability rule with behavioral fixture RE
 ## S16 implementation revision
 
 Use a small client presentation boundary around the existing image. An image-load effect adds one CSS animation class after tab-session and reduced-motion eligibility checks; no authentication changes or animation dependency. Transform-only perspective entrance, 1.35 seconds, single iteration, ending at the original position. Shared duration/easing values live in authTokens. Add bounded hover/press/focus feedback with reduced-motion and disabled guards. Test public AuthShell readiness/one-shot lifecycle before implementation. Reconcile obsolete container Home Connected assertion with honest missing-Clerk state and protected resource denial, retaining API liveness/readiness and nonroot checks.
+
+## Final user decision: park bag motion
+
+Remove the bag client island, animation keyframes and unused entrance token. Keep the server-rendered artwork wrapper and semantic control-feedback tokens. Reproduce static readiness failure before removing the behavior; run full verification/database checks and refresh horizontal review anchors before updating existing PR.

@@ -1,6 +1,6 @@
 # WEA-10 execution review
 
-Snapshot: 66f2599 + motion revision. Every request/event path names the real source symbol. Next/React/Clerk boundaries and alternate branches are explicit. Supporting files have no execution-order arrows.
+Snapshot: b4a8cb7 + motion revision. Every request/event path names the real source symbol. Next/React/Clerk boundaries and alternate branches are explicit. Supporting files have no execution-order arrows.
 
 ## How to read
 
@@ -245,27 +245,22 @@ Branches:
 - Route links/effect cleanup call AuthenticationFlow.cancel or organizationFlow.cancel; revision/generation blocks late navigation.
 - Flow update → listeners → useSyncExternalStore → React rerender is a notification loop, not a new authentication request.
 
-## 13 · One-time bag entrance and interaction feedback
+## 13 · Static bag and control feedback
 
-React mounts an authentication/onboarding shell; the image becomes ready.
+React renders an authentication/onboarding shell; only controls respond to interaction.
 
-| Symbol              | Source                                                                                                                                                                                 | Transition                                                                                                                                                                                                      |
-| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| AuthShell           | [apps/web/src/features/auth/presentation/auth-shell.tsx](/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/src/features/auth/presentation/auth-shell.tsx:13)         | React rendering: Read shared color/motion tokens and render AuthBagStage around the supplied image. Authentication children are independent.                                                                    |
-| AuthBagStage        | [apps/web/src/features/auth/presentation/auth-bag-stage.tsx](/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/src/features/auth/presentation/auth-bag-stage.tsx:10) | effect registers browser events: React schedules the effect: find image, read reduced-motion/desktop preferences, subscribe to load/end/change. A cached image invokes arrive immediately.                      |
-| AuthBagStage.arrive | [apps/web/src/features/auth/presentation/auth-bag-stage.tsx](/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/src/features/auth/presentation/auth-bag-stage.tsx:29) | image load OR cached readiness: On image readiness, skip repeats, mobile and reduced motion. Persist the tab-session seen guard; blocked storage stays static. Add CSS class for one 1350ms transform entrance. |
-| AuthBagStage.stop   | [apps/web/src/features/auth/presentation/auth-bag-stage.tsx](/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/src/features/auth/presentation/auth-bag-stage.tsx:23) | browser animation event: Animation end removes the class, restoring the original bag position. Cleanup removes event listeners; later shell mounts see the tab guard.                                           |
+| Symbol    | Source                                                                                                                                                                         | Transition                                                                                                                                          |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| AuthShell | [apps/web/src/features/auth/presentation/auth-shell.tsx](/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/src/features/auth/presentation/auth-shell.tsx:11) | React rendering: Render the original bag image in a plain server-rendered div. No image-load or pointer listeners, session marker or bag animation. |
 
 Branches:
 
-- Reduced-motion change calls preferenceChanged → stop while the entrance is active. No infinite animation or hover animation is attached to the bag.
-- Subsequent auth/onboarding screens and form rerenders remain static in the same tab session. A fresh tab can play its own entrance.
-- Button/card hover, focus and press states are CSS transitions using feedback tokens; disabled/reduced-motion selectors suppress movement. These are alternate browser style states, not function calls.
-- The image gets a perspective turn; there is no 3D model or fabricated rear view. Native rendering is unchanged.
+- Inputs, buttons and organization cards use shared feedback timing/easing tokens for focus, hover and press. Disabled/reduced-motion selectors suppress movement.
+- The user parked the bag entrance, hover and deeper layout revision. The static bag has no event execution path. Native remains independently owned.
 
 ## Complete ticket inventory
 
-All 220 changed files are present in the HTML file inventory. Binary assets are identified rather than converted to source. The dependency lockfile is shown as its PR diff. Tests and evidence are not request execution steps.
+All 222 changed files are present in the HTML file inventory. Binary assets are identified rather than converted to source. The dependency lockfile is shown as its PR diff. Tests and evidence are not request execution steps.
 
 - [.tours/wea-10-01.tour](/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/.tours/wea-10-01.tour) — Configuration. Configuration/build dependency; no request-call arrow. .env.example contains names/placeholders only; real .env.local is ignored.
 - [.tours/wea-10-02.tour](/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/.tours/wea-10-02.tour) — Configuration. Configuration/build dependency; no request-call arrow. .env.example contains names/placeholders only; real .env.local is ignored.
@@ -279,6 +274,7 @@ All 220 changed files are present in the HTML file inventory. Binary assets are 
 - [.tours/wea-10-10.tour](/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/.tours/wea-10-10.tour) — Configuration. Configuration/build dependency; no request-call arrow. .env.example contains names/placeholders only; real .env.local is ignored.
 - [.tours/wea-10-11.tour](/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/.tours/wea-10-11.tour) — Configuration. Configuration/build dependency; no request-call arrow. .env.example contains names/placeholders only; real .env.local is ignored.
 - [.tours/wea-10-12.tour](/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/.tours/wea-10-12.tour) — Configuration. Configuration/build dependency; no request-call arrow. .env.example contains names/placeholders only; real .env.local is ignored.
+- [.tours/wea-10-13.tour](/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/.tours/wea-10-13.tour) — Configuration. Configuration/build dependency; no request-call arrow. .env.example contains names/placeholders only; real .env.local is ignored.
 - [apps/api/eslint.config.mjs](/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/api/eslint.config.mjs) — Configuration. Configuration/build dependency; no request-call arrow. .env.example contains names/placeholders only; real .env.local is ignored.
 - [apps/api/prisma.config.ts](/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/api/prisma.config.ts) — Configuration. Configuration/build dependency; no request-call arrow. .env.example contains names/placeholders only; real .env.local is ignored.
 - [apps/api/src/app.module.ts](/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/api/src/app.module.ts) — Runtime & styling. Supporting runtime contract/rendering/style. Read independently; it is not a consecutive call after another supporting file.
@@ -331,7 +327,6 @@ All 220 changed files are present in the HTML file inventory. Binary assets are 
 - [apps/web/src/features/auth/infrastructure/live-resources.ts](/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/src/features/auth/infrastructure/live-resources.ts) — Runtime & styling. Used in execution journeys below. Read the linked symbol for a specific call, or review independent blocks here.
 - [apps/web/src/features/auth/infrastructure/server-session.ts](/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/src/features/auth/infrastructure/server-session.ts) — Runtime & styling. Used in execution journeys below. Read the linked symbol for a specific call, or review independent blocks here.
 - [apps/web/src/features/auth/infrastructure/session-gateway.ts](/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/src/features/auth/infrastructure/session-gateway.ts) — Runtime & styling. Used in execution journeys below. Read the linked symbol for a specific call, or review independent blocks here.
-- [apps/web/src/features/auth/presentation/auth-bag-stage.tsx](/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/src/features/auth/presentation/auth-bag-stage.tsx) — Runtime & styling. Used in execution journeys below. Read the linked symbol for a specific call, or review independent blocks here.
 - [apps/web/src/features/auth/presentation/auth-shell.tsx](/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/src/features/auth/presentation/auth-shell.tsx) — Runtime & styling. React parents render AuthShell; it reads authTokens and renders image/logo/children. No authentication or navigation operation.
 - [apps/web/src/features/auth/presentation/auth-unavailable.tsx](/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/src/features/auth/presentation/auth-unavailable.tsx) — Runtime & styling. Route/configuration failures render AuthUnavailable, which renders AuthShell. Retry anchor reloads current URL.
 - [apps/web/src/features/auth/presentation/auth-view.tsx](/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/src/features/auth/presentation/auth-view.tsx) — Runtime & styling. Used in execution journeys below. Read the linked symbol for a specific call, or review independent blocks here.
@@ -403,6 +398,7 @@ All 220 changed files are present in the HTML file inventory. Binary assets are 
 - [specs/002-clerk-auth/evidence/motion-integration.txt](/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/specs/002-clerk-auth/evidence/motion-integration.txt) — Specification & evidence. Review artifact: requirements, scenario agreement, chronology or captured check output. Historical findings remain historical; later revisions supersede them.
 - [specs/002-clerk-auth/evidence/motion-red.txt](/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/specs/002-clerk-auth/evidence/motion-red.txt) — Specification & evidence. Review artifact: requirements, scenario agreement, chronology or captured check output. Historical findings remain historical; later revisions supersede them.
 - [specs/002-clerk-auth/evidence/motion-verify.txt](/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/specs/002-clerk-auth/evidence/motion-verify.txt) — Specification & evidence. Review artifact: requirements, scenario agreement, chronology or captured check output. Historical findings remain historical; later revisions supersede them.
+- [specs/002-clerk-auth/evidence/production-motion-check.json](/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/specs/002-clerk-auth/evidence/production-motion-check.json) — Specification & evidence. Review artifact: requirements, scenario agreement, chronology or captured check output. Historical findings remain historical; later revisions supersede them.
 - [specs/002-clerk-auth/evidence/readability-behavior-check.json](/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/specs/002-clerk-auth/evidence/readability-behavior-check.json) — Specification & evidence. Review artifact: requirements, scenario agreement, chronology or captured check output. Historical findings remain historical; later revisions supersede them.
 - [specs/002-clerk-auth/evidence/readability-decorator-red.txt](/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/specs/002-clerk-auth/evidence/readability-decorator-red.txt) — Specification & evidence. Review artifact: requirements, scenario agreement, chronology or captured check output. Historical findings remain historical; later revisions supersede them.
 - [specs/002-clerk-auth/evidence/readability-green.txt](/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/specs/002-clerk-auth/evidence/readability-green.txt) — Specification & evidence. Review artifact: requirements, scenario agreement, chronology or captured check output. Historical findings remain historical; later revisions supersede them.

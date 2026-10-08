@@ -162,3 +162,7 @@ Apply consistent spacing across authored code: blank lines between external/work
 ## S16 — Confirmed entrance motion and micro interactions
 
 Given first desktop auth/onboarding load in a tab session, when the bag image is ready, then it makes one brief perspective turn and settles. Navigation between these screens, rerenders and repeated image-load events do not restart it. Reduced motion skips movement and changing to reduced motion stops the turn. Mobile does not consume the desktop entrance. If browser storage is unavailable the bag remains static. Enabled buttons/cards respond subtly to hover/focus/press; disabled controls stay still. Google/org creation has owner-reported acceptance on 2026-10-08; native remains a separate scope.
+
+## Final user decision: park bag motion
+
+S18 supersedes bag motion in S16/S17: Given any auth/onboarding load or pointer movement, the bag remains static and does not write motion playback state. Input/button/org-card hover/focus/press feedback remains, including disabled and reduced-motion safeguards. User parked the deeper 3D/layout revision; retain the previously implemented static layout.

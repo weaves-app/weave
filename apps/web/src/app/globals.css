@@ -442,27 +442,6 @@ button:disabled {
 }
 
 /* One first-load entrance; the resting bag does not float or spin. */
-.auth-bag-stage {
-  perspective: 1100px;
-}
-.auth-bag {
-  transform-origin: 50% 58%;
-}
-.auth-bag-enter .auth-bag {
-  animation: auth-bag-arrive var(--auth-motion-entrance) var(--auth-motion-easing) 1;
-}
-@keyframes auth-bag-arrive {
-  0% {
-    transform: translate3d(-18px, 16px, 38px) rotateY(-27deg) rotateX(8deg) rotateZ(-5deg)
-      scale(0.96);
-  }
-  58% {
-    transform: translate3d(4px, -3px, 12px) rotateY(7deg) rotateX(-2deg) rotateZ(1deg) scale(1.015);
-  }
-  100% {
-    transform: none;
-  }
-}
 .auth-shell button,
 .org-create-link,
 .auth-panel .org-option,
@@ -500,10 +479,6 @@ button:disabled {
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .auth-bag-enter .auth-bag {
-    animation: none;
-    transform: none;
-  }
   .auth-shell button,
   .org-create-link,
   .auth-panel .org-option,

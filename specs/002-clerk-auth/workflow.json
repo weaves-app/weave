@@ -31,9 +31,9 @@
     "T043"
   ],
   "verification": {
-    "webTests": "64/64 passed: evidence/motion-verify.txt",
-    "repositoryVerify": "passed: evidence/motion-verify.txt",
-    "databaseHttpIntegration": "3/3 passed: evidence/motion-integration.txt",
+    "webTests": "58/58 passed: evidence/static-bag-verify.txt",
+    "repositoryVerify": "passed: evidence/static-bag-verify.txt",
+    "databaseHttpIntegration": "3/3 passed: evidence/static-bag-integration.txt",
     "liveClerk": "Owner reported Google authentication/organization creation worked in real Clerk on 2026-10-08. Email verification/re-login and invitations not separately confirmed.",
     "native": "Pravin; outside session",
     "remoteCI": "Container assertion and missing public asset packaging corrected; fresh remote run follows publication. Previous required gate failed. Code-owner review pending."
@@ -71,7 +71,7 @@
     "S13",
     "S14",
     "S15",
-    "S16"
+    "S18"
   ],
   "bugfix": {
     "scenarioIds": ["S01", "S02", "S08", "S11"],
@@ -117,12 +117,25 @@
       "CSS motion/reduced-motion states"
     ],
     "scope": "Next.js only; static bag image uses a perspective turn, not a full 3D model.",
-    "verification": "7/7 public motion lifecycle tests; full verify 64 web tests; PostgreSQL/HTTP 3/3; packaged production assets/auth gate passed. Actual container verification deferred to remote CI because local podman/docker API did not respond."
+    "verification": "7/7 public motion lifecycle tests; full verify 64 web tests; PostgreSQL/HTTP 3/3; packaged production assets/auth gate passed. Actual container verification deferred to remote CI because local podman/docker API did not respond.",
+    "status": "bag entrance superseded by S18; control micro interactions retained"
   },
   "ownerAcceptance": {
     "date": "2026-10-08",
     "source": "User report",
     "googleOrganization": "User tried real Clerk Google/org flow and confirmed that the application created the organization in Clerk and seemed to work.",
     "limits": "Email verification/re-login, invitation acceptance and specific Home checks not separately confirmed. Native excluded from Next.js completion gate."
+  },
+  "bagMotionDecision": {
+    "date": "2026-10-08",
+    "scenariosConfirmed": true,
+    "confirmation": "User explicitly cancelled implementation of bag rotation/hover and asked to park it; preserve input and organization-card micro interactions, update PR and report completed checks.",
+    "scenarioIds": ["S18"],
+    "publicTestSeams": [
+      "AuthShell image load and pointer events",
+      "browser static artwork/control CSS states"
+    ],
+    "scope": "Static bag with original approved layout; no entrance rotation, bag hover, replay control or tab storage. Depth/layout revision parked.",
+    "verification": "Static bag RED/GREEN, 58 web tests, full repository verify, integration 3/3; production loaded image stays animation:none / transform:none after pointer input. Review map refreshed to 13 journeys/76 verified anchors."
   }
 }

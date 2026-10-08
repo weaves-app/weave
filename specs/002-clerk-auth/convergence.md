@@ -25,3 +25,11 @@ Approved R01–R03 formatting delivered across authored codebase. Shared rule te
 ## Next.js-only follow-up — 2026-10-08
 
 Owner-reported Google authentication/org creation accepted. Confirmed S16 one-shot motion and micro interactions implemented; 7 motion tests, 64 web tests, full verify and PostgreSQL/HTTP 3/3 pass. Production asset 404 reproduced and corrected by public/ packaging; standalone runtime assets/auth checks pass. Container smoke assertions now reflect configured-auth boundaries and preserve nonroot/API checks; actual remote checks pending publication. Local container engine did not respond, so no local container success is claimed. Native is a separate owner scope and does not block Next.js completion. Web live email verification/re-login, existing org/invitation subflows not separately confirmed, required CI and code-owner review remain open. No merge/deployment.
+
+## Final static bag scope — 2026-10-08
+
+User explicitly parked all bag entrance/hover/depth work. S18 replaces bag-motion portions of S16/S17; inputs, buttons and organization cards retain micro interactions and accessibility guards. Prior motion evidence is historical, not the final product behavior.
+
+Static readiness regression failed against the old client island (actual entrance class true, expected false), then passed after removal: [RED](evidence/static-bag-red.txt), [GREEN](evidence/static-bag-green.txt). Final [verify](evidence/static-bag-verify.txt) passed 58 web tests, 32 policy tests, 2 API and 3 mobile JS tests; [integration](evidence/static-bag-integration.txt) passed 3/3. Production [browser inspection](evidence/static-bag-browser.json) confirmed loaded artwork has animation:none / transform:none after pointer input; configuration intentionally omitted to avoid account operations. Earlier root-run test/configuration failures were not behavioral RED; regression reproduced separately against previous pointer/entrance behavior.
+
+Horizontal guide refreshed: 13 journeys/76 source anchors; static artwork has no event-call flow. PR remains subject to current remote required checks, code-owner review and separately unconfirmed live email/invitation paths. Native belongs to Pravin and is outside Next scope. No merge/deployment.

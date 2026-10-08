@@ -115,3 +115,8 @@ This revision supersedes the Membership optional prerequisite in T034.
 - [x] T050 Run relevant/full checks and integration, verify preview, refresh review anchors and publish PR update.
 
 Next.js completion gate excludes Pravin-owned native/joint work. T042 now has owner-reported Google/org creation acceptance; remaining live web coverage is email verification/re-login, existing-membership selection and invitation acceptance/failure paths not separately confirmed. T043 still requires fresh remote container/required checks and code-owner approval.
+
+## Final user decision: park bag motion
+
+- [x] T051–T054 Bag hover/depth revision parked by explicit user request; not delivered.
+- [x] T055 Record S18 cancellation, reproduce static bag RED, remove bag motion GREEN, preserve control feedback, verify and publish PR update.
