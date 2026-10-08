@@ -1,0 +1,16 @@
+✔ R01/R03: rejects and fixes missing spacing: import groups and imports ending (16.600542ms)
+✔ R01/R03: rejects and fixes missing spacing: TypeScript declarations (4.05175ms)
+✔ R01/R03: rejects and fixes missing spacing: validation, operation and result (3.2145ms)
+✔ R01/R03: rejects and fixes missing spacing: class methods (2.2685ms)
+✔ R01/R03: rejects and fixes missing spacing: object methods (2.415125ms)
+✔ R01/R03: rejects and fixes missing spacing: attached comments and directives (2.391791ms)
+✔ R02: leaves same-group imports and compliant code unchanged (1.559916ms)
+✔ R03: keeps decorators attached to their declaration (1.496625ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 530.318

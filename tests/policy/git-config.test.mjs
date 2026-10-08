@@ -1,4 +1,5 @@
 import {localConfig} from '../../scripts/git-config.mjs';
+
 import assert from 'node:assert/strict';
 import {test} from 'node:test';
 import {execFileSync, spawnSync} from 'node:child_process';
@@ -8,17 +9,22 @@ import path from 'node:path';
 
 test('S21 dependency adoption permits the default personal CLI profile when the optional key is absent', () => {
   const directory = mkdtempSync(path.join(tmpdir(), 'weave-config-'));
+
   try {
     execFileSync('git', ['init', '--quiet', directory]);
     execFileSync('git', ['-C', directory, 'config', '--local', 'weave.githubUser', 'personal']);
+
     const executableDirectory = mkdtempSync(path.join(tmpdir(), 'weave-bin-'));
+
     try {
       const gh = path.join(executableDirectory, 'gh');
+
       writeFileSync(
         gh,
         '#!/bin/sh\nif [ "$1" = "api" ]; then echo personal; else echo REACHED_DEFAULT_PROFILE >&2; exit 1; fi\n',
       );
       chmodSync(gh, 0o755);
+
       const result = spawnSync(
         process.execPath,
         [path.resolve('scripts/adopt-dependency-update.mjs'), '1', 'WEA-99'],
@@ -28,6 +34,7 @@ test('S21 dependency adoption permits the default personal CLI profile when the 
           env: {...process.env, PATH: `${executableDirectory}:${process.env.PATH}`},
         },
       );
+
       assert.notEqual(result.status, 0);
       assert.match(result.stderr, /REACHED_DEFAULT_PROFILE/);
     } finally {
@@ -40,6 +47,7 @@ test('S21 dependency adoption permits the default personal CLI profile when the 
 
 test('S21 local config distinguishes absent keys, explicit profiles and Git errors', () => {
   const directory = mkdtempSync(path.join(tmpdir(), 'weave-local-config-'));
+
   try {
     assert.throws(
       () => localConfig('weave.ghConfigDir', {cwd: directory}),

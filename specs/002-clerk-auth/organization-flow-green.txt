@@ -1,0 +1,13 @@
+✔ WEA-10 S13 one list opens membership and accepts pending invitation before activation (2.586667ms)
+✔ WEA-10 S14 list failure recovers, empty list remains usable (1.731ms)
+✔ WEA-10 S14 blank name is rejected; activation retry reuses created organization (0.713959ms)
+✔ WEA-10 S14 acceptance failure denies Home; accepted invitation is not accepted twice after activation failure (0.534541ms)
+✔ WEA-10 S15 duplicate mutation starts once and cancellation blocks late navigation (0.378667ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 247.407833

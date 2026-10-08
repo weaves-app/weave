@@ -1,0 +1,121 @@
+✖ WEA-10 S01 SDK adapter uses email/password then email verification before finalize (1.345042ms)
+✖ WEA-10 S03 SDK invitation request contains ticket/password and no substitute email (0.157875ms)
+✖ WEA-10 S02/S07 SDK Device Trust and signout follow supported APIs (0.110375ms)
+✖ WEA-10 S08 SDK returned error is rejected, incomplete status cannot finalize (0.146833ms)
+✖ WEA-10 S02/S07 protected resource is no-store and requires verified matching session user (12.52675ms)
+✖ WEA-10 S02 signed-out protected request avoids user lookup; outage is 503 (0.237959ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 0
+ℹ fail 6
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 129.873
+
+✖ failing tests:
+
+test at apps/web/test/auth-adapter.test.ts:2:2646
+✖ WEA-10 S01 SDK adapter uses email/password then email verification before finalize (1.345042ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'credentials'
+  - 'verification'
+  
+      at TestContext.<anonymous> (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-adapter.test.ts:21:10)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'credentials',
+    expected: 'verification',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at apps/web/test/auth-adapter.test.ts:2:3258
+✖ WEA-10 S03 SDK invitation request contains ticket/password and no substitute email (0.157875ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'credentials'
+  - 'ready'
+  
+      at TestContext.<anonymous> (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-adapter.test.ts:27:10)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'credentials',
+    expected: 'ready',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at apps/web/test/auth-adapter.test.ts:2:3757
+✖ WEA-10 S02/S07 SDK Device Trust and signout follow supported APIs (0.110375ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'credentials'
+  - 'verification'
+  
+      at TestContext.<anonymous> (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-adapter.test.ts:33:10)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'credentials',
+    expected: 'verification',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at apps/web/test/auth-adapter.test.ts:2:4344
+✖ WEA-10 S08 SDK returned error is rejected, incomplete status cannot finalize (0.146833ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async TestContext.<anonymous> (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-adapter.test.ts:39:3)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: undefined,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at apps/web/test/auth-server.test.ts:2:1134
+✖ WEA-10 S02/S07 protected resource is no-store and requires verified matching session user (12.52675ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  401 !== 200
+  
+      at TestContext.<anonymous> (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-server.test.ts:8:10)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 401,
+    expected: 200,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at apps/web/test/auth-server.test.ts:2:2166
+✖ WEA-10 S02 signed-out protected request avoids user lookup; outage is 503 (0.237959ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  null !== 'no-store'
+  
+      at TestContext.<anonymous> (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-server.test.ts:15:44)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: 'no-store',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

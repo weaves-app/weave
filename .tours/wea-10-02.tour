@@ -1,0 +1,59 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "2 · Render an anonymous authentication form",
+  "description": "Next.js renders /sign-up or /sign-in after the request pipeline.",
+  "steps": [
+    {
+      "file": "apps/web/src/app/sign-up/page.tsx",
+      "line": 6,
+      "title": "Page",
+      "description": "Signup entry checks configuration and passes mode=signup. Sign-in is an alternate entry passing mode=signin.\n\nTransition: React route entry"
+    },
+    {
+      "file": "apps/web/src/features/auth/application/policy.ts",
+      "line": 23,
+      "title": "resolveEntry",
+      "description": "Page calls resolveEntry({}); it returns the public entry contract. The historical ticket-query branch is not invoked by these pages.\n\nTransition: returns entry"
+    },
+    {
+      "file": "apps/web/src/features/auth/presentation/clerk-auth.tsx",
+      "line": 22,
+      "title": "ClerkAuth",
+      "description": "React renders this composition root. Clerk hooks supply current SDK resources. useState initializes the resource binder and gateway.\n\nTransition: React renders"
+    },
+    {
+      "file": "apps/web/src/features/auth/infrastructure/live-resources.ts",
+      "line": 6,
+      "title": "createLiveResources",
+      "description": "Called during initial state creation. Later useLayoutEffect updates the same binder; gateway getters read the latest resources.\n\nTransition: returns binder"
+    },
+    {
+      "file": "apps/web/src/features/auth/infrastructure/clerk-gateway.ts",
+      "line": 32,
+      "title": "createClerkGateway",
+      "description": "Called by the second state initializer; returns AuthGateway operations. Its methods execute later on events, not during construction.\n\nTransition: returns gateway"
+    },
+    {
+      "file": "apps/web/src/features/auth/presentation/auth-view.tsx",
+      "line": 199,
+      "title": "AuthView",
+      "description": "React renders AuthView. Its readiness/task gates decide whether to render AuthForm.\n\nTransition: React renders"
+    },
+    {
+      "file": "apps/web/src/features/auth/presentation/auth-view.tsx",
+      "line": 25,
+      "title": "AuthForm",
+      "description": "Anonymous ready SDK: createAuthFlow during state initialization; subscribe with useSyncExternalStore. Return form markup.\n\nTransition: initializes controller"
+    },
+    {
+      "file": "apps/web/src/features/auth/application/flow.ts",
+      "line": 245,
+      "title": "createAuthFlow",
+      "description": "Returns new AuthenticationFlow; constructor calls gateway.current(mode), then stores the initial snapshot.\n\nTransition: returns controller"
+    },
+    {
+      "title": "Branches and stop conditions",
+      "description": "/sign-in calls its own Page, not /sign-up/Page. Both converge on ClerkAuth with different modes.\n\nMissing configuration: Page renders AuthUnavailable → AuthShell, without ClerkAuth.\n\nAuthView: unloaded SDK → loading; eligible existing session/choose-organization → effect calls complete(/organizations); unsupported task → message/sign-out.\n\nReact controls rendering and effect scheduling. RootLayout supplies ClerkProvider and typography; it is not an authored function call from Page.\n\nAuthForm layout effect calls flow.rebind; cleanup cancels. No network signup is started by rendering the form."
+    }
+  ]
+}

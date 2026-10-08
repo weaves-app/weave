@@ -1,0 +1,17 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "13 · Static bag and control feedback",
+  "description": "React renders an authentication/onboarding shell; only controls respond to interaction.",
+  "steps": [
+    {
+      "file": "apps/web/src/features/auth/presentation/auth-shell.tsx",
+      "line": 11,
+      "title": "AuthShell",
+      "description": "Render the original bag image in a plain server-rendered div. No image-load or pointer listeners, session marker or bag animation.\n\nTransition: React rendering"
+    },
+    {
+      "title": "Branches and stop conditions",
+      "description": "Inputs, buttons and organization cards use shared feedback timing/easing tokens for focus, hover and press. Disabled/reduced-motion selectors suppress movement.\n\nThe user parked the bag entrance, hover and deeper layout revision. The static bag has no event execution path. Native remains independently owned."
+    }
+  ]
+}

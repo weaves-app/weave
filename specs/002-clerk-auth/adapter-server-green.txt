@@ -1,0 +1,14 @@
+✔ WEA-10 S01 SDK adapter uses email/password then email verification before finalize (0.868958ms)
+✔ WEA-10 S03 SDK invitation request contains ticket/password and no substitute email (0.113125ms)
+✔ WEA-10 S02/S07 SDK Device Trust and signout follow supported APIs (0.15275ms)
+✔ WEA-10 S08 SDK returned error is rejected, incomplete status cannot finalize (0.173833ms)
+✔ WEA-10 S02/S07 protected resource is no-store and requires verified matching session user (9.640125ms)
+✔ WEA-10 S02 signed-out protected request avoids user lookup; outage is 503 (0.186458ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 125.569292

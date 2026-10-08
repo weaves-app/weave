@@ -1,0 +1,16 @@
+✔ WEA-10 S13 adapter loads every page, merges invitations and prefers existing membership (2.128666ms)
+✔ WEA-10 S13 one list opens membership and accepts pending invitation before activation (3.050375ms)
+✔ WEA-10 S14 list failure recovers, empty list remains usable (0.6425ms)
+✔ WEA-10 S14 blank name is rejected; activation retry reuses created organization (0.719791ms)
+✔ WEA-10 S14 acceptance failure denies Home; accepted invitation is not accepted twice after activation failure (0.548625ms)
+✔ WEA-10 S15 duplicate mutation starts once and cancellation blocks late navigation (0.43ms)
+✔ WEA-10 S13 approved picker lists memberships and invitation in one fieldset and opens selected workspace (244.336ms)
+✔ WEA-10 S14 empty picker offers create; create form has required labelled input and retryable errors (69.796583ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2134.271417

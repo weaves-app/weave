@@ -1,0 +1,31 @@
+✔ WEA-10 S11 callback without a completed attempt shows retry rather than endless verification (138.673792ms)
+✔ WEA-10 S11 callback rejected operation and timeout recover without navigation (35.165042ms)
+✔ WEA-10 S11 only completed callback navigates; additional requirements are visible (68.731291ms)
+✔ WEA-10 S01 signup sends verification, never activates before correct code, then opens Home (4.383167ms)
+✔ WEA-10 S01/S08 wrong or expired code is recoverable and resend can be retried (0.536166ms)
+✔ WEA-10 S01/S08 empty/malformed email and missing password/code make no provider calls (0.222458ms)
+✔ WEA-10 S01/S08 unverified provider completion or unsupported requirements cannot activate (0.315666ms)
+✔ WEA-10 S02 password login and Device Trust verification both reach Home (0.484333ms)
+✔ WEA-10 S07 interrupted verification restores without needing password again (0.123083ms)
+✔ WEA-10 S08 duplicate/signup/invalid login/network/rejected-password errors finish loading (0.246667ms)
+✔ WEA-10 S08 repeated submits issue one mutation and cancellation prevents late activation (0.227834ms)
+✔ WEA-10 S07/S08 cancellation during activation clears late session and never navigates (0.124625ms)
+✔ WEA-10 S07 signout awaits provider, clears state and reports recoverable failure (0.154625ms)
+✔ WEA-10 S03 invitation signup supplies only ticket/password and reaches intended Home (0.205125ms)
+✔ WEA-10 S03/S08 missing/expired/reused invitation keeps context and never falls back (0.184417ms)
+✔ WEA-10 S03/S08 failed invitation activation can retry without replaying the consumed ticket (0.130083ms)
+✔ WEA-10 S08 timeout finishes loading and blocks late authentication activation (15.757125ms)
+✔ WEA-10 S01 public form labels/password → verification → Home callback (171.913208ms)
+✔ WEA-10 S08 pending/error states disable duplicates, finish loading and allow retry (51.09175ms)
+✔ WEA-10 S07 Home stays hidden until auth resolves and after signout; signout failure recovers (15.664292ms)
+✔ WEA-10 S01/S07 signed-in unverified session never renders Home (4.743459ms)
+✔ WEA-10 S07/S08 signout timeout releases loading and offers a retry (12.710708ms)
+✔ WEA-10 S08 unknown-account error survives refreshed SDK resources and callbacks (27.41925ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 23
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1075.94275

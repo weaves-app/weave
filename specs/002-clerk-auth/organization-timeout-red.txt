@@ -1,0 +1,33 @@
+✔ WEA-10 S13 one list opens membership and accepts pending invitation before activation (0.915ms)
+✔ WEA-10 S14 list failure recovers, empty list remains usable (0.157208ms)
+✔ WEA-10 S14 blank name is rejected; activation retry reuses created organization (0.1635ms)
+✔ WEA-10 S14 acceptance failure denies Home; accepted invitation is not accepted twice after activation failure (0.153292ms)
+✔ WEA-10 S15 duplicate mutation starts once and cancellation blocks late navigation (0.1145ms)
+✖ WEA-10 S14 a stalled list request times out and allows retry without a late stale result (22.092208ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 5
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 151.085917
+
+✖ failing tests:
+
+test at test/organization-flow.test.ts:2:4740
+✖ WEA-10 S14 a stalled list request times out and allows retry without a late stale result (22.092208ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/organization-flow.test.ts:128:9)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

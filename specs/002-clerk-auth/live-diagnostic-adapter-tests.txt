@@ -1,0 +1,14 @@
+WEA10 diagnostic error codes ["form_password_pwned"]
+✔ WEA-10 S01 SDK adapter uses email/password then email verification before finalize (1.703167ms)
+✔ WEA-10 S03 SDK invitation request contains ticket/password and no substitute email (0.153042ms)
+✔ WEA-10 S02/S07 SDK Device Trust and signout follow supported APIs (0.173625ms)
+✔ WEA-10 S08 SDK returned error is rejected, incomplete status cannot finalize (0.616667ms)
+✔ WEA-10 S11 Google adapter uses the supported SSO API and protected callback destinations (0.150625ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 196.203

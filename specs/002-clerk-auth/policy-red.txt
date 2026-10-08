@@ -1,0 +1,114 @@
+✖ WEA-10 S03/S08 invitation entry preserves opaque ticket across auth navigation (1.219291ms)
+✖ WEA-10 S03/S08 missing/malformed/ambiguous invitation never falls back to public signup (0.14825ms)
+✖ WEA-10 S02/S07 verified active identity is allowed; unverified or signed-out is denied (0.132667ms)
+✖ WEA-10 S07 unresolved auth exposes no protected result before the provider resolves (0.109ms)
+✖ WEA-10 S07/S08 provider/network session failure denies access safely (0.102334ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 0
+ℹ fail 5
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 647.51225
+
+✖ failing tests:
+
+test at apps/web/test/auth-policy.test.ts:2:1024
+✖ WEA-10 S03/S08 invitation entry preserves opaque ticket across auth navigation (1.219291ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'public'
+  - 'invitation'
+  
+      at TestContext.<anonymous> (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-policy.test.ts:7:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'public',
+    expected: 'invitation',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at apps/web/test/auth-policy.test.ts:2:1572
+✖ WEA-10 S03/S08 missing/malformed/ambiguous invitation never falls back to public signup (0.14825ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'public'
+  - 'invalid'
+  
+      at TestContext.<anonymous> (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-policy.test.ts:14:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'public',
+    expected: 'invalid',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at apps/web/test/auth-policy.test.ts:2:2169
+✖ WEA-10 S02/S07 verified active identity is allowed; unverified or signed-out is denied (0.132667ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'anonymous'
+  - 'authenticated'
+  
+      at TestContext.<anonymous> (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-policy.test.ts:20:10)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'anonymous',
+    expected: 'authenticated',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at apps/web/test/auth-policy.test.ts:2:2748
+✖ WEA-10 S07 unresolved auth exposes no protected result before the provider resolves (0.109ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-policy.test.ts:30:10)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at apps/web/test/auth-policy.test.ts:2:3279
+✖ WEA-10 S07/S08 provider/network session failure denies access safely (0.102334ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'anonymous'
+  - 'unavailable'
+  
+      at TestContext.<anonymous> (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-policy.test.ts:36:10)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'anonymous',
+    expected: 'unavailable',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

@@ -1,0 +1,411 @@
+
+> @weave/web@0.0.0 test
+> node --import tsx --test test/*.test.ts test/*.test.tsx
+
+✔ WEA-10 S01 SDK adapter uses email/password then email verification before finalize (1.144458ms)
+✔ WEA-10 S03 SDK invitation request contains ticket/password and no substitute email (0.133917ms)
+✔ WEA-10 S02/S07 SDK Device Trust and signout follow supported APIs (0.1535ms)
+✔ WEA-10 S08 SDK returned error is rejected, incomplete status cannot finalize (0.191708ms)
+✖ WEA-10 S11 Google adapter uses the supported SSO API and protected callback destinations (0.126416ms)
+✔ WEA-10 S01 signup sends verification, never activates before correct code, then opens Home (2.479583ms)
+✔ WEA-10 S01/S08 wrong or expired code is recoverable and resend can be retried (0.3945ms)
+✔ WEA-10 S01/S08 empty/malformed email and missing password/code make no provider calls (0.786875ms)
+✔ WEA-10 S01/S08 unverified provider completion or unsupported requirements cannot activate (0.124666ms)
+✔ WEA-10 S02 password login and Device Trust verification both reach Home (0.18175ms)
+✔ WEA-10 S07 interrupted verification restores without needing password again (0.087ms)
+✔ WEA-10 S08 duplicate/signup/invalid login/network/rejected-password errors finish loading (0.18625ms)
+✔ WEA-10 S08 repeated submits issue one mutation and cancellation prevents late activation (0.099417ms)
+✔ WEA-10 S07/S08 cancellation during activation clears late session and never navigates (0.23475ms)
+✔ WEA-10 S07 signout awaits provider, clears state and reports recoverable failure (0.165208ms)
+✔ WEA-10 S03 invitation signup supplies only ticket/password and reaches intended Home (0.143375ms)
+✔ WEA-10 S03/S08 missing/expired/reused invitation keeps context and never falls back (0.147ms)
+✔ WEA-10 S03/S08 failed invitation activation can retry without replaying the consumed ticket (0.112792ms)
+✔ WEA-10 S08 timeout finishes loading and blocks late authentication activation (15.42475ms)
+✖ WEA-10 S11/S12 branded Google signup rejects duplicate clicks, then recovers provider failure (65.7325ms)
+✖ WEA-10 S11 Google signin starts provider authentication without premature Home (10.405375ms)
+✖ WEA-10 S12 missing configuration retains branding and offers no fake signup success (3.89875ms)
+✔ WEA-10 S03/S08 invitation entry preserves opaque ticket across auth navigation (1.129875ms)
+✔ WEA-10 S03/S08 missing/malformed/ambiguous invitation never falls back to public signup (0.211417ms)
+✔ WEA-10 S02/S07 verified active identity is allowed; unverified or signed-out is denied (0.134292ms)
+✔ WEA-10 S07 unresolved auth exposes no protected result before the provider resolves (0.088208ms)
+✔ WEA-10 S07/S08 provider/network session failure denies access safely (0.11425ms)
+✔ WEA-10 S02/S07 protected resource is no-store and requires verified matching session user (15.429042ms)
+✔ WEA-10 S02 signed-out protected request avoids user lookup; outage is 503 (0.377208ms)
+✔ WEA-10 S01 public form labels/password → verification → Home callback (79.256791ms)
+✔ WEA-10 S03/S08 invalid invitation and signed-in other identity show no signup form (4.02ms)
+✔ WEA-10 S03 invitation form excludes email replacement and preserves ticket link (15.413917ms)
+✔ WEA-10 S08 pending/error states disable duplicates, finish loading and allow retry (11.836833ms)
+✔ WEA-10 S07 Home stays hidden until auth resolves and after signout; signout failure recovers (9.841125ms)
+✔ WEA-10 S03 ticket preserved on sign-in entry cannot substitute ordinary login (2.61675ms)
+✔ WEA-10 S03/S08 signed-in invitation signout failure is recoverable without reload (4.855333ms)
+✔ WEA-10 S01/S07 signed-in unverified session never renders Home (1.699041ms)
+✔ WEA-10 S07/S08 signout timeout releases loading and offers a retry (9.7005ms)
+✔ S07 client accepts valid health and rejects bad responses safely (0.59475ms)
+ℹ tests 39
+ℹ suites 0
+ℹ pass 35
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 999.814167
+
+✖ failing tests:
+
+test at test/auth-adapter.test.ts:2:4944
+✖ WEA-10 S11 Google adapter uses the supported SSO API and protected callback destinations (0.126416ms)
+  TypeError: adapter.google is not a function
+      at TestContext.<anonymous> (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-adapter.test.ts:144:17)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at test/auth-google.test.tsx:2:1945
+✖ WEA-10 S11/S12 branded Google signup rejects duplicate clicks, then recovers provider failure (65.7325ms)
+  Error [TestingLibraryElementError]: Unable to find an accessible element with the role "img" and name "Weave"
+  
+  Here are the accessible roles:
+  
+    main:
+  
+    Name "":
+    [36m<main[39m
+      [33mclass[39m=[32m"auth-page"[39m
+    [36m/>[39m
+  
+    --------------------------------------------------
+    heading:
+  
+    Name "Sign up":
+    [36m<h1 />[39m
+  
+    --------------------------------------------------
+    status:
+  
+    Name "":
+    [36m<p[39m
+      [33maria-live[39m=[32m"polite"[39m
+      [33mrole[39m=[32m"status"[39m
+    [36m/>[39m
+  
+    --------------------------------------------------
+    textbox:
+  
+    Name "Email address":
+    [36m<input[39m
+      [33mautocomplete[39m=[32m"email"[39m
+      [33mname[39m=[32m"email"[39m
+      [33mrequired[39m=[32m""[39m
+      [33mtype[39m=[32m"email"[39m
+    [36m/>[39m
+  
+    --------------------------------------------------
+    button:
+  
+    Name "Sign up":
+    [36m<button[39m
+      [33mtype[39m=[32m"submit"[39m
+    [36m/>[39m
+  
+    --------------------------------------------------
+    navigation:
+  
+    Name "Authentication":
+    [36m<nav[39m
+      [33maria-label[39m=[32m"Authentication"[39m
+    [36m/>[39m
+  
+    --------------------------------------------------
+    link:
+  
+    Name "Sign in":
+    [36m<a[39m
+      [33mhref[39m=[32m"/sign-in"[39m
+    [36m/>[39m
+  
+    Name "Cancel":
+    [36m<a[39m
+      [33mhref[39m=[32m"/sign-in"[39m
+    [36m/>[39m
+  
+    --------------------------------------------------
+  
+  Ignored nodes: comments, script, style
+  [36m<body>[39m
+    [36m<div>[39m
+      [36m<main[39m
+        [33mclass[39m=[32m"auth-page"[39m
+      [36m>[39m
+        [36m<h1>[39m
+          [0mSign up[0m
+        [36m</h1>[39m
+        [36m<p[39m
+          [33maria-live[39m=[32m"polite"[39m
+          [33mrole[39m=[32m"status"[39m
+        [36m/>[39m
+        [36m<form[39m
+          [33maria-busy[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<label>[39m
+            [0mEmail address[0m
+            [36m<input[39m
+              [33mautocomplete[39m=[32m"email"[39m
+              [33mname[39m=[32m"email"[39m
+              [33mrequired[39m=[32m""[39m
+              [33mtype[39m=[32m"email"[39m
+            [36m/>[39m
+          [36m</label>[39m
+          [36m<label>[39m
+            [0mPassword[0m
+            [36m<input[39m
+              [33mautocomplete[39m=[32m"new-password"[39m
+              [33mname[39m=[32m"password"[39m
+              [33mrequired[39m=[32m""[39m
+              [33mtype[39m=[32m"password"[39m
+            [36m/>[39m
+          [36m</label>[39m
+          [36m<button[39m
+            [33mtype[39m=[32m"submit"[39m
+          [36m>[39m
+            [0mSign up[0m
+          [36m</button>[39m
+        [36m</form>[39m
+        [36m<nav[39m
+          [33maria-label[39m=[32m"Authentication"[39m
+        [36m>[39m
+          [36m<a[39m
+            [33mhref[39m=[32m"/sign-in"[39m
+          [36m>[39m
+            [0mSign in[0m
+          [36m</a>[39m
+          [36m<a[39m
+            [33mhref[39m=[32m"/sign-in"[39m
+          [36m>[39m
+            [0mCancel[0m
+          [36m</a>[39m
+        [36m</nav>[39m
+        [36m<div[39m
+          [33mid[39m=[32m"clerk-captcha"[39m
+        [36m/>[39m
+      [36m</main>[39m
+    [36m</div>[39m
+  [36m</body>[39m
+      at Object.getElementError (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/node_modules/@testing-library/dom/dist/config.js:37:19)
+      at /Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+      at /Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+      at /Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+      at TestContext.<anonymous> (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-google.test.tsx:30:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+
+test at test/auth-google.test.tsx:2:3304
+✖ WEA-10 S11 Google signin starts provider authentication without premature Home (10.405375ms)
+  Error [TestingLibraryElementError]: Unable to find an accessible element with the role "button" and name "Continue with Google"
+  
+  Here are the accessible roles:
+  
+    main:
+  
+    Name "":
+    [36m<main[39m
+      [33mclass[39m=[32m"auth-page"[39m
+    [36m/>[39m
+  
+    --------------------------------------------------
+    heading:
+  
+    Name "Sign in":
+    [36m<h1 />[39m
+  
+    --------------------------------------------------
+    status:
+  
+    Name "":
+    [36m<p[39m
+      [33maria-live[39m=[32m"polite"[39m
+      [33mrole[39m=[32m"status"[39m
+    [36m/>[39m
+  
+    --------------------------------------------------
+    textbox:
+  
+    Name "Email address":
+    [36m<input[39m
+      [33mautocomplete[39m=[32m"email"[39m
+      [33mname[39m=[32m"email"[39m
+      [33mrequired[39m=[32m""[39m
+      [33mtype[39m=[32m"email"[39m
+    [36m/>[39m
+  
+    --------------------------------------------------
+    button:
+  
+    Name "Sign in":
+    [36m<button[39m
+      [33mtype[39m=[32m"submit"[39m
+    [36m/>[39m
+  
+    --------------------------------------------------
+    navigation:
+  
+    Name "Authentication":
+    [36m<nav[39m
+      [33maria-label[39m=[32m"Authentication"[39m
+    [36m/>[39m
+  
+    --------------------------------------------------
+    link:
+  
+    Name "Sign up":
+    [36m<a[39m
+      [33mhref[39m=[32m"/sign-up"[39m
+    [36m/>[39m
+  
+    Name "Cancel":
+    [36m<a[39m
+      [33mhref[39m=[32m"/sign-up"[39m
+    [36m/>[39m
+  
+    --------------------------------------------------
+  
+  Ignored nodes: comments, script, style
+  [36m<body>[39m
+    [36m<div>[39m
+      [36m<main[39m
+        [33mclass[39m=[32m"auth-page"[39m
+      [36m>[39m
+        [36m<h1>[39m
+          [0mSign in[0m
+        [36m</h1>[39m
+        [36m<p[39m
+          [33maria-live[39m=[32m"polite"[39m
+          [33mrole[39m=[32m"status"[39m
+        [36m/>[39m
+        [36m<form[39m
+          [33maria-busy[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<label>[39m
+            [0mEmail address[0m
+            [36m<input[39m
+              [33mautocomplete[39m=[32m"email"[39m
+              [33mname[39m=[32m"email"[39m
+              [33mrequired[39m=[32m""[39m
+              [33mtype[39m=[32m"email"[39m
+            [36m/>[39m
+          [36m</label>[39m
+          [36m<label>[39m
+            [0mPassword[0m
+            [36m<input[39m
+              [33mautocomplete[39m=[32m"current-password"[39m
+              [33mname[39m=[32m"password"[39m
+              [33mrequired[39m=[32m""[39m
+              [33mtype[39m=[32m"password"[39m
+            [36m/>[39m
+          [36m</label>[39m
+          [36m<button[39m
+            [33mtype[39m=[32m"submit"[39m
+          [36m>[39m
+            [0mSign in[0m
+          [36m</button>[39m
+        [36m</form>[39m
+        [36m<nav[39m
+          [33maria-label[39m=[32m"Authentication"[39m
+        [36m>[39m
+          [36m<a[39m
+            [33mhref[39m=[32m"/sign-up"[39m
+          [36m>[39m
+            [0mSign up[0m
+          [36m</a>[39m
+          [36m<a[39m
+            [33mhref[39m=[32m"/sign-up"[39m
+          [36m>[39m
+            [0mCancel[0m
+          [36m</a>[39m
+        [36m</nav>[39m
+      [36m</main>[39m
+    [36m</div>[39m
+  [36m</body>[39m
+      at Object.getElementError (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/node_modules/@testing-library/dom/dist/config.js:37:19)
+      at /Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+      at /Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+      at /Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+      at TestContext.<anonymous> (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-google.test.tsx:45:24)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+
+test at test/auth-google.test.tsx:2:3889
+✖ WEA-10 S12 missing configuration retains branding and offers no fake signup success (3.89875ms)
+  Error [TestingLibraryElementError]: Unable to find an accessible element with the role "img" and name "Weave"
+  
+  Here are the accessible roles:
+  
+    main:
+  
+    Name "":
+    [36m<main[39m
+      [33mclass[39m=[32m"auth-page"[39m
+    [36m/>[39m
+  
+    --------------------------------------------------
+    heading:
+  
+    Name "Authentication unavailable":
+    [36m<h1 />[39m
+  
+    --------------------------------------------------
+    alert:
+  
+    Name "":
+    [36m<p[39m
+      [33mrole[39m=[32m"alert"[39m
+    [36m/>[39m
+  
+    --------------------------------------------------
+  
+  Ignored nodes: comments, script, style
+  [36m<body>[39m
+    [36m<div>[39m
+      [36m<main[39m
+        [33mclass[39m=[32m"auth-page"[39m
+      [36m>[39m
+        [36m<h1>[39m
+          [0mAuthentication unavailable[0m
+        [36m</h1>[39m
+        [36m<p[39m
+          [33mrole[39m=[32m"alert"[39m
+        [36m>[39m
+          [0mAuthentication is temporarily unavailable. Please try again later.[0m
+        [36m</p>[39m
+        [36m<a[39m
+          [33mhref[39m=[32m""[39m
+        [36m>[39m
+          [0mTry again[0m
+        [36m</a>[39m
+      [36m</main>[39m
+    [36m</div>[39m
+  [36m</body>[39m
+      at Object.getElementError (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/node_modules/@testing-library/dom/dist/config.js:37:19)
+      at /Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+      at /Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+      at /Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+      at TestContext.<anonymous> (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-google.test.tsx:50:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path /Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web
+npm error workspace @weave/web@0.0.0
+npm error location /Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web
+npm error command failed
+npm error command sh -c node --import tsx --test test/*.test.ts test/*.test.tsx
