@@ -1,6 +1,6 @@
 # WEA-10 execution review
 
-Snapshot: b4a8cb7 + motion revision. Every request/event path names the real source symbol. Next/React/Clerk boundaries and alternate branches are explicit. Supporting files have no execution-order arrows.
+Snapshot: 006d58f · static bag scope. Every request/event path names the real source symbol. Next/React/Clerk boundaries and alternate branches are explicit. Supporting files have no execution-order arrows.
 
 ## How to read
 
@@ -260,7 +260,7 @@ Branches:
 
 ## Complete ticket inventory
 
-All 222 changed files are present in the HTML file inventory. Binary assets are identified rather than converted to source. The dependency lockfile is shown as its PR diff. Tests and evidence are not request execution steps.
+All 226 changed files are present in the HTML file inventory. Binary assets are identified rather than converted to source. The dependency lockfile is shown as its PR diff. Tests and evidence are not request execution steps.
 
 - [.tours/wea-10-01.tour](/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/.tours/wea-10-01.tour) — Configuration. Configuration/build dependency; no request-call arrow. .env.example contains names/placeholders only; real .env.local is ignored.
 - [.tours/wea-10-02.tour](/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/.tours/wea-10-02.tour) — Configuration. Configuration/build dependency; no request-call arrow. .env.example contains names/placeholders only; real .env.local is ignored.
@@ -405,6 +405,11 @@ All 222 changed files are present in the HTML file inventory. Binary assets are 
 - [specs/002-clerk-auth/evidence/readability-integration.txt](/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/specs/002-clerk-auth/evidence/readability-integration.txt) — Specification & evidence. Review artifact: requirements, scenario agreement, chronology or captured check output. Historical findings remain historical; later revisions supersede them.
 - [specs/002-clerk-auth/evidence/readability-red.txt](/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/specs/002-clerk-auth/evidence/readability-red.txt) — Specification & evidence. Review artifact: requirements, scenario agreement, chronology or captured check output. Historical findings remain historical; later revisions supersede them.
 - [specs/002-clerk-auth/evidence/readability-verify.txt](/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/specs/002-clerk-auth/evidence/readability-verify.txt) — Specification & evidence. Review artifact: requirements, scenario agreement, chronology or captured check output. Historical findings remain historical; later revisions supersede them.
+- [specs/002-clerk-auth/evidence/static-bag-browser.json](/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/specs/002-clerk-auth/evidence/static-bag-browser.json) — Specification & evidence. Review artifact: requirements, scenario agreement, chronology or captured check output. Historical findings remain historical; later revisions supersede them.
+- [specs/002-clerk-auth/evidence/static-bag-green.txt](/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/specs/002-clerk-auth/evidence/static-bag-green.txt) — Specification & evidence. Review artifact: requirements, scenario agreement, chronology or captured check output. Historical findings remain historical; later revisions supersede them.
+- [specs/002-clerk-auth/evidence/static-bag-integration.txt](/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/specs/002-clerk-auth/evidence/static-bag-integration.txt) — Specification & evidence. Review artifact: requirements, scenario agreement, chronology or captured check output. Historical findings remain historical; later revisions supersede them.
+- [specs/002-clerk-auth/evidence/static-bag-red.txt](/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/specs/002-clerk-auth/evidence/static-bag-red.txt) — Specification & evidence. Review artifact: requirements, scenario agreement, chronology or captured check output. Historical findings remain historical; later revisions supersede them.
+- [specs/002-clerk-auth/evidence/static-bag-verify.txt](/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/specs/002-clerk-auth/evidence/static-bag-verify.txt) — Specification & evidence. Review artifact: requirements, scenario agreement, chronology or captured check output. Historical findings remain historical; later revisions supersede them.
 - [specs/002-clerk-auth/final-format.txt](/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/specs/002-clerk-auth/final-format.txt) — Specification & evidence. Review artifact: requirements, scenario agreement, chronology or captured check output. Historical findings remain historical; later revisions supersede them.
 - [specs/002-clerk-auth/final-web-tests.txt](/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/specs/002-clerk-auth/final-web-tests.txt) — Specification & evidence. Review artifact: requirements, scenario agreement, chronology or captured check output. Historical findings remain historical; later revisions supersede them.
 - [specs/002-clerk-auth/flow-green.txt](/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/specs/002-clerk-auth/flow-green.txt) — Specification & evidence. Review artifact: requirements, scenario agreement, chronology or captured check output. Historical findings remain historical; later revisions supersede them.
