@@ -1,0 +1,35 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "13 · One-time bag entrance and interaction feedback",
+  "description": "React mounts an authentication/onboarding shell; the image becomes ready.",
+  "steps": [
+    {
+      "file": "apps/web/src/features/auth/presentation/auth-shell.tsx",
+      "line": 13,
+      "title": "AuthShell",
+      "description": "Read shared color/motion tokens and render AuthBagStage around the supplied image. Authentication children are independent.\n\nTransition: React rendering"
+    },
+    {
+      "file": "apps/web/src/features/auth/presentation/auth-bag-stage.tsx",
+      "line": 10,
+      "title": "AuthBagStage",
+      "description": "React schedules the effect: find image, read reduced-motion/desktop preferences, subscribe to load/end/change. A cached image invokes arrive immediately.\n\nTransition: effect registers browser events"
+    },
+    {
+      "file": "apps/web/src/features/auth/presentation/auth-bag-stage.tsx",
+      "line": 29,
+      "title": "AuthBagStage.arrive",
+      "description": "On image readiness, skip repeats, mobile and reduced motion. Persist the tab-session seen guard; blocked storage stays static. Add CSS class for one 1350ms transform entrance.\n\nTransition: image load OR cached readiness"
+    },
+    {
+      "file": "apps/web/src/features/auth/presentation/auth-bag-stage.tsx",
+      "line": 23,
+      "title": "AuthBagStage.stop",
+      "description": "Animation end removes the class, restoring the original bag position. Cleanup removes event listeners; later shell mounts see the tab guard.\n\nTransition: browser animation event"
+    },
+    {
+      "title": "Branches and stop conditions",
+      "description": "Reduced-motion change calls preferenceChanged → stop while the entrance is active. No infinite animation or hover animation is attached to the bag.\n\nSubsequent auth/onboarding screens and form rerenders remain static in the same tab session. A fresh tab can play its own entrance.\n\nButton/card hover, focus and press states are CSS transitions using feedback tokens; disabled/reduced-motion selectors suppress movement. These are alternate browser style states, not function calls.\n\nThe image gets a perspective turn; there is no 3D model or fabricated rear view. Native rendering is unchanged."
+    }
+  ]
+}

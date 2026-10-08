@@ -4,6 +4,8 @@ import {authTokens} from '@weave/design-tokens';
 
 import type {CSSProperties, ReactNode} from 'react';
 
+import {AuthBagStage} from './auth-bag-stage';
+
 export interface AuthShellProps {
   readonly children: ReactNode;
 }
@@ -15,12 +17,15 @@ export function AuthShell({children}: AuthShellProps): React.JSX.Element {
     '--auth-hero': authTokens.colors.hero,
     '--auth-accent': authTokens.colors.accent,
     '--auth-background': authTokens.colors.background,
+    '--auth-motion-entrance': `${authTokens.motion.entranceMs}ms`,
+    '--auth-motion-feedback': `${authTokens.motion.feedbackMs}ms`,
+    '--auth-motion-easing': authTokens.motion.easing,
   } as CSSProperties;
 
   return (
     <main className="auth-shell" style={theme}>
       <section className="auth-scene" aria-label="Weave brand">
-        <div className="auth-bag-stage">
+        <AuthBagStage>
           <Image
             className="auth-bag"
             src="/brand/weave-bag-render.png"
@@ -30,7 +35,7 @@ export function AuthShell({children}: AuthShellProps): React.JSX.Element {
             priority
             sizes="(max-width: 680px) 0px, 440px"
           />
-        </div>
+        </AuthBagStage>
         <div className="auth-caption">
           <h1>Everything, woven together.</h1>
           <p>

@@ -37,7 +37,7 @@ async function wait(url) {
   throw new Error(`Startup timeout: ${url}`);
 }
 
-void test('Production containers run as nonroot, connect web to API and keep liveness during outage', async (t) => {
+void test('Production containers run as nonroot, preserve API liveness and deny unconfigured auth access', async (t) => {
   console.log('Testing immutable candidates:', images, 'platform:', platform || 'native');
 
   if (process.env.EXPECTED_REVISION)
@@ -112,6 +112,27 @@ void test('Production containers run as nonroot, connect web to API and keep liv
 
   const page = await wait(`http://${docker('port', web, '3000/tcp')}`);
 
-  assert.match(await page.text(), /Connected/);
+  const html = await page.text();
+
+  assert.match(html, /Authentication unavailable/);
+  assert.doesNotMatch(html, /<h1>Home<\/h1>/);
+
+  const session = await fetch(`http://${docker('port', web, '3000/tcp')}/api/session`);
+
+  assert.equal(session.status, 503);
+  assert.equal(session.headers.get('cache-control'), 'no-store');
+  assert.deepEqual(await session.json(), {authenticated: false});
+
+  for (const [asset, contentType] of [
+    ['logo.svg', 'image/svg+xml'],
+    ['favicon.svg', 'image/svg+xml'],
+    ['weave-bag-render.png', 'image/png'],
+  ]) {
+    const response = await fetch(`http://${docker('port', web, '3000/tcp')}/brand/${asset}`);
+
+    assert.equal(response.status, 200, `Production package serves ${asset}`);
+    assert.ok(response.headers.get('content-type')?.includes(contentType));
+  }
+
   assert.equal(docker('exec', web, 'id', '-u'), '1000');
 });

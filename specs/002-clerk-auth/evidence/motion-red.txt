@@ -1,0 +1,56 @@
+✖ WEA-10 S16 bag turns once after readiness and settles without rerender replay (21.710209ms)
+✖ WEA-10 S16 later auth/onboarding mounts do not restart the entrance (3.517584ms)
+✔ WEA-10 S16 reduced motion remains static (1.585584ms)
+✔ WEA-10 S16 enabling reduced motion stops an active entrance (1.495833ms)
+✔ WEA-10 S16 mobile does not consume the desktop entrance (1.179167ms)
+✔ WEA-10 S16 blocked storage leaves the bag static without breaking the page (1.120584ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 4
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 788.25175
+
+✖ failing tests:
+
+test at test/auth-motion.test.tsx:2:2037
+✖ WEA-10 S16 bag turns once after readiness and settles without rerender replay (21.710209ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at TestContext.<anonymous> (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-motion.test.tsx:51:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at test/auth-motion.test.tsx:2:2834
+✖ WEA-10 S16 later auth/onboarding mounts do not restart the entrance (3.517584ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  null !== 'seen'
+  
+      at TestContext.<anonymous> (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-motion.test.tsx:74:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: 'seen',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

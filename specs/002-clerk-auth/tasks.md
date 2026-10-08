@@ -106,3 +106,12 @@ This revision supersedes the Membership optional prerequisite in T034.
 - [x] T044 Record approved R01–R03 spacing requirements and shared linter seams; capture meaningful linter RED.
 - [x] T045 Implement shared spacing enforcement, autofix authored codebase, preserve behavior, and capture GREEN.
 - [x] T046 Verify formatting/lint/types/tests/build and database integration; refresh code review anchors and record completion limits.
+
+## Phase 15: Motion and web delivery follow-up
+
+- [x] T047 Record S16 confirmation and owner-reported Google/org creation acceptance, separating native from Next.js delivery.
+- [x] T048 Capture AuthShell one-shot/reduced-motion/readiness RED; implement motion/micro interactions GREEN and refactor.
+- [x] T049 Correct stale container smoke-test expectations against the current auth configuration gate; preserve API/nonroot/protected resource assertions.
+- [x] T050 Run relevant/full checks and integration, verify preview, refresh review anchors and publish PR update.
+
+Next.js completion gate excludes Pravin-owned native/joint work. T042 now has owner-reported Google/org creation acceptance; remaining live web coverage is email verification/re-login, existing-membership selection and invitation acceptance/failure paths not separately confirmed. T043 still requires fresh remote container/required checks and code-owner approval.

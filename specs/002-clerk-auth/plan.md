@@ -56,3 +56,7 @@ S13–S15 confirmed after presentation of nine concrete scenarios. Fresh authent
 ## Readability revision
 
 Add a shared, dependency-free ESLint readability rule with behavioral fixture RED/GREEN. Apply it to workspace and root JS/TS configs, retain Prettier, autofix authored code without reordering imports or changing logic, document the policy, run full verification and integration, and refresh source review anchors. Native generated sources stay excluded.
+
+## S16 implementation revision
+
+Use a small client presentation boundary around the existing image. An image-load effect adds one CSS animation class after tab-session and reduced-motion eligibility checks; no authentication changes or animation dependency. Transform-only perspective entrance, 1.35 seconds, single iteration, ending at the original position. Shared duration/easing values live in authTokens. Add bounded hover/press/focus feedback with reduced-motion and disabled guards. Test public AuthShell readiness/one-shot lifecycle before implementation. Reconcile obsolete container Home Connected assertion with honest missing-Clerk state and protected resource denial, retaining API liveness/readiness and nonroot checks.

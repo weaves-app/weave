@@ -1,0 +1,4 @@
+logo.svg 200 image/svg+xml
+favicon.svg 200 image/svg+xml
+weave-bag-render.png 200 image/png
+Packaged production auth gate and brand assets passed.

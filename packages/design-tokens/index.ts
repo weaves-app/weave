@@ -20,4 +20,5 @@ export const authTokens = {
     accent: '#C96F4F',
     background: '#F8F6EE',
   },
+  motion: {entranceMs: 1350, feedbackMs: 160, easing: 'cubic-bezier(.22, 1, .36, 1)'},
 } as const;

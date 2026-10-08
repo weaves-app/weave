@@ -1,0 +1,15 @@
+✔ WEA-10 S16 bag turns once after readiness and settles without rerender replay (23.221875ms)
+✔ WEA-10 S16 later auth/onboarding mounts do not restart the entrance (4.529792ms)
+✔ WEA-10 S16 reduced motion remains static (1.887375ms)
+✔ WEA-10 S16 enabling reduced motion stops an active entrance (2.393458ms)
+✔ WEA-10 S16 mobile does not consume the desktop entrance (2.027041ms)
+✔ WEA-10 S16 blocked storage leaves the bag static without breaking the page (1.600208ms)
+✔ WEA-10 S16 cached image starts its entrance without another load event (1.630667ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 827.1885

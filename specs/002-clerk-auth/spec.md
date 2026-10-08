@@ -158,3 +158,7 @@ SC-005: Confirmed organization scenarios map to automated evidence and separatel
 ## Approved readability revision (2026-10-08)
 
 Apply consistent spacing across authored code: blank lines between external/workspace/local import groups, after imports, between declarations and methods, and between validation/control flow, operations and results. Preserve runtime behavior and generated/vendor exclusions. R01: missing separators are rejected and autofixed. R02: compliant groups remain unchanged. R03: TypeScript declarations, class methods, comments and directives remain valid. The user explicitly requested this revision; no additional product scenarios.
+
+## S16 — Confirmed entrance motion and micro interactions
+
+Given first desktop auth/onboarding load in a tab session, when the bag image is ready, then it makes one brief perspective turn and settles. Navigation between these screens, rerenders and repeated image-load events do not restart it. Reduced motion skips movement and changing to reduced motion stops the turn. Mobile does not consume the desktop entrance. If browser storage is unavailable the bag remains static. Enabled buttons/cards respond subtly to hover/focus/press; disabled controls stay still. Google/org creation has owner-reported acceptance on 2026-10-08; native remains a separate scope.

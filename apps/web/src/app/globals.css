@@ -440,3 +440,82 @@ button:disabled {
   line-height: 1.6;
   color: var(--auth-secondary);
 }
+
+/* One first-load entrance; the resting bag does not float or spin. */
+.auth-bag-stage {
+  perspective: 1100px;
+}
+.auth-bag {
+  transform-origin: 50% 58%;
+}
+.auth-bag-enter .auth-bag {
+  animation: auth-bag-arrive var(--auth-motion-entrance) var(--auth-motion-easing) 1;
+}
+@keyframes auth-bag-arrive {
+  0% {
+    transform: translate3d(-18px, 16px, 38px) rotateY(-27deg) rotateX(8deg) rotateZ(-5deg)
+      scale(0.96);
+  }
+  58% {
+    transform: translate3d(4px, -3px, 12px) rotateY(7deg) rotateX(-2deg) rotateZ(1deg) scale(1.015);
+  }
+  100% {
+    transform: none;
+  }
+}
+.auth-shell button,
+.org-create-link,
+.auth-panel .org-option,
+.auth-shell input,
+.auth-shell a {
+  transition:
+    transform var(--auth-motion-feedback) var(--auth-motion-easing),
+    background-color var(--auth-motion-feedback) ease,
+    border-color var(--auth-motion-feedback) ease,
+    box-shadow var(--auth-motion-feedback) ease;
+}
+.auth-shell button:enabled:active,
+.org-create-link:active {
+  transform: translateY(1px) scale(0.99);
+}
+.auth-shell input:not([type='radio']):focus-visible {
+  border-color: var(--auth-secondary);
+  box-shadow: 0 0 0 3px #6b7f5818;
+}
+.auth-shell button:disabled,
+.auth-panel .org-option:has(input:disabled) {
+  transform: none;
+}
+@media (hover: hover) and (pointer: fine) {
+  .auth-shell button:enabled:hover,
+  .org-create-link:hover {
+    transform: translateY(-2px);
+  }
+  .auth-panel .org-option:not(:has(input:disabled)):hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 14px #2e3a2f12;
+  }
+  .org-create-link:hover {
+    background: #6b7f580d;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .auth-bag-enter .auth-bag {
+    animation: none;
+    transform: none;
+  }
+  .auth-shell button,
+  .org-create-link,
+  .auth-panel .org-option,
+  .auth-shell input,
+  .auth-shell a {
+    transition: none;
+  }
+  .auth-shell button:enabled:hover,
+  .auth-shell button:enabled:active,
+  .org-create-link:hover,
+  .org-create-link:active,
+  .auth-panel .org-option:hover {
+    transform: none;
+  }
+}
