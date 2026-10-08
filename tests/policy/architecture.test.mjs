@@ -1,6 +1,8 @@
 import assert from 'node:assert/strict';
 import {test} from 'node:test';
+
 import {inspectSources} from '../../scripts/architecture.mjs';
+
 test('S04 rejects outward domain dependencies and cross-module internals', () => {
   assert.ok(
     inspectSources({
@@ -27,6 +29,7 @@ test('S04 rejects outward domain dependencies and cross-module internals', () =>
     0,
   );
 });
+
 test('S05 requires interface types for injected dependencies', () => {
   assert.ok(
     inspectSources({
@@ -67,6 +70,7 @@ test('S14 resolves aliases within their owning workspace', () => {
   const errors = inspectSources(sources, {
     'apps/mobile': {module: 'esnext', moduleResolution: 'bundler', paths: {'@/*': ['./src/*']}},
   });
+
   assert.ok(
     errors.some((error) => error.includes('Import cycle')),
     errors.join('\n'),

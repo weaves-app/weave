@@ -1,4 +1,5 @@
 import {AuthShell} from './auth-shell';
+
 export function AuthUnavailable(): React.JSX.Element {
   return (
     <AuthShell>

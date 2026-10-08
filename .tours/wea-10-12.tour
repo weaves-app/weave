@@ -5,31 +5,31 @@
   "steps": [
     {
       "file": "apps/web/src/features/auth/presentation/home-view.tsx",
-      "line": 22,
+      "line": 26,
       "title": "SignOutControl.perform",
       "description": "Busy ref prevents repeats; set pending; race injected signOut() against deadline.\n\nTransition: DOM callback awaits injected service"
     },
     {
       "file": "apps/web/src/features/auth/presentation/clerk-auth.tsx",
-      "line": 66,
+      "line": 90,
       "title": "ClerkHome",
       "description": "Home injection calls clerk.signOut(); organization injection cancels its flow then calls clerk.signOut(); AuthView injection uses gateway.deactivate().\n\nTransition: alternate composition callbacks"
     },
     {
       "file": "apps/web/src/features/auth/infrastructure/clerk-gateway.ts",
-      "line": 112,
+      "line": 147,
       "title": "createClerkGateway.deactivate",
       "description": "Auth-view sign-out delegates to resources.signOut(), wired to clerk.signOut by ClerkAuth. Home/org injections call Clerk directly.\n\nTransition: SDK boundary"
     },
     {
       "file": "apps/web/src/features/auth/presentation/home-view.tsx",
-      "line": 22,
+      "line": 26,
       "title": "SignOutControl.perform",
       "description": "Success invokes signedOut callback. Failure shows recovery. finally clears timer/busy/pending.\n\nTransition: callback OR error"
     },
     {
       "file": "apps/web/src/features/auth/presentation/clerk-auth.tsx",
-      "line": 66,
+      "line": 90,
       "title": "ClerkHome",
       "description": "Home and org success replace /sign-in + refresh; unsupported-task AuthView reloads the page.\n\nTransition: navigation handoff"
     },

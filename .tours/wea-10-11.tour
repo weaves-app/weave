@@ -5,25 +5,25 @@
   "steps": [
     {
       "file": "apps/web/src/app/api/session/route.ts",
-      "line": 4,
+      "line": 6,
       "title": "GET",
       "description": "Construct serverSessionGateway; return serveSession(gateway). This API entry is alternate to Home, not invoked by Home.\n\nTransition: HTTP route calls"
     },
     {
       "file": "apps/web/src/features/auth/application/session-response.ts",
-      "line": 3,
+      "line": 4,
       "title": "serveSession",
       "description": "Await readAccess(gateway); uses the same identity/read path as journey 10.\n\nTransition: calls shared policy"
     },
     {
       "file": "apps/web/src/features/auth/application/policy.ts",
-      "line": 46,
+      "line": 55,
       "title": "readAccess",
       "description": "gateway.read → server SDK port → normalized identity → AccessResult (journey 10).\n\nTransition: returns access"
     },
     {
       "file": "apps/web/src/features/auth/application/session-response.ts",
-      "line": 3,
+      "line": 4,
       "title": "serveSession",
       "description": "Return JSON authenticated boolean; authenticated=200, unavailable=503, all other access outcomes=401. Cache-Control=no-store.\n\nTransition: returns HTTP response"
     },

@@ -154,3 +154,7 @@ Proposed behavior (awaiting explicit scenario confirmation):
 FR-010: Web authenticating users enter the approved organization picker and can open existing membership, accept a pending invitation in that list, or create their organization (S13/S14).
 FR-011: Web Home and protected resources require verified authentication and active organization; organization failures and duplicate/interrupted actions remain recoverable (S14/S15).
 SC-005: Confirmed organization scenarios map to automated evidence and separately recorded real Clerk acceptance.
+
+## Approved readability revision (2026-10-08)
+
+Apply consistent spacing across authored code: blank lines between external/workspace/local import groups, after imports, between declarations and methods, and between validation/control flow, operations and results. Preserve runtime behavior and generated/vendor exclusions. R01: missing separators are rejected and autofixed. R02: compliant groups remain unchanged. R03: TypeScript declarations, class methods, comments and directives remain valid. The user explicitly requested this revision; no additional product scenarios.

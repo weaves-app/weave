@@ -1,7 +1,9 @@
 import {readAccess} from './policy';
 import type {SessionGateway} from './policy';
+
 export async function serveSession(gateway: SessionGateway): Promise<Response> {
   const access = await readAccess(gateway);
+
   return Response.json(
     {authenticated: access.status === 'authenticated'},
     {

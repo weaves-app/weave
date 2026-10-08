@@ -6,5 +6,6 @@ export const dynamic = 'force-dynamic';
 
 export default function Page(): React.JSX.Element {
   if (!readClerkConfiguration(process.env)) return <AuthUnavailable />;
+
   return <ClerkOrganizations mode="choose" />;
 }

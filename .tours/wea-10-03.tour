@@ -5,49 +5,49 @@
   "steps": [
     {
       "file": "apps/web/src/features/auth/presentation/auth-view.tsx",
-      "line": 32,
+      "line": 40,
       "title": "AuthForm.submit",
       "description": "preventDefault; read FormData; call flow.submit(credentials). The verification branch instead calls flow.verify.\n\nTransition: DOM submit callback"
     },
     {
       "file": "apps/web/src/features/auth/application/flow.ts",
-      "line": 118,
+      "line": 154,
       "title": "AuthenticationFlow.submit",
       "description": "Validate email/password and state. Choose gateway.signup or gateway.signin inside run(); these are alternate branches.\n\nTransition: calls run + gateway"
     },
     {
       "file": "apps/web/src/features/auth/application/flow.ts",
-      "line": 67,
+      "line": 87,
       "title": "AuthenticationFlow.run",
       "description": "Mark pending; execute the supplied operation; catch actionable errors; race 30-second deadline. Control returns to the operation after awaited gateway calls.\n\nTransition: awaits operation"
     },
     {
       "file": "apps/web/src/features/auth/infrastructure/clerk-gateway.ts",
-      "line": 55,
+      "line": 71,
       "title": "createClerkGateway.signup",
       "description": "Signup calls signUp.password then signupState; signin instead calls signIn.password then signinState. requireSuccess throws returned SDK errors.\n\nTransition: SDK boundary → return Attempt"
     },
     {
       "file": "apps/web/src/features/auth/application/flow.ts",
-      "line": 96,
+      "line": 122,
       "title": "AuthenticationFlow.advance",
       "description": "After the attempt returns, submit may send the first code, then calls advance. verification → update snapshot and stop; ready → gateway.activate.\n\nTransition: conditional call"
     },
     {
       "file": "apps/web/src/features/auth/infrastructure/clerk-gateway.ts",
-      "line": 94,
+      "line": 122,
       "title": "createClerkGateway.activate",
       "description": "Recheck ready/verified; call the matching SDK finalize. SDK invokes navigate callback, which permits choose-organization and decorates the destination.\n\nTransition: SDK callback → return URL"
     },
     {
       "file": "apps/web/src/features/auth/application/flow.ts",
-      "line": 96,
+      "line": 122,
       "title": "AuthenticationFlow.advance",
       "description": "After activation returns, generation must still match. Mark complete; call injected complete(destination). Stale activation deactivates instead.\n\nTransition: completion callback"
     },
     {
       "file": "apps/web/src/features/auth/presentation/clerk-auth.tsx",
-      "line": 40,
+      "line": 61,
       "title": "ClerkAuth.complete",
       "description": "complete callback uses window.location.assign for HTTPS, otherwise router.replace + refresh. Navigation starts a new request to /organizations.\n\nTransition: navigation handoff"
     },

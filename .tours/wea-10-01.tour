@@ -5,25 +5,25 @@
   "steps": [
     {
       "file": "apps/web/src/proxy.ts",
-      "line": 15,
+      "line": 16,
       "title": "proxy",
       "description": "Next.js invokes proxy(request, event); this calls the configuration check.\n\nTransition: Next.js invokes"
     },
     {
       "file": "apps/web/src/features/auth/infrastructure/configuration.ts",
-      "line": 4,
+      "line": 5,
       "title": "readClerkConfiguration",
       "description": "Return a configuration object only when both keys exist. Return to proxy().\n\nTransition: returns to proxy"
     },
     {
       "file": "apps/web/src/proxy.ts",
-      "line": 6,
+      "line": 7,
       "title": "authenticate",
       "description": "With configuration present, proxy invokes the handler created by clerkMiddleware at module initialization.\n\nTransition: calls handler"
     },
     {
       "file": "apps/web/src/proxy.ts",
-      "line": 6,
+      "line": 7,
       "title": "authenticate",
       "description": "The authored Clerk callback returns NextResponse.next(); Clerk supplies request auth context. Next.js resumes route handling.\n\nTransition: framework handoff"
     },

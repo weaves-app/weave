@@ -1,11 +1,14 @@
 import {useState} from 'react';
 import {StatusBar} from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
+
 import {Button} from './src/components/button';
 import {Screen} from './src/components/screen';
 import {Typography} from './src/components/typography';
+
 export function App(): React.JSX.Element {
   const [ready, setReady] = useState(false);
+
   return (
     <SafeAreaProvider>
       <Screen>

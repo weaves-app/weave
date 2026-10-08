@@ -2,6 +2,7 @@ export interface GoogleButtonProps {
   readonly disabled: boolean;
   readonly onClick: () => void;
 }
+
 export function GoogleButton({disabled, onClick}: GoogleButtonProps): React.JSX.Element {
   return (
     <button className="auth-google" type="button" disabled={disabled} onClick={onClick}>

@@ -100,3 +100,9 @@ This revision supersedes the Membership optional prerequisite in T034.
 
 - [ ] T042 Complete owner-assisted live Clerk Google/email authentication → organization picker → create/activate → Home → signout → same-account signin, existing memberships and authorized pending invitation acceptance/retry checks; record actual outcomes/screenshots (FR-010/011, S13–S15, SC-005; partial, HIGH). Local mocked scenarios and signed-out gate are complete; authenticated provider acceptance remains pending.
 - [ ] T043 Run required remote CI and obtain code-owner review after authorized publication (FR-007, S10, Constitution 9/10; missing, MEDIUM; follows T036). Native/joint acceptance stays with Pravin and T035.
+
+## Phase 14: Approved readability revision
+
+- [x] T044 Record approved R01–R03 spacing requirements and shared linter seams; capture meaningful linter RED.
+- [x] T045 Implement shared spacing enforcement, autofix authored codebase, preserve behavior, and capture GREEN.
+- [x] T046 Verify formatting/lint/types/tests/build and database integration; refresh code review anchors and record completion limits.

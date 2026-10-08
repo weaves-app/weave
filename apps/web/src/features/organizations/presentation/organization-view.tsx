@@ -1,9 +1,12 @@
 'use client';
+
 import {useState, useSyncExternalStore} from 'react';
 import type {FormEvent} from 'react';
+
 import {AuthShell} from '../../auth/presentation/auth-shell';
 import {SignOutControl} from '../../auth/presentation/home-view';
 import type {OrganizationFlow} from '../application/contracts';
+
 export interface OrganizationViewProps {
   readonly flow: OrganizationFlow;
   readonly mode: 'choose' | 'create';
@@ -11,6 +14,7 @@ export interface OrganizationViewProps {
   readonly signOut: () => Promise<void>;
   readonly signedOut: () => void;
 }
+
 function initials(name: string): string {
   return name
     .split(/\s+/)
@@ -20,6 +24,7 @@ function initials(name: string): string {
     .join('')
     .toLowerCase();
 }
+
 export function OrganizationView({
   flow,
   mode,
@@ -31,11 +36,14 @@ export function OrganizationView({
   const [name, setName] = useState('');
   const selected = state.organizations.find((org) => org.id === state.selectedId);
   const create = mode === 'create';
+
   const submit = (event: FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
     void (create ? flow.create(name) : flow.open());
   };
+
   const busy = state.pending || state.loading;
+
   return (
     <AuthShell>
       {create && (
@@ -196,6 +204,7 @@ export function OrganizationView({
         <SignOutControl
           signOut={() => {
             flow.cancel();
+
             return signOut();
           }}
           signedOut={signedOut}

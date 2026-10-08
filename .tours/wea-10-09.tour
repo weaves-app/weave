@@ -5,37 +5,37 @@
   "steps": [
     {
       "file": "apps/web/src/app/organizations/create/page.tsx",
-      "line": 5,
+      "line": 7,
       "title": "Page",
       "description": "Alternate route renders ClerkOrganizations mode=create after configuration guard.\n\nTransition: React route entry"
     },
     {
       "file": "apps/web/src/features/organizations/presentation/organization-view.tsx",
-      "line": 34,
+      "line": 40,
       "title": "OrganizationView.submit",
       "description": "Create-mode submit invokes flow.create(name); controlled input preview is local React state.\n\nTransition: DOM submit callback"
     },
     {
       "file": "apps/web/src/features/organizations/application/flow.ts",
-      "line": 103,
+      "line": 131,
       "title": "createOrganizationFlow.create",
       "description": "run guards concurrency; trim/validate 1–80 chars. Reuse state.created on activation retry; otherwise gateway.create(value).\n\nTransition: conditional create"
     },
     {
       "file": "apps/web/src/features/organizations/infrastructure/clerk-organizations.ts",
-      "line": 65,
+      "line": 84,
       "title": "createClerkOrganizationGateway.create",
       "description": "Forward to port.create wired in ClerkOrganizations.\n\nTransition: calls port"
     },
     {
       "file": "apps/web/src/features/organizations/presentation/clerk-organizations.tsx",
-      "line": 56,
+      "line": 67,
       "title": "ClerkOrganizations.create",
       "description": "Port create awaits clerk.createOrganization({name}); returns id/name with default org:admin role.\n\nTransition: SDK boundary → return option"
     },
     {
       "file": "apps/web/src/features/organizations/application/flow.ts",
-      "line": 103,
+      "line": 131,
       "title": "createOrganizationFlow.create",
       "description": "If still current, store created organization, await gateway.activate, then call complete if current. Activation and completion follow journey 8.\n\nTransition: joins activation path"
     },

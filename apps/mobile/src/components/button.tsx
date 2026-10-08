@@ -1,11 +1,14 @@
 import {ActivityIndicator, Pressable, StyleSheet, Text} from 'react-native';
+
 import {tokens} from '@weave/design-tokens';
+
 export interface ButtonProps {
   readonly label: string;
   readonly onPress: () => void;
   readonly disabled?: boolean;
   readonly loading?: boolean;
 }
+
 export function Button({
   label,
   onPress,
@@ -13,6 +16,7 @@ export function Button({
   loading = false,
 }: ButtonProps): React.JSX.Element {
   const inactive = disabled || loading;
+
   return (
     <Pressable
       accessibilityRole="button"
@@ -30,6 +34,7 @@ export function Button({
     </Pressable>
   );
 }
+
 const styles = StyleSheet.create({
   button: {
     backgroundColor: tokens.colors.primary,

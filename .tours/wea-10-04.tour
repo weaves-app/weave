@@ -5,25 +5,25 @@
   "steps": [
     {
       "file": "apps/web/src/features/auth/presentation/auth-view.tsx",
-      "line": 32,
+      "line": 40,
       "title": "AuthForm.submit",
       "description": "Verification submit reads code and calls flow.verify(code).\n\nTransition: DOM submit callback"
     },
     {
       "file": "apps/web/src/features/auth/application/flow.ts",
-      "line": 153,
+      "line": 201,
       "title": "AuthenticationFlow.verify",
       "description": "Require verification stage and nonblank code, then run an operation that awaits gateway.verify.\n\nTransition: calls run + verify"
     },
     {
       "file": "apps/web/src/features/auth/infrastructure/clerk-gateway.ts",
-      "line": 86,
+      "line": 112,
       "title": "createClerkGateway.verify",
       "description": "Signup uses signUp.verifications.verifyEmailCode; signin uses signIn.mfa.verifyEmailCode. Map refreshed SDK status to Attempt.\n\nTransition: SDK boundary → return Attempt"
     },
     {
       "file": "apps/web/src/features/auth/application/flow.ts",
-      "line": 96,
+      "line": 122,
       "title": "AuthenticationFlow.advance",
       "description": "If ready, activate and complete as in journey 3; if still verification, update state and stop.\n\nTransition: returns or joins activation"
     },

@@ -1,6 +1,8 @@
 import assert from 'node:assert/strict';
 import {test} from 'node:test';
+
 import {evaluateTool} from '../../scripts/agent-policy.mjs';
+
 test('S10 tool guard permits investigation and specs, gates source edits', () => {
   assert.equal(
     evaluateTool(
@@ -50,6 +52,7 @@ test('S10 missing/foreign feature state cannot authorize an implementation branc
     confirmation: 'User continuation',
     scenarioIds: ['S10'],
   };
+
   assert.equal(isScenarioConfirmed(state, 'feat/WEA-6/setup'), true);
   assert.equal(isScenarioConfirmed(undefined, 'feat/WEA-6/setup'), false);
   assert.equal(isScenarioConfirmed(state, 'feat/WEA-7/setup'), false);
@@ -69,6 +72,7 @@ test('S15 read-only shell syntax passes while output files remain gated', () => 
       command,
     );
   }
+
   for (const command of ['echo x > apps/a.ts', 'echo x >> apps/a.ts', 'cp /tmp/a apps/a.ts']) {
     assert.ok(
       evaluateTool({tool_name: 'Bash', tool_input: {command}}, 'feat/WEA-6/setup', false),
@@ -92,6 +96,7 @@ test('S15 edit tools inspect destinations rather than documentation contents', (
     ),
     null,
   );
+
   for (const tool_name of ['Write', 'Edit', 'NotebookEdit'])
     assert.ok(
       evaluateTool(

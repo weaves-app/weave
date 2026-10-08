@@ -11,37 +11,37 @@
     },
     {
       "file": "apps/web/src/features/auth/presentation/clerk-callback.tsx",
-      "line": 9,
+      "line": 14,
       "title": "ClerkCallback",
       "description": "Initialize live resource binder and OAuthGateway; update resources in layout effect; render CallbackView with finish/navigate callbacks.\n\nTransition: composition + React rendering"
     },
     {
       "file": "apps/web/src/features/auth/presentation/callback-view.tsx",
-      "line": 11,
+      "line": 15,
       "title": "CallbackView",
       "description": "Once auth.isLoaded AND clerk.loaded, effect calls finish(); start bounded deadline and cancellation guard.\n\nTransition: effect calls finish"
     },
     {
       "file": "apps/web/src/features/auth/infrastructure/clerk-oauth.ts",
-      "line": 85,
+      "line": 112,
       "title": "createOAuthGateway.finish",
       "description": "Cache one resolve() promise across provider signals and effect replay.\n\nTransition: calls resolve once"
     },
     {
       "file": "apps/web/src/features/auth/infrastructure/clerk-oauth.ts",
-      "line": 29,
+      "line": 34,
       "title": "createOAuthGateway.resolve",
       "description": "Inspect pending task, signed-in status, completed attempts, transferability, existing session and remaining requirements in source order. Only one matching resolution branch proceeds.\n\nTransition: branch resolver"
     },
     {
       "file": "apps/web/src/features/auth/presentation/callback-view.tsx",
-      "line": 11,
+      "line": 15,
       "title": "CallbackView",
       "description": "finish returns CallbackResult: destination → navigate; error → setError. Thrown failure or timeout → visible recovery.\n\nTransition: promise continuation"
     },
     {
       "file": "apps/web/src/features/auth/presentation/clerk-callback.tsx",
-      "line": 51,
+      "line": 64,
       "title": "ClerkCallback.navigate",
       "description": "navigate callback uses window.location.assign for http URLs; otherwise router.replace + refresh.\n\nTransition: navigation handoff"
     },

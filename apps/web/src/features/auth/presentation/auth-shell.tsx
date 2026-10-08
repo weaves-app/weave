@@ -1,9 +1,13 @@
 import Image from 'next/image';
+
 import {authTokens} from '@weave/design-tokens';
+
 import type {CSSProperties, ReactNode} from 'react';
+
 export interface AuthShellProps {
   readonly children: ReactNode;
 }
+
 export function AuthShell({children}: AuthShellProps): React.JSX.Element {
   const theme = {
     '--auth-primary': authTokens.colors.primary,
@@ -12,6 +16,7 @@ export function AuthShell({children}: AuthShellProps): React.JSX.Element {
     '--auth-accent': authTokens.colors.accent,
     '--auth-background': authTokens.colors.background,
   } as CSSProperties;
+
   return (
     <main className="auth-shell" style={theme}>
       <section className="auth-scene" aria-label="Weave brand">

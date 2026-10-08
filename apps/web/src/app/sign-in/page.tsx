@@ -5,5 +5,6 @@ import {AuthUnavailable} from '../../features/auth/presentation/auth-unavailable
 
 export default function Page(): React.JSX.Element {
   if (!readClerkConfiguration(process.env)) return <AuthUnavailable />;
+
   return <ClerkAuth mode="signin" entry={resolveEntry({})} />;
 }

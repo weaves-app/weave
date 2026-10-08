@@ -1,13 +1,17 @@
 export type AuthMode = 'signup' | 'signin' | 'invitation';
+
 export type AuthStage = 'credentials' | 'verification' | 'ready' | 'complete';
+
 export interface Credentials {
   readonly email: string;
   readonly password: string;
 }
+
 export interface Attempt {
   readonly stage: 'credentials' | 'verification' | 'ready' | 'unsupported';
   readonly verified?: boolean;
 }
+
 export interface AuthGateway {
   current(mode: AuthMode): Attempt;
   signup(input: Credentials): Promise<Attempt>;
@@ -19,11 +23,13 @@ export interface AuthGateway {
   activate(mode: AuthMode): Promise<string>;
   deactivate(): Promise<void>;
 }
+
 export interface AuthSnapshot {
   readonly stage: AuthStage;
   readonly pending: boolean;
   readonly error: string | null;
 }
+
 export interface AuthFlow {
   rebind(gateway: AuthGateway, complete: (url: string) => void): void;
   getSnapshot(): AuthSnapshot;
@@ -35,6 +41,7 @@ export interface AuthFlow {
   signOut(): Promise<void>;
   cancel(): void;
 }
+
 export interface FlowOptions {
   readonly mode: AuthMode;
   readonly timeoutMilliseconds?: number;
@@ -46,6 +53,7 @@ export interface CallbackResult {
   readonly destination?: string;
   readonly error?: string;
 }
+
 export interface OAuthGateway {
   finish(): Promise<CallbackResult>;
 }

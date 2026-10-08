@@ -1,0 +1,141 @@
+✖ R01/R03: rejects and fixes missing spacing: import groups and imports ending (13.876625ms)
+✖ R01/R03: rejects and fixes missing spacing: TypeScript declarations (1.975791ms)
+✖ R01/R03: rejects and fixes missing spacing: validation, operation and result (1.530625ms)
+✖ R01/R03: rejects and fixes missing spacing: class methods (1.059166ms)
+✖ R01/R03: rejects and fixes missing spacing: object methods (0.900125ms)
+✖ R01/R03: rejects and fixes missing spacing: attached comments and directives (0.943042ms)
+✔ R02: leaves same-group imports and compliant code unchanged (2.344667ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 1
+ℹ fail 6
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 795.878208
+
+✖ failing tests:
+
+test at tests/policy/readability.test.mjs:21:3
+✖ R01/R03: rejects and fixes missing spacing: import groups and imports ending (13.876625ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(messages.some((message) => message.ruleId === 'weave/readability'))
+  
+      at TestContext.<anonymous> (file:///Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/tests/policy/readability.test.mjs:23:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/policy/readability.test.mjs:21:3
+✖ R01/R03: rejects and fixes missing spacing: TypeScript declarations (1.975791ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(messages.some((message) => message.ruleId === 'weave/readability'))
+  
+      at TestContext.<anonymous> (file:///Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/tests/policy/readability.test.mjs:23:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/policy/readability.test.mjs:21:3
+✖ R01/R03: rejects and fixes missing spacing: validation, operation and result (1.530625ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(messages.some((message) => message.ruleId === 'weave/readability'))
+  
+      at TestContext.<anonymous> (file:///Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/tests/policy/readability.test.mjs:23:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/policy/readability.test.mjs:21:3
+✖ R01/R03: rejects and fixes missing spacing: class methods (1.059166ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(messages.some((message) => message.ruleId === 'weave/readability'))
+  
+      at TestContext.<anonymous> (file:///Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/tests/policy/readability.test.mjs:23:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/policy/readability.test.mjs:21:3
+✖ R01/R03: rejects and fixes missing spacing: object methods (0.900125ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(messages.some((message) => message.ruleId === 'weave/readability'))
+  
+      at TestContext.<anonymous> (file:///Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/tests/policy/readability.test.mjs:23:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/policy/readability.test.mjs:21:3
+✖ R01/R03: rejects and fixes missing spacing: attached comments and directives (0.943042ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(messages.some((message) => message.ruleId === 'weave/readability'))
+  
+      at TestContext.<anonymous> (file:///Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/tests/policy/readability.test.mjs:23:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

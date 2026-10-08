@@ -11,43 +11,43 @@
     },
     {
       "file": "apps/web/src/features/auth/application/policy.ts",
-      "line": 19,
+      "line": 23,
       "title": "resolveEntry",
       "description": "Page calls resolveEntry({}); it returns the public entry contract. The historical ticket-query branch is not invoked by these pages.\n\nTransition: returns entry"
     },
     {
       "file": "apps/web/src/features/auth/presentation/clerk-auth.tsx",
-      "line": 17,
+      "line": 22,
       "title": "ClerkAuth",
       "description": "React renders this composition root. Clerk hooks supply current SDK resources. useState initializes the resource binder and gateway.\n\nTransition: React renders"
     },
     {
       "file": "apps/web/src/features/auth/infrastructure/live-resources.ts",
-      "line": 5,
+      "line": 6,
       "title": "createLiveResources",
       "description": "Called during initial state creation. Later useLayoutEffect updates the same binder; gateway getters read the latest resources.\n\nTransition: returns binder"
     },
     {
       "file": "apps/web/src/features/auth/infrastructure/clerk-gateway.ts",
-      "line": 25,
+      "line": 32,
       "title": "createClerkGateway",
       "description": "Called by the second state initializer; returns AuthGateway operations. Its methods execute later on events, not during construction.\n\nTransition: returns gateway"
     },
     {
       "file": "apps/web/src/features/auth/presentation/auth-view.tsx",
-      "line": 184,
+      "line": 199,
       "title": "AuthView",
       "description": "React renders AuthView. Its readiness/task gates decide whether to render AuthForm.\n\nTransition: React renders"
     },
     {
       "file": "apps/web/src/features/auth/presentation/auth-view.tsx",
-      "line": 22,
+      "line": 25,
       "title": "AuthForm",
       "description": "Anonymous ready SDK: createAuthFlow during state initialization; subscribe with useSyncExternalStore. Return form markup.\n\nTransition: initializes controller"
     },
     {
       "file": "apps/web/src/features/auth/application/flow.ts",
-      "line": 187,
+      "line": 245,
       "title": "createAuthFlow",
       "description": "Returns new AuthenticationFlow; constructor calls gateway.current(mode), then stores the initial snapshot.\n\nTransition: returns controller"
     },

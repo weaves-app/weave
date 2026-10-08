@@ -1,16 +1,19 @@
 'use client';
 
 import {useRef, useState} from 'react';
+
 export interface SignOutControlProps {
   readonly signOut: () => Promise<void>;
   readonly signedOut: () => void;
   readonly timeoutMilliseconds?: number;
 }
+
 export interface HomeViewProps extends SignOutControlProps {
   readonly loaded: boolean;
   readonly signedIn: boolean;
   readonly verified?: boolean;
 }
+
 export function SignOutControl({
   signOut,
   signedOut,
@@ -19,15 +22,19 @@ export function SignOutControl({
   const busy = useRef(false);
   const [pending, setPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
   const perform = async (): Promise<void> => {
     if (busy.current) return;
+
     busy.current = true;
     setPending(true);
     setError(null);
+
     let timer: ReturnType<typeof setTimeout> | undefined;
     const deadline = new Promise<never>((_resolve, reject) => {
       timer = setTimeout(() => reject(new Error('Sign out timed out')), timeoutMilliseconds);
     });
+
     try {
       await Promise.race([signOut(), deadline]);
       signedOut();
@@ -39,6 +46,7 @@ export function SignOutControl({
       setPending(false);
     }
   };
+
   return (
     <>
       {error && <p role="alert">{error}</p>}
@@ -54,6 +62,7 @@ export function SignOutControl({
     </>
   );
 }
+
 export function HomeView({
   loaded,
   signedIn,
@@ -68,12 +77,14 @@ export function HomeView({
         <p role="status">Restoring session…</p>
       </main>
     );
+
   if (!signedIn)
     return (
       <main className="home-page">
         <a href="/sign-in">Sign in</a>
       </main>
     );
+
   return (
     <main className="home-page">
       {verified ? (

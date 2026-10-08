@@ -52,3 +52,7 @@ Supersedes Membership optional and the organization-onboarding exclusion above. 
 Delivery order: confirmed S13–S15 → meaningful routing/access RED → GREEN; organization loading/create/accept/activate/retry/concurrency RED → GREEN; accessible UI RED → GREEN; refactor and relevant scenarios after edits; full verify and database integration; live acceptance and convergence. No publishing/deployment.
 
 S13–S15 confirmed after presentation of nine concrete scenarios. Fresh authentication always selects an organization; reload Home preserves active organization. Analysis: FR-010/011 and SC-005 map to T038–T041; no unresolved requirement or constitution conflict. Existing T034 recommendation superseded. Built-in requirements checklist passed (13/13); no custom checklist. No extension hooks configured.
+
+## Readability revision
+
+Add a shared, dependency-free ESLint readability rule with behavioral fixture RED/GREEN. Apply it to workspace and root JS/TS configs, retain Prettier, autofix authored code without reordering imports or changing logic, document the policy, run full verification and integration, and refresh source review anchors. Native generated sources stay excluded.

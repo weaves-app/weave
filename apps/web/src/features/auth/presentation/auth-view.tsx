@@ -2,6 +2,7 @@
 
 import {useEffect, useLayoutEffect, useState, useSyncExternalStore} from 'react';
 import type {FormEvent} from 'react';
+
 import {SignOutControl} from './home-view';
 import {AuthShell} from './auth-shell';
 import {GoogleButton} from './google-button';
@@ -9,6 +10,7 @@ import {pendingTaskMessage} from '../application/session-task';
 import {createAuthFlow} from '../application/flow';
 import type {AuthGateway, AuthMode} from '../application/contracts';
 import type {AuthEntry} from '../application/policy';
+
 export interface AuthViewProps {
   readonly gateway: AuthGateway;
   readonly mode: AuthMode;
@@ -19,31 +21,43 @@ export interface AuthViewProps {
   readonly pendingTask?: string;
   readonly complete: (url: string) => void;
 }
+
 function AuthForm({gateway, mode, complete}: AuthViewProps): React.JSX.Element {
   const [flow] = useState(() => createAuthFlow(gateway, {mode, complete}));
+
   useLayoutEffect(() => flow.rebind(gateway, complete), [flow, gateway, complete]);
+
   const state = useSyncExternalStore(flow.subscribe, flow.getSnapshot, flow.getSnapshot);
   const [showPassword, setShowPassword] = useState(false);
+
   useEffect(() => () => flow.cancel(), [flow]);
+
   const verification = state.stage === 'verification';
   const signin = mode === 'signin';
   const title = verification ? 'Check your inbox' : signin ? 'Welcome back' : 'Create your account';
   const disabled = state.pending || state.stage === 'complete';
+
   const submit = (event: FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
+
     const form = event.currentTarget;
     const values = new FormData(form);
+
     const field = (name: string): string => {
       const value = values.get(name);
+
       return typeof value === 'string' ? value : '';
     };
+
     const operation = verification
       ? flow.verify(field('code'))
       : flow.submit({email: field('email'), password: field('password')});
+
     void operation.then(() => {
       if (flow.getSnapshot().stage !== 'credentials') form.reset();
     });
   };
+
   return (
     <AuthShell>
       <h2>{title}</h2>
@@ -181,8 +195,10 @@ function AuthForm({gateway, mode, complete}: AuthViewProps): React.JSX.Element {
     </AuthShell>
   );
 }
+
 export function AuthView(props: AuthViewProps): React.JSX.Element {
   const {loaded, sdkLoaded, pendingTask, signedIn, complete} = props;
+
   useEffect(() => {
     if (
       loaded &&
@@ -191,18 +207,21 @@ export function AuthView(props: AuthViewProps): React.JSX.Element {
     )
       complete('/organizations');
   }, [loaded, sdkLoaded, pendingTask, signedIn, complete]);
+
   if (!props.loaded || props.sdkLoaded === false)
     return (
       <AuthShell>
         <p role="status">Loading authentication…</p>
       </AuthShell>
     );
+
   if (props.pendingTask === 'choose-organization' || (props.signedIn && !props.pendingTask))
     return (
       <AuthShell>
         <p role="status">Opening your organizations…</p>
       </AuthShell>
     );
+
   if (props.pendingTask)
     return (
       <AuthShell>
@@ -216,6 +235,7 @@ export function AuthView(props: AuthViewProps): React.JSX.Element {
         />
       </AuthShell>
     );
+
   if (props.signedIn)
     return (
       <AuthShell>
@@ -227,5 +247,6 @@ export function AuthView(props: AuthViewProps): React.JSX.Element {
         />
       </AuthShell>
     );
+
   return <AuthForm key={props.mode} {...props} />;
 }

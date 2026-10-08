@@ -5,49 +5,49 @@
   "steps": [
     {
       "file": "apps/web/src/app/page.tsx",
-      "line": 7,
+      "line": 10,
       "title": "Home",
       "description": "Call serverSessionGateway() to construct the port, then await readAccess(gateway).\n\nTransition: server route calls policy"
     },
     {
       "file": "apps/web/src/features/auth/application/policy.ts",
-      "line": 46,
+      "line": 55,
       "title": "readAccess",
       "description": "Await gateway.read(); catch failure as unavailable. Returned identity determines access.\n\nTransition: calls gateway.read"
     },
     {
       "file": "apps/web/src/features/auth/infrastructure/session-gateway.ts",
-      "line": 11,
+      "line": 14,
       "title": "createSessionGateway.read",
       "description": "Await port.readAuth(); no valid userId → return anonymous without user lookup. Otherwise await port.readUser().\n\nTransition: calls server port"
     },
     {
       "file": "apps/web/src/features/auth/infrastructure/server-session.ts",
-      "line": 8,
+      "line": 10,
       "title": "serverSessionGateway.readAuth",
       "description": "This injected callback checks config then calls auth(treatPendingAsSignedOut:false). It returns to gateway.read. With valid userId, gateway.read then invokes the sibling readUser callback, which calls auth again then clerkClient().users.getUser. The factory itself is not called again here.\n\nTransition: server-only SDK boundary"
     },
     {
       "file": "apps/web/src/features/auth/infrastructure/session-gateway.ts",
-      "line": 11,
+      "line": 14,
       "title": "createSessionGateway.read",
       "description": "Validate matching user, primary email verification; pending session suppresses organizationId. Return normalized identity to readAccess.\n\nTransition: returns identity"
     },
     {
       "file": "apps/web/src/features/auth/application/policy.ts",
-      "line": 46,
+      "line": 55,
       "title": "readAccess",
       "description": "No user → anonymous; unverified → unverified; verified org → authenticated; verified no org → organization-required.\n\nTransition: returns AccessResult"
     },
     {
       "file": "apps/web/src/app/page.tsx",
-      "line": 7,
+      "line": 10,
       "title": "Home",
       "description": "Handle AccessResult: unavailable renders AuthUnavailable; anonymous redirects signin; org-required redirects picker; otherwise ClerkHome(verified=authenticated).\n\nTransition: redirect OR render"
     },
     {
       "file": "apps/web/src/features/auth/presentation/clerk-auth.tsx",
-      "line": 66,
+      "line": 90,
       "title": "ClerkHome",
       "description": "React renders HomeView using default useAuth readiness and sign-out callbacks. HomeView shows restoring/signedout/verified Home or verification-required state.\n\nTransition: React rendering"
     },
