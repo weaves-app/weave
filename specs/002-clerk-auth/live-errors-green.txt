@@ -1,0 +1,28 @@
+✔ WEA-10 S01 signup sends verification, never activates before correct code, then opens Home (1.065083ms)
+✔ WEA-10 S01/S08 wrong or expired code is recoverable and resend can be retried (0.308292ms)
+✔ WEA-10 S01/S08 empty/malformed email and missing password/code make no provider calls (0.140958ms)
+✔ WEA-10 S01/S08 unverified provider completion or unsupported requirements cannot activate (0.112833ms)
+✔ WEA-10 S02 password login and Device Trust verification both reach Home (0.175291ms)
+✔ WEA-10 S07 interrupted verification restores without needing password again (0.087625ms)
+✔ WEA-10 S08 duplicate/signup/invalid login/network/rejected-password errors finish loading (0.171458ms)
+✔ WEA-10 S08 repeated submits issue one mutation and cancellation prevents late activation (0.081208ms)
+✔ WEA-10 S07/S08 cancellation during activation clears late session and never navigates (0.090084ms)
+✔ WEA-10 S07 signout awaits provider, clears state and reports recoverable failure (0.123375ms)
+✔ WEA-10 S03 invitation signup supplies only ticket/password and reaches intended Home (0.100583ms)
+✔ WEA-10 S03/S08 missing/expired/reused invitation keeps context and never falls back (0.105084ms)
+✔ WEA-10 S03/S08 failed invitation activation can retry without replaying the consumed ticket (0.099083ms)
+✔ WEA-10 S08 timeout finishes loading and blocks late authentication activation (16.528125ms)
+✔ WEA-10 S01 public form labels/password → verification → Home callback (88.194542ms)
+✔ WEA-10 S08 pending/error states disable duplicates, finish loading and allow retry (27.23ms)
+✔ WEA-10 S07 Home stays hidden until auth resolves and after signout; signout failure recovers (18.278792ms)
+✔ WEA-10 S01/S07 signed-in unverified session never renders Home (12.210334ms)
+✔ WEA-10 S07/S08 signout timeout releases loading and offers a retry (11.993083ms)
+✔ WEA-10 S08 unknown-account error survives refreshed SDK resources and callbacks (18.303416ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 20
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 891.649125

@@ -1,0 +1,92 @@
+✔ WEA-10 S01 SDK adapter uses email/password then email verification before finalize (0.975458ms)
+✔ WEA-10 S03 SDK invitation request contains ticket/password and no substitute email (0.122416ms)
+✔ WEA-10 S02/S07 SDK Device Trust and signout follow supported APIs (0.157833ms)
+✔ WEA-10 S08 SDK returned error is rejected, incomplete status cannot finalize (0.204958ms)
+✖ WEA-10 S11 Google adapter uses the supported SSO API and protected callback destinations (1.369ms)
+✔ WEA-10 S11 unresolved callback refuses activation; completed callback finalizes only once (1.383125ms)
+✔ WEA-10 S11 transfer reads current SDK snapshot after awaited create (0.243333ms)
+✔ WEA-10 S11 extra fields and verification direct users to actual requirements, never Home (0.209458ms)
+✔ WEA-10 S11 returned finalize errors cannot report Home success (0.247208ms)
+✖ WEA-10 S11 pending organization session explains the blocker and never navigates Home (2.128833ms)
+✔ WEA-10 S02/S07 protected resource is no-store and requires verified matching session user (12.856125ms)
+✔ WEA-10 S02 signed-out protected request avoids user lookup; outage is 503 (0.241709ms)
+✖ WEA-10 S15 verified identity without an active organization cannot read protected resources (1.769959ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 10
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 252.454792
+
+✖ failing tests:
+
+test at test/auth-adapter.test.ts:2:4944
+✖ WEA-10 S11 Google adapter uses the supported SSO API and protected callback destinations (1.369ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+      {
+        redirectCallbackUrl: '/sso-callback',
+  +     redirectUrl: '/',
+  -     redirectUrl: '/organizations',
+        strategy: 'oauth_google'
+      },
+      {
+        redirectCallbackUrl: '/sso-callback',
+  +     redirectUrl: '/',
+  -     redirectUrl: '/organizations',
+        strategy: 'oauth_google'
+      }
+    ]
+  
+      at TestContext.<anonymous> (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-adapter.test.ts:152:10)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { strategy: 'oauth_google', redirectUrl: '/', redirectCallbackUrl: '/sso-callback' }, { strategy: 'oauth_google', redirectUrl: '/', redirectCallbackUrl: '/sso-callback' } ],
+    expected: [ { strategy: 'oauth_google', redirectUrl: '/organizations', redirectCallbackUrl: '/sso-callback' }, { strategy: 'oauth_google', redirectUrl: '/organizations', redirectCallbackUrl: '/sso-callback' } ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at test/auth-oauth.test.ts:2:4806
+✖ WEA-10 S11 pending organization session explains the blocker and never navigates Home (2.128833ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+  +   error: 'Your account setup requires organization membership before you can continue. Contact your workspace administrator.'
+  -   destination: '/organizations'
+    }
+  
+      at TestContext.<anonymous> (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-oauth.test.ts:133:10)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { error: 'Your account setup requires organization membership before you can continue. Contact your workspace administrator.' },
+    expected: { destination: '/organizations' },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at test/auth-server.test.ts:2:2935
+✖ WEA-10 S15 verified identity without an active organization cannot read protected resources (1.769959ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  200 !== 401
+  
+      at TestContext.<anonymous> (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-server.test.ts:49:10)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 200,
+    expected: 401,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

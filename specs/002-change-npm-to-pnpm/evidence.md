@@ -56,3 +56,15 @@ The final explicit configuration also passed an [offline frozen workspace instal
 ### Requested Matt Pocock two-axis review
 
 Reviewed `git diff 27698fb1a257259e12946e1526e57b1c6fc58836...9c82e5e041b63f6349a69a2d3209bbc1aa734286` with separate standards/spec agents. Commits: 4118b58 migration and 9c82e5e remediation. Standards: zero hard documented violations; one low-priority possible Duplicated Code smell in the identical pnpm bootstrap blocks of both Dockerfiles. Kept the existing bootstrap boundary for this migration; extracting a shared helper is optional maintenance, not a required correction. Spec: zero actionable findings, no missing implementation or scope creep. Fresh container CI remains the validation gate for the changed Dockerfiles.
+
+## PR #7 conflict resolution — 2026-10-08
+
+Merged develop at f041c9578d070700ad04c4118f4c5b2fc728b8f6 into WEA-8. Kept Clerk/runtime and DOM testing dependencies from WEA-10, workspace:* references and pnpm adoption/audit contracts from WEA-8, and the npm lockfile deletion. Updated pnpm-lock.yaml for the new dependencies; existing locked package entries were retained. Applied four required readability blank-line fixes. No new authored behavior or fabricated RED evidence.
+
+- S01: normal and repeated frozen installation passed with pnpm 11.1.1 ([frozen](evidence/conflict-frozen.txt)).
+- S02/S05/S06: full pnpm run verify exited 0: lint/architecture, formatting, typechecks, policy/app tests, API/web builds and Android/iOS Metro bundles ([verify](evidence/conflict-verify.txt)). Initial attempts exposed a missing local DATABASE_URL and four blank-line readability errors; final run passed after supplying the documented URL and applying formatting fixes.
+- S02: fresh temporary PostgreSQL migration succeeded and all three HTTP/database integration tests passed ([migration](evidence/conflict-migrations.txt), [integration](evidence/conflict-integration.txt)).
+- S03: the prior stale-lock rejection evidence remains applicable; no policy change.
+- S04/S05: fresh container and native compilation require remote CI; this host has no Docker CLI. Prior CI evidence is historical, not validation of this merge head.
+
+Personal author and committer match repository-local Pravin Raj <pravinrajmb@gmail.com>. GitHub SSH authenticated as pravinrajmb. The gh CLI is unavailable, so the local pre-push API identity hook cannot run; equivalent identity and full local checks were performed. Remote CI and code-owner approval remain required. Logs replace the isolated checkout path with <repo>.

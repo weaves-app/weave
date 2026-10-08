@@ -1,0 +1,41 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "12 · Sign out, cancellation and stable state",
+  "description": "User clicks Sign out from Home, organization screen or unsupported authentication task.",
+  "steps": [
+    {
+      "file": "apps/web/src/features/auth/presentation/home-view.tsx",
+      "line": 26,
+      "title": "SignOutControl.perform",
+      "description": "Busy ref prevents repeats; set pending; race injected signOut() against deadline.\n\nTransition: DOM callback awaits injected service"
+    },
+    {
+      "file": "apps/web/src/features/auth/presentation/clerk-auth.tsx",
+      "line": 90,
+      "title": "ClerkHome",
+      "description": "Home injection calls clerk.signOut(); organization injection cancels its flow then calls clerk.signOut(); AuthView injection uses gateway.deactivate().\n\nTransition: alternate composition callbacks"
+    },
+    {
+      "file": "apps/web/src/features/auth/infrastructure/clerk-gateway.ts",
+      "line": 147,
+      "title": "createClerkGateway.deactivate",
+      "description": "Auth-view sign-out delegates to resources.signOut(), wired to clerk.signOut by ClerkAuth. Home/org injections call Clerk directly.\n\nTransition: SDK boundary"
+    },
+    {
+      "file": "apps/web/src/features/auth/presentation/home-view.tsx",
+      "line": 26,
+      "title": "SignOutControl.perform",
+      "description": "Success invokes signedOut callback. Failure shows recovery. finally clears timer/busy/pending.\n\nTransition: callback OR error"
+    },
+    {
+      "file": "apps/web/src/features/auth/presentation/clerk-auth.tsx",
+      "line": 90,
+      "title": "ClerkHome",
+      "description": "Home and org success replace /sign-in + refresh; unsupported-task AuthView reloads the page.\n\nTransition: navigation handoff"
+    },
+    {
+      "title": "Branches and stop conditions",
+      "description": "These injected signOut callbacks are alternatives for different screens; Home does not call the auth gateway.\n\nAuthFlow.signOut is also an exposed controller operation, but current UI uses SignOutControl/gateway.deactivate rather than that operation.\n\nRoute links/effect cleanup call AuthenticationFlow.cancel or organizationFlow.cancel; revision/generation blocks late navigation.\n\nFlow update → listeners → useSyncExternalStore → React rerender is a notification loop, not a new authentication request."
+    }
+  ]
+}

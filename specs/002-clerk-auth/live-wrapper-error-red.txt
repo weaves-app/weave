@@ -1,0 +1,36 @@
+✔ WEA-10 S01 public form labels/password → verification → Home callback (96.843791ms)
+✔ WEA-10 S08 pending/error states disable duplicates, finish loading and allow retry (20.595875ms)
+✔ WEA-10 S07 Home stays hidden until auth resolves and after signout; signout failure recovers (11.097958ms)
+✔ WEA-10 S01/S07 signed-in unverified session never renders Home (1.695334ms)
+✔ WEA-10 S07/S08 signout timeout releases loading and offers a retry (10.796541ms)
+✖ WEA-10 S08 unknown-account error survives refreshed SDK resources and callbacks (1013.648917ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 5
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1931.389208
+
+✖ failing tests:
+
+test at test/auth-ui.test.tsx:2:6426
+✖ WEA-10 S08 unknown-account error survives refreshed SDK resources and callbacks (1013.648917ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /incorrect/i. Input:
+  
+  'Authentication could not finish. Check your connection and try again.'
+  
+      at <anonymous> (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-ui.test.tsx:140:30)
+      at runWithExpensiveErrorDiagnosticsDisabled (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/node_modules/@testing-library/dom/dist/config.js:47:12)
+      at checkCallback (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/node_modules/@testing-library/dom/dist/wait-for.js:124:77)
+      at Timeout.checkRealTimersCallback [as _onTimeout] (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/node_modules/@testing-library/dom/dist/wait-for.js:118:16)
+      at listOnTimeout (node:internal/timers:685:17)
+      at process.processTimers (node:internal/timers:618:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'Authentication could not finish. Check your connection and try again.',
+    expected: /incorrect/i,
+    operator: 'match',
+    diff: 'simple'
+  }

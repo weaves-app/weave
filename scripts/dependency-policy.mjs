@@ -5,6 +5,7 @@ export function validateDependencyProposal({author, sameRepository, base, files}
     base !== 'develop'
   )
     return 'Only same-repository Dependabot proposals into develop may be adopted.';
+
   if (
     !files?.length ||
     files.some(
@@ -15,5 +16,6 @@ export function validateDependencyProposal({author, sameRepository, base, files}
     )
   )
     return 'Dependency proposals may change only manifests, lockfiles and Action pins.';
+
   return null;
 }

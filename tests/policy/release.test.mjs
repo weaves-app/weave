@@ -1,6 +1,8 @@
 import assert from 'node:assert/strict';
 import {test} from 'node:test';
+
 import {nextVersion} from '../../scripts/release-policy.mjs';
+
 test('S12 main releases classify Conventional Commits by highest impact', () => {
   assert.equal(nextVersion('1.2.3', ['fix: repair bug [WEA-6]']), '1.2.4');
   assert.equal(

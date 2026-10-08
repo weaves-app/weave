@@ -15,5 +15,10 @@
     "request": "User requested resolving PR #7 review comments.",
     "existingScenarios": ["S01", "S02", "S03", "S04", "S05", "S06"],
     "scope": "Reconcile verified CI readiness, prune on the native build platform, correct active bootstrap/Metro docs, sanitize WEA-8 log path prefixes, and record post-merge bot follow-ups. Explicit age 1440 and strict false preserve existing pnpm 11.1.1 behavior, verified at the existing S01/S06 CLI seams; no new strict age contract is introduced."
+  },
+  "conflictResolution": {
+    "requestedOn": "2026-10-08",
+    "baseCommit": "f041c9578d070700ad04c4118f4c5b2fc728b8f6",
+    "scope": "Merge develop into PR #7, retaining WEA-10 Clerk dependencies/tests and WEA-8 pnpm workspace, audit and adoption contracts. No new authored behavior; existing S01-S06 and WEA-10 regression seams apply."
   }
 }

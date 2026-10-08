@@ -1,0 +1,247 @@
+✖ WEA-10 S01 signup sends verification, never activates before correct code, then opens Home (1.513ms)
+✖ WEA-10 S01/S08 wrong or expired code is recoverable and resend can be retried (0.214375ms)
+✖ WEA-10 S01/S08 empty/malformed email and missing password/code make no provider calls (3.481875ms)
+✖ WEA-10 S01/S08 unverified provider completion or unsupported requirements cannot activate (0.243042ms)
+✖ WEA-10 S02 password login and Device Trust verification both reach Home (0.5825ms)
+✖ WEA-10 S07 interrupted verification restores without needing password again (0.112875ms)
+✖ WEA-10 S08 duplicate/signup/invalid login/network/rejected-password errors finish loading (0.167625ms)
+✖ WEA-10 S08 repeated submits issue one mutation and cancellation prevents late activation (0.118458ms)
+✖ WEA-10 S07/S08 cancellation during activation clears late session and never navigates (0.113167ms)
+✖ WEA-10 S07 signout awaits provider, clears state and reports recoverable failure (0.174625ms)
+✖ WEA-10 S03 invitation signup supplies only ticket/password and reaches intended Home (0.13725ms)
+✖ WEA-10 S03/S08 missing/expired/reused invitation keeps context and never falls back (0.318084ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 0
+ℹ fail 12
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 141.567333
+
+✖ failing tests:
+
+test at apps/web/test/auth-flow.test.ts:2:1926
+✖ WEA-10 S01 signup sends verification, never activates before correct code, then opens Home (1.513ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'credentials'
+  - 'verification'
+  
+      at TestContext.<anonymous> (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-flow.test.ts:14:10)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'credentials',
+    expected: 'verification',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at apps/web/test/auth-flow.test.ts:2:2699
+✖ WEA-10 S01/S08 wrong or expired code is recoverable and resend can be retried (0.214375ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'credentials'
+  - 'verification'
+  
+      at TestContext.<anonymous> (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-flow.test.ts:22:10)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'credentials',
+    expected: 'verification',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at apps/web/test/auth-flow.test.ts:2:3527
+✖ WEA-10 S01/S08 empty/malformed email and missing password/code make no provider calls (3.481875ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(flow.getSnapshot().error)
+  
+      at TestContext.<anonymous> (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-flow.test.ts:28:160)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at apps/web/test/auth-flow.test.ts:2:4188
+✖ WEA-10 S01/S08 unverified provider completion or unsupported requirements cannot activate (0.243042ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(flow.getSnapshot().error)
+  
+      at TestContext.<anonymous> (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-flow.test.ts:35:44)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at apps/web/test/auth-flow.test.ts:2:4751
+✖ WEA-10 S02 password login and Device Trust verification both reach Home (0.5825ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + []
+  - [
+  -   '/'
+  - ]
+  
+      at TestContext.<anonymous> (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-flow.test.ts:43:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [],
+    expected: [ '/' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at apps/web/test/auth-flow.test.ts:2:5234
+✖ WEA-10 S07 interrupted verification restores without needing password again (0.112875ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'credentials'
+  - 'verification'
+  
+      at TestContext.<anonymous> (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-flow.test.ts:48:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'credentials',
+    expected: 'verification',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at apps/web/test/auth-flow.test.ts:2:5674
+✖ WEA-10 S08 duplicate/signup/invalid login/network/rejected-password errors finish loading (0.167625ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(flow.getSnapshot().error)
+  
+      at TestContext.<anonymous> (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-flow.test.ts:53:44)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at apps/web/test/auth-flow.test.ts:2:6293
+✖ WEA-10 S08 repeated submits issue one mutation and cancellation prevents late activation (0.118458ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 1
+  
+      at TestContext.<anonymous> (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-flow.test.ts:61:10)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at apps/web/test/auth-flow.test.ts:2:7082
+✖ WEA-10 S07/S08 cancellation during activation clears late session and never navigates (0.113167ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at TestContext.<anonymous> (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-flow.test.ts:67:101)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at apps/web/test/auth-flow.test.ts:2:7791
+✖ WEA-10 S07 signout awaits provider, clears state and reports recoverable failure (0.174625ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(flow.getSnapshot().error)
+  
+      at TestContext.<anonymous> (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-flow.test.ts:72:32)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at apps/web/test/auth-flow.test.ts:2:8307
+✖ WEA-10 S03 invitation signup supplies only ticket/password and reaches intended Home (0.13725ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + []
+  - [
+  -   [
+  -     'recipient-ticket',
+  -     'secret-test-only'
+  -   ]
+  - ]
+  
+      at TestContext.<anonymous> (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-flow.test.ts:77:97)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [],
+    expected: [ [ 'recipient-ticket', 'secret-test-only' ] ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at apps/web/test/auth-flow.test.ts:2:9012
+✖ WEA-10 S03/S08 missing/expired/reused invitation keeps context and never falls back (0.318084ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(missing.getSnapshot().error)
+  
+      at TestContext.<anonymous> (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-flow.test.ts:82:162)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

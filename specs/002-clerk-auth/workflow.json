@@ -1,0 +1,141 @@
+{
+  "ticket": "WEA-10",
+  "scenariosConfirmed": true,
+  "confirmation": "2026-10-06: User said \"confirm web scenarios\" after presentation of web signup/verification, login/protection, recipient-bound invitation signup, sessions/signout, recoverable failures and behavioral RED/GREEN plus required checks.",
+  "scenarioIds": ["S01", "S02", "S03", "S07", "S08", "S09", "S10"],
+  "status": "web-regressions-fixed-live-membership-prerequisite",
+  "confirmedScope": "Next.js only: S01, S02, S03 and web portions of S07, S08, S09, S10",
+  "nativeScenariosConfirmed": false,
+  "nativeOwner": "Pravin Raj",
+  "ticketScenarioIds": ["S01", "S02", "S03", "S04", "S05", "S06", "S07", "S08", "S09", "S10"],
+  "publicTestSeams": [
+    "resolveEntry",
+    "readAccess(SessionGateway)",
+    "createAuthFlow(AuthGateway, FlowOptions)",
+    "createClerkGateway(ClerkResources)",
+    "AuthView/HomeView",
+    "serveSession(SessionGateway)"
+  ],
+  "convergence": "tasks_appended",
+  "remainingTasks": [
+    "T027",
+    "T028",
+    "T029",
+    "T030",
+    "T033",
+    "T034",
+    "T035",
+    "T036",
+    "T041",
+    "T042",
+    "T043"
+  ],
+  "verification": {
+    "webTests": "58/58 passed: evidence/static-bag-verify.txt",
+    "repositoryVerify": "passed: evidence/static-bag-verify.txt",
+    "databaseHttpIntegration": "3/3 passed: evidence/static-bag-integration.txt",
+    "liveClerk": "Owner reported Google authentication/organization creation worked in real Clerk on 2026-10-08. Email verification/re-login and invitations not separately confirmed.",
+    "native": "Pravin; outside session",
+    "remoteCI": "Container assertion and missing public asset packaging corrected; fresh remote run follows publication. Previous required gate failed. Code-owner review pending."
+  },
+  "designApproval": {
+    "date": "2026-10-07",
+    "message": "Yes looks good. Go with this design.",
+    "scenarioIds": ["S12"],
+    "reference": "Approved local design with rendered Weave bag, uniform linen hero and logo above form"
+  },
+  "revision": {
+    "scope": "Next.js branded signup/signin/verification, Google auth, existing protected Home",
+    "deferred": ["S03", "invitation UI", "organization/settings management"],
+    "proposedScenarioIds": ["S11"],
+    "scenariosConfirmed": true,
+    "confirmation": "2026-10-07: User answered \"Confirm these scenarios\" to the presented Google success, failure/cancellation, duplicate, missing-config and preserved email/protection scenarios.",
+    "publicTestSeams": [
+      "AuthView branded interactions",
+      "AuthGateway Google operation",
+      "Clerk SDK SSO adapter",
+      "OAuth callback boundary",
+      "readAccess(SessionGateway)"
+    ],
+    "implemented": true
+  },
+  "activeScenarioIds": [
+    "S01",
+    "S02",
+    "S07",
+    "S08",
+    "S09",
+    "S10",
+    "S11",
+    "S12",
+    "S13",
+    "S14",
+    "S15",
+    "S18"
+  ],
+  "bugfix": {
+    "scenarioIds": ["S01", "S02", "S08", "S11"],
+    "confirmationReference": "Existing explicitly confirmed scenarios; user reports stuck Google callback and missing unknown-account sign-in error. No additional authentication requirements or settings changes authorized.",
+    "publicTestSeams": ["AuthView rerender/error preservation", "OAuth callback result and view"],
+    "liveAcceptance": "Not passed; automated tests were mocked. User observed Google callback hang.",
+    "sourceVerified": true
+  },
+  "organizationRevision": {
+    "designApproved": true,
+    "designConfirmation": "2026-10-07: Approve the design, go ahead",
+    "scenariosConfirmed": true,
+    "scenarioIds": ["S13", "S14", "S15"],
+    "status": "implemented-local-checks-passed-live-acceptance-pending",
+    "publicTestSeams": [
+      "organization gateway list/create/accept/activate",
+      "organization flow snapshot and mutation concurrency",
+      "OrganizationView accessible interactions",
+      "authentication destination",
+      "server active-organization access policy"
+    ],
+    "confirmation": "2026-10-07: User said Yea this looks good, go ahead after all nine proposed scenarios.",
+    "implemented": true
+  },
+  "readabilityRevision": {
+    "confirmation": "2026-10-08: User explicitly requested the proposed spacing policy across the entire codebase. Import groups, separated declarations and logical steps; formatting only, no product behavior change.",
+    "publicTestSeams": ["shared ESLint configuration through Linter.verify and verifyAndFix"],
+    "scenarios": [
+      "R01 missing separators rejected and autofixed",
+      "R02 compliant groups remain unchanged",
+      "R03 TypeScript declarations, class methods, comments and directives remain valid"
+    ],
+    "scope": "Authored JS/TS/TSX in all workspaces and repository scripts/tests; existing generated/vendor exclusions preserved.",
+    "verification": "Shared rule 8/8, full npm run verify and PostgreSQL/HTTP integration 3/3 passed. Executable AST comparison identical for 100 formatted files. Review anchors refreshed."
+  },
+  "motionRevision": {
+    "date": "2026-10-08",
+    "scenariosConfirmed": true,
+    "confirmation": "User answered Confirm these motion scenarios: one first-load turn per tab session, no replay on auth/onboarding navigation or form updates, subtle hover/focus/press interactions, disabled controls stay still, reduced motion skips movement.",
+    "scenarioIds": ["S16"],
+    "publicTestSeams": [
+      "AuthShell image-load lifecycle and tab session storage",
+      "CSS motion/reduced-motion states"
+    ],
+    "scope": "Next.js only; static bag image uses a perspective turn, not a full 3D model.",
+    "verification": "7/7 public motion lifecycle tests; full verify 64 web tests; PostgreSQL/HTTP 3/3; packaged production assets/auth gate passed. Actual container verification deferred to remote CI because local podman/docker API did not respond.",
+    "status": "bag entrance superseded by S18; control micro interactions retained"
+  },
+  "ownerAcceptance": {
+    "date": "2026-10-08",
+    "source": "User report",
+    "googleOrganization": "User tried real Clerk Google/org flow and confirmed that the application created the organization in Clerk and seemed to work.",
+    "limits": "Email verification/re-login, invitation acceptance and specific Home checks not separately confirmed. Native excluded from Next.js completion gate."
+  },
+  "bagMotionDecision": {
+    "date": "2026-10-08",
+    "scenariosConfirmed": true,
+    "confirmation": "User explicitly cancelled implementation of bag rotation/hover and asked to park it; preserve input and organization-card micro interactions, update PR and report completed checks.",
+    "scenarioIds": ["S18"],
+    "publicTestSeams": [
+      "AuthShell image load and pointer events",
+      "browser static artwork/control CSS states"
+    ],
+    "scope": "Static bag with original approved layout; no entrance rotation, bag hover, replay control or tab storage. Depth/layout revision parked.",
+    "verification": "Static bag RED/GREEN, 58 web tests, full repository verify, integration 3/3; production loaded image stays animation:none / transform:none after pointer input. Review map refreshed to 13 journeys/76 verified anchors."
+  }
+}

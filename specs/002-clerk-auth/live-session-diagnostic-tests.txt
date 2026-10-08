@@ -1,0 +1,14 @@
+✔ WEA-10 S01 public form labels/password → verification → Home callback (198.0875ms)
+✔ WEA-10 S08 pending/error states disable duplicates, finish loading and allow retry (65.566459ms)
+✔ WEA-10 S07 Home stays hidden until auth resolves and after signout; signout failure recovers (20.211709ms)
+✔ WEA-10 S01/S07 signed-in unverified session never renders Home (4.732542ms)
+✔ WEA-10 S07/S08 signout timeout releases loading and offers a retry (19.801ms)
+✔ WEA-10 S08 unknown-account error survives refreshed SDK resources and callbacks (68.018375ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1994.445541
