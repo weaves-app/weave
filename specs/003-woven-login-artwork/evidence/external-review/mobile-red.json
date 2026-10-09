@@ -1,0 +1,17 @@
+{
+  "head": "2c3d6a8",
+  "url": "http://localhost:4312/sign-in",
+  "productionBuild": true,
+  "viewportWidth": 375,
+  "heroDisplay": "none",
+  "preload": {
+    "href": "/brand/woven/still.v1.webp",
+    "media": null
+  },
+  "image": {
+    "currentSrc": "/brand/woven/still.v1.webp",
+    "naturalWidth": 1254,
+    "complete": true
+  },
+  "conclusion": "F4 confirmed: the browser selected and decoded the full still although the hero is hidden. Resource timing API is unavailable in the browser inspection scope; no network transfer count is claimed."
+}

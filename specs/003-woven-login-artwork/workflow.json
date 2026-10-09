@@ -133,5 +133,21 @@
       "ci": "Hosted policy, quality, integration and mobile-js pass; native/container checks remain in progress at publication. Run 37920285450.",
       "reviewStatus": "Draft pending T009/T023, final required CI and code-owner approval."
     }
+  },
+  "externalReview": {
+    "status": "validated-remediation-in-progress",
+    "scenariosConfirmed": true,
+    "scenarioIds": ["S11", "S12"],
+    "confirmation": "User provided review findings and explicitly requested validation before fixes. Existing approved desktop design remains; the supplied fixes authorize hidden-mobile resource suppression and hygiene cleanup. No new visual design decision.",
+    "reviewedHead": "2c3d6a83c664033ddef6fbe642d0d108c5118ee1",
+    "publicTestSeams": [
+      "production rendered picture/preload markup and decoded image at 375/680/681 px",
+      "CSS breakpoint contract versus authTokens",
+      "native media fallback without matchMedia",
+      "container HTTP asset responses",
+      "git asset/evidence inventory",
+      "actual PR draft state"
+    ],
+    "analysis": "F1 confirmed and PR restored to draft; F2 confirmed unused at runtime but container test still references bag; F3/F6/F7/F8 confirmed; F4 full hidden still decoded at 375px with unconditional preload; F5 remains unconfirmed and must not receive a speculative fix. All work maps to T029\u2013T034 without a new architecture or dependency."
   }
 }

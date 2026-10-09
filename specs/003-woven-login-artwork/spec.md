@@ -78,3 +78,10 @@ The user explicitly requested Matt Pocock's two-axis code review, workspace/Goog
 These scenarios are the user's review requirements and existing delivery rules, not new product behavior. Existing S01–S08 remain authoritative for motion and fallback.
 
 Review clarification for S01/S03: eligible mounts explicitly request media buffering before waiting for `canplay`; initial and ineligible markup keeps `preload="none"` and no source. A browser may honor the no-preload hint, so waiting for readiness without requesting data is a portability concern. Chromium completed readiness in the review probe; Safari was not observable. This clarification does not treat the concern as a reproduced Safari failure. React StrictMode's setup/cleanup/setup cycle must still permit one subsequent playback attempt and a terminal still.
+
+## External review validation and remediation
+
+The user supplied PR #10 findings F1–F8 and asked to validate them before fixing. This authorizes the confirmed cleanup and existing fallback/responsiveness corrections; do not change the approved artwork or make a speculative handoff fix. Historical media remains recoverable in immutable Git references instead of the deployed public directory.
+
+- **S11 (responsive resource boundary)**: Given a viewport at or below 680 px, when an authentication page loads, then its hidden hero requests neither the full artwork still nor the intro. At 681 px and above, the approved still remains available promptly, including without JavaScript. One shared auth breakpoint governs eligibility and responsive resource selection; CSS literals are checked against that token.
+- **S12 (review hygiene)**: Given review findings, validate current PR state, asset references and evidence before remediation. Keep the PR draft while T009/T023 remain open; remove unused deployed artwork with recoverable history, normalize local paths and condense repeated verification logs without changing results or RED/GREEN chronology. Existing matchMedia-unavailable fallback remains tested. A suspected handoff flash only receives a behavior fix if reproduced.

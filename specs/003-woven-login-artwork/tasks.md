@@ -72,3 +72,14 @@ Dependency update: T021 → T022 precede completion of T019 and publication T020
 - [x] T028 Push reviewed fixes through normal hooks, update PR traceability/evidence and confirm the remote head, metadata policy and current check status while retaining actual browser/reviewer limitations. Final CI and code-owner approval remain required before merge.
 
 Dependencies: T024 → T025 → T026/T027 → T028. Independent review subagents are explicitly required by the invoked code-review skill; implementation stays sequential.
+
+## Phase 11: External review findings
+
+- [x] T029 Validate F1–F8 against the reviewed head, record authorization/public seams and restore draft state for S12 before changing code.
+- [ ] T030 Remove obsolete deployed assets, update container asset checks and preserve immutable recovery links (F2/S12).
+- [ ] T031 Normalize local evidence paths and condense repeated full verification logs while preserving unique RED/GREEN chronology (F3/F7/S12).
+- [ ] T032 Reproduce hidden artwork loading, add responsive resource regression coverage, and implement native desktop/mobile selection with the shared breakpoint and CSS consistency checks (F4/F6/S11).
+- [ ] T033 Investigate the possible handoff flash and only fix a reproduced failure; simplify status markup, use specific test selectors and cover unavailable matchMedia (F5/F8/S02–S04/S12).
+- [ ] T034 Run final verification/integration/container checks, record individual finding dispositions and convergence, then publish each concern through normal hooks.
+
+Dependencies: T029 precedes all source changes; T030/T031/T032/T033 precede T034. Existing T009/T023 remain authoritative visual gates.
