@@ -1,0 +1,443 @@
+{
+  "blender": "5.2.2 LTS",
+  "purpose": "Sampled geometry inspection; approved texture projection is authored in Three.js",
+  "samples": [
+    {
+      "milliseconds": 0,
+      "shadowOpacity": 0,
+      "ribbons": [
+        {
+          "name": "Olive upper cross-thread",
+          "bounds_min": [-14.979658126831055, -0.29478728486647754, 0.0],
+          "bounds_max": [-8.281740188598633, 0.09372811165577725, 0.0],
+          "max_half_width_px": 14.399999618530273
+        },
+        {
+          "name": "Olive upper down-thread",
+          "bounds_min": [-0.6785383999180427, 8.282342910766602, 0.0007812500116415322],
+          "bounds_max": [-0.2518489524420493, 16.027462005615234, 0.0007812500116415322],
+          "max_half_width_px": 14.300000190734863
+        },
+        {
+          "name": "Olive lower down-thread",
+          "bounds_min": [0.18887701105905802, -15.341197967529297, 0.0015625000232830644],
+          "bounds_max": [0.5291792504804013, -8.281468391418457, 0.0015625000232830644],
+          "max_half_width_px": 14.300000190734863
+        },
+        {
+          "name": "Olive lower cross-thread",
+          "bounds_min": [8.28181266784668, 0.612294278229342, 0.0023437500931322575],
+          "bounds_max": [16.412967681884766, 1.0581589910949194, 0.0023437500931322575],
+          "max_half_width_px": 14.100000381469727
+        },
+        {
+          "name": "Ivory descending thread",
+          "bounds_min": [8.333436965942383, -15.193437576293945, 0.0031250000465661287],
+          "bounds_max": [14.261743545532227, -7.989011764526367, 0.0031250000465661287],
+          "max_half_width_px": 16.399999618530273
+        },
+        {
+          "name": "Ivory returning thread",
+          "bounds_min": [7.884476661682129, 8.198183059692383, 0.00390625],
+          "bounds_max": [14.849308013916016, 15.349102020263672, 0.00390625],
+          "max_half_width_px": 16
+        },
+        {
+          "name": "Terracotta binding",
+          "bounds_min": [-10.740718841552734, 7.948678493499756, 0.5],
+          "bounds_max": [-8.212485313415527, 10.60488510131836, 0.5],
+          "max_half_width_px": 12.399999618530273
+        }
+      ]
+    },
+    {
+      "milliseconds": 200,
+      "shadowOpacity": 0.034603282796213275,
+      "ribbons": [
+        {
+          "name": "Olive upper cross-thread",
+          "bounds_min": [-13.537531852722168, -0.2420230032418458, 0.0],
+          "bounds_max": [-6.839509963989258, 0.14646106572929452, 0.0],
+          "max_half_width_px": 14.399999618530273
+        },
+        {
+          "name": "Olive upper down-thread",
+          "bounds_min": [-0.7658231258392334, 6.916806697845459, 0.0007812500116415322],
+          "bounds_max": [-0.3025031266228405, 14.65561580657959, 0.0007812500116415322],
+          "max_half_width_px": 14.300000190734863
+        },
+        {
+          "name": "Olive lower down-thread",
+          "bounds_min": [0.21883782135307553, -14.10080623626709, 0.0015625000232830644],
+          "bounds_max": [0.5447658113725236, -7.049630165100098, 0.0015625000232830644],
+          "max_half_width_px": 14.300000190734863
+        },
+        {
+          "name": "Olive lower cross-thread",
+          "bounds_min": [7.0772480964660645, 0.5876855915754091, 0.0023437500931322575],
+          "bounds_max": [15.190232276916504, 1.0115136477881075, 0.0023437500931322575],
+          "max_half_width_px": 14.100000381469727
+        },
+        {
+          "name": "Ivory descending thread",
+          "bounds_min": [7.424140453338623, -14.073513984680176, 0.0031250000465661287],
+          "bounds_max": [13.339694023132324, -6.858729839324951, 0.0031250000465661287],
+          "max_half_width_px": 16.399999618530273
+        },
+        {
+          "name": "Ivory returning thread",
+          "bounds_min": [6.909958839416504, 7.301786422729492, 0.00390625],
+          "bounds_max": [13.926521301269531, 14.399359703063965, 0.00390625],
+          "max_half_width_px": 16
+        },
+        {
+          "name": "Terracotta binding",
+          "bounds_min": [-10.625713348388672, 7.8273444175720215, 0.5],
+          "bounds_max": [-8.098148345947266, 10.484186172485352, 0.5],
+          "max_half_width_px": 12.399999618530273
+        }
+      ]
+    },
+    {
+      "milliseconds": 400,
+      "shadowOpacity": 0.4651484641186221,
+      "ribbons": [
+        {
+          "name": "Olive upper cross-thread",
+          "bounds_min": [-8.635647773742676, -0.2303677503717469, 0.0],
+          "bounds_max": [-2.2808480262756348, 0.9214218854904175, 0.25],
+          "max_half_width_px": 37.94157028198242
+        },
+        {
+          "name": "Olive upper down-thread",
+          "bounds_min": [-0.9932260022194853, 2.3017265796661377, 0.0007812500116415322],
+          "bounds_max": [1.0687026977539062, 9.382597923278809, 0.25],
+          "max_half_width_px": 45.38169860839844
+        },
+        {
+          "name": "Olive lower down-thread",
+          "bounds_min": [-0.1615834504290786, -8.970890045166016, 0.0015625000232830644],
+          "bounds_max": [1.0514587675910665, -2.5738816261291504, 0.25],
+          "max_half_width_px": 21.962467193603516
+        },
+        {
+          "name": "Olive lower cross-thread",
+          "bounds_min": [2.556755304336548, -0.7552244663238525, 0.0023437500931322575],
+          "bounds_max": [9.631415367126465, 1.567012532636256, 0.25],
+          "max_half_width_px": 38.745887756347656
+        },
+        {
+          "name": "Ivory descending thread",
+          "bounds_min": [2.0005452632904053, -8.343993186950684, 0.0031250000465661287],
+          "bounds_max": [8.62302303314209, -2.012540817260742, 0.25],
+          "max_half_width_px": 16.399999618530273
+        },
+        {
+          "name": "Ivory returning thread",
+          "bounds_min": [1.722048480375196, 2.2955029010772705, 0.00390625],
+          "bounds_max": [8.5084867477417, 8.823060989379883, 0.25],
+          "max_half_width_px": 16
+        },
+        {
+          "name": "Terracotta binding",
+          "bounds_min": [-6.847763538360596, 3.777374744415283, 0.5],
+          "bounds_max": [-4.3755316734313965, 6.485785007476807, 0.5],
+          "max_half_width_px": 12.399999618530273
+        }
+      ]
+    },
+    {
+      "milliseconds": 600,
+      "shadowOpacity": 0.9402783727331907,
+      "ribbons": [
+        {
+          "name": "Olive upper cross-thread",
+          "bounds_min": [-5.075084209442139, -0.3937491852766416, -0.25],
+          "bounds_max": [0.6353428363800049, 2.9269020557403564, 0.25],
+          "max_half_width_px": 72
+        },
+        {
+          "name": "Olive upper down-thread",
+          "bounds_min": [-0.815426230430603, -1.2284163236618042, -0.25],
+          "bounds_max": [3.1562828860058563, 5.161108016967773, 0.25],
+          "max_half_width_px": 71.5
+        },
+        {
+          "name": "Olive lower down-thread",
+          "bounds_min": [-2.350827932357788, -4.804194927215576, 0.0015625000232830644],
+          "bounds_max": [1.1605857399266026, 0.8070300221443176, 0.25],
+          "max_half_width_px": 71.5
+        },
+        {
+          "name": "Olive lower cross-thread",
+          "bounds_min": [-1.1205753176795012, -2.9796864986419678, -0.25],
+          "bounds_max": [5.017768859863281, 1.454777717590332, 0.25],
+          "max_half_width_px": 70.5
+        },
+        {
+          "name": "Ivory descending thread",
+          "bounds_min": [-2.240889072418213, -3.1593329906463623, -0.25],
+          "bounds_max": [4.201303482055664, 2.9324442457888935, 0.25],
+          "max_half_width_px": 82
+        },
+        {
+          "name": "Ivory returning thread",
+          "bounds_min": [-2.943565509623772, -2.4966132640838623, -0.25],
+          "bounds_max": [2.766153067489634, 3.9084434509277344, 0.25],
+          "max_half_width_px": 80
+        },
+        {
+          "name": "Terracotta binding",
+          "bounds_min": [-1.494073748588562, -0.6978837539622708, 0.5],
+          "bounds_max": [0.34898990392684937, 0.7201600074768066, 0.5],
+          "max_half_width_px": 18.1285457611084
+        }
+      ]
+    },
+    {
+      "milliseconds": 750,
+      "shadowOpacity": 1,
+      "ribbons": [
+        {
+          "name": "Olive upper cross-thread",
+          "bounds_min": [-4.8042521476745605, -0.5671849003070336, -0.25],
+          "bounds_max": [0.8440808653831482, 3.0996346473693848, 0.25],
+          "max_half_width_px": 72
+        },
+        {
+          "name": "Olive upper down-thread",
+          "bounds_min": [-0.7776083366077277, -1.5749560594558716, -0.25],
+          "bounds_max": [3.331626019441449, 4.718506813049316, 0.25],
+          "max_half_width_px": 71.5
+        },
+        {
+          "name": "Olive lower down-thread",
+          "bounds_min": [-2.6316232681274414, -4.324849605560303, 0.0015625000232830644],
+          "bounds_max": [1.296973825499141, 1.1545528173446655, 0.25],
+          "max_half_width_px": 71.5
+        },
+        {
+          "name": "Olive lower cross-thread",
+          "bounds_min": [-1.314307456787338, -3.2606635093688965, -0.25],
+          "bounds_max": [4.492668886489064, 1.3692783117294312, 0.25],
+          "max_half_width_px": 70.5
+        },
+        {
+          "name": "Ivory descending thread",
+          "bounds_min": [-2.8504278801899816, -2.9098842679219845, -0.25],
+          "bounds_max": [3.445941686630249, 3.160246518448005, 0.25],
+          "max_half_width_px": 82
+        },
+        {
+          "name": "Ivory returning thread",
+          "bounds_min": [-2.95104028896763, -3.1468967970008417, -0.25],
+          "bounds_max": [2.9815394751152473, 2.922109035577789, 0.25],
+          "max_half_width_px": 80
+        },
+        {
+          "name": "Terracotta binding",
+          "bounds_min": [-0.8119091123337592, -0.9614494442939758, 0.5],
+          "bounds_max": [1.357170820236206, 1.2303536701949702, 0.5],
+          "max_half_width_px": 62
+        }
+      ]
+    },
+    {
+      "milliseconds": 850,
+      "shadowOpacity": 1,
+      "ribbons": [
+        {
+          "name": "Olive upper cross-thread",
+          "bounds_min": [-4.8042521476745605, -0.5671849003070336, -0.25],
+          "bounds_max": [0.8440808653831482, 3.0996346473693848, 0.25],
+          "max_half_width_px": 72
+        },
+        {
+          "name": "Olive upper down-thread",
+          "bounds_min": [-0.7776083366077277, -1.5749560594558716, -0.25],
+          "bounds_max": [3.331626019441449, 4.718506813049316, 0.25],
+          "max_half_width_px": 71.5
+        },
+        {
+          "name": "Olive lower down-thread",
+          "bounds_min": [-2.6316232681274414, -4.324849605560303, 0.0015625000232830644],
+          "bounds_max": [1.296973825499141, 1.1545528173446655, 0.25],
+          "max_half_width_px": 71.5
+        },
+        {
+          "name": "Olive lower cross-thread",
+          "bounds_min": [-1.314307456787338, -3.2606635093688965, -0.25],
+          "bounds_max": [4.492668886489064, 1.3692783117294312, 0.25],
+          "max_half_width_px": 70.5
+        },
+        {
+          "name": "Ivory descending thread",
+          "bounds_min": [-2.8504278801899816, -2.9098842679219845, -0.25],
+          "bounds_max": [3.445941686630249, 3.160246518448005, 0.25],
+          "max_half_width_px": 82
+        },
+        {
+          "name": "Ivory returning thread",
+          "bounds_min": [-2.9510405241588544, -3.14689679687762, -0.25],
+          "bounds_max": [2.9815395324502854, 2.922110009247396, 0.25],
+          "max_half_width_px": 80
+        },
+        {
+          "name": "Terracotta binding",
+          "bounds_min": [-0.8119091123337592, -0.9614494442939758, 0.5],
+          "bounds_max": [1.357170820236206, 1.2303536701949702, 0.5],
+          "max_half_width_px": 62
+        }
+      ]
+    },
+    {
+      "milliseconds": 900,
+      "shadowOpacity": 1,
+      "ribbons": [
+        {
+          "name": "Olive upper cross-thread",
+          "bounds_min": [-4.8042521476745605, -0.5671849003070336, -0.25],
+          "bounds_max": [0.8440808653831482, 3.0996346473693848, 0.25],
+          "max_half_width_px": 72
+        },
+        {
+          "name": "Olive upper down-thread",
+          "bounds_min": [-0.7776083366077277, -1.5749560594558716, -0.25],
+          "bounds_max": [3.331626019441449, 4.718506813049316, 0.25],
+          "max_half_width_px": 71.5
+        },
+        {
+          "name": "Olive lower down-thread",
+          "bounds_min": [-2.6316232681274414, -4.324849605560303, 0.0015625000232830644],
+          "bounds_max": [1.296973825499141, 1.1545528173446655, 0.25],
+          "max_half_width_px": 71.5
+        },
+        {
+          "name": "Olive lower cross-thread",
+          "bounds_min": [-1.314307456787338, -3.2606635093688965, -0.25],
+          "bounds_max": [4.492668886489064, 1.3692783117294312, 0.25],
+          "max_half_width_px": 70.5
+        },
+        {
+          "name": "Ivory descending thread",
+          "bounds_min": [-2.8504278801899816, -2.9098842679219845, -0.25],
+          "bounds_max": [3.445941686630249, 3.160246518448005, 0.25],
+          "max_half_width_px": 82
+        },
+        {
+          "name": "Ivory returning thread",
+          "bounds_min": [-2.9510405241588544, -3.14689679687762, -0.25],
+          "bounds_max": [2.9815395324502854, 2.922110009247396, 0.25],
+          "max_half_width_px": 80
+        },
+        {
+          "name": "Terracotta binding",
+          "bounds_min": [-0.8119091123337592, -0.9614494442939758, 0.5],
+          "bounds_max": [1.357170820236206, 1.2303536701949702, 0.5],
+          "max_half_width_px": 62
+        }
+      ]
+    },
+    {
+      "milliseconds": 1000,
+      "shadowOpacity": 1,
+      "ribbons": [
+        {
+          "name": "Olive upper cross-thread",
+          "bounds_min": [-4.8042521476745605, -0.5671849003070336, -0.25],
+          "bounds_max": [0.8440808653831482, 3.0996346473693848, 0.25],
+          "max_half_width_px": 72
+        },
+        {
+          "name": "Olive upper down-thread",
+          "bounds_min": [-0.7776083366077277, -1.5749560594558716, -0.25],
+          "bounds_max": [3.331626019441449, 4.718506813049316, 0.25],
+          "max_half_width_px": 71.5
+        },
+        {
+          "name": "Olive lower down-thread",
+          "bounds_min": [-2.6316232681274414, -4.324849605560303, 0.0015625000232830644],
+          "bounds_max": [1.296973825499141, 1.1545528173446655, 0.25],
+          "max_half_width_px": 71.5
+        },
+        {
+          "name": "Olive lower cross-thread",
+          "bounds_min": [-1.314307456787338, -3.2606635093688965, -0.25],
+          "bounds_max": [4.492668886489064, 1.3692783117294312, 0.25],
+          "max_half_width_px": 70.5
+        },
+        {
+          "name": "Ivory descending thread",
+          "bounds_min": [-2.8504278801899816, -2.9098842679219845, -0.25],
+          "bounds_max": [3.445941686630249, 3.160246518448005, 0.25],
+          "max_half_width_px": 82
+        },
+        {
+          "name": "Ivory returning thread",
+          "bounds_min": [-2.9510405241588544, -3.14689679687762, -0.25],
+          "bounds_max": [2.9815395324502854, 2.922110009247396, 0.25],
+          "max_half_width_px": 80
+        },
+        {
+          "name": "Terracotta binding",
+          "bounds_min": [-0.8119091123337592, -0.9614494442939758, 0.5],
+          "bounds_max": [1.357170820236206, 1.2303536701949702, 0.5],
+          "max_half_width_px": 62
+        }
+      ]
+    }
+  ],
+  "meshes": [
+    {
+      "name": "Olive upper cross-thread",
+      "vertices": 3653,
+      "triangles": 6720,
+      "parent": null,
+      "armature": false
+    },
+    {
+      "name": "Olive upper down-thread",
+      "vertices": 3653,
+      "triangles": 6720,
+      "parent": null,
+      "armature": false
+    },
+    {
+      "name": "Olive lower down-thread",
+      "vertices": 3653,
+      "triangles": 6720,
+      "parent": null,
+      "armature": false
+    },
+    {
+      "name": "Olive lower cross-thread",
+      "vertices": 3653,
+      "triangles": 6720,
+      "parent": null,
+      "armature": false
+    },
+    {
+      "name": "Ivory descending thread",
+      "vertices": 3653,
+      "triangles": 6720,
+      "parent": null,
+      "armature": false
+    },
+    {
+      "name": "Ivory returning thread",
+      "vertices": 3653,
+      "triangles": 6720,
+      "parent": null,
+      "armature": false
+    },
+    {
+      "name": "Terracotta binding",
+      "vertices": 3653,
+      "triangles": 6720,
+      "parent": null,
+      "armature": false
+    }
+  ],
+  "finiteGeometry": true,
+  "meshCount": 7
+}

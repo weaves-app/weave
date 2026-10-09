@@ -53,3 +53,17 @@ Readiness has a 500 ms budget; playback has a 1250 ms watchdog around its one-se
 The user approved the final composition, fluid all-sides entrance, one-second timing and clean integration proposal, then said “go ahead.” Their 2026-10-09 instruction explicitly authorizes a separate Linear ticket, branch, push and PR into develop. No new design decision is needed. Previous local work and RED/GREEN evidence were recorded under WEA-10 S19–S22; this ticket owns that artwork scope as S01–S04, with original evidence preserved unchanged. WEA-10 authentication is already merged into develop.
 
 Scope is web presentation and its design-source archive. Authentication policy, React Native, deployment, merging and a Lottie conversion are outside this change. Pending browser/device checks will be disclosed in a draft PR.
+
+## Motion refinement — 2026-10-09
+
+The user reported an abrupt orange binding, late ground shadow and untidy transition to the approved still, then agreed to try a locally authored refinement and installed Blender. This extends S01/FR-002 within WEA-24, preserving the exact final artwork, all-sides entrance and one-second duration. First produce an inspectable design preview; keep the currently integrated v1 assets immutable.
+
+- **S06 (happy)**: Given an eligible introduction, when the terracotta thread enters, then its leading end and trailing length follow one visible continuous route into the center; it is not introduced by a late material or image swap.
+- **S07 (visual regression)**: Given ribbons entering and settling, when they approach the final composition, then the ground shadow develops continuously with their arrival and the settled artwork holds before playback ends. No abrupt silhouette or material replacement occurs in the last frames.
+- **S08 (edge/regression)**: Given reduced motion, failed media or the terminal static state, then the original approved still and existing S02–S04 behavior remain unchanged. No new application animation dependency is introduced.
+
+Public checks: lossless rendered frame sequences at 60 fps; the preview's replay, slow playback and scrub controls; comparison with the immutable reference and v1 clip. Automated image-difference checks expose late frame discontinuities; manual inspection is necessary for perceived fluidity and thread continuity. Preserve actual baseline failures before refinement and do not equate a numeric pass with visual approval.
+
+The user accepted the v2 review preview on 2026-10-09 and explicitly requested standards-compliant integration, push and PR. This approves the existing S06–S08 outcomes and the reviewed export; use a new immutable video version while retaining the approved still and existing fallback behavior.
+
+Production inspection found an additional S04 boundary: with classic scrollbars at a 1280 × 720 viewport, Clerk readiness increases page height and introduces a scrollbar. Artwork x changes from 238 to 232.75. Reserve scrollbar space on authentication pages before the form appears so the existing SC-002 position guarantee also holds in this configuration. This is within the previously approved stable-layout behavior.

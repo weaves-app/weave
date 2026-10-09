@@ -33,6 +33,10 @@ button:disabled {
   font-size: 24px;
   margin: 0 0 24px;
 }
+html:has(.auth-shell) {
+  /* Keep artwork aligned when authentication readiness introduces a scrollbar. */
+  scrollbar-gutter: stable;
+}
 .auth-shell {
   display: grid;
   grid-template-columns: 7fr 3fr;

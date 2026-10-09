@@ -76,7 +76,7 @@ void test('WEA-24 S01 plays once, leaves the form usable, and settles on the wov
   const video = media(view);
   const still = view.container.querySelector('img');
 
-  assert.match(video.src, /intro\.v1\.mp4$/);
+  assert.match(video.src, /intro\.v2\.mp4$/);
   assert.ok(still);
   assert.match(still.src, /still\.v1\.webp/);
   assert.equal(still.alt, '');

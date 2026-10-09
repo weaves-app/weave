@@ -1,0 +1,40 @@
+{
+  "scenario": "S04",
+  "before": {
+    "bounds": {
+      "bottom": 540,
+      "height": 420,
+      "left": 238,
+      "right": 658,
+      "top": 120,
+      "width": 420,
+      "x": 238,
+      "y": 120
+    },
+    "duration": 1,
+    "error": null,
+    "paused": true,
+    "phase": "pending",
+    "seconds": 0,
+    "src": "http://localhost:4312/brand/woven/intro.v2.mp4",
+    "still": "/brand/woven/still.v1.webp"
+  },
+  "after": {
+    "bounds": {
+      "bottom": 540,
+      "height": 420,
+      "left": 232.75,
+      "right": 652.75,
+      "top": 120,
+      "width": 420,
+      "x": 232.75,
+      "y": 120
+    },
+    "formReady": true,
+    "hidden": true,
+    "phase": "still",
+    "sourceReleased": true
+  },
+  "expected": "Artwork bounds remain identical at an unchanged viewport",
+  "passes": false
+}

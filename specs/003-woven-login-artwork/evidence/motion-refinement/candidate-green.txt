@@ -1,0 +1,15 @@
+{
+  "scenario": "S07",
+  "frames": 60,
+  "last_100ms_mean_changes": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "maximum_late_change": 0.0,
+  "allowed_mean_change": 0.75,
+  "last_frame_change": 0.0,
+  "passes": true
+}

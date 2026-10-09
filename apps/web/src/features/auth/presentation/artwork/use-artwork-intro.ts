@@ -1,7 +1,7 @@
 import {useEffect, useRef, useState} from 'react';
 import type {RefObject} from 'react';
 
-const INTRO_SOURCE = '/brand/woven/intro.v1.mp4';
+const INTRO_SOURCE = '/brand/woven/intro.v2.mp4';
 
 const READINESS_TIMEOUT_MS = 500;
 

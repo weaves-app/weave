@@ -1,0 +1,22 @@
+✔ WEA-24 S01 plays once, leaves the form usable, and settles on the woven still (65.339167ms)
+✔ WEA-24 S03 shared shells and signup never request the intro (11.401833ms)
+✔ WEA-24 S03 reduced initial mount never requests or later starts media (4.2005ms)
+✔ WEA-24 S03 mobile initial mount never requests or later starts media (3.098916ms)
+✔ WEA-24 S03 hidden initial mount never requests or later starts media (2.513667ms)
+✔ WEA-24 S02 readiness expires without a late animation flash (2.392083ms)
+✔ WEA-24 S02 rejected autoplay and media errors reveal a terminal still (5.586708ms)
+✔ WEA-24 S02/S03 reduced during playback stops permanently (5.589208ms)
+✔ WEA-24 S02/S03 mobile during playback stops permanently (3.011125ms)
+✔ WEA-24 S02/S03 hidden during playback stops permanently (3.021542ms)
+✔ WEA-24 S02/S03 stalled during playback stops permanently (7.041ms)
+✔ WEA-24 S01 Clerk readiness and refreshed callbacks preserve the playing element (152.348834ms)
+✔ WEA-24 S03 unmount releases playback and ignores late events (15.325583ms)
+✔ WEA-24 S04 (preserves WEA-10 S18) shared artwork remains static after image readiness and pointer movement (24.612875ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1035.142875

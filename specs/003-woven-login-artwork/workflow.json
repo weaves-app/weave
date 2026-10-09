@@ -18,22 +18,62 @@
     "S21": "S03",
     "S22": "S04"
   },
-  "status": "locally-verified-draft-pr",
+  "status": "v2-locally-verified-ready-to-publish",
   "clarification": "No unresolved design questions; preserve the approved native-video approach.",
   "analysis": "FR-001 through FR-005 and SC-001 through SC-003 map to S01-S04 and ordered tasks; no conflicting or unmapped requirement.",
   "verification": {
     "targetedTests": "14/14",
     "webTests": "71/71",
-    "repositoryVerify": "passed again after test fixture correction; evidence/final-verify.txt",
-    "databaseIntegration": "3/3",
-    "remoteCi": "pending publication",
+    "repositoryVerify": "passed after v2 integration and scrollbar fix; evidence/motion-refinement/verify-layout.txt",
+    "databaseIntegration": "3/3 on final build; evidence/motion-refinement/integration-layout.txt",
+    "remoteCi": "previous published head passed; v2 publication pending",
     "browserMatrix": "partial; T009",
     "gitFixtureWithInheritedContext": "2/2; parent personal identity preserved"
   },
   "convergence": {
     "outcome": "tasks_appended",
-    "remainingTaskIds": ["T009"],
-    "report": "convergence.md"
+    "remainingTaskIds": ["T009", "T023"],
+    "report": "convergence.md",
+    "latestAssessment": "2026-10-09: five functional requirements, three success criteria, eight scenarios and ten constitution principles reviewed. No missing/contradicting/unrequested code; two partial browser-validation findings, MEDIUM. T009 retained and Phase 9/T023 appended; no application source changed during convergence."
   },
-  "deliveryRegression": "S05 records the existing mandatory S21 policy checks, which failed under the normal pre-push hook. The user-authorized publication requires fixing fixture isolation, not changing identity policy or bypassing hooks. RED preserved before fixture correction; no new product behavior."
+  "deliveryRegression": "S05 records the existing mandatory S21 policy checks, which failed under the normal pre-push hook. The user-authorized publication requires fixing fixture isolation, not changing identity policy or bypassing hooks. RED preserved before fixture correction; no new product behavior.",
+  "motionRefinement": {
+    "status": "approved-integrated-locally-verified",
+    "scenariosConfirmed": true,
+    "scenarioIds": ["S06", "S07", "S08"],
+    "confirmation": "User identified the orange ribbon, shadow and settling defects, agreed to try the local refinement, and confirmed Blender was installed and ready. Previous one-second, all-sides and exact-final-artwork constraints persist.",
+    "publicTestSeams": [
+      "exported frame sequence",
+      "preview replay/scrub/reference controls",
+      "Blender scene geometry report"
+    ],
+    "analysis": "S06/S07 refine FR-002 and SC-001; S08 preserves FR-001/003/004/005. T012-T015 order baseline checks before implementation and verification. No new product behavior or unresolved clarification. Approved production integration maps S01/S08 to the existing public media selection and S06/S07 to the reviewed frame sequence; T016\u2013T020 order RED, source promotion, checks and publication. No clarification or new exception is required.",
+    "verification": {
+      "baseline": "last-frame artwork-region mean change 9.3886 / 255; S07 failed before source changes",
+      "candidate": "last 100 ms lossless frames identical; final handoff has no measurable mean change at exported resolution",
+      "refactor": "all 60 exported PNG hashes identical before/after module separation",
+      "blender": "5.2.2 LTS; seven meshes, eight samples, all finite; terracotta backing Z=64 reference pixels throughout",
+      "integrationRegression": "13/13 artwork tests passed; application source and v1 media unchanged",
+      "preview": "http://127.0.0.1:4318/woven-refinement-v2/review.html",
+      "media": "1600 square; H.264; 60 frames; 1.000 seconds; 178318 bytes",
+      "productionTests": "14/14 after public source selection RED; full web 71/71",
+      "productionBrowser": "v2 playing at 96.537 ms, duration 1, no media error; terminal still and no replay on form edits",
+      "layout": "Actual classic-scrollbar RED followed by identical before/after bounds after authentication-scoped stable gutter"
+    },
+    "limits": [
+      "Blender was used for geometry inspection; the preview remains rendered with the existing Three.js source.",
+      "The existing approximate ribbons and texture restoration remain; this is not a fully modeled physically simulated weave.",
+      "Original T009 browser/device matrix remains pending; user visual acceptance of the v2 preview is recorded."
+    ],
+    "productionApproval": "2026-10-09: User accepted the v2 review preview and said: Okay, update the code based on our standards and push the code and raise the PR.",
+    "layoutRegression": {
+      "scenario": "S04",
+      "confirmed": true,
+      "confirmation": "Existing user-approved stable composition and SC-002 cover scrollbar-induced movement during authentication loading; no new visual direction.",
+      "publicTestSeam": "production DOM artwork bounds before/after Clerk readiness at the same viewport",
+      "red": "layout-red.json: x 238 to 232.75 at 1280 \u00d7 720",
+      "implementation": "authentication-scoped stable scrollbar gutter; T021 \u2192 T022 before T019/T020",
+      "green": "layout-green.json: identical x=232.75, y=120, width=420, height=420 before/after readiness"
+    }
+  }
 }

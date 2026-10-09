@@ -1,0 +1,43 @@
+{
+  "scenario": "S04",
+  "before": {
+    "bounds": {
+      "bottom": 540,
+      "height": 420,
+      "left": 232.75,
+      "right": 652.75,
+      "top": 120,
+      "width": 420,
+      "x": 232.75,
+      "y": 120
+    },
+    "formReady": false,
+    "gutter": "stable",
+    "phase": "playing",
+    "viewport": {
+      "height": 720,
+      "width": 1280
+    }
+  },
+  "after": {
+    "bounds": {
+      "bottom": 540,
+      "height": 420,
+      "left": 232.75,
+      "right": 652.75,
+      "top": 120,
+      "width": 420,
+      "x": 232.75,
+      "y": 120
+    },
+    "formReady": true,
+    "gutter": "stable",
+    "phase": "still",
+    "sourceReleased": true,
+    "viewport": {
+      "height": 720,
+      "width": 1280
+    }
+  },
+  "passes": true
+}

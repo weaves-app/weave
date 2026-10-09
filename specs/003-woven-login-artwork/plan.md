@@ -35,3 +35,15 @@ Three production artwork files (42/117/47 lines), two shell integration edits, t
 ## Publication fixture correction
 
 The normal pre-push hook exposed two existing S21 failures in `tests/policy/git-config.test.mjs`: inherited Git repository environment variables redirected temporary-repository operations into the caller. Preserve the failing push output as S05 RED. Clear only the variables enumerated by `git rev-parse --local-env-vars` in that test file's isolated Node process before fixtures run. Keep production Git identity policy and hooks unchanged. Re-run with an inherited GIT_DIR, assert the caller's personal settings remain intact, then rerun required checks and normal push.
+
+## Motion refinement preview
+
+Retain the approved image and existing native-video integration. Author a separately versioned preview beside the original visualizations, using the existing Three.js source for identity-aligned geometry and Blender 5.2.2 LTS for structured scene inspection. Improve the timeline, binding entrance, shading continuity and shadow development; do not substitute a newly styled sculpture. Validate decoded baseline frames first, then lossless candidate frames and actual browser playback. Design tooling remains outside the application dependency graph. Publish neither replacement production media nor a claim of visual approval until the preview passes its continuity checks and is presented for review.
+
+No new domain model, service, API, credentials or dependency installation is needed. Reproducible scripts and frame/scene reports accompany the preview. S06–S08 map to T012–T015; S02–S04 remain covered by the unchanged integration tests.
+
+## Approved v2 integration
+
+The 2026-10-09 approval authorizes promoting the reviewed 178318-byte clip byte-for-byte to `public/brand/woven/intro.v2.mp4`. Update the existing public media-selection assertion first, record its failure against v1, then switch the hook's source. Preserve `still.v1.webp`, immutable v1 media, lifecycle, component and CSS. Package reproducible v2 authoring modules and licenses in `docs/design/woven-design-source.v2.zip`; exclude regenerated frame sequences and sampled Blender files. Document geometry inspection honestly; Blender is not an application runtime or the video renderer. Run required repository/database checks and update existing PR #10 into develop under the verified personal identity. T009 remains a disclosed browser/device release gate.
+
+For the S04 classic-scrollbar regression, add one authentication-scoped root rule (`html:has(.auth-shell)`) using `scrollbar-gutter: stable`. Reserve layout space without adding JavaScript, duplicating responsive grid ratios or changing the form. Record actual browser bounds before/after, then rerun required checks.
