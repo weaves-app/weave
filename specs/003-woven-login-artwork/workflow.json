@@ -1,0 +1,37 @@
+{
+  "ticket": "WEA-24",
+  "branch": "feat/WEA-24/woven-login-artwork",
+  "baseCommit": "f041c95",
+  "scenariosConfirmed": true,
+  "confirmation": "User approved the final woven composition, one-second all-sides entrance and integration approach, then said go ahead before the original source changes. On 2026-10-09 the user requested a separate ticket, branch, push and PR into develop. This records existing approval before transferring source into WEA-24, not a claim that original implementation followed ticket creation.",
+  "scenarioIds": ["S01", "S02", "S03", "S04"],
+  "publicTestSeams": [
+    "AuthShell",
+    "AuthView",
+    "native media and visibility/query events",
+    "form controls",
+    "browser geometry and playback"
+  ],
+  "historicalScenarioMapping": {
+    "S19": "S01",
+    "S20": "S02",
+    "S21": "S03",
+    "S22": "S04"
+  },
+  "status": "locally-verified-draft-pr",
+  "clarification": "No unresolved design questions; preserve the approved native-video approach.",
+  "analysis": "FR-001 through FR-005 and SC-001 through SC-003 map to S01-S04 and ordered tasks; no conflicting or unmapped requirement.",
+  "verification": {
+    "targetedTests": "14/14",
+    "webTests": "71/71",
+    "repositoryVerify": "passed",
+    "databaseIntegration": "3/3",
+    "remoteCi": "pending publication",
+    "browserMatrix": "partial; T009"
+  },
+  "convergence": {
+    "outcome": "tasks_appended",
+    "remainingTaskIds": ["T009"],
+    "report": "convergence.md"
+  }
+}

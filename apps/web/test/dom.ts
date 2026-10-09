@@ -1,3 +1,5 @@
+import './css-modules';
+
 import {JSDOM} from 'jsdom';
 
 const dom = new JSDOM('<!doctype html><html><body></body></html>', {url: 'https://weave.test'});

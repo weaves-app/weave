@@ -1,0 +1,73 @@
+
+> verify
+> npm run lint && npm run format:check && npm run typecheck && npm test && npm run build
+
+
+> lint
+> turbo run lint && eslint scripts tests && node scripts/check-architecture.mjs
+
+
+   • turbo 2.11.7
+   • Packages in scope: @weave/api, @weave/design-tokens, @weave/eslint-config, @weave/mobile, @weave/typescript-config, @weave/web
+   • Running lint in 6 packages
+   • Remote caching disabled, using shared worktree cache
+
+@weave/eslint-config:lint: cache hit, replaying logs 8fdeb7899bf76e07
+@weave/eslint-config:lint: 
+@weave/eslint-config:lint: > @weave/eslint-config@0.0.0 lint
+@weave/eslint-config:lint: > eslint .
+@weave/eslint-config:lint: 
+@weave/design-tokens:lint: cache hit, replaying logs da8102f48cfecb71
+@weave/design-tokens:lint: 
+@weave/design-tokens:lint: > @weave/design-tokens@0.0.0 lint
+@weave/design-tokens:lint: > eslint .
+@weave/design-tokens:lint: 
+@weave/web:lint: cache miss, executing 455c48fde075b840
+@weave/mobile:lint: cache hit, replaying logs f88049b4fe637880
+@weave/mobile:lint: 
+@weave/mobile:lint: > @weave/mobile@0.0.0 lint
+@weave/mobile:lint: > eslint .
+@weave/mobile:lint: 
+@weave/api:db:generate: cache hit, replaying logs 3b8dc406cbddafe0
+@weave/api:db:generate: 
+@weave/api:db:generate: > @weave/api@0.0.0 db:generate
+@weave/api:db:generate: > prisma generate
+@weave/api:db:generate: 
+@weave/api:db:generate: Loaded Prisma config from prisma.config.ts.
+@weave/api:db:generate: 
+@weave/api:db:generate: Prisma schema loaded from prisma/schema.prisma.
+@weave/api:db:generate: ┌─────────────────────────────────────────────────────────┐
+@weave/api:db:generate: │  Update available 7.10.0 -> 8.0.0-rc.21                 │
+@weave/api:db:generate: │                                                         │
+@weave/api:db:generate: │  This is a major update - please follow the guide at    │
+@weave/api:db:generate: │  https://pris.ly/d/major-version-upgrade                │
+@weave/api:db:generate: │                                                         │
+@weave/api:db:generate: │  Run the following to update                            │
+@weave/api:db:generate: │    npm i --save-dev prisma@latest                       │
+@weave/api:db:generate: │    npm i @prisma/client@latest                          │
+@weave/api:db:generate: └─────────────────────────────────────────────────────────┘
+@weave/api:db:generate: 
+@weave/api:db:generate: ✔ Generated Prisma Client (7.10.0) to ./src/generated/prisma in 21ms
+@weave/api:db:generate: 
+@weave/api:lint: cache hit, replaying logs 9e72520b775515b3
+@weave/api:lint: 
+@weave/api:lint: > @weave/api@0.0.0 lint
+@weave/api:lint: > eslint .
+@weave/api:lint: 
+@weave/web:lint: 
+@weave/web:lint: > @weave/web@0.0.0 lint
+@weave/web:lint: > eslint .
+@weave/web:lint: 
+
+ Tasks:    6 successful, 6 total
+Cached:    5 cached, 6 total
+  Time:    2.846s 
+
+Architecture and interface injection checks passed.
+
+> format:check
+> prettier --check .
+
+Checking formatting...
+[warn] .specify/feature.json
+[warn] Code style issues found in the above file. Run Prettier with --write to fix.

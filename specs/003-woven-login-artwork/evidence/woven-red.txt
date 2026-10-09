@@ -1,0 +1,253 @@
+✖ WEA-10 S19 plays once, leaves the form usable, and settles on the woven still (20.931666ms)
+✖ WEA-10 S21 shared shells and signup never request the intro (3.655208ms)
+✖ WEA-10 S21 reduced initial mount never requests or later starts media (1.747792ms)
+✖ WEA-10 S21 mobile initial mount never requests or later starts media (1.514958ms)
+✖ WEA-10 S21 hidden initial mount never requests or later starts media (1.4895ms)
+✖ WEA-10 S20 readiness expires without a late animation flash (1.422375ms)
+✖ WEA-10 S20 rejected autoplay and media errors reveal a terminal still (1.152708ms)
+✖ WEA-10 S20/S21 reduced during playback stops permanently (1.090792ms)
+✖ WEA-10 S20/S21 mobile during playback stops permanently (1.153958ms)
+✖ WEA-10 S20/S21 hidden during playback stops permanently (1.12125ms)
+✖ WEA-10 S20/S21 stalled during playback stops permanently (0.987542ms)
+✖ WEA-10 S19 Clerk readiness and refreshed callbacks preserve the playing element (1.147667ms)
+✖ WEA-10 S21 unmount releases playback and ignores late events (1.5115ms)
+✖ WEA-10 S18/S22 shared artwork remains static after image readiness and pointer movement (23.079834ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 0
+ℹ fail 14
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 807.009292
+
+✖ failing tests:
+
+test at test/auth-artwork.test.tsx:2:3117
+✖ WEA-10 S19 plays once, leaves the form usable, and settles on the woven still (20.931666ms)
+  AssertionError [ERR_ASSERTION]: sign-in exposes a native decorative intro video
+      at media (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-artwork.test.tsx:38:10)
+      at TestContext.<anonymous> (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-artwork.test.tsx:65:17)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at test/auth-artwork.test.tsx:2:4440
+✖ WEA-10 S21 shared shells and signup never request the intro (3.655208ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /still\.v1\.webp/. Input:
+  
+  'https://weave.test/_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=3840&q=75'
+  
+      at TestContext.<anonymous> (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-artwork.test.tsx:93:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'https://weave.test/_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=3840&q=75',
+    expected: /still\.v1\.webp/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at test/auth-artwork.test.tsx:2:5087
+✖ WEA-10 S21 reduced initial mount never requests or later starts media (1.747792ms)
+  AssertionError [ERR_ASSERTION]: sign-in exposes a native decorative intro video
+      at media (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-artwork.test.tsx:38:10)
+      at TestContext.<anonymous> (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-artwork.test.tsx:108:19)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at test/auth-artwork.test.tsx:2:5087
+✖ WEA-10 S21 mobile initial mount never requests or later starts media (1.514958ms)
+  AssertionError [ERR_ASSERTION]: sign-in exposes a native decorative intro video
+      at media (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-artwork.test.tsx:38:10)
+      at TestContext.<anonymous> (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-artwork.test.tsx:108:19)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at test/auth-artwork.test.tsx:2:5087
+✖ WEA-10 S21 hidden initial mount never requests or later starts media (1.4895ms)
+  AssertionError [ERR_ASSERTION]: sign-in exposes a native decorative intro video
+      at media (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-artwork.test.tsx:38:10)
+      at TestContext.<anonymous> (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-artwork.test.tsx:108:19)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at test/auth-artwork.test.tsx:2:5981
+✖ WEA-10 S20 readiness expires without a late animation flash (1.422375ms)
+  AssertionError [ERR_ASSERTION]: sign-in exposes a native decorative intro video
+      at media (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-artwork.test.tsx:38:10)
+      at TestContext.<anonymous> (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-artwork.test.tsx:128:17)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at test/auth-artwork.test.tsx:2:6578
+✖ WEA-10 S20 rejected autoplay and media errors reveal a terminal still (1.152708ms)
+  AssertionError [ERR_ASSERTION]: sign-in exposes a native decorative intro video
+      at media (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-artwork.test.tsx:38:10)
+      at TestContext.<anonymous> (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-artwork.test.tsx:144:17)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at test/auth-artwork.test.tsx:2:7384
+✖ WEA-10 S20/S21 reduced during playback stops permanently (1.090792ms)
+  AssertionError [ERR_ASSERTION]: sign-in exposes a native decorative intro video
+      at media (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-artwork.test.tsx:38:10)
+      at TestContext.<anonymous> (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-artwork.test.tsx:165:19)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at test/auth-artwork.test.tsx:2:7384
+✖ WEA-10 S20/S21 mobile during playback stops permanently (1.153958ms)
+  AssertionError [ERR_ASSERTION]: sign-in exposes a native decorative intro video
+      at media (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-artwork.test.tsx:38:10)
+      at TestContext.<anonymous> (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-artwork.test.tsx:165:19)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at test/auth-artwork.test.tsx:2:7384
+✖ WEA-10 S20/S21 hidden during playback stops permanently (1.12125ms)
+  AssertionError [ERR_ASSERTION]: sign-in exposes a native decorative intro video
+      at media (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-artwork.test.tsx:38:10)
+      at TestContext.<anonymous> (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-artwork.test.tsx:165:19)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at test/auth-artwork.test.tsx:2:7384
+✖ WEA-10 S20/S21 stalled during playback stops permanently (0.987542ms)
+  AssertionError [ERR_ASSERTION]: sign-in exposes a native decorative intro video
+      at media (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-artwork.test.tsx:38:10)
+      at TestContext.<anonymous> (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-artwork.test.tsx:165:19)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at test/auth-artwork.test.tsx:2:8335
+✖ WEA-10 S19 Clerk readiness and refreshed callbacks preserve the playing element (1.147667ms)
+  AssertionError [ERR_ASSERTION]: sign-in exposes a native decorative intro video
+      at media (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-artwork.test.tsx:38:10)
+      at TestContext.<anonymous> (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-artwork.test.tsx:191:17)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at test/auth-artwork.test.tsx:2:9433
+✖ WEA-10 S21 unmount releases playback and ignores late events (1.5115ms)
+  AssertionError [ERR_ASSERTION]: sign-in exposes a native decorative intro video
+      at media (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-artwork.test.tsx:38:10)
+      at TestContext.<anonymous> (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-artwork.test.tsx:209:17)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at test/auth-motion.test.tsx:2:1455
+✖ WEA-10 S18/S22 shared artwork remains static after image readiness and pointer movement (23.079834ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /still\.v1\.webp/. Input:
+  
+  'https://weave.test/_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=3840&q=75'
+  
+      at TestContext.<anonymous> (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-motion.test.tsx:32:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'https://weave.test/_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=3840&q=75',
+    expected: /still\.v1\.webp/,
+    operator: 'match',
+    diff: 'simple'
+  }

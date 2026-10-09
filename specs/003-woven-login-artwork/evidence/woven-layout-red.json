@@ -1,0 +1,28 @@
+{
+  "layoutBefore": {
+    "phase": "pending",
+    "stage": {
+      "bottom": 540,
+      "height": 420,
+      "left": 238,
+      "right": 658,
+      "top": 120,
+      "width": 420,
+      "x": 238,
+      "y": 120
+    }
+  },
+  "layoutAfter": {
+    "phase": "still",
+    "stage": {
+      "bottom": 555.0625,
+      "height": 420,
+      "left": 238,
+      "right": 658,
+      "top": 135.0625,
+      "width": 420,
+      "x": 238,
+      "y": 135.0625
+    }
+  }
+}

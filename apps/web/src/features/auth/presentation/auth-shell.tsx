@@ -4,11 +4,14 @@ import {authTokens} from '@weave/design-tokens';
 
 import type {CSSProperties, ReactNode} from 'react';
 
+import {AuthArtwork} from './artwork/auth-artwork';
+
 export interface AuthShellProps {
   readonly children: ReactNode;
+  readonly animateArtwork?: boolean;
 }
 
-export function AuthShell({children}: AuthShellProps): React.JSX.Element {
+export function AuthShell({children, animateArtwork = false}: AuthShellProps): React.JSX.Element {
   const theme = {
     '--auth-primary': authTokens.colors.primary,
     '--auth-secondary': authTokens.colors.secondary,
@@ -22,17 +25,7 @@ export function AuthShell({children}: AuthShellProps): React.JSX.Element {
   return (
     <main className="auth-shell" style={theme}>
       <section className="auth-scene" aria-label="Weave brand">
-        <div className="auth-bag-stage">
-          <Image
-            className="auth-bag"
-            src="/brand/weave-bag-render.png"
-            alt="Olive Weave shopping bag with rope handles and folded sides"
-            width={1145}
-            height={1374}
-            priority
-            sizes="(max-width: 680px) 0px, 440px"
-          />
-        </div>
+        <AuthArtwork animate={animateArtwork} />
         <div className="auth-caption">
           <h1>Everything, woven together.</h1>
           <p>

@@ -49,20 +49,6 @@ button:disabled {
   background: var(--auth-hero);
   padding: 120px 50px 180px;
 }
-.auth-bag-stage {
-  width: min(440px, 95%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.auth-bag {
-  display: block;
-  width: 100%;
-  height: auto;
-  max-height: 64svh;
-  object-fit: contain;
-  filter: drop-shadow(12px 22px 18px rgba(46, 58, 47, 0.19));
-}
 .auth-caption {
   position: absolute;
   left: 48px;
@@ -247,9 +233,6 @@ button:disabled {
 @media (max-width: 1100px) {
   .auth-shell {
     grid-template-columns: 6fr 4fr;
-  }
-  .auth-bag-stage {
-    width: min(390px, 100%);
   }
   .auth-caption {
     left: 32px;
