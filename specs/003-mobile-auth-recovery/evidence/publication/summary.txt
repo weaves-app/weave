@@ -13,3 +13,5 @@ Local migration issues: old npm bin symlinks pointed at non-executable CLI files
 Merge preserves web Clerk/organization routes and pnpm from develop, native auth/navigation/recovery and UI from this feature. New spacing rules were applied to authored mobile code without behavior changes. Metro PNG default imports retain a scoped lint exception.
 
 Draft PR requested by owner. Existing F1-F4, T048 and T054 acceptance gaps stay open; no full-ticket closure, deployment or merge into develop authorized/performed.
+
+Post-commit hook follow-up: the root lint-staged configuration treated the mobile inline exceptions as unused and removed them. The pre-push mobile lint caught both violations. Moved the same narrowly scoped framework exceptions into apps/mobile/eslint.config.mjs; mobile lint and typecheck passed again. No runtime behavior changed.
