@@ -175,5 +175,20 @@
       "localPreview": "Isolated complete production copy on port 4312; current assets 200 with matching hashes, obsolete assets 404; temporary observation servers stopped.",
       "ciResult": "All required checks passed on implementation bdc8177; subsequent commit records evidence only."
     }
+  },
+  "mobileLogoAlignment": {
+    "scenariosConfirmed": true,
+    "scenarioIds": ["S13"],
+    "confirmation": "User selected the Weave logo in the 553 px mobile sign-in view and explicitly requested centering it. This authorizes a mobile-only alignment correction within the existing authentication presentation.",
+    "publicTestSeams": ["Rendered logo and form bounding rectangles at 375/553/680/681 px"],
+    "analysis": "S13 maps to T036 and existing responsive presentation. Change only the existing mobile margin; no component, dependency, typography or desktop layout change. Use actual browser geometry as the manual regression check for this reversible CSS edit.",
+    "red": "At 553 px before source changes: logo x=79, width=125; form x=79, width=380. Logo center is 127.5 px left of form center.",
+    "verification": {
+      "browser": "375/553/680 px centered; 681 px desktop left alignment unchanged",
+      "repositoryVerify": "passed",
+      "databaseIntegration": "3/3 passed",
+      "evidence": "evidence/mobile-logo.md",
+      "sourceLines": 484
+    }
   }
 }

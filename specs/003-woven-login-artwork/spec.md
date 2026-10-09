@@ -85,3 +85,9 @@ The user supplied PR #10 findings F1–F8 and asked to validate them before fixi
 
 - **S11 (responsive resource boundary)**: Given a viewport at or below 680 px, when an authentication page loads, then its hidden hero requests neither the full artwork still nor the intro. At 681 px and above, the approved still remains available promptly, including without JavaScript. One shared auth breakpoint governs eligibility and responsive resource selection; CSS literals are checked against that token.
 - **S12 (review hygiene)**: Given review findings, validate current PR state, asset references and evidence before remediation. Keep the PR draft while T009/T023 remain open; remove unused deployed artwork with recoverable history, normalize local paths and condense repeated verification logs without changing results or RED/GREEN chronology. Existing matchMedia-unavailable fallback remains tested. A suspected handoff flash only receives a behavior fix if reproduced.
+
+## Mobile logo alignment
+
+- **S13 (happy/boundary/regression)**: Given the shared authentication layout at 375, 553 or 680 px, when it renders, then the Weave logo is horizontally centered within the form container, retaining its existing size and bottom spacing. At 681 px and above it retains desktop left alignment. Headings and form controls remain left-aligned. Authentication failures do not change this CSS-only alignment; no new data or failure state is introduced.
+
+The user explicitly requested this correction on the marked 553 px sign-in view. Verify rendered browser geometry before/after; this small reversible CSS change does not require a new test that mirrors its declaration.

@@ -266,7 +266,7 @@ html:has(.auth-shell) {
   }
   .auth-logo {
     width: 125px;
-    margin-bottom: 40px;
+    margin: 0 auto 40px;
   }
 }
 

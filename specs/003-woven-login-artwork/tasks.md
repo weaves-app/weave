@@ -87,3 +87,7 @@ Dependencies: T029 precedes all source changes; T030/T031/T032/T033 precede T034
 ## Phase 12: Convergence
 
 - [ ] T035 Record frames around the native video-to-still handoff in an available Chromium performance session at 6× CPU throttle or Safari/Firefox; determine whether F5 paints a blank frame before authorizing a lifecycle change, per S01/FR-002/SC-003 and plan: external review response (partial, MEDIUM). Record the actual outcome; existing normal playback observations do not prove this stress boundary.
+
+## Phase 13: Mobile logo alignment
+
+- [x] T036 Record the user-approved S13 mobile alignment and actual browser RED, center the logo through the existing responsive CSS, verify mobile/boundary/desktop geometry and existing checks, then document convergence and update the existing PR.
