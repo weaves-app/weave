@@ -20,5 +20,9 @@
     "requestedOn": "2026-10-08",
     "baseCommit": "f041c9578d070700ad04c4118f4c5b2fc728b8f6",
     "scope": "Merge develop into PR #7, retaining WEA-10 Clerk dependencies/tests and WEA-8 pnpm workspace, audit and adoption contracts. No new authored behavior; existing S01-S06 and WEA-10 regression seams apply."
+  },
+  "ciRemediation": {
+    "requestedOn": "2026-10-09",
+    "scope": "S05: use the supported macOS 15 Intel hosted runner after two arm64 runner-acquisition cancellations. Preserve both required native builds and architecture-specific Pod cache keys; no application behavior changes."
   }
 }

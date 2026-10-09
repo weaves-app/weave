@@ -68,3 +68,9 @@ Merged develop at f041c9578d070700ad04c4118f4c5b2fc728b8f6 into WEA-8. Kept Cler
 - S04/S05: fresh container and native compilation require remote CI; this host has no Docker CLI. Prior CI evidence is historical, not validation of this merge head.
 
 Personal author and committer match repository-local Pravin Raj <pravinrajmb@gmail.com>. GitHub SSH authenticated as pravinrajmb. The gh CLI is unavailable, so the local pre-push API identity hook cannot run; equivalent identity and full local checks were performed. Remote CI and code-owner approval remain required. Logs replace the isolated checkout path with <repo>.
+
+## iOS hosted-runner capacity remediation — 2026-10-09
+
+S05: attempts 1 and 2 of CI run 37810839528 cancelled iOS before any runner acquired the job. GitHub annotations explicitly reported macOS arm64 capacity constraints and “The job was not acquired by Runner of type hosted even after multiple attempts”. Android, policy, quality, integration and mobile-js passed; mobile/containers/required failures were dependency propagation. This is infrastructure failure, not behavioral RED.
+
+Use the supported macos-15-intel standard runner for iOS, retaining the existing compile command, native gates, and runner.arch Pod cache separation. Source: https://docs.github.com/en/actions/reference/runners/github-hosted-runners. Actionlint 1.7.12 and offline zizmor 1.30.1 exited 0. Frozen install, full verification (including valid unchanged-input Turbo cache hits), and all three database/HTTP integration tests passed ([verify](evidence/runner-verify.txt), [integration](evidence/runner-integration.txt)). Remote execution is required to establish iOS and container success on the changed runner.
