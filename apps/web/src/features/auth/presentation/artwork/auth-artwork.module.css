@@ -36,6 +36,7 @@
   );
 }
 
+/* Keep this literal aligned with authTokens.layout.heroMinWidthPx; auth-breakpoint.test.ts checks it. */
 @media (prefers-reduced-motion: reduce), (max-width: 680px) {
   .stage[data-phase] .still {
     visibility: visible;

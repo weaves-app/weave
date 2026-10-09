@@ -249,6 +249,7 @@ html:has(.auth-shell) {
     font-size: 35px;
   }
 }
+/* Keep this literal aligned with authTokens.layout.heroMinWidthPx; auth-breakpoint.test.ts checks it. */
 @media (max-width: 680px) {
   .auth-shell {
     display: block;

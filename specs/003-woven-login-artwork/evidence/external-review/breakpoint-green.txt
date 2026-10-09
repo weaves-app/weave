@@ -1,0 +1,29 @@
+A component suspended inside an `act` scope, but the `act` call was not awaited. When testing React components that depend on asynchronous data, you must await the result:
+
+await act(() => ...)
+✔ WEA-24 S01 plays once, leaves the form usable, and settles on the woven still (401.818584ms)
+✔ WEA-24 S01 requests buffering before waiting for media readiness (104.940541ms)
+✔ WEA-24 S01 StrictMode cleanup preserves one subsequent playback attempt (47.836666ms)
+✔ WEA-24 S03 shared shells and signup never request the intro (92.345791ms)
+✔ WEA-24 S03 reduced initial mount never requests or later starts media (39.429375ms)
+✔ WEA-24 S03 mobile initial mount never requests or later starts media (55.901333ms)
+✔ WEA-24 S03 hidden initial mount never requests or later starts media (20.633625ms)
+✔ WEA-24 S02 readiness expires without a late animation flash (28.728333ms)
+✔ WEA-24 S02 rejected autoplay and media errors reveal a terminal still (92.837792ms)
+✔ WEA-24 S02/S03 reduced during playback stops permanently (17.335792ms)
+✔ WEA-24 S02/S03 mobile during playback stops permanently (43.64175ms)
+✔ WEA-24 S02/S03 hidden during playback stops permanently (69.425292ms)
+✔ WEA-24 S02/S03 stalled during playback stops permanently (57.083625ms)
+✔ WEA-24 S01 Clerk readiness and refreshed callbacks preserve the playing element (616.266583ms)
+✔ WEA-24 S03 unmount releases playback and ignores late events (16.554834ms)
+✔ WEA-24 S11 ../src/app/globals.css follows the shared hero breakpoint (32.750042ms)
+✔ WEA-24 S11 ../src/features/auth/presentation/artwork/auth-artwork.module.css follows the shared hero breakpoint (2.641792ms)
+✔ WEA-24 S04 (preserves WEA-10 S18) shared artwork remains static after image readiness and pointer movement (358.891375ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 22315.693

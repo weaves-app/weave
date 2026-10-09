@@ -1,6 +1,8 @@
 import {useEffect, useRef, useState} from 'react';
 import type {RefObject} from 'react';
 
+import {authTokens} from '@weave/design-tokens';
+
 const INTRO_SOURCE = '/brand/woven/intro.v2.mp4';
 
 const READINESS_TIMEOUT_MS = 500;
@@ -31,7 +33,7 @@ export function useArtworkIntro(animate: boolean): ArtworkIntro {
       return;
     }
 
-    const desktop = window.matchMedia('(min-width: 681px)');
+    const desktop = window.matchMedia(`(min-width: ${authTokens.layout.heroMinWidthPx}px)`);
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
     const readyBy = performance.now() + READINESS_TIMEOUT_MS;
     let active = true;
