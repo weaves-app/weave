@@ -69,6 +69,6 @@ Dependency update: T021 → T022 precede completion of T019 and publication T020
 - [x] T025 Capture the authored-source line-limit failure and policy metadata failure, preserve the remote package-manager failure and sync current develop without policy bypass.
 - [x] T026 Add meaningful 500/501-line lint boundary coverage before the shared rule; remove redundant legacy archives with recoverable Git links, consolidate current timing values, and prove public geometry/timing output unchanged.
 - [x] T027 Resolve actionable Spec findings with public behavior tests first; rerun targeted, whole-repository and database checks under pnpm; re-review the final diff and record the two review axes separately.
-- [ ] T028 Push reviewed fixes through normal hooks, update PR traceability/evidence and confirm remote check results while retaining actual browser/reviewer limitations.
+- [x] T028 Push reviewed fixes through normal hooks, update PR traceability/evidence and confirm the remote head, metadata policy and current check status while retaining actual browser/reviewer limitations. Final CI and code-owner approval remain required before merge.
 
 Dependencies: T024 → T025 → T026/T027 → T028. Independent review subagents are explicitly required by the invoked code-review skill; implementation stays sequential.

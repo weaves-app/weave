@@ -34,7 +34,7 @@ T009/T023 still require Safari/Firefox codec/color/handoff, real-device and redu
 
 The failed policy run mixed develop's pnpm command with this older branch's npm setup because the policy job checks out the PR head. Merging current develop aligns the workflow, setup and pinned lockfile without changing or bypassing CI policy. The merged branch uses pnpm 11.1.1; a clean frozen install completed. An initial reused npm dependency folder had a non-executable CLI target; recreating the local dependency folder resolved it without dependency/lockfile edits.
 
-The PR description also omitted the exact `Spec:` and `Evidence:` fields parsed by `scripts/pr-policy.mjs`. The actual metadata failed policy before correction. A candidate body with those exact fields passes the real policy script with current develop ancestry. Publication must verify the updated actual remote metadata too.
+The PR description also omitted the exact `Spec:` and `Evidence:` fields parsed by `scripts/pr-policy.mjs`. The actual metadata failed policy before correction. A candidate body with those exact fields passed the real policy script with current develop ancestry. After publication, the actual remote metadata also passes: base `810974c`, head `676bc15`, still draft. Hosted policy, quality, integration and mobile-js pass in [CI run 37920285450](https://github.com/weaves-app/weave/actions/runs/37920285450); the remaining jobs were in progress when this publication record was written. Final required CI and code-owner approval remain outstanding gates.
 
 ## Final local verification
 
@@ -47,6 +47,6 @@ The PR description also omitted the exact `Spec:` and `Evidence:` fields parsed 
 - [500/501-line rule RED](evidence/review/line-rule-red.txt), [GREEN](evidence/review/line-rule-green.txt).
 - [Timing/geometry equivalence](evidence/review/timing-equivalence.txt).
 - [Readiness RED](evidence/review/readiness-red.txt), [16-test GREEN including StrictMode](evidence/review/readiness-green.txt).
-- [Remote package-manager failure](evidence/review/remote-policy-failure.txt), [metadata RED](evidence/review/pr-policy-red.txt), [candidate metadata GREEN](evidence/review/pr-policy-green.txt).
+- [Remote package-manager failure](evidence/review/remote-policy-failure.txt), [metadata RED](evidence/review/pr-policy-red.txt), [candidate metadata GREEN](evidence/review/pr-policy-green.txt), [published metadata GREEN](evidence/review/pr-policy-actual-green.txt).
 
 Outcome: Standards — 2 original findings resolved, none remaining. Spec — 1 code concern resolved, 1 verification gap remains (the worst remaining issue in this axis). No additional code correction is required by either reviewer; this is not merge approval.

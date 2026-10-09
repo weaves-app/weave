@@ -27,3 +27,5 @@ No missing, contradicting or unrequested code was found. Two MEDIUM partial veri
 ## Requested code-review reassessment
 
 The independent Standards and Spec passes and their follow-ups are in [review.md](review.md). Standards: both original findings resolved, zero remaining. Spec: media-readiness concern resolved with meaningful public-seam RED/GREEN; zero remaining code findings, one pending browser acceptance gap (T009/T023). S09/S10 and T024–T028 record the user’s 500-line and delivery-compliance requirements. The application retains its focused presentation/hook composition and no additional animation abstraction or dependency. Final pnpm repository/database checks pass. No new untracked code gap was found; existing visual tasks are retained without duplication.
+
+Publication reassessment: review implementation `676bc15` is pushed; actual PR metadata and hosted policy pass. PR #10 remains draft with T009/T023 open and final CI/code-owner gates required. Publication T028 is complete; it does not imply visual-matrix completion or merge approval.

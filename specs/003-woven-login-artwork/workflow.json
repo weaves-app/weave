@@ -26,7 +26,7 @@
     "webTests": "73/73",
     "repositoryVerify": "passed under pinned pnpm after review; evidence/review/final-verify.txt",
     "databaseIntegration": "3/3 under pinned pnpm; evidence/review/final-integration.txt",
-    "remoteCi": "v2 checks running on the published branch; no claim of final CI success",
+    "remoteCi": "Review commit 676bc15: hosted policy, quality, integration and mobile-js pass; native/container checks remain in progress. CI run 37920285450; no claim of final CI success.",
     "browserMatrix": "partial; T009",
     "gitFixtureWithInheritedContext": "2/2; parent personal identity preserved"
   },
@@ -34,7 +34,7 @@
     "outcome": "tasks_appended",
     "remainingTaskIds": ["T009", "T023"],
     "report": "convergence.md",
-    "latestAssessment": "Requested two-axis review and remediation completed; Standards 0 remaining findings, Spec 0 remaining code findings and 1 browser/device verification gap already tracked by T009/T023. No duplicate convergence task added. Final code/standards checks pass; publication T028 remains next."
+    "latestAssessment": "Requested two-axis review and remediation completed and published. Standards 0 remaining findings; Spec 0 remaining code findings and 1 browser/device verification gap already tracked by T009/T023. No duplicate convergence task added. Final local code/standards checks and actual remote metadata policy pass; final CI and code-owner approval remain required."
   },
   "deliveryRegression": "S05 records the existing mandatory S21 policy checks, which failed under the normal pre-push hook. The user-authorized publication requires fixing fixture isolation, not changing identity policy or bypassing hooks. RED preserved before fixture correction; no new product behavior.",
   "motionRefinement": {
@@ -98,7 +98,7 @@
     ],
     "fixedHead": "0bf8076ca698bf9c882e9a47a25c2b3b47a6caf9",
     "mergeBase": "f041c9578d070700ad04c4118f4c5b2fc728b8f6",
-    "status": "reviewed-locally-verified-awaiting-publication",
+    "status": "published-draft-pr",
     "analysis": "User scope maps to ordered T024\u2013T028; no new design decision or conflicting product requirement.",
     "readinessClarification": "Existing S01/S03 authorization covers requesting buffering only after eligibility, before canplay; preserve source-free ineligible markup. Browser-hint model and StrictMode public tests precede the source change. No claim of reproduced Safari failure.",
     "standards": {
@@ -123,6 +123,15 @@
       "maxAuthoredFileLines": 496,
       "ruleBoundary": "500 accepted; 501 rejected; comments/blank lines counted",
       "reviewReport": "review.md"
+    },
+    "publication": {
+      "implementationCommit": "676bc1547d20b2672770e29d7f6ca9045952e317",
+      "baseCommit": "810974c36deafd8bddb23828d1adedfc14b3999e",
+      "pullRequest": "https://github.com/weaves-app/weave/pull/10",
+      "actualMetadataPolicy": "passed; evidence/review/pr-policy-actual-green.txt",
+      "push": "Normal pre-push policy, lint, typecheck and tests passed; personal author and committer verified. No bypass.",
+      "ci": "Hosted policy, quality, integration and mobile-js pass; native/container checks remain in progress at publication. Run 37920285450.",
+      "reviewStatus": "Draft pending T009/T023, final required CI and code-owner approval."
     }
   }
 }
