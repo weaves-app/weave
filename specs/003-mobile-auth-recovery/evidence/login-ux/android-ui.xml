@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testsuites>
+  <testsuite name="Test Suite" device="weave-e2e-api35" tests="1" failures="0" time="80.203" timestamp="2026-10-08T19:25:45">
+    <testcase id="WEA-10 T049 deterministic OTP presentation" name="WEA-10 T049 deterministic OTP presentation" classname="WEA-10 T049 deterministic OTP presentation" file="/private/tmp/weave-ux-native-flow.yaml" time="80.185" timestamp="2026-10-08T19:25:45" status="SUCCESS"/>
+  </testsuite>
+</testsuites>

@@ -1,0 +1,119 @@
+//
+//  UserProfileAddConnectedAccountView.swift
+//  Clerk
+//
+
+#if os(iOS) || os(macOS)
+
+import ClerkKit
+import SwiftUI
+
+struct UserProfileAddConnectedAccountView: View {
+  @Environment(Clerk.self) private var clerk
+  @Environment(\.clerkUserProfileOAuthConfig) private var oauthConfig
+  @Environment(\.clerkTheme) private var theme
+  @Environment(\.dismiss) private var dismiss
+
+  @State private var navigationInset: CGFloat?
+  @State private var error: Error?
+
+  private var user: User? {
+    clerk.user
+  }
+
+  private var unconnectedProviders: [OAuthProvider] {
+    user?.unconnectedProviders ?? []
+  }
+
+  var body: some View {
+    NavigationStack {
+      ScrollView {
+        VStack(spacing: 24) {
+          Text("Link another login option to your account. You’ll need to verify it before it can be used.", bundle: .module)
+            .font(theme.fonts.subheadline)
+            .foregroundStyle(theme.colors.mutedForeground)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .fixedSize(horizontal: false, vertical: true)
+
+          SocialButtonGroup(providers: unconnectedProviders) { provider, showsTitle, _ in
+            SocialButton(
+              provider: provider,
+              showsTitle: showsTitle
+            ) {
+              await connectExternalAccount(provider: provider)
+            }
+          }
+
+          if let error {
+            ErrorText(error: error, alignment: .leading)
+            #if os(macOS)
+            .fixedSize(horizontal: false, vertical: true)
+            #endif
+          }
+        }
+        .padding(24)
+        .background(theme.colors.background)
+        .clerkErrorPresenting($error)
+        #if os(iOS)
+        .navigationBarTitleDisplayMode(.inline)
+        .preGlassSolidNavBar()
+        #endif
+        .preGlassDetentSheetBackground()
+        .contentSizedSheet(additionalHeight: navigationInset)
+      }
+      .scrollBounceBehavior(.basedOnSize)
+      .onGeometryChange(for: CGFloat.self) { geometry in
+        geometry.safeAreaInsets.top
+      } action: { navigationInset = $0 }
+      .background(theme.colors.background)
+      .toolbar {
+        CancelToolbarItem {
+          dismiss()
+        }
+
+        ToolbarItem(placement: .principal) {
+          Text("Connect account", bundle: .module)
+            .font(theme.fonts.headline)
+            .foregroundStyle(theme.colors.foreground)
+        }
+      }
+    }
+  }
+}
+
+extension UserProfileAddConnectedAccountView {
+  func connectExternalAccount(provider: OAuthProvider) async {
+    guard let user else { return }
+
+    do {
+      if provider == .apple {
+        try await user.connectAppleAccount()
+      } else {
+        let newExternalAccount = try await user.createExternalAccount(
+          provider: provider,
+          additionalScopes: oauthConfig.additionalScopes(for: provider),
+          oidcPrompts: oauthConfig.prompts(for: provider)
+        )
+        try await newExternalAccount.reauthorize()
+      }
+
+      dismiss()
+    } catch {
+      if error.isUserCancelledError { return }
+      self.error = error
+      ClerkLogger.error("Failed to connect external account", error: error)
+    }
+  }
+}
+
+#Preview {
+  UserProfileAddConnectedAccountView()
+  #if os(iOS)
+  .clerkPreview()
+  #elseif os(macOS)
+  .environment(Clerk.preview())
+  #endif
+  .environment(\.clerkTheme, .clerk)
+}
+
+#endif

@@ -1,0 +1,231 @@
+
+> @weave/mobile@0.0.0 test
+> npm run test:privacy && jest --runInBand --watchman=false --runTestsByPath src/auth/login.test.tsx
+
+
+> @weave/mobile@0.0.0 test:privacy
+> node scripts/apply-renderer-privacy.mjs && node scripts/renderer-privacy-probe.mjs
+
+Applied pinned React Native renderer diagnostics privacy patch.
+Renderer privacy probe: three severities sanitized; fatality preserved.
+FAIL src/auth/login.test.tsx
+  ✓ S02/S03 offers exactly three methods and accessible password validation (177 ms)
+  ✓ S08 password stays untrimmed in request, fields clear and pending actions disable (21 ms)
+  ✓ S16/S19 supports signIn verification and method return (76 ms)
+  ✓ S16/S19 supports deviceTrust verification and method return (76 ms)
+  ✓ S17/S18/S20 displays safe existingAccountRequired feedback and usable method controls (62 ms)
+  ✓ S17/S18/S20 displays safe verificationRequired feedback and usable method controls (62 ms)
+  ✓ S17/S18/S20 displays safe cancelled feedback and usable method controls (62 ms)
+  ✓ S17 cancelled Google returns a working visible password form (75 ms)
+  ✓ S15 the complete login form applies safe-area edges around its keyboard-aware scroll layout (10 ms)
+  ✓ S15 method selection communicates the selected form to assistive technology (12 ms)
+  ✓ S15/S16 formatted code paste fills one editable verification value (71 ms)
+  ✓ S15/S19 verification requests the native one-time-code autofill keyboard (66 ms)
+  ✓ S16/S19 automatically verifies the sixth digit for signIn and permits correction after rejection (70 ms)
+  ✓ S16/S19 automatically verifies the sixth digit for deviceTrust and permits correction after rejection (61 ms)
+  ✓ S15 clearing login feedback retains the measured scroll extent on method change (7 ms)
+  ✓ S15/S16/S19 keeps branding and signIn Back reachable outside the scrolling form (65 ms)
+  ✓ S15/S16/S19 keeps branding and deviceTrust Back reachable outside the scrolling form (65 ms)
+  ✓ S15 uses the same form alignment when Login changes to signIn verification (69 ms)
+  ✓ S15 uses the same form alignment when Login changes to deviceTrust verification (70 ms)
+  ✕ S15 tablet rotation changes the composition without losing email or partial verification code (13 ms)
+
+  ● S15 tablet rotation changes the composition without losing email or partial verification code
+
+    Unable to find an element with text: Everything, woven together.
+
+    [36m<RNCSafeAreaView[39m
+      [33mtestID[39m=[32m"login-safe-area"[39m
+    [36m>[39m
+      [36m<View>[39m
+        [36m<View>[39m
+          [36m<View />[39m
+          [36m<View>[39m
+            [36m<Image[39m
+              [33maccessibilityLabel[39m=[32m"Weave"[39m
+              [33maccessibilityRole[39m=[32m"image"[39m
+            [36m/>[39m
+          [36m</View>[39m
+          [36m<View />[39m
+        [36m</View>[39m
+        [36m<View>[39m
+          [36m<RCTScrollView>[39m
+            [36m<View>[39m
+              [36m<View>[39m
+                [36m<View>[39m
+                  [36m<View>[39m
+                    [36m<Text[39m
+                      [33maccessibilityRole[39m=[32m"header"[39m
+                    [36m>[39m
+                      [0mWelcome back[0m
+                    [36m</Text>[39m
+                    [36m<Text>[39m
+                      [0mSign in to your Weave workspace.[0m
+                    [36m</Text>[39m
+                  [36m</View>[39m
+                [36m</View>[39m
+                [36m<View[39m
+                  [33maccessibilityLabel[39m=[32m"Continue with Google"[39m
+                  [33maccessibilityRole[39m=[32m"button"[39m
+                  [33maccessibilityState[39m=[32m{
+                    {
+                      "busy": false,
+                      "disabled": false,
+                    }
+                  }[39m
+                  [33maccessible[39m=[32m{true}[39m
+                [36m>[39m
+                  [36m<View>[39m
+                    [36m<Image[39m
+                      [33maccessible[39m=[32m{false}[39m
+                    [36m/>[39m
+                    [36m<Text>[39m
+                      [0mContinue with Google[0m
+                    [36m</Text>[39m
+                  [36m</View>[39m
+                [36m</View>[39m
+                [36m<View>[39m
+                  [36m<View />[39m
+                  [36m<Text>[39m
+                    [0mor continue with email[0m
+                  [36m</Text>[39m
+                  [36m<View />[39m
+                [36m</View>[39m
+                [36m<View>[39m
+                  [36m<View[39m
+                    [33maccessibilityLabel[39m=[32m"Email and password"[39m
+                    [33maccessibilityRole[39m=[32m"button"[39m
+                    [33maccessibilityState[39m=[32m{
+                      {
+                        "disabled": false,
+                        "selected": true,
+                      }
+                    }[39m
+                    [33maccessible[39m=[32m{true}[39m
+                  [36m>[39m
+                    [36m<Text>[39m
+                      [0mPassword[0m
+                    [36m</Text>[39m
+                  [36m</View>[39m
+                  [36m<View[39m
+                    [33maccessibilityLabel[39m=[32m"Email code"[39m
+                    [33maccessibilityRole[39m=[32m"button"[39m
+                    [33maccessibilityState[39m=[32m{
+                      {
+                        "disabled": false,
+                        "selected": false,
+                      }
+                    }[39m
+                    [33maccessible[39m=[32m{true}[39m
+                  [36m>[39m
+                    [36m<Text>[39m
+                      [0mEmail code[0m
+                    [36m</Text>[39m
+                  [36m</View>[39m
+                [36m</View>[39m
+                [36m<View>[39m
+                  [36m<View>[39m
+                    [36m<Text>[39m
+                      [0mEmail[0m
+                    [36m</Text>[39m
+                    [36m<TextInput[39m
+                      [33maccessibilityLabel[39m=[32m"Email"[39m
+                      [33maccessibilityState[39m=[32m{
+                        {
+                          "disabled": false,
+                        }
+                      }[39m
+                      [33meditable[39m=[32m{true}[39m
+                      [33mplaceholder[39m=[32m"you@company.com"[39m
+                      [33mtestID[39m=[32m"field-email"[39m
+                      [33mvalue[39m=[32m""[39m
+                    [36m/>[39m
+                  [36m</View>[39m
+                  [36m<View>[39m
+                    [36m<View>[39m
+                      [36m<View[39m
+                        [33maccessibilityElementsHidden[39m=[32m{false}[39m
+                        [33mimportantForAccessibility[39m=[32m"auto"[39m
+                        [33mpointerEvents[39m=[32m"auto"[39m
+                      [36m>[39m
+                        [36m<View>[39m
+                          [36m<View>[39m
+                            [36m<View>[39m
+                              [36m<Text>[39m
+                                [0mPassword[0m
+                              [36m</Text>[39m
+                              [36m<TextInput[39m
+                                [33maccessibilityLabel[39m=[32m"Password"[39m
+                                [33maccessibilityState[39m=[32m{
+                                  {
+                                    "disabled": false,
+                                  }
+                                }[39m
+                                [33meditable[39m=[32m{true}[39m
+                                [33mplaceholder[39m=[32m"Enter your password"[39m
+                                [33mtestID[39m=[32m"field-password"[39m
+                                [33mvalue[39m=[32m""[39m
+                              [36m/>[39m
+                            [36m</View>[39m
+                          [36m</View>[39m
+                        [36m</View>[39m
+                      [36m</View>[39m
+                      [36m<View>[39m
+                        [36m<View[39m
+                          [33maccessibilityLabel[39m=[32m"Log in"[39m
+                          [33maccessibilityRole[39m=[32m"button"[39m
+                          [33maccessibilityState[39m=[32m{
+                            {
+                              "busy": false,
+                              "disabled": false,
+                            }
+                          }[39m
+                          [33maccessible[39m=[32m{true}[39m
+                        [36m>[39m
+                          [36m<View>[39m
+                            [36m<Text>[39m
+                              [0mLog in[0m
+                            [36m</Text>[39m
+                            [36m<Text[39m
+                              [33maccessibilityElementsHidden[39m=[32m{true}[39m
+                              [33mimportantForAccessibility[39m=[32m"no"[39m
+                            [36m>[39m
+                              [0m→[0m
+                            [36m</Text>[39m
+                          [36m</View>[39m
+                        [36m</View>[39m
+                      [36m</View>[39m
+                    [36m</View>[39m
+                  [36m</View>[39m
+                [36m</View>[39m
+              [36m</View>[39m
+            [36m</View>[39m
+          [36m</RCTScrollView>[39m
+        [36m</View>[39m
+      [36m</View>[39m
+    [36m</RNCSafeAreaView>[39m
+
+      301 |     setup(gateway);
+      302 |     await waitFor(() => expect(screen.getByLabelText('Email')).toBeTruthy());
+    > 303 |     expect(screen.getByText('Everything, woven together.')).toBeTruthy();
+          |                   ^
+      304 |     fireEvent.changeText(screen.getByLabelText('Email'), 'person@example.com');
+      305 |     act(() => resize(1032, 1376));
+      306 |     expect(screen.queryByText('Everything, woven together.')).toBeNull();
+
+      at Object.getByText (src/auth/login.test.tsx:303:19)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 19 passed, 20 total
+Snapshots:   0 total
+Time:        1.644 s, estimated 2 s
+Ran all test suites within paths "src/auth/login.test.tsx".
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path /Users/pravinraj/workspace/weave/apps/mobile
+npm error workspace @weave/mobile@0.0.0
+npm error location /Users/pravinraj/workspace/weave/apps/mobile
+npm error command failed
+npm error command sh -c npm run test:privacy && jest --runInBand --watchman=false --runTestsByPath src/auth/login.test.tsx

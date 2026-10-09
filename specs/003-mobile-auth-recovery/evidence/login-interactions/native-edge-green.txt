@@ -1,0 +1,25 @@
+/sdcard/weave-method-animation.mp4: 1 file pulled, 0 skipped. 16.5 MB/s (173208 bytes in 0.010s)
+{
+  "Weave": {
+    "before": "[86,243][422,350]",
+    "after": "[86,243][422,350]"
+  },
+  "Welcome back": {
+    "before": "[63,436][1017,544]",
+    "after": "[63,436][1017,544]"
+  },
+  "Continue with Google": {
+    "before": "[63,705][1017,848]",
+    "after": "[63,705][1017,848]"
+  },
+  "Email code": {
+    "before": "[540,1052][1007,1178]",
+    "after": "[540,1052][1007,1178]"
+  },
+  "Email": {
+    "before": "[63,1340][1017,1484]",
+    "after": "[63,1340][1017,1484]"
+  }
+}
+PASS: fontScale1.6, Reduce Motion and rapid toggle; hidden password excluded
+Original font and motion preferences restored

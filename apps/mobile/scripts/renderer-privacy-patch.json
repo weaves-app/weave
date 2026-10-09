@@ -1,0 +1,8 @@
+{
+  "packageVersion": "0.86.3",
+  "relativePath": "src/private/renderer/errorhandling/ErrorHandlers.js",
+  "originalSha256": "9288319654413e6ac25524f298215cfbb07a81fd93c6e3680abc34eb09a2c422",
+  "patchedSha256": "ea9b48f094786fb229258665a0b907047f0e15bbf0443945de352a3fbe84452c",
+  "original": "  let error;\n\n  // Typically, `errorValue` should be an error. However, other values such as\n  // strings (or even null) are sometimes thrown.\n  if (errorValue instanceof Error) {\n    /* $FlowFixMe[class-object-subtyping] added when improving typing for\n     * this parameters */\n    // $FlowFixMe[incompatible-type]\n    error = errorValue as ExtendedError;\n  } else if (typeof errorValue === 'string') {\n    /* $FlowFixMe[class-object-subtyping] added when improving typing for\n     * this parameters */\n    // $FlowFixMe[incompatible-type]\n    error = new SyntheticError(errorValue) as ExtendedError;\n  } else {\n    /* $FlowFixMe[class-object-subtyping] added when improving typing for\n     * this parameters */\n    // $FlowFixMe[incompatible-type]\n    error = new SyntheticError('Unspecified error') as ExtendedError;\n  }\n  try {\n    // $FlowFixMe[incompatible-use] this is in try/catch.\n    error.componentStack = errorInfo.componentStack;\n    error.isComponentError = true;\n  } catch {\n    // Ignored.\n  }\n",
+  "replacement": "  // Weave FR-012: retain severity while removing renderer-owned raw diagnostics.\n  const error = new SyntheticError('Rendering failed') as ExtendedError;\n  error.stack = '';\n  error.componentStack = null;\n  error.isComponentError = true;\n"
+}

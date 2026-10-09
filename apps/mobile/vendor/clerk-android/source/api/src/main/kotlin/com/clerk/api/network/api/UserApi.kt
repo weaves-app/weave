@@ -1,0 +1,384 @@
+@file:Suppress("TooManyFunctions")
+
+package com.clerk.api.network.api
+
+import com.clerk.api.Clerk
+import com.clerk.api.emailaddress.EmailAddress
+import com.clerk.api.externalaccount.ExternalAccount
+import com.clerk.api.network.ApiParams
+import com.clerk.api.network.ApiPaths
+import com.clerk.api.network.ClerkPaginatedResponse
+import com.clerk.api.network.model.backupcodes.BackupCodeResource
+import com.clerk.api.network.model.deleted.DeletedObject
+import com.clerk.api.network.model.error.ClerkErrorResponse
+import com.clerk.api.network.model.image.ImageResource
+import com.clerk.api.network.model.totp.TOTPResource
+import com.clerk.api.network.serialization.ClerkResult
+import com.clerk.api.organizations.OrganizationCreationDefaults
+import com.clerk.api.organizations.OrganizationInvitation
+import com.clerk.api.organizations.OrganizationMembership
+import com.clerk.api.organizations.OrganizationSuggestion
+import com.clerk.api.organizations.UserOrganizationInvitation
+import com.clerk.api.passkeys.Passkey
+import com.clerk.api.phonenumber.PhoneNumber
+import com.clerk.api.session.Session
+import com.clerk.api.user.User
+import okhttp3.MultipartBody
+import retrofit2.http.DELETE
+import retrofit2.http.Field
+import retrofit2.http.FieldMap
+import retrofit2.http.FormUrlEncoded
+import retrofit2.http.GET
+import retrofit2.http.Multipart
+import retrofit2.http.PATCH
+import retrofit2.http.POST
+import retrofit2.http.Part
+import retrofit2.http.Path
+import retrofit2.http.Query
+
+internal interface UserApi {
+  @GET(ApiPaths.User.BASE)
+  suspend fun getUser(
+    @Query(ApiParams.CLERK_SESSION_ID) sessionId: String? = Clerk.session?.id
+  ): ClerkResult<User, ClerkErrorResponse>
+
+  @PATCH(ApiPaths.User.BASE)
+  @FormUrlEncoded
+  suspend fun updateUser(
+    @FieldMap fields: Map<String, String>,
+    @Query(ApiParams.CLERK_SESSION_ID) sessionId: String? = Clerk.session?.id,
+  ): ClerkResult<User, ClerkErrorResponse>
+
+  /**
+   * Updates the current user's metadata. Performs a deep merge: keys present in the request body
+   * are merged into the existing metadata, and any key whose value is `null` is removed at any
+   * nesting level.
+   *
+   * @param fields Map of metadata field names to JSON-encoded values. Only `unsafe_metadata` is
+   *   writable from the Frontend API.
+   * @param sessionId Optional session ID. Defaults to current session ID from [Clerk.session]
+   * @return [ClerkResult] containing the updated [User] on success or [ClerkErrorResponse] on
+   *   failure
+   * @see [com.clerk.api.user.updateMetadata]
+   */
+  @PATCH(ApiPaths.User.METADATA)
+  @FormUrlEncoded
+  suspend fun updateUserMetadata(
+    @FieldMap fields: Map<String, String>,
+    @Query(ApiParams.CLERK_SESSION_ID) sessionId: String? = Clerk.session?.id,
+  ): ClerkResult<User, ClerkErrorResponse>
+
+  @DELETE(ApiPaths.User.BASE)
+  suspend fun deleteUser(
+    @Query(ApiParams.CLERK_SESSION_ID) sessionId: String? = Clerk.session?.id
+  ): ClerkResult<DeletedObject, ClerkErrorResponse>
+
+  @GET(ApiPaths.User.Sessions.BASE)
+  suspend fun getSessions(
+    @Query(ApiParams.CLERK_SESSION_ID) sessionId: String? = Clerk.session?.id
+  ): ClerkResult<List<Session>, ClerkErrorResponse>
+
+  @Multipart
+  @POST(ApiPaths.User.PROFILE_IMAGE)
+  suspend fun setProfileImage(
+    @Part file: MultipartBody.Part,
+    @Query(ApiParams.CLERK_SESSION_ID) sessionId: String? = Clerk.session?.id,
+  ): ClerkResult<ImageResource, ClerkErrorResponse>
+
+  @DELETE(ApiPaths.User.PROFILE_IMAGE)
+  suspend fun deleteProfileImage(
+    @Query(ApiParams.CLERK_SESSION_ID) sessionId: String? = Clerk.session?.id
+  ): ClerkResult<DeletedObject, ClerkErrorResponse>
+
+  @FormUrlEncoded
+  @POST(ApiPaths.User.Password.UPDATE)
+  suspend fun updatePassword(
+    @FieldMap fields: Map<String, String>,
+    @Query(ApiParams.CLERK_SESSION_ID) sessionId: String? = Clerk.session?.id,
+  ): ClerkResult<User, ClerkErrorResponse>
+
+  @FormUrlEncoded
+  @POST(ApiPaths.User.Password.DELETE)
+  suspend fun deletePassword(
+    @Field("current_password") password: String,
+    @Query(ApiParams.CLERK_SESSION_ID) sessionId: String? = Clerk.session?.id,
+  ): ClerkResult<User, ClerkErrorResponse>
+
+  @GET(ApiPaths.User.Sessions.ACTIVE)
+  suspend fun getActiveSessions(
+    @Query(ApiParams.CLERK_SESSION_ID) sessionId: String? = Clerk.session?.id
+  ): ClerkResult<List<Session>, ClerkErrorResponse>
+
+  @GET(ApiPaths.User.EmailAddress.BASE)
+  suspend fun getEmailAddresses(
+    @Query(ApiParams.CLERK_SESSION_ID) sessionId: String? = Clerk.session?.id
+  ): ClerkResult<List<EmailAddress>, ClerkErrorResponse>
+
+  @FormUrlEncoded
+  @POST(ApiPaths.User.EmailAddress.BASE)
+  suspend fun createEmailAddress(
+    @Field("email_address") emailAddress: String,
+    @Query(ApiParams.CLERK_SESSION_ID) sessionId: String? = Clerk.session?.id,
+  ): ClerkResult<EmailAddress, ClerkErrorResponse>
+
+  @FormUrlEncoded
+  @POST(ApiPaths.User.EmailAddress.ATTEMPT_VERIFICATION)
+  suspend fun attemptEmailAddressVerification(
+    @Path(ApiParams.EMAIL_ID) emailAddressId: String,
+    @Field(ApiParams.CODE) code: String,
+    @Query(ApiParams.CLERK_SESSION_ID) sessionId: String? = Clerk.session?.id,
+  ): ClerkResult<EmailAddress, ClerkErrorResponse>
+
+  @FormUrlEncoded
+  @POST(ApiPaths.User.EmailAddress.PREPARE_VERIFICATION)
+  suspend fun prepareEmailAddressVerification(
+    @Path(ApiParams.EMAIL_ID) emailAddressId: String,
+    @FieldMap params: Map<String, String>,
+    @Query(ApiParams.CLERK_SESSION_ID) sessionId: String? = Clerk.session?.id,
+  ): ClerkResult<EmailAddress, ClerkErrorResponse>
+
+  @GET(ApiPaths.User.EmailAddress.WITH_ID)
+  suspend fun getEmailAddress(
+    @Path(ApiParams.EMAIL_ID) emailAddressId: String,
+    @Query(ApiParams.CLERK_SESSION_ID) sessionId: String? = Clerk.session?.id,
+  ): ClerkResult<EmailAddress, ClerkErrorResponse>
+
+  @DELETE(ApiPaths.User.EmailAddress.WITH_ID)
+  suspend fun deleteEmailAddress(
+    @Path(ApiParams.EMAIL_ID) emailAddressId: String,
+    @Query(ApiParams.CLERK_SESSION_ID) sessionId: String? = Clerk.session?.id,
+  ): ClerkResult<DeletedObject, ClerkErrorResponse>
+
+  @GET(ApiPaths.User.PhoneNumber.BASE)
+  suspend fun getPhoneNumbers(
+    @Query(ApiParams.CLERK_SESSION_ID) sessionId: String? = Clerk.session?.id
+  ): ClerkResult<List<PhoneNumber>, ClerkErrorResponse>
+
+  @FormUrlEncoded
+  @POST(ApiPaths.User.PhoneNumber.BASE)
+  suspend fun createPhoneNumber(
+    @Field("phone_number") phoneNumber: String,
+    @Field("reserved_for_second_factor") reservedForSecondFactor: Boolean = false,
+    @Query(ApiParams.CLERK_SESSION_ID) sessionId: String? = Clerk.session?.id,
+  ): ClerkResult<PhoneNumber, ClerkErrorResponse>
+
+  @FormUrlEncoded
+  @POST(ApiPaths.User.PhoneNumber.ATTEMPT_VERIFICATION)
+  suspend fun attemptPhoneNumberVerification(
+    @Path(ApiParams.PHONE_NUMBER_ID) phoneNumberId: String,
+    @Field(ApiParams.CODE) code: String,
+    @Query(ApiParams.CLERK_SESSION_ID) sessionId: String? = Clerk.session?.id,
+  ): ClerkResult<PhoneNumber, ClerkErrorResponse>
+
+  @FormUrlEncoded
+  @POST(ApiPaths.User.PhoneNumber.PREPARE_VERIFICATION)
+  suspend fun preparePhoneNumberVerification(
+    @Path(ApiParams.PHONE_NUMBER_ID) phoneNumberId: String,
+    @Field(ApiParams.STRATEGY) strategy: String,
+    @Query(ApiParams.CLERK_SESSION_ID) sessionId: String? = Clerk.session?.id,
+  ): ClerkResult<PhoneNumber, ClerkErrorResponse>
+
+  @GET(ApiPaths.User.PhoneNumber.WITH_ID)
+  suspend fun getPhoneNumber(
+    @Path(ApiParams.PHONE_NUMBER_ID) phoneNumberId: String,
+    @Query(ApiParams.CLERK_SESSION_ID) sessionId: String? = Clerk.session?.id,
+  ): ClerkResult<PhoneNumber, ClerkErrorResponse>
+
+  @DELETE(ApiPaths.User.PhoneNumber.WITH_ID)
+  suspend fun deletePhoneNumber(
+    @Path(ApiParams.PHONE_NUMBER_ID) phoneNumberId: String,
+    @Query(ApiParams.CLERK_SESSION_ID) sessionId: String? = Clerk.session?.id,
+  ): ClerkResult<DeletedObject, ClerkErrorResponse>
+
+  @FormUrlEncoded
+  @PATCH(ApiPaths.User.PhoneNumber.WITH_ID)
+  suspend fun updatePhoneNumber(
+    @Path(ApiParams.PHONE_NUMBER_ID) phoneNumberId: String,
+    @Field("reserved_for_second_factor") reservedForSecondFactor: Boolean? = null,
+    @Field("default_second_factor") defaultSecondFactor: Boolean? = null,
+    @Query(ApiParams.CLERK_SESSION_ID) sessionId: String? = Clerk.session?.id,
+  ): ClerkResult<PhoneNumber, ClerkErrorResponse>
+
+  @POST(ApiPaths.User.Passkey.BASE)
+  suspend fun createPasskey(
+    @Query(ApiParams.CLERK_SESSION_ID) sessionId: String? = Clerk.session?.id
+  ): ClerkResult<Passkey, ClerkErrorResponse>
+
+  @GET(ApiPaths.User.Passkey.WITH_ID)
+  suspend fun getPasskey(
+    @Path(ApiParams.PASSKEY_ID) passkeyId: String,
+    @Query(ApiParams.CLERK_SESSION_ID) sessionId: String? = Clerk.session?.id,
+  ): ClerkResult<Passkey, ClerkErrorResponse>
+
+  @DELETE(ApiPaths.User.Passkey.WITH_ID)
+  suspend fun deletePasskey(
+    @Path(ApiParams.PASSKEY_ID) passkeyId: String,
+    @Query(ApiParams.CLERK_SESSION_ID) sessionId: String? = Clerk.session?.id,
+  ): ClerkResult<DeletedObject, ClerkErrorResponse>
+
+  @FormUrlEncoded
+  @PATCH(ApiPaths.User.Passkey.WITH_ID)
+  suspend fun updatePasskey(
+    @Path(ApiParams.PASSKEY_ID) passkeyId: String,
+    @Field("name") name: String? = null,
+    @Query(ApiParams.CLERK_SESSION_ID) sessionId: String? = Clerk.session?.id,
+  ): ClerkResult<Passkey, ClerkErrorResponse>
+
+  @FormUrlEncoded
+  @POST(ApiPaths.User.Passkey.ATTEMPT_VERIFICATION)
+  suspend fun attemptPasskeyVerification(
+    @Path(ApiParams.PASSKEY_ID) passkeyId: String,
+    @Field(ApiParams.STRATEGY) strategy: String = "passkey",
+    @Field("public_key_credential") publicKeyCredential: String,
+    @Query(ApiParams.CLERK_SESSION_ID) sessionId: String? = Clerk.session?.id,
+  ): ClerkResult<Passkey, ClerkErrorResponse>
+
+  @FormUrlEncoded
+  @POST(ApiPaths.User.ExternalAccount.BASE)
+  suspend fun createExternalAccount(
+    @FieldMap params: Map<String, String>,
+    @Query(ApiParams.CLERK_SESSION_ID) sessionId: String? = Clerk.session?.id,
+  ): ClerkResult<ExternalAccount, ClerkErrorResponse>
+
+  @FormUrlEncoded
+  @PATCH(ApiPaths.User.ExternalAccount.REAUTHORIZE)
+  suspend fun reauthorizeExternalAccount(
+    @Path(ApiParams.EXTERNAL_ACCOUNT_ID) externalAccountId: String,
+    @Field("redirect_url") redirectUrl: String,
+    @Query(ApiParams.CLERK_SESSION_ID) sessionId: String? = Clerk.session?.id,
+  ): ClerkResult<ExternalAccount, ClerkErrorResponse>
+
+  @DELETE(ApiPaths.User.ExternalAccount.WITH_ID)
+  suspend fun deleteExternalAccount(
+    @Path(ApiParams.EXTERNAL_ACCOUNT_ID) externalAccountId: String,
+    @Query(ApiParams.CLERK_SESSION_ID) sessionId: String? = Clerk.session?.id,
+  ): ClerkResult<DeletedObject, ClerkErrorResponse>
+
+  @DELETE(ApiPaths.User.ExternalAccount.REVOKE_TOKENS)
+  suspend fun revokeExternalAccountTokens(
+    @Path(ApiParams.EXTERNAL_ACCOUNT_ID) externalAccountId: String
+  ): ClerkResult<User, ClerkErrorResponse>
+
+  @POST(ApiPaths.User.TOTP.BASE)
+  suspend fun createTOTP(
+    @Query(ApiParams.CLERK_SESSION_ID) sessionId: String? = Clerk.session?.id
+  ): ClerkResult<TOTPResource, ClerkErrorResponse>
+
+  @DELETE(ApiPaths.User.TOTP.BASE)
+  suspend fun deleteTOTP(
+    @Query(ApiParams.CLERK_SESSION_ID) sessionId: String? = Clerk.session?.id
+  ): ClerkResult<DeletedObject, ClerkErrorResponse>
+
+  @FormUrlEncoded
+  @POST(ApiPaths.User.TOTP.ATTEMPT_VERIFICATION)
+  suspend fun attemptTOTPVerification(
+    @Field(ApiParams.CODE) code: String,
+    @Query(ApiParams.CLERK_SESSION_ID) sessionId: String? = Clerk.session?.id,
+  ): ClerkResult<TOTPResource, ClerkErrorResponse>
+
+  @POST(ApiPaths.User.BACKUP_CODES)
+  suspend fun createBackupCodes(
+    @Query(ApiParams.CLERK_SESSION_ID) sessionId: String? = Clerk.session?.id
+  ): ClerkResult<BackupCodeResource, ClerkErrorResponse>
+
+  /**
+   * Accepts a user organization invitation.
+   *
+   * @param invitationId The unique identifier of the invitation to accept
+   * @param sessionId Optional session ID for the operation
+   * @return A [ClerkResult] containing either the accepted [OrganizationInvitation] on success or a
+   *   [ClerkErrorResponse] on failure
+   * @see com.clerk.api.organizations.accept
+   */
+  @POST(ApiPaths.User.ACCEPT_ORGANIZATION_INVITATION)
+  suspend fun acceptUserOrganizationInvitation(
+    @Path("invitation_id") invitationId: String,
+    @Query(ApiParams.CLERK_SESSION_ID) sessionId: String? = null,
+  ): ClerkResult<UserOrganizationInvitation, ClerkErrorResponse>
+
+  @POST(ApiPaths.User.ACCEPT_ORGANIZATION_SUGGESTION)
+  suspend fun acceptOrganizationSuggestion(
+    @Path("suggestion_id") suggestionId: String,
+    @Query(ApiParams.CLERK_SESSION_ID) sessionId: String? = null,
+  ): ClerkResult<OrganizationSuggestion, ClerkErrorResponse>
+
+  @GET(ApiPaths.User.ORGANIZATION_MEMBERSHIPS)
+  suspend fun getOrganizationMemberships(
+    @Query(ApiParams.LIMIT) limit: Int? = null,
+    @Query(ApiParams.OFFSET) offset: Int? = null,
+    @Query("paginated") paginated: Boolean = true,
+    @Query(ApiParams.CLERK_SESSION_ID) sessionId: String? = null,
+  ): ClerkResult<ClerkPaginatedResponse<OrganizationMembership>, ClerkErrorResponse>
+
+  @DELETE(ApiPaths.User.ORGANIZATION_MEMBERSHIP_WITH_ID)
+  suspend fun deleteMembership(
+    @Path("organization_id") organizationId: String,
+    @Query(ApiParams.CLERK_SESSION_ID) sessionId: String? = null,
+  ): ClerkResult<DeletedObject, ClerkErrorResponse>
+
+  /**
+   * Retrieves organization invitations for the current user.
+   *
+   * @param status Optional status filter for invitations (e.g., "pending", "accepted")
+   * @param limit Maximum number of invitations to return
+   * @param offset Number of invitations to skip for pagination
+   * @param sessionId Optional session ID for the operation
+   * @return [ClerkResult] containing paginated [UserOrganizationInvitation] list on success or
+   *   [ClerkErrorResponse] on failure
+   */
+  @GET(ApiPaths.User.ORGANIZATION_INVITATIONS)
+  suspend fun getOrganizationInvitations(
+    @Query("status") status: String? = null,
+    @Query(ApiParams.LIMIT) limit: Int? = null,
+    @Query(ApiParams.OFFSET) offset: Int? = null,
+    @Query(ApiParams.CLERK_SESSION_ID) sessionId: String? = null,
+  ): ClerkResult<ClerkPaginatedResponse<UserOrganizationInvitation>, ClerkErrorResponse>
+
+  /**
+   * Retrieves organization suggestions for the current user.
+   *
+   * @param status Optional status filter for suggestions (e.g., "pending", "accepted")
+   * @param limit Maximum number of suggestions to return
+   * @param offset Number of suggestions to skip for pagination
+   * @param sessionId Optional session ID for the operation
+   * @return [ClerkResult] containing paginated [OrganizationSuggestion] list on success or
+   *   [ClerkErrorResponse] on failure
+   */
+  @GET(ApiPaths.User.ORGANIZATION_SUGGESTIONS)
+  suspend fun getOrganizationSuggestions(
+    @Query("status") status: List<String>? = null,
+    @Query(ApiParams.LIMIT) limit: Int? = null,
+    @Query(ApiParams.OFFSET) offset: Int? = null,
+    @Query(ApiParams.CLERK_SESSION_ID) sessionId: String? = null,
+  ): ClerkResult<ClerkPaginatedResponse<OrganizationSuggestion>, ClerkErrorResponse>
+
+  @GET(ApiPaths.User.ORGANIZATION_CREATION_DEFAULTS)
+  suspend fun getOrganizationCreationDefaults(
+    @Query(ApiParams.CLERK_SESSION_ID) sessionId: String? = null
+  ): ClerkResult<OrganizationCreationDefaults, ClerkErrorResponse>
+
+  @FormUrlEncoded
+  @PATCH(ApiPaths.User.PhoneNumber.WITH_ID)
+  suspend fun setReservedForSecondFactor(
+    @Path(ApiParams.PHONE_NUMBER_ID) phoneNumberId: String,
+    @Field("reserved_for_second_factor") reservedForSecondFactor: Boolean,
+    @Query(ApiParams.CLERK_SESSION_ID) sessionId: String? = Clerk.session?.id,
+  ): ClerkResult<PhoneNumber, ClerkErrorResponse>
+
+  /**
+   * Sets a phone number as the default for second-factor authentication.
+   *
+   * @param phoneNumberId The ID of the phone number to set as the default second factor.
+   * @param defaultSecondFactor Must be `true` to set this phone number as the default.
+   * @param sessionId Optional session ID. Defaults to current session ID from [Clerk.session].
+   * @return [ClerkResult] containing the updated [PhoneNumber] on success or [ClerkErrorResponse]
+   *   on failure.
+   */
+  @FormUrlEncoded
+  @PATCH(ApiPaths.User.PhoneNumber.WITH_ID)
+  suspend fun makeDefaultSecondFactor(
+    @Path(ApiParams.PHONE_NUMBER_ID) phoneNumberId: String,
+    @Field("default_second_factor") defaultSecondFactor: Boolean,
+    @Query(ApiParams.CLERK_SESSION_ID) sessionId: String? = Clerk.session?.id,
+  ): ClerkResult<PhoneNumber, ClerkErrorResponse>
+}

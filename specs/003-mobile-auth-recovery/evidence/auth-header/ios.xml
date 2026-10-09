@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testsuites>
+  <testsuite name="Test Suite" device="iPhone 17 Pro - iOS 26.2 - C4BFD4BD-394C-459F-8A0D-A7C04178C96B" tests="1" failures="0" time="24.739" timestamp="2026-10-09T13:05:45">
+    <testcase id="WEA-10 T052 shared authentication header" name="WEA-10 T052 shared authentication header" classname="WEA-10 T052 shared authentication header" file="/private/tmp/weave-auth-header-flow.yaml" time="24.725" timestamp="2026-10-09T13:05:45" status="SUCCESS"/>
+  </testsuite>
+</testsuites>

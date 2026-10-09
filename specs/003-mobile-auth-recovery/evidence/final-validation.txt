@@ -1,0 +1,29 @@
+Root npm run verify: exit 0 (session completed).
+Android final JUnit: {'tests': 30, 'failures': 0, 'errors': 0, 'skipped': 0}
+ Tasks:    6 successful, 6 total
+All matched files use Prettier code style!
+ Tasks:    5 successful, 5 total
+@weave/mobile:test: Test Suites: 12 passed, 12 total
+@weave/mobile:test: Tests:       81 passed, 81 total
+ Tasks:    4 successful, 4 total
+ Tasks:    3 successful, 3 total
+Database isolated Postgres18.1 integration: exit 0.
+
+> test:integration
+> node --test tests/integration/*.test.mjs
+
+✔ S06 HTTP wiring returns liveness and database readiness; web displays connection (673.934208ms)
+✔ S06 database outage returns 503 readiness and 200 liveness (276.925625ms)
+✔ S09 committed schema persists a user and enforces unique email (6.001125ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1006.396167
+
+Renderer diagnostics probe: exit 0.
+Renderer privacy probe: three severities sanitized; fatality preserved.
+

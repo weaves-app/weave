@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testsuites>
+  <testsuite name="Test Suite" device="weave-e2e-api35" tests="1" failures="0" time="63.592" timestamp="2026-10-08T17:08:04">
+    <testcase id="WEA-10 S18 android unregistered email password and code" name="WEA-10 S18 android unregistered email password and code" classname="WEA-10 S18 android unregistered email password and code" file="apps/mobile/e2e/flows/unregistered-android.yaml" time="63.581" timestamp="2026-10-08T17:08:04" status="SUCCESS"/>
+  </testsuite>
+</testsuites>

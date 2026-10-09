@@ -1,0 +1,17 @@
+import {createElement} from 'react';
+import {AppRegistry} from 'react-native';
+import {name} from './app.json';
+import {App} from './App';
+import {createAuthController} from './src/auth/application/auth-controller';
+import {TestClock, TestGateway} from './src/auth/testing/fakes';
+
+const gateway = new TestGateway();
+gateway.loginResult = async () => ({kind: 'challenge', attemptId: 'ui-preview', codePurpose: 'signIn'});
+gateway.verifyCode = async () => {
+  await new Promise((resolve) => setTimeout(resolve, 7000));
+  return {kind: 'error', code: 'codeInvalid', messageKey: 'codeInvalid'};
+};
+function PreviewApp(): React.JSX.Element {
+  return createElement(App, {createController: () => createAuthController(gateway, new TestClock())});
+}
+AppRegistry.registerComponent(name, () => PreviewApp);

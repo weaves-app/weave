@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testsuites>
+  <testsuite name="Test Suite" device="weave-e2e-api35" tests="1" failures="0" time="52.768" timestamp="2026-10-09T13:23:58">
+    <testcase id="WEA-10 T053 tablet common form origin" name="WEA-10 T053 tablet common form origin" classname="WEA-10 T053 tablet common form origin" file="/private/tmp/weave-ipad-alignment-flow.yaml" time="52.759" timestamp="2026-10-09T13:23:58" status="SUCCESS"/>
+  </testsuite>
+</testsuites>

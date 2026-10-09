@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testsuites>
+  <testsuite name="Test Suite" device="iPhone 17 Pro - iOS 26.2 - C4BFD4BD-394C-459F-8A0D-A7C04178C96B" tests="1" failures="0" time="12.445" timestamp="2026-10-08T16:35:19">
+    <testcase id="WEA-10 S01 S03 signed-out launch and empty input" name="WEA-10 S01 S03 signed-out launch and empty input" classname="WEA-10 S01 S03 signed-out launch and empty input" file="apps/mobile/e2e/flows/signed-out.yaml" time="12.432" timestamp="2026-10-08T16:35:19" status="SUCCESS"/>
+  </testsuite>
+</testsuites>

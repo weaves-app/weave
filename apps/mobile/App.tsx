@@ -1,22 +1,30 @@
-import {useState} from 'react';
 import {StatusBar} from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
-import {Button} from './src/components/button';
-import {Screen} from './src/components/screen';
-import {Typography} from './src/components/typography';
-export function App(): React.JSX.Element {
-  const [ready, setReady] = useState(false);
+import {createAuthController} from './src/auth/application/auth-controller';
+import type {AuthController} from './src/auth/application/auth-controller';
+import {createNativeAuthGateway} from './src/auth/infrastructure/native-auth-gateway';
+import {createNativeAuthTransport} from './src/auth/infrastructure/native-auth-transport';
+import {systemClock} from './src/auth/infrastructure/system-clock';
+import {AuthProvider} from './src/auth/presentation/auth-context';
+import {RootNavigator} from './src/navigation/root-navigator';
+import {AppErrorBoundary} from './src/recovery/app-error-boundary';
+export interface AppProps {
+  readonly createController?: () => AuthController;
+}
+function createController(): AuthController {
+  return createAuthController(createNativeAuthGateway(createNativeAuthTransport()), systemClock);
+}
+export function App({createController: factory = createController}: AppProps): React.JSX.Element {
   return (
-    <SafeAreaProvider>
-      <Screen>
-        <Typography variant="title">Weave</Typography>
-        <Typography>Your mobile workspace is ready.</Typography>
-        <Button
-          label={ready ? 'Ready to weave' : 'Explore workspace'}
-          onPress={() => setReady(true)}
-        />
-        <StatusBar barStyle="dark-content" />
-      </Screen>
-    </SafeAreaProvider>
+    <AppErrorBoundary
+      renderChildren={() => (
+        <AuthProvider createController={factory}>
+          <SafeAreaProvider>
+            <RootNavigator />
+            <StatusBar barStyle="dark-content" />
+          </SafeAreaProvider>
+        </AuthProvider>
+      )}
+    />
   );
 }

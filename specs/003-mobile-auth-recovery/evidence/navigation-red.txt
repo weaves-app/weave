@@ -1,0 +1,430 @@
+
+> @weave/mobile@0.0.0 test
+> jest --runInBand --watchman=false root-navigator.test.tsx
+
+  console.error
+    The 'navigation' object hasn't been initialized yet. This might happen if you don't have a navigator mounted, or if the navigator hasn't finished mounting. See https://reactnavigation.org/docs/navigating-without-navigation-prop#handling-initialization for more details.
+
+      44 |   const {navigationRef}=setup(gateway); const input=gateway.requests[0]?.input;if(!input) throw new Error('missing request');
+      45 |   await act(async()=>result.resolve(active(input)));
+    > 46 |   await waitFor(()=>expect(navigationRef.getCurrentRoute()?.name).toBe('Home')); expect(navigationRef.canGoBack()).toBe(false);
+         |                                          ^
+      47 | });
+      48 |
+
+      at Object.error [as getCurrentRoute] (../../node_modules/@react-navigation/core/src/createNavigationContainerRef.tsx:90:23)
+      at getCurrentRoute (src/navigation/root-navigator.test.tsx:46:42)
+      at expectation (../../node_modules/@testing-library/react-native/src/wait-for.ts:127:24)
+      at checkExpectation (../../node_modules/@testing-library/react-native/src/wait-for.ts:90:7)
+      at waitForInternal (../../node_modules/@testing-library/react-native/src/wait-for.ts:32:10)
+      at waitForInternal (../../node_modules/@testing-library/react-native/src/wait-for.ts:190:26)
+      at callback (../../node_modules/@testing-library/react-native/src/helpers/wrap-async.ts:17:26)
+      at waitFor (../../node_modules/@testing-library/react-native/src/wait-for.ts:190:19)
+      at Object.<anonymous> (src/navigation/root-navigator.test.tsx:46:16)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  console.error
+    The 'navigation' object hasn't been initialized yet. This might happen if you don't have a navigator mounted, or if the navigator hasn't finished mounting. See https://reactnavigation.org/docs/navigating-without-navigation-prop#handling-initialization for more details.
+
+      44 |   const {navigationRef}=setup(gateway); const input=gateway.requests[0]?.input;if(!input) throw new Error('missing request');
+      45 |   await act(async()=>result.resolve(active(input)));
+    > 46 |   await waitFor(()=>expect(navigationRef.getCurrentRoute()?.name).toBe('Home')); expect(navigationRef.canGoBack()).toBe(false);
+         |                                          ^
+      47 | });
+      48 |
+
+      at Object.error [as getCurrentRoute] (../../node_modules/@react-navigation/core/src/createNavigationContainerRef.tsx:90:23)
+      at getCurrentRoute (src/navigation/root-navigator.test.tsx:46:42)
+      at expectation (../../node_modules/@testing-library/react-native/src/wait-for.ts:127:24)
+      at Timeout.checkExpectation [as _onTimeout] (../../node_modules/@testing-library/react-native/src/wait-for.ts:120:16)
+
+  console.error
+    The 'navigation' object hasn't been initialized yet. This might happen if you don't have a navigator mounted, or if the navigator hasn't finished mounting. See https://reactnavigation.org/docs/navigating-without-navigation-prop#handling-initialization for more details.
+
+      44 |   const {navigationRef}=setup(gateway); const input=gateway.requests[0]?.input;if(!input) throw new Error('missing request');
+      45 |   await act(async()=>result.resolve(active(input)));
+    > 46 |   await waitFor(()=>expect(navigationRef.getCurrentRoute()?.name).toBe('Home')); expect(navigationRef.canGoBack()).toBe(false);
+         |                                          ^
+      47 | });
+      48 |
+
+      at Object.error [as getCurrentRoute] (../../node_modules/@react-navigation/core/src/createNavigationContainerRef.tsx:90:23)
+      at getCurrentRoute (src/navigation/root-navigator.test.tsx:46:42)
+      at expectation (../../node_modules/@testing-library/react-native/src/wait-for.ts:127:24)
+      at Timeout.checkExpectation [as _onTimeout] (../../node_modules/@testing-library/react-native/src/wait-for.ts:120:16)
+
+  console.error
+    The 'navigation' object hasn't been initialized yet. This might happen if you don't have a navigator mounted, or if the navigator hasn't finished mounting. See https://reactnavigation.org/docs/navigating-without-navigation-prop#handling-initialization for more details.
+
+      44 |   const {navigationRef}=setup(gateway); const input=gateway.requests[0]?.input;if(!input) throw new Error('missing request');
+      45 |   await act(async()=>result.resolve(active(input)));
+    > 46 |   await waitFor(()=>expect(navigationRef.getCurrentRoute()?.name).toBe('Home')); expect(navigationRef.canGoBack()).toBe(false);
+         |                                          ^
+      47 | });
+      48 |
+
+      at Object.error [as getCurrentRoute] (../../node_modules/@react-navigation/core/src/createNavigationContainerRef.tsx:90:23)
+      at getCurrentRoute (src/navigation/root-navigator.test.tsx:46:42)
+      at expectation (../../node_modules/@testing-library/react-native/src/wait-for.ts:127:24)
+      at Timeout.checkExpectation [as _onTimeout] (../../node_modules/@testing-library/react-native/src/wait-for.ts:120:16)
+
+  console.error
+    The 'navigation' object hasn't been initialized yet. This might happen if you don't have a navigator mounted, or if the navigator hasn't finished mounting. See https://reactnavigation.org/docs/navigating-without-navigation-prop#handling-initialization for more details.
+
+      44 |   const {navigationRef}=setup(gateway); const input=gateway.requests[0]?.input;if(!input) throw new Error('missing request');
+      45 |   await act(async()=>result.resolve(active(input)));
+    > 46 |   await waitFor(()=>expect(navigationRef.getCurrentRoute()?.name).toBe('Home')); expect(navigationRef.canGoBack()).toBe(false);
+         |                                          ^
+      47 | });
+      48 |
+
+      at Object.error [as getCurrentRoute] (../../node_modules/@react-navigation/core/src/createNavigationContainerRef.tsx:90:23)
+      at getCurrentRoute (src/navigation/root-navigator.test.tsx:46:42)
+      at expectation (../../node_modules/@testing-library/react-native/src/wait-for.ts:127:24)
+      at Timeout.checkExpectation [as _onTimeout] (../../node_modules/@testing-library/react-native/src/wait-for.ts:120:16)
+
+  console.error
+    The 'navigation' object hasn't been initialized yet. This might happen if you don't have a navigator mounted, or if the navigator hasn't finished mounting. See https://reactnavigation.org/docs/navigating-without-navigation-prop#handling-initialization for more details.
+
+      44 |   const {navigationRef}=setup(gateway); const input=gateway.requests[0]?.input;if(!input) throw new Error('missing request');
+      45 |   await act(async()=>result.resolve(active(input)));
+    > 46 |   await waitFor(()=>expect(navigationRef.getCurrentRoute()?.name).toBe('Home')); expect(navigationRef.canGoBack()).toBe(false);
+         |                                          ^
+      47 | });
+      48 |
+
+      at Object.error [as getCurrentRoute] (../../node_modules/@react-navigation/core/src/createNavigationContainerRef.tsx:90:23)
+      at getCurrentRoute (src/navigation/root-navigator.test.tsx:46:42)
+      at expectation (../../node_modules/@testing-library/react-native/src/wait-for.ts:127:24)
+      at Timeout.checkExpectation [as _onTimeout] (../../node_modules/@testing-library/react-native/src/wait-for.ts:120:16)
+
+  console.error
+    The 'navigation' object hasn't been initialized yet. This might happen if you don't have a navigator mounted, or if the navigator hasn't finished mounting. See https://reactnavigation.org/docs/navigating-without-navigation-prop#handling-initialization for more details.
+
+      44 |   const {navigationRef}=setup(gateway); const input=gateway.requests[0]?.input;if(!input) throw new Error('missing request');
+      45 |   await act(async()=>result.resolve(active(input)));
+    > 46 |   await waitFor(()=>expect(navigationRef.getCurrentRoute()?.name).toBe('Home')); expect(navigationRef.canGoBack()).toBe(false);
+         |                                          ^
+      47 | });
+      48 |
+
+      at Object.error [as getCurrentRoute] (../../node_modules/@react-navigation/core/src/createNavigationContainerRef.tsx:90:23)
+      at getCurrentRoute (src/navigation/root-navigator.test.tsx:46:42)
+      at expectation (../../node_modules/@testing-library/react-native/src/wait-for.ts:127:24)
+      at Timeout.checkExpectation [as _onTimeout] (../../node_modules/@testing-library/react-native/src/wait-for.ts:120:16)
+
+  console.error
+    The 'navigation' object hasn't been initialized yet. This might happen if you don't have a navigator mounted, or if the navigator hasn't finished mounting. See https://reactnavigation.org/docs/navigating-without-navigation-prop#handling-initialization for more details.
+
+      44 |   const {navigationRef}=setup(gateway); const input=gateway.requests[0]?.input;if(!input) throw new Error('missing request');
+      45 |   await act(async()=>result.resolve(active(input)));
+    > 46 |   await waitFor(()=>expect(navigationRef.getCurrentRoute()?.name).toBe('Home')); expect(navigationRef.canGoBack()).toBe(false);
+         |                                          ^
+      47 | });
+      48 |
+
+      at Object.error [as getCurrentRoute] (../../node_modules/@react-navigation/core/src/createNavigationContainerRef.tsx:90:23)
+      at getCurrentRoute (src/navigation/root-navigator.test.tsx:46:42)
+      at expectation (../../node_modules/@testing-library/react-native/src/wait-for.ts:127:24)
+      at Timeout.checkExpectation [as _onTimeout] (../../node_modules/@testing-library/react-native/src/wait-for.ts:120:16)
+
+  console.error
+    The 'navigation' object hasn't been initialized yet. This might happen if you don't have a navigator mounted, or if the navigator hasn't finished mounting. See https://reactnavigation.org/docs/navigating-without-navigation-prop#handling-initialization for more details.
+
+      44 |   const {navigationRef}=setup(gateway); const input=gateway.requests[0]?.input;if(!input) throw new Error('missing request');
+      45 |   await act(async()=>result.resolve(active(input)));
+    > 46 |   await waitFor(()=>expect(navigationRef.getCurrentRoute()?.name).toBe('Home')); expect(navigationRef.canGoBack()).toBe(false);
+         |                                          ^
+      47 | });
+      48 |
+
+      at Object.error [as getCurrentRoute] (../../node_modules/@react-navigation/core/src/createNavigationContainerRef.tsx:90:23)
+      at getCurrentRoute (src/navigation/root-navigator.test.tsx:46:42)
+      at expectation (../../node_modules/@testing-library/react-native/src/wait-for.ts:127:24)
+      at Timeout.checkExpectation [as _onTimeout] (../../node_modules/@testing-library/react-native/src/wait-for.ts:120:16)
+
+  console.error
+    The 'navigation' object hasn't been initialized yet. This might happen if you don't have a navigator mounted, or if the navigator hasn't finished mounting. See https://reactnavigation.org/docs/navigating-without-navigation-prop#handling-initialization for more details.
+
+      44 |   const {navigationRef}=setup(gateway); const input=gateway.requests[0]?.input;if(!input) throw new Error('missing request');
+      45 |   await act(async()=>result.resolve(active(input)));
+    > 46 |   await waitFor(()=>expect(navigationRef.getCurrentRoute()?.name).toBe('Home')); expect(navigationRef.canGoBack()).toBe(false);
+         |                                          ^
+      47 | });
+      48 |
+
+      at Object.error [as getCurrentRoute] (../../node_modules/@react-navigation/core/src/createNavigationContainerRef.tsx:90:23)
+      at getCurrentRoute (src/navigation/root-navigator.test.tsx:46:42)
+      at expectation (../../node_modules/@testing-library/react-native/src/wait-for.ts:127:24)
+      at Timeout.checkExpectation [as _onTimeout] (../../node_modules/@testing-library/react-native/src/wait-for.ts:120:16)
+
+  console.error
+    The 'navigation' object hasn't been initialized yet. This might happen if you don't have a navigator mounted, or if the navigator hasn't finished mounting. See https://reactnavigation.org/docs/navigating-without-navigation-prop#handling-initialization for more details.
+
+      44 |   const {navigationRef}=setup(gateway); const input=gateway.requests[0]?.input;if(!input) throw new Error('missing request');
+      45 |   await act(async()=>result.resolve(active(input)));
+    > 46 |   await waitFor(()=>expect(navigationRef.getCurrentRoute()?.name).toBe('Home')); expect(navigationRef.canGoBack()).toBe(false);
+         |                                          ^
+      47 | });
+      48 |
+
+      at Object.error [as getCurrentRoute] (../../node_modules/@react-navigation/core/src/createNavigationContainerRef.tsx:90:23)
+      at getCurrentRoute (src/navigation/root-navigator.test.tsx:46:42)
+      at expectation (../../node_modules/@testing-library/react-native/src/wait-for.ts:127:24)
+      at Timeout.checkExpectation [as _onTimeout] (../../node_modules/@testing-library/react-native/src/wait-for.ts:120:16)
+
+  console.error
+    The 'navigation' object hasn't been initialized yet. This might happen if you don't have a navigator mounted, or if the navigator hasn't finished mounting. See https://reactnavigation.org/docs/navigating-without-navigation-prop#handling-initialization for more details.
+
+      44 |   const {navigationRef}=setup(gateway); const input=gateway.requests[0]?.input;if(!input) throw new Error('missing request');
+      45 |   await act(async()=>result.resolve(active(input)));
+    > 46 |   await waitFor(()=>expect(navigationRef.getCurrentRoute()?.name).toBe('Home')); expect(navigationRef.canGoBack()).toBe(false);
+         |                                          ^
+      47 | });
+      48 |
+
+      at Object.error [as getCurrentRoute] (../../node_modules/@react-navigation/core/src/createNavigationContainerRef.tsx:90:23)
+      at getCurrentRoute (src/navigation/root-navigator.test.tsx:46:42)
+      at expectation (../../node_modules/@testing-library/react-native/src/wait-for.ts:127:24)
+      at Timeout.checkExpectation [as _onTimeout] (../../node_modules/@testing-library/react-native/src/wait-for.ts:120:16)
+
+  console.error
+    The 'navigation' object hasn't been initialized yet. This might happen if you don't have a navigator mounted, or if the navigator hasn't finished mounting. See https://reactnavigation.org/docs/navigating-without-navigation-prop#handling-initialization for more details.
+
+      44 |   const {navigationRef}=setup(gateway); const input=gateway.requests[0]?.input;if(!input) throw new Error('missing request');
+      45 |   await act(async()=>result.resolve(active(input)));
+    > 46 |   await waitFor(()=>expect(navigationRef.getCurrentRoute()?.name).toBe('Home')); expect(navigationRef.canGoBack()).toBe(false);
+         |                                          ^
+      47 | });
+      48 |
+
+      at Object.error [as getCurrentRoute] (../../node_modules/@react-navigation/core/src/createNavigationContainerRef.tsx:90:23)
+      at getCurrentRoute (src/navigation/root-navigator.test.tsx:46:42)
+      at expectation (../../node_modules/@testing-library/react-native/src/wait-for.ts:127:24)
+      at Timeout.checkExpectation [as _onTimeout] (../../node_modules/@testing-library/react-native/src/wait-for.ts:120:16)
+
+  console.error
+    The 'navigation' object hasn't been initialized yet. This might happen if you don't have a navigator mounted, or if the navigator hasn't finished mounting. See https://reactnavigation.org/docs/navigating-without-navigation-prop#handling-initialization for more details.
+
+      44 |   const {navigationRef}=setup(gateway); const input=gateway.requests[0]?.input;if(!input) throw new Error('missing request');
+      45 |   await act(async()=>result.resolve(active(input)));
+    > 46 |   await waitFor(()=>expect(navigationRef.getCurrentRoute()?.name).toBe('Home')); expect(navigationRef.canGoBack()).toBe(false);
+         |                                          ^
+      47 | });
+      48 |
+
+      at Object.error [as getCurrentRoute] (../../node_modules/@react-navigation/core/src/createNavigationContainerRef.tsx:90:23)
+      at getCurrentRoute (src/navigation/root-navigator.test.tsx:46:42)
+      at expectation (../../node_modules/@testing-library/react-native/src/wait-for.ts:127:24)
+      at Timeout.checkExpectation [as _onTimeout] (../../node_modules/@testing-library/react-native/src/wait-for.ts:120:16)
+
+  console.error
+    The 'navigation' object hasn't been initialized yet. This might happen if you don't have a navigator mounted, or if the navigator hasn't finished mounting. See https://reactnavigation.org/docs/navigating-without-navigation-prop#handling-initialization for more details.
+
+      44 |   const {navigationRef}=setup(gateway); const input=gateway.requests[0]?.input;if(!input) throw new Error('missing request');
+      45 |   await act(async()=>result.resolve(active(input)));
+    > 46 |   await waitFor(()=>expect(navigationRef.getCurrentRoute()?.name).toBe('Home')); expect(navigationRef.canGoBack()).toBe(false);
+         |                                          ^
+      47 | });
+      48 |
+
+      at Object.error [as getCurrentRoute] (../../node_modules/@react-navigation/core/src/createNavigationContainerRef.tsx:90:23)
+      at getCurrentRoute (src/navigation/root-navigator.test.tsx:46:42)
+      at expectation (../../node_modules/@testing-library/react-native/src/wait-for.ts:127:24)
+      at Timeout.checkExpectation [as _onTimeout] (../../node_modules/@testing-library/react-native/src/wait-for.ts:120:16)
+
+  console.error
+    The 'navigation' object hasn't been initialized yet. This might happen if you don't have a navigator mounted, or if the navigator hasn't finished mounting. See https://reactnavigation.org/docs/navigating-without-navigation-prop#handling-initialization for more details.
+
+      44 |   const {navigationRef}=setup(gateway); const input=gateway.requests[0]?.input;if(!input) throw new Error('missing request');
+      45 |   await act(async()=>result.resolve(active(input)));
+    > 46 |   await waitFor(()=>expect(navigationRef.getCurrentRoute()?.name).toBe('Home')); expect(navigationRef.canGoBack()).toBe(false);
+         |                                          ^
+      47 | });
+      48 |
+
+      at Object.error [as getCurrentRoute] (../../node_modules/@react-navigation/core/src/createNavigationContainerRef.tsx:90:23)
+      at getCurrentRoute (src/navigation/root-navigator.test.tsx:46:42)
+      at expectation (../../node_modules/@testing-library/react-native/src/wait-for.ts:127:24)
+      at Timeout.checkExpectation [as _onTimeout] (../../node_modules/@testing-library/react-native/src/wait-for.ts:120:16)
+
+  console.error
+    The 'navigation' object hasn't been initialized yet. This might happen if you don't have a navigator mounted, or if the navigator hasn't finished mounting. See https://reactnavigation.org/docs/navigating-without-navigation-prop#handling-initialization for more details.
+
+      44 |   const {navigationRef}=setup(gateway); const input=gateway.requests[0]?.input;if(!input) throw new Error('missing request');
+      45 |   await act(async()=>result.resolve(active(input)));
+    > 46 |   await waitFor(()=>expect(navigationRef.getCurrentRoute()?.name).toBe('Home')); expect(navigationRef.canGoBack()).toBe(false);
+         |                                          ^
+      47 | });
+      48 |
+
+      at Object.error [as getCurrentRoute] (../../node_modules/@react-navigation/core/src/createNavigationContainerRef.tsx:90:23)
+      at getCurrentRoute (src/navigation/root-navigator.test.tsx:46:42)
+      at expectation (../../node_modules/@testing-library/react-native/src/wait-for.ts:127:24)
+      at Timeout.checkExpectation [as _onTimeout] (../../node_modules/@testing-library/react-native/src/wait-for.ts:120:16)
+
+  console.error
+    The 'navigation' object hasn't been initialized yet. This might happen if you don't have a navigator mounted, or if the navigator hasn't finished mounting. See https://reactnavigation.org/docs/navigating-without-navigation-prop#handling-initialization for more details.
+
+      44 |   const {navigationRef}=setup(gateway); const input=gateway.requests[0]?.input;if(!input) throw new Error('missing request');
+      45 |   await act(async()=>result.resolve(active(input)));
+    > 46 |   await waitFor(()=>expect(navigationRef.getCurrentRoute()?.name).toBe('Home')); expect(navigationRef.canGoBack()).toBe(false);
+         |                                          ^
+      47 | });
+      48 |
+
+      at Object.error [as getCurrentRoute] (../../node_modules/@react-navigation/core/src/createNavigationContainerRef.tsx:90:23)
+      at getCurrentRoute (src/navigation/root-navigator.test.tsx:46:42)
+      at expectation (../../node_modules/@testing-library/react-native/src/wait-for.ts:127:24)
+      at Timeout.checkExpectation [as _onTimeout] (../../node_modules/@testing-library/react-native/src/wait-for.ts:120:16)
+
+  console.error
+    The 'navigation' object hasn't been initialized yet. This might happen if you don't have a navigator mounted, or if the navigator hasn't finished mounting. See https://reactnavigation.org/docs/navigating-without-navigation-prop#handling-initialization for more details.
+
+      44 |   const {navigationRef}=setup(gateway); const input=gateway.requests[0]?.input;if(!input) throw new Error('missing request');
+      45 |   await act(async()=>result.resolve(active(input)));
+    > 46 |   await waitFor(()=>expect(navigationRef.getCurrentRoute()?.name).toBe('Home')); expect(navigationRef.canGoBack()).toBe(false);
+         |                                          ^
+      47 | });
+      48 |
+
+      at Object.error [as getCurrentRoute] (../../node_modules/@react-navigation/core/src/createNavigationContainerRef.tsx:90:23)
+      at getCurrentRoute (src/navigation/root-navigator.test.tsx:46:42)
+      at expectation (../../node_modules/@testing-library/react-native/src/wait-for.ts:127:24)
+      at Timeout.checkExpectation [as _onTimeout] (../../node_modules/@testing-library/react-native/src/wait-for.ts:120:16)
+
+  console.error
+    The 'navigation' object hasn't been initialized yet. This might happen if you don't have a navigator mounted, or if the navigator hasn't finished mounting. See https://reactnavigation.org/docs/navigating-without-navigation-prop#handling-initialization for more details.
+
+      44 |   const {navigationRef}=setup(gateway); const input=gateway.requests[0]?.input;if(!input) throw new Error('missing request');
+      45 |   await act(async()=>result.resolve(active(input)));
+    > 46 |   await waitFor(()=>expect(navigationRef.getCurrentRoute()?.name).toBe('Home')); expect(navigationRef.canGoBack()).toBe(false);
+         |                                          ^
+      47 | });
+      48 |
+
+      at Object.error [as getCurrentRoute] (../../node_modules/@react-navigation/core/src/createNavigationContainerRef.tsx:90:23)
+      at getCurrentRoute (src/navigation/root-navigator.test.tsx:46:42)
+      at expectation (../../node_modules/@testing-library/react-native/src/wait-for.ts:127:24)
+      at Timeout.checkExpectation [as _onTimeout] (../../node_modules/@testing-library/react-native/src/wait-for.ts:120:16)
+
+FAIL src/navigation/root-navigator.test.tsx
+  ✕ S01/S06 signed-out stack has only Login and rejects direct Home navigation (1013 ms)
+  ✕ S05 no Login or Home flash during unresolved validation (1 ms)
+  ✕ S02/S07 session changes replace route history and revocation removes Home (1003 ms)
+  ✕ S04 unavailable validation exposes retry outside routes (1006 ms)
+  ✕ S05 restored active session starts directly at Home after resolution (1006 ms)
+
+  ● S01/S06 signed-out stack has only Login and rejects direct Home navigation
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      15 | }
+      16 | test('S01/S06 signed-out stack has only Login and rejects direct Home navigation',async()=>{
+    > 17 |   const {navigationRef}=setup(); await waitFor(()=>expect(navigationRef.isReady()).toBe(true));
+         |                                               ^
+      18 |   expect(navigationRef.getRootState().routeNames).toEqual(['Login']);
+      19 |   const warning=jest.spyOn(console,'error').mockImplementation(()=>undefined);
+      20 |   try {act(()=>navigationRef.navigate('Home')); expect(navigationRef.getCurrentRoute()?.name).toBe('Login');}
+
+      at Object.<anonymous> (src/navigation/root-navigator.test.tsx:17:47)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at Object.<anonymous> (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12)
+
+  ● S05 no Login or Home flash during unresolved validation
+
+    Unable to find an element with text: Checking your session…
+
+    [36m<RNCSafeAreaProvider>[39m
+      [36m<View />[39m
+    [36m</RNCSafeAreaProvider>[39m
+
+      24 | test('S05 no Login or Home flash during unresolved validation',()=>{
+      25 |   const gateway=new TestGateway(); gateway.resolveResult=()=>new Promise(()=>undefined); setup(gateway);
+    > 26 |   expect(screen.getByText('Checking your session…')).toBeTruthy(); expect(screen.queryByText('Log in to Weave')).toBeNull(); expect(screen.queryByText('Home')).toBeNull();
+         |                 ^
+      27 | });
+      28 | test('S02/S07 session changes replace route history and revocation removes Home',async()=>{
+      29 |   const {controller,gateway,navigationRef}=setup(); await waitFor(()=>expect(navigationRef.isReady()).toBe(true));
+
+      at Object.getByText (src/navigation/root-navigator.test.tsx:26:17)
+
+  ● S02/S07 session changes replace route history and revocation removes Home
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      27 | });
+      28 | test('S02/S07 session changes replace route history and revocation removes Home',async()=>{
+    > 29 |   const {controller,gateway,navigationRef}=setup(); await waitFor(()=>expect(navigationRef.isReady()).toBe(true));
+         |                                                                  ^
+      30 |   await act(async()=>controller.login('google'));
+      31 |   await waitFor(()=>expect(navigationRef.getRootState().routeNames).toEqual(['Home']));
+      32 |   expect(navigationRef.canGoBack()).toBe(false);
+
+      at Object.<anonymous> (src/navigation/root-navigator.test.tsx:29:66)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at Object.<anonymous> (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12)
+
+  ● S04 unavailable validation exposes retry outside routes
+
+    Unable to find an element with role: button, name: Try again
+
+    [36m<RNCSafeAreaProvider>[39m
+      [36m<View />[39m
+    [36m</RNCSafeAreaProvider>[39m
+
+      37 | test('S04 unavailable validation exposes retry outside routes',async()=>{
+      38 |   const gateway=new TestGateway(); gateway.resolveResult=async input=>({status:'unavailable',generation:input.generation,revision:1,error:{code:'network',messageKey:'network'}});
+    > 39 |   const {navigationRef}=setup(gateway); await waitFor(()=>expect(screen.getByRole('button',{name:'Try again'})).toBeTruthy());
+         |                                                      ^
+      40 |   expect(navigationRef.isReady()).toBe(false); expect(screen.queryByText('Home')).toBeNull();
+      41 | });
+      42 | test('S05 restored active session starts directly at Home after resolution',async()=>{
+
+      at Object.<anonymous> (src/navigation/root-navigator.test.tsx:39:54)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at Object.<anonymous> (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12)
+
+  ● S05 restored active session starts directly at Home after resolution
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "Home"
+    Received: undefined
+
+      44 |   const {navigationRef}=setup(gateway); const input=gateway.requests[0]?.input;if(!input) throw new Error('missing request');
+      45 |   await act(async()=>result.resolve(active(input)));
+    > 46 |   await waitFor(()=>expect(navigationRef.getCurrentRoute()?.name).toBe('Home')); expect(navigationRef.canGoBack()).toBe(false);
+         |                ^
+      47 | });
+      48 |
+
+      at Object.<anonymous> (src/navigation/root-navigator.test.tsx:46:16)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+Test Suites: 1 failed, 1 total
+Tests:       5 failed, 5 total
+Snapshots:   0 total
+Time:        4.986 s
+Ran all test suites matching /root-navigator.test.tsx/i.
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path /Users/pravinraj/workspace/weave/apps/mobile
+npm error workspace @weave/mobile@0.0.0
+npm error location /Users/pravinraj/workspace/weave/apps/mobile
+npm error command failed
+npm error command sh -c jest --runInBand --watchman=false root-navigator.test.tsx

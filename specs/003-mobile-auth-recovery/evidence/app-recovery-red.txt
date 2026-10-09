@@ -1,0 +1,101 @@
+
+> @weave/mobile@0.0.0 test
+> jest --runInBand --watchman=false app-recovery.test.tsx
+
+FAIL src/auth/app-recovery.test.tsx
+  ✕ S12/S13 provider failure Reload freshly resolves active without old routes (94 ms)
+  ✕ S12/S13 provider failure Reload freshly resolves signedOut without old routes
+  ✕ S12/S13 provider failure Reload freshly resolves unavailable without old routes
+  ✕ S14 persistent provider failure returns Reload without an automatic retry loop (1 ms)
+
+  ● S12/S13 provider failure Reload freshly resolves active without old routes
+
+    Unable to find an element with role: button, name: Reload
+
+    [36m<RNCSafeAreaProvider />[39m
+
+       9 |   let fail=true;
+      10 |   render(<App createController={()=>{if(fail) throw new Error('seed-sensitive-error');return createAuthController(gateway,new TestClock());}} />);
+    > 11 |   expect(screen.getByRole('button',{name:'Reload'})).toBeTruthy();expect(screen.queryByText(/seed-sensitive-error/)).toBeNull();
+         |                 ^
+      12 |   fail=false;fireEvent.press(screen.getByRole('button',{name:'Reload'}));
+      13 |   await waitFor(()=>expect(gateway.requests).toHaveLength(1));expect(gateway.requests[0]?.method).toBe('resolve');
+      14 |   await waitFor(()=>expect(status==='active'?screen.getByText('Home'):status==='signedOut'?screen.getByText('Log in to Weave'):screen.getByRole('button',{name:'Try again'})).toBeTruthy());
+
+      at getByRole (src/auth/app-recovery.test.tsx:11:17)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12
+      at apply (src/auth/app-recovery.test.tsx:16:2)
+
+  ● S12/S13 provider failure Reload freshly resolves signedOut without old routes
+
+    Unable to find an element with role: button, name: Reload
+
+    [36m<RNCSafeAreaProvider />[39m
+
+       9 |   let fail=true;
+      10 |   render(<App createController={()=>{if(fail) throw new Error('seed-sensitive-error');return createAuthController(gateway,new TestClock());}} />);
+    > 11 |   expect(screen.getByRole('button',{name:'Reload'})).toBeTruthy();expect(screen.queryByText(/seed-sensitive-error/)).toBeNull();
+         |                 ^
+      12 |   fail=false;fireEvent.press(screen.getByRole('button',{name:'Reload'}));
+      13 |   await waitFor(()=>expect(gateway.requests).toHaveLength(1));expect(gateway.requests[0]?.method).toBe('resolve');
+      14 |   await waitFor(()=>expect(status==='active'?screen.getByText('Home'):status==='signedOut'?screen.getByText('Log in to Weave'):screen.getByRole('button',{name:'Try again'})).toBeTruthy());
+
+      at getByRole (src/auth/app-recovery.test.tsx:11:17)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12
+      at apply (src/auth/app-recovery.test.tsx:16:2)
+
+  ● S12/S13 provider failure Reload freshly resolves unavailable without old routes
+
+    Unable to find an element with role: button, name: Reload
+
+    [36m<RNCSafeAreaProvider />[39m
+
+       9 |   let fail=true;
+      10 |   render(<App createController={()=>{if(fail) throw new Error('seed-sensitive-error');return createAuthController(gateway,new TestClock());}} />);
+    > 11 |   expect(screen.getByRole('button',{name:'Reload'})).toBeTruthy();expect(screen.queryByText(/seed-sensitive-error/)).toBeNull();
+         |                 ^
+      12 |   fail=false;fireEvent.press(screen.getByRole('button',{name:'Reload'}));
+      13 |   await waitFor(()=>expect(gateway.requests).toHaveLength(1));expect(gateway.requests[0]?.method).toBe('resolve');
+      14 |   await waitFor(()=>expect(status==='active'?screen.getByText('Home'):status==='signedOut'?screen.getByText('Log in to Weave'):screen.getByRole('button',{name:'Try again'})).toBeTruthy());
+
+      at getByRole (src/auth/app-recovery.test.tsx:11:17)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12
+      at apply (src/auth/app-recovery.test.tsx:16:2)
+
+  ● S14 persistent provider failure returns Reload without an automatic retry loop
+
+    Unable to find an element with role: button, name: Reload
+
+    [36m<RNCSafeAreaProvider />[39m
+
+      18 |   jest.spyOn(console,'error').mockImplementation(()=>undefined);
+      19 |   const factory=jest.fn(()=>{throw new Error('persistent-provider-failure');});
+    > 20 |   render(<App createController={factory} />);expect(screen.getByRole('button',{name:'Reload'})).toBeTruthy();const before=factory.mock.calls.length;
+         |                                                            ^
+      21 |   fireEvent.press(screen.getByRole('button',{name:'Reload'}));expect(screen.getByRole('button',{name:'Reload'})).toBeTruthy();expect(factory.mock.calls.length).toBeGreaterThan(before);
+      22 |   const settled=factory.mock.calls.length;expect(factory.mock.calls.length).toBe(settled);
+      23 | });
+
+      at Object.getByRole (src/auth/app-recovery.test.tsx:20:60)
+
+Test Suites: 1 failed, 1 total
+Tests:       4 failed, 4 total
+Snapshots:   0 total
+Time:        0.618 s
+Ran all test suites matching /app-recovery.test.tsx/i.
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path /Users/pravinraj/workspace/weave/apps/mobile
+npm error workspace @weave/mobile@0.0.0
+npm error location /Users/pravinraj/workspace/weave/apps/mobile
+npm error command failed
+npm error command sh -c jest --runInBand --watchman=false app-recovery.test.tsx

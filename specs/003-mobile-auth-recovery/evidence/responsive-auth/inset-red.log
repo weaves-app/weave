@@ -1,0 +1,62 @@
+
+> @weave/mobile@0.0.0 test
+> npm run test:privacy && jest --runInBand --watchman=false --runTestsByPath src/auth/login.test.tsx
+
+
+> @weave/mobile@0.0.0 test:privacy
+> node scripts/apply-renderer-privacy.mjs && node scripts/renderer-privacy-probe.mjs
+
+Applied pinned React Native renderer diagnostics privacy patch.
+Renderer privacy probe: three severities sanitized; fatality preserved.
+FAIL src/auth/login.test.tsx
+  ✓ S02/S03 offers exactly three methods and accessible password validation (171 ms)
+  ✓ S08 password stays untrimmed in request, fields clear and pending actions disable (21 ms)
+  ✓ S16/S19 supports signIn verification and method return (76 ms)
+  ✓ S16/S19 supports deviceTrust verification and method return (77 ms)
+  ✓ S17/S18/S20 displays safe existingAccountRequired feedback and usable method controls (66 ms)
+  ✓ S17/S18/S20 displays safe verificationRequired feedback and usable method controls (64 ms)
+  ✓ S17/S18/S20 displays safe cancelled feedback and usable method controls (61 ms)
+  ✓ S17 cancelled Google returns a working visible password form (75 ms)
+  ✓ S15 the complete login form applies safe-area edges around its keyboard-aware scroll layout (9 ms)
+  ✓ S15 method selection communicates the selected form to assistive technology (12 ms)
+  ✓ S15/S16 formatted code paste fills one editable verification value (71 ms)
+  ✓ S15/S19 verification requests the native one-time-code autofill keyboard (68 ms)
+  ✓ S16/S19 automatically verifies the sixth digit for signIn and permits correction after rejection (67 ms)
+  ✓ S16/S19 automatically verifies the sixth digit for deviceTrust and permits correction after rejection (62 ms)
+  ✓ S15 clearing login feedback retains the measured scroll extent on method change (7 ms)
+  ✓ S15/S16/S19 keeps branding and signIn Back reachable outside the scrolling form (62 ms)
+  ✓ S15/S16/S19 keeps branding and deviceTrust Back reachable outside the scrolling form (67 ms)
+  ✓ S15 uses the same form alignment when Login changes to signIn verification (65 ms)
+  ✓ S15 uses the same form alignment when Login changes to deviceTrust verification (64 ms)
+  ✕ S15 tablet rotation changes the composition without losing email or partial verification code (516 ms)
+
+  ● S15 tablet rotation changes the composition without losing email or partial verification code
+
+    expect(received).toBeNull()
+
+    Received: {"_fiber": {"_debugHookTypes": null, "_debugInfo": null, "_debugNeedsRemount": false, "_debugOwner": [FiberNode], "_debugStack": [Error: react-stack-top-frame], "_debugTask": null, "actualDuration": 0, "actualStartTime": 1791540224037, "alternate": [FiberNode], "child": [FiberNode], "childLanes": 0, "deletions": null, "dependencies": null, "elementType": "Text", "flags": 4, "index": 0, "key": null, "lanes": 0, "memoizedProps": [Object], "memoizedState": null, "mode": 3, "pendingProps": [Object], "ref": null, "refCleanup": null, "return": [FiberNode], "selfBaseDuration": 0, "sibling": null, "stateNode": [Object], "subtreeFlags": 262144, "tag": 5, "treeBaseDuration": 0, "type": "Text", "updateQueue": null}}
+
+      304 |     expect(
+      305 |       within(screen.getByTestId('login-safe-area')).queryByText('Everything, woven together.'),
+    > 306 |     ).toBeNull();
+          |       ^
+      307 |     fireEvent.changeText(screen.getByLabelText('Email'), 'person@example.com');
+      308 |     act(() => resize(1032, 1376));
+      309 |     expect(screen.queryByText('Everything, woven together.')).toBeNull();
+
+      at Object.toBeNull (src/auth/login.test.tsx:306:7)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 19 passed, 20 total
+Snapshots:   0 total
+Time:        2.16 s
+Ran all test suites within paths "src/auth/login.test.tsx".
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path /Users/pravinraj/workspace/weave/apps/mobile
+npm error workspace @weave/mobile@0.0.0
+npm error location /Users/pravinraj/workspace/weave/apps/mobile
+npm error command failed
+npm error command sh -c npm run test:privacy && jest --runInBand --watchman=false --runTestsByPath src/auth/login.test.tsx

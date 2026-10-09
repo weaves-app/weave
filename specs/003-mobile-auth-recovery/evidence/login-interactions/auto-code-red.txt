@@ -1,0 +1,78 @@
+
+> @weave/mobile@0.0.0 test
+> npm run test:privacy && jest --runInBand --watchman=false src/auth/login.test.tsx
+
+
+> @weave/mobile@0.0.0 test:privacy
+> node scripts/apply-renderer-privacy.mjs && node scripts/renderer-privacy-probe.mjs
+
+Applied pinned React Native renderer diagnostics privacy patch.
+Renderer privacy probe: three severities sanitized; fatality preserved.
+FAIL src/auth/login.test.tsx
+  ✓ S02/S03 offers exactly three methods and accessible password validation (169 ms)
+  ✓ S08 password stays untrimmed in request, fields clear and pending actions disable (18 ms)
+  ✓ S16/S19 supports signIn verification and method return (73 ms)
+  ✓ S16/S19 supports deviceTrust verification and method return (72 ms)
+  ✓ S17/S18/S20 displays safe existingAccountRequired feedback and usable method controls (59 ms)
+  ✓ S17/S18/S20 displays safe verificationRequired feedback and usable method controls (59 ms)
+  ✓ S17/S18/S20 displays safe cancelled feedback and usable method controls (58 ms)
+  ✓ S17 cancelled Google returns a working visible password form (70 ms)
+  ✓ S15 the complete login form applies safe-area edges around its keyboard-aware scroll layout (8 ms)
+  ✓ S15 method selection communicates the selected form to assistive technology (10 ms)
+  ✓ S15/S16 formatted code paste fills one editable verification value (67 ms)
+  ✓ S15/S19 verification requests the native one-time-code autofill keyboard (63 ms)
+  ✕ S16/S19 automatically verifies the sixth digit for signIn and permits correction after rejection (1080 ms)
+  ✕ S16/S19 automatically verifies the sixth digit for deviceTrust and permits correction after rejection (1081 ms)
+
+  ● S16/S19 automatically verifies the sixth digit for signIn and permits correction after rejection
+
+    expect(received).toHaveLength(expected)
+
+    Expected length: 1
+    Received length: 0
+    Received array:  []
+
+      179 |     expect(gateway.requests.filter((request) => request.method === 'verifyCode')).toHaveLength(0);
+      180 |     fireEvent.changeText(screen.getByLabelText('Verification code'), '12 34-56');
+    > 181 |     await waitFor(() => expect(gateway.requests.filter((request) => request.method === 'verifyCode')).toHaveLength(1));
+          |                  ^
+      182 |     expect(gateway.requests.at(-1)?.input).toMatchObject({attemptId: 'auto-attempt', codePurpose, code: '123456'});
+      183 |     expect(screen.getByLabelText('Verification code')).toBeDisabled();
+      184 |     expect(screen.getByText('Verifying code…')).toBeTruthy();
+
+      at src/auth/login.test.tsx:181:18
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● S16/S19 automatically verifies the sixth digit for deviceTrust and permits correction after rejection
+
+    expect(received).toHaveLength(expected)
+
+    Expected length: 1
+    Received length: 0
+    Received array:  []
+
+      179 |     expect(gateway.requests.filter((request) => request.method === 'verifyCode')).toHaveLength(0);
+      180 |     fireEvent.changeText(screen.getByLabelText('Verification code'), '12 34-56');
+    > 181 |     await waitFor(() => expect(gateway.requests.filter((request) => request.method === 'verifyCode')).toHaveLength(1));
+          |                  ^
+      182 |     expect(gateway.requests.at(-1)?.input).toMatchObject({attemptId: 'auto-attempt', codePurpose, code: '123456'});
+      183 |     expect(screen.getByLabelText('Verification code')).toBeDisabled();
+      184 |     expect(screen.getByText('Verifying code…')).toBeTruthy();
+
+      at src/auth/login.test.tsx:181:18
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 12 passed, 14 total
+Snapshots:   0 total
+Time:        3.371 s
+Ran all test suites matching /src\/auth\/login.test.tsx/i.
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path /Users/pravinraj/workspace/weave/apps/mobile
+npm error workspace @weave/mobile@0.0.0
+npm error location /Users/pravinraj/workspace/weave/apps/mobile
+npm error command failed
+npm error command sh -c npm run test:privacy && jest --runInBand --watchman=false src/auth/login.test.tsx

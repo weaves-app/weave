@@ -1,0 +1,50 @@
+appId: si.tryweave
+name: WEA-10 T050 T051 method transition and automatic OTP
+---
+- launchApp:
+    stopApp: true
+- extendedWaitUntil:
+    visible: Welcome back
+    timeout: 30000
+- takeScreenshot: login-password
+- tapOn: Email code
+- takeScreenshot: login-email-code
+- tapOn:
+    id: field-email
+- inputText: preview@example.com
+- tapOn: Welcome back
+- tapOn: Send code
+- extendedWaitUntil:
+    visible: Check your email
+    timeout: 15000
+- assertVisible: preview@example.com
+- assertVisible:
+    id: field-verification-code
+- takeScreenshot: otp-keyboard
+- tapOn:
+    id: field-verification-code
+- inputText: '12345'
+- assertVisible: '12345'
+- takeScreenshot: otp-partial
+- inputText: '6'
+- extendedWaitUntil:
+    visible: Verifying code…
+    timeout: 5000
+- takeScreenshot: otp-auto-pending
+- extendedWaitUntil:
+    visible: That code was not accepted. Check it and try again.
+    timeout: 15000
+- takeScreenshot: otp-invalid
+- tapOn: Resend code
+- extendedWaitUntil:
+    visible: Check your email
+    timeout: 15000
+- assertNotVisible: That code was not accepted. Check it and try again.
+- assertNotVisible: Logout
+- tapOn: Choose another method
+- assertVisible: Welcome back
+- assertVisible:
+    id: field-password
+- assertNotVisible:
+    id: field-verification-code
+- takeScreenshot: login-restored

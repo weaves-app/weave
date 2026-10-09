@@ -1,0 +1,17 @@
+
+> @weave/mobile@0.0.0 test
+> jest --runInBand --watchman=false
+
+PASS src/components/form-field.test.tsx
+PASS src/components/feedback.test.tsx
+PASS src/auth/auth-gateway.contract.test.ts
+PASS src/auth/auth-controller.test.ts
+PASS src/components/button.test.tsx
+PASS src/components/registration.test.ts
+PASS src/components/typography.test.tsx
+
+Test Suites: 7 passed, 7 total
+Tests:       22 passed, 22 total
+Snapshots:   0 total
+Time:        1.139 s, estimated 2 s
+Ran all test suites.

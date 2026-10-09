@@ -5,17 +5,25 @@ body {
   margin: 0;
   background: var(--background);
   color: var(--text);
-  font-family: Arial, sans-serif;
 }
 main {
   max-width: 800px;
-  margin: 14vh auto;
-  padding: 32px;
+  margin: clamp(24px, 10vh, 96px) auto;
+  padding: 24px;
 }
-h1 {
-  font-size: 72px;
-  letter-spacing: -4px;
-  margin: 12px 0;
+.brand-logo {
+  /* 48-unit bands on the supplied 702.086-unit lockup. */
+  width: min(100%, 356px);
+  padding: 6.0144%;
+  margin: 0;
+}
+.brand-header {
+  width: min(100%, 356px);
+}
+.brand-logo img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 p {
   line-height: 1.7;
@@ -25,7 +33,7 @@ p {
   letter-spacing: 2px;
 }
 section {
-  border-top: 1px solid #b8c5bd;
+  border-top: 1px solid var(--border);
   margin-top: 48px;
   padding-top: 24px;
 }

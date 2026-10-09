@@ -1,0 +1,13 @@
+
+> @weave/mobile@0.0.0 test
+> jest --runInBand --watchman=false auth-controller.test.ts home.test.tsx root-navigator.test.tsx
+
+PASS src/navigation/root-navigator.test.tsx
+PASS src/auth/home.test.tsx
+PASS src/auth/auth-controller.test.ts
+
+Test Suites: 3 passed, 3 total
+Tests:       32 passed, 32 total
+Snapshots:   0 total
+Time:        0.918 s, estimated 3 s
+Ran all test suites matching /auth-controller.test.ts|home.test.tsx|root-navigator.test.tsx/i.

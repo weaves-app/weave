@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testsuites>
+  <testsuite name="Test Suite" device="iPad Pro 13-inch (M5) - iOS 26.2 - CBFFC726-1D7E-46ED-AFA9-2CB10B0E9EF5" tests="1" failures="0" time="37.715" timestamp="2026-10-09T13:21:16">
+    <testcase id="WEA-10 T050 T051 method transition and automatic OTP" name="WEA-10 T050 T051 method transition and automatic OTP" classname="WEA-10 T050 T051 method transition and automatic OTP" file="/private/tmp/weave-interaction-ios-large-flow.yaml" time="37.697" timestamp="2026-10-09T13:21:16" status="SUCCESS"/>
+  </testsuite>
+</testsuites>

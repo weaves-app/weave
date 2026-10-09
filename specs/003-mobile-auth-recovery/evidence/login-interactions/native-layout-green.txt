@@ -1,0 +1,23 @@
+{
+  "Weave": {
+    "before": "[86,243][422,350]",
+    "after": "[86,243][422,350]"
+  },
+  "Welcome back": {
+    "before": "[63,436][1017,537]",
+    "after": "[63,436][1017,537]"
+  },
+  "Continue with Google": {
+    "before": "[63,682][1017,819]",
+    "after": "[63,682][1017,819]"
+  },
+  "Email code": {
+    "before": "[540,1004][1007,1130]",
+    "after": "[540,1004][1007,1130]"
+  },
+  "Email": {
+    "before": "[63,1267][1017,1405]",
+    "after": "[63,1267][1017,1405]"
+  }
+}
+PASS: shared controls stay anchored in both directions
