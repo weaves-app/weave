@@ -10,7 +10,7 @@ export function validateDependencyProposal({author, sameRepository, base, files}
     !files?.length ||
     files.some(
       (file) =>
-        !/^(package(?:-lock)?\.json|(?:apps|packages)\/[^/]+\/package\.json|\.github\/(?:workflows\/[^/]+\.ya?ml|actions\/[^/]+\/action\.ya?ml))$/.test(
+        !/^(package\.json|pnpm-lock\.yaml|(?:apps|packages)\/[^/]+\/package\.json|\.github\/(?:workflows\/[^/]+\.ya?ml|actions\/[^/]+\/action\.ya?ml))$/.test(
           file,
         ),
     )

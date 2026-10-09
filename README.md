@@ -1,33 +1,34 @@
 # Weave
 
-One npm/Turborepo workspace: Next.js web, NestJS modular monolith API, vanilla React Native mobile, Prisma and PostgreSQL in Docker. Shared semantic design tokens live in `packages/design-tokens`.
+One pnpm/Turborepo workspace: Next.js web, NestJS modular monolith API, vanilla React Native mobile, Prisma and PostgreSQL in Docker. Shared semantic design tokens live in `packages/design-tokens`.
 
 ## Start
 
-Use Node 24 LTS, npm 11 and Docker Desktop with Compose. Before committing, configure your **own personal** name/email in this clone; Weave must use the contributor’s repository-local personal identity.
+Use Node 24 LTS, the pnpm version pinned in `package.json#packageManager`, and Docker Desktop with Compose. Before committing, configure your **own personal** name/email in this clone; Weave must use the contributor’s repository-local personal identity.
 
 ```sh
 git config --local user.name "YOUR_PERSONAL_NAME"
 git config --local user.email "YOUR_PERSONAL_EMAIL"
 git config --local weave.githubUser "YOUR_PERSONAL_GITHUB_LOGIN"
-npm ci
+node -e 'const {execFileSync}=require("node:child_process"); const pm=require("./package.json").packageManager; if(!/^pnpm@\d+\.\d+\.\d+$/.test(pm))throw Error("Invalid packageManager"); execFileSync("npm",["install","--global",pm,"--ignore-scripts"],{stdio:"inherit"})'
+pnpm install --frozen-lockfile
 cp apps/api/.env.example apps/api/.env
 cp apps/web/.env.example apps/web/.env.local
-npm run db:up
-npm run db:deploy
-npm run dev
+pnpm run db:up
+pnpm run db:deploy
+pnpm run dev
 ```
 
-Web: http://localhost:3000. API: http://localhost:3001/api/health; database readiness: `/api/health/ready`. Mobile uses Metro; launch Android/iOS separately after installing the native toolchains (see apps/mobile/README.md). To start one app: `npm run dev --workspace=@weave/mobile` (or api/web).
+Web: http://localhost:3000. API: http://localhost:3001/api/health; database readiness: `/api/health/ready`. Mobile uses Metro; launch Android/iOS separately after installing the native toolchains (see apps/mobile/README.md). To start one app: `pnpm --filter @weave/mobile run dev` (or api/web).
 
 If `DOCKER_HOST` points to another engine on macOS, explicitly use `docker --context desktop-linux compose up -d --wait`; do not change global configuration for unrelated projects. Local credentials are development-only. Environment examples are committed; actual environment files are ignored.
 
 ## Verify
 
 ```sh
-npm run verify
-npm run db:deploy
-npm run test:integration
+pnpm run verify
+pnpm run db:deploy
+pnpm run test:integration
 ```
 
 `verify` runs lint/architecture/DI, formatting, strict types, policy/application/component tests, and all app builds. Integration needs migrated PostgreSQL and verifies live HTTP/web wiring and persistence. Mobile build generates Android/iOS Metro JavaScript bundles. CI also compiles Android debug and unsigned iOS simulator apps; signed builds and device/store checks require their own release plan.
@@ -50,7 +51,7 @@ On Docker Desktop with an overridden Docker host, add `--context desktop-linux` 
 4. Use `$speckit-implement` and `$speckit-converge`; update tasks/evidence/convergence and run verification.
 5. Commit one imperative Conventional Commit, for example `feat: add project filter [WEA-123]`. Open a PR to develop with matching Linear/spec/evidence links. CI and maintainer review gate merge.
 
-`npm ci` installs Git hooks. Codex hooks require developer review/trust via `/hooks`; their configuration is in `.codex`. Hook behavior and limitations are documented in [hooks](docs/standards/hooks.md). Existing Spec Kit integration is pinned to v1.1.0 / source commit f1d3a4f8337ebbd3ae22760a9c12e3352b93a175. Skills are vendored; the CLI is not needed for daily skill execution. Upgrade upstream only through a reviewed tooling ticket, preserving the constitution and current feature files.
+`pnpm install --frozen-lockfile` installs Git hooks. Codex hooks require developer review/trust via `/hooks`; their configuration is in `.codex`. Hook behavior and limitations are documented in [hooks](docs/standards/hooks.md). Existing Spec Kit integration is pinned to v1.1.0 / source commit f1d3a4f8337ebbd3ae22760a9c12e3352b93a175. Skills are vendored; the CLI is not needed for daily skill execution. Upgrade upstream only through a reviewed tooling ticket, preserving the constitution and current feature files.
 
 ## Structure
 
@@ -72,3 +73,5 @@ Read [standards](docs/standards/README.md), [Google rule mapping](docs/standards
 ## Review and maintenance
 
 Codex and Claude use the same rules and Spec Kit skills. See docs/standards/hooks.md for trust and local identity configuration. Turbo runs workspace lint/types/tests/build with shared config packages; pure unit tests are cached, live integration is not. See docs/standards/automation.md for tested-digest releases, QA prerequisites and dependency proposal adoption. Preserve THIRD_PARTY_NOTICES.md when distributing the applicable template material.
+
+The authoritative workspace settings and React overrides live in `pnpm-workspace.yaml`; `pnpm-lock.yaml` is the only JavaScript dependency lockfile. Internal packages use `workspace:*`. The hoisted linker preserves native Gradle/Metro paths. Dependency build scripts are allowed explicitly; review new lifecycle scripts before adding them to `allowBuilds`. CI rejects manifest/lockfile mismatches with a frozen install.

@@ -67,7 +67,7 @@ if (name === 'PreToolUse') {
   console.log(
     JSON.stringify({
       systemMessage:
-        'Before reporting implementation complete, run npm run verify, database integration, and update feature evidence/convergence. Hooks cannot prove TDD chronology.',
+        'Before reporting implementation complete, run pnpm run verify, database integration, and update feature evidence/convergence. Hooks cannot prove TDD chronology.',
     }),
   );
 } else console.log('{}');

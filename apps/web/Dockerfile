@@ -1,17 +1,17 @@
-FROM node:24-bookworm-slim AS prune
+FROM --platform=$BUILDPLATFORM node:24-bookworm-slim AS prune
 WORKDIR /app
-COPY package.json package-lock.json ./
-RUN node -e 'const {execFileSync}=require("node:child_process"); const npm=require("./package.json").packageManager; const turbo=require("./package-lock.json").packages["node_modules/turbo"].version; if(!/^npm@\d+\.\d+\.\d+$/.test(npm)||!/^\d+\.\d+\.\d+$/.test(turbo))throw Error("Invalid locked tool versions"); execFileSync("npm",["install","--global",npm,"turbo@"+turbo,"--ignore-scripts"],{stdio:"inherit"})'
 COPY . .
-RUN turbo prune @weave/web --docker
+RUN node -e 'const {execFileSync}=require("node:child_process"); const pm=require("./package.json").packageManager; if(!/^pnpm@\d+\.\d+\.\d+$/.test(pm))throw Error("Invalid packageManager"); execFileSync("npm",["install","--global",pm,"--ignore-scripts"],{stdio:"inherit"})'
+RUN pnpm install --frozen-lockfile --ignore-scripts
+RUN pnpm exec turbo prune @weave/web --docker
 FROM node:24-bookworm-slim AS build
 WORKDIR /app
 COPY --from=prune /app/out/json/ ./
-RUN node -e 'const {execFileSync}=require("node:child_process"); const npm=require("./package.json").packageManager; if(!/^npm@\d+\.\d+\.\d+$/.test(npm))throw Error("Invalid packageManager"); execFileSync("npm",["install","--global",npm,"--ignore-scripts"],{stdio:"inherit"})'
-RUN npm ci --ignore-scripts
+RUN node -e 'const {execFileSync}=require("node:child_process"); const pm=require("./package.json").packageManager; if(!/^pnpm@\d+\.\d+\.\d+$/.test(pm))throw Error("Invalid packageManager"); execFileSync("npm",["install","--global",pm,"--ignore-scripts"],{stdio:"inherit"})'
+RUN pnpm install --frozen-lockfile --ignore-scripts
 COPY --from=prune /app/out/full/ ./
 ENV NEXT_TELEMETRY_DISABLED=1
-RUN npm run build --workspace=@weave/web
+RUN pnpm --filter @weave/web run build
 FROM node:24-bookworm-slim
 ENV NODE_ENV=production PORT=3000 HOSTNAME=0.0.0.0
 WORKDIR /app

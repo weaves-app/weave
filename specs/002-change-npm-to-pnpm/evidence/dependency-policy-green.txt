@@ -1,0 +1,10 @@
+✔ S17 dependency adoption accepts only genuine scoped proposals (0.40025ms)
+✔ WEA-8 S06 accepts pnpm lockfile proposals without widening policy scope (0.05775ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 34.82875

@@ -5,7 +5,7 @@
       "dependsOn": ["^build"],
       "outputs": ["dist/**", ".next/**", "!.next/cache/**", "!.next/dev/**"],
       "env": ["DATABASE_URL", "API_URL"],
-      "inputs": ["$TURBO_DEFAULT$", "$TURBO_ROOT$/package-lock.json"]
+      "inputs": ["$TURBO_DEFAULT$", "$TURBO_ROOT$/pnpm-lock.yaml"]
     },
     "dev": {
       "cache": false,
@@ -44,5 +44,5 @@
       "inputs": ["$TURBO_DEFAULT$", "$TURBO_ROOT$/eslint.config.mjs"]
     }
   },
-  "globalDependencies": ["package-lock.json"]
+  "globalDependencies": ["pnpm-lock.yaml"]
 }

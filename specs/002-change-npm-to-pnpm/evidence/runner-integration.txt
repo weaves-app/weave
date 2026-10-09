@@ -1,0 +1,12 @@
+$ node --test tests/integration/*.test.mjs
+✔ S06 API liveness/readiness; WEA-10 S02/S03/S08 web denies access without auth configuration (1675.650833ms)
+✔ S06 database outage returns 503 readiness and 200 liveness (273.621375ms)
+✔ S09 committed schema persists a user and enforces unique email (17.032625ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2022.507916

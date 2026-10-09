@@ -12,7 +12,7 @@ import {validateDependencyProposal} from './dependency-policy.mjs';
 const [number, ticket, mode] = process.argv.slice(2);
 
 if (!/^\d+$/.test(number ?? '') || !/^WEA-[1-9]\d*$/.test(ticket ?? ''))
-  throw new Error('Usage: npm run deps:adopt -- PR_NUMBER NEW_LINEAR_TICKET');
+  throw new Error('Usage: pnpm run deps:adopt PR_NUMBER NEW_LINEAR_TICKET');
 
 const branch = `fix/${ticket}/dependency-update-${number}`;
 
@@ -130,5 +130,5 @@ try {
 }
 
 console.log(
-  `Prepared proposal on ${branch}. Confirm BDD scenarios, then run npm run deps:adopt -- ${number} ${ticket} --apply; bot PR stays blocked. No commit, push or merge performed.`,
+  `Prepared proposal on ${branch}. Confirm BDD scenarios, then run pnpm run deps:adopt ${number} ${ticket} --apply; bot PR stays blocked. No commit, push or merge performed.`,
 );
