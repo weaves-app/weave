@@ -48,7 +48,7 @@ Dependencies: T012 → T013 → T014 → T015. This revision has no parallel imp
 - [x] T017 Update the S01 public playback contract to request v2 and capture behavioral RED against v1, then copy the approved export and switch the source; run GREEN for S01–S04/S08.
 - [x] T018 Package reproducible v2 design sources and licenses, document asset provenance and actual frame evidence, and verify no new runtime dependency or CSS.
 - [x] T019 Run required repository verification and database integration, inspect the production page, and record convergence with unresolved T009 checks.
-- [ ] T020 Verify personal author/committer, commit and push through normal hooks, and update existing PR #10 into develop with spec/evidence links and actual check status.
+- [x] T020 Verify personal author/committer, commit and push through normal hooks, and update existing PR #10 into develop with spec/evidence links and actual check status.
 
 Dependencies: T016 → T017 → T018 → T019 → T020. This slice reuses the approved preview; no new visual direction is introduced.
 

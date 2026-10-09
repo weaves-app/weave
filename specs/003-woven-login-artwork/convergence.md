@@ -17,3 +17,9 @@ Publication is authorized by the user. Keep the PR draft, link this report and e
 ## Publication reassessment
 
 The normal pre-push run exposed a separate existing test-fixture isolation failure, recorded as delivery scenario S05 before correction. Its two existing S21 checks now pass with inherited GIT_DIR, the parent identity remains intact, and full verification passes again. The seven-line fixture setup change is limited to the test process; production Git policy and hooks remain unchanged. This adds one delivery scenario/plan decision and T010–T011 to the reviewed inventory. T009 remains the only open implementation/verification task; the PR stays draft.
+
+## Approved v2 delivery reassessment
+
+The accepted S06–S08 refinement is integrated and published in PR #10. All five FRs, three SCs, eight scenarios and ten constitution principles were assessed against the final implementation. The v2 asset matches the accepted preview; the still, lifecycle and dependency graph are unchanged. An observed S04 classic-scrollbar movement was reproduced before correction and now has identical production-browser bounds before/after authentication readiness. Final required local checks pass; links and exact observations are in `evidence.md`.
+
+No missing, contradicting or unrequested code was found. Two MEDIUM partial verification findings remain: existing T009 and the target-browser classic/overlay scrollbar verification appended as Phase 9/T023. T016–T022 are complete, including authorized publication. No application source was changed during the convergence assessment. The PR stays draft pending these actual visual checks and required remote CI/code-owner review.

@@ -18,7 +18,7 @@
     "S21": "S03",
     "S22": "S04"
   },
-  "status": "v2-locally-verified-ready-to-publish",
+  "status": "v2-published-draft-pr",
   "clarification": "No unresolved design questions; preserve the approved native-video approach.",
   "analysis": "FR-001 through FR-005 and SC-001 through SC-003 map to S01-S04 and ordered tasks; no conflicting or unmapped requirement.",
   "verification": {
@@ -26,7 +26,7 @@
     "webTests": "71/71",
     "repositoryVerify": "passed after v2 integration and scrollbar fix; evidence/motion-refinement/verify-layout.txt",
     "databaseIntegration": "3/3 on final build; evidence/motion-refinement/integration-layout.txt",
-    "remoteCi": "previous published head passed; v2 publication pending",
+    "remoteCi": "v2 checks running on the published branch; no claim of final CI success",
     "browserMatrix": "partial; T009",
     "gitFixtureWithInheritedContext": "2/2; parent personal identity preserved"
   },
@@ -38,7 +38,7 @@
   },
   "deliveryRegression": "S05 records the existing mandatory S21 policy checks, which failed under the normal pre-push hook. The user-authorized publication requires fixing fixture isolation, not changing identity policy or bypassing hooks. RED preserved before fixture correction; no new product behavior.",
   "motionRefinement": {
-    "status": "approved-integrated-locally-verified",
+    "status": "published-draft-pr",
     "scenariosConfirmed": true,
     "scenarioIds": ["S06", "S07", "S08"],
     "confirmation": "User identified the orange ribbon, shadow and settling defects, agreed to try the local refinement, and confirmed Blender was installed and ready. Previous one-second, all-sides and exact-final-artwork constraints persist.",
@@ -75,5 +75,14 @@
       "implementation": "authentication-scoped stable scrollbar gutter; T021 \u2192 T022 before T019/T020",
       "green": "layout-green.json: identical x=232.75, y=120, width=420, height=420 before/after readiness"
     }
+  },
+  "publication": {
+    "pullRequest": "https://github.com/weaves-app/weave/pull/10",
+    "base": "develop",
+    "implementationCommit": "840708b6d4ca7293f4f9068b5b663999360bc5f8",
+    "author": "cvvishnuu <cvishnuu01@gmail.com>",
+    "committer": "cvvishnuu <cvishnuu01@gmail.com>",
+    "push": "Normal pre-push policy, lint, types and tests passed; no hook bypass.",
+    "reviewStatus": "Draft pending T009/T023 and required CI/code-owner review."
   }
 }
