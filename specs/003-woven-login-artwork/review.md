@@ -50,3 +50,7 @@ The PR description also omitted the exact `Spec:` and `Evidence:` fields parsed 
 - [Remote package-manager failure](evidence/review/remote-policy-failure.txt), [metadata RED](evidence/review/pr-policy-red.txt), [candidate metadata GREEN](evidence/review/pr-policy-green.txt), [published metadata GREEN](evidence/review/pr-policy-actual-green.txt).
 
 Outcome: Standards — 2 original findings resolved, none remaining. Spec — 1 code concern resolved, 1 verification gap remains (the worst remaining issue in this axis). No additional code correction is required by either reviewer; this is not merge approval.
+
+## Subsequent external review
+
+The user later provided additional findings against `2c3d6a8`. See [validation and remediation](external-review.md) for the current disposition; this earlier two-axis report is historical. F4 exposed a real hidden-mobile image request, now corrected. F5 remains unconfirmed, with an explicit throttled handoff follow-up. The draft state was restored.
