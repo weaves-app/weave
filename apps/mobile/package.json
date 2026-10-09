@@ -5,7 +5,7 @@
   "dependencies": {
     "react": "19.2.3",
     "react-native": "0.86.3",
-    "@weave/design-tokens": "*",
+    "@weave/design-tokens": "workspace:*",
     "react-native-safe-area-context": "~5.7.0"
   },
   "devDependencies": {
@@ -15,8 +15,8 @@
     "@types/jest": "^29.5.14",
     "react-test-renderer": "19.2.3",
     "@testing-library/react-native": "^13.3.3",
-    "@weave/typescript-config": "*",
-    "@weave/eslint-config": "*",
+    "@weave/typescript-config": "workspace:*",
+    "@weave/eslint-config": "workspace:*",
     "@babel/core": "^7.25.2",
     "@babel/preset-env": "^7.25.3",
     "@babel/runtime": "^7.25.0",
@@ -35,7 +35,7 @@
     "dev": "react-native start",
     "typecheck": "tsc --noEmit",
     "test": "jest --runInBand",
-    "build": "npm run clean && npm run bundle:android && npm run bundle:ios",
+    "build": "pnpm run clean && pnpm run bundle:android && pnpm run bundle:ios",
     "lint": "eslint .",
     "bundle:android": "react-native bundle --entry-file index.ts --platform android --dev false --bundle-output dist/android/index.android.bundle --assets-dest dist/android --sourcemap-output dist/android/index.android.bundle.map",
     "bundle:ios": "react-native bundle --entry-file index.ts --platform ios --dev false --bundle-output dist/ios/main.jsbundle --assets-dest dist/ios --sourcemap-output dist/ios/main.jsbundle.map",

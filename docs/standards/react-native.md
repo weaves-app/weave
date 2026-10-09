@@ -26,9 +26,9 @@ WEA-6 selects vanilla React Native 0.86.3 with React 19.2.3 and version-matched 
 
 ## Native project ownership
 
-Commit Android/iOS source projects and review native configuration changes. Keep local SDK paths, Pods, compiled outputs and signing secrets untracked. Android Gradle paths and Metro resolve the repository-root npm installation; the Podfile resolves React Native through Node for hoisting. Use React Native autolinking for native libraries; verify each library on both platforms.
+Commit Android/iOS source projects and review native configuration changes. Keep local SDK paths, Pods, compiled outputs and signing secrets untracked. Android Gradle paths and Metro resolve the repository-root pnpm installation; the Podfile resolves React Native through Node for hoisting. Use React Native autolinking for native libraries; verify each library on both platforms.
 
-Run Metro with `npm run dev --workspace=@weave/mobile`, then `npm run android --workspace=@weave/mobile` or `npm run ios --workspace=@weave/mobile` with the appropriate SDK/device. iOS requires `bundle install` from apps/mobile and `bundle exec pod install` from apps/mobile/ios. See apps/mobile/README.md for prerequisites and compile commands.
+Run Metro with `pnpm --filter @weave/mobile run dev`, then `pnpm --filter @weave/mobile run android` or `pnpm --filter @weave/mobile run ios` with the appropriate SDK/device. iOS requires `bundle install` from apps/mobile and `bundle exec pod install` from apps/mobile/ios. See apps/mobile/README.md for prerequisites and compile commands.
 
 CI builds both Metro JS bundles, an Android debug APK and an unsigned iOS simulator app. These are compilation artifacts, not store releases or device acceptance evidence. Release signing, real-device accessibility/performance testing and SemVer/store version mapping require their own release plan. Framework CommonJS config and official generated native source retain their upstream conventions; authored TypeScript remains subject to shared rules. App uses a named export.
 

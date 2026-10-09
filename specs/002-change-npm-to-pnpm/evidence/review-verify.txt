@@ -1,0 +1,294 @@
+$ pnpm run lint && pnpm run format:check && pnpm run typecheck && pnpm test && pnpm run build
+$ turbo run lint && eslint scripts tests && node scripts/check-architecture.mjs
+
+   • turbo 2.11.7
+   • Packages in scope: @weave/api, @weave/design-tokens, @weave/eslint-config, @weave/mobile, @weave/typescript-config, @weave/web
+   • Running lint in 6 packages
+   • Remote caching disabled
+
+@weave/eslint-config:lint: cache hit, replaying logs 826743a4fce765ba
+@weave/eslint-config:lint: $ eslint .
+@weave/design-tokens:lint: cache hit, replaying logs 342ce9bce77ac7d4
+@weave/design-tokens:lint: $ eslint .
+@weave/web:lint: cache hit, replaying logs 4bee4d603618ab46
+@weave/mobile:lint: cache hit, replaying logs e56df0b6d5a3028d
+@weave/web:lint: $ eslint .
+@weave/mobile:lint: $ eslint .
+@weave/api:db:generate: cache hit, replaying logs f63d2c1300b5a0d6
+@weave/api:db:generate: $ prisma generate
+@weave/api:db:generate: Loaded Prisma config from prisma.config.ts.
+@weave/api:db:generate: 
+@weave/api:db:generate: Prisma schema loaded from prisma/schema.prisma.
+@weave/api:db:generate: 
+@weave/api:db:generate: ✔ Generated Prisma Client (7.10.0) to ./src/generated/prisma in 25ms
+@weave/api:db:generate: 
+@weave/api:lint: cache hit, replaying logs 8663ff8194d58dac
+@weave/api:lint: $ eslint .
+
+ Tasks:    6 successful, 6 total
+Cached:    6 cached, 6 total
+  Time:    30ms >>> FULL TURBO
+
+Architecture and interface injection checks passed.
+$ prettier --check .
+Checking formatting...
+All matched files use Prettier code style!
+$ turbo run typecheck
+
+   • turbo 2.11.7
+   • Packages in scope: @weave/api, @weave/design-tokens, @weave/eslint-config, @weave/mobile, @weave/typescript-config, @weave/web
+   • Running typecheck in 6 packages
+   • Remote caching disabled
+
+@weave/api:db:generate: cache hit, replaying logs f63d2c1300b5a0d6
+@weave/api:db:generate: $ prisma generate
+@weave/api:db:generate: Loaded Prisma config from prisma.config.ts.
+@weave/api:db:generate: 
+@weave/api:db:generate: Prisma schema loaded from prisma/schema.prisma.
+@weave/api:db:generate: 
+@weave/api:db:generate: ✔ Generated Prisma Client (7.10.0) to ./src/generated/prisma in 25ms
+@weave/api:db:generate: 
+@weave/design-tokens:typecheck: cache hit, replaying logs c465dae22c686cdf
+@weave/design-tokens:typecheck: $ tsc --noEmit
+@weave/api:typecheck: cache hit, replaying logs c51b67723a8664b2
+@weave/mobile:typecheck: cache hit, replaying logs 874a69b15e5cb2fa
+@weave/api:typecheck: $ tsc --noEmit
+@weave/web:typecheck: cache hit, replaying logs cf398e96ea060a2d
+@weave/mobile:typecheck: $ tsc --noEmit
+@weave/web:typecheck: $ next typegen && tsc --noEmit
+@weave/web:typecheck: Generating route types...
+@weave/web:typecheck: ✓ Types generated successfully
+
+ Tasks:    5 successful, 5 total
+Cached:    5 cached, 5 total
+  Time:    8ms >>> FULL TURBO
+
+$ pnpm run test:policy && turbo run test
+$ node --test tests/policy/*.test.mjs
+✔ S10 tool guard permits investigation and specs, gates source edits (0.7605ms)
+✔ S10 missing/foreign feature state cannot authorize an implementation branch (0.141792ms)
+✔ S15 read-only shell syntax passes while output files remain gated (0.313542ms)
+✔ S15 edit tools inspect destinations rather than documentation contents (0.234708ms)
+✔ S04 rejects outward domain dependencies and cross-module internals (840.074125ms)
+✔ S05 requires interface types for injected dependencies (510.65ms)
+✔ S04 rejects resolved controller imports from the application layer (160.851375ms)
+✔ S14 resolves aliases within their owning workspace (367.308167ms)
+✔ S01 accepts ticket branches and rejects shared/malformed names (0.416041ms)
+✔ S15 Claude hook envelopes use shared rules without Stop loops (407.355333ms)
+✔ S02 conventional commits are single-line, imperative and traceable (1.379417ms)
+✔ S03 release PRs only originate from same-repository develop (0.173333ms)
+✔ S17 dependency adoption accepts only genuine scoped proposals (1.010417ms)
+✔ WEA-8 S06 accepts pnpm lockfile proposals without widening policy scope (0.171667ms)
+✔ S21 dependency adoption permits the default personal CLI profile when the optional key is absent (352.246959ms)
+✔ S21 local config distinguishes absent keys, explicit profiles and Git errors (54.075667ms)
+✔ S10 publishing verifies actual account instead of trusting credential labels (0.388458ms)
+✔ S13 forbidden identities are local policy, not a hard-coded account (0.054709ms)
+✔ S16 creates an immutable manifest and rejects malformed boundaries (1.058667ms)
+✔ S16 production requires the matching QA digests for every app (0.208667ms)
+✔ S16 retries accept the same release and reject artifact replacement (0.119916ms)
+✔ S16 only matching incomplete drafts may recover missing assets (0.124708ms)
+✔ S22 missing QA aliases fail with the production policy message before mutation (339.229584ms)
+✔ S12 main releases classify Conventional Commits by highest impact (0.515167ms)
+✔ S17 breaking changes stay in development versions until explicit 1.0 (0.051917ms)
+ℹ tests 25
+ℹ suites 0
+ℹ pass 25
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2166.145459
+
+   • turbo 2.11.7
+   • Packages in scope: @weave/api, @weave/design-tokens, @weave/eslint-config, @weave/mobile, @weave/typescript-config, @weave/web
+   • Running test in 6 packages
+   • Remote caching disabled
+
+@weave/design-tokens:typecheck: cache hit, replaying logs c465dae22c686cdf
+@weave/design-tokens:typecheck: $ tsc --noEmit
+@weave/api:test: cache hit, replaying logs 130d369bdf6dba07
+@weave/web:test: cache hit, replaying logs 70eced92d9444314
+@weave/mobile:test: cache hit, replaying logs 7414f16187dcf4cc
+@weave/api:test: $ node --import tsx --test test/*.test.ts
+@weave/api:test: ✔ S06 liveness does not depend on database; readiness checks database (0.628834ms)
+@weave/api:test: ✔ S06 unavailable database rejects readiness but preserves liveness (0.209083ms)
+@weave/api:test: ℹ tests 2
+@weave/api:test: ℹ suites 0
+@weave/api:test: ℹ pass 2
+@weave/api:test: ℹ fail 0
+@weave/api:test: ℹ cancelled 0
+@weave/api:test: ℹ skipped 0
+@weave/api:test: ℹ todo 0
+@weave/api:test: ℹ duration_ms 110.068542
+@weave/web:test: $ node --import tsx --test test/*.test.ts
+@weave/web:test: ✔ S07 client accepts valid health and rejects bad responses safely (0.502834ms)
+@weave/web:test: ℹ tests 1
+@weave/web:test: ℹ suites 0
+@weave/web:test: ℹ pass 1
+@weave/web:test: ℹ fail 0
+@weave/web:test: ℹ cancelled 0
+@weave/web:test: ℹ skipped 0
+@weave/web:test: ℹ todo 0
+@weave/web:test: ℹ duration_ms 110.0045
+@weave/mobile:test: $ jest --runInBand
+@weave/mobile:test: watchman warning:  Recrawled this watch 1 time, most recently because:
+@weave/mobile:test: MustScanSubDirs UserDroppedTo resolve, please review the information on
+@weave/mobile:test: https://facebook.github.io/watchman/docs/troubleshooting.html#recrawl
+@weave/mobile:test: To clear this warning, run:
+@weave/mobile:test: `watchman watch-del '<repo>' ; watchman watch-project '<repo>'`
+@weave/mobile:test: 
+@weave/mobile:test: PASS src/components/button.test.tsx
+@weave/mobile:test: PASS src/components/registration.test.ts
+@weave/mobile:test: PASS src/components/typography.test.tsx
+@weave/mobile:test: 
+@weave/mobile:test: Test Suites: 3 passed, 3 total
+@weave/mobile:test: Tests:       3 passed, 3 total
+@weave/mobile:test: Snapshots:   0 total
+@weave/mobile:test: Time:        0.302 s, estimated 1 s
+@weave/mobile:test: Ran all test suites.
+
+ Tasks:    4 successful, 4 total
+Cached:    4 cached, 4 total
+  Time:    7ms >>> FULL TURBO
+
+$ turbo run build
+
+   • turbo 2.11.7
+   • Packages in scope: @weave/api, @weave/design-tokens, @weave/eslint-config, @weave/mobile, @weave/typescript-config, @weave/web
+   • Running build in 6 packages
+   • Remote caching disabled
+
+@weave/api:build: cache hit, replaying logs bb751c8697f74294
+@weave/api:build: $ prisma generate && nest build
+@weave/api:build: Loaded Prisma config from prisma.config.ts.
+@weave/api:build: 
+@weave/mobile:build: cache hit, replaying logs 4496e7e871801cad
+@weave/api:build: Prisma schema loaded from prisma/schema.prisma.
+@weave/api:build: 
+@weave/api:build: ✔ Generated Prisma Client (7.10.0) to ./src/generated/prisma in 18ms
+@weave/api:build: 
+@weave/mobile:build: $ pnpm run clean && pnpm run bundle:android && pnpm run bundle:ios
+@weave/mobile:build: $ node -e "require('node:fs').rmSync('dist',{recursive:true,force:true})"
+@weave/mobile:build: $ react-native bundle --entry-file index.ts --platform android --dev false --bundle-output dist/android/index.android.bundle --assets-dest dist/android --sourcemap-output dist/android/index.android.bundle.map
+@weave/mobile:build: 
+@weave/mobile:build:                         ▒▒▓▓▓▓▒▒
+@weave/mobile:build:                      ▒▓▓▓▒▒░░▒▒▓▓▓▒
+@weave/mobile:build:                   ▒▓▓▓▓░░░▒▒▒▒░░░▓▓▓▓▒
+@weave/mobile:build:                  ▓▓▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▒▒▒▓▓
+@weave/mobile:build:                  ▓▓░░░░░▒▓▓▓▓▓▓▒░░░░░▓▓
+@weave/mobile:build:                  ▓▓░░▓▓▒░░░▒▒░░░▒▓▒░░▓▓
+@weave/mobile:build:                  ▓▓░░▓▓▓▓▓▒▒▒▒▓▓▓▓▒░░▓▓
+@weave/mobile:build:                  ▓▓░░▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░▓▓
+@weave/mobile:build:                  ▓▓▒░░▒▒▓▓▓▓▓▓▓▓▒░░░▒▓▓
+@weave/mobile:build:                   ▒▓▓▓▒░░░▒▓▓▒░░░▒▓▓▓▒
+@weave/mobile:build:                      ▒▓▓▓▒░░░░▒▓▓▓▒
+@weave/mobile:build:                         ▒▒▓▓▓▓▒▒
+@weave/mobile:build: 
+@weave/mobile:build: 
+@weave/mobile:build:                 Welcome to Metro v0.84.5
+@weave/mobile:build:               Fast - Scalable - Integrated
+@weave/mobile:build: 
+@weave/mobile:build: 
+@weave/mobile:build:  WARN  Watchman `watch-project` returned a warning: Recrawled this watch 1 time, most recently because:
+@weave/mobile:build: MustScanSubDirs UserDroppedTo resolve, please review the information on
+@weave/mobile:build: https://facebook.github.io/watchman/docs/troubleshooting.html#recrawl
+@weave/mobile:build: To clear this warning, run:
+@weave/mobile:build: `watchman watch-del '<repo>' ; watchman watch-project '<repo>'`
+@weave/mobile:build: 
+@weave/mobile:build:  WARN  Watchman `watch-project` returned a warning: Recrawled this watch 1 time, most recently because:
+@weave/mobile:build: MustScanSubDirs UserDroppedTo resolve, please review the information on
+@weave/mobile:build: https://facebook.github.io/watchman/docs/troubleshooting.html#recrawl
+@weave/mobile:build: To clear this warning, run:
+@weave/mobile:build: `watchman watch-del '<repo>' ; watchman watch-project '<repo>'`
+@weave/mobile:build: 
+@weave/mobile:build:  WARN  Watchman `watch-project` returned a warning: Recrawled this watch 1 time, most recently because:
+@weave/mobile:build: MustScanSubDirs UserDroppedTo resolve, please review the information on
+@weave/mobile:build: https://facebook.github.io/watchman/docs/troubleshooting.html#recrawl
+@weave/mobile:build: To clear this warning, run:
+@weave/mobile:build: `watchman watch-del '<repo>' ; watchman watch-project '<repo>'`
+@weave/mobile:build: 
+@weave/mobile:build:  WARN  Watchman `query` returned a warning: Recrawled this watch 1 time, most recently because:
+@weave/mobile:build: MustScanSubDirs UserDroppedTo resolve, please review the information on
+@weave/mobile:build: https://facebook.github.io/watchman/docs/troubleshooting.html#recrawl
+@weave/mobile:build: To clear this warning, run:
+@weave/mobile:build: `watchman watch-del '<repo>' ; watchman watch-project '<repo>'`
+@weave/mobile:build: 
+@weave/mobile:build: LOG:Writing bundle output to: dist/android/index.android.bundle
+@weave/mobile:build: LOG:Writing sourcemap output to: dist/android/index.android.bundle.map
+@weave/mobile:build: LOG:Done writing bundle output
+@weave/mobile:build: LOG:Done writing sourcemap output
+@weave/mobile:build: $ react-native bundle --entry-file index.ts --platform ios --dev false --bundle-output dist/ios/main.jsbundle --assets-dest dist/ios --sourcemap-output dist/ios/main.jsbundle.map
+@weave/mobile:build: 
+@weave/mobile:build:                         ▒▒▓▓▓▓▒▒
+@weave/mobile:build:                      ▒▓▓▓▒▒░░▒▒▓▓▓▒
+@weave/mobile:build:                   ▒▓▓▓▓░░░▒▒▒▒░░░▓▓▓▓▒
+@weave/mobile:build:                  ▓▓▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▒▒▒▓▓
+@weave/mobile:build:                  ▓▓░░░░░▒▓▓▓▓▓▓▒░░░░░▓▓
+@weave/mobile:build:                  ▓▓░░▓▓▒░░░▒▒░░░▒▓▒░░▓▓
+@weave/mobile:build:                  ▓▓░░▓▓▓▓▓▒▒▒▒▓▓▓▓▒░░▓▓
+@weave/mobile:build:                  ▓▓░░▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░▓▓
+@weave/mobile:build:                  ▓▓▒░░▒▒▓▓▓▓▓▓▓▓▒░░░▒▓▓
+@weave/mobile:build:                   ▒▓▓▓▒░░░▒▓▓▒░░░▒▓▓▓▒
+@weave/mobile:build:                      ▒▓▓▓▒░░░░▒▓▓▓▒
+@weave/mobile:build:                         ▒▒▓▓▓▓▒▒
+@weave/mobile:build: 
+@weave/mobile:build: 
+@weave/mobile:build:                 Welcome to Metro v0.84.5
+@weave/mobile:build:               Fast - Scalable - Integrated
+@weave/mobile:build: 
+@weave/mobile:build: 
+@weave/mobile:build:  WARN  Watchman `watch-project` returned a warning: Recrawled this watch 1 time, most recently because:
+@weave/mobile:build: MustScanSubDirs UserDroppedTo resolve, please review the information on
+@weave/mobile:build: https://facebook.github.io/watchman/docs/troubleshooting.html#recrawl
+@weave/mobile:build: To clear this warning, run:
+@weave/mobile:build: `watchman watch-del '<repo>' ; watchman watch-project '<repo>'`
+@weave/mobile:build: 
+@weave/mobile:build:  WARN  Watchman `watch-project` returned a warning: Recrawled this watch 1 time, most recently because:
+@weave/mobile:build: MustScanSubDirs UserDroppedTo resolve, please review the information on
+@weave/mobile:build: https://facebook.github.io/watchman/docs/troubleshooting.html#recrawl
+@weave/mobile:build: To clear this warning, run:
+@weave/mobile:build: `watchman watch-del '<repo>' ; watchman watch-project '<repo>'`
+@weave/mobile:build: 
+@weave/mobile:build:  WARN  Watchman `watch-project` returned a warning: Recrawled this watch 1 time, most recently because:
+@weave/mobile:build: MustScanSubDirs UserDroppedTo resolve, please review the information on
+@weave/mobile:build: https://facebook.github.io/watchman/docs/troubleshooting.html#recrawl
+@weave/mobile:build: To clear this warning, run:
+@weave/mobile:build: `watchman watch-del '<repo>' ; watchman watch-project '<repo>'`
+@weave/mobile:build: 
+@weave/mobile:build:  WARN  Watchman `query` returned a warning: Recrawled this watch 1 time, most recently because:
+@weave/mobile:build: MustScanSubDirs UserDroppedTo resolve, please review the information on
+@weave/mobile:build: https://facebook.github.io/watchman/docs/troubleshooting.html#recrawl
+@weave/mobile:build: To clear this warning, run:
+@weave/mobile:build: `watchman watch-del '<repo>' ; watchman watch-project '<repo>'`
+@weave/mobile:build: 
+@weave/mobile:build: LOG:Writing bundle output to: dist/ios/main.jsbundle
+@weave/mobile:build: LOG:Writing sourcemap output to: dist/ios/main.jsbundle.map
+@weave/mobile:build: LOG:Done writing bundle output
+@weave/mobile:build: LOG:Done writing sourcemap output
+@weave/web:build: cache hit, replaying logs 1fe959f7ec0a6c4d
+@weave/web:build: $ next build
+@weave/web:build: ▲ Next.js 16.3.8 (Turbopack)
+@weave/web:build: ✓ Running next.config.ts took 57ms
+@weave/web:build: 
+@weave/web:build:   Creating an optimized production build ...
+@weave/web:build: ✓ Compiled successfully in 397ms
+@weave/web:build:   Running TypeScript ...
+@weave/web:build:   Finished TypeScript in 567ms ...
+@weave/web:build:   Collecting page data using 4 workers ...
+@weave/web:build:   Generating static pages using 4 workers (0/2) ...
+@weave/web:build: ✓ Generating static pages using 4 workers (2/2) in 189ms
+@weave/web:build:   Finalizing page optimization ...
+@weave/web:build: 
+@weave/web:build: Route (app)
+@weave/web:build: ┌ ƒ /
+@weave/web:build: └ ○ /_not-found
+@weave/web:build: 
+@weave/web:build: 
+@weave/web:build: ○  (Static)   prerendered as static content
+@weave/web:build: ƒ  (Dynamic)  server-rendered on demand
+@weave/web:build: 
+
+ Tasks:    3 successful, 3 total
+Cached:    3 cached, 3 total
+  Time:    10ms >>> FULL TURBO
+

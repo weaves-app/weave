@@ -1,0 +1,23 @@
+packages:
+  - 'apps/*'
+  - 'packages/*'
+
+# Preserve pnpm 11's 24-hour preference and non-strict fallback.
+# See docs/decisions/0002-pnpm-workspace.md before changing enforcement.
+minimumReleaseAge: 1440
+minimumReleaseAgeStrict: false
+
+# Native Gradle paths and Metro expect root-level dependencies.
+nodeLinker: hoisted
+
+# Preserve the renderer alignment from the npm workspace.
+overrides:
+  react: '19.2.3'
+  react-dom: '19.2.3'
+
+# Permit only the dependency lifecycle scripts required by this toolchain.
+allowBuilds:
+  '@prisma/engines': true
+  esbuild: true
+  fsevents: true
+  prisma: true

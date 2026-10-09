@@ -1,0 +1,11 @@
+## Dependency audit
+
+| Severity | Reported findings |
+| --- | ---: |
+| critical | 1 |
+| high | 0 |
+| moderate | 0 |
+| low | 0 |
+
+Counts follow the package manager’s audit report; they are not comparable across npm and pnpm. Critical findings block CI; other findings remain visible for remediation.
+

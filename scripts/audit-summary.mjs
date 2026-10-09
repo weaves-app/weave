@@ -7,7 +7,7 @@ if (audit.error || !audit.metadata?.vulnerabilities)
 
 const counts = audit.metadata.vulnerabilities;
 
-const summary = `## Dependency audit\n\n| Severity | Affected nodes |\n| --- | ---: |\n${['critical', 'high', 'moderate', 'low'].map((level) => `| ${level} | ${counts[level] ?? 0} |`).join('\n')}\n\nCounts include dependency-chain nodes, not distinct advisories. Critical findings block CI; other findings remain visible for remediation.\n`;
+const summary = `## Dependency audit\n\n| Severity | Reported findings |\n| --- | ---: |\n${['critical', 'high', 'moderate', 'low'].map((level) => `| ${level} | ${counts[level] ?? 0} |`).join('\n')}\n\nCounts follow the package manager’s audit report; they are not comparable across npm and pnpm. Critical findings block CI; other findings remain visible for remediation.\n`;
 
 console.log(summary);
 

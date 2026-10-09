@@ -11,7 +11,7 @@
 | Codex PostToolUse  | Prompt relevant scenario verification/evidence                                                  | Context                     |
 | Codex Stop         | Completion reminder for full verification and convergence                                       | Advisory                    |
 
-`npm ci`/`npm install` runs prepare and sets repository-local `core.hooksPath=.githooks`; CI skips Git-hook installation. First set your own personal `git config --local user.name` and `user.email`. Hooks reject repository-local forbidden identities and mismatched author/committer overrides. They do not force collaborators to impersonate the creator. Git hooks can be skipped; CI repeats the portable checks.
+`pnpm install --frozen-lockfile`/`pnpm install` runs prepare and sets repository-local `core.hooksPath=.githooks`; CI skips Git-hook installation. First set your own personal `git config --local user.name` and `user.email`. Hooks reject repository-local forbidden identities and mismatched author/committer overrides. They do not force collaborators to impersonate the creator. Git hooks can be skipped; CI repeats the portable checks.
 
 Codex 0.159.3 reports hooks enabled. Checked-in `.codex/hooks.json` runs the repo script from the Git root and uses the official event schema. Each developer must trust the project config and review the exact definitions via `/hooks`; changed hook hashes require review again. This setup does not silently modify global trust. See [official Codex hooks documentation](https://developers.openai.com/codex/hooks).
 

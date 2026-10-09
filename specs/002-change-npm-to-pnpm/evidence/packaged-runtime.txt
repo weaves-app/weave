@@ -1,0 +1,1 @@
+S04 packaged runtime smoke PASS: API live, outage readiness 503, web connected. OS/image/nonroot checks still require container runtime.

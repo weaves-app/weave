@@ -1,15 +1,27 @@
 name: Set up Weave workspace
-description: Install the Node/npm versions declared by this repository
+description: Install the Node/pnpm versions declared by this repository
 runs:
   using: composite
   steps:
     - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
       with:
         node-version-file: .nvmrc
-        cache: npm
-    - shell: bash
+        package-manager-cache: false
+    - name: Install pinned pnpm
+      shell: bash
       run:
-        | # zizmor: ignore[adhoc-packages] -- Validated exact npm version from packageManager, with lifecycle scripts disabled.
-        npm_version=$(node -p 'const value=require("./package.json").packageManager; if(!/^npm@\d+\.\d+\.\d+$/.test(value))throw new Error("Invalid npm version"); value.slice(4)')
-        npm install --global "npm@$npm_version" --ignore-scripts
-        npm ci
+        | # zizmor: ignore[adhoc-packages] -- Validated exact pnpm version from packageManager, with bootstrap lifecycle scripts disabled.
+        pnpm_spec=$(node -p 'const value=require("./package.json").packageManager; if(!/^pnpm@\d+\.\d+\.\d+$/.test(value))throw new Error("Invalid pnpm version"); value')
+        npm install --global "$pnpm_spec" --ignore-scripts
+    - name: Locate pnpm store
+      id: pnpm-store
+      shell: bash
+      run: echo "path=$(pnpm store path)" >> "$GITHUB_OUTPUT"
+    - uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+      with:
+        path: ${{ steps.pnpm-store.outputs.path }}
+        key: pnpm-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('pnpm-lock.yaml', 'pnpm-workspace.yaml', 'package.json') }}
+        restore-keys: pnpm-${{ runner.os }}-${{ runner.arch }}-
+    - name: Install locked workspace
+      shell: bash
+      run: pnpm install --frozen-lockfile
