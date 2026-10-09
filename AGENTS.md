@@ -20,7 +20,7 @@ This block is written and re-added by `turbo` before repository-scoped commands 
 - Reuse UI primitives and semantic design tokens. Share contracts/tokens; web/native renderers remain platform-specific. Review accessibility and consistent states.
 - Work only on ticket branches from develop. No direct main/develop commits, force pushes or protection bypasses. Weave uses personal credentials; never use a forbidden company identity. Pin each contributor's own personal Git name/email in repository-local config and verify author and committer before publishing.
 - Commits: one imperative Conventional Commit, max 100 characters, ending `[WEA-N]` matching branch. Use `!` for breaking changes. Maintain verb vocabulary in `scripts/policy.mjs` through reviewed changes.
-- Run relevant tests after each slice; `npm run verify` and database integration before PR. Add specs/evidence links to PR. CI checks and code-owner review are required; local hooks are bypassable.
+- Run relevant tests after each slice; `pnpm run verify` and database integration before PR. Add specs/evidence links to PR. CI checks and code-owner review are required; local hooks are bypassable.
 - Main releases use SemVer and immutable digests. Develop images use commit SHA only. Promote the same image; supply configuration at runtime. Never rebuild a released version for an environment.
 
 - Codex and Claude Code are supported. Claude loads CLAUDE.md and the shared Spec Kit skills/hooks. Review project hook trust in each agent.

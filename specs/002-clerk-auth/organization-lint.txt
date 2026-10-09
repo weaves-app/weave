@@ -1,0 +1,10 @@
+
+> @weave/web@0.0.0 lint
+> eslint .
+
+
+/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/src/features/auth/presentation/auth-view.tsx
+  192:6  warning  React Hook useEffect has a missing dependency: 'props'. Either include it or remove the dependency array. However, 'props' will change when *any* prop changes, so the preferred fix is to destructure the 'props' object outside of the useEffect call and refer to those specific props inside useEffect  react-hooks/exhaustive-deps
+
+✖ 1 problem (0 errors, 1 warning)
+

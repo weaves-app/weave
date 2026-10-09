@@ -5,15 +5,17 @@ export function validateDependencyProposal({author, sameRepository, base, files}
     base !== 'develop'
   )
     return 'Only same-repository Dependabot proposals into develop may be adopted.';
+
   if (
     !files?.length ||
     files.some(
       (file) =>
-        !/^(package(?:-lock)?\.json|(?:apps|packages)\/[^/]+\/package\.json|\.github\/(?:workflows\/[^/]+\.ya?ml|actions\/[^/]+\/action\.ya?ml))$/.test(
+        !/^(package\.json|pnpm-lock\.yaml|(?:apps|packages)\/[^/]+\/package\.json|\.github\/(?:workflows\/[^/]+\.ya?ml|actions\/[^/]+\/action\.ya?ml))$/.test(
           file,
         ),
     )
   )
     return 'Dependency proposals may change only manifests, lockfiles and Action pins.';
+
   return null;
 }

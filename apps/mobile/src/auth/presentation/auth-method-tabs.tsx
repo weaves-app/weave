@@ -1,5 +1,7 @@
 import {Pressable, StyleSheet, Text, View} from 'react-native';
+
 import {tokens} from '@weave/design-tokens';
+
 import type {AuthMethod} from '../domain/auth-models';
 
 export interface AuthMethodTabsProps {
@@ -14,6 +16,7 @@ export function AuthMethodTabs({
   onSelect,
 }: AuthMethodTabsProps): React.JSX.Element {
   const emailCodeSelected = method === 'emailCode';
+
   return (
     <View style={styles.tabs}>
       <Pressable

@@ -1,0 +1,12 @@
+$ node --test tests/integration/*.test.mjs
+✔ S06 HTTP wiring returns liveness and database readiness; web displays connection (579.605875ms)
+✔ S06 database outage returns 503 readiness and 200 liveness (276.161792ms)
+✔ S09 committed schema persists a user and enforces unique email (5.266709ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 907.347375

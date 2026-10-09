@@ -1,0 +1,34 @@
+✔ S17 dependency adoption accepts only genuine scoped proposals (0.406417ms)
+✖ WEA-8 S06 accepts pnpm lockfile proposals without widening policy scope (0.543917ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 1
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 39.232708
+
+✖ failing tests:
+
+test at tests/policy/dependency.test.mjs:23:1
+✖ WEA-8 S06 accepts pnpm lockfile proposals without widening policy scope (0.543917ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'Dependency proposals may change only manifests, lockfiles and Action pins.'
+  - null
+  
+      at TestContext.<anonymous> (file://<repo>/tests/policy/dependency.test.mjs:24:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:752:18)
+      at Test.postRun (node:internal/test_runner/test:1191:19)
+      at Test.run (node:internal/test_runner/test:1119:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:332:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'Dependency proposals may change only manifests, lockfiles and Action pins.',
+    expected: null,
+    operator: 'strictEqual'
+  }

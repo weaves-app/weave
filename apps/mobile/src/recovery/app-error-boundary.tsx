@@ -1,5 +1,6 @@
 import {Component} from 'react';
 import type {ReactNode} from 'react';
+
 import {RecoveryScreen} from './recovery-screen';
 
 export interface AppErrorBoundaryProps {
@@ -34,13 +35,16 @@ export class AppErrorBoundary extends Component<AppErrorBoundaryProps, BoundaryS
       this.reloadedGeneration === failedGeneration
     )
       return;
+
     this.reloadedGeneration = failedGeneration;
     this.setState({hasError: false, rootGeneration: failedGeneration + 1});
   }
 
   override render(): ReactNode {
     const {hasError, rootGeneration} = this.state;
+
     if (hasError) return <RecoveryScreen onReload={() => this.reload(rootGeneration)} />;
+
     return (
       <RootContent
         key={rootGeneration}

@@ -1,13 +1,17 @@
 import {fireEvent, render, screen, waitFor} from '@testing-library/react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
+
 import {AuthProvider} from './presentation/auth-context';
 import {HomeScreen} from './presentation/home-screen';
 import {createAuthController} from './application/auth-controller';
 import {active, TestClock, TestGateway} from './testing/fakes';
+
 test('S09/S11 Home has one Logout action with accessible pending feedback and one request', async () => {
   const gateway = new TestGateway();
+
   gateway.resolveResult = async (input) => active(input);
   gateway.signOutResult = () => new Promise(() => undefined);
+
   const controller = createAuthController(gateway, new TestClock());
   const {unmount} = render(
     <SafeAreaProvider
@@ -21,6 +25,7 @@ test('S09/S11 Home has one Logout action with accessible pending feedback and on
       </AuthProvider>
     </SafeAreaProvider>,
   );
+
   await waitFor(() => expect(controller.getSnapshot().session.status).toBe('active'));
   expect(screen.getAllByRole('button')).toHaveLength(1);
   fireEvent.press(screen.getByRole('button', {name: 'Logout'}));

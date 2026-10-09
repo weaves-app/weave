@@ -1,4 +1,5 @@
 import {createConfig} from '@weave/eslint-config';
+
 export default [
   {ignores: ['vendor/**', 'ios/**', 'android/**']},
   ...createConfig(import.meta.dirname, 'tsconfig.json'),

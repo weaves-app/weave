@@ -1,0 +1,59 @@
+Not implemented: navigation to another Document
+✖ WEA-10 S03 ticket preserved on sign-in entry cannot substitute ordinary login (21.106334ms)
+✖ WEA-10 S03/S08 signed-in invitation signout failure is recoverable without reload (1047.408417ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 0
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1886.939375
+
+✖ failing tests:
+
+test at apps/web/test/auth-ui.test.tsx:2:6865
+✖ WEA-10 S03 ticket preserved on sign-in entry cannot substitute ordinary login (21.106334ms)
+  AssertionError [ERR_ASSERTION]: invitation must not offer editable email
+      at TestContext.<anonymous> (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-ui.test.tsx:58:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at apps/web/test/auth-ui.test.tsx:2:7396
+✖ WEA-10 S03/S08 signed-in invitation signout failure is recoverable without reload (1047.408417ms)
+  Error: Unable to find role="alert"
+  
+  Ignored nodes: comments, script, style
+  [36m<body>[39m
+    [36m<div>[39m
+      [36m<main[39m
+        [33mclass[39m=[32m"auth-page"[39m
+      [36m>[39m
+        [36m<p>[39m
+          [0mSign out before accepting this invitation.[0m
+        [36m</p>[39m
+        [36m<button>[39m
+          [0mSign out[0m
+        [36m</button>[39m
+      [36m</main>[39m
+    [36m</div>[39m
+  [36m</body>[39m
+      at waitForWrapper (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/node_modules/@testing-library/dom/dist/wait-for.js:163:27)
+      at TestContext.<anonymous> (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-ui.test.tsx:64:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    name: 'TestingLibraryElementError'
+  }

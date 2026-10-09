@@ -1,0 +1,227 @@
+✖ WEA-10 S11 callback without a completed attempt shows retry rather than endless verification (1029.519709ms)
+✖ WEA-10 S11 callback rejected operation and timeout recover without navigation (210.679916ms)
+✖ WEA-10 S11 only completed callback navigates; additional requirements are visible (1009.155667ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 0
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3122.179208
+
+✖ failing tests:
+
+test at test/auth-callback.test.tsx:2:1262
+✖ WEA-10 S11 callback without a completed attempt shows retry rather than endless verification (1029.519709ms)
+  Error: Unable to find role="alert"
+  
+  Ignored nodes: comments, script, style
+  [36m<body>[39m
+    [36m<div>[39m
+      [36m<main[39m
+        [33mclass[39m=[32m"auth-shell"[39m
+        [33mstyle[39m=[32m"--auth-primary: #2E3A2F; --auth-secondary: #6B7F58; --auth-hero: #D9C9B2; --auth-accent: #C96F4F; --auth-background: #F8F6EE;"[39m
+      [36m>[39m
+        [36m<section[39m
+          [33maria-label[39m=[32m"Weave brand"[39m
+          [33mclass[39m=[32m"auth-scene"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"auth-bag-stage"[39m
+          [36m>[39m
+            [36m<img[39m
+              [33malt[39m=[32m"Olive Weave shopping bag with rope handles and folded sides"[39m
+              [33mclass[39m=[32m"auth-bag"[39m
+              [33mdata-nimg[39m=[32m"1"[39m
+              [33mdecoding[39m=[32m"async"[39m
+              [33mheight[39m=[32m"1374"[39m
+              [33msizes[39m=[32m"(max-width: 680px) 0px, 440px"[39m
+              [33msrc[39m=[32m"/_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=3840&q=75"[39m
+              [33msrcset[39m=[32m"/_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=32&q=75 32w, /_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=48&q=75 48w, /_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=64&q=75 64w, /_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=96&q=75 96w, /_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=128&q=75 128w, /_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=256&q=75 256w, /_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=384&q=75 384w, /_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=640&q=75 640w, /_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=750&q=75 750w, /_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=828&q=75 828w, /_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=1080&q=75 1080w, /_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=1200&q=75 1200w, /_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=1920&q=75 1920w, /_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=2048&q=75 2048w, /_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=3840&q=75 3840w"[39m
+              [33mstyle[39m=[32m"color: transparent;"[39m
+              [33mwidth[39m=[32m"1145"[39m
+            [36m/>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"auth-caption"[39m
+          [36m>[39m
+            [36m<h1>[39m
+              [0mEverything, woven together.[0m
+            [36m</h1>[39m
+            [36m<p>[39m
+              [0mNo more loose threads.[0m
+              [36m<br />[39m
+              [0mFrom order to shelf.[0m
+            [36m</p>[39m
+          [36m</div>[39m
+        [36m</section>[39m
+        [36m<section[39m
+          [33mclass[39m=[32m"auth-panel"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"auth-form-wrap"[39m
+          [36m>[39m
+            [36m<img[39m
+              [33malt[39m=[32m"Weave"[39m
+              [33mclass[39m=[32m"auth-logo"[39m
+              [33mdata-nimg[39m=[32m"1"[39m
+              [33mdecoding[39m=[32m"async"[39m
+              [33mheight[39m=[32m"43"[39m
+              [33msrc[39m=[32m"/brand/logo.svg"[39m
+              [33mstyle[39m=[32m"color: transparent;"[39m
+              [33mwidth[39m=[32m"133"[39m
+            [36m/>[39m
+            [36m<div[39m
+              [33mdata-email-status[39m=[32m"none"[39m
+              [33mdata-required-fields[39m=[32m""[39m
+              [33mdata-signin-status[39m=[32m"needs_identifier"[39m
+              [33mdata-signup-status[39m=[32m"missing_requirements"[39m
+            [36m>[39m
+              [36m<h2>[39m
+                [0mCompleting sign-in[0m
+              [36m</h2>[39m
+              [36m<p[39m
+                [33mrole[39m=[32m"status"[39m
+              [36m>[39m
+                [0mPlease wait while your account is verified.[0m
+              [36m</p>[39m
+              [36m<a[39m
+                [33mhref[39m=[32m"/sign-in"[39m
+              [36m>[39m
+                [0mReturn to sign in[0m
+              [36m</a>[39m
+            [36m</div>[39m
+          [36m</div>[39m
+        [36m</section>[39m
+      [36m</main>[39m
+    [36m</div>[39m
+  [36m</body>[39m
+      at waitForWrapper (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/node_modules/@testing-library/dom/dist/wait-for.js:163:27)
+      at TestContext.<anonymous> (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-callback.test.tsx:10:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    name: 'TestingLibraryElementError'
+  }
+
+test at test/auth-callback.test.tsx:2:1901
+✖ WEA-10 S11 callback rejected operation and timeout recover without navigation (210.679916ms)
+  Error: Unable to find role="alert"
+  
+  Ignored nodes: comments, script, style
+  [36m<body>[39m
+    [36m<div>[39m
+      [36m<main[39m
+        [33mclass[39m=[32m"auth-shell"[39m
+        [33mstyle[39m=[32m"--auth-primary: #2E3A2F; --auth-secondary: #6B7F58; --auth-hero: #D9C9B2; --auth-accent: #C96F4F; --auth-background: #F8F6EE;"[39m
+      [36m>[39m
+        [36m<section[39m
+          [33maria-label[39m=[32m"Weave brand"[39m
+          [33mclass[39m=[32m"auth-scene"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"auth-bag-stage"[39m
+          [36m>[39m
+            [36m<img[39m
+              [33malt[39m=[32m"Olive Weave shopping bag with rope handles and folded sides"[39m
+              [33mclass[39m=[32m"auth-bag"[39m
+              [33mdata-nimg[39m=[32m"1"[39m
+              [33mdecoding[39m=[32m"async"[39m
+              [33mheight[39m=[32m"1374"[39m
+              [33msizes[39m=[32m"(max-width: 680px) 0px, 440px"[39m
+              [33msrc[39m=[32m"/_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=3840&q=75"[39m
+              [33msrcset[39m=[32m"/_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=32&q=75 32w, /_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=48&q=75 48w, /_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=64&q=75 64w, /_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=96&q=75 96w, /_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=128&q=75 128w, /_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=256&q=75 256w, /_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=384&q=75 384w, /_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=640&q=75 640w, /_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=750&q=75 750w, /_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=828&q=75 828w, /_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=1080&q=75 1080w, /_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=1200&q=75 1200w, /_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=1920&q=75 1920w, /_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=2048&q=75 2048w, /_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=3840&q=75 3840w"[39m
+              [33mstyle[39m=[32m"color: transparent;"[39m
+              [33mwidth[39m=[32m"1145"[39m
+            [36m/>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"auth-caption"[39m
+          [36m>[39m
+            [36m<h1>[39m
+              [0mEverything, woven together.[0m
+            [36m</h1>[39m
+            [36m<p>[39m
+              [0mNo more loose threads.[0m
+              [36m<br />[39m
+              [0mFrom order to shelf.[0m
+            [36m</p>[39m
+          [36m</div>[39m
+        [36m</section>[39m
+        [36m<section[39m
+          [33mclass[39m=[32m"auth-panel"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"auth-form-wrap"[39m
+          [36m>[39m
+            [36m<img[39m
+              [33malt[39m=[32m"Weave"[39m
+              [33mclass[39m=[32m"auth-logo"[39m
+              [33mdata-nimg[39m=[32m"1"[39m
+              [33mdecoding[39m=[32m"async"[39m
+              [33mheight[39m=[32m"43"[39m
+              [33msrc[39m=[32m"/brand/logo.svg"[39m
+              [33mstyle[39m=[32m"color: transparent;"[39m
+              [33mwidth[39m=[32m"133"[39m
+            [36m/>[39m
+            [36m<div[39m
+              [33mdata-email-status[39m=[32m"none"[39m
+              [33mdata-required-fields[39m=[32m""[39m
+              [33mdata-signin-status[39m=[32m"needs_identifier"[39m
+              [33mdata-signup-status[39m=[32m"missing_requirements"[39m
+            [36m>[39m
+              [36m<h2>[39m
+                [0mCompleting sign-in[0m
+              [36m</h2>[39m
+              [36m<p[39m
+                [33mrole[39m=[32m"status"[39m
+              [36m>[39m
+                [0mPlease wait while your account is verified.[0m
+              [36m</p>[39m
+              [36m<a[39m
+                [33mhref[39m=[32m"/sign-in"[39m
+              [36m>[39m
+                [0mReturn to sign in[0m
+              [36m</a>[39m
+            [36m</div>[39m
+          [36m</div>[39m
+        [36m</section>[39m
+      [36m</main>[39m
+    [36m</div>[39m
+  [36m</body>[39m
+      at waitForWrapper (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/node_modules/@testing-library/dom/dist/wait-for.js:163:27)
+      at TestContext.<anonymous> (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-callback.test.tsx:17:11)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    name: 'TestingLibraryElementError'
+  }
+
+test at test/auth-callback.test.tsx:2:2482
+✖ WEA-10 S11 only completed callback navigates; additional requirements are visible (1009.155667ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + []
+  - [
+  -   '/'
+  - ]
+  
+      at <anonymous> (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-callback.test.tsx:25:30)
+      at runWithExpensiveErrorDiagnosticsDisabled (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/node_modules/@testing-library/dom/dist/config.js:47:12)
+      at checkCallback (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/node_modules/@testing-library/dom/dist/wait-for.js:124:77)
+      at Timeout.checkRealTimersCallback [as _onTimeout] (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/node_modules/@testing-library/dom/dist/wait-for.js:118:16)
+      at listOnTimeout (node:internal/timers:685:17)
+      at process.processTimers (node:internal/timers:618:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [],
+    expected: [ '/' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

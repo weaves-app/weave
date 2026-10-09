@@ -1,0 +1,25 @@
+✔ WEA-10 S01 signup sends verification, never activates before correct code, then opens Home (1.0165ms)
+✔ WEA-10 S01/S08 wrong or expired code is recoverable and resend can be retried (0.270542ms)
+✔ WEA-10 S01/S08 empty/malformed email and missing password/code make no provider calls (0.142416ms)
+✔ WEA-10 S01/S08 unverified provider completion or unsupported requirements cannot activate (0.106958ms)
+✔ WEA-10 S02 password login and Device Trust verification both reach Home (0.447084ms)
+✔ WEA-10 S07 interrupted verification restores without needing password again (0.076292ms)
+✔ WEA-10 S08 duplicate/signup/invalid login/network/rejected-password errors finish loading (0.156541ms)
+✔ WEA-10 S08 repeated submits issue one mutation and cancellation prevents late activation (0.099875ms)
+✔ WEA-10 S07/S08 cancellation during activation clears late session and never navigates (0.103042ms)
+✔ WEA-10 S07 signout awaits provider, clears state and reports recoverable failure (0.133666ms)
+✔ WEA-10 S03 invitation signup supplies only ticket/password and reaches intended Home (0.088375ms)
+✔ WEA-10 S03/S08 missing/expired/reused invitation keeps context and never falls back (0.099875ms)
+✔ WEA-10 S03/S08 invitation entry preserves opaque ticket across auth navigation (0.675334ms)
+✔ WEA-10 S03/S08 missing/malformed/ambiguous invitation never falls back to public signup (0.139792ms)
+✔ WEA-10 S02/S07 verified active identity is allowed; unverified or signed-out is denied (0.149667ms)
+✔ WEA-10 S07 unresolved auth exposes no protected result before the provider resolves (0.273541ms)
+✔ WEA-10 S07/S08 provider/network session failure denies access safely (0.138375ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 158.0765

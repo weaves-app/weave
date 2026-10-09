@@ -1,0 +1,15 @@
+2026-10-09: publication validation after merging develop 810974c.
+
+pnpm 11.1.1 frozen install: exit 0.
+pnpm run verify: exit 0; 94 mobile tests (13 suites), 58 web tests, policy/API tests, lint, formatting, types, API/web and both Metro builds passed. Turbo reused unchanged checks.
+pnpm run test:integration: exit 0; 3 tests passed against isolated PostgreSQL 18 on port 55439. PostgreSQL 17 CI remains pending.
+Android native authentication contracts: BUILD SUCCESSFUL; app 29 tests and SDK 1 test, zero failures/errors/skips.
+Android x86_64 debug APK: BUILD SUCCESSFUL in 58s.
+iOS unsigned simulator build: BUILD SUCCEEDED (local Xcode 27 toolchain).
+iOS macOS-hosted native contract suite: 31 tests, zero failures. This is not a substitute for remaining device/provider acceptance.
+
+Local migration issues: old npm bin symlinks pointed at non-executable CLI files after pnpm installation. Restored local executable permissions; no committed dependency source was modified. An ESLint autofix changed the required React Navigation route type alias; restored it and retained a narrowly documented exception before the successful checks.
+
+Merge preserves web Clerk/organization routes and pnpm from develop, native auth/navigation/recovery and UI from this feature. New spacing rules were applied to authored mobile code without behavior changes. Metro PNG default imports retain a scoped lint exception.
+
+Draft PR requested by owner. Existing F1-F4, T048 and T054 acceptance gaps stay open; no full-ticket closure, deployment or merge into develop authorized/performed.

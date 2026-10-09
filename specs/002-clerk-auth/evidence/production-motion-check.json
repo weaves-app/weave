@@ -1,0 +1,13 @@
+{
+  "firstLoad": {
+    "animation": "auth-bag-arrive",
+    "duration": "1.35s",
+    "iterations": "1",
+    "observed": "Loaded image had a nonidentity perspective matrix"
+  },
+  "subsequentSignUp": {
+    "animation": "none",
+    "loaded": true,
+    "transform": "none"
+  }
+}

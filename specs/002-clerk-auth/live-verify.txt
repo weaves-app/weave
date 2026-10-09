@@ -1,0 +1,55 @@
+
+> verify
+> npm run lint && npm run format:check && npm run typecheck && npm test && npm run build
+
+
+> lint
+> turbo run lint && eslint scripts tests && node scripts/check-architecture.mjs
+
+
+   • turbo 2.11.7
+   • Packages in scope: @weave/api, @weave/design-tokens, @weave/eslint-config, @weave/mobile, @weave/typescript-config, @weave/web
+   • Running lint in 6 packages
+   • Remote caching disabled, using shared worktree cache
+
+@weave/api:db:generate: cache miss, executing e969656fa1f1b77f
+@weave/eslint-config:lint: cache hit, replaying logs 5999461d73459d6b
+@weave/eslint-config:lint: 
+@weave/eslint-config:lint: > @weave/eslint-config@0.0.0 lint
+@weave/eslint-config:lint: > eslint .
+@weave/eslint-config:lint: 
+@weave/design-tokens:lint: cache hit, replaying logs ee0e21fe7c4f4ec0
+@weave/design-tokens:lint: 
+@weave/design-tokens:lint: > @weave/design-tokens@0.0.0 lint
+@weave/design-tokens:lint: > eslint .
+@weave/design-tokens:lint: 
+@weave/web:lint: cache miss, executing 73242e749f941daa
+@weave/mobile:lint: cache hit, replaying logs 37bc8f6fb039de59
+@weave/mobile:lint: 
+@weave/mobile:lint: > @weave/mobile@0.0.0 lint
+@weave/mobile:lint: > eslint .
+@weave/mobile:lint: 
+@weave/api:db:generate: 
+@weave/api:db:generate: > @weave/api@0.0.0 db:generate
+@weave/api:db:generate: > prisma generate
+@weave/api:db:generate: 
+@weave/web:lint: 
+@weave/web:lint: > @weave/web@0.0.0 lint
+@weave/web:lint: > eslint .
+@weave/web:lint: 
+@weave/api:db:generate: Failed to load config file "/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/api" as a TypeScript/JavaScript module. Error: PrismaConfigEnvError: Cannot resolve environment variable: DATABASE_URL.
+@weave/api:db:generate: npm error Lifecycle script `db:generate` failed with error:
+@weave/api:db:generate: npm error code 1
+@weave/api:db:generate: npm error path /Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/api
+@weave/api:db:generate: npm error workspace @weave/api@0.0.0
+@weave/api:db:generate: npm error location /Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/api
+@weave/api:db:generate: npm error command failed
+@weave/api:db:generate: npm error command sh -c prisma generate
+@weave/api#db:generate:  ERROR  command (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/api) /opt/homebrew/bin/npm run db:generate exited (1)
+
+ Tasks:    3 successful, 5 total
+Cached:    3 cached, 5 total
+  Time:    2.209s 
+Failed:    @weave/api#db:generate
+
+ ERROR  run failed: command  exited (1)

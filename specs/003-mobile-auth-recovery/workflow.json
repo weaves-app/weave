@@ -574,5 +574,14 @@
       "sourceChanged": false,
       "finalState": "Real app upright portrait; enlarged-text acceptance still pending."
     }
+  },
+  "publication": {
+    "date": "2026-10-09",
+    "authorization": "Looks good commit and create PR",
+    "baseIntegrated": "810974c",
+    "packageManager": "pnpm@11.1.1",
+    "status": "validated-for-draft-pr",
+    "evidence": "evidence/publication/summary.txt",
+    "remainingAcceptance": "Existing F1-F4, T048 and T054 remain open; required CI/code-owner review pending."
   }
 }

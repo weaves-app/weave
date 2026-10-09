@@ -1,6 +1,8 @@
 import type {ReactNode} from 'react';
 import {ActivityIndicator, Pressable, StyleSheet, Text, View} from 'react-native';
+
 import {tokens} from '@weave/design-tokens';
+
 export interface ButtonProps {
   readonly label: string;
   readonly onPress: () => void;
@@ -10,6 +12,7 @@ export interface ButtonProps {
   readonly leading?: ReactNode;
   readonly trailing?: ReactNode;
 }
+
 export function Button({
   label,
   onPress,
@@ -20,6 +23,7 @@ export function Button({
   trailing,
 }: ButtonProps): React.JSX.Element {
   const inactive = disabled || loading;
+
   return (
     <Pressable
       accessibilityRole="button"
@@ -50,6 +54,7 @@ export function Button({
     </Pressable>
   );
 }
+
 const styles = StyleSheet.create({
   button: {
     paddingHorizontal: tokens.spacing.medium,

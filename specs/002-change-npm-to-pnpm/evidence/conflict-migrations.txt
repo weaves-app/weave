@@ -1,0 +1,18 @@
+$ pnpm --filter @weave/api run db:deploy
+$ prisma migrate deploy
+Loaded Prisma config from prisma.config.ts.
+
+Prisma schema loaded from prisma/schema.prisma.
+Datasource "db": PostgreSQL database "weave", schema "public" at "127.0.0.1:55447"
+
+1 migration found in prisma/migrations
+
+Applying migration `20261002000000_init`
+
+The following migration(s) have been applied:
+
+migrations/
+  └─ 20261002000000_init/
+    └─ migration.sql
+
+All migrations have been successfully applied.

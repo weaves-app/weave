@@ -11,7 +11,9 @@ import {
   View,
   useWindowDimensions,
 } from 'react-native';
+
 import {tokens} from '@weave/design-tokens';
+
 import googleLogo from '../../../assets/brand/google-g.png';
 import {Button} from '../../components/button';
 import {BrandLogo} from '../../components/brand-logo';
@@ -37,6 +39,7 @@ interface LoginScrollProps {
 
 function LoginScroll({challenge, children}: LoginScrollProps): React.JSX.Element {
   const [contentHeight, setContentHeight] = useState(0);
+
   return (
     <ScrollView
       keyboardShouldPersistTaps="handled"
@@ -62,6 +65,7 @@ function ActionArrow(): React.JSX.Element {
 function LoginForm({login}: LoginPresentationProps): React.JSX.Element {
   const {state} = login;
   const emailCode = state.attempt.method === 'emailCode';
+
   return (
     <>
       <View style={styles.loginHeader}>
@@ -121,6 +125,7 @@ function LoginForm({login}: LoginPresentationProps): React.JSX.Element {
 function AuthHeader({login}: LoginPresentationProps): React.JSX.Element {
   const {state} = login;
   const challenge = Boolean(state.attempt.attemptId);
+
   return (
     <View style={styles.authHeader}>
       <View style={styles.headerSpacer}>
@@ -145,6 +150,7 @@ function AuthHeader({login}: LoginPresentationProps): React.JSX.Element {
 
 function VerificationForm({login}: LoginPresentationProps): React.JSX.Element {
   const {state} = login;
+
   return (
     <>
       <View style={styles.challengeHeading}>
@@ -183,6 +189,7 @@ export function LoginScreen(): React.JSX.Element {
   const {state} = login;
   const challenge = Boolean(state.attempt.attemptId);
   const {width, fontScale} = useWindowDimensions();
+
   return (
     <AuthLayout>
       <AuthHeader login={login} />

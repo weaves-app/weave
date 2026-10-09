@@ -1,7 +1,9 @@
 import {useState} from 'react';
 import {StyleSheet, Text, TextInput, View} from 'react-native';
 import type {TextInputProps} from 'react-native';
+
 import {tokens} from '@weave/design-tokens';
+
 export interface FormFieldProps {
   readonly label: string;
   readonly value: string;
@@ -12,6 +14,7 @@ export interface FormFieldProps {
   readonly placeholder?: string;
   readonly autoComplete?: TextInputProps['autoComplete'];
 }
+
 export function FormField({
   label,
   value,
@@ -23,6 +26,7 @@ export function FormField({
   autoComplete,
 }: FormFieldProps): React.JSX.Element {
   const [focused, setFocused] = useState(false);
+
   return (
     <View style={styles.container}>
       <Text style={styles.label}>{label}</Text>
@@ -49,6 +53,7 @@ export function FormField({
     </View>
   );
 }
+
 const styles = StyleSheet.create({
   container: {gap: tokens.spacing.small},
   label: {

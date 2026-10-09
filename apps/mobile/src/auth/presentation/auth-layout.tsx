@@ -1,7 +1,9 @@
 import type {ReactNode} from 'react';
 import {Image, StyleSheet, View, useWindowDimensions} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
+
 import {tokens} from '@weave/design-tokens';
+
 import bagHero from '../../../assets/brand/weave-bag-hero.png';
 import {Typography} from '../../components/typography';
 
@@ -27,6 +29,7 @@ export function AuthLayout({children}: AuthLayoutProps): React.JSX.Element {
   const {width, height} = useWindowDimensions();
   const tablet = Math.min(width, height) >= 600;
   const split = tablet && width > height && width >= 960;
+
   return (
     <View style={styles.screen}>
       {split && <AuthArtwork />}

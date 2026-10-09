@@ -1,4 +1,5 @@
 import type {AuthErrorCode} from '../domain/auth-models';
+
 export const authMessages: Readonly<Record<AuthErrorCode, string>> = {
   invalidInput: 'Enter a valid email address and the required password or code.',
   rejectedCredentials: 'The email or password was not accepted. Try again.',

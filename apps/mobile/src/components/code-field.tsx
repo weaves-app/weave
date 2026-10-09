@@ -1,6 +1,8 @@
 import {useState} from 'react';
 import {StyleSheet, Text, TextInput, useWindowDimensions, View} from 'react-native';
+
 import {tokens} from '@weave/design-tokens';
+
 import {Typography} from './typography';
 
 export interface CodeFieldProps {
@@ -11,7 +13,9 @@ export interface CodeFieldProps {
 
 // Android Fabric uses zero-valued transparent black as an unspecified text colour.
 const invisibleInk = 'rgba(255, 255, 255, 0)';
+
 const codeLength = 6;
+
 const slots = [0, 1, 2, 3, 4, 5] as const;
 
 export function CodeField({
@@ -27,14 +31,17 @@ export function CodeField({
   const selectionEnd = Math.min(selection.end, value.length);
   const collapsed = selectionStart === selectionEnd;
   const caretSlot = Math.min(selectionStart, codeLength - 1);
+
   function isActiveSlot(index: number): boolean {
     return (
       focused && (collapsed ? index === caretSlot : index >= selectionStart && index < selectionEnd)
     );
   }
+
   function changeCode(input: string): void {
     if (!disabled) onChangeText(input.replace(/\D/g, '').slice(0, codeLength));
   }
+
   return (
     <View style={styles.field}>
       <Typography variant="label">Verification code</Typography>

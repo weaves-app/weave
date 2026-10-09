@@ -1,0 +1,20 @@
+Standalone production logo status: 404
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Production package serves supplied logo
+
+404 !== 200
+
+    at file:///Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/[eval1]:4:238
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 404,
+  expected: 200,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.20.0

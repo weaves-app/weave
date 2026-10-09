@@ -293,3 +293,7 @@ Visually verified portrait → landscape (artwork/tagline appears) → upright p
 ## iPhone orientation verification — 2026-10-09
 
 Owner requested the same check on mobile iOS. On iPhone17Pro/iOS26.2 the current real app renders the complete top-aligned Login form in portrait. The installed app's UISupportedInterfaceOrientations contains only UIInterfaceOrientationPortrait. Rotating the simulator sideways therefore retains the portrait interface, matching its current native configuration; this is different from the iPad simulator's earlier system-wide stale orientation. Restored the device upright and visually verified the full form. No source/configuration change or new authentication acceptance run was performed.
+
+## Publication validation — 2026-10-09
+
+Owner requested commit and PR. Integrated develop `810974c`, retaining web authentication and the approved pnpm 11.1.1 migration. Frozen install, full repository verification, 3 database integration checks, Android native contracts/build and iOS simulator build/31 host contracts passed. Local database is PostgreSQL18; PostgreSQL17 CI and code-owner review remain pending. Results: [publication evidence](evidence/publication/summary.txt). Existing F1–F4, T048 and T054 acceptance gaps remain open; draft publication does not imply full-ticket completion.

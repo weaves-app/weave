@@ -8,7 +8,9 @@ import {
   useAnimatedValue,
   View,
 } from 'react-native';
+
 import {tokens} from '@weave/design-tokens';
+
 import {FormField} from '../../components/form-field';
 
 interface PasswordTransitionProps {
@@ -31,25 +33,31 @@ export function PasswordTransition({
   const [actionHeight, setActionHeight] = useState(0);
   const reduceMotion = useRef(true);
   const target = useRef(visible ? 1 : 0);
+
   useEffect(() => {
     let mounted = true;
     let receivedEvent = false;
+
     function applyPreference(enabled: boolean): void {
       reduceMotion.current = enabled;
+
       if (enabled) {
         progress.stopAnimation();
         progress.setValue(target.current);
       }
     }
+
     const subscription = AccessibilityInfo.addEventListener('reduceMotionChanged', (enabled) => {
       receivedEvent = true;
       applyPreference(enabled);
     });
+
     void AccessibilityInfo.isReduceMotionEnabled()
       .then((enabled) => {
         if (mounted && !receivedEvent) applyPreference(enabled);
       })
       .catch(() => undefined);
+
     return () => {
       mounted = false;
       subscription.remove();
@@ -57,19 +65,25 @@ export function PasswordTransition({
   }, [progress]);
   useEffect(() => {
     target.current = visible ? 1 : 0;
+
     if (reduceMotion.current || height === 0) {
       progress.setValue(visible ? 1 : 0);
+
       return;
     }
+
     const animation = Animated.timing(progress, {
       toValue: visible ? 1 : 0,
       duration: tokens.motion.formTransitionMs,
       easing: Easing.inOut(Easing.quad),
       useNativeDriver: false,
     });
+
     animation.start();
+
     return () => animation.stop();
   }, [height, progress, visible]);
+
   return (
     <View style={{minHeight: height + actionHeight}}>
       <Animated.View

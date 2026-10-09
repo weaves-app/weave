@@ -16,7 +16,7 @@ The Linear issue also includes web/public/invitation signup. Direct user clarifi
 
 ## Technical Context
 
-**Language/Version**: TypeScript 6.0.3, React 19.2.3, React Native 0.86.3; native Kotlin and Swift integration with RN codegen. Verified develop uses npm 11.19.0 workspaces with hoisted dependencies and Node .nvmrc. WEA-8 pnpm migration is unmerged; preserve the develop package manager for this ticket.
+**Language/Version**: TypeScript 6.0.3, React 19.2.3, React Native 0.86.3; native Kotlin and Swift integration with RN codegen. The original base used npm 11.19.0. On 2026-10-09, integrate develop `810974c` and its approved WEA-8 migration: pnpm 11.1.1, workspace protocols and the hoisted linker from `docs/decisions/0002-pnpm-workspace.md`. Preserve historical npm evidence; current validation uses pnpm.
 
 **Primary Dependencies**: React Navigation native/native-stack v7, react-native-screens v4 with documented RN0.86 Fabric range, existing react-native-safe-area-context ~5.7.0, @weave/design-tokens. Selected ClerkKit 1.6.0 and clerk-android-api 1.1.11; exact JS patches and compatible native toolchains locked and verified during dependency adoption. No Expo, Expo Router or prebuilt Clerk UI dependency is selected.
 

@@ -1,0 +1,361 @@
+✔ WEA-10 S11 unresolved callback refuses activation; completed callback finalizes only once (6.311709ms)
+✔ WEA-10 S11 transfer reads current SDK snapshot after awaited create (0.314959ms)
+✔ WEA-10 S11 extra fields and verification direct users to actual requirements, never Home (0.2935ms)
+✔ WEA-10 S11 returned finalize errors cannot report Home success (0.4225ms)
+✖ WEA-10 S11 pending organization session explains the blocker and never navigates Home (3.810583ms)
+✔ WEA-10 S01 public form labels/password → verification → Home callback (376.937625ms)
+✔ WEA-10 S08 pending/error states disable duplicates, finish loading and allow retry (111.618875ms)
+✔ WEA-10 S07 Home stays hidden until auth resolves and after signout; signout failure recovers (29.043292ms)
+✔ WEA-10 S01/S07 signed-in unverified session never renders Home (9.298167ms)
+✔ WEA-10 S07/S08 signout timeout releases loading and offers a retry (19.759417ms)
+✔ WEA-10 S08 unknown-account error survives refreshed SDK resources and callbacks (52.805333ms)
+✖ WEA-10 S08 pending organization task is explicit and cannot show a fresh login or Home (79.6665ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 10
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3003.699792
+
+✖ failing tests:
+
+test at test/auth-oauth.test.ts:2:4755
+✖ WEA-10 S11 pending organization session explains the blocker and never navigates Home (3.810583ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /organization membership/i. Input:
+  
+  'Google authentication could not finish. Please try again.'
+  
+      at TestContext.<anonymous> (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-oauth.test.ts:130:10)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'Google authentication could not finish. Please try again.',
+    expected: /organization membership/i,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at test/auth-ui.test.tsx:2:7756
+✖ WEA-10 S08 pending organization task is explicit and cannot show a fresh login or Home (79.6665ms)
+  Error [TestingLibraryElementError]: Unable to find an accessible element with the role "alert"
+  
+  Here are the accessible roles:
+  
+    main:
+  
+    Name "":
+    [36m<main[39m
+      [33mclass[39m=[32m"auth-shell"[39m
+      [33mstyle[39m=[32m"--auth-primary: #2E3A2F; --auth-secondary: #6B7F58; --auth-hero: #D9C9B2; --auth-accent: #C96F4F; --auth-background: #F8F6EE;"[39m
+    [36m/>[39m
+  
+    --------------------------------------------------
+    region:
+  
+    Name "Weave brand":
+    [36m<section[39m
+      [33maria-label[39m=[32m"Weave brand"[39m
+      [33mclass[39m=[32m"auth-scene"[39m
+    [36m/>[39m
+  
+    --------------------------------------------------
+    img:
+  
+    Name "Olive Weave shopping bag with rope handles and folded sides":
+    [36m<img[39m
+      [33malt[39m=[32m"Olive Weave shopping bag with rope handles and folded sides"[39m
+      [33mclass[39m=[32m"auth-bag"[39m
+      [33mdata-nimg[39m=[32m"1"[39m
+      [33mdecoding[39m=[32m"async"[39m
+      [33mheight[39m=[32m"1374"[39m
+      [33msizes[39m=[32m"(max-width: 680px) 0px, 440px"[39m
+      [33msrc[39m=[32m"/_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=3840&q=75"[39m
+      [33msrcset[39m=[32m"/_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=32&q=75 32w, /_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=48&q=75 48w, /_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=64&q=75 64w, /_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=96&q=75 96w, /_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=128&q=75 128w, /_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=256&q=75 256w, /_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=384&q=75 384w, /_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=640&q=75 640w, /_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=750&q=75 750w, /_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=828&q=75 828w, /_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=1080&q=75 1080w, /_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=1200&q=75 1200w, /_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=1920&q=75 1920w, /_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=2048&q=75 2048w, /_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=3840&q=75 3840w"[39m
+      [33mstyle[39m=[32m"color: transparent;"[39m
+      [33mwidth[39m=[32m"1145"[39m
+    [36m/>[39m
+  
+    Name "Weave":
+    [36m<img[39m
+      [33malt[39m=[32m"Weave"[39m
+      [33mclass[39m=[32m"auth-logo"[39m
+      [33mdata-nimg[39m=[32m"1"[39m
+      [33mdecoding[39m=[32m"async"[39m
+      [33mheight[39m=[32m"43"[39m
+      [33msrc[39m=[32m"/brand/logo.svg"[39m
+      [33mstyle[39m=[32m"color: transparent;"[39m
+      [33mwidth[39m=[32m"133"[39m
+    [36m/>[39m
+  
+    --------------------------------------------------
+    heading:
+  
+    Name "Everything, woven together.":
+    [36m<h1 />[39m
+  
+    Name "Welcome back":
+    [36m<h2 />[39m
+  
+    --------------------------------------------------
+    paragraph:
+  
+    Name "":
+    [36m<p />[39m
+  
+    Name "":
+    [36m<p[39m
+      [33mclass[39m=[32m"auth-intro"[39m
+    [36m/>[39m
+  
+    --------------------------------------------------
+    button:
+  
+    Name "Continue with Google":
+    [36m<button[39m
+      [33mclass[39m=[32m"auth-google"[39m
+      [33mtype[39m=[32m"button"[39m
+    [36m/>[39m
+  
+    Name "Show password":
+    [36m<button[39m
+      [33maria-label[39m=[32m"Show password"[39m
+      [33maria-pressed[39m=[32m"false"[39m
+      [33mclass[39m=[32m"auth-password-toggle"[39m
+      [33mtype[39m=[32m"button"[39m
+    [36m/>[39m
+  
+    Name "Sign in":
+    [36m<button[39m
+      [33mclass[39m=[32m"auth-primary"[39m
+      [33mtype[39m=[32m"submit"[39m
+    [36m/>[39m
+  
+    --------------------------------------------------
+    textbox:
+  
+    Name "Email address":
+    [36m<input[39m
+      [33mautocomplete[39m=[32m"email"[39m
+      [33mname[39m=[32m"email"[39m
+      [33mplaceholder[39m=[32m"you@company.com"[39m
+      [33mrequired[39m=[32m""[39m
+      [33mtype[39m=[32m"email"[39m
+    [36m/>[39m
+  
+    --------------------------------------------------
+    status:
+  
+    Name "":
+    [36m<p[39m
+      [33maria-live[39m=[32m"polite"[39m
+      [33mclass[39m=[32m"auth-status"[39m
+      [33mrole[39m=[32m"status"[39m
+    [36m/>[39m
+  
+    --------------------------------------------------
+    navigation:
+  
+    Name "Authentication":
+    [36m<nav[39m
+      [33maria-label[39m=[32m"Authentication"[39m
+      [33mclass[39m=[32m"auth-switch"[39m
+    [36m/>[39m
+  
+    --------------------------------------------------
+    link:
+  
+    Name "Create an account":
+    [36m<a[39m
+      [33mhref[39m=[32m"/sign-up"[39m
+    [36m/>[39m
+  
+    --------------------------------------------------
+  
+  Ignored nodes: comments, script, style
+  [36m<body>[39m
+    [36m<div>[39m
+      [36m<main[39m
+        [33mclass[39m=[32m"auth-shell"[39m
+        [33mstyle[39m=[32m"--auth-primary: #2E3A2F; --auth-secondary: #6B7F58; --auth-hero: #D9C9B2; --auth-accent: #C96F4F; --auth-background: #F8F6EE;"[39m
+      [36m>[39m
+        [36m<section[39m
+          [33maria-label[39m=[32m"Weave brand"[39m
+          [33mclass[39m=[32m"auth-scene"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"auth-bag-stage"[39m
+          [36m>[39m
+            [36m<img[39m
+              [33malt[39m=[32m"Olive Weave shopping bag with rope handles and folded sides"[39m
+              [33mclass[39m=[32m"auth-bag"[39m
+              [33mdata-nimg[39m=[32m"1"[39m
+              [33mdecoding[39m=[32m"async"[39m
+              [33mheight[39m=[32m"1374"[39m
+              [33msizes[39m=[32m"(max-width: 680px) 0px, 440px"[39m
+              [33msrc[39m=[32m"/_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=3840&q=75"[39m
+              [33msrcset[39m=[32m"/_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=32&q=75 32w, /_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=48&q=75 48w, /_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=64&q=75 64w, /_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=96&q=75 96w, /_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=128&q=75 128w, /_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=256&q=75 256w, /_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=384&q=75 384w, /_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=640&q=75 640w, /_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=750&q=75 750w, /_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=828&q=75 828w, /_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=1080&q=75 1080w, /_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=1200&q=75 1200w, /_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=1920&q=75 1920w, /_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=2048&q=75 2048w, /_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=3840&q=75 3840w"[39m
+              [33mstyle[39m=[32m"color: transparent;"[39m
+              [33mwidth[39m=[32m"1145"[39m
+            [36m/>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"auth-caption"[39m
+          [36m>[39m
+            [36m<h1>[39m
+              [0mEverything, woven together.[0m
+            [36m</h1>[39m
+            [36m<p>[39m
+              [0mNo more loose threads.[0m
+              [36m<br />[39m
+              [0mFrom order to shelf.[0m
+            [36m</p>[39m
+          [36m</div>[39m
+        [36m</section>[39m
+        [36m<section[39m
+          [33mclass[39m=[32m"auth-panel"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"auth-form-wrap"[39m
+          [36m>[39m
+            [36m<img[39m
+              [33malt[39m=[32m"Weave"[39m
+              [33mclass[39m=[32m"auth-logo"[39m
+              [33mdata-nimg[39m=[32m"1"[39m
+              [33mdecoding[39m=[32m"async"[39m
+              [33mheight[39m=[32m"43"[39m
+              [33msrc[39m=[32m"/brand/logo.svg"[39m
+              [33mstyle[39m=[32m"color: transparent;"[39m
+              [33mwidth[39m=[32m"133"[39m
+            [36m/>[39m
+            [36m<h2>[39m
+              [0mWelcome back[0m
+            [36m</h2>[39m
+            [36m<p[39m
+              [33mclass[39m=[32m"auth-intro"[39m
+            [36m>[39m
+              [0mSign in to your Weave workspace.[0m
+            [36m</p>[39m
+            [36m<form[39m
+              [33maria-busy[39m=[32m"false"[39m
+            [36m>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"auth-google"[39m
+                [33mtype[39m=[32m"button"[39m
+              [36m>[39m
+                [36m<svg[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mviewBox[39m=[32m"0 0 24 24"[39m
+                [36m>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"M21.6 12.23c0-.71-.06-1.39-.18-2.05H12v3.88h5.38a4.6 4.6 0 0 1-2 3.02v2.51h3.24c1.9-1.75 2.98-4.32 2.98-7.36Z"[39m
+                    [33mfill[39m=[32m"#4285F4"[39m
+                  [36m/>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"M12 22c2.7 0 4.96-.9 6.62-2.41l-3.24-2.51c-.9.6-2.04.96-3.38.96-2.6 0-4.8-1.76-5.59-4.12H3.07v2.59A10 10 0 0 0 12 22Z"[39m
+                    [33mfill[39m=[32m"#34A853"[39m
+                  [36m/>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"M6.41 13.92a6 6 0 0 1 0-3.84V7.49H3.07a10 10 0 0 0 0 9.02l3.34-2.59Z"[39m
+                    [33mfill[39m=[32m"#FBBC05"[39m
+                  [36m/>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"M12 5.96c1.47 0 2.79.5 3.82 1.49l2.86-2.86A9.57 9.57 0 0 0 12 2a10 10 0 0 0-8.93 5.49l3.34 2.59C7.2 7.72 9.4 5.96 12 5.96Z"[39m
+                    [33mfill[39m=[32m"#EA4335"[39m
+                  [36m/>[39m
+                [36m</svg>[39m
+                [0mContinue with Google[0m
+              [36m</button>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"auth-divider"[39m
+              [36m>[39m
+                [0mor continue with email[0m
+              [36m</div>[39m
+              [36m<label>[39m
+                [0mEmail address[0m
+                [36m<input[39m
+                  [33mautocomplete[39m=[32m"email"[39m
+                  [33mname[39m=[32m"email"[39m
+                  [33mplaceholder[39m=[32m"you@company.com"[39m
+                  [33mrequired[39m=[32m""[39m
+                  [33mtype[39m=[32m"email"[39m
+                [36m/>[39m
+              [36m</label>[39m
+              [36m<label>[39m
+                [0mPassword[0m
+                [36m<span[39m
+                  [33mclass[39m=[32m"auth-password"[39m
+                [36m>[39m
+                  [36m<input[39m
+                    [33mautocomplete[39m=[32m"current-password"[39m
+                    [33mname[39m=[32m"password"[39m
+                    [33mplaceholder[39m=[32m"Enter your password"[39m
+                    [33mrequired[39m=[32m""[39m
+                    [33mtype[39m=[32m"password"[39m
+                  [36m/>[39m
+                  [36m<button[39m
+                    [33maria-label[39m=[32m"Show password"[39m
+                    [33maria-pressed[39m=[32m"false"[39m
+                    [33mclass[39m=[32m"auth-password-toggle"[39m
+                    [33mtype[39m=[32m"button"[39m
+                  [36m>[39m
+                    [36m<svg[39m
+                      [33maria-hidden[39m=[32m"true"[39m
+                      [33mfill[39m=[32m"none"[39m
+                      [33mstroke[39m=[32m"currentColor"[39m
+                      [33mstroke-width[39m=[32m"1.5"[39m
+                      [33mviewBox[39m=[32m"0 0 24 24"[39m
+                    [36m>[39m
+                      [36m<path[39m
+                        [33md[39m=[32m"M2 12s3-6 10-6 10 6 10 6-3 6-10 6S2 12 2 12Z"[39m
+                      [36m/>[39m
+                      [36m<circle[39m
+                        [33mcx[39m=[32m"12"[39m
+                        [33mcy[39m=[32m"12"[39m
+                        [33mr[39m=[32m"3"[39m
+                      [36m/>[39m
+                    [36m</svg>[39m
+                  [36m</button>[39m
+                [36m</span>[39m
+              [36m</label>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"auth-primary"[39m
+                [33mtype[39m=[32m"submit"[39m
+              [36m>[39m
+                [0mSign in[0m
+              [36m</button>[39m
+              [36m<p[39m
+                [33maria-live[39m=[32m"polite"[39m
+                [33mclass[39m=[32m"auth-status"[39m
+                [33mrole[39m=[32m"status"[39m
+              [36m/>[39m
+            [36m</form>[39m
+            [36m<nav[39m
+              [33maria-label[39m=[32m"Authentication"[39m
+              [33mclass[39m=[32m"auth-switch"[39m
+            [36m>[39m
+              [0mNew to Weave?[0m
+              [0m [0m
+              [36m<a[39m
+                [33mhref[39m=[32m"/sign-up"[39m
+              [36m>[39m
+                [0mCreate an account[0m
+              [36m</a>[39m
+            [36m</nav>[39m
+          [36m</div>[39m
+        [36m</section>[39m
+      [36m</main>[39m
+    [36m</div>[39m
+  [36m</body>[39m
+      at Object.getElementError (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/node_modules/@testing-library/dom/dist/config.js:37:19)
+      at /Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+      at /Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+      at /Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+      at TestContext.<anonymous> (/Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/apps/web/test/auth-ui.test.tsx:154:21)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)

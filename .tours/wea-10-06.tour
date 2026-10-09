@@ -1,0 +1,53 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "6 · Google callback → resolve → navigate or recover",
+  "description": "Provider redirects the browser to /sso-callback.",
+  "steps": [
+    {
+      "file": "apps/web/src/app/sso-callback/page.tsx",
+      "line": 5,
+      "title": "Page",
+      "description": "Configuration guard renders ClerkCallback or AuthUnavailable.\n\nTransition: React route entry"
+    },
+    {
+      "file": "apps/web/src/features/auth/presentation/clerk-callback.tsx",
+      "line": 14,
+      "title": "ClerkCallback",
+      "description": "Initialize live resource binder and OAuthGateway; update resources in layout effect; render CallbackView with finish/navigate callbacks.\n\nTransition: composition + React rendering"
+    },
+    {
+      "file": "apps/web/src/features/auth/presentation/callback-view.tsx",
+      "line": 15,
+      "title": "CallbackView",
+      "description": "Once auth.isLoaded AND clerk.loaded, effect calls finish(); start bounded deadline and cancellation guard.\n\nTransition: effect calls finish"
+    },
+    {
+      "file": "apps/web/src/features/auth/infrastructure/clerk-oauth.ts",
+      "line": 112,
+      "title": "createOAuthGateway.finish",
+      "description": "Cache one resolve() promise across provider signals and effect replay.\n\nTransition: calls resolve once"
+    },
+    {
+      "file": "apps/web/src/features/auth/infrastructure/clerk-oauth.ts",
+      "line": 34,
+      "title": "createOAuthGateway.resolve",
+      "description": "Inspect pending task, signed-in status, completed attempts, transferability, existing session and remaining requirements in source order. Only one matching resolution branch proceeds.\n\nTransition: branch resolver"
+    },
+    {
+      "file": "apps/web/src/features/auth/presentation/callback-view.tsx",
+      "line": 15,
+      "title": "CallbackView",
+      "description": "finish returns CallbackResult: destination → navigate; error → setError. Thrown failure or timeout → visible recovery.\n\nTransition: promise continuation"
+    },
+    {
+      "file": "apps/web/src/features/auth/presentation/clerk-callback.tsx",
+      "line": 64,
+      "title": "ClerkCallback.navigate",
+      "description": "navigate callback uses window.location.assign for http URLs; otherwise router.replace + refresh.\n\nTransition: navigation handoff"
+    },
+    {
+      "title": "Branches and stop conditions",
+      "description": "choose-organization task or already signed in → /organizations directly. Other tasks → pendingTaskMessage error.\n\nComplete signin → finalize(signin). Transferable signup → signIn.create(transfer:true) then recheck completion. Transferable signin → signUp.create then signup completion check.\n\nComplete signup → finalize(signup). Existing session → activateExisting → clerk.setActive with navigate callback.\n\nSignup missing additional fields → explicit error; only email unverified → /sign-up. Signin trust/second factor → /sign-in. Unresolved → fallback error.\n\nSDK finalize/activate callback sets result to decorated /organizations unless unsupported task. Internal Clerk/Google calls are boundaries, not authored function implementations.\n\nRetry link opens /sign-up for a new attempt; finish() does not reset its cached promise. Effect cleanup blocks late navigation."
+    }
+  ]
+}

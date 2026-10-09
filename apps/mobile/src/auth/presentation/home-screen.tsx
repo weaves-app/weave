@@ -4,9 +4,11 @@ import {Button} from '../../components/button';
 import {Feedback} from '../../components/feedback';
 import {useAuthController, useAuthState} from './auth-context';
 import {authMessages} from './auth-messages';
+
 export function HomeScreen(): React.JSX.Element {
   const controller = useAuthController();
   const state = useAuthState();
+
   return (
     <Screen>
       <Typography variant="title">Home</Typography>

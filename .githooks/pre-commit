@@ -1,6 +1,6 @@
 #!/bin/sh
 set -eu
 node scripts/git-policy.mjs
-npx --no-install lint-staged
+pnpm exec lint-staged
 node scripts/check-architecture.mjs
 node scripts/check-sdd.mjs

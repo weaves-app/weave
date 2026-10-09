@@ -1,20 +1,20 @@
 # Weave mobile
 
-Vanilla React Native 0.86.3 / React 19.2.3, Community CLI, committed Android/iOS projects. Install npm dependencies from the repository root; do not create an independent mobile lockfile. See the [official environment guide](https://reactnative.dev/docs/0.86/set-up-your-environment).
+Vanilla React Native 0.86.3 / React 19.2.3, Community CLI, committed Android/iOS projects. Install pnpm dependencies from the repository root; do not create an independent mobile lockfile. See the [official environment guide](https://reactnative.dev/docs/0.86/set-up-your-environment).
 
 ## Development
 
 - Android: JDK 17, Android SDK platform/build tools 36, NDK 27.1.12297006, emulator or device. Set ANDROID_HOME to your SDK; local.properties stays ignored.
 - iOS: full Xcode with a compatible iOS SDK, Ruby 3.3 (matching CI), Bundler 2.5.22 and the locked CocoaPods dependencies. Command Line Tools alone cannot compile iOS.
-- Run `npm run dev --workspace=@weave/mobile` from the root for Metro.
-- Android: `npm run android --workspace=@weave/mobile` in another terminal.
-- iOS: from apps/mobile run `bundle install`; from ios run `bundle exec pod install`. Then root `npm run ios --workspace=@weave/mobile`.
+- Run `pnpm --filter @weave/mobile run dev` from the root for Metro.
+- Android: `pnpm --filter @weave/mobile run android` in another terminal.
+- iOS: from apps/mobile run `bundle install`; from ios run `bundle exec pod install`. Then root `pnpm --filter @weave/mobile run ios`.
 
 ## Validation
 
-Root `npm run verify` runs types/component tests and Metro production bundling for both platforms. `npm run native:android --workspace=@weave/mobile` assembles a debug APK with a locally generated development key. After installing pods, `npm run native:ios --workspace=@weave/mobile` compiles an unsigned simulator app. Native jobs run in CI and gate the mobile status; Android CI compiles x86_64 for the development emulator, while local Gradle defaults retain the template-supported architectures. These checks do not launch the app on a device.
+Root `pnpm run verify` runs types/component tests and Metro production bundling for both platforms. `pnpm --filter @weave/mobile run native:android` assembles a debug APK with a locally generated development key. After installing pods, `pnpm --filter @weave/mobile run native:ios` compiles an unsigned simulator app. Native jobs run in CI and gate the mobile status; Android CI compiles x86_64 for the development emulator, while local Gradle defaults retain the template-supported architectures. These checks do not launch the app on a device.
 
-Metro watches shared workspaces and resolves the root node_modules to avoid duplicate React installations. Android Gradle explicitly resolves hoisted RN/codegen/CLI; iOS uses the official hoisting-aware Podfile. The application name Weave matches AppRegistry and both native launchers. Native configuration and SDK integrations require platform-specific review.
+Metro watches shared workspaces and searches the app's node_modules first for local workspace links, then the hoisted root node_modules for external dependencies. React remains aligned through workspace overrides. Android Gradle explicitly resolves hoisted RN/codegen/CLI; iOS uses the official hoisting-aware Podfile. The application name Weave matches AppRegistry and both native launchers. Native configuration and SDK integrations require platform-specific review.
 
 Release builds have no debug signing configured. Add protected production signing and store identifiers in a dedicated release ticket; never commit release signing credentials. CI artifacts are development/compilation artifacts and must not be shipped as store releases.
 
@@ -34,7 +34,7 @@ Weave owns `tryweave.si`. Android applicationId/namespace and the iOS app bundle
 
 The owner must enable Native API and all three methods in the same Clerk instance used by web, register the package/bundle and Google callback identities, and provide existing test accounts. Account creation and remote signup policy changes are outside this mobile slice. Never provide a Clerk secret key or put passwords/tokens in configuration.
 
-Android reads `CLERK_PUBLISHABLE_KEY` from the build environment into BuildConfig. Export the public key before `npm run android --workspace=@weave/mobile` or the native build; rebuilding is required after changing it. The SDK owns callbacks `clerk://si.tryweave.callback` and `clerk://si.tryweave.oauth`; register the exact application identity in Clerk. The SDK Google entrypoint explicitly uses `transferable=false`.
+Android reads `CLERK_PUBLISHABLE_KEY` from the build environment into BuildConfig. Export the public key before `pnpm --filter @weave/mobile run android` or the native build; rebuilding is required after changing it. The SDK owns callbacks `clerk://si.tryweave.callback` and `clerk://si.tryweave.oauth`; register the exact application identity in Clerk. The SDK Google entrypoint explicitly uses `transferable=false`.
 
 iOS reads these Xcode build settings into Info.plist:
 
@@ -42,7 +42,7 @@ iOS reads these Xcode build settings into Info.plist:
 - `WEAVE_AUTH_CALLBACK_SCHEME`: the registered custom URL scheme; defaults to `si.tryweave` from the app bundle identifier.
 - `WEAVE_AUTH_CALLBACK_URL`: the exact registered OAuth callback URL using that scheme; defaults to `si.tryweave://callback`.
 
-Set them in a developer-local xcconfig or pass them to xcodebuild, for example `npm run native:ios --workspace=@weave/mobile -- WEAVE_CLERK_PUBLISHABLE_KEY="$CLERK_PUBLISHABLE_KEY" WEAVE_AUTH_CALLBACK_SCHEME="$WEAVE_AUTH_CALLBACK_SCHEME" WEAVE_AUTH_CALLBACK_URL="$WEAVE_AUTH_CALLBACK_URL"`. Only public values belong in build resources. `.env.example` is documentation; no runtime dotenv loader is installed. Empty/invalid configuration mounts a safe unavailable state. iOS Google uses Clerk's ASWebAuthenticationSession callback, with `transferable=false`; no magic-link forwarding is installed. Custom schemes require no associated-domain entitlement. Universal-link adoption needs owner-provided domains and separate configuration.
+Set them in a developer-local xcconfig or pass them to xcodebuild, for example `pnpm --filter @weave/mobile run native:ios WEAVE_CLERK_PUBLISHABLE_KEY="$CLERK_PUBLISHABLE_KEY" WEAVE_AUTH_CALLBACK_SCHEME="$WEAVE_AUTH_CALLBACK_SCHEME" WEAVE_AUTH_CALLBACK_URL="$WEAVE_AUTH_CALLBACK_URL"`. Only public values belong in build resources. `.env.example` is documentation; no runtime dotenv loader is installed. Empty/invalid configuration mounts a safe unavailable state. iOS Google uses Clerk's ASWebAuthenticationSession callback, with `transferable=false`; no magic-link forwarding is installed. Custom schemes require no associated-domain entitlement. Universal-link adoption needs owner-provided domains and separate configuration.
 
 ### Developer-local Clerk setup
 
@@ -54,9 +54,9 @@ Load the local public configuration before Android launch/build, then pass the i
 set -a
 . apps/mobile/.env.local
 set +a
-npm run android --workspace=@weave/mobile
+pnpm --filter @weave/mobile run android
 # For an iOS simulator build:
-npm run native:ios --workspace=@weave/mobile -- \
+pnpm --filter @weave/mobile run native:ios \
   WEAVE_CLERK_PUBLISHABLE_KEY="$WEAVE_CLERK_PUBLISHABLE_KEY" \
   WEAVE_AUTH_CALLBACK_SCHEME="$WEAVE_AUTH_CALLBACK_SCHEME" \
   WEAVE_AUTH_CALLBACK_URL="$WEAVE_AUTH_CALLBACK_URL"
@@ -67,14 +67,14 @@ These values remain developer-local; other developers supply their own environme
 ### Verification and limits
 
 ```sh
-npm test --workspace=@weave/mobile -- --watchman=false
-npm run lint --workspace=@weave/mobile
-npm run typecheck --workspace=@weave/mobile
-npm run test:native:android --workspace=@weave/mobile
-npm run test:native:ios --workspace=@weave/mobile
-npm run test:native:ios:host --workspace=@weave/mobile
-npm run native:android --workspace=@weave/mobile
-npm run native:ios --workspace=@weave/mobile
+pnpm --filter @weave/mobile test --watchman=false
+pnpm --filter @weave/mobile run lint
+pnpm --filter @weave/mobile run typecheck
+pnpm --filter @weave/mobile run test:native:android
+pnpm --filter @weave/mobile run test:native:ios
+pnpm --filter @weave/mobile run test:native:ios:host
+pnpm --filter @weave/mobile run native:android
+pnpm --filter @weave/mobile run native:ios
 ```
 
 The host iOS harness compiles/tests Swift auth logic and SDK mappings; it does not replace the RN iOS app/simulator build. The required CI native jobs run all native contract tests and retain JUnit/xcresult artifacts, then compile the apps. See the feature's [evidence](../../specs/003-mobile-auth-recovery/evidence.md) for actual outcomes, blocked tooling and unrun live/device checks.
@@ -88,13 +88,13 @@ SDK secure storage remains authoritative (Android Keystore encryption; iOS Keych
 The `native:ios` script intentionally uses `CODE_SIGNING_ALLOWED=NO` for compilation checks. To run the app with working simulator Keychain access, select your personal team in Xcode and override the compile-only setting with Xcode-managed ad-hoc signing. Start Metro before launching the simulator app:
 
 ```sh
-npm run dev --workspace=@weave/mobile
+pnpm --filter @weave/mobile run dev
 ```
 
 In another terminal, load the ignored public configuration as above, then build:
 
 ```sh
-npm run native:ios --workspace=@weave/mobile -- \
+pnpm --filter @weave/mobile run native:ios \
   CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- \
   WEAVE_CLERK_PUBLISHABLE_KEY="$WEAVE_CLERK_PUBLISHABLE_KEY" \
   WEAVE_AUTH_CALLBACK_SCHEME="$WEAVE_AUTH_CALLBACK_SCHEME" \

@@ -1,5 +1,6 @@
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+
 import {Screen} from '../components/screen';
 import {Button} from '../components/button';
 import {Feedback} from '../components/feedback';
@@ -7,23 +8,30 @@ import {useAuthController, useAuthState} from '../auth/presentation/auth-context
 import {authMessages} from '../auth/presentation/auth-messages';
 import {LoginScreen} from '../auth/presentation/login-screen';
 import {HomeScreen} from '../auth/presentation/home-screen';
+
 import type {NavigationContainerRefWithCurrent} from '@react-navigation/native';
+
 // React Navigation requires a type alias to preserve its closed route-name union.
 
 export type RootParams = {Login: undefined; Home: undefined};
+
 export interface RootNavigatorProps {
   readonly navigationRef?: NavigationContainerRefWithCurrent<RootParams>;
 }
+
 const Stack = createNativeStackNavigator<RootParams>();
+
 export function RootNavigator({navigationRef}: RootNavigatorProps): React.JSX.Element {
   const state = useAuthState();
   const controller = useAuthController();
+
   if (state.session.status === 'resolving')
     return (
       <Screen>
         <Feedback message="Checking your session…" busy />
       </Screen>
     );
+
   if (state.session.status === 'unavailable')
     return (
       <Screen>
@@ -36,6 +44,7 @@ export function RootNavigator({navigationRef}: RootNavigatorProps): React.JSX.El
         />
       </Screen>
     );
+
   return (
     <NavigationContainer ref={navigationRef}>
       <Stack.Navigator screenOptions={{headerShown: false}}>

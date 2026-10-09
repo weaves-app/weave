@@ -1,31 +1,61 @@
-import type {Metadata, Viewport} from 'next';
 import localFont from 'next/font/local';
+import {ClerkProvider} from '@clerk/nextjs';
+import {connection} from 'next/server';
+
+import {readClerkConfiguration} from '../features/auth/infrastructure/configuration';
+
+import type {Metadata, Viewport} from 'next';
+
 import {tokens} from '@weave/design-tokens';
+
 import type {CSSProperties, ReactNode} from 'react';
+
 import './globals.css';
+
 const figtree = localFont({
-  src: './fonts/Figtree.ttf',
-  weight: '300 900',
+  src: '../../public/brand/Figtree.ttf',
+  variable: '--font-figtree',
   display: 'swap',
 });
+
 export const metadata: Metadata = {
   title: 'Weave',
-  description: 'Weave workspace',
+  description: 'Everything, woven together.',
+  icons: {icon: '/brand/favicon.svg'},
   manifest: '/site.webmanifest',
 };
+
 export const viewport: Viewport = {themeColor: tokens.colors.primary};
-export default function RootLayout({children}: Readonly<{children: ReactNode}>): React.JSX.Element {
+
+export default async function RootLayout({
+  children,
+}: Readonly<{children: ReactNode}>): Promise<React.JSX.Element> {
+  await connection();
+
+  const configuration = readClerkConfiguration(process.env);
   const theme = {
     '--background': tokens.colors.background,
     '--surface': tokens.colors.surface,
     '--text': tokens.colors.text,
     '--primary': tokens.colors.primary,
-    '--border': tokens.colors.border,
   } as CSSProperties;
+
   return (
     <html lang="en">
-      <body className={figtree.className} style={theme}>
-        {children}
+      <body className={figtree.variable} style={theme}>
+        {configuration ? (
+          <ClerkProvider
+            dynamic
+            publishableKey={configuration.publishableKey}
+            signInUrl="/sign-in"
+            signUpUrl="/sign-up"
+            taskUrls={{'choose-organization': '/organizations'}}
+          >
+            {children}
+          </ClerkProvider>
+        ) : (
+          children
+        )}
       </body>
     </html>
   );

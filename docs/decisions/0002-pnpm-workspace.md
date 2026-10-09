@@ -1,0 +1,15 @@
+# WEA-8: pnpm workspace migration
+
+2026-10-04. Supersedes the npm package-manager choice in 0001-workspace-foundation.md.
+
+Use the exact pnpm version in `package.json#packageManager` with one pnpm-lock.yaml and explicit workspace:* references. Preserve the existing hoisted root node_modules layout for React Native native projects and Metro. Configure React alignment and reviewed dependency lifecycle scripts in pnpm-workspace.yaml. Frozen installs gate CI and pruned Docker builds. Base Node images and CI bootstrap exact validated pnpm with npm; project commands use pnpm. Dependabot retains its `npm` ecosystem API identifier for pnpm. Compatibility with the pinned pnpm major remains subject to the post-merge check below. Historical npm evidence is not rewritten.
+
+[Specification](../../specs/002-change-npm-to-pnpm/spec.md), [plan](../../specs/002-change-npm-to-pnpm/plan.md), [evidence](../../specs/002-change-npm-to-pnpm/evidence.md).
+
+## PR review clarification (2026-10-07)
+
+Explicitly preserve pnpm 11.1.1's existing package-age behavior with `minimumReleaseAge: 1440` and `minimumReleaseAgeStrict: false`. Prefer versions at least 24 hours old during resolution, including transitive dependencies; retain the fallback to a younger version when no mature version satisfies the requested range. This is a preference, not a guaranteed security gate. Setting the age alone enables strict mode in pnpm 11.1.1 and would change this migration's installation contract. A mandatory age gate requires separately agreed scenarios; the migration does not silently strengthen or weaken the existing defaults.
+
+A deterministic local registry probe using the pinned CLI confirms: implicit defaults and the explicit non-strict settings both resolve a newly published exact version; strict mode rejects that resolution with `ERR_PNPM_NO_MATURE_MATCHING_VERSION`; frozen and offline frozen installs accept the already locked version without rechecking its age. Consequently, the Dependabot cooldown is not proof that every transitive package is 24 hours old, and frozen CI on this pinned version is not an independent package-age gate. See [probe evidence](../../specs/002-change-npm-to-pnpm/evidence/package-age-probe.txt). Later pnpm releases may behave differently; recheck when upgrading. [pnpm settings](https://pnpm.io/settings/dependency-resolution#minimumreleaseagestrict).
+
+The [GitHub supported ecosystems table](https://docs.github.com/en/code-security/reference/supply-chain-security/supported-ecosystems-and-repositories) currently lists pnpm through v10, so this ADR does not claim verified v11 bot support. After this PR merges into develop, close the obsolete npm-lockfile PRs #2–#6, request Dependabot's Check for updates, and inspect the first recreated proposal for a pnpm lockfile generated with the pinned toolchain and passing CI. If generation is unsupported, record the bot failure and use the existing ticketed manual dependency-adoption workflow until support is verified. Do not merge the old proposals or relax adoption/CI gates.

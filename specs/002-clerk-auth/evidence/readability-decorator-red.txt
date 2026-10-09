@@ -1,0 +1,42 @@
+✔ R01/R03: rejects and fixes missing spacing: import groups and imports ending (15.606542ms)
+✔ R01/R03: rejects and fixes missing spacing: TypeScript declarations (3.421417ms)
+✔ R01/R03: rejects and fixes missing spacing: validation, operation and result (3.112459ms)
+✔ R01/R03: rejects and fixes missing spacing: class methods (1.98325ms)
+✔ R01/R03: rejects and fixes missing spacing: object methods (1.907125ms)
+✔ R01/R03: rejects and fixes missing spacing: attached comments and directives (2.159584ms)
+✔ R02: leaves same-group imports and compliant code unchanged (1.683375ms)
+✖ R03: keeps decorators attached to their declaration (2.220833ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 7
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 805.618583
+
+✖ failing tests:
+
+test at tests/policy/readability.test.mjs:60:2
+✖ R03: keeps decorators attached to their declaration (2.220833ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /;\n\n@Controller/. Input:
+  
+  "import {Controller} from '@nestjs/common';\n" +
+    "@Controller('health')\n" +
+    '\n' +
+    'export class Health {}'
+  
+      at TestContext.<anonymous> (file:///Users/vishnu/Documents/Codex/2026-10-06/task/weave-wea-10/tests/policy/readability.test.mjs:63:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: "import {Controller} from '@nestjs/common';\n@Controller('health')\n\nexport class Health {}",
+    expected: /;\n\n@Controller/,
+    operator: 'match',
+    diff: 'simple'
+  }

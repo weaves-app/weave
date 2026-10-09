@@ -1,22 +1,31 @@
 import mockSafeAreaContext from 'react-native-safe-area-context/jest/mock';
+
 jest.mock('react-native-safe-area-context', () => mockSafeAreaContext);
+
 import {act, fireEvent, render, screen, waitFor} from '@testing-library/react-native';
+
 import {App} from '../../App';
 import {createAuthController} from './application/auth-controller';
 import {active, TestClock, TestGateway} from './testing/fakes';
+
 afterEach(() => jest.restoreAllMocks());
+
 test.each(['active', 'signedOut', 'unavailable'] as const)(
   'S12/S13 provider failure Reload freshly resolves %s without old routes',
   async (status) => {
     const diagnostic = jest.spyOn(console, 'error').mockImplementation(() => undefined);
     const gateway = new TestGateway();
+
     gateway.resolveResult = async (input) =>
       status === 'active' ? active(input) : {status, generation: input.generation, revision: 1};
+
     let fail = true;
+
     render(
       <App
         createController={() => {
           if (fail) throw new Error('seed-sensitive-error');
+
           return createAuthController(gateway, new TestClock());
         }}
       />,
@@ -39,38 +48,53 @@ test.each(['active', 'signedOut', 'unavailable'] as const)(
     diagnostic.mockRestore();
   },
 );
+
 test('S14 persistent provider failure returns Reload without an automatic retry loop', () => {
   jest.spyOn(console, 'error').mockImplementation(() => undefined);
+
   const factory = jest.fn(() => {
     throw new Error('persistent-provider-failure');
   });
+
   render(<App createController={factory} />);
   expect(screen.getByRole('button', {name: 'Reload'})).toBeTruthy();
+
   const before = factory.mock.calls.length;
+
   fireEvent.press(screen.getByRole('button', {name: 'Reload'}));
   expect(screen.getByRole('button', {name: 'Reload'})).toBeTruthy();
   expect(factory.mock.calls.length).toBeGreaterThan(before);
+
   const settled = factory.mock.calls.length;
+
   expect(factory.mock.calls.length).toBe(settled);
 });
+
 test('S13 a mounted auth failure disposes old subscriptions and prevents late old-root activation after Reload', async () => {
   jest.spyOn(console, 'error').mockImplementation(() => undefined);
+
   const first = new TestGateway();
+
   first.resolveResult = async (input) => active(input);
+
   const second = new TestGateway();
   let fault = false;
   let roots = 0;
   const clock = new TestClock();
   const controller = createAuthController(first, clock);
+
   render(
     <App
       createController={() => {
         roots++;
+
         return roots === 1
           ? {
               ...controller,
+
               getSnapshot: () => {
                 if (fault) throw new Error('auth-state-render-fault');
+
                 return controller.getSnapshot();
               },
             }
@@ -79,8 +103,11 @@ test('S13 a mounted auth failure disposes old subscriptions and prevents late ol
     />,
   );
   await waitFor(() => expect(screen.getByText('Home')).toBeTruthy());
+
   const old = first.requests[0]?.input;
+
   if (!old) throw new Error('missing first context');
+
   act(() => {
     fault = true;
     first.emit(active(old, 2));

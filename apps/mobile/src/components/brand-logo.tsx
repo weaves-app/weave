@@ -1,4 +1,5 @@
 import {Image, StyleSheet, View} from 'react-native';
+
 import logo from '../../assets/brand/weave-horizontal.png';
 
 // The supplied lockup is 702.086 × 224 units, with 48-unit bands.
@@ -7,8 +8,10 @@ export interface BrandLogoProps {
   readonly width?: number;
   readonly alignment?: 'start' | 'center';
 }
+
 export function BrandLogo({width = 208, alignment = 'center'}: BrandLogoProps): React.JSX.Element {
   const band = (width * 48) / 702.086;
+
   return (
     <View style={[{padding: band, alignSelf: alignment === 'start' ? 'flex-start' : 'center'}]}>
       <Image
@@ -20,6 +23,7 @@ export function BrandLogo({width = 208, alignment = 'center'}: BrandLogoProps): 
     </View>
   );
 }
+
 const styles = StyleSheet.create({
   logo: {resizeMode: 'contain'},
 });

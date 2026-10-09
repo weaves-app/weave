@@ -1,0 +1,13 @@
+✔ WEA-10 S03/S08 invitation entry preserves opaque ticket across auth navigation (0.418709ms)
+✔ WEA-10 S03/S08 missing/malformed/ambiguous invitation never falls back to public signup (0.09125ms)
+✔ WEA-10 S02/S07 verified active identity is allowed; unverified or signed-out is denied (0.098ms)
+✔ WEA-10 S07 unresolved auth exposes no protected result before the provider resolves (0.062958ms)
+✔ WEA-10 S07/S08 provider/network session failure denies access safely (0.062041ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 111.572792
