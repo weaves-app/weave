@@ -14,7 +14,7 @@
   "passes": false
 }
 Traceback (most recent call last):
-  File "/Users/vishnu/.codex/visualizations/2026/10/08/01a11baa-fba4-7c80-8b79-5f43df52b2e3/woven-refinement-v2/check_frames.py", line 23, in <module>
+  File "design-source/woven-refinement-v2/check_frames.py", line 23, in <module>
     assert report['passes'], 'S07: visible artwork is still changing during the final 100 ms hold'
            ~~~~~~^^^^^^^^^^
 AssertionError: S07: visible artwork is still changing during the final 100 ms hold

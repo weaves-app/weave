@@ -1,0 +1,57 @@
+[
+  {
+    "file": "evidence.md",
+    "originalSha256": "1640694a33dfde73ad37e97210c0b4be1b93ef8dd6fd94c99e606713d353a679",
+    "normalizedSha256": "3f5257034db37abeb1dbf8576e02c80e03eb0be0f988dbf7c351de813f249b2a"
+  },
+  {
+    "file": "review.md",
+    "originalSha256": "0829ef20c5e5d552091bcc8c565b412c5ead9d8281c254ecae1a4851177a8390",
+    "normalizedSha256": "32fef68b447b79ef78fcfd6111936b5958c7a9ea4b5c0f174260377203354bb4"
+  },
+  {
+    "file": "evidence/base-regression-red.txt",
+    "originalSha256": "36be1af1c21e0766dfa0f621fe1781978b3a4cec4fb2e42d51c8317555189b9a",
+    "normalizedSha256": "1c1be2046bc36641d52b5eec8c19d0a0dbdf1812fd96944d606c2caa0541ec3e"
+  },
+  {
+    "file": "evidence/woven-red.txt",
+    "originalSha256": "2a6de19792ab1e17cdcd949773a3cd6a0b08f38f5e14581e38f34c16fefdc727",
+    "normalizedSha256": "70b3e2e396a877323b0017cba857d80f21e867d5df5ecf901154c202c645a1c2"
+  },
+  {
+    "file": "evidence/push-hook-red.txt",
+    "originalSha256": "7ed00ebd5061083b3f1a9044121c6a065da28c4fff8eebea4b145b0a62b957c8",
+    "normalizedSha256": "ff5d2750e07e306c3e544bd87753ca51eb0fc35ae8afec3a0b6783665754cebd"
+  },
+  {
+    "file": "evidence/review/readiness-red.txt",
+    "originalSha256": "31f2954303370598a97da159006e6675a41cd8c8ca3ffc6ada63ecb8462dae0a",
+    "normalizedSha256": "010d70fc35263bb41d194195e73097d0f59dd0207f287425ae3ccdafbe26d018"
+  },
+  {
+    "file": "evidence/review/pr-policy-red.txt",
+    "originalSha256": "2826e6ddb1442ddeafa0b872d5cc59aa23658aebf9d327128bf6d637d69afd2c",
+    "normalizedSha256": "9336315b05f62b9ddddec666ff9c0621602413b8de1dc80ab3da3bcf7f7b62a3"
+  },
+  {
+    "file": "evidence/review/line-rule-red.txt",
+    "originalSha256": "9c39b087b924e86ac07ee727aa28767ebbd8e8367beedef310bbdd20f614aadc",
+    "normalizedSha256": "8f91867f6ca8b0273c46fdd05494e694830ece67537a97dc89b3e7a0adffdc3d"
+  },
+  {
+    "file": "evidence/motion-refinement/baseline-red.txt",
+    "originalSha256": "2936b0fa29b51b1f1175a99b237079bc873e724a1d75e38f77908d6d70e5e0fd",
+    "normalizedSha256": "0b5585925b8038806c15f9214d8efe81cc008919f8da3df47cc4b6a0427df3df"
+  },
+  {
+    "file": "evidence/motion-refinement/verify-environment-initial.txt",
+    "originalSha256": "de43f46fc93e54de2b8206cfdb5f2c0987a5c09fea239dc715b245c480155c31",
+    "normalizedSha256": "dc805b33ffaa0313d5573363b41ad0a52599d97f28d8069d2a4453c32338d83d"
+  },
+  {
+    "file": "evidence/motion-refinement/production-red.txt",
+    "originalSha256": "1294b00d4b735060ada3854d93312f546c45d6ad1b020f1ab3b5c68141d1134d",
+    "normalizedSha256": "95fa6a4a524019822d4b44eac10c38a13324eba20419481030797e6f1bba83b4"
+  }
+]

@@ -18,7 +18,7 @@ test at tests/policy/source-size.test.mjs:15:3
   
   false !== true
   
-      at TestContext.<anonymous> (file:///Users/vishnu/Desktop/Weave/worktrees/wea-24-woven-login/tests/policy/source-size.test.mjs:19:12)
+      at TestContext.<anonymous> (tests/policy/source-size.test.mjs:19:12)
       at Test.runInAsyncScope (node:async_hooks:227:14)
       at Test.run (node:internal/test_runner/test:1397:25)
       at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
@@ -39,7 +39,7 @@ test at tests/policy/source-size.test.mjs:26:1
   
     assert.ok(messages.some((message) => message.ruleId === 'max-lines'))
   
-      at TestContext.<anonymous> (file:///Users/vishnu/Desktop/Weave/worktrees/wea-24-woven-login/tests/policy/source-size.test.mjs:30:10)
+      at TestContext.<anonymous> (tests/policy/source-size.test.mjs:30:10)
       at Test.runInAsyncScope (node:async_hooks:227:14)
       at Test.run (node:internal/test_runner/test:1397:25)
       at Test.processPendingSubtests (node:internal/test_runner/test:969:18)

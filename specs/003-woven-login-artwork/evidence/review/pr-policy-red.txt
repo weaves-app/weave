@@ -1,9 +1,9 @@
-file:///Users/vishnu/Desktop/Weave/worktrees/wea-24-woven-login/scripts/pr-policy.mjs:34
+scripts/pr-policy.mjs:34
     throw new Error('PR requires matching Linear, Spec and Evidence links.');
           ^
 
 Error: PR requires matching Linear, Spec and Evidence links.
-    at file:///Users/vishnu/Desktop/Weave/worktrees/wea-24-woven-login/scripts/pr-policy.mjs:34:11
+    at scripts/pr-policy.mjs:34:11
     at ModuleJob.run (node:internal/modules/esm/module_job:561:25)
     at async node:internal/modules/esm/loader:647:26
     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)

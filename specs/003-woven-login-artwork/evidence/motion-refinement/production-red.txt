@@ -28,7 +28,7 @@ test at test/auth-artwork.test.tsx:2:3117
   
   'https://weave.test/brand/woven/intro.v1.mp4'
   
-      at TestContext.<anonymous> (/Users/vishnu/Desktop/Weave/worktrees/wea-24-woven-login/apps/web/test/auth-artwork.test.tsx:79:10)
+      at TestContext.<anonymous> (apps/web/test/auth-artwork.test.tsx:79:10)
       at Test.runInAsyncScope (node:async_hooks:227:14)
       at Test.run (node:internal/test_runner/test:1397:25)
       at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {

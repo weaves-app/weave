@@ -2,7 +2,7 @@
 
 Requested by the user on 2026-10-09: Matt Pocock two-axis review; workspace, Google TypeScript, clean-code and appropriate-pattern compliance; maximum 500 lines per authored code file.
 
-Method: installed `code-review` skill (`/Users/vishnu/.codex/skills/code-review/SKILL.md` and its upstream workflow), with independent Standards and Spec subagents, followed by separate re-reviews of the fixes. Original fixed comparison: `f041c9578d070700ad04c4118f4c5b2fc728b8f6...0bf8076ca698bf9c882e9a47a25c2b3b47a6caf9`. Current develop `810974c` was merged normally as `87874b2`; final scope is the feature diff against that develop plus the documented remediation. Spec source is this feature's `spec.md`; the repo's Spec Kit and known Linear ticket take precedence over installing another issue-tracker workflow.
+Method: installed `code-review` skill (the installed skill instructions and its upstream workflow), with independent Standards and Spec subagents, followed by separate re-reviews of the fixes. Original fixed comparison: `f041c9578d070700ad04c4118f4c5b2fc728b8f6...0bf8076ca698bf9c882e9a47a25c2b3b47a6caf9`. Current develop `810974c` was merged normally as `87874b2`; final scope is the feature diff against that develop plus the documented remediation. Spec source is this feature's `spec.md`; the repo's Spec Kit and known Linear ticket take precedence over installing another issue-tracker workflow.
 
 ## Standards axis
 

@@ -173,26 +173,26 @@ test at tests/policy/git-config.test.mjs:10:1
 ✖ S21 dependency adoption permits the default personal CLI profile when the optional key is absent (79.432875ms)
   AssertionError [ERR_ASSERTION]: The input did not match the regular expression /REACHED_DEFAULT_PROFILE/. Input:
   
-  'file:///Users/vishnu/Desktop/Weave/worktrees/wea-24-woven-login/scripts/adopt-dependency-update.mjs:41\n' +
+  'scripts/adopt-dependency-update.mjs:41\n' +
     "if (git('status', '--porcelain')) throw new Error('Dependency adoption requires a clean checkout.');\n" +
     '                                        ^\n' +
     '\n' +
     'Error: Dependency adoption requires a clean checkout.\n' +
-    '    at file:///Users/vishnu/Desktop/Weave/worktrees/wea-24-woven-login/scripts/adopt-dependency-update.mjs:41:41\n' +
+    '    at scripts/adopt-dependency-update.mjs:41:41\n' +
     '    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)\n' +
     '    at async node:internal/modules/esm/loader:647:26\n' +
     '    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)\n' +
     '\n' +
     'Node.js v24.20.0\n'
   
-      at TestContext.<anonymous> (file:///Users/vishnu/Desktop/Weave/worktrees/wea-24-woven-login/tests/policy/git-config.test.mjs:39:14)
+      at TestContext.<anonymous> (tests/policy/git-config.test.mjs:39:14)
       at Test.runInAsyncScope (node:async_hooks:227:14)
       at Test.run (node:internal/test_runner/test:1397:25)
       at Test.start (node:internal/test_runner/test:1257:17)
       at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
     generatedMessage: true,
     code: 'ERR_ASSERTION',
-    actual: "file:///Users/vishnu/Desktop/Weave/worktrees/wea-24-woven-login/scripts/adopt-dependency-update.mjs:41\nif (git('status', '--porcelain')) throw new Error('Dependency adoption requires a clean checkout.');\n                                        ^\n\nError: Dependency adoption requires a clean checkout.\n    at file:///Users/vishnu/Desktop/Weave/worktrees/wea-24-woven-login/scripts/adopt-dependency-update.mjs:41:41\n    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)\n    at async node:internal/modules/esm/loader:647:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)\n\nNode.js v24.20.0\n",
+    actual: "scripts/adopt-dependency-update.mjs:41\nif (git('status', '--porcelain')) throw new Error('Dependency adoption requires a clean checkout.');\n                                        ^\n\nError: Dependency adoption requires a clean checkout.\n    at scripts/adopt-dependency-update.mjs:41:41\n    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)\n    at async node:internal/modules/esm/loader:647:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)\n\nNode.js v24.20.0\n",
     expected: /REACHED_DEFAULT_PROFILE/,
     operator: 'match',
     diff: 'simple'
@@ -201,7 +201,7 @@ test at tests/policy/git-config.test.mjs:10:1
 test at tests/policy/git-config.test.mjs:48:1
 ✖ S21 local config distinguishes absent keys, explicit profiles and Git errors (5.7225ms)
   AssertionError [ERR_ASSERTION]: Missing expected exception.
-      at TestContext.<anonymous> (file:///Users/vishnu/Desktop/Weave/worktrees/wea-24-woven-login/tests/policy/git-config.test.mjs:52:12)
+      at TestContext.<anonymous> (tests/policy/git-config.test.mjs:52:12)
       at Test.runInAsyncScope (node:async_hooks:227:14)
       at Test.run (node:internal/test_runner/test:1397:25)
       at Test.processPendingSubtests (node:internal/test_runner/test:969:18)

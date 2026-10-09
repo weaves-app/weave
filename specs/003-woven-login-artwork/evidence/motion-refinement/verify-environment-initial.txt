@@ -37,15 +37,15 @@
 @weave/api:db:generate: > @weave/api@0.0.0 db:generate
 @weave/api:db:generate: > prisma generate
 @weave/api:db:generate: 
-@weave/api:db:generate: Failed to load config file "/Users/vishnu/Desktop/Weave/worktrees/wea-24-woven-login/apps/api" as a TypeScript/JavaScript module. Error: PrismaConfigEnvError: Cannot resolve environment variable: DATABASE_URL.
+@weave/api:db:generate: Failed to load config file "apps/api" as a TypeScript/JavaScript module. Error: PrismaConfigEnvError: Cannot resolve environment variable: DATABASE_URL.
 @weave/api:db:generate: npm error Lifecycle script `db:generate` failed with error:
 @weave/api:db:generate: npm error code 1
-@weave/api:db:generate: npm error path /Users/vishnu/Desktop/Weave/worktrees/wea-24-woven-login/apps/api
+@weave/api:db:generate: npm error path apps/api
 @weave/api:db:generate: npm error workspace @weave/api@0.0.0
-@weave/api:db:generate: npm error location /Users/vishnu/Desktop/Weave/worktrees/wea-24-woven-login/apps/api
+@weave/api:db:generate: npm error location apps/api
 @weave/api:db:generate: npm error command failed
 @weave/api:db:generate: npm error command sh -c prisma generate
-@weave/api#db:generate:  ERROR  command (/Users/vishnu/Desktop/Weave/worktrees/wea-24-woven-login/apps/api) /opt/homebrew/bin/npm run db:generate exited (1)
+@weave/api#db:generate:  ERROR  command (apps/api) /opt/homebrew/bin/npm run db:generate exited (1)
 
  Tasks:    3 successful, 5 total
 Cached:    3 cached, 5 total
