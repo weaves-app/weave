@@ -126,7 +126,8 @@ void test('Production containers run as nonroot, preserve API liveness and deny 
   for (const [asset, contentType] of [
     ['logo.svg', 'image/svg+xml'],
     ['favicon.svg', 'image/svg+xml'],
-    ['weave-bag-render.png', 'image/png'],
+    ['woven/still.v1.webp', 'image/webp'],
+    ['woven/intro.v2.mp4', 'video/mp4'],
   ]) {
     const response = await fetch(`http://${docker('port', web, '3000/tcp')}/brand/${asset}`);
 

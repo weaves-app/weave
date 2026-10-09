@@ -1,0 +1,39 @@
+{
+  "productionBuild": true,
+  "viewportWidth": 375,
+  "heroDisplay": "none",
+  "selectedImage": "embedded 1px GIF",
+  "naturalWidth": 1,
+  "imageComplete": true,
+  "videoSource": null,
+  "artworkNetworkRequests": [],
+  "method": "Fresh localhost:4371 origin reverse-proxies the candidate production page; only artwork path/status/bytes are logged. Viewport verified after navigation.",
+  "boundary680": {
+    "viewportWidth": 680,
+    "heroDisplay": "none",
+    "naturalWidth": 1,
+    "videoSource": null,
+    "artworkNetworkRequests": []
+  },
+  "boundary681": {
+    "viewportWidth": 681,
+    "heroDisplay": "flex",
+    "selectedImage": "/brand/woven/still.v1.webp",
+    "naturalWidth": 1254,
+    "imageComplete": true,
+    "preloadMedia": "(min-width: 681px)",
+    "videoSource": "/brand/woven/intro.v2.mp4",
+    "artworkNetworkRequests": [
+      {
+        "path": "/brand/woven/still.v1.webp",
+        "status": 200,
+        "bytes": 137740
+      },
+      {
+        "path": "/brand/woven/intro.v2.mp4",
+        "status": 206,
+        "bytes": 178318
+      }
+    ]
+  }
+}

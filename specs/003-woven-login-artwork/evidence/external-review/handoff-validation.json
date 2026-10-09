@@ -1,0 +1,8 @@
+{
+  "finding": "F5",
+  "status": "unconfirmed; no lifecycle fix applied",
+  "sourceInspection": "finish releases the video before scheduling the terminal still; this is a possible intermediate DOM state, not proof that a blank frame is painted.",
+  "availableEvidence": "Existing Chromium production playback and final still observations did not show a flash; approved video bytes are unchanged.",
+  "requestedStressCapture": "Not executed: available in-app browser exposes viewport and visibility controls only; creating a Chrome recording session returned Browser is not available: chrome. No 6x CPU trace or Safari/Firefox frame recording is claimed.",
+  "remainingGate": "T009 browser handoff matrix; add explicit CPU-throttled capture to convergence rather than labeling an unrun test as a non-reproduction."
+}

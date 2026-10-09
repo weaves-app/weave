@@ -1,0 +1,26 @@
+Historical full-suite verification — successful run recorded before review cleanup.
+Repeated command output condensed; this is not a newly executed check.
+Original SHA-256: 779fdba841350be2bac1f95d6567e7c04ab6ad0a352ccefb882f1e8b2452ccc3
+Immutable original: https://github.com/weaves-app/weave/blob/2c3d6a83c664033ddef6fbe642d0d108c5118ee1/specs/003-woven-login-artwork/evidence/verify.txt
+Recorded result summary:
+ Tasks:    6 successful, 6 total
+Cached:    6 cached, 6 total
+Architecture and interface injection checks passed.
+All matched files use Prettier code style!
+ Tasks:    5 successful, 5 total
+Cached:    4 cached, 5 total
+ℹ tests 32
+ℹ pass 32
+ℹ fail 0
+@weave/api:test: ℹ tests 2
+@weave/api:test: ℹ pass 2
+@weave/api:test: ℹ fail 0
+@weave/mobile:test: Test Suites: 3 passed, 3 total
+@weave/mobile:test: Tests:       3 passed, 3 total
+@weave/web:test: ℹ tests 71
+@weave/web:test: ℹ pass 71
+@weave/web:test: ℹ fail 0
+ Tasks:    4 successful, 4 total
+Cached:    3 cached, 4 total
+ Tasks:    3 successful, 3 total
+Cached:    2 cached, 3 total

@@ -59,7 +59,7 @@ function AuthForm({gateway, mode, complete}: AuthViewProps): React.JSX.Element {
   };
 
   return (
-    <AuthShell>
+    <>
       <h2>{title}</h2>
       <p className="auth-intro">
         {verification
@@ -192,7 +192,7 @@ function AuthForm({gateway, mode, complete}: AuthViewProps): React.JSX.Element {
         </a>
       )}
       {!signin && <div id="clerk-captcha" />}
-    </AuthShell>
+    </>
   );
 }
 
@@ -208,23 +208,23 @@ export function AuthView(props: AuthViewProps): React.JSX.Element {
       complete('/organizations');
   }, [loaded, sdkLoaded, pendingTask, signedIn, complete]);
 
+  return (
+    <AuthShell animateArtwork={props.mode === 'signin'}>
+      <AuthContent {...props} />
+    </AuthShell>
+  );
+}
+
+function AuthContent(props: AuthViewProps): React.JSX.Element {
   if (!props.loaded || props.sdkLoaded === false)
-    return (
-      <AuthShell>
-        <p role="status">Loading authentication…</p>
-      </AuthShell>
-    );
+    return <p role="status">Loading authentication…</p>;
 
   if (props.pendingTask === 'choose-organization' || (props.signedIn && !props.pendingTask))
-    return (
-      <AuthShell>
-        <p role="status">Opening your organizations…</p>
-      </AuthShell>
-    );
+    return <p role="status">Opening your organizations…</p>;
 
   if (props.pendingTask)
     return (
-      <AuthShell>
+      <>
         <h2>Account setup required</h2>
         <p className="auth-error" role="alert">
           {pendingTaskMessage(props.pendingTask)}
@@ -233,19 +233,19 @@ export function AuthView(props: AuthViewProps): React.JSX.Element {
           signOut={() => props.gateway.deactivate()}
           signedOut={() => window.location.reload()}
         />
-      </AuthShell>
+      </>
     );
 
   if (props.signedIn)
     return (
-      <AuthShell>
+      <>
         <h2>You are signed in</h2>
         <a href="/">Go to Home</a>
         <SignOutControl
           signOut={() => props.gateway.deactivate()}
           signedOut={() => window.location.reload()}
         />
-      </AuthShell>
+      </>
     );
 
   return <AuthForm key={props.mode} {...props} />;

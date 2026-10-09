@@ -1,0 +1,43 @@
+✔ WEA-24 S01 plays once, leaves the form usable, and settles on the woven still (71.131292ms)
+✖ WEA-24 S01 requests buffering before waiting for media readiness (16.342083ms)
+✔ WEA-24 S01 StrictMode cleanup preserves one subsequent playback attempt (12.196333ms)
+✔ WEA-24 S03 shared shells and signup never request the intro (14.084875ms)
+✔ WEA-24 S03 reduced initial mount never requests or later starts media (3.899584ms)
+✔ WEA-24 S03 mobile initial mount never requests or later starts media (3.209833ms)
+✔ WEA-24 S03 hidden initial mount never requests or later starts media (3.45375ms)
+✔ WEA-24 S02 readiness expires without a late animation flash (5.676ms)
+✔ WEA-24 S02 rejected autoplay and media errors reveal a terminal still (8.909792ms)
+✔ WEA-24 S02/S03 reduced during playback stops permanently (6.095334ms)
+✔ WEA-24 S02/S03 mobile during playback stops permanently (5.5655ms)
+✔ WEA-24 S02/S03 hidden during playback stops permanently (4.889417ms)
+✔ WEA-24 S02/S03 stalled during playback stops permanently (4.258625ms)
+✔ WEA-24 S01 Clerk readiness and refreshed callbacks preserve the playing element (107.850792ms)
+✔ WEA-24 S03 unmount releases playback and ignores late events (4.745791ms)
+✔ WEA-24 S04 (preserves WEA-10 S18) shared artwork remains static after image readiness and pointer movement (57.327541ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 15
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1921.772542
+
+✖ failing tests:
+
+test at test/auth-artwork.test.tsx:2:4475
+✖ WEA-24 S01 requests buffering before waiting for media readiness (16.342083ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 1
+  
+      at TestContext.<anonymous> (apps/web/test/auth-artwork.test.tsx:115:10)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

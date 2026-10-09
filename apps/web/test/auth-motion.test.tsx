@@ -21,14 +21,19 @@ afterEach(() => {
   window.sessionStorage.clear();
 });
 
-void test('WEA-10 S18 bag remains static after image readiness and pointer movement', () => {
+void test('WEA-24 S04 (preserves WEA-10 S18) shared artwork remains static after image readiness and pointer movement', () => {
   const view = render(
     <AuthShell>
       <h2>Choose your organization</h2>
     </AuthShell>,
   );
-  const image = view.getByAltText('Olive Weave shopping bag with rope handles and folded sides');
-  const stage = image.parentElement ?? assert.fail();
+  const image =
+    view.container.querySelector<HTMLImageElement>('img[src="/brand/woven/still.v1.webp"]') ??
+    assert.fail();
+
+  assert.match(image.src, /still\.v1\.webp/);
+
+  const stage = image.closest<HTMLElement>('[data-phase]') ?? assert.fail();
 
   fireEvent.load(image);
   assert.equal(stage.classList.contains('auth-bag-enter'), false);

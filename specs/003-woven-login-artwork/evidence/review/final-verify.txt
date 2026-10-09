@@ -1,0 +1,24 @@
+Historical pnpm verification before external review — passed.
+Repeated full-suite output condensed; not a new execution.
+Original SHA-256: 60c74048be7ed0beb8f406121f72587498f5d3bef1902a9f8482aed465d53b42
+Immutable original: https://github.com/weaves-app/weave/blob/2c3d6a83c664033ddef6fbe642d0d108c5118ee1/specs/003-woven-login-artwork/evidence/review/final-verify.txt
+Recorded result summary:
+ Tasks:    6 successful, 6 total
+Cached:    5 cached, 6 total
+ Tasks:    5 successful, 5 total
+Cached:    4 cached, 5 total
+ℹ tests 36
+ℹ pass 36
+ℹ fail 0
+@weave/api:test: ℹ tests 2
+@weave/api:test: ℹ pass 2
+@weave/api:test: ℹ fail 0
+@weave/mobile:test: Test Suites: 3 passed, 3 total
+@weave/mobile:test: Tests:       3 passed, 3 total
+@weave/web:test: ℹ tests 73
+@weave/web:test: ℹ pass 73
+@weave/web:test: ℹ fail 0
+ Tasks:    4 successful, 4 total
+Cached:    3 cached, 4 total
+ Tasks:    3 successful, 3 total
+Cached:    2 cached, 3 total

@@ -1,0 +1,28 @@
+{
+  "fixedBefore": {
+    "phase": "playing",
+    "rect": {
+      "bottom": 540,
+      "height": 420,
+      "left": 238,
+      "right": 658,
+      "top": 120,
+      "width": 420,
+      "x": 238,
+      "y": 120
+    }
+  },
+  "fixedAfter": {
+    "phase": "playing",
+    "rect": {
+      "bottom": 540,
+      "height": 420,
+      "left": 238,
+      "right": 658,
+      "top": 120,
+      "width": 420,
+      "x": 238,
+      "y": 120
+    }
+  }
+}

@@ -1,0 +1,41 @@
+✖ WEA-24 S01 plays once, leaves the form usable, and settles on the woven still (22.375167ms)
+✔ WEA-24 S03 shared shells and signup never request the intro (7.182917ms)
+✔ WEA-24 S03 reduced initial mount never requests or later starts media (3.34075ms)
+✔ WEA-24 S03 mobile initial mount never requests or later starts media (1.981583ms)
+✔ WEA-24 S03 hidden initial mount never requests or later starts media (1.623083ms)
+✔ WEA-24 S02 readiness expires without a late animation flash (1.878541ms)
+✔ WEA-24 S02 rejected autoplay and media errors reveal a terminal still (7.871417ms)
+✔ WEA-24 S02/S03 reduced during playback stops permanently (3.215542ms)
+✔ WEA-24 S02/S03 mobile during playback stops permanently (6.037958ms)
+✔ WEA-24 S02/S03 hidden during playback stops permanently (1.973291ms)
+✔ WEA-24 S02/S03 stalled during playback stops permanently (2.24725ms)
+✔ WEA-24 S01 Clerk readiness and refreshed callbacks preserve the playing element (46.950708ms)
+✔ WEA-24 S03 unmount releases playback and ignores late events (2.102ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 12
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1358.3485
+
+✖ failing tests:
+
+test at test/auth-artwork.test.tsx:2:3117
+✖ WEA-24 S01 plays once, leaves the form usable, and settles on the woven still (22.375167ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /intro\.v2\.mp4$/. Input:
+  
+  'https://weave.test/brand/woven/intro.v1.mp4'
+  
+      at TestContext.<anonymous> (apps/web/test/auth-artwork.test.tsx:79:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'https://weave.test/brand/woven/intro.v1.mp4',
+    expected: /intro\.v2\.mp4$/,
+    operator: 'match',
+    diff: 'simple'
+  }

@@ -1,0 +1,194 @@
+{
+  "ticket": "WEA-24",
+  "branch": "feat/WEA-24/woven-login-artwork",
+  "baseCommit": "f041c95",
+  "scenariosConfirmed": true,
+  "confirmation": "User approved the final woven composition, one-second all-sides entrance and integration approach, then said go ahead before the original source changes. On 2026-10-09 the user requested a separate ticket, branch, push and PR into develop. This records existing approval before transferring source into WEA-24, not a claim that original implementation followed ticket creation.",
+  "scenarioIds": ["S01", "S02", "S03", "S04", "S05"],
+  "publicTestSeams": [
+    "AuthShell",
+    "AuthView",
+    "native media and visibility/query events",
+    "form controls",
+    "browser geometry and playback"
+  ],
+  "historicalScenarioMapping": {
+    "S19": "S01",
+    "S20": "S02",
+    "S21": "S03",
+    "S22": "S04"
+  },
+  "status": "v2-published-draft-pr",
+  "clarification": "No unresolved design questions; preserve the approved native-video approach.",
+  "analysis": "FR-001 through FR-005 and SC-001 through SC-003 map to S01-S04 and ordered tasks; no conflicting or unmapped requirement.",
+  "verification": {
+    "targetedTests": "21/21",
+    "webTests": "78/78",
+    "repositoryVerify": "passed after external findings; evidence/external-review/verify.txt",
+    "databaseIntegration": "3/3; evidence/external-review/integration.txt",
+    "remoteCi": "All required CI checks passed for reviewed implementation bdc8177; run 37931076936, evidence/external-review/ci-green.json. Subsequent evidence-only publication starts a new check run.",
+    "browserMatrix": "partial; T009",
+    "gitFixtureWithInheritedContext": "2/2; parent personal identity preserved"
+  },
+  "convergence": {
+    "outcome": "tasks_appended",
+    "remainingTaskIds": ["T009", "T023", "T035"],
+    "report": "convergence.md",
+    "latestAssessment": "Confirmed external findings corrected, locally verified and published; required CI and production container checks passed on implementation bdc8177. Existing visual matrix remains T009/T023; explicit CPU-throttled handoff capture remains T035 because F5 is unconfirmed. No unverified visual gate was marked complete."
+  },
+  "deliveryRegression": "S05 records the existing mandatory S21 policy checks, which failed under the normal pre-push hook. The user-authorized publication requires fixing fixture isolation, not changing identity policy or bypassing hooks. RED preserved before fixture correction; no new product behavior.",
+  "motionRefinement": {
+    "status": "published-draft-pr",
+    "scenariosConfirmed": true,
+    "scenarioIds": ["S06", "S07", "S08"],
+    "confirmation": "User identified the orange ribbon, shadow and settling defects, agreed to try the local refinement, and confirmed Blender was installed and ready. Previous one-second, all-sides and exact-final-artwork constraints persist.",
+    "publicTestSeams": [
+      "exported frame sequence",
+      "preview replay/scrub/reference controls",
+      "Blender scene geometry report"
+    ],
+    "analysis": "S06/S07 refine FR-002 and SC-001; S08 preserves FR-001/003/004/005. T012-T015 order baseline checks before implementation and verification. No new product behavior or unresolved clarification. Approved production integration maps S01/S08 to the existing public media selection and S06/S07 to the reviewed frame sequence; T016\u2013T020 order RED, source promotion, checks and publication. No clarification or new exception is required.",
+    "verification": {
+      "baseline": "last-frame artwork-region mean change 9.3886 / 255; S07 failed before source changes",
+      "candidate": "last 100 ms lossless frames identical; final handoff has no measurable mean change at exported resolution",
+      "refactor": "all 60 exported PNG hashes identical before/after module separation",
+      "blender": "5.2.2 LTS; seven meshes, eight samples, all finite; terracotta backing Z=64 reference pixels throughout",
+      "integrationRegression": "13/13 artwork tests passed; application source and v1 media unchanged",
+      "preview": "http://127.0.0.1:4318/woven-refinement-v2/review.html",
+      "media": "1600 square; H.264; 60 frames; 1.000 seconds; 178318 bytes",
+      "productionTests": "14/14 after public source selection RED; full web 71/71",
+      "productionBrowser": "v2 playing at 96.537 ms, duration 1, no media error; terminal still and no replay on form edits",
+      "layout": "Actual classic-scrollbar RED followed by identical before/after bounds after authentication-scoped stable gutter"
+    },
+    "limits": [
+      "Blender was used for geometry inspection; the preview remains rendered with the existing Three.js source.",
+      "The existing approximate ribbons and texture restoration remain; this is not a fully modeled physically simulated weave.",
+      "Original T009 browser/device matrix remains pending; user visual acceptance of the v2 preview is recorded."
+    ],
+    "productionApproval": "2026-10-09: User accepted the v2 review preview and said: Okay, update the code based on our standards and push the code and raise the PR.",
+    "layoutRegression": {
+      "scenario": "S04",
+      "confirmed": true,
+      "confirmation": "Existing user-approved stable composition and SC-002 cover scrollbar-induced movement during authentication loading; no new visual direction.",
+      "publicTestSeam": "production DOM artwork bounds before/after Clerk readiness at the same viewport",
+      "red": "layout-red.json: x 238 to 232.75 at 1280 \u00d7 720",
+      "implementation": "authentication-scoped stable scrollbar gutter; T021 \u2192 T022 before T019/T020",
+      "green": "layout-green.json: identical x=232.75, y=120, width=420, height=420 before/after readiness"
+    }
+  },
+  "publication": {
+    "pullRequest": "https://github.com/weaves-app/weave/pull/10",
+    "base": "develop",
+    "implementationCommit": "840708b6d4ca7293f4f9068b5b663999360bc5f8",
+    "author": "cvvishnuu <cvishnuu01@gmail.com>",
+    "committer": "cvvishnuu <cvishnuu01@gmail.com>",
+    "push": "Normal pre-push policy, lint, types and tests passed; no hook bypass.",
+    "reviewStatus": "Draft pending T009/T023 and required CI/code-owner review."
+  },
+  "reviewRemediation": {
+    "scenariosConfirmed": true,
+    "confirmation": "User explicitly requested Matt Pocock code-review, workspace/Google TypeScript/clean-code/design-pattern compliance and maximum 500 lines per code file; fixes remain within WEA-24 and approved motion/fallback scope.",
+    "scenarioIds": ["S09", "S10"],
+    "publicTestSeams": [
+      "shared ESLint output at 500/501 authored lines",
+      "archived authored source inventory",
+      "exported ribbon timing/geometry",
+      "scripts/pr-policy.mjs on real PR metadata",
+      "required workflow checks"
+    ],
+    "fixedHead": "0bf8076ca698bf9c882e9a47a25c2b3b47a6caf9",
+    "mergeBase": "f041c9578d070700ad04c4118f4c5b2fc728b8f6",
+    "status": "published-draft-pr",
+    "analysis": "User scope maps to ordered T024\u2013T028; no new design decision or conflicting product requirement.",
+    "readinessClarification": "Existing S01/S03 authorization covers requesting buffering only after eligibility, before canplay; preserve source-free ineligible markup. Browser-hint model and StrictMode public tests precede the source change. No claim of reproduced Safari failure.",
+    "standards": {
+      "originalFindings": 2,
+      "remainingFindings": 0,
+      "hardViolationsResolved": 1,
+      "maintenanceObservationsResolved": 1
+    },
+    "spec": {
+      "codeConcernsResolved": 1,
+      "remainingCodeFindings": 0,
+      "remainingVerificationFindings": 1,
+      "pendingTasks": ["T009", "T023"]
+    },
+    "verification": {
+      "artworkMotion": "16/16",
+      "policy": "36/36",
+      "web": "73/73",
+      "api": "2/2",
+      "repositoryVerify": "passed; evidence/review/final-verify.txt",
+      "databaseHttp": "3/3; evidence/review/final-integration.txt",
+      "maxAuthoredFileLines": 496,
+      "ruleBoundary": "500 accepted; 501 rejected; comments/blank lines counted",
+      "reviewReport": "review.md"
+    },
+    "publication": {
+      "implementationCommit": "676bc1547d20b2672770e29d7f6ca9045952e317",
+      "baseCommit": "810974c36deafd8bddb23828d1adedfc14b3999e",
+      "pullRequest": "https://github.com/weaves-app/weave/pull/10",
+      "actualMetadataPolicy": "passed; evidence/review/pr-policy-actual-green.txt",
+      "push": "Normal pre-push policy, lint, typecheck and tests passed; personal author and committer verified. No bypass.",
+      "ci": "Hosted policy, quality, integration and mobile-js pass; native/container checks remain in progress at publication. Run 37920285450.",
+      "reviewStatus": "Draft pending T009/T023, final required CI and code-owner approval."
+    }
+  },
+  "externalReview": {
+    "status": "published-draft-pr",
+    "scenariosConfirmed": true,
+    "scenarioIds": ["S11", "S12"],
+    "confirmation": "User provided review findings and explicitly requested validation before fixes. Existing approved desktop design remains; the supplied fixes authorize hidden-mobile resource suppression and hygiene cleanup. No new visual design decision.",
+    "reviewedHead": "2c3d6a83c664033ddef6fbe642d0d108c5118ee1",
+    "publicTestSeams": [
+      "production rendered picture/preload markup and decoded image at 375/680/681 px",
+      "CSS breakpoint contract versus authTokens",
+      "native media fallback without matchMedia",
+      "container HTTP asset responses",
+      "git asset/evidence inventory",
+      "actual PR draft state"
+    ],
+    "analysis": "F1 confirmed and PR restored to draft; F2 confirmed unused at runtime but container test still references bag; F3/F6/F7/F8 confirmed; F4 full hidden still decoded at 375px with unconditional preload; F5 remains unconfirmed and must not receive a speculative fix. All work maps to T029\u2013T034 without a new architecture or dependency.",
+    "validation": {
+      "F1": "confirmed; restored draft",
+      "F2": "confirmed; container reference corrected alongside asset removal",
+      "F3": "confirmed; normalized",
+      "F4": "confirmed; production 375/680 no requests, 681 exact media",
+      "F5": "unconfirmed; CPU-throttled and cross-browser frame capture unavailable; no behavior fix",
+      "F6": "confirmed; shared token and CSS consistency coverage",
+      "F7": "confirmed in part; condensed repeated full-suite logs, retained distinct RED and current archive",
+      "F8": "confirmed; cleanup and existing fallback coverage"
+    },
+    "verification": {
+      "targeted": "21/21",
+      "repository": "passed; web78/78, policy36/36, API2/2, mobile3/3",
+      "database": "3/3",
+      "containers": "Hosted production container tests passed; CI 37931076936",
+      "report": "external-review.md"
+    },
+    "publication": {
+      "implementationCommit": "bdc8177cc8b6a6c9fd953ab8f5db3ea6880ef97e",
+      "pullRequest": "https://github.com/weaves-app/weave/pull/10",
+      "draft": true,
+      "ciRun": "https://github.com/weaves-app/weave/actions/runs/37931076936",
+      "push": "Personal author/committer verified; normal hooks passed; no bypass.",
+      "localPreview": "Isolated complete production copy on port 4312; current assets 200 with matching hashes, obsolete assets 404; temporary observation servers stopped.",
+      "ciResult": "All required checks passed on implementation bdc8177; subsequent commit records evidence only."
+    }
+  },
+  "mobileLogoAlignment": {
+    "scenariosConfirmed": true,
+    "scenarioIds": ["S13"],
+    "confirmation": "User selected the Weave logo in the 553 px mobile sign-in view and explicitly requested centering it. This authorizes a mobile-only alignment correction within the existing authentication presentation.",
+    "publicTestSeams": ["Rendered logo and form bounding rectangles at 375/553/680/681 px"],
+    "analysis": "S13 maps to T036 and existing responsive presentation. Change only the existing mobile margin; no component, dependency, typography or desktop layout change. Use actual browser geometry as the manual regression check for this reversible CSS edit.",
+    "red": "At 553 px before source changes: logo x=79, width=125; form x=79, width=380. Logo center is 127.5 px left of form center.",
+    "verification": {
+      "browser": "375/553/680 px centered; 681 px desktop left alignment unchanged",
+      "repositoryVerify": "passed",
+      "databaseIntegration": "3/3 passed",
+      "evidence": "evidence/mobile-logo.md",
+      "sourceLines": 484
+    }
+  }
+}

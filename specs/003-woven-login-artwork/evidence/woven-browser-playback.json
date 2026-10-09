@@ -1,0 +1,218 @@
+[
+  {
+    "ms": 22,
+    "phase": "playing",
+    "src": "/brand/woven/intro.v1.mp4",
+    "time": 0
+  },
+  {
+    "ms": 87,
+    "phase": "playing",
+    "src": "/brand/woven/intro.v1.mp4",
+    "time": 0.055938
+  },
+  {
+    "ms": 119,
+    "phase": "playing",
+    "src": "/brand/woven/intro.v1.mp4",
+    "time": 0.088818
+  },
+  {
+    "ms": 154,
+    "phase": "playing",
+    "src": "/brand/woven/intro.v1.mp4",
+    "time": 0.12275
+  },
+  {
+    "ms": 186,
+    "phase": "playing",
+    "src": "/brand/woven/intro.v1.mp4",
+    "time": 0.155758
+  },
+  {
+    "ms": 218,
+    "phase": "playing",
+    "src": "/brand/woven/intro.v1.mp4",
+    "time": 0.187426
+  },
+  {
+    "ms": 250,
+    "phase": "playing",
+    "src": "/brand/woven/intro.v1.mp4",
+    "time": 0.218741
+  },
+  {
+    "ms": 283,
+    "phase": "playing",
+    "src": "/brand/woven/intro.v1.mp4",
+    "time": 0.252091
+  },
+  {
+    "ms": 315,
+    "phase": "playing",
+    "src": "/brand/woven/intro.v1.mp4",
+    "time": 0.284215
+  },
+  {
+    "ms": 349,
+    "phase": "playing",
+    "src": "/brand/woven/intro.v1.mp4",
+    "time": 0.318405
+  },
+  {
+    "ms": 382,
+    "phase": "playing",
+    "src": "/brand/woven/intro.v1.mp4",
+    "time": 0.351481
+  },
+  {
+    "ms": 414,
+    "phase": "playing",
+    "src": "/brand/woven/intro.v1.mp4",
+    "time": 0.383522
+  },
+  {
+    "ms": 446,
+    "phase": "playing",
+    "src": "/brand/woven/intro.v1.mp4",
+    "time": 0.415996
+  },
+  {
+    "ms": 481,
+    "phase": "playing",
+    "src": "/brand/woven/intro.v1.mp4",
+    "time": 0.450214
+  },
+  {
+    "ms": 512,
+    "phase": "playing",
+    "src": "/brand/woven/intro.v1.mp4",
+    "time": 0.481642
+  },
+  {
+    "ms": 546,
+    "phase": "playing",
+    "src": "/brand/woven/intro.v1.mp4",
+    "time": 0.5151
+  },
+  {
+    "ms": 579,
+    "phase": "playing",
+    "src": "/brand/woven/intro.v1.mp4",
+    "time": 0.548279
+  },
+  {
+    "ms": 614,
+    "phase": "playing",
+    "src": "/brand/woven/intro.v1.mp4",
+    "time": 0.583629
+  },
+  {
+    "ms": 677,
+    "phase": "playing",
+    "src": "/brand/woven/intro.v1.mp4",
+    "time": 0.646966
+  },
+  {
+    "ms": 711,
+    "phase": "playing",
+    "src": "/brand/woven/intro.v1.mp4",
+    "time": 0.680752
+  },
+  {
+    "ms": 729,
+    "phase": "playing",
+    "src": "/brand/woven/intro.v1.mp4",
+    "time": 0.698836
+  },
+  {
+    "ms": 777,
+    "phase": "playing",
+    "src": "/brand/woven/intro.v1.mp4",
+    "time": 0.746584
+  },
+  {
+    "ms": 809,
+    "phase": "playing",
+    "src": "/brand/woven/intro.v1.mp4",
+    "time": 0.778317
+  },
+  {
+    "ms": 841,
+    "phase": "playing",
+    "src": "/brand/woven/intro.v1.mp4",
+    "time": 0.810909
+  },
+  {
+    "ms": 875,
+    "phase": "playing",
+    "src": "/brand/woven/intro.v1.mp4",
+    "time": 0.844147
+  },
+  {
+    "ms": 913,
+    "phase": "playing",
+    "src": "/brand/woven/intro.v1.mp4",
+    "time": 0.877303
+  },
+  {
+    "ms": 977,
+    "phase": "playing",
+    "src": "/brand/woven/intro.v1.mp4",
+    "time": 0.946527
+  },
+  {
+    "ms": 1008,
+    "phase": "playing",
+    "src": "/brand/woven/intro.v1.mp4",
+    "time": 0.97716
+  },
+  {
+    "ms": 1044,
+    "phase": "still",
+    "src": null,
+    "time": 0
+  },
+  {
+    "ms": 1072,
+    "phase": "still",
+    "src": null,
+    "time": 0
+  },
+  {
+    "ms": 1106,
+    "phase": "still",
+    "src": null,
+    "time": 0
+  },
+  {
+    "ms": 1139,
+    "phase": "still",
+    "src": null,
+    "time": 0
+  },
+  {
+    "ms": 1174,
+    "phase": "still",
+    "src": null,
+    "time": 0
+  },
+  {
+    "ms": 1205,
+    "phase": "still",
+    "src": null,
+    "time": 0
+  },
+  {
+    "ms": 1238,
+    "phase": "still",
+    "src": null,
+    "time": 0
+  },
+  {
+    "ms": 1271,
+    "phase": "still",
+    "src": null,
+    "time": 0
+  }
+]

@@ -1,0 +1,31 @@
+{
+  "playing": {
+    "duration": 1,
+    "error": null,
+    "paused": false,
+    "phase": "playing",
+    "seconds": 0.096537,
+    "src": "http://localhost:4312/brand/woven/intro.v2.mp4"
+  },
+  "settled": {
+    "bounds": {
+      "bottom": 540,
+      "height": 420,
+      "left": 232.75,
+      "right": 652.75,
+      "top": 120,
+      "width": 420,
+      "x": 232.75,
+      "y": 120
+    },
+    "formReady": true,
+    "gutter": "stable",
+    "phase": "still",
+    "sourceReleased": true,
+    "viewport": {
+      "height": 720,
+      "width": 1280
+    }
+  },
+  "interaction": "Email edit and password visibility toggling leave the intro settled and source released; inputs cleared afterward."
+}

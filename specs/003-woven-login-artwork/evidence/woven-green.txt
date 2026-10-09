@@ -1,0 +1,22 @@
+✔ WEA-10 S19 plays once, leaves the form usable, and settles on the woven still (30.197792ms)
+✔ WEA-10 S21 shared shells and signup never request the intro (9.742625ms)
+✔ WEA-10 S21 reduced initial mount never requests or later starts media (2.05225ms)
+✔ WEA-10 S21 mobile initial mount never requests or later starts media (2.004083ms)
+✔ WEA-10 S21 hidden initial mount never requests or later starts media (1.539041ms)
+✔ WEA-10 S20 readiness expires without a late animation flash (1.660375ms)
+✔ WEA-10 S20 rejected autoplay and media errors reveal a terminal still (3.953083ms)
+✔ WEA-10 S20/S21 reduced during playback stops permanently (2.169833ms)
+✔ WEA-10 S20/S21 mobile during playback stops permanently (1.84475ms)
+✔ WEA-10 S20/S21 hidden during playback stops permanently (1.76125ms)
+✔ WEA-10 S20/S21 stalled during playback stops permanently (1.725292ms)
+✔ WEA-10 S19 Clerk readiness and refreshed callbacks preserve the playing element (44.087875ms)
+✔ WEA-10 S21 unmount releases playback and ignores late events (1.665583ms)
+✔ WEA-10 S18/S22 shared artwork remains static after image readiness and pointer movement (21.617416ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 811.9525

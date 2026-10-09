@@ -1,0 +1,20 @@
+{
+  "scenario": "S07",
+  "frames": 60,
+  "last_100ms_mean_changes": [
+    0.16186875,
+    0.1847875,
+    0.08823333333333333,
+    0.04048125,
+    9.388597916666667
+  ],
+  "maximum_late_change": 9.388597916666667,
+  "allowed_mean_change": 0.75,
+  "last_frame_change": 9.388597916666667,
+  "passes": false
+}
+Traceback (most recent call last):
+  File "design-source/woven-refinement-v2/check_frames.py", line 23, in <module>
+    assert report['passes'], 'S07: visible artwork is still changing during the final 100 ms hold'
+           ~~~~~~^^^^^^^^^^
+AssertionError: S07: visible artwork is still changing during the final 100 ms hold

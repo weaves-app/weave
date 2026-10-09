@@ -1,0 +1,253 @@
+✖ WEA-24 S01 plays once, leaves the form usable, and settles on the woven still (33.237834ms)
+✖ WEA-24 S03 shared shells and signup never request the intro (5.861708ms)
+✖ WEA-24 S03 reduced initial mount never requests or later starts media (2.819792ms)
+✖ WEA-24 S03 mobile initial mount never requests or later starts media (1.959667ms)
+✖ WEA-24 S03 hidden initial mount never requests or later starts media (2.787958ms)
+✖ WEA-24 S02 readiness expires without a late animation flash (2.117667ms)
+✖ WEA-24 S02 rejected autoplay and media errors reveal a terminal still (1.701166ms)
+✖ WEA-24 S02/S03 reduced during playback stops permanently (1.843916ms)
+✖ WEA-24 S02/S03 mobile during playback stops permanently (1.650209ms)
+✖ WEA-24 S02/S03 hidden during playback stops permanently (1.384334ms)
+✖ WEA-24 S02/S03 stalled during playback stops permanently (1.133583ms)
+✖ WEA-24 S01 Clerk readiness and refreshed callbacks preserve the playing element (1.464917ms)
+✖ WEA-24 S03 unmount releases playback and ignores late events (1.236417ms)
+✖ WEA-24 S04 (preserves WEA-10 S18) shared artwork remains static after image readiness and pointer movement (27.442666ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 0
+ℹ fail 14
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2155.575625
+
+✖ failing tests:
+
+test at test/auth-artwork.test.tsx:2:3117
+✖ WEA-24 S01 plays once, leaves the form usable, and settles on the woven still (33.237834ms)
+  AssertionError [ERR_ASSERTION]: sign-in exposes a native decorative intro video
+      at media (apps/web/test/auth-artwork.test.tsx:48:10)
+      at TestContext.<anonymous> (apps/web/test/auth-artwork.test.tsx:76:17)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at test/auth-artwork.test.tsx:2:4440
+✖ WEA-24 S03 shared shells and signup never request the intro (5.861708ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /still\.v1\.webp/. Input:
+  
+  'https://weave.test/_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=3840&q=75'
+  
+      at TestContext.<anonymous> (apps/web/test/auth-artwork.test.tsx:107:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'https://weave.test/_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=3840&q=75',
+    expected: /still\.v1\.webp/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at test/auth-artwork.test.tsx:2:5087
+✖ WEA-24 S03 reduced initial mount never requests or later starts media (2.819792ms)
+  AssertionError [ERR_ASSERTION]: sign-in exposes a native decorative intro video
+      at media (apps/web/test/auth-artwork.test.tsx:48:10)
+      at TestContext.<anonymous> (apps/web/test/auth-artwork.test.tsx:134:19)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at test/auth-artwork.test.tsx:2:5087
+✖ WEA-24 S03 mobile initial mount never requests or later starts media (1.959667ms)
+  AssertionError [ERR_ASSERTION]: sign-in exposes a native decorative intro video
+      at media (apps/web/test/auth-artwork.test.tsx:48:10)
+      at TestContext.<anonymous> (apps/web/test/auth-artwork.test.tsx:134:19)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at test/auth-artwork.test.tsx:2:5087
+✖ WEA-24 S03 hidden initial mount never requests or later starts media (2.787958ms)
+  AssertionError [ERR_ASSERTION]: sign-in exposes a native decorative intro video
+      at media (apps/web/test/auth-artwork.test.tsx:48:10)
+      at TestContext.<anonymous> (apps/web/test/auth-artwork.test.tsx:134:19)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at test/auth-artwork.test.tsx:2:6011
+✖ WEA-24 S02 readiness expires without a late animation flash (2.117667ms)
+  AssertionError [ERR_ASSERTION]: sign-in exposes a native decorative intro video
+      at media (apps/web/test/auth-artwork.test.tsx:48:10)
+      at TestContext.<anonymous> (apps/web/test/auth-artwork.test.tsx:158:17)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at test/auth-artwork.test.tsx:2:6608
+✖ WEA-24 S02 rejected autoplay and media errors reveal a terminal still (1.701166ms)
+  AssertionError [ERR_ASSERTION]: sign-in exposes a native decorative intro video
+      at media (apps/web/test/auth-artwork.test.tsx:48:10)
+      at TestContext.<anonymous> (apps/web/test/auth-artwork.test.tsx:174:17)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at test/auth-artwork.test.tsx:2:7414
+✖ WEA-24 S02/S03 reduced during playback stops permanently (1.843916ms)
+  AssertionError [ERR_ASSERTION]: sign-in exposes a native decorative intro video
+      at media (apps/web/test/auth-artwork.test.tsx:48:10)
+      at TestContext.<anonymous> (apps/web/test/auth-artwork.test.tsx:195:19)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at test/auth-artwork.test.tsx:2:7414
+✖ WEA-24 S02/S03 mobile during playback stops permanently (1.650209ms)
+  AssertionError [ERR_ASSERTION]: sign-in exposes a native decorative intro video
+      at media (apps/web/test/auth-artwork.test.tsx:48:10)
+      at TestContext.<anonymous> (apps/web/test/auth-artwork.test.tsx:195:19)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at test/auth-artwork.test.tsx:2:7414
+✖ WEA-24 S02/S03 hidden during playback stops permanently (1.384334ms)
+  AssertionError [ERR_ASSERTION]: sign-in exposes a native decorative intro video
+      at media (apps/web/test/auth-artwork.test.tsx:48:10)
+      at TestContext.<anonymous> (apps/web/test/auth-artwork.test.tsx:195:19)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at test/auth-artwork.test.tsx:2:7414
+✖ WEA-24 S02/S03 stalled during playback stops permanently (1.133583ms)
+  AssertionError [ERR_ASSERTION]: sign-in exposes a native decorative intro video
+      at media (apps/web/test/auth-artwork.test.tsx:48:10)
+      at TestContext.<anonymous> (apps/web/test/auth-artwork.test.tsx:195:19)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at test/auth-artwork.test.tsx:2:8395
+✖ WEA-24 S01 Clerk readiness and refreshed callbacks preserve the playing element (1.464917ms)
+  AssertionError [ERR_ASSERTION]: sign-in exposes a native decorative intro video
+      at media (apps/web/test/auth-artwork.test.tsx:48:10)
+      at TestContext.<anonymous> (apps/web/test/auth-artwork.test.tsx:235:17)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at test/auth-artwork.test.tsx:2:9493
+✖ WEA-24 S03 unmount releases playback and ignores late events (1.236417ms)
+  AssertionError [ERR_ASSERTION]: sign-in exposes a native decorative intro video
+      at media (apps/web/test/auth-artwork.test.tsx:48:10)
+      at TestContext.<anonymous> (apps/web/test/auth-artwork.test.tsx:253:17)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at test/auth-motion.test.tsx:2:1455
+✖ WEA-24 S04 (preserves WEA-10 S18) shared artwork remains static after image readiness and pointer movement (27.442666ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /still\.v1\.webp/. Input:
+  
+  'https://weave.test/_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=3840&q=75'
+  
+      at TestContext.<anonymous> (apps/web/test/auth-motion.test.tsx:32:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'https://weave.test/_next/image?url=%2Fbrand%2Fweave-bag-render.png&w=3840&q=75',
+    expected: /still\.v1\.webp/,
+    operator: 'match',
+    diff: 'simple'
+  }

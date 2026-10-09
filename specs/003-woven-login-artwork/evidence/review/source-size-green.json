@@ -1,0 +1,116 @@
+{
+  "scenario": "S09",
+  "maximum": 500,
+  "files": [
+    {
+      "path": "docs/design/woven-design-source.v2.1.zip!current-auth.css",
+      "lines": 496
+    },
+    {
+      "path": "apps/web/src/app/globals.css",
+      "lines": 483
+    },
+    {
+      "path": "apps/web/test/auth-artwork.test.tsx",
+      "lines": 298
+    },
+    {
+      "path": "apps/web/src/features/auth/presentation/auth-view.tsx",
+      "lines": 260
+    },
+    {
+      "path": "docs/design/woven-design-source.v2.1.zip!woven-refinement-v2/preview.js",
+      "lines": 175
+    },
+    {
+      "path": "docs/design/woven-design-source.v2.1.zip!woven-refinement-v2/ribbon-mesh.js",
+      "lines": 143
+    },
+    {
+      "path": "packages/eslint-config/readability.mjs",
+      "lines": 128
+    },
+    {
+      "path": "apps/web/src/features/auth/presentation/artwork/use-artwork-intro.ts",
+      "lines": 118
+    },
+    {
+      "path": "docs/design/woven-design-source.v2.1.zip!woven-refinement-v2/ribbon-paths.js",
+      "lines": 105
+    },
+    {
+      "path": "docs/design/woven-design-source.v2.1.zip!woven-refinement-v2/inspect_blender.py",
+      "lines": 100
+    },
+    {
+      "path": "docs/design/woven-design-source.v2.1.zip!woven-refinement-v2/source-textures.js",
+      "lines": 95
+    },
+    {
+      "path": "docs/design/woven-design-source.v2.1.zip!woven-refinement-v2/export-preview.js",
+      "lines": 80
+    },
+    {
+      "path": "tests/policy/git-config.test.mjs",
+      "lines": 77
+    },
+    {
+      "path": "docs/design/woven-design-source.v2.1.zip!woven-refinement-v2/review.js",
+      "lines": 61
+    },
+    {
+      "path": "docs/design/woven-design-source.v2.1.zip!woven-refinement-v2/archive.js",
+      "lines": 59
+    },
+    {
+      "path": "apps/web/src/features/auth/presentation/auth-shell.tsx",
+      "lines": 53
+    },
+    {
+      "path": "apps/web/src/features/auth/presentation/artwork/auth-artwork.module.css",
+      "lines": 47
+    },
+    {
+      "path": "apps/web/src/features/auth/presentation/artwork/auth-artwork.tsx",
+      "lines": 42
+    },
+    {
+      "path": "apps/web/test/auth-motion.test.tsx",
+      "lines": 42
+    },
+    {
+      "path": "docs/design/woven-design-source.v2.1.zip!woven-refinement-v2/review.html",
+      "lines": 37
+    },
+    {
+      "path": "docs/design/woven-design-source.v2.1.zip!woven-refinement-v2/index.html",
+      "lines": 35
+    },
+    {
+      "path": "tests/policy/source-size.test.mjs",
+      "lines": 31
+    },
+    {
+      "path": "docs/design/woven-design-source.v2.1.zip!woven-refinement-v2/check_frames.py",
+      "lines": 23
+    },
+    {
+      "path": "docs/design/woven-design-source.v2.1.zip!woven-motion.css",
+      "lines": 17
+    },
+    {
+      "path": "apps/web/test/dom.ts",
+      "lines": 14
+    },
+    {
+      "path": "apps/web/test/css-modules.ts",
+      "lines": 13
+    },
+    {
+      "path": "docs/design/woven-design-source.v2.1.zip!woven-refinement-v2/timing.js",
+      "lines": 8
+    }
+  ],
+  "passes": true,
+  "vendorExcluded": "Constitution section3; bundled unmodified Three.js"
+}

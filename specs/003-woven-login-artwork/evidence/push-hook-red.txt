@@ -1,0 +1,218 @@
+
+> lint
+> turbo run lint && eslint scripts tests && node scripts/check-architecture.mjs
+
+
+   • turbo 2.11.7
+   • Packages in scope: @weave/api, @weave/design-tokens, @weave/eslint-config, @weave/mobile, @weave/typescript-config, @weave/web
+   • Running lint in 6 packages
+   • Remote caching disabled, using shared worktree cache
+
+@weave/eslint-config:lint: cache hit, replaying logs 8fdeb7899bf76e07
+@weave/eslint-config:lint: 
+@weave/eslint-config:lint: > @weave/eslint-config@0.0.0 lint
+@weave/eslint-config:lint: > eslint .
+@weave/eslint-config:lint: 
+@weave/design-tokens:lint: cache hit, replaying logs da8102f48cfecb71
+@weave/design-tokens:lint: 
+@weave/design-tokens:lint: > @weave/design-tokens@0.0.0 lint
+@weave/design-tokens:lint: > eslint .
+@weave/design-tokens:lint: 
+@weave/api:db:generate: cache hit, replaying logs 3b8dc406cbddafe0
+@weave/api:db:generate: 
+@weave/api:db:generate: > @weave/api@0.0.0 db:generate
+@weave/api:db:generate: > prisma generate
+@weave/api:db:generate: 
+@weave/api:db:generate: Loaded Prisma config from prisma.config.ts.
+@weave/api:db:generate: 
+@weave/api:db:generate: Prisma schema loaded from prisma/schema.prisma.
+@weave/api:db:generate: ┌─────────────────────────────────────────────────────────┐
+@weave/api:db:generate: │  Update available 7.10.0 -> 8.0.0-rc.21                 │
+@weave/api:db:generate: │                                                         │
+@weave/api:db:generate: │  This is a major update - please follow the guide at    │
+@weave/api:db:generate: │  https://pris.ly/d/major-version-upgrade                │
+@weave/api:db:generate: │                                                         │
+@weave/api:db:generate: │  Run the following to update                            │
+@weave/api:db:generate: │    npm i --save-dev prisma@latest                       │
+@weave/api:db:generate: │    npm i @prisma/client@latest                          │
+@weave/api:db:generate: └─────────────────────────────────────────────────────────┘
+@weave/api:db:generate: 
+@weave/api:db:generate: ✔ Generated Prisma Client (7.10.0) to ./src/generated/prisma in 21ms
+@weave/api:db:generate: 
+@weave/mobile:lint: cache hit, replaying logs f88049b4fe637880
+@weave/mobile:lint: 
+@weave/mobile:lint: > @weave/mobile@0.0.0 lint
+@weave/mobile:lint: > eslint .
+@weave/mobile:lint: 
+@weave/web:lint: cache hit, replaying logs 455c48fde075b840
+@weave/api:lint: cache hit, replaying logs 9e72520b775515b3
+@weave/web:lint: 
+@weave/web:lint: > @weave/web@0.0.0 lint
+@weave/web:lint: > eslint .
+@weave/web:lint: 
+@weave/api:lint: 
+@weave/api:lint: > @weave/api@0.0.0 lint
+@weave/api:lint: > eslint .
+@weave/api:lint: 
+
+ Tasks:    6 successful, 6 total
+Cached:    6 cached, 6 total
+  Time:    24ms >>> FULL TURBO
+
+Architecture and interface injection checks passed.
+
+> typecheck
+> turbo run typecheck
+
+
+   • turbo 2.11.7
+   • Packages in scope: @weave/api, @weave/design-tokens, @weave/eslint-config, @weave/mobile, @weave/typescript-config, @weave/web
+   • Running typecheck in 6 packages
+   • Remote caching disabled, using shared worktree cache
+
+@weave/api:db:generate: cache hit, replaying logs 3b8dc406cbddafe0
+@weave/api:db:generate: 
+@weave/api:db:generate: > @weave/api@0.0.0 db:generate
+@weave/api:db:generate: > prisma generate
+@weave/api:db:generate: 
+@weave/api:db:generate: Loaded Prisma config from prisma.config.ts.
+@weave/api:db:generate: 
+@weave/api:db:generate: Prisma schema loaded from prisma/schema.prisma.
+@weave/api:db:generate: ┌─────────────────────────────────────────────────────────┐
+@weave/api:db:generate: │  Update available 7.10.0 -> 8.0.0-rc.21                 │
+@weave/api:db:generate: │                                                         │
+@weave/api:db:generate: │  This is a major update - please follow the guide at    │
+@weave/api:db:generate: │  https://pris.ly/d/major-version-upgrade                │
+@weave/api:db:generate: │                                                         │
+@weave/api:db:generate: │  Run the following to update                            │
+@weave/api:db:generate: │    npm i --save-dev prisma@latest                       │
+@weave/api:db:generate: │    npm i @prisma/client@latest                          │
+@weave/api:db:generate: └─────────────────────────────────────────────────────────┘
+@weave/api:db:generate: 
+@weave/api:db:generate: ✔ Generated Prisma Client (7.10.0) to ./src/generated/prisma in 21ms
+@weave/api:db:generate: 
+@weave/api:typecheck: cache hit, replaying logs e9de46c3ba53455c
+@weave/design-tokens:typecheck: cache hit, replaying logs c79602721c01a24c
+@weave/api:typecheck: 
+@weave/api:typecheck: > @weave/api@0.0.0 typecheck
+@weave/api:typecheck: > tsc --noEmit
+@weave/api:typecheck: 
+@weave/design-tokens:typecheck: 
+@weave/design-tokens:typecheck: > @weave/design-tokens@0.0.0 typecheck
+@weave/design-tokens:typecheck: > tsc --noEmit
+@weave/design-tokens:typecheck: 
+@weave/mobile:typecheck: cache hit, replaying logs ba99df78b0305f61
+@weave/mobile:typecheck: 
+@weave/mobile:typecheck: > @weave/mobile@0.0.0 typecheck
+@weave/mobile:typecheck: > tsc --noEmit
+@weave/mobile:typecheck: 
+@weave/web:typecheck: cache hit, replaying logs 7865a60d600b291c
+@weave/web:typecheck: 
+@weave/web:typecheck: > @weave/web@0.0.0 typecheck
+@weave/web:typecheck: > next typegen && tsc --noEmit
+@weave/web:typecheck: 
+@weave/web:typecheck: Generating route types...
+@weave/web:typecheck: ✓ Types generated successfully
+
+ Tasks:    5 successful, 5 total
+Cached:    5 cached, 5 total
+  Time:    11ms >>> FULL TURBO
+
+
+> test
+> npm run test:policy && turbo run test
+
+
+> test:policy
+> node --test tests/policy/*.test.mjs
+
+✔ S10 tool guard permits investigation and specs, gates source edits (0.80875ms)
+✔ S10 missing/foreign feature state cannot authorize an implementation branch (0.141ms)
+✔ S15 read-only shell syntax passes while output files remain gated (0.809791ms)
+✔ S15 edit tools inspect destinations rather than documentation contents (0.107959ms)
+✔ S04 rejects outward domain dependencies and cross-module internals (930.289042ms)
+✔ S05 requires interface types for injected dependencies (517.245417ms)
+✔ S04 rejects resolved controller imports from the application layer (173.464209ms)
+✔ S14 resolves aliases within their owning workspace (92.848875ms)
+✔ S01 accepts ticket branches and rejects shared/malformed names (0.455042ms)
+✔ S15 Claude hook envelopes use shared rules without Stop loops (336.09425ms)
+✔ S02 conventional commits are single-line, imperative and traceable (1.383167ms)
+✔ S03 release PRs only originate from same-repository develop (0.341833ms)
+✔ S17 dependency adoption accepts only genuine scoped proposals (0.500083ms)
+✖ S21 dependency adoption permits the default personal CLI profile when the optional key is absent (79.432875ms)
+✖ S21 local config distinguishes absent keys, explicit profiles and Git errors (5.7225ms)
+✔ S10 publishing verifies actual account instead of trusting credential labels (0.384333ms)
+✔ S13 forbidden identities are local policy, not a hard-coded account (0.056375ms)
+✔ S16 creates an immutable manifest and rejects malformed boundaries (1.737041ms)
+✔ S16 production requires the matching QA digests for every app (0.248959ms)
+✔ S16 retries accept the same release and reject artifact replacement (0.129917ms)
+✔ S16 only matching incomplete drafts may recover missing assets (0.657084ms)
+✔ S22 missing QA aliases fail with the production policy message before mutation (178.400875ms)
+✔ R01/R03: rejects and fixes missing spacing: import groups and imports ending (17.03675ms)
+✔ R01/R03: rejects and fixes missing spacing: TypeScript declarations (5.236792ms)
+✔ R01/R03: rejects and fixes missing spacing: validation, operation and result (3.356292ms)
+✔ R01/R03: rejects and fixes missing spacing: class methods (2.0175ms)
+✔ R01/R03: rejects and fixes missing spacing: object methods (1.903625ms)
+✔ R01/R03: rejects and fixes missing spacing: attached comments and directives (2.092834ms)
+✔ R02: leaves same-group imports and compliant code unchanged (1.447375ms)
+✔ R03: keeps decorators attached to their declaration (1.045958ms)
+✔ S12 main releases classify Conventional Commits by highest impact (0.616875ms)
+✔ S17 breaking changes stay in development versions until explicit 1.0 (0.054709ms)
+ℹ tests 32
+ℹ suites 0
+ℹ pass 30
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1924.469916
+
+✖ failing tests:
+
+test at tests/policy/git-config.test.mjs:10:1
+✖ S21 dependency adoption permits the default personal CLI profile when the optional key is absent (79.432875ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /REACHED_DEFAULT_PROFILE/. Input:
+  
+  'scripts/adopt-dependency-update.mjs:41\n' +
+    "if (git('status', '--porcelain')) throw new Error('Dependency adoption requires a clean checkout.');\n" +
+    '                                        ^\n' +
+    '\n' +
+    'Error: Dependency adoption requires a clean checkout.\n' +
+    '    at scripts/adopt-dependency-update.mjs:41:41\n' +
+    '    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)\n' +
+    '    at async node:internal/modules/esm/loader:647:26\n' +
+    '    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)\n' +
+    '\n' +
+    'Node.js v24.20.0\n'
+  
+      at TestContext.<anonymous> (tests/policy/git-config.test.mjs:39:14)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: "scripts/adopt-dependency-update.mjs:41\nif (git('status', '--porcelain')) throw new Error('Dependency adoption requires a clean checkout.');\n                                        ^\n\nError: Dependency adoption requires a clean checkout.\n    at scripts/adopt-dependency-update.mjs:41:41\n    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)\n    at async node:internal/modules/esm/loader:647:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)\n\nNode.js v24.20.0\n",
+    expected: /REACHED_DEFAULT_PROFILE/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/policy/git-config.test.mjs:48:1
+✖ S21 local config distinguishes absent keys, explicit profiles and Git errors (5.7225ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (tests/policy/git-config.test.mjs:52:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /repository|Git configuration/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+error: failed to push some refs to 'https://github.com/weaves-app/weave.git'
