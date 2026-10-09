@@ -13,5 +13,17 @@
     "naturalWidth": 1254,
     "complete": true
   },
-  "conclusion": "F4 confirmed: the browser selected and decoded the full still although the hero is hidden. Resource timing API is unavailable in the browser inspection scope; no network transfer count is claimed."
+  "conclusion": "F4 confirmed: the browser selected and decoded the full still although the hero is hidden. Resource timing API is unavailable in the browser inspection scope; no network transfer count is claimed.",
+  "networkObservation": {
+    "method": "fresh-origin reverse proxy of the unchanged production page at port 4370",
+    "viewportWidth": 375,
+    "requests": [
+      {
+        "path": "/brand/woven/still.v1.webp",
+        "status": 200,
+        "bytes": 137740
+      }
+    ],
+    "conclusion": "Full 137740-byte still fetched while the hero was hidden."
+  }
 }
