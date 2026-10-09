@@ -1,0 +1,80 @@
+{
+  "conclusion": "success",
+  "jobs": [
+    {
+      "conclusion": "success",
+      "name": "mobile-js",
+      "status": "completed",
+      "url": "https://github.com/weaves-app/weave/actions/runs/37931076936/job/113821649361"
+    },
+    {
+      "conclusion": "success",
+      "name": "mobile-native (android)",
+      "status": "completed",
+      "url": "https://github.com/weaves-app/weave/actions/runs/37931076936/job/113821649658"
+    },
+    {
+      "conclusion": "success",
+      "name": "integration",
+      "status": "completed",
+      "url": "https://github.com/weaves-app/weave/actions/runs/37931076936/job/113821649672"
+    },
+    {
+      "conclusion": "success",
+      "name": "mobile-native (ios)",
+      "status": "completed",
+      "url": "https://github.com/weaves-app/weave/actions/runs/37931076936/job/113821649737"
+    },
+    {
+      "conclusion": "success",
+      "name": "policy",
+      "status": "completed",
+      "url": "https://github.com/weaves-app/weave/actions/runs/37931076936/job/113821649756"
+    },
+    {
+      "conclusion": "success",
+      "name": "quality",
+      "status": "completed",
+      "url": "https://github.com/weaves-app/weave/actions/runs/37931076936/job/113821649768"
+    },
+    {
+      "conclusion": "success",
+      "name": "mobile",
+      "status": "completed",
+      "url": "https://github.com/weaves-app/weave/actions/runs/37931076936/job/113824266742"
+    },
+    {
+      "conclusion": "success",
+      "name": "container-pr",
+      "status": "completed",
+      "url": "https://github.com/weaves-app/weave/actions/runs/37931076936/job/113824297217"
+    },
+    {
+      "conclusion": "skipped",
+      "name": "candidate",
+      "status": "completed",
+      "url": "https://github.com/weaves-app/weave/actions/runs/37931076936/job/113824298824"
+    },
+    {
+      "conclusion": "success",
+      "name": "containers",
+      "status": "completed",
+      "url": "https://github.com/weaves-app/weave/actions/runs/37931076936/job/113825553252"
+    },
+    {
+      "conclusion": "success",
+      "name": "required",
+      "status": "completed",
+      "url": "https://github.com/weaves-app/weave/actions/runs/37931076936/job/113825592728"
+    },
+    {
+      "conclusion": "skipped",
+      "name": "publish",
+      "status": "completed",
+      "url": "https://github.com/weaves-app/weave/actions/runs/37931076936/job/113825628836"
+    }
+  ],
+  "status": "completed",
+  "head": "bdc8177cc8b6a6c9fd953ab8f5db3ea6880ef97e",
+  "url": "https://github.com/weaves-app/weave/actions/runs/37931076936"
+}

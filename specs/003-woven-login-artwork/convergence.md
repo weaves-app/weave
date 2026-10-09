@@ -33,3 +33,5 @@ Publication reassessment: review implementation `676bc15` is pushed; actual PR m
 ## External review reassessment
 
 Checked FR-001–FR-005, SC-001–SC-003, S01–S12, the external-review plan and all ten constitution principles. Confirmed asset/evidence/resource/breakpoint/coverage corrections are implemented and locally verified. Existing T009/T023 remain open. One additional partial/MEDIUM verification gap is the explicitly requested F5 throttled frame capture; appended T035. No speculative lifecycle change or new runtime abstraction is justified by the available evidence. Outcome: `tasks_appended` (one new task), with publication/container result tracking retained under T034. No extension hooks configured.
+
+Delivery verification: T034 is complete. Required CI, including production container tests, passed on reviewed implementation bdc8177 (run 37931076936). Remaining tasks are visual verification T009/T023/T035; the evidence-only follow-up does not imply those checks or code-owner approval.

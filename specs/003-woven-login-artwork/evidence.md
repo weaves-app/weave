@@ -96,3 +96,5 @@ External-review evidence policy: machine-specific path prefixes were normalized 
 ## External findings F1–F8
 
 See [individual validation and disposition](external-review.md). Production mobile loading reproduced and is corrected at 375/680px, with the existing full artwork selected at 681px. Responsive markup RED preceded the fix; targeted GREEN is 21/21. Current [full verification](evidence/external-review/verify.txt) and [database integration](evidence/external-review/integration.txt) pass. Earlier repeated full-suite logs are condensed historical records, not relabeled new results. F5 is explicitly unverified; the lifecycle remains unchanged. PR #10 was returned to draft to match T009/T023.
+
+External-review publication completed through normal hooks. [CI run 37931076936](https://github.com/weaves-app/weave/actions/runs/37931076936) passed all required checks on `bdc8177`, including the updated production container asset tests; [compact results](evidence/external-review/ci-green.json). PR remains draft with T009/T023/T035 open. The subsequent evidence-only commit does not change application code and launches a new CI run.

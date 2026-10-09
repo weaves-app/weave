@@ -80,7 +80,7 @@ Dependencies: T024 → T025 → T026/T027 → T028. Independent review subagents
 - [x] T031 Normalize local evidence paths and condense repeated full verification logs while preserving unique RED/GREEN chronology (F3/F7/S12).
 - [x] T032 Reproduce hidden artwork loading, add responsive resource regression coverage, and implement native desktop/mobile selection with the shared breakpoint and CSS consistency checks (F4/F6/S11).
 - [x] T033 Investigate the possible handoff flash and only fix a reproduced failure; simplify status markup, use specific test selectors and cover unavailable matchMedia (F5/F8/S02–S04/S12).
-- [ ] T034 Run final verification/integration/container checks, record individual finding dispositions and convergence, then publish each concern through normal hooks.
+- [x] T034 Run final verification/integration/container checks, record individual finding dispositions and convergence, then publish each concern through normal hooks.
 
 Dependencies: T029 precedes all source changes; T030/T031/T032/T033 precede T034. Existing T009/T023 remain authoritative visual gates.
 
