@@ -1,0 +1,7 @@
+{
+  "scenario": "S09",
+  "path": "docs/design/woven-design-source.v1.zip!woven-export.js",
+  "physicalLines": 595,
+  "maximum": 500,
+  "passes": false
+}

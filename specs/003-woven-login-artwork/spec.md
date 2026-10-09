@@ -67,3 +67,14 @@ Public checks: lossless rendered frame sequences at 60 fps; the preview's replay
 The user accepted the v2 review preview on 2026-10-09 and explicitly requested standards-compliant integration, push and PR. This approves the existing S06–S08 outcomes and the reviewed export; use a new immutable video version while retaining the approved still and existing fallback behavior.
 
 Production inspection found an additional S04 boundary: with classic scrollbars at a 1280 × 720 viewport, Clerk readiness increases page height and introduces a scrollbar. Artwork x changes from 238 to 232.75. Reserve scrollbar space on authentication pages before the form appears so the existing SC-002 position guarantee also holds in this configuration. This is within the previously approved stable-layout behavior.
+
+## Requested PR standards review
+
+The user explicitly requested Matt Pocock's two-axis code review, workspace/Google TypeScript/clean-code compliance, justified design patterns, and a maximum of 500 lines per authored code file. This authorizes review remediation within WEA-24; generated/vendor libraries retain the constitution's exclusion. Count physical lines conservatively, including blank/comment lines.
+
+- **S09 (standards boundary)**: Given an authored code file in this PR (including archived design tooling), when audited, then it has at most 500 physical lines; an over-limit authored source is rejected, and current tooling has one authoritative definition of each ribbon's timing. Original historical source remains recoverable in Git without duplicating obsolete tooling in the current tree.
+- **S10 (delivery regression)**: Given the current develop base and published PR metadata, when normal policy/verification runs, then the branch uses develop's package manager and includes exact Linear/Spec/Evidence fields; no hook or policy is bypassed.
+
+These scenarios are the user's review requirements and existing delivery rules, not new product behavior. Existing S01–S08 remain authoritative for motion and fallback.
+
+Review clarification for S01/S03: eligible mounts explicitly request media buffering before waiting for `canplay`; initial and ineligible markup keeps `preload="none"` and no source. A browser may honor the no-preload hint, so waiting for readiness without requesting data is a portability concern. Chromium completed readiness in the review probe; Safari was not observable. This clarification does not treat the concern as a reproduced Safari failure. React StrictMode's setup/cleanup/setup cycle must still permit one subsequent playback attempt and a terminal still.

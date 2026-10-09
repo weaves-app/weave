@@ -3,6 +3,7 @@ import './dom';
 import assert from 'node:assert/strict';
 import {afterEach, beforeEach, mock, test} from 'node:test';
 import {act, cleanup, fireEvent, render} from '@testing-library/react';
+import {StrictMode} from 'react';
 
 import {AuthShell} from '../src/features/auth/presentation/auth-shell';
 import {AuthView} from '../src/features/auth/presentation/auth-view';
@@ -98,6 +99,41 @@ void test('WEA-24 S01 plays once, leaves the form usable, and settles on the wov
   assert.equal(video.hidden, true);
   assert.equal(video.hasAttribute('src'), false);
   assert.equal(play.mock.callCount(), 1);
+});
+
+void test('WEA-24 S01 requests buffering before waiting for media readiness', async () => {
+  const play = mock.method(window.HTMLMediaElement.prototype, 'play', async () => {});
+
+  mock.method(window.HTMLMediaElement.prototype, 'load', function (this: HTMLMediaElement) {
+    // Model a browser that honors preload=none and withholds data until buffering is requested.
+    if (this.hasAttribute('src') && this.preload === 'auto') fireEvent.canPlay(this);
+  });
+
+  await act(async () => {
+    shell();
+  });
+  assert.equal(play.mock.callCount(), 1);
+});
+
+void test('WEA-24 S01 StrictMode cleanup preserves one subsequent playback attempt', async () => {
+  const play = mock.method(window.HTMLMediaElement.prototype, 'play', async () => {});
+  const view = render(
+    <StrictMode>
+      <AuthShell animateArtwork>
+        <h2>Welcome back</h2>
+      </AuthShell>
+    </StrictMode>,
+  );
+  const video = media(view);
+
+  await act(async () => fireEvent.canPlay(video));
+  fireEvent.playing(video);
+  assert.equal(video.hidden, false);
+  fireEvent.ended(video);
+  fireEvent.canPlay(video);
+  assert.equal(play.mock.callCount(), 1);
+  assert.equal(video.hidden, true);
+  assert.equal(video.hasAttribute('src'), false);
 });
 
 void test('WEA-24 S03 shared shells and signup never request the intro', () => {

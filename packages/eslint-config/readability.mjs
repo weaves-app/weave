@@ -121,5 +121,8 @@ export const readabilityConfig = {
       },
     },
   },
-  rules: {'weave/readability': 'error'},
+  rules: {
+    'weave/readability': 'error',
+    'max-lines': ['error', {max: 500, skipBlankLines: false, skipComments: false}],
+  },
 };

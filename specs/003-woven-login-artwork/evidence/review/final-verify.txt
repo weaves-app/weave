@@ -1,0 +1,374 @@
+$ pnpm run lint && pnpm run format:check && pnpm run typecheck && pnpm test && pnpm run build
+$ turbo run lint && eslint scripts tests && node scripts/check-architecture.mjs
+
+   • turbo 2.11.7
+   • Packages in scope: @weave/api, @weave/design-tokens, @weave/eslint-config, @weave/mobile, @weave/typescript-config, @weave/web
+   • Running lint in 6 packages
+   • Remote caching disabled, using shared worktree cache
+
+@weave/eslint-config:lint: cache hit, replaying logs 85354d77a0fa4bde
+@weave/eslint-config:lint: $ eslint .
+@weave/design-tokens:lint: cache hit, replaying logs 29cd37bad18bb797
+@weave/design-tokens:lint: $ eslint .
+@weave/mobile:lint: cache hit, replaying logs b7c50c65ac1151d5
+@weave/mobile:lint: $ eslint .
+@weave/web:lint: cache miss, executing 35770525d7e4238e
+@weave/api:db:generate: cache hit, replaying logs a0141460f5ab8b55
+@weave/api:db:generate: $ prisma generate
+@weave/api:db:generate: Loaded Prisma config from prisma.config.ts.
+@weave/api:db:generate: 
+@weave/api:db:generate: Prisma schema loaded from prisma/schema.prisma.
+@weave/api:db:generate: 
+@weave/api:db:generate: ✔ Generated Prisma Client (7.10.0) to ./src/generated/prisma in 39ms
+@weave/api:db:generate: 
+@weave/api:lint: cache hit, replaying logs 75a8c4a61d8dedb1
+@weave/api:lint: $ eslint .
+@weave/web:lint: $ eslint .
+
+ Tasks:    6 successful, 6 total
+Cached:    5 cached, 6 total
+  Time:    9.251s 
+
+Architecture and interface injection checks passed.
+$ prettier --check .
+Checking formatting...
+All matched files use Prettier code style!
+$ turbo run typecheck
+
+   • turbo 2.11.7
+   • Packages in scope: @weave/api, @weave/design-tokens, @weave/eslint-config, @weave/mobile, @weave/typescript-config, @weave/web
+   • Running typecheck in 6 packages
+   • Remote caching disabled, using shared worktree cache
+
+@weave/api:db:generate: cache hit, replaying logs a0141460f5ab8b55
+@weave/design-tokens:typecheck: cache hit, replaying logs 8dd3240282408068
+@weave/api:db:generate: $ prisma generate
+@weave/api:db:generate: Loaded Prisma config from prisma.config.ts.
+@weave/api:db:generate: 
+@weave/api:db:generate: Prisma schema loaded from prisma/schema.prisma.
+@weave/api:db:generate: 
+@weave/api:db:generate: ✔ Generated Prisma Client (7.10.0) to ./src/generated/prisma in 39ms
+@weave/api:db:generate: 
+@weave/design-tokens:typecheck: $ tsc --noEmit
+@weave/web:typecheck: cache miss, executing 5d02a92ee7088669
+@weave/api:typecheck: cache hit, replaying logs 0d74909a5620e5a5
+@weave/api:typecheck: $ tsc --noEmit
+@weave/mobile:typecheck: cache hit, replaying logs 37f8060106766d9d
+@weave/mobile:typecheck: $ tsc --noEmit
+@weave/web:typecheck: $ next typegen && tsc --noEmit
+@weave/web:typecheck: Generating route types...
+@weave/web:typecheck: ✓ Types generated successfully
+
+ Tasks:    5 successful, 5 total
+Cached:    4 cached, 5 total
+  Time:    2.533s 
+
+$ pnpm run test:policy && turbo run test
+$ node --test tests/policy/*.test.mjs
+✔ S10 tool guard permits investigation and specs, gates source edits (1.562833ms)
+✔ S10 missing/foreign feature state cannot authorize an implementation branch (0.441209ms)
+✔ S15 read-only shell syntax passes while output files remain gated (1.792584ms)
+✔ S15 edit tools inspect destinations rather than documentation contents (0.277917ms)
+✔ S04 rejects outward domain dependencies and cross-module internals (2536.689583ms)
+✔ S05 requires interface types for injected dependencies (904.317042ms)
+✔ S04 rejects resolved controller imports from the application layer (274.716667ms)
+✔ S14 resolves aliases within their owning workspace (144.131875ms)
+✔ S01 accepts ticket branches and rejects shared/malformed names (0.979042ms)
+✔ S15 Claude hook envelopes use shared rules without Stop loops (734.958792ms)
+✔ S02 conventional commits are single-line, imperative and traceable (1.284125ms)
+✔ S03 release PRs only originate from same-repository develop (0.2455ms)
+✔ S17 dependency adoption accepts only genuine scoped proposals (1.254166ms)
+✔ WEA-8 S06 accepts pnpm lockfile proposals without widening policy scope (0.258625ms)
+✔ S21 dependency adoption permits the default personal CLI profile when the optional key is absent (1242.111459ms)
+✔ S21 local config distinguishes absent keys, explicit profiles and Git errors (121.946916ms)
+✔ S10 publishing verifies actual account instead of trusting credential labels (0.978458ms)
+✔ S13 forbidden identities are local policy, not a hard-coded account (0.129458ms)
+✔ S16 creates an immutable manifest and rejects malformed boundaries (2.292083ms)
+✔ S16 production requires the matching QA digests for every app (0.372375ms)
+✔ S16 retries accept the same release and reject artifact replacement (0.202875ms)
+✔ S16 only matching incomplete drafts may recover missing assets (0.219083ms)
+✔ S22 missing QA aliases fail with the production policy message before mutation (667.893875ms)
+✔ R01/R03: rejects and fixes missing spacing: import groups and imports ending (55.520417ms)
+✔ R01/R03: rejects and fixes missing spacing: TypeScript declarations (12.39625ms)
+✔ R01/R03: rejects and fixes missing spacing: validation, operation and result (15.727208ms)
+✔ R01/R03: rejects and fixes missing spacing: class methods (7.308959ms)
+✔ R01/R03: rejects and fixes missing spacing: object methods (9.109667ms)
+✔ R01/R03: rejects and fixes missing spacing: attached comments and directives (9.725584ms)
+✔ R02: leaves same-group imports and compliant code unchanged (4.039ms)
+✔ R03: keeps decorators attached to their declaration (2.842125ms)
+✔ S12 main releases classify Conventional Commits by highest impact (1.607958ms)
+✔ S17 breaking changes stay in development versions until explicit 1.0 (0.267667ms)
+✔ WEA-24 S09 500 authored lines are accepted (43.710708ms)
+✔ WEA-24 S09 501 authored lines are rejected (13.769917ms)
+✔ WEA-24 S09 blank and comment lines count toward the file limit (2.636875ms)
+ℹ tests 36
+ℹ suites 0
+ℹ pass 36
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4259.980583
+
+   • turbo 2.11.7
+   • Packages in scope: @weave/api, @weave/design-tokens, @weave/eslint-config, @weave/mobile, @weave/typescript-config, @weave/web
+   • Running test in 6 packages
+   • Remote caching disabled, using shared worktree cache
+
+@weave/design-tokens:typecheck: cache hit, replaying logs 8dd3240282408068
+@weave/api:test: cache hit, replaying logs c7f3e480404b6eee
+@weave/design-tokens:typecheck: $ tsc --noEmit
+@weave/api:test: $ node --import tsx --test test/*.test.ts
+@weave/api:test: ✔ S06 liveness does not depend on database; readiness checks database (1.974042ms)
+@weave/api:test: ✔ S06 unavailable database rejects readiness but preserves liveness (0.555667ms)
+@weave/api:test: ℹ tests 2
+@weave/api:test: ℹ suites 0
+@weave/api:test: ℹ pass 2
+@weave/api:test: ℹ fail 0
+@weave/api:test: ℹ cancelled 0
+@weave/api:test: ℹ skipped 0
+@weave/api:test: ℹ todo 0
+@weave/api:test: ℹ duration_ms 872.520709
+@weave/web:test: cache miss, executing 6fdb67ce7fc06d4b
+@weave/mobile:test: cache hit, replaying logs 7ef36beb29bbca86
+@weave/mobile:test: $ jest --runInBand
+@weave/mobile:test: PASS src/components/button.test.tsx
+@weave/mobile:test: PASS src/components/typography.test.tsx
+@weave/mobile:test: PASS src/components/registration.test.ts
+@weave/mobile:test: 
+@weave/mobile:test: Test Suites: 3 passed, 3 total
+@weave/mobile:test: Tests:       3 passed, 3 total
+@weave/mobile:test: Snapshots:   0 total
+@weave/mobile:test: Time:        4.002 s
+@weave/mobile:test: Ran all test suites.
+@weave/web:test: $ node --import tsx --test test/*.test.ts test/*.test.tsx
+@weave/web:test: ✔ WEA-10 S01 SDK adapter uses email/password then email verification before finalize (2.468833ms)
+@weave/web:test: ✔ WEA-10 S03 SDK invitation request contains ticket/password and no substitute email (0.56225ms)
+@weave/web:test: ✔ WEA-10 S02/S07 SDK Device Trust and signout follow supported APIs (0.47125ms)
+@weave/web:test: ✔ WEA-10 S08 SDK returned error is rejected, incomplete status cannot finalize (0.501208ms)
+@weave/web:test: ✔ WEA-10 S11 Google adapter uses the supported SSO API and protected callback destinations (6.704958ms)
+@weave/web:test: A component suspended inside an `act` scope, but the `act` call was not awaited. When testing React components that depend on asynchronous data, you must await the result:
+@weave/web:test: 
+@weave/web:test: await act(() => ...)
+@weave/web:test: ✔ WEA-24 S01 plays once, leaves the form usable, and settles on the woven still (104.930542ms)
+@weave/web:test: ✔ WEA-24 S01 requests buffering before waiting for media readiness (12.257333ms)
+@weave/web:test: ✔ WEA-24 S01 StrictMode cleanup preserves one subsequent playback attempt (142.333292ms)
+@weave/web:test: ✔ WEA-24 S03 shared shells and signup never request the intro (55.028125ms)
+@weave/web:test: ✔ WEA-24 S03 reduced initial mount never requests or later starts media (7.20075ms)
+@weave/web:test: ✔ WEA-24 S03 mobile initial mount never requests or later starts media (5.857125ms)
+@weave/web:test: ✔ WEA-24 S03 hidden initial mount never requests or later starts media (13.34575ms)
+@weave/web:test: ✔ WEA-24 S02 readiness expires without a late animation flash (6.075625ms)
+@weave/web:test: ✔ WEA-24 S02 rejected autoplay and media errors reveal a terminal still (21.191833ms)
+@weave/web:test: ✔ WEA-24 S02/S03 reduced during playback stops permanently (10.64075ms)
+@weave/web:test: ✔ WEA-24 S02/S03 mobile during playback stops permanently (13.318667ms)
+@weave/web:test: ✔ WEA-24 S02/S03 hidden during playback stops permanently (89.833ms)
+@weave/web:test: ✔ WEA-24 S02/S03 stalled during playback stops permanently (12.966833ms)
+@weave/web:test: ✔ WEA-24 S01 Clerk readiness and refreshed callbacks preserve the playing element (448.76175ms)
+@weave/web:test: ✔ WEA-24 S03 unmount releases playback and ignores late events (13.081125ms)
+@weave/web:test: ✔ WEA-10 S11 callback without a completed attempt shows retry rather than endless verification (616.153416ms)
+@weave/web:test: ✔ WEA-10 S11 callback rejected operation and timeout recover without navigation (81.909167ms)
+@weave/web:test: ✔ WEA-10 S11 only completed callback navigates; additional requirements are visible (86.474333ms)
+@weave/web:test: ✔ WEA-10 S11 callback waits for browser SDK readiness before resolving hydrated server auth (97.1205ms)
+@weave/web:test: ✔ WEA-10 S01 signup sends verification, never activates before correct code, then opens Home (6.2365ms)
+@weave/web:test: ✔ WEA-10 S01/S08 wrong or expired code is recoverable and resend can be retried (4.202666ms)
+@weave/web:test: ✔ WEA-10 S01/S08 empty/malformed email and missing password/code make no provider calls (4.555708ms)
+@weave/web:test: ✔ WEA-10 S01/S08 unverified provider completion or unsupported requirements cannot activate (0.488375ms)
+@weave/web:test: ✔ WEA-10 S02 password login and Device Trust verification both reach Home (0.765875ms)
+@weave/web:test: ✔ WEA-10 S07 interrupted verification restores without needing password again (0.29ms)
+@weave/web:test: ✔ WEA-10 S08 duplicate/signup/invalid login/network/rejected-password errors finish loading (1.21175ms)
+@weave/web:test: ✔ WEA-10 S08 repeated submits issue one mutation and cancellation prevents late activation (0.351709ms)
+@weave/web:test: ✔ WEA-10 S07/S08 cancellation during activation clears late session and never navigates (0.307542ms)
+@weave/web:test: ✔ WEA-10 S07 signout awaits provider, clears state and reports recoverable failure (0.435292ms)
+@weave/web:test: ✔ WEA-10 S03 invitation signup supplies only ticket/password and reaches intended Home (0.257917ms)
+@weave/web:test: ✔ WEA-10 S03/S08 missing/expired/reused invitation keeps context and never falls back (0.284375ms)
+@weave/web:test: ✔ WEA-10 S03/S08 failed invitation activation can retry without replaying the consumed ticket (0.251ms)
+@weave/web:test: ✔ WEA-10 S08 timeout finishes loading and blocks late authentication activation (46.2415ms)
+@weave/web:test: ✔ WEA-10 S11/S12 branded Google signup rejects duplicate clicks, then recovers provider failure (724.79925ms)
+@weave/web:test: ✔ WEA-10 S11 Google signin starts provider authentication without premature Home (113.767333ms)
+@weave/web:test: ✔ WEA-10 S12 missing configuration retains branding and offers no fake signup success (75.583ms)
+@weave/web:test: ✔ WEA-24 S04 (preserves WEA-10 S18) shared artwork remains static after image readiness and pointer movement (81.007667ms)
+@weave/web:test: ✔ WEA-10 S11 unresolved callback refuses activation; completed callback finalizes only once (2.204833ms)
+@weave/web:test: ✔ WEA-10 S11 transfer reads current SDK snapshot after awaited create (0.585666ms)
+@weave/web:test: ✔ WEA-10 S11 extra fields and verification direct users to actual requirements, never Home (0.246ms)
+@weave/web:test: ✔ WEA-10 S11 returned finalize errors cannot report Home success (0.428833ms)
+@weave/web:test: ✔ WEA-10 S11 pending organization session explains the blocker and never navigates Home (0.157666ms)
+@weave/web:test: ✔ WEA-10 S03/S08 invitation entry preserves opaque ticket across auth navigation (1.146417ms)
+@weave/web:test: ✔ WEA-10 S03/S08 missing/malformed/ambiguous invitation never falls back to public signup (0.263292ms)
+@weave/web:test: ✔ WEA-10 S02/S07 verified active identity is allowed; unverified or signed-out is denied (0.535458ms)
+@weave/web:test: ✔ WEA-10 S07 unresolved auth exposes no protected result before the provider resolves (0.269292ms)
+@weave/web:test: ✔ WEA-10 S07/S08 provider/network session failure denies access safely (0.272417ms)
+@weave/web:test: ✔ WEA-10 S02/S07 protected resource is no-store and requires verified matching session user (143.568042ms)
+@weave/web:test: ✔ WEA-10 S02 signed-out protected request avoids user lookup; outage is 503 (0.467208ms)
+@weave/web:test: ✔ WEA-10 S15 verified identity without an active organization cannot read protected resources (0.314125ms)
+@weave/web:test: ✔ WEA-10 S01 public form labels/password → verification → Home callback (768.5345ms)
+@weave/web:test: ✔ WEA-10 S08 pending/error states disable duplicates, finish loading and allow retry (201.590709ms)
+@weave/web:test: ✔ WEA-10 S07 Home stays hidden until auth resolves and after signout; signout failure recovers (31.397958ms)
+@weave/web:test: ✔ WEA-10 S01/S07 signed-in unverified session never renders Home (5.244917ms)
+@weave/web:test: ✔ WEA-10 S07/S08 signout timeout releases loading and offers a retry (16.961167ms)
+@weave/web:test: ✔ WEA-10 S08 unknown-account error survives refreshed SDK resources and callbacks (48.77325ms)
+@weave/web:test: ✔ WEA-10 S08 pending organization task is explicit and cannot show a fresh login or Home (8.762209ms)
+@weave/web:test: ✔ WEA-10 S07 server auth hydration cannot show credentials before browser SDK loads (8.816041ms)
+@weave/web:test: ✔ S07 client accepts valid health and rejects bad responses safely (1.098208ms)
+@weave/web:test: ✔ WEA-10 S13 adapter loads every page, merges invitations and prefers existing membership (3.911875ms)
+@weave/web:test: ✔ WEA-10 S13 one list opens membership and accepts pending invitation before activation (3.09075ms)
+@weave/web:test: ✔ WEA-10 S14 list failure recovers, empty list remains usable (0.428792ms)
+@weave/web:test: ✔ WEA-10 S14 blank name is rejected; activation retry reuses created organization (0.420709ms)
+@weave/web:test: ✔ WEA-10 S14 acceptance failure denies Home; accepted invitation is not accepted twice after activation failure (0.462625ms)
+@weave/web:test: ✔ WEA-10 S15 duplicate mutation starts once and cancellation blocks late navigation (1.425208ms)
+@weave/web:test: ✔ WEA-10 S14 a stalled list request times out and allows retry without a late stale result (23.655791ms)
+@weave/web:test: ✔ WEA-10 S13 approved picker lists memberships and invitation in one fieldset and opens selected workspace (764.000584ms)
+@weave/web:test: ✔ WEA-10 S14 empty picker offers create; create form has required labelled input and retryable errors (176.505ms)
+@weave/web:test: ℹ tests 73
+@weave/web:test: ℹ suites 0
+@weave/web:test: ℹ pass 73
+@weave/web:test: ℹ fail 0
+@weave/web:test: ℹ cancelled 0
+@weave/web:test: ℹ skipped 0
+@weave/web:test: ℹ todo 0
+@weave/web:test: ℹ duration_ms 4503.42375
+
+ Tasks:    4 successful, 4 total
+Cached:    3 cached, 4 total
+  Time:    5.399s 
+
+$ turbo run build
+
+   • turbo 2.11.7
+   • Packages in scope: @weave/api, @weave/design-tokens, @weave/eslint-config, @weave/mobile, @weave/typescript-config, @weave/web
+   • Running build in 6 packages
+   • Remote caching disabled, using shared worktree cache
+
+@weave/web:build: cache miss, executing 889410b93f08a31c
+@weave/mobile:build: cache hit, replaying logs c85e53724ed95435
+@weave/mobile:build: $ pnpm run clean && pnpm run bundle:android && pnpm run bundle:ios
+@weave/mobile:build: $ node -e "require('node:fs').rmSync('dist',{recursive:true,force:true})"
+@weave/mobile:build: $ react-native bundle --entry-file index.ts --platform android --dev false --bundle-output dist/android/index.android.bundle --assets-dest dist/android --sourcemap-output dist/android/index.android.bundle.map
+@weave/mobile:build: 
+@weave/mobile:build:                         ▒▒▓▓▓▓▒▒
+@weave/mobile:build:                      ▒▓▓▓▒▒░░▒▒▓▓▓▒
+@weave/mobile:build:                   ▒▓▓▓▓░░░▒▒▒▒░░░▓▓▓▓▒
+@weave/mobile:build:                  ▓▓▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▒▒▒▓▓
+@weave/mobile:build:                  ▓▓░░░░░▒▓▓▓▓▓▓▒░░░░░▓▓
+@weave/mobile:build:                  ▓▓░░▓▓▒░░░▒▒░░░▒▓▒░░▓▓
+@weave/mobile:build:                  ▓▓░░▓▓▓▓▓▒▒▒▒▓▓▓▓▒░░▓▓
+@weave/mobile:build:                  ▓▓░░▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░▓▓
+@weave/api:build: cache hit, replaying logs 50b6458cdba65adf
+@weave/mobile:build:                  ▓▓▒░░▒▒▓▓▓▓▓▓▓▓▒░░░▒▓▓
+@weave/mobile:build:                   ▒▓▓▓▒░░░▒▓▓▒░░░▒▓▓▓▒
+@weave/mobile:build:                      ▒▓▓▓▒░░░░▒▓▓▓▒
+@weave/mobile:build:                         ▒▒▓▓▓▓▒▒
+@weave/mobile:build: 
+@weave/mobile:build: 
+@weave/mobile:build:                 Welcome to Metro v0.84.5
+@weave/mobile:build:               Fast - Scalable - Integrated
+@weave/mobile:build: 
+@weave/mobile:build: 
+@weave/mobile:build: transform[stderr]: (node:41607) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+@weave/mobile:build: transform[stderr]: (Use `node --trace-warnings ...` to show where the warning was created)
+@weave/mobile:build: transform[stderr]: (node:41609) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+@weave/mobile:build: transform[stderr]: (Use `node --trace-warnings ...` to show where the warning was created)
+@weave/mobile:build: transform[stderr]: (node:41612) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+@weave/mobile:build: transform[stderr]: (Use `node --trace-warnings ...` to show where the warning was created)
+@weave/mobile:build: transform[stderr]: (node:41610) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+@weave/mobile:build: transform[stderr]: (Use `node --trace-warnings ...` to show where the warning was created)
+@weave/mobile:build: transform[stderr]: (node:41614) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+@weave/mobile:build: transform[stderr]: (Use `node --trace-warnings ...` to show where the warning was created)
+@weave/mobile:build: transform[stderr]: (node:41608) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+@weave/mobile:build: transform[stderr]: (Use `node --trace-warnings ...` to show where the warning was created)
+@weave/mobile:build: transform[stderr]: (node:41613) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+@weave/mobile:build: transform[stderr]: (Use `node --trace-warnings ...` to show where the warning was created)
+@weave/mobile:build: LOG:Writing bundle output to: dist/android/index.android.bundle
+@weave/mobile:build: LOG:Writing sourcemap output to: dist/android/index.android.bundle.map
+@weave/mobile:build: LOG:Done writing bundle output
+@weave/mobile:build: LOG:Done writing sourcemap output
+@weave/mobile:build: $ react-native bundle --entry-file index.ts --platform ios --dev false --bundle-output dist/ios/main.jsbundle --assets-dest dist/ios --sourcemap-output dist/ios/main.jsbundle.map
+@weave/mobile:build: 
+@weave/mobile:build:                         ▒▒▓▓▓▓▒▒
+@weave/mobile:build:                      ▒▓▓▓▒▒░░▒▒▓▓▓▒
+@weave/mobile:build:                   ▒▓▓▓▓░░░▒▒▒▒░░░▓▓▓▓▒
+@weave/mobile:build:                  ▓▓▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▒▒▒▓▓
+@weave/mobile:build:                  ▓▓░░░░░▒▓▓▓▓▓▓▒░░░░░▓▓
+@weave/mobile:build:                  ▓▓░░▓▓▒░░░▒▒░░░▒▓▒░░▓▓
+@weave/mobile:build:                  ▓▓░░▓▓▓▓▓▒▒▒▒▓▓▓▓▒░░▓▓
+@weave/mobile:build:                  ▓▓░░▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░▓▓
+@weave/mobile:build:                  ▓▓▒░░▒▒▓▓▓▓▓▓▓▓▒░░░▒▓▓
+@weave/mobile:build:                   ▒▓▓▓▒░░░▒▓▓▒░░░▒▓▓▓▒
+@weave/mobile:build:                      ▒▓▓▓▒░░░░▒▓▓▓▒
+@weave/mobile:build:                         ▒▒▓▓▓▓▒▒
+@weave/mobile:build: 
+@weave/mobile:build: 
+@weave/mobile:build:                 Welcome to Metro v0.84.5
+@weave/mobile:build:               Fast - Scalable - Integrated
+@weave/mobile:build: 
+@weave/mobile:build: 
+@weave/mobile:build: transform[stderr]: (node:42360) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+@weave/mobile:build: transform[stderr]: (Use `node --trace-warnings ...` to show where the warning was created)
+@weave/mobile:build: transform[stderr]: (node:42361) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+@weave/mobile:build: transform[stderr]: (Use `node --trace-warnings ...` to show where the warning was created)
+@weave/mobile:build: transform[stderr]: (node:42362) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+@weave/mobile:build: transform[stderr]: (Use `node --trace-warnings ...` to show where the warning was created)
+@weave/mobile:build: transform[stderr]: (node:42364) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+@weave/mobile:build: transform[stderr]: (Use `node --trace-warnings ...` to show where the warning was created)
+@weave/mobile:build: transform[stderr]: (node:42363) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+@weave/mobile:build: transform[stderr]: (Use `node --trace-warnings ...` to show where the warning was created)
+@weave/mobile:build: transform[stderr]: (node:42365) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+@weave/api:build: $ prisma generate && nest build
+@weave/api:build: Loaded Prisma config from prisma.config.ts.
+@weave/api:build: 
+@weave/api:build: Prisma schema loaded from prisma/schema.prisma.
+@weave/api:build: ┌─────────────────────────────────────────────────────────┐
+@weave/mobile:build: transform[stderr]: (Use `node --trace-warnings ...` to show where the warning was created)
+@weave/mobile:build: transform[stderr]: (node:42366) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+@weave/mobile:build: transform[stderr]: (Use `node --trace-warnings ...` to show where the warning was created)
+@weave/mobile:build: LOG:Writing bundle output to: dist/ios/main.jsbundle
+@weave/mobile:build: LOG:Writing sourcemap output to: dist/ios/main.jsbundle.map
+@weave/mobile:build: LOG:Done writing bundle output
+@weave/api:build: │  Update available 7.10.0 -> 8.0.0-rc.22                 │
+@weave/api:build: │                                                         │
+@weave/api:build: │  This is a major update - please follow the guide at    │
+@weave/api:build: │  https://pris.ly/d/major-version-upgrade                │
+@weave/api:build: │                                                         │
+@weave/api:build: │  Run the following to update                            │
+@weave/api:build: │    npm i --save-dev prisma@latest                       │
+@weave/api:build: │    npm i @prisma/client@latest                          │
+@weave/api:build: └─────────────────────────────────────────────────────────┘
+@weave/api:build: 
+@weave/api:build: ✔ Generated Prisma Client (7.10.0) to ./src/generated/prisma in 46ms
+@weave/api:build: 
+@weave/mobile:build: LOG:Done writing sourcemap output
+@weave/web:build: $ next build
+@weave/web:build: ▲ Next.js 16.3.8 (Turbopack)
+@weave/web:build: ✓ Running next.config.ts took 108ms
+@weave/web:build: 
+@weave/web:build:   Creating an optimized production build ...
+@weave/web:build: ✓ Compiled successfully in 822ms
+@weave/web:build:   Running TypeScript ...
+@weave/web:build:   Finished TypeScript in 1721ms ...
+@weave/web:build:   Collecting page data using 9 workers ...
+@weave/web:build:   Generating static pages using 9 workers (0/5) ...
+@weave/web:build:   Generating static pages using 9 workers (1/5) 
+@weave/web:build:   Generating static pages using 9 workers (2/5) 
+@weave/web:build:   Generating static pages using 9 workers (3/5) 
+@weave/web:build: ✓ Generating static pages using 9 workers (5/5) in 130ms
+@weave/web:build:   Finalizing page optimization ...
+@weave/web:build: 
+@weave/web:build: Route (app)
+@weave/web:build: ┌ ƒ /
+@weave/web:build: ├ ƒ /_not-found
+@weave/web:build: ├ ƒ /api/session
+@weave/web:build: ├ ƒ /organizations
+@weave/web:build: ├ ƒ /organizations/create
+@weave/web:build: ├ ƒ /sign-in
+@weave/web:build: ├ ƒ /sign-up
+@weave/web:build: └ ƒ /sso-callback
+@weave/web:build: 
+@weave/web:build: 
+@weave/web:build: ƒ Proxy (Middleware)
+@weave/web:build: 
+@weave/web:build: ƒ  (Dynamic)  server-rendered on demand
+@weave/web:build: 
+
+ Tasks:    3 successful, 3 total
+Cached:    2 cached, 3 total
+  Time:    6.944s 
+

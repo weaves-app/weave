@@ -1,0 +1,11 @@
+✔ WEA-24 S09 500 authored lines are accepted (14.1045ms)
+✔ WEA-24 S09 501 authored lines are rejected (4.567ms)
+✔ WEA-24 S09 blank and comment lines count toward the file limit (0.720083ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 724.816209

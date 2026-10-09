@@ -62,3 +62,13 @@ Dependency update: T021 → T022 precede completion of T019 and publication T020
 ## Phase 9: Convergence
 
 - [ ] T023 Verify authentication-only scrollbar reservation with classic and overlay scrollbars in the target Safari/Firefox/mobile matrix per S04/SC-002 and plan: production layout regression (partial, MEDIUM). Chromium at 1280 × 720 passes; record other actual observations alongside T009 before marking the PR ready.
+
+## Phase 10: Requested code review
+
+- [x] T024 Record the user's review/500-line requirement, fixed comparison, independent Standards/Spec review seams and confirmed S09/S10 before remediation.
+- [x] T025 Capture the authored-source line-limit failure and policy metadata failure, preserve the remote package-manager failure and sync current develop without policy bypass.
+- [x] T026 Add meaningful 500/501-line lint boundary coverage before the shared rule; remove redundant legacy archives with recoverable Git links, consolidate current timing values, and prove public geometry/timing output unchanged.
+- [x] T027 Resolve actionable Spec findings with public behavior tests first; rerun targeted, whole-repository and database checks under pnpm; re-review the final diff and record the two review axes separately.
+- [ ] T028 Push reviewed fixes through normal hooks, update PR traceability/evidence and confirm remote check results while retaining actual browser/reviewer limitations.
+
+Dependencies: T024 → T025 → T026/T027 → T028. Independent review subagents are explicitly required by the invoked code-review skill; implementation stays sequential.

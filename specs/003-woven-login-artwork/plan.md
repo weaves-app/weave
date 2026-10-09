@@ -30,7 +30,7 @@ All ten principles reviewed: prior approval retained; actual RED/GREEN chronolog
 
 ## Structure and Complexity
 
-Three production artwork files (42/117/47 lines), two shell integration edits, two assets, targeted tests and design documentation. No global store, per-frame JavaScript, storage write, WebGL/Three runtime or generic animation abstraction. Artifacts live in `specs/003-woven-login-artwork/`. Historical WEA-10 artifacts remain untouched on this branch.
+Three production artwork files (42/118/47 lines), two shell integration edits, two assets, targeted tests and design documentation. No global store, per-frame JavaScript, storage write, WebGL/Three runtime or generic animation abstraction. Artifacts live in `specs/003-woven-login-artwork/`. Historical WEA-10 artifacts remain untouched on this branch.
 
 ## Publication fixture correction
 
@@ -47,3 +47,7 @@ No new domain model, service, API, credentials or dependency installation is nee
 The 2026-10-09 approval authorizes promoting the reviewed 178318-byte clip byte-for-byte to `public/brand/woven/intro.v2.mp4`. Update the existing public media-selection assertion first, record its failure against v1, then switch the hook's source. Preserve `still.v1.webp`, immutable v1 media, lifecycle, component and CSS. Package reproducible v2 authoring modules and licenses in `docs/design/woven-design-source.v2.zip`; exclude regenerated frame sequences and sampled Blender files. Document geometry inspection honestly; Blender is not an application runtime or the video renderer. Run required repository/database checks and update existing PR #10 into develop under the verified personal identity. T009 remains a disclosed browser/device release gate.
 
 For the S04 classic-scrollbar regression, add one authentication-scoped root rule (`html:has(.auth-shell)`) using `scrollbar-gutter: stable`. Reserve layout space without adding JavaScript, duplicating responsive grid ratios or changing the form. Record actual browser bounds before/after, then rerun required checks.
+
+## PR review remediation
+
+Run independent Matt Pocock Standards and Spec reviews against fixed head `0bf8076` and merge-base `f041c95`. S09: audit all PR-authored code including source archives; retire superseded source archives from the current tree with immutable Git links, keep one separately versioned current source archive, and consolidate timing metadata without changing sampled geometry or deployed media. Enforce the 500-line boundary in shared JS/TS lint rules and retain an explicit CSS/archive audit. S10: merge current develop `810974c` through normal history, use its pinned pnpm environment, restore exact PR traceability fields and run actual policy validation plus final required checks. Do not invent new animation abstractions or change authentication contracts.

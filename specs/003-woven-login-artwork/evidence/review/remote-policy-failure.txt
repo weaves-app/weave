@@ -1,0 +1,5 @@
+Run 37917322132 / policy job 113776778338 / reviewed head0bf8076
+2026-10-09T10:25:02.2233405Z ##[group]Run pnpm run test:policy
+2026-10-09T10:25:02.2233779Z pnpm run test:policy
+2026-10-09T10:25:02.2393218Z /home/runner/work/_temp/1bca07d2-58a7-4782-8ac7-be9a39a59cab.sh: line 1: pnpm: command not found
+2026-10-09T10:25:02.2407795Z ##[error]Process completed with exit code 127.

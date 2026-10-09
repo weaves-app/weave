@@ -89,6 +89,7 @@ export function useArtworkIntro(animate: boolean): ArtworkIntro {
 
     if (eligible()) {
       timeout = setTimeout(finish, READINESS_TIMEOUT_MS);
+      video.preload = 'auto';
       video.src = INTRO_SOURCE;
       video.load();
     } else {
