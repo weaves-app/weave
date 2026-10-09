@@ -4,7 +4,7 @@
   "baseCommit": "f041c95",
   "scenariosConfirmed": true,
   "confirmation": "User approved the final woven composition, one-second all-sides entrance and integration approach, then said go ahead before the original source changes. On 2026-10-09 the user requested a separate ticket, branch, push and PR into develop. This records existing approval before transferring source into WEA-24, not a claim that original implementation followed ticket creation.",
-  "scenarioIds": ["S01", "S02", "S03", "S04"],
+  "scenarioIds": ["S01", "S02", "S03", "S04", "S05"],
   "publicTestSeams": [
     "AuthShell",
     "AuthView",
@@ -24,14 +24,16 @@
   "verification": {
     "targetedTests": "14/14",
     "webTests": "71/71",
-    "repositoryVerify": "passed",
+    "repositoryVerify": "passed again after test fixture correction; evidence/final-verify.txt",
     "databaseIntegration": "3/3",
     "remoteCi": "pending publication",
-    "browserMatrix": "partial; T009"
+    "browserMatrix": "partial; T009",
+    "gitFixtureWithInheritedContext": "2/2; parent personal identity preserved"
   },
   "convergence": {
     "outcome": "tasks_appended",
     "remainingTaskIds": ["T009"],
     "report": "convergence.md"
-  }
+  },
+  "deliveryRegression": "S05 records the existing mandatory S21 policy checks, which failed under the normal pre-push hook. The user-authorized publication requires fixing fixture isolation, not changing identity policy or bypassing hooks. RED preserved before fixture correction; no new product behavior."
 }

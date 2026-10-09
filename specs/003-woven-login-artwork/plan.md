@@ -31,3 +31,7 @@ All ten principles reviewed: prior approval retained; actual RED/GREEN chronolog
 ## Structure and Complexity
 
 Three production artwork files (42/117/47 lines), two shell integration edits, two assets, targeted tests and design documentation. No global store, per-frame JavaScript, storage write, WebGL/Three runtime or generic animation abstraction. Artifacts live in `specs/003-woven-login-artwork/`. Historical WEA-10 artifacts remain untouched on this branch.
+
+## Publication fixture correction
+
+The normal pre-push hook exposed two existing S21 failures in `tests/policy/git-config.test.mjs`: inherited Git repository environment variables redirected temporary-repository operations into the caller. Preserve the failing push output as S05 RED. Clear only the variables enumerated by `git rev-parse --local-env-vars` in that test file's isolated Node process before fixtures run. Keep production Git identity policy and hooks unchanged. Re-run with an inherited GIT_DIR, assert the caller's personal settings remain intact, then rerun required checks and normal push.

@@ -30,6 +30,10 @@ As a visitor, I can use authentication controls even when motion is unsuitable o
 
 Readiness has a 500 ms budget; playback has a 1250 ms watchdog around its one-second duration. Backgrounding, changed preferences, narrow viewports, unsupported media, rejected autoplay and late events all settle without replay. Narrow-screen hero visibility follows the existing design. No new account, permission, persistence, duplicate-submission or business concurrency behavior is introduced.
 
+## Delivery regression discovered during publication
+
+- **S05 (existing policy gate)**: Given the required pre-push hook supplies Git repository environment variables, when policy tests create temporary repositories or inspect a non-repository directory, then those operations use the temporary locations, distinguish missing keys from Git errors and leave the real repository configuration unchanged. This is fixture isolation for the existing S21 checks, required to publish through normal hooks; it adds no product behavior. The user’s publish request authorizes completing the existing gates without bypassing them.
+
 ## Requirements
 
 - **FR-001**: Replace the shared authentication bag with the approved woven composition; preserve the existing palette, typography, form and caption.

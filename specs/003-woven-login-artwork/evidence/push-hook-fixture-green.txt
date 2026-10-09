@@ -1,0 +1,10 @@
+✔ S21 dependency adoption permits the default personal CLI profile when the optional key is absent (276.618208ms)
+✔ S21 local config distinguishes absent keys, explicit profiles and Git errors (30.634709ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 351.862083

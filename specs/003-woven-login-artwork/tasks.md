@@ -27,3 +27,8 @@ T001–T002 precede tests; T003 precedes T004; T004 precedes T005–T007; T008 f
 ## Phase 4: Convergence
 
 - [ ] T009 Complete browser visual verification for S01/S03/S04 and plan: browser evidence (partial, MEDIUM): Safari/Firefox codec, color and handoff; real mobile/reduced-motion/no-JavaScript rendering; throttled-media behavior. Record actual observations before marking the PR ready. DOM lifecycle tests and the historical Chromium inspection do not replace this matrix.
+
+## Phase 5: Publication gate correction
+
+- [x] T010 Record S05 and the existing policy test failures from the normal push hook in `evidence/push-hook-red.txt`; identify inherited Git environment as the cause before changing the fixture.
+- [x] T011 Isolate temporary-repository setup in `tests/policy/git-config.test.mjs`; rerun under inherited Git context, verify parent identity unchanged, and rerun required publication checks without bypassing hooks.

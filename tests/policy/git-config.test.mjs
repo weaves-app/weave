@@ -1,11 +1,18 @@
 import {localConfig} from '../../scripts/git-config.mjs';
 
 import assert from 'node:assert/strict';
-import {test} from 'node:test';
+import {before, test} from 'node:test';
 import {execFileSync, spawnSync} from 'node:child_process';
 import {mkdtempSync, writeFileSync, chmodSync, rmSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import path from 'node:path';
+
+before(() => {
+  // Hooks export repository paths; fixtures must not read or mutate the caller's repository.
+  const variables = execFileSync('git', ['rev-parse', '--local-env-vars'], {encoding: 'utf8'});
+
+  for (const name of variables.trim().split('\n')) delete process.env[name];
+});
 
 test('S21 dependency adoption permits the default personal CLI profile when the optional key is absent', () => {
   const directory = mkdtempSync(path.join(tmpdir(), 'weave-config-'));
