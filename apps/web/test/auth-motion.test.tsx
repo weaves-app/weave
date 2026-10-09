@@ -27,11 +27,13 @@ void test('WEA-24 S04 (preserves WEA-10 S18) shared artwork remains static after
       <h2>Choose your organization</h2>
     </AuthShell>,
   );
-  const image = view.container.querySelector('img') ?? assert.fail();
+  const image =
+    view.container.querySelector<HTMLImageElement>('img[src="/brand/woven/still.v1.webp"]') ??
+    assert.fail();
 
   assert.match(image.src, /still\.v1\.webp/);
 
-  const stage = image.parentElement ?? assert.fail();
+  const stage = image.closest<HTMLElement>('[data-phase]') ?? assert.fail();
 
   fireEvent.load(image);
   assert.equal(stage.classList.contains('auth-bag-enter'), false);

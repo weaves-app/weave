@@ -217,18 +217,10 @@ export function AuthView(props: AuthViewProps): React.JSX.Element {
 
 function AuthContent(props: AuthViewProps): React.JSX.Element {
   if (!props.loaded || props.sdkLoaded === false)
-    return (
-      <>
-        <p role="status">Loading authentication…</p>
-      </>
-    );
+    return <p role="status">Loading authentication…</p>;
 
   if (props.pendingTask === 'choose-organization' || (props.signedIn && !props.pendingTask))
-    return (
-      <>
-        <p role="status">Opening your organizations…</p>
-      </>
-    );
+    return <p role="status">Opening your organizations…</p>;
 
   if (props.pendingTask)
     return (

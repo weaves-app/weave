@@ -1,0 +1,32 @@
+✔ WEA-24 S11 server markup limits the full still preload to the visible hero (303.664083ms)
+✔ WEA-24 S11 hidden mobile hero selects an embedded image without a network fallback (88.904417ms)
+A component suspended inside an `act` scope, but the `act` call was not awaited. When testing React components that depend on asynchronous data, you must await the result:
+
+await act(() => ...)
+✔ WEA-24 S01 plays once, leaves the form usable, and settles on the woven still (777.077291ms)
+✔ WEA-24 S01 requests buffering before waiting for media readiness (93.723458ms)
+✔ WEA-24 S01 StrictMode cleanup preserves one subsequent playback attempt (61.594958ms)
+✔ WEA-24 S03 shared shells and signup never request the intro (128.445042ms)
+✔ WEA-24 S02 unavailable matchMedia reveals the still without requesting video (18.625375ms)
+✔ WEA-24 S03 reduced initial mount never requests or later starts media (16.697208ms)
+✔ WEA-24 S03 mobile initial mount never requests or later starts media (37.952584ms)
+✔ WEA-24 S03 hidden initial mount never requests or later starts media (16.917333ms)
+✔ WEA-24 S02 readiness expires without a late animation flash (15.802917ms)
+✔ WEA-24 S02 rejected autoplay and media errors reveal a terminal still (96.124708ms)
+✔ WEA-24 S02/S03 reduced during playback stops permanently (70.991417ms)
+✔ WEA-24 S02/S03 mobile during playback stops permanently (26.405291ms)
+✔ WEA-24 S02/S03 hidden during playback stops permanently (17.304792ms)
+✔ WEA-24 S02/S03 stalled during playback stops permanently (186.249792ms)
+✔ WEA-24 S01 Clerk readiness and refreshed callbacks preserve the playing element (1603.804625ms)
+✔ WEA-24 S03 unmount releases playback and ignores late events (68.633666ms)
+✔ WEA-24 S11 ../src/app/globals.css follows the shared hero breakpoint (31.642958ms)
+✔ WEA-24 S11 ../src/features/auth/presentation/artwork/auth-artwork.module.css follows the shared hero breakpoint (1.085667ms)
+✔ WEA-24 S04 (preserves WEA-10 S18) shared artwork remains static after image readiness and pointer movement (407.934375ms)
+ℹ tests 21
+ℹ suites 0
+ℹ pass 21
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 21270.950333

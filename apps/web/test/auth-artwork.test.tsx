@@ -75,7 +75,9 @@ void test('WEA-24 S01 plays once, leaves the form usable, and settles on the wov
   const play = mock.method(window.HTMLMediaElement.prototype, 'play', async () => {});
   const view = shell();
   const video = media(view);
-  const still = view.container.querySelector('img');
+  const still = view.container.querySelector<HTMLImageElement>(
+    'img[src="/brand/woven/still.v1.webp"]',
+  );
 
   assert.match(video.src, /intro\.v2\.mp4$/);
   assert.ok(still);
@@ -155,6 +157,21 @@ void test('WEA-24 S03 shared shells and signup never request the intro', () => {
   );
 
   assert.equal(signup.container.querySelector('video[src]'), null);
+});
+
+void test('WEA-24 S02 unavailable matchMedia reveals the still without requesting video', () => {
+  Object.defineProperty(window, 'matchMedia', {configurable: true, value: undefined});
+
+  const play = mock.method(window.HTMLMediaElement.prototype, 'play', async () => {});
+  const view = shell();
+  const video = media(view);
+
+  assert.equal(video.hasAttribute('src'), false);
+  assert.equal(video.hidden, true);
+  assert.equal(video.closest('[data-phase]')?.getAttribute('data-phase'), 'still');
+  fireEvent.canPlay(video);
+  fireEvent.playing(video);
+  assert.equal(play.mock.callCount(), 0);
 });
 
 for (const condition of ['reduced', 'mobile', 'hidden'] as const) {
