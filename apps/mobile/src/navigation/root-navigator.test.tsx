@@ -1,3 +1,5 @@
+import {ROUTE_NAME} from './routes';
+
 import {act, render, screen, waitFor} from '@testing-library/react-native';
 import {createNavigationContainerRef} from '@react-navigation/native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
@@ -8,6 +10,8 @@ import {active, deferred, TestClock, TestGateway} from '../auth/testing/fakes';
 import type {SessionSnapshot} from '../auth/domain/auth-models';
 import {RootNavigator} from './root-navigator';
 import type {RootParams} from './root-navigator';
+
+import {SESSION_STATUS} from '../auth/domain/auth-models';
 
 const metrics = {
   frame: {x: 0, y: 0, width: 390, height: 844},
@@ -38,7 +42,7 @@ test('S01/S06 signed-out stack has only Login and rejects direct Home navigation
   const warning = jest.spyOn(console, 'error').mockImplementation(() => undefined);
 
   try {
-    act(() => navigationRef.navigate('Home'));
+    act(() => navigationRef.navigate(ROUTE_NAME.HOME));
     expect(navigationRef.getCurrentRoute()?.name).toBe('Login');
   } finally {
     warning.mockRestore();
@@ -66,7 +70,7 @@ test('S02/S07 session changes replace route history and revocation removes Home'
   expect(navigationRef.canGoBack()).toBe(false);
   act(() =>
     gateway.emit({
-      status: 'signedOut',
+      status: SESSION_STATUS.SIGNED_OUT,
       generation: controller.getSnapshot().session.generation,
       revision: 2,
     }),
@@ -80,7 +84,7 @@ test('S04 unavailable validation exposes retry outside routes', async () => {
   const gateway = new TestGateway();
 
   gateway.resolveResult = async (input) => ({
-    status: 'unavailable',
+    status: SESSION_STATUS.UNAVAILABLE,
     generation: input.generation,
     revision: 1,
     error: {code: 'network', messageKey: 'network'},
@@ -122,7 +126,7 @@ test('S09 logout removes Home history and fresh reopen remains signed out', asyn
   expect(navigationRef.canGoBack()).toBe(false);
   expect(screen.queryByText('Home')).toBeNull();
   gateway.resolveResult = async (input) => ({
-    status: 'signedOut',
+    status: SESSION_STATUS.SIGNED_OUT,
     generation: input.generation,
     revision: 1,
   });

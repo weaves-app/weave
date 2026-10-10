@@ -5,6 +5,8 @@ import path from 'node:path';
 import vm from 'node:vm';
 import babel from '@babel/core';
 
+export const UNCAUGHT_ERROR_HANDLER = 'onUncaughtError';
+
 const require = createRequire(import.meta.url);
 
 const renderer = path.join(
@@ -61,7 +63,7 @@ for (const name of ['onCaughtError', 'onUncaughtError', 'onRecoverableError']) {
   assert.ok(!captured[0].error.stack, 'Renderer diagnostics must remove error stacks');
   assert.equal(
     captured[0].fatal,
-    name === 'onUncaughtError',
+    name === UNCAUGHT_ERROR_HANDLER,
     'Preserve fatality without logging sensitive details',
   );
 }

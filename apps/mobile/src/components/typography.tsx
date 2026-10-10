@@ -3,15 +3,30 @@ import {StyleSheet, Text} from 'react-native';
 
 import {tokens} from '@weave/design-tokens';
 
+import {ACCESSIBILITY_ROLE} from './native-options';
+
+export const VARIANT = {
+  TITLE: 'title',
+  BODY: 'body',
+  HEADING: 'heading',
+  SUPPORTING: 'supporting',
+  LABEL: 'label',
+  CAPTION: 'caption',
+} as const;
+
 export interface TypographyProps {
   readonly children: ReactNode;
-  readonly variant?: 'title' | 'body' | 'heading' | 'supporting' | 'label' | 'caption';
+  readonly variant?: (typeof VARIANT)[keyof typeof VARIANT];
 }
 
-export function Typography({children, variant = 'body'}: TypographyProps): React.JSX.Element {
+export function Typography({children, variant = VARIANT.BODY}: TypographyProps): React.JSX.Element {
   return (
     <Text
-      accessibilityRole={variant === 'title' || variant === 'heading' ? 'header' : undefined}
+      accessibilityRole={
+        variant === VARIANT.TITLE || variant === VARIANT.HEADING
+          ? ACCESSIBILITY_ROLE.HEADER
+          : undefined
+      }
       style={styles[variant]}
     >
       {children}

@@ -3,15 +3,16 @@ import {initialWindowMetrics, SafeAreaProvider, SafeAreaView} from 'react-native
 
 import {tokens} from '@weave/design-tokens';
 
+import {DIMENSION, FLEX_ALIGNMENT} from '../components/native-options';
 import {Button} from '../components/button';
 import {Feedback} from '../components/feedback';
-import {Typography} from '../components/typography';
+import {Typography, VARIANT} from '../components/typography';
 
 export interface RecoveryScreenProps {
   readonly onReload: () => void;
 }
 
-const windowDimensions = Dimensions.get('window');
+const windowDimensions = Dimensions.get(DIMENSION.WINDOW);
 
 const initialMetrics = initialWindowMetrics ?? {
   frame: {x: 0, y: 0, width: windowDimensions.width, height: windowDimensions.height},
@@ -23,7 +24,7 @@ export function RecoveryScreen({onReload}: RecoveryScreenProps): React.JSX.Eleme
     <SafeAreaProvider initialMetrics={initialMetrics}>
       <SafeAreaView style={styles.safe}>
         <ScrollView contentContainerStyle={styles.content}>
-          <Typography variant="title">Something went wrong</Typography>
+          <Typography variant={VARIANT.TITLE}>Something went wrong</Typography>
           <Feedback message="The app could not display this screen. Reload to try again." />
           <Button label="Reload" onPress={onReload} />
         </ScrollView>
@@ -38,6 +39,6 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     padding: tokens.spacing.large,
     gap: tokens.spacing.medium,
-    justifyContent: 'center',
+    justifyContent: FLEX_ALIGNMENT.CENTER,
   },
 });

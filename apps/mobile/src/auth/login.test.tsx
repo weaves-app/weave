@@ -8,6 +8,14 @@ import {createAuthController} from './application/auth-controller';
 import {active, deferred, TestClock, TestGateway} from './testing/fakes';
 import type {AuthResult} from './domain/auth-models';
 
+import {CODE_PURPOSE} from './domain/auth-models';
+
+export const UNSPECIFIED_MINIMUM_HEIGHT = 0;
+
+export const VERIFY_CODE_COMMAND = 'verifyCode';
+
+export const REQUEST_CODE_COMMAND = 'requestCode';
+
 function setup(gateway = new TestGateway()) {
   const controller = createAuthController(gateway, new TestClock());
 
@@ -61,15 +69,20 @@ test.each(['signIn', 'deviceTrust'] as const)(
     await waitFor(() => expect(gateway.requests).toHaveLength(1));
     fireEvent.changeText(screen.getByLabelText('Email'), 'person@example.com');
 
-    if (codePurpose === 'signIn') fireEvent.press(screen.getByRole('button', {name: 'Email code'}));
+    if (codePurpose === CODE_PURPOSE.SIGN_IN)
+      fireEvent.press(screen.getByRole('button', {name: 'Email code'}));
     else fireEvent.changeText(screen.getByLabelText('Password'), 'password');
 
     fireEvent.press(
-      screen.getByRole('button', {name: codePurpose === 'signIn' ? 'Send code' : 'Log in'}),
+      screen.getByRole('button', {
+        name: codePurpose === CODE_PURPOSE.SIGN_IN ? 'Send code' : 'Log in',
+      }),
     );
     await waitFor(() => expect(screen.getByLabelText('Verification code')).toBeTruthy());
     expect(
-      screen.getByText(codePurpose === 'deviceTrust' ? 'Verify this device' : 'Check your email'),
+      screen.getByText(
+        codePurpose === CODE_PURPOSE.DEVICE_TRUST ? 'Verify this device' : 'Check your email',
+      ),
     ).toBeTruthy();
     fireEvent.press(screen.getByRole('button', {name: 'Resend code'}));
     await waitFor(() => expect(gateway.requests.at(-1)?.method).toBe('resendCode'));
@@ -195,11 +208,14 @@ test.each(['signIn', 'deviceTrust'] as const)(
     await waitFor(() => expect(screen.getByLabelText('Email')).toBeTruthy());
     fireEvent.changeText(screen.getByLabelText('Email'), 'person@example.com');
 
-    if (codePurpose === 'signIn') fireEvent.press(screen.getByRole('button', {name: 'Email code'}));
+    if (codePurpose === CODE_PURPOSE.SIGN_IN)
+      fireEvent.press(screen.getByRole('button', {name: 'Email code'}));
     else fireEvent.changeText(screen.getByLabelText('Password'), 'password');
 
     fireEvent.press(
-      screen.getByRole('button', {name: codePurpose === 'signIn' ? 'Send code' : 'Log in'}),
+      screen.getByRole('button', {
+        name: codePurpose === CODE_PURPOSE.SIGN_IN ? 'Send code' : 'Log in',
+      }),
     );
     await waitFor(() => expect(screen.getByLabelText('Verification code')).toBeTruthy());
 
@@ -207,10 +223,14 @@ test.each(['signIn', 'deviceTrust'] as const)(
 
     gateway.loginResult = () => result.promise;
     fireEvent.changeText(screen.getByLabelText('Verification code'), '12345');
-    expect(gateway.requests.filter((request) => request.method === 'verifyCode')).toHaveLength(0);
+    expect(
+      gateway.requests.filter((request) => request.method === VERIFY_CODE_COMMAND),
+    ).toHaveLength(0);
     fireEvent.changeText(screen.getByLabelText('Verification code'), '12 34-56');
     await waitFor(() =>
-      expect(gateway.requests.filter((request) => request.method === 'verifyCode')).toHaveLength(1),
+      expect(
+        gateway.requests.filter((request) => request.method === VERIFY_CODE_COMMAND),
+      ).toHaveLength(1),
     );
     expect(gateway.requests.at(-1)?.input).toMatchObject({
       attemptId: 'auto-attempt',
@@ -220,7 +240,9 @@ test.each(['signIn', 'deviceTrust'] as const)(
     expect(screen.getByLabelText('Verification code')).toBeDisabled();
     expect(screen.getByText('Verifying code…')).toBeTruthy();
     fireEvent.changeText(screen.getByLabelText('Verification code'), '654321');
-    expect(gateway.requests.filter((request) => request.method === 'verifyCode')).toHaveLength(1);
+    expect(
+      gateway.requests.filter((request) => request.method === VERIFY_CODE_COMMAND),
+    ).toHaveLength(1);
     await act(async () =>
       result.resolve({kind: 'error', code: 'codeInvalid', messageKey: 'codeInvalid'}),
     );
@@ -232,7 +254,9 @@ test.each(['signIn', 'deviceTrust'] as const)(
     gateway.loginResult = () => retry.promise;
     fireEvent.changeText(screen.getByLabelText('Verification code'), '654321');
     await waitFor(() =>
-      expect(gateway.requests.filter((request) => request.method === 'verifyCode')).toHaveLength(2),
+      expect(
+        gateway.requests.filter((request) => request.method === VERIFY_CODE_COMMAND),
+      ).toHaveLength(2),
     );
     expect(gateway.requests.at(-1)?.input).toMatchObject({code: '654321'});
     await act(async () =>
@@ -254,7 +278,8 @@ test('S15 clearing login feedback retains the measured scroll extent on method c
   expect(screen.queryByRole('alert')).toBeNull();
   fireEvent(scroll, 'contentSizeChange', 400, 1200);
   expect(
-    StyleSheet.flatten(scroll.props.contentContainerStyle as StyleProp<ViewStyle>).minHeight ?? 0,
+    StyleSheet.flatten(scroll.props.contentContainerStyle as StyleProp<ViewStyle>).minHeight ??
+      UNSPECIFIED_MINIMUM_HEIGHT,
   ).toBeGreaterThanOrEqual(1800);
 });
 
@@ -275,11 +300,14 @@ test.each(['signIn', 'deviceTrust'] as const)(
     expect(screen.queryByRole('button', {name: 'Choose another method'})).toBeNull();
     fireEvent.changeText(screen.getByLabelText('Email'), 'person@example.com');
 
-    if (codePurpose === 'signIn') fireEvent.press(screen.getByRole('button', {name: 'Email code'}));
+    if (codePurpose === CODE_PURPOSE.SIGN_IN)
+      fireEvent.press(screen.getByRole('button', {name: 'Email code'}));
     else fireEvent.changeText(screen.getByLabelText('Password'), 'password');
 
     fireEvent.press(
-      screen.getByRole('button', {name: codePurpose === 'signIn' ? 'Send code' : 'Log in'}),
+      screen.getByRole('button', {
+        name: codePurpose === CODE_PURPOSE.SIGN_IN ? 'Send code' : 'Log in',
+      }),
     );
     await waitFor(() => expect(screen.getByLabelText('Verification code')).toBeTruthy());
     expect(scroll().queryByLabelText('Weave')).toBeNull();
@@ -315,11 +343,14 @@ test.each(['signIn', 'deviceTrust'] as const)(
 
     fireEvent.changeText(screen.getByLabelText('Email'), 'person@example.com');
 
-    if (codePurpose === 'signIn') fireEvent.press(screen.getByRole('button', {name: 'Email code'}));
+    if (codePurpose === CODE_PURPOSE.SIGN_IN)
+      fireEvent.press(screen.getByRole('button', {name: 'Email code'}));
     else fireEvent.changeText(screen.getByLabelText('Password'), 'password');
 
     fireEvent.press(
-      screen.getByRole('button', {name: codePurpose === 'signIn' ? 'Send code' : 'Log in'}),
+      screen.getByRole('button', {
+        name: codePurpose === CODE_PURPOSE.SIGN_IN ? 'Send code' : 'Log in',
+      }),
     );
     await waitFor(() => expect(screen.getByLabelText('Verification code')).toBeTruthy());
     expect(alignment()).toBe(loginAlignment);
@@ -363,7 +394,9 @@ test('S15 tablet rotation changes the composition without losing email or partia
     act(() => resize(874, 402));
     expect(screen.queryByText('Everything, woven together.')).toBeNull();
     expect(screen.getByLabelText('Verification code')).toHaveDisplayValue('123');
-    expect(gateway.requests.filter((request) => request.method === 'requestCode')).toHaveLength(1);
+    expect(
+      gateway.requests.filter((request) => request.method === REQUEST_CODE_COMMAND),
+    ).toHaveLength(1);
   } finally {
     act(() => Dimensions.set({window: original}));
   }

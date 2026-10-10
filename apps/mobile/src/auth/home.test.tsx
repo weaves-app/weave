@@ -6,6 +6,8 @@ import {HomeScreen} from './presentation/home-screen';
 import {createAuthController} from './application/auth-controller';
 import {active, TestClock, TestGateway} from './testing/fakes';
 
+export const SIGN_OUT_COMMAND = 'signOut';
+
 test('S09/S11 Home has one Logout action with accessible pending feedback and one request', async () => {
   const gateway = new TestGateway();
 
@@ -30,7 +32,7 @@ test('S09/S11 Home has one Logout action with accessible pending feedback and on
   expect(screen.getAllByRole('button')).toHaveLength(1);
   fireEvent.press(screen.getByRole('button', {name: 'Logout'}));
   fireEvent.press(screen.getByRole('button', {name: 'Logout'}));
-  expect(gateway.requests.filter((request) => request.method === 'signOut')).toHaveLength(1);
+  expect(gateway.requests.filter((request) => request.method === SIGN_OUT_COMMAND)).toHaveLength(1);
   expect(screen.getByRole('button', {name: 'Logout'})).toBeDisabled();
   expect(screen.getByRole('alert')).toHaveTextContent(/Signing out/);
   unmount();

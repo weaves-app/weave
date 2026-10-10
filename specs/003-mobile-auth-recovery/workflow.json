@@ -47,7 +47,10 @@
     "S17",
     "S18",
     "S19",
-    "S20"
+    "S20",
+    "S21",
+    "S22",
+    "S23"
   ],
   "publicTestSeams": [
     "AuthenticationGateway and Clock controller contracts",
@@ -583,5 +586,123 @@
     "status": "validated-for-draft-pr",
     "evidence": "evidence/publication/summary.txt",
     "remainingAcceptance": "Existing F1-F4, T048 and T054 remain open; required CI/code-owner review pending."
+  },
+  "comparisonConstantsFollowup": {
+    "task": "T055",
+    "date": "2026-10-09",
+    "confirmation": "Approve; then requested all comparisons and answered yes to strings and numbers across authored TypeScript/JavaScript",
+    "scope": "Exported constants for string/numeric comparison operands and switch cases across authored TS/JS. Allow null/undefined, booleans, typeof checks, and literal test expectations. Preserve mobile session status construction constants.",
+    "scenarios": [
+      "S21 exported comparison constants preserve behavior and pass lint",
+      "S22 inline strings/numbers and non-exported static comparison constants fail lint",
+      "S23 reversed/relational comparisons, static templates, negative numbers, switch cases, and root/app lint entrypoints; agreed language/test exceptions remain allowed"
+    ],
+    "publicTestSeams": [
+      "ESLint Linter through actual mobile and root configurations",
+      "Existing native gateway, auth controller and navigation tests"
+    ],
+    "status": "complete",
+    "verification": {
+      "ruleCases": 132,
+      "policyTests": 165,
+      "mobileTests": 94,
+      "webTests": 58,
+      "apiTests": 2,
+      "integrationTests": 3,
+      "repository": "pnpm run verify passed, including both Metro production bundles and API/web builds",
+      "database": "Isolated PostgreSQL18; corrected test-port startup error before successful rerun",
+      "simulators": "iPhone17Pro and iPadPro13M5 relaunched; latest Login screens visually verified"
+    },
+    "evidence": "evidence/comparison-constants",
+    "fallbackCorrection": {
+      "authorization": "Why is this state.error?.code ?? 'unexpected' ? a string",
+      "scope": "Extend approved constants policy to string/numeric fallbacks using ?? and ||; use AUTH_ERROR_CODE for authored mobile error values and derive its union/validation vocabulary.",
+      "scenarios": [
+        "S22 rejects literal and non-exported static fallback values",
+        "S23 permits exported fallback constants, runtime fallbacks and null/undefined/boolean values"
+      ],
+      "status": "complete",
+      "ruleTests": 172,
+      "policyTests": 205,
+      "verification": "Mobile/web/shared/scripts lint, workspace types and all tests pass. Fallback RED:20 expected failures, then172 rule cases GREEN.",
+      "evidence": "evidence/comparison-constants/fallback-green.txt"
+    },
+    "routeCorrection": {
+      "authorization": "Stack.Screen name=\"Home\" this ?; and this navigationKey=\"protected\"",
+      "scope": "Export route names and navigation keys; enforce navigation Screen/Group/Navigator identifier props. Preserve navigation behavior and readable UI/test expectations.",
+      "scenarios": [
+        "S21 exported route/key constants preserve signed-in/out navigation",
+        "S22 literal or non-exported static navigation identifiers fail lint",
+        "S23 JSX expression/template values are covered; ordinary UI/form props remain allowed"
+      ],
+      "publicTestSeams": [
+        "Actual mobile/root ESLint configurations",
+        "RootNavigator route/history integration tests"
+      ],
+      "status": "complete",
+      "verification": "14 expected lint RED failures; 198 rule and 231 policy tests pass. Mobile typecheck, 94 mobile tests, mobile/web/shared/root lint pass.",
+      "evidence": "evidence/comparison-constants/routes-green.txt"
+    },
+    "alignmentCorrection": {
+      "authorization": "START_ALIGNMENT refactor to ALIGMENT.START and ALIGNMENT.CENTER",
+      "scope": "Group BrandLogo alignment values in exported ALIGNMENT; derive prop type and use CENTER as default. Existing layout behavior preserved.",
+      "scenarioIds": ["S21"],
+      "status": "complete",
+      "verification": "Mobile typecheck, lint and all 94 mobile tests pass after rename."
+    },
+    "buttonVariantCorrection": {
+      "authorization": "Same for this export const PRIMARY_BUTTON_VARIANT = 'primary';",
+      "scope": "Group primary/outline/text in exported BUTTON_VARIANT; reuse in prop type, default, comparisons and caller props. Preserve behavior under S21.",
+      "status": "complete",
+      "verification": "Mobile typecheck, targeted lint and all94 mobile tests pass; evidence/comparison-constants/button-variant-tests.txt"
+    },
+    "typographyVariantCorrection": {
+      "authorization": "Change TITLE_VARIANT and HEADING_VARIANT to VARIANT.TITLE",
+      "scope": "Group typography variants in exported VARIANT; reuse in prop type, default, comparisons and caller props. Preserve S21 rendering/accessibility behavior.",
+      "status": "complete",
+      "verification": "Mobile lint, typecheck and all94 mobile tests pass; evidence/comparison-constants/typography-variant-tests.txt"
+    },
+    "keyboardTypeCorrection": {
+      "authorization": "readonly keyboardType?: 'email-address' | 'number-pad' | 'default';",
+      "scope": "Export shared KEYBOARD_TYPE; derive FormField keyboard type and reuse defaults/callers, preserving S21 input behavior.",
+      "status": "complete",
+      "verification": "Mobile lint, typecheck and94 mobile tests pass; evidence/comparison-constants/keyboard-type-tests.txt"
+    },
+    "mobileAudit": {
+      "authorization": "Do a complete check on mobile app and fix these issue",
+      "scope": "Audit all authored mobile TS/TSX runtime option values, including argument/assignment/return/default/JSX contexts, group vocabularies and derive unions. Preserve copy, structural keys, test expectations, formatting strings, style dimensions and required native codegen literal. Add typed finite-string-option lint in mobile and root entrypoints.",
+      "scenarios": [
+        "S21 grouped constants preserve auth/navigation/component behavior",
+        "S22 inline finite-string options fail lint in calls, objects, defaults, return values and JSX",
+        "S23 allow exported constant definitions, display text, structural keys, general strings and independent test fixtures; catch new vocabularies without a value list"
+      ],
+      "publicTestSeams": [
+        "Actual typed ESLint in mobile and root configurations",
+        "Existing auth controller/gateway/navigation/component suites"
+      ],
+      "status": "complete",
+      "verification": {
+        "typedRuleCases": 48,
+        "policyTests": 279,
+        "mobileTests": 94,
+        "webTests": 58,
+        "apiTests": 2,
+        "lint": "mobile and root scoped mobile/scripts/tests/shared config pass",
+        "typecheck": "mobile passes",
+        "bundles": "Android and iOS production Metro bundles pass; only environment color warnings",
+        "nativeBuilds": "not repeated; no native behavior changes",
+        "database": "not repeated; no database changes",
+        "workspace": "Full pnpm test passed after offline frozen dependency synchronization; all4 workspace tasks uncached. Fresh mobile typecheck and app/root lint passed afterward."
+      },
+      "evidence": "evidence/comparison-constants/mobile-audit.md"
+    },
+    "publication": {
+      "date": "2026-10-10",
+      "authorization": "push changes",
+      "verification": "pnpm run verify passed;279 policy,94 mobile,58 web,2 API tests;production builds pass.3/3 database integration tests pass on isolated PostgreSQL18.",
+      "evidence": "evidence/comparison-constants/publish-verify.txt",
+      "branch": "feat/WEA-10/mobile-auth-recovery",
+      "pullRequest": "https://github.com/weaves-app/weave/pull/11"
+    }
   }
 }

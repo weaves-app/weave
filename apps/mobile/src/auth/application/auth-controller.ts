@@ -8,6 +8,19 @@ import type {
   SafeAuthError,
 } from '../domain/auth-models';
 
+import {
+  AUTH_ERROR_CODE,
+  SESSION_STATUS,
+  LOGIN_STAGE,
+  AUTH_METHOD,
+  AUTH_RESULT_KIND,
+} from '../domain/auth-models';
+
+export const AUTH_TIMEOUT_MS = {
+  STANDARD: 30_000,
+  GOOGLE: 120_000,
+} as const;
+
 export interface AuthController {
   getSnapshot(): AuthViewState;
   subscribe(listener: () => void): () => void;
@@ -24,8 +37,8 @@ export interface AuthController {
 
 export function createAuthController(gateway: AuthenticationGateway, clock: Clock): AuthController {
   let state: AuthViewState = {
-    session: {status: 'resolving', generation: 0, revision: 0},
-    attempt: {method: 'password', stage: 'idle'},
+    session: {status: SESSION_STATUS.RESOLVING, generation: 0, revision: 0},
+    attempt: {method: AUTH_METHOD.PASSWORD, stage: LOGIN_STAGE.IDLE},
     pending: false,
   };
   const listeners = new Set<() => void>();
@@ -48,7 +61,7 @@ export function createAuthController(gateway: AuthenticationGateway, clock: Cloc
   function accept(snapshot: SessionSnapshot, fromCommand = false): void {
     if (
       fromCommand &&
-      snapshot.status === 'unavailable' &&
+      snapshot.status === SESSION_STATUS.UNAVAILABLE &&
       context?.generation === snapshot.generation
     ) {
       publish({
@@ -65,7 +78,7 @@ export function createAuthController(gateway: AuthenticationGateway, clock: Cloc
       snapshot.generation !== context.generation ||
       snapshot.revision < state.session.revision ||
       (snapshot.revision === state.session.revision &&
-        state.session.status !== 'resolving' &&
+        state.session.status !== SESSION_STATUS.RESOLVING &&
         !fromCommand)
     )
       return;
@@ -89,7 +102,7 @@ export function createAuthController(gateway: AuthenticationGateway, clock: Cloc
       return;
     }
 
-    const preserveChallenge = !state.pending && state.attempt.stage === 'awaitingCode';
+    const preserveChallenge = !state.pending && state.attempt.stage === LOGIN_STAGE.AWAITING_CODE;
 
     if (!preserveChallenge) abandon();
 
@@ -101,8 +114,10 @@ export function createAuthController(gateway: AuthenticationGateway, clock: Cloc
     context = operation;
     publish({
       ...state,
-      session: {status: 'resolving', generation: operation.generation, revision: 0},
-      attempt: preserveChallenge ? state.attempt : {method: state.attempt.method, stage: 'idle'},
+      session: {status: SESSION_STATUS.RESOLVING, generation: operation.generation, revision: 0},
+      attempt: preserveChallenge
+        ? state.attempt
+        : {method: state.attempt.method, stage: LOGIN_STAGE.IDLE},
       pending: false,
       error: undefined,
     });
@@ -128,20 +143,20 @@ export function createAuthController(gateway: AuthenticationGateway, clock: Cloc
       cancelDeadline = clock.schedule(() => {
         void gateway.abandon(operation).catch(() => undefined);
         finish({
-          status: 'unavailable',
+          status: SESSION_STATUS.UNAVAILABLE,
           generation: operation.generation,
           revision: 0,
-          error: {code: 'timeout', messageKey: 'timeout'},
+          error: {code: AUTH_ERROR_CODE.TIMEOUT, messageKey: AUTH_ERROR_CODE.TIMEOUT},
         });
 
         if (context === operation) context = undefined;
-      }, 30_000);
+      }, AUTH_TIMEOUT_MS.STANDARD);
       void gateway.resolveSession(operation).then(finish, () =>
         finish({
-          status: 'unavailable',
+          status: SESSION_STATUS.UNAVAILABLE,
           generation: operation.generation,
           revision: 0,
-          error: {code: 'unexpected', messageKey: 'unexpected'},
+          error: {code: AUTH_ERROR_CODE.UNEXPECTED, messageKey: AUTH_ERROR_CODE.UNEXPECTED},
         }),
       );
     });
@@ -154,7 +169,7 @@ export function createAuthController(gateway: AuthenticationGateway, clock: Cloc
     stage: AuthViewState['attempt']['stage'],
     invoke: (operation: OperationContext) => Promise<AuthResult>,
   ): Promise<void> {
-    if (disposed || state.pending || state.session.status !== 'signedOut') return;
+    if (disposed || state.pending || state.session.status !== SESSION_STATUS.SIGNED_OUT) return;
 
     const operation: OperationContext = {
       generation: clock.nextGeneration(),
@@ -164,7 +179,7 @@ export function createAuthController(gateway: AuthenticationGateway, clock: Cloc
     context = operation;
     publish({
       ...state,
-      session: {status: 'signedOut', generation: operation.generation, revision: 0},
+      session: {status: SESSION_STATUS.SIGNED_OUT, generation: operation.generation, revision: 0},
       attempt: {...state.attempt, method, stage},
       pending: true,
       error: undefined,
@@ -174,7 +189,8 @@ export function createAuthController(gateway: AuthenticationGateway, clock: Cloc
 
       let cancelTimer: () => void = () => undefined;
 
-      let remaining = method === 'google' ? 120_000 : 30_000;
+      let remaining: number =
+        method === AUTH_METHOD.GOOGLE ? AUTH_TIMEOUT_MS.GOOGLE : AUTH_TIMEOUT_MS.STANDARD;
       let timerStarted = clock.now();
 
       const finish = (result?: AuthResult): void => {
@@ -186,13 +202,13 @@ export function createAuthController(gateway: AuthenticationGateway, clock: Cloc
         resumeDeadline = undefined;
 
         if (context === operation && !disposed && result) {
-          if ('kind' in result && result.kind === 'challenge') {
+          if ('kind' in result && result.kind === AUTH_RESULT_KIND.CHALLENGE) {
             publish({
               ...state,
               pending: false,
               attempt: {
                 method,
-                stage: 'awaitingCode',
+                stage: LOGIN_STAGE.AWAITING_CODE,
                 attemptId: result.attemptId,
                 codePurpose: result.codePurpose,
                 retryAfterSeconds: result.retryAfterSeconds,
@@ -205,8 +221,8 @@ export function createAuthController(gateway: AuthenticationGateway, clock: Cloc
               pending: false,
               attempt: {
                 ...state.attempt,
-                method: method === 'google' ? 'password' : method,
-                stage: state.attempt.attemptId ? 'awaitingCode' : 'failed',
+                method: method === AUTH_METHOD.GOOGLE ? AUTH_METHOD.PASSWORD : method,
+                stage: state.attempt.attemptId ? LOGIN_STAGE.AWAITING_CODE : LOGIN_STAGE.FAILED,
               },
               error: {
                 code: result.code,
@@ -216,7 +232,7 @@ export function createAuthController(gateway: AuthenticationGateway, clock: Cloc
             });
           } else {
             accept(result, true);
-            publish({...state, pending: false, attempt: {method, stage: 'idle'}});
+            publish({...state, pending: false, attempt: {method, stage: LOGIN_STAGE.IDLE}});
           }
         }
 
@@ -228,9 +244,10 @@ export function createAuthController(gateway: AuthenticationGateway, clock: Cloc
       const timeout = (): void => {
         void gateway.abandon(operation).catch(() => undefined);
 
-        if (context === operation) publish({...state, attempt: {method, stage: 'failed'}});
+        if (context === operation)
+          publish({...state, attempt: {method, stage: LOGIN_STAGE.FAILED}});
 
-        finish({kind: 'error', ...safeError('timeout')});
+        finish({kind: AUTH_RESULT_KIND.ERROR, ...safeError(AUTH_ERROR_CODE.TIMEOUT)});
 
         if (context === operation) context = undefined;
       };
@@ -240,7 +257,7 @@ export function createAuthController(gateway: AuthenticationGateway, clock: Cloc
         cancelTimer = clock.schedule(timeout, remaining);
       };
 
-      if (method === 'google') {
+      if (method === AUTH_METHOD.GOOGLE) {
         pauseDeadline = () => {
           cancelTimer();
           remaining = Math.max(0, remaining - (clock.now() - timerStarted));
@@ -250,16 +267,21 @@ export function createAuthController(gateway: AuthenticationGateway, clock: Cloc
 
       cancelOperation = () => finish();
 
-      if (method !== 'google' || foreground) resume();
+      if (method !== AUTH_METHOD.GOOGLE || foreground) resume();
 
       void invoke(operation).then(finish, () =>
-        finish({kind: 'error', ...safeError('unexpected')}),
+        finish({kind: AUTH_RESULT_KIND.ERROR, ...safeError(AUTH_ERROR_CODE.UNEXPECTED)}),
       );
     });
   }
 
   async function logout(): Promise<void> {
-    if (disposed || state.pending || state.session.status !== 'active' || !state.session.sessionId)
+    if (
+      disposed ||
+      state.pending ||
+      state.session.status !== SESSION_STATUS.ACTIVE ||
+      !state.session.sessionId
+    )
       return;
 
     const sessionId = state.session.sessionId;
@@ -288,7 +310,11 @@ export function createAuthController(gateway: AuthenticationGateway, clock: Cloc
 
         if (snapshot && context === operation && !disposed) {
           accept(snapshot, true);
-          publish({...state, pending: false, attempt: {method: 'password', stage: 'idle'}});
+          publish({
+            ...state,
+            pending: false,
+            attempt: {method: AUTH_METHOD.PASSWORD, stage: LOGIN_STAGE.IDLE},
+          });
         }
 
         if (context === operation) cancelOperation = undefined;
@@ -300,33 +326,33 @@ export function createAuthController(gateway: AuthenticationGateway, clock: Cloc
       cancelTimer = clock.schedule(() => {
         void gateway.abandon(operation).catch(() => undefined);
         finish({
-          status: 'unavailable',
+          status: SESSION_STATUS.UNAVAILABLE,
           generation: operation.generation,
           revision: state.session.revision + 1,
-          error: safeError('timeout'),
+          error: safeError(AUTH_ERROR_CODE.TIMEOUT),
         });
 
         if (context === operation) context = undefined;
-      }, 30_000);
+      }, AUTH_TIMEOUT_MS.STANDARD);
       void gateway.signOut({...operation, sessionId}).then(finish, () =>
         finish({
-          status: 'unavailable',
+          status: SESSION_STATUS.UNAVAILABLE,
           generation: operation.generation,
           revision: state.session.revision + 1,
-          error: safeError('unexpected'),
+          error: safeError(AUTH_ERROR_CODE.UNEXPECTED),
         }),
       );
     });
   }
 
   function selectMethod(method: AuthMethod): void {
-    if (disposed || state.session.status !== 'signedOut') return;
+    if (disposed || state.session.status !== SESSION_STATUS.SIGNED_OUT) return;
 
     abandon();
     context = {generation: clock.nextGeneration(), operationId: `select-${clock.now()}`};
     publish({
-      session: {status: 'signedOut', generation: context.generation, revision: 0},
-      attempt: {method, stage: 'idle'},
+      session: {status: SESSION_STATUS.SIGNED_OUT, generation: context.generation, revision: 0},
+      attempt: {method, stage: LOGIN_STAGE.IDLE},
       pending: false,
     });
   }
@@ -346,8 +372,12 @@ export function createAuthController(gateway: AuthenticationGateway, clock: Cloc
       unsubscribe = undefined;
       publish({
         ...state,
-        session: {status: 'unavailable', generation: clock.nextGeneration(), revision: 0},
-        error: safeError('unexpected'),
+        session: {
+          status: SESSION_STATUS.UNAVAILABLE,
+          generation: clock.nextGeneration(),
+          revision: 0,
+        },
+        error: safeError(AUTH_ERROR_CODE.UNEXPECTED),
       });
       started = false;
     }
@@ -373,21 +403,24 @@ export function createAuthController(gateway: AuthenticationGateway, clock: Cloc
       const normalizedEmail = email.trim();
 
       if (
-        method !== 'google' &&
+        method !== AUTH_METHOD.GOOGLE &&
         (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(normalizedEmail) ||
-          (method === 'password' && !password))
+          (method === AUTH_METHOD.PASSWORD && !password))
       ) {
-        publish({...state, error: safeError('invalidInput')});
+        publish({...state, error: safeError(AUTH_ERROR_CODE.INVALID_INPUT)});
 
         return;
       }
 
-      await submit(method, method === 'google' ? 'awaitingProvider' : 'submitting', (operation) =>
-        method === 'google'
-          ? gateway.google(operation)
-          : method === 'password'
-            ? gateway.password({...operation, email: normalizedEmail, password})
-            : gateway.requestCode({...operation, email: normalizedEmail}),
+      await submit(
+        method,
+        method === AUTH_METHOD.GOOGLE ? LOGIN_STAGE.AWAITING_PROVIDER : LOGIN_STAGE.SUBMITTING,
+        (operation) =>
+          method === AUTH_METHOD.GOOGLE
+            ? gateway.google(operation)
+            : method === AUTH_METHOD.PASSWORD
+              ? gateway.password({...operation, email: normalizedEmail, password})
+              : gateway.requestCode({...operation, email: normalizedEmail}),
       );
     },
 
@@ -395,12 +428,12 @@ export function createAuthController(gateway: AuthenticationGateway, clock: Cloc
       const {attemptId, codePurpose, method} = state.attempt;
 
       if (!attemptId || !codePurpose || !code.trim()) {
-        publish({...state, error: safeError('invalidInput')});
+        publish({...state, error: safeError(AUTH_ERROR_CODE.INVALID_INPUT)});
 
         return;
       }
 
-      await submit(method, 'verifying', (operation) =>
+      await submit(method, LOGIN_STAGE.VERIFYING, (operation) =>
         gateway.verifyCode({...operation, attemptId, codePurpose, code: code.trim()}),
       );
     },
@@ -410,7 +443,7 @@ export function createAuthController(gateway: AuthenticationGateway, clock: Cloc
 
       if (!attemptId || !codePurpose) return;
 
-      await submit(method, 'submitting', (operation) =>
+      await submit(method, LOGIN_STAGE.SUBMITTING, (operation) =>
         gateway.resendCode({...operation, attemptId, codePurpose}),
       );
     },
@@ -423,10 +456,14 @@ export function createAuthController(gateway: AuthenticationGateway, clock: Cloc
 
       foreground = next;
 
-      if (state.pending && state.attempt.method === 'google') {
+      if (state.pending && state.attempt.method === AUTH_METHOD.GOOGLE) {
         if (next) resumeDeadline?.();
         else pauseDeadline?.();
-      } else if (next && started && !(state.pending && state.session.status === 'active'))
+      } else if (
+        next &&
+        started &&
+        !(state.pending && state.session.status === SESSION_STATUS.ACTIVE)
+      )
         void refresh();
     },
 

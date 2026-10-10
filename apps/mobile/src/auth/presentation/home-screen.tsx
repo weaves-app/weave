@@ -1,5 +1,5 @@
 import {Screen} from '../../components/screen';
-import {Typography} from '../../components/typography';
+import {Typography, VARIANT} from '../../components/typography';
 import {Button} from '../../components/button';
 import {Feedback} from '../../components/feedback';
 import {useAuthController, useAuthState} from './auth-context';
@@ -11,7 +11,7 @@ export function HomeScreen(): React.JSX.Element {
 
   return (
     <Screen>
-      <Typography variant="title">Home</Typography>
+      <Typography variant={VARIANT.TITLE}>Home</Typography>
       <Button
         label="Logout"
         onPress={() => {

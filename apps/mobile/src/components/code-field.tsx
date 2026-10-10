@@ -3,7 +3,15 @@ import {StyleSheet, Text, TextInput, useWindowDimensions, View} from 'react-nati
 
 import {tokens} from '@weave/design-tokens';
 
-import {Typography} from './typography';
+import {INPUT_COLOR} from './input-constants';
+import {ACCESSIBILITY_IMPORTANCE, FLEX_ALIGNMENT, FLEX_DIRECTION, POSITION} from './native-options';
+import {VERIFICATION_CODE_LENGTH} from '../auth/domain/auth-models';
+import {KEYBOARD_TYPE, AUTO_CAPITALIZE, AUTO_COMPLETE} from './input-constants';
+import {Typography, VARIANT} from './typography';
+
+export const EMPTY_CODE_SLOT = '';
+
+export const OTP_SLOTS_MAX_FONT_SCALE = 1.5;
 
 export interface CodeFieldProps {
   readonly value: string;
@@ -12,10 +20,6 @@ export interface CodeFieldProps {
 }
 
 // Android Fabric uses zero-valued transparent black as an unspecified text colour.
-const invisibleInk = 'rgba(255, 255, 255, 0)';
-
-const codeLength = 6;
-
 const slots = [0, 1, 2, 3, 4, 5] as const;
 
 export function CodeField({
@@ -26,11 +30,11 @@ export function CodeField({
   const [focused, setFocused] = useState(false);
   const [selection, setSelection] = useState({start: value.length, end: value.length});
   const {fontScale} = useWindowDimensions();
-  const showSlots = fontScale < 1.5;
+  const showSlots = fontScale < OTP_SLOTS_MAX_FONT_SCALE;
   const selectionStart = Math.min(selection.start, value.length);
   const selectionEnd = Math.min(selection.end, value.length);
   const collapsed = selectionStart === selectionEnd;
-  const caretSlot = Math.min(selectionStart, codeLength - 1);
+  const caretSlot = Math.min(selectionStart, VERIFICATION_CODE_LENGTH - 1);
 
   function isActiveSlot(index: number): boolean {
     return (
@@ -39,18 +43,18 @@ export function CodeField({
   }
 
   function changeCode(input: string): void {
-    if (!disabled) onChangeText(input.replace(/\D/g, '').slice(0, codeLength));
+    if (!disabled) onChangeText(input.replace(/\D/g, '').slice(0, VERIFICATION_CODE_LENGTH));
   }
 
   return (
     <View style={styles.field}>
-      <Typography variant="label">Verification code</Typography>
+      <Typography variant={VARIANT.LABEL}>Verification code</Typography>
       <View style={[styles.entry, disabled && styles.disabled]}>
         {showSlots && (
           <View
             style={styles.slots}
             accessibilityElementsHidden
-            importantForAccessibility="no-hide-descendants"
+            importantForAccessibility={ACCESSIBILITY_IMPORTANCE.HIDE_DESCENDANTS}
           >
             {slots.map((index) => (
               <View
@@ -58,13 +62,13 @@ export function CodeField({
                 testID={`code-slot-${index}`}
                 style={[styles.slot, isActiveSlot(index) && styles.focused]}
               >
-                <Text style={styles.digit}>{value[index] ?? ''}</Text>
+                <Text style={styles.digit}>{value[index] ?? EMPTY_CODE_SLOT}</Text>
                 {focused && collapsed && index === caretSlot && (
                   <View
                     style={[
                       styles.caret,
                       selectionStart < value.length && styles.caretBeforeDigit,
-                      selectionStart === codeLength && styles.caretAfterDigit,
+                      selectionStart === VERIFICATION_CODE_LENGTH && styles.caretAfterDigit,
                     ]}
                   />
                 )}
@@ -80,14 +84,14 @@ export function CodeField({
           value={value}
           onChangeText={changeCode}
           editable={!disabled}
-          keyboardType="number-pad"
-          autoComplete="one-time-code"
+          keyboardType={KEYBOARD_TYPE.NUMBER_PAD}
+          autoComplete={AUTO_COMPLETE.ONE_TIME_CODE}
           autoFocus
           autoCorrect={false}
-          autoCapitalize="none"
+          autoCapitalize={AUTO_CAPITALIZE.NONE}
           caretHidden={showSlots}
-          selectionColor={showSlots ? invisibleInk : tokens.colors.focus}
-          underlineColorAndroid="transparent"
+          selectionColor={showSlots ? INPUT_COLOR.ANDROID_INVISIBLE_INK : tokens.colors.focus}
+          underlineColorAndroid={INPUT_COLOR.TRANSPARENT}
           onFocus={() => setFocused(true)}
           onBlur={() => setFocused(false)}
           onSelectionChange={(event) => setSelection(event.nativeEvent.selection)}
@@ -96,7 +100,7 @@ export function CodeField({
           }
         />
       </View>
-      <Typography variant="caption">Enter the 6-digit code from your email.</Typography>
+      <Typography variant={VARIANT.CAPTION}>Enter the 6-digit code from your email.</Typography>
     </View>
   );
 }
@@ -104,14 +108,14 @@ export function CodeField({
 const styles = StyleSheet.create({
   field: {gap: tokens.spacing.small},
   entry: {minHeight: 60},
-  slots: {flexDirection: 'row', gap: tokens.spacing.small},
+  slots: {flexDirection: FLEX_DIRECTION.ROW, gap: tokens.spacing.small},
   slot: {
     flex: 1,
     minHeight: 60,
     paddingVertical: tokens.spacing.compact,
     minWidth: 0,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: FLEX_ALIGNMENT.CENTER,
+    justifyContent: FLEX_ALIGNMENT.CENTER,
     backgroundColor: tokens.colors.inputSurface,
     borderColor: tokens.colors.border,
     borderWidth: 1,
@@ -124,7 +128,7 @@ const styles = StyleSheet.create({
     fontFamily: tokens.fonts.semibold,
   },
   caret: {
-    position: 'absolute',
+    position: POSITION.ABSOLUTE,
     width: 2,
     height: tokens.typeSizes.code,
     backgroundColor: tokens.colors.text,
@@ -132,14 +136,14 @@ const styles = StyleSheet.create({
   caretBeforeDigit: {left: tokens.spacing.tiny},
   caretAfterDigit: {right: tokens.spacing.tiny},
   overlayInput: {
-    position: 'absolute',
+    position: POSITION.ABSOLUTE,
     top: 0,
     bottom: 0,
     left: 0,
     right: 0,
-    color: invisibleInk,
+    color: INPUT_COLOR.ANDROID_INVISIBLE_INK,
     fontSize: tokens.typeSizes.code,
-    backgroundColor: 'transparent',
+    backgroundColor: INPUT_COLOR.TRANSPARENT,
     padding: 0,
   },
   largeTextInput: {

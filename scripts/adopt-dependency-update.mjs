@@ -9,9 +9,13 @@ import {validateBranch} from './policy.mjs';
 import {isScenarioConfirmed} from './agent-policy.mjs';
 import {validateDependencyProposal} from './dependency-policy.mjs';
 
+import {MISSING_VALUE} from './policy-constants.mjs';
+
+export const APPLY_FLAG = '--apply';
+
 const [number, ticket, mode] = process.argv.slice(2);
 
-if (!/^\d+$/.test(number ?? '') || !/^WEA-[1-9]\d*$/.test(ticket ?? ''))
+if (!/^\d+$/.test(number ?? MISSING_VALUE) || !/^WEA-[1-9]\d*$/.test(ticket ?? MISSING_VALUE))
   throw new Error('Usage: pnpm run deps:adopt PR_NUMBER NEW_LINEAR_TICKET');
 
 const branch = `fix/${ticket}/dependency-update-${number}`;
@@ -24,7 +28,7 @@ const git = (...args) => execFileSync('git', args, {encoding: 'utf8'}).trim();
 
 const proposalPatch = `.specify/proposals/${ticket.toLowerCase()}-${number}.patch`;
 
-if (mode === '--apply') {
+if (mode === APPLY_FLAG) {
   const state = JSON.parse(readFileSync(`${directory}/workflow.json`, 'utf8'));
 
   if (git('branch', '--show-current') !== branch || !isScenarioConfirmed(state, branch))

@@ -1,5 +1,9 @@
 import mockSafeAreaContext from 'react-native-safe-area-context/jest/mock';
 
+import {SESSION_STATUS} from './domain/auth-models';
+
+export const FIRST_MOUNT = 1;
+
 jest.mock('react-native-safe-area-context', () => mockSafeAreaContext);
 
 import {act, fireEvent, render, screen, waitFor} from '@testing-library/react-native';
@@ -17,7 +21,9 @@ test.each(['active', 'signedOut', 'unavailable'] as const)(
     const gateway = new TestGateway();
 
     gateway.resolveResult = async (input) =>
-      status === 'active' ? active(input) : {status, generation: input.generation, revision: 1};
+      status === SESSION_STATUS.ACTIVE
+        ? active(input)
+        : {status, generation: input.generation, revision: 1};
 
     let fail = true;
 
@@ -38,9 +44,9 @@ test.each(['active', 'signedOut', 'unavailable'] as const)(
     expect(gateway.requests[0]?.method).toBe('resolve');
     await waitFor(() =>
       expect(
-        status === 'active'
+        status === SESSION_STATUS.ACTIVE
           ? screen.getByText('Home')
-          : status === 'signedOut'
+          : status === SESSION_STATUS.SIGNED_OUT
             ? screen.getByText('Welcome back')
             : screen.getByRole('button', {name: 'Try again'}),
       ).toBeTruthy(),
@@ -88,7 +94,7 @@ test('S13 a mounted auth failure disposes old subscriptions and prevents late ol
       createController={() => {
         roots++;
 
-        return roots === 1
+        return roots === FIRST_MOUNT
           ? {
               ...controller,
 

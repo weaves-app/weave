@@ -4,6 +4,8 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 
 import {tokens} from '@weave/design-tokens';
 
+import {FLEX_ALIGNMENT} from './native-options';
+
 export interface ScreenProps {
   readonly children: ReactNode;
 }
@@ -22,6 +24,6 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: tokens.spacing.large,
     gap: tokens.spacing.medium,
-    justifyContent: 'center',
+    justifyContent: FLEX_ALIGNMENT.CENTER,
   },
 });

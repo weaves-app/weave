@@ -4,6 +4,12 @@ import {test} from 'node:test';
 import type {Attempt, AuthGateway} from '../src/features/auth/application/contracts';
 import {createAuthFlow} from '../src/features/auth/application/flow';
 
+import {AUTH_STAGE} from '../src/features/auth/application/auth-constants';
+
+import {EMPTY_TEXT} from './test-constants';
+
+export const FIRST_ATTEMPT = 1;
+
 export function gateway(overrides: Partial<AuthGateway> = {}): AuthGateway {
   return {
     google: async () => {},
@@ -69,7 +75,7 @@ void test('WEA-10 S01/S08 wrong or expired code is recoverable and resend can be
   const flow = createAuthFlow(
     gateway({
       verify: async () => {
-        if (++attempts === 1) throw {code: 'form_code_incorrect'};
+        if (++attempts === FIRST_ATTEMPT) throw {code: 'form_code_incorrect'};
 
         return {stage: 'ready', verified: true};
       },
@@ -88,7 +94,7 @@ void test('WEA-10 S01/S08 wrong or expired code is recoverable and resend can be
   await flow.submit(credentials);
   await flow.verify('bad');
   assert.equal(flow.getSnapshot().stage, 'verification');
-  assert.match(flow.getSnapshot().error ?? '', /code/i);
+  assert.match(flow.getSnapshot().error ?? EMPTY_TEXT, /code/i);
   assert.equal(flow.getSnapshot().pending, false);
   await flow.resend();
   assert.equal(codes, 2);
@@ -125,7 +131,7 @@ void test('WEA-10 S01/S08 empty/malformed email and missing password/code make n
   assert.equal(calls, 0);
   await flow.submit(credentials);
   await flow.verify('');
-  assert.match(flow.getSnapshot().error ?? '', /code/i);
+  assert.match(flow.getSnapshot().error ?? EMPTY_TEXT, /code/i);
 });
 
 void test('WEA-10 S01/S08 unverified provider completion or unsupported requirements cannot activate', async () => {
@@ -165,7 +171,7 @@ void test('WEA-10 S02 password login and Device Trust verification both reach Ho
 
     await flow.submit(credentials);
 
-    if (stage === 'verification') await flow.verify('code');
+    if (stage === AUTH_STAGE.VERIFICATION) await flow.verify('code');
 
     assert.deepEqual(routes, ['/']);
   }
@@ -292,7 +298,7 @@ void test('WEA-10 S07 signout awaits provider, clears state and reports recovera
   const flow = createAuthFlow(
     gateway({
       deactivate: async () => {
-        if (++clear === 1) throw new Error('offline');
+        if (++clear === FIRST_ATTEMPT) throw new Error('offline');
       },
     }),
     {
@@ -372,7 +378,7 @@ void test('WEA-10 S03/S08 missing/expired/reused invitation keeps context and ne
   await expired.submit(credentials);
   assert.equal(invites, 2);
   assert.equal(publicCalls, 0);
-  assert.match(expired.getSnapshot().error ?? '', /invitation/i);
+  assert.match(expired.getSnapshot().error ?? EMPTY_TEXT, /invitation/i);
 });
 
 void test('WEA-10 S03/S08 failed invitation activation can retry without replaying the consumed ticket', async () => {
@@ -388,7 +394,7 @@ void test('WEA-10 S03/S08 failed invitation activation can retry without replayi
       },
 
       activate: async () => {
-        if (++activations === 1) throw new Error('offline');
+        if (++activations === FIRST_ATTEMPT) throw new Error('offline');
 
         return '/';
       },
@@ -439,7 +445,7 @@ void test('WEA-10 S08 timeout finishes loading and blocks late authentication ac
 
   await new Promise((done) => setTimeout(done, 15));
   assert.equal(flow.getSnapshot().pending, false);
-  assert.match(flow.getSnapshot().error ?? '', /timed out/i);
+  assert.match(flow.getSnapshot().error ?? EMPTY_TEXT, /timed out/i);
   release({stage: 'ready', verified: true});
   await submitted;
   assert.equal(activations, 0);

@@ -2,9 +2,11 @@ import type {AuthenticationGateway, OperationContext} from '../application/authe
 import type {Clock} from '../application/clock';
 import type {AuthResult, SessionSnapshot} from '../domain/auth-models';
 
+import {SESSION_STATUS} from '../domain/auth-models';
+
 export function active(context: OperationContext, revision = 1): SessionSnapshot {
   return {
-    status: 'active',
+    status: SESSION_STATUS.ACTIVE,
     generation: context.generation,
     revision,
     validatedAt: 1000,
@@ -14,7 +16,7 @@ export function active(context: OperationContext, revision = 1): SessionSnapshot
 }
 
 export function signedOut(context: OperationContext, revision = 1): SessionSnapshot {
-  return {status: 'signedOut', generation: context.generation, revision};
+  return {status: SESSION_STATUS.SIGNED_OUT, generation: context.generation, revision};
 }
 
 export function deferred<T>(): {

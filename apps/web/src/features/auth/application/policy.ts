@@ -1,3 +1,9 @@
+export const MAX_INVITATION_TICKET_LENGTH = 8192;
+
+export const INVITATION_SIGN_UP_STATUS = 'sign_up';
+
+export const INVITATION_SIGN_IN_STATUS = 'sign_in';
+
 export interface AuthEntry {
   readonly kind: 'public' | 'invitation' | 'invalid';
   readonly ticket?: string;
@@ -35,9 +41,11 @@ export function resolveEntry(
   if (
     typeof ticket !== 'string' ||
     !ticket ||
-    ticket.length > 8192 ||
+    ticket.length > MAX_INVITATION_TICKET_LENGTH ||
     /\s/.test(ticket) ||
-    (status !== undefined && status !== 'sign_up' && status !== 'sign_in')
+    (status !== undefined &&
+      status !== INVITATION_SIGN_UP_STATUS &&
+      status !== INVITATION_SIGN_IN_STATUS)
   ) {
     return {kind: 'invalid', ...defaults};
   }

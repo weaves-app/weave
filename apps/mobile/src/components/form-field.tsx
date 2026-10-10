@@ -4,13 +4,16 @@ import type {TextInputProps} from 'react-native';
 
 import {tokens} from '@weave/design-tokens';
 
+import {INPUT_COLOR} from './input-constants';
+import {KEYBOARD_TYPE, AUTO_CAPITALIZE} from './input-constants';
+
 export interface FormFieldProps {
   readonly label: string;
   readonly value: string;
   readonly onChangeText: (value: string) => void;
   readonly secret?: boolean;
   readonly disabled?: boolean;
-  readonly keyboardType?: 'email-address' | 'number-pad' | 'default';
+  readonly keyboardType?: (typeof KEYBOARD_TYPE)[keyof typeof KEYBOARD_TYPE];
   readonly placeholder?: string;
   readonly autoComplete?: TextInputProps['autoComplete'];
 }
@@ -21,7 +24,7 @@ export function FormField({
   onChangeText,
   secret = false,
   disabled = false,
-  keyboardType = 'default',
+  keyboardType = KEYBOARD_TYPE.DEFAULT,
   placeholder,
   autoComplete,
 }: FormFieldProps): React.JSX.Element {
@@ -38,14 +41,14 @@ export function FormField({
         secureTextEntry={secret}
         editable={!disabled}
         accessibilityState={{disabled}}
-        autoCapitalize="none"
+        autoCapitalize={AUTO_CAPITALIZE.NONE}
         autoCorrect={false}
         keyboardType={keyboardType}
         autoComplete={autoComplete}
         placeholder={placeholder}
         placeholderTextColor={tokens.colors.muted}
         selectionColor={tokens.colors.focus}
-        underlineColorAndroid="transparent"
+        underlineColorAndroid={INPUT_COLOR.TRANSPARENT}
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
         style={[styles.input, focused && styles.focused, disabled && styles.disabled]}

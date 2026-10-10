@@ -1,3 +1,11 @@
+import {GIT_BRANCH} from './policy-constants.mjs';
+
+export const UNSET_ACCOUNT_LABEL = '(unset)';
+
+export const UNKNOWN_ACCOUNT_LABEL = '(unknown)';
+
+export const MAX_COMMIT_MESSAGE_LENGTH = 100;
+
 export function validateBranch(branch) {
   return /^(feat|fix|bugfix|hotfix)\/WEA-[1-9]\d*\/[a-z0-9]+(?:-[a-z0-9]+)*$/.test(branch)
     ? null
@@ -40,7 +48,10 @@ export function validateCommit(message) {
       message,
     );
 
-  return !/[\r\n]/.test(message) && match && verbs.has(match[2]) && message.length <= 100
+  return !/[\r\n]/.test(message) &&
+    match &&
+    verbs.has(match[2]) &&
+    message.length <= MAX_COMMIT_MESSAGE_LENGTH
     ? null
     : 'Use one imperative Conventional Commit, <=100 characters, ending [WEA-N]; see approved verbs in scripts/policy.mjs.';
 }
@@ -48,9 +59,10 @@ export function validateCommit(message) {
 export function validatePullRequest({base, head, sameRepository}) {
   if (!sameRepository) return 'Working/release PRs must originate in this repository.';
 
-  if (base === 'main') return head === 'develop' ? null : 'Only develop may release into main.';
+  if (base === GIT_BRANCH.MAIN)
+    return head === GIT_BRANCH.DEVELOP ? null : 'Only develop may release into main.';
 
-  if (base === 'develop') return validateBranch(head);
+  if (base === GIT_BRANCH.DEVELOP) return validateBranch(head);
 
   return 'PR target must be develop or main.';
 }
@@ -60,5 +72,5 @@ export function validateGithubAccount(expected, actual, forbidden = []) {
     !forbidden.some((identity) => identity.toLowerCase() === expected.toLowerCase()) &&
     expected.toLowerCase() === actual?.toLowerCase()
     ? null
-    : `Refusing publication: expected personal GitHub account ${expected || '(unset)'}, authenticated as ${actual || '(unknown)'}.`;
+    : `Refusing publication: expected personal GitHub account ${expected || UNSET_ACCOUNT_LABEL}, authenticated as ${actual || UNKNOWN_ACCOUNT_LABEL}.`;
 }

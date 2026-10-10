@@ -14,19 +14,34 @@ import {
 
 import {tokens} from '@weave/design-tokens';
 
+import {
+  ACCESSIBILITY_IMPORTANCE,
+  ACCESSIBILITY_ROLE,
+  FLEX_ALIGNMENT,
+  FLEX_DIRECTION,
+  FLEX_WRAP,
+  IMAGE_RESIZE_MODE,
+  KEYBOARD_AVOIDANCE,
+  KEYBOARD_DISMISS_MODE,
+  KEYBOARD_TAPS,
+  PLATFORM,
+  SIZE,
+} from '../../components/native-options';
 import googleLogo from '../../../assets/brand/google-g.png';
-import {Button} from '../../components/button';
+import {Button, BUTTON_VARIANT} from '../../components/button';
 import {BrandLogo} from '../../components/brand-logo';
 import {CodeField} from '../../components/code-field';
 import {Feedback} from '../../components/feedback';
+import {KEYBOARD_TYPE, AUTO_COMPLETE} from '../../components/input-constants';
 import {FormField} from '../../components/form-field';
-import {Typography} from '../../components/typography';
+import {Typography, VARIANT} from '../../components/typography';
 import {authMessages} from './auth-messages';
 import {AuthMethodTabs} from './auth-method-tabs';
 import {AuthLayout} from './auth-layout';
 import {PasswordTransition} from './password-transition';
 import type {LoginBindings} from './use-login';
 import {useLogin} from './use-login';
+import {AUTH_METHOD, CODE_PURPOSE, LOGIN_STAGE} from '../domain/auth-models';
 
 interface LoginPresentationProps {
   readonly login: LoginBindings;
@@ -42,8 +57,8 @@ function LoginScroll({challenge, children}: LoginScrollProps): React.JSX.Element
 
   return (
     <ScrollView
-      keyboardShouldPersistTaps="handled"
-      keyboardDismissMode="on-drag"
+      keyboardShouldPersistTaps={KEYBOARD_TAPS.HANDLED}
+      keyboardDismissMode={KEYBOARD_DISMISS_MODE.ON_DRAG}
       contentContainerStyle={[styles.content, !challenge && {minHeight: contentHeight}]}
       onContentSizeChange={(_, height) => {
         if (!challenge) setContentHeight((current) => Math.max(current, height));
@@ -56,7 +71,11 @@ function LoginScroll({challenge, children}: LoginScrollProps): React.JSX.Element
 
 function ActionArrow(): React.JSX.Element {
   return (
-    <Text importantForAccessibility="no" accessibilityElementsHidden style={styles.actionArrow}>
+    <Text
+      importantForAccessibility={ACCESSIBILITY_IMPORTANCE.NO}
+      accessibilityElementsHidden
+      style={styles.actionArrow}
+    >
       →
     </Text>
   );
@@ -64,26 +83,26 @@ function ActionArrow(): React.JSX.Element {
 
 function LoginForm({login}: LoginPresentationProps): React.JSX.Element {
   const {state} = login;
-  const emailCode = state.attempt.method === 'emailCode';
+  const emailCode = state.attempt.method === AUTH_METHOD.EMAIL_CODE;
 
   return (
     <>
       <View style={styles.loginHeader}>
         <View style={styles.heading}>
-          <Typography variant="heading">Welcome back</Typography>
-          <Typography variant="supporting">Sign in to your Weave workspace.</Typography>
+          <Typography variant={VARIANT.HEADING}>Welcome back</Typography>
+          <Typography variant={VARIANT.SUPPORTING}>Sign in to your Weave workspace.</Typography>
         </View>
       </View>
       <Button
         label="Continue with Google"
-        variant="outline"
+        variant={BUTTON_VARIANT.OUTLINE}
         onPress={login.google}
         disabled={state.pending}
         leading={<Image source={googleLogo} style={styles.googleIcon} accessible={false} />}
       />
       <View style={styles.divider}>
         <View style={styles.dividerLine} />
-        <Typography variant="caption">or continue with email</Typography>
+        <Typography variant={VARIANT.CAPTION}>or continue with email</Typography>
         <View style={styles.dividerLine} />
       </View>
       <AuthMethodTabs
@@ -96,9 +115,9 @@ function LoginForm({login}: LoginPresentationProps): React.JSX.Element {
           label="Email"
           value={login.email}
           onChangeText={login.setEmail}
-          keyboardType="email-address"
+          keyboardType={KEYBOARD_TYPE.EMAIL_ADDRESS}
           placeholder="you@company.com"
-          autoComplete="email"
+          autoComplete={AUTO_COMPLETE.EMAIL}
           disabled={state.pending}
         />
         <View>
@@ -131,11 +150,11 @@ function AuthHeader({login}: LoginPresentationProps): React.JSX.Element {
       <View style={styles.headerSpacer}>
         {challenge && (
           <Pressable
-            accessibilityRole="button"
+            accessibilityRole={ACCESSIBILITY_ROLE.BUTTON}
             accessibilityLabel="Choose another method"
             accessibilityState={{disabled: state.pending}}
             disabled={state.pending}
-            onPress={() => login.selectMethod('password')}
+            onPress={() => login.selectMethod(AUTH_METHOD.PASSWORD)}
             style={styles.backButton}
           >
             <Text style={styles.backArrow}>←</Text>
@@ -154,11 +173,13 @@ function VerificationForm({login}: LoginPresentationProps): React.JSX.Element {
   return (
     <>
       <View style={styles.challengeHeading}>
-        <Typography variant="heading">
-          {state.attempt.codePurpose === 'deviceTrust' ? 'Verify this device' : 'Check your email'}
+        <Typography variant={VARIANT.HEADING}>
+          {state.attempt.codePurpose === CODE_PURPOSE.DEVICE_TRUST
+            ? 'Verify this device'
+            : 'Check your email'}
         </Typography>
         <View style={styles.emailDescription}>
-          <Typography variant="supporting">Enter the verification code sent to</Typography>
+          <Typography variant={VARIANT.SUPPORTING}>Enter the verification code sent to</Typography>
           <Text style={styles.email}>{login.email.trim()}</Text>
         </View>
       </View>
@@ -167,17 +188,17 @@ function VerificationForm({login}: LoginPresentationProps): React.JSX.Element {
         label="Verify code"
         onPress={login.submit}
         disabled={state.pending}
-        loading={state.pending && state.attempt.stage === 'verifying'}
+        loading={state.pending && state.attempt.stage === LOGIN_STAGE.VERIFYING}
         trailing={<ActionArrow />}
       />
       <View style={styles.resend}>
-        <Typography variant="caption">Didn't receive it?</Typography>
+        <Typography variant={VARIANT.CAPTION}>Didn't receive it?</Typography>
         <Button
           label="Resend code"
-          variant="text"
+          variant={BUTTON_VARIANT.TEXT}
           onPress={login.resend}
           disabled={state.pending}
-          loading={state.pending && state.attempt.stage === 'submitting'}
+          loading={state.pending && state.attempt.stage === LOGIN_STAGE.SUBMITTING}
         />
       </View>
     </>
@@ -195,7 +216,7 @@ export function LoginScreen(): React.JSX.Element {
       <AuthHeader login={login} />
       <KeyboardAvoidingView
         style={styles.fill}
-        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+        behavior={Platform.OS === PLATFORM.IOS ? KEYBOARD_AVOIDANCE.PADDING : undefined}
       >
         <LoginScroll key={`${challenge}-${width}-${fontScale}`} challenge={challenge}>
           <View style={styles.layout}>
@@ -204,7 +225,7 @@ export function LoginScreen(): React.JSX.Element {
               <Feedback
                 message={
                   challenge
-                    ? state.attempt.stage === 'verifying'
+                    ? state.attempt.stage === LOGIN_STAGE.VERIFYING
                       ? 'Verifying code…'
                       : 'Sending code…'
                     : 'Signing in…'
@@ -229,20 +250,29 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     padding: tokens.spacing.large,
     paddingVertical: tokens.spacing.extraLarge,
-    justifyContent: 'flex-start',
+    justifyContent: FLEX_ALIGNMENT.START,
   },
-  layout: {width: '100%', maxWidth: 400, alignSelf: 'center', gap: tokens.spacing.large},
+  layout: {
+    width: SIZE.FULL,
+    maxWidth: 400,
+    alignSelf: FLEX_ALIGNMENT.CENTER,
+    gap: tokens.spacing.large,
+  },
   loginHeader: {gap: tokens.spacing.large},
   heading: {gap: tokens.spacing.small},
   form: {gap: tokens.spacing.large},
-  googleIcon: {width: 20, height: 20, resizeMode: 'contain'},
-  divider: {flexDirection: 'row', alignItems: 'center', gap: tokens.spacing.compact},
+  googleIcon: {width: 20, height: 20, resizeMode: IMAGE_RESIZE_MODE.CONTAIN},
+  divider: {
+    flexDirection: FLEX_DIRECTION.ROW,
+    alignItems: FLEX_ALIGNMENT.CENTER,
+    gap: tokens.spacing.compact,
+  },
   dividerLine: {flex: 1, height: 1, backgroundColor: tokens.colors.border},
   actionArrow: {fontSize: 20, color: tokens.colors.onPrimary},
   authHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: FLEX_DIRECTION.ROW,
+    justifyContent: FLEX_ALIGNMENT.SPACE_BETWEEN,
+    alignItems: FLEX_ALIGNMENT.CENTER,
     minHeight: 64,
     marginHorizontal: tokens.spacing.large,
     marginTop: tokens.spacing.small,
@@ -250,8 +280,8 @@ const styles = StyleSheet.create({
   backButton: {
     width: 48,
     minHeight: 48,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: FLEX_ALIGNMENT.CENTER,
+    justifyContent: FLEX_ALIGNMENT.CENTER,
     borderWidth: 1,
     borderColor: tokens.colors.border,
     borderRadius: tokens.radii.round,
@@ -265,5 +295,10 @@ const styles = StyleSheet.create({
     fontSize: tokens.typeSizes.supporting,
     color: tokens.colors.text,
   },
-  resend: {flexDirection: 'row', alignItems: 'center', justifyContent: 'center', flexWrap: 'wrap'},
+  resend: {
+    flexDirection: FLEX_DIRECTION.ROW,
+    alignItems: FLEX_ALIGNMENT.CENTER,
+    justifyContent: FLEX_ALIGNMENT.CENTER,
+    flexWrap: FLEX_WRAP.WRAP,
+  },
 });

@@ -4,6 +4,8 @@ import {Keyboard} from 'react-native';
 import {useAuthController, useAuthState} from './auth-context';
 import type {AuthMethod, AuthViewState} from '../domain/auth-models';
 
+import {VERIFICATION_CODE_LENGTH, AUTH_METHOD} from '../domain/auth-models';
+
 export interface LoginBindings {
   readonly state: AuthViewState;
   readonly email: string;
@@ -52,7 +54,7 @@ export function useLogin(): LoginBindings {
   function google(): void {
     setPassword('');
     setCode('');
-    void controller.login('google');
+    void controller.login(AUTH_METHOD.GOOGLE);
   }
 
   function changeCode(value: string): void {
@@ -60,7 +62,7 @@ export function useLogin(): LoginBindings {
 
     setCode(value);
 
-    if (value.length === 6 && state.attempt.attemptId) {
+    if (value.length === VERIFICATION_CODE_LENGTH && state.attempt.attemptId) {
       setCode('');
       Keyboard.dismiss();
       void controller.verify(value);

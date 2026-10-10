@@ -2,6 +2,7 @@ import {createContext, useContext, useEffect, useState, useSyncExternalStore} fr
 import type {ReactNode} from 'react';
 import {AppState} from 'react-native';
 
+import {APP_STATE, NATIVE_EVENT} from '../../components/native-options';
 import type {AuthController} from '../application/auth-controller';
 import type {AuthViewState} from '../domain/auth-models';
 
@@ -18,8 +19,8 @@ export function AuthProvider({createController, children}: AuthProviderProps): R
   useEffect(() => {
     void controller.start();
 
-    const subscription = AppState.addEventListener('change', (state) =>
-      controller.setForeground(state === 'active'),
+    const subscription = AppState.addEventListener(NATIVE_EVENT.APP_STATE_CHANGE, (state) =>
+      controller.setForeground(state === APP_STATE.ACTIVE),
     );
 
     return () => {

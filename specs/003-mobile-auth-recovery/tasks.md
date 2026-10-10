@@ -194,3 +194,11 @@ Assessment:40 requirement/scenario items,10 plan decisions,10 constitution princ
 - [x] T053 Correct S15/S16/S19 tablet Login/OTP alignment using a shared centered frame and heading origin, preserving narrow-window/keyboard scrolling and pending/automatic-code behavior. Reproduce RED, verify GREEN and native tablet/phone layouts, then reconcile evidence/convergence.
 
 - [ ] T054 Implement owner-requested phone-top/portrait-tablet-centered/landscape-tablet-split authentication layout, retaining state across rotation and common Login/OTP origin. Record RED/GREEN, verify native layouts and keyboard/large text, update evidence/convergence, and launch latest real apps on iPhone/iPad.
+
+- [x] T055 Extract exported semantic constants for string/numeric comparison values across authored TypeScript/JavaScript; derive mobile SessionStatus from SESSION_STATUS. Enforce comparisons and switch cases in app/root ESLint, preserving agreed exceptions under S21–S23. Record RED/GREEN, verify existing behavior and update convergence.
+
+T055 correction: the owner identified `state.error?.code ?? 'unexpected'`. S22/S23 also cover string/numeric fallback values with `??` and `||`. Mobile AUTH_ERROR_CODE supplies runtime error values and the derived union/validation vocabulary; preserve existing error handling and presentation.
+
+T055 navigation correction: also extract Home/Login and protected/public identifiers; enforce navigation JSX identifier props with meaningful RED/GREEN evidence.
+
+T055 complete audit follow-up: all mobile runtime option contexts audited and corrected. Typed ESLint regressions cover calls, objects, assignments, defaults, returns, ternaries, aliases, templates, assertions and JSX; domain/wire/render behavior verified through existing suites and both production bundles.

@@ -1,5 +1,7 @@
 import {execFileSync} from 'node:child_process';
 
+import {MISSING_VALUE} from './policy-constants.mjs';
+
 export function imageDigest(reference) {
   try {
     const digest = JSON.parse(
@@ -14,7 +16,7 @@ export function imageDigest(reference) {
 
     return digest;
   } catch (error) {
-    if (/manifest unknown|not found|MANIFEST_UNKNOWN/i.test(String(error.stderr ?? '')))
+    if (/manifest unknown|not found|MANIFEST_UNKNOWN/i.test(String(error.stderr ?? MISSING_VALUE)))
       return null;
 
     throw error;

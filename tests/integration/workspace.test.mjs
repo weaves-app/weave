@@ -8,6 +8,13 @@ import pg from 'pg';
 import {createServer} from 'node:net';
 import {once} from 'node:events';
 
+export const LOCAL_DATABASE_URL =
+  'postgresql://weave:weave_local@localhost:5432/weave?schema=public';
+
+export const MAX_STARTUP_ATTEMPTS = 100;
+
+export const UNIQUE_VIOLATION_CODE = '23505';
+
 async function freePort() {
   const socket = createServer();
 
@@ -21,8 +28,7 @@ async function freePort() {
   return String(port);
 }
 
-const databaseUrl =
-  process.env.DATABASE_URL ?? 'postgresql://weave:weave_local@localhost:5432/weave?schema=public';
+const databaseUrl = process.env.DATABASE_URL ?? LOCAL_DATABASE_URL;
 
 async function server(t, command, args, options, url) {
   const child = spawn(command, args, {...options, stdio: ['ignore', 'pipe', 'pipe']});
@@ -41,7 +47,7 @@ async function server(t, command, args, options, url) {
     }
   });
 
-  for (let attempt = 0; attempt < 100; attempt++) {
+  for (let attempt = 0; attempt < MAX_STARTUP_ATTEMPTS; attempt++) {
     if (child.exitCode !== null) throw new Error(output);
 
     try {
@@ -173,6 +179,6 @@ void test('S09 committed schema persists a user and enforces unique email', asyn
       randomUUID(),
       email,
     ]),
-    (error) => error.code === '23505',
+    (error) => error.code === UNIQUE_VIOLATION_CODE,
   );
 });

@@ -123,3 +123,31 @@ T054 remains unchecked while enlarged-text landscape interaction verification is
 ## Publication validation — 2026-10-09
 
 Owner requested commit and PR. Integrated develop `810974c`, retaining web authentication and the approved pnpm 11.1.1 migration. Frozen install, full repository verification, 3 database integration checks, Android native contracts/build and iOS simulator build/31 host contracts passed. Local database is PostgreSQL18; PostgreSQL17 CI and code-owner review remain pending. Results: [publication evidence](evidence/publication/summary.txt). Existing F1–F4, T048 and T054 acceptance gaps remain open; draft publication does not imply full-ticket completion.
+
+## Exported comparison constants — 2026-10-09
+
+T055 satisfies approved S21–S23: exported constants replace inline string/numeric comparison values across authored mobile/web/scripts; SessionStatus is derived from SESSION_STATUS. The shared rule runs in app/root lint and preserves language/runtime/test-assertion exceptions. Its132 cases have meaningful RED→GREEN evidence, including export ownership and runtime-object false positives. Final full verification,3 database integration checks and iPhone/iPad Login rendering pass. Evidence: `evidence/comparison-constants`. No new runtime behavior or acceptance gap was identified for this follow-up.
+
+Task accounting is43/55 complete with the same12 earlier tasks open. F1–F4, T048 and T054 acceptance limits remain unchanged; this bounded refactor does not close WEA-10 or establish full provider/native acceptance.
+
+### T055 fallback correction
+
+The owner identified the inline `unexpected` nullish fallback. The approved constants policy now covers string/numeric right-hand fallback values for `??` and `||` as well as comparisons. AUTH_ERROR_CODE owns mobile runtime error values; its type and native validation list are derived from the same object.20 new expected RED failures preceded the correction;172 rule cases now pass. Workspace type checks and all tests pass (205 policy,94 mobile,58 web,2 API); mobile/web/shared/scripts lint passes. See `evidence/comparison-constants/fallback-*.txt`. Existing native/provider acceptance gaps remain unchanged. The earlier full production/database checks predate this final behavior-preserving fallback correction; no new build or live-provider claim is made.
+
+### T055 navigation and alignment corrections
+
+S21–S23 now cover exported ROUTE_NAME/NAVIGATION_KEY and navigation identifier JSX props.14 expected RED failures preceded enforcement;198 rule cases and231 policy tests pass. Mobile typecheck and94 mobile tests pass; mobile/web/shared/root lint passes. The initial mobile test command encountered sandbox-blocked Watchman; rerunning with `--watchman=false` passes. This environment failure is not behavioral RED. BrandLogo now groups START/CENTER in exported ALIGNMENT, derives the prop union and defaults to ALIGNMENT.CENTER; behavior is unchanged. Evidence: `evidence/comparison-constants/routes-*.txt`. Production/native builds and database integration were not repeated for this correction; existing acceptance gaps remain open. Changes remain local and uncommitted.
+
+T055/S21 button variant follow-up: owner requested the same grouped vocabulary for PRIMARY_BUTTON_VARIANT. BUTTON_VARIANT now owns PRIMARY/OUTLINE/TEXT; prop type, default, comparisons and Login caller props reuse it. No behavior change. Targeted lint, mobile typecheck and94 mobile tests pass (`evidence/comparison-constants/button-variant-tests.txt`). Existing acceptance gaps remain unchanged.
+
+T055/S21 typography variant follow-up: owner requested VARIANT.TITLE in place of standalone TITLE_VARIANT/HEADING_VARIANT. Exported VARIANT now owns all six typography variants; derived prop type, default, comparisons and caller props reuse it. Rendering and accessibility behavior preserved. Mobile lint, typecheck and94 tests pass (`evidence/comparison-constants/typography-variant-tests.txt`). Existing acceptance gaps remain unchanged.
+
+T055/S21 keyboard type follow-up: shared KEYBOARD_TYPE owns EMAIL_ADDRESS/NUMBER_PAD/DEFAULT. FormField derives its prop type and default from these constants; Login and CodeField reuse them. Existing literal assertion independently verifies the number-pad behavior. Mobile lint, typecheck and94 tests pass (`evidence/comparison-constants/keyboard-type-tests.txt`). Existing acceptance gaps remain unchanged.
+
+### T055 complete mobile constants audit
+
+Owner requested a complete mobile check after identifying the `verifying` submit argument. Audited authored mobile TS/TSX source, including App.tsx and index.ts; runtime options now use grouped domain/native/component constants in calls, assignments, returns, defaults and JSX. LOGIN_STAGE and AUTH_RESULT_KIND also own their types. Native commands have a dedicated typed vocabulary; timeout values are named. Rendering options, event names, accessibility/keyboard settings and colors use shared platform constants.
+
+S21–S23 now include type-aware `weave-values/no-inline-option-values` in mobile and root staged-file lint. It rejects finite-string options using contextual TypeScript types, including local static aliases and mixed boolean/string options.18 meaningful RED failures preceded implementation;6 edge failures preceded alias/mixed-union handling;48 typed-rule cases pass. All279 policy,94 mobile,58 web and2 API tests pass; mobile/root lint, mobile typecheck and both production Metro bundles pass. See [audit evidence](evidence/comparison-constants/mobile-audit.md). No native/provider/database acceptance was repeated or claimed; prior open tasks remain open.
+
+T055 publication verification (2026-10-10): full `pnpm run verify` passes with279 policy,94 mobile,58 web and2 API tests, all lint/format/type checks and API/web/both Metro production builds.3/3 integration tests pass on isolated PostgreSQL18. See `evidence/comparison-constants/publish-verify.txt` and `publish-integration.txt`. No native/provider acceptance gaps are closed by this refactor; CI and code-owner review remain required.

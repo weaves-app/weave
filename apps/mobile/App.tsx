@@ -1,6 +1,7 @@
 import {StatusBar} from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 
+import {STATUS_BAR_STYLE} from './src/components/native-options';
 import {createAuthController} from './src/auth/application/auth-controller';
 import type {AuthController} from './src/auth/application/auth-controller';
 import {createNativeAuthGateway} from './src/auth/infrastructure/native-auth-gateway';
@@ -25,7 +26,7 @@ export function App({createController: factory = createController}: AppProps): R
         <AuthProvider createController={factory}>
           <SafeAreaProvider>
             <RootNavigator />
-            <StatusBar barStyle="dark-content" />
+            <StatusBar barStyle={STATUS_BAR_STYLE.DARK_CONTENT} />
           </SafeAreaProvider>
         </AuthProvider>
       )}

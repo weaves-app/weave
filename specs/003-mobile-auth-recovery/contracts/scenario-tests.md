@@ -49,3 +49,9 @@ T052 extends S15/S16/S19: LoginScreen regressions verify branding and verificati
 T053 extends S15/S16/S19: LoginScreen compares scroll alignment across both verification purposes; native iPad captures verify centered common frame and matching heading/logo origins in portrait, landscape and enlarged text. Phone regression flows cover automatic-code, error/resend/Back and narrow full-width layout.
 
 T054 refines S15/S16/S19: real Dimensions changes through LoginScreen show artwork only for wide tablet landscape while preserving entered email and partial OTP. Native phone and tablet portrait/landscape flows verify alignment, keyboard reachability and retained existing auth interactions.
+
+T055 adds S21–S23: `tests/policy/comparison-constants.test.mjs` exercises real mobile/web/root ESLint configurations against accepted and rejected comparison syntax and export ownership. Existing mobile auth/navigation/gateway and web/policy tests establish unchanged runtime and wire behavior.
+
+T055 navigation correction: S22/S23 regression cases exercise literal, expression, template and local-constant navigation props through mobile/root ESLint; S21 verifies exported/runtime identifiers and ordinary UI/form props remain valid. Existing RootNavigator tests cover route access and history.
+
+T055 complete mobile audit: `tests/policy/mobile-options.test.mjs` adds48 S21–S23 typed lint cases through actual mobile/root configurations. Existing auth/controller/gateway tests verify unchanged stage transitions and wire commands; navigation/UI tests verify unchanged rendering, route access and history.

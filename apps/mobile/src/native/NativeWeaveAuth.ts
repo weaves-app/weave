@@ -6,4 +6,5 @@ export interface Spec extends TurboModule {
   readonly onSessionChanged: CodegenTypes.EventEmitter<string>;
 }
 
+// React Native codegen requires the registry module name to be a string literal.
 export const nativeWeaveAuth = TurboModuleRegistry.get<Spec>('WeaveAuth');

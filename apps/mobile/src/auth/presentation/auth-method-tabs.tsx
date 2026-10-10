@@ -2,7 +2,9 @@ import {Pressable, StyleSheet, Text, View} from 'react-native';
 
 import {tokens} from '@weave/design-tokens';
 
+import {ACCESSIBILITY_ROLE, FLEX_ALIGNMENT, FLEX_DIRECTION} from '../../components/native-options';
 import type {AuthMethod} from '../domain/auth-models';
+import {AUTH_METHOD} from '../domain/auth-models';
 
 export interface AuthMethodTabsProps {
   readonly method: AuthMethod;
@@ -15,26 +17,26 @@ export function AuthMethodTabs({
   disabled,
   onSelect,
 }: AuthMethodTabsProps): React.JSX.Element {
-  const emailCodeSelected = method === 'emailCode';
+  const emailCodeSelected = method === AUTH_METHOD.EMAIL_CODE;
 
   return (
     <View style={styles.tabs}>
       <Pressable
-        accessibilityRole="button"
+        accessibilityRole={ACCESSIBILITY_ROLE.BUTTON}
         accessibilityLabel="Email and password"
         accessibilityState={{disabled, selected: !emailCodeSelected}}
         disabled={disabled}
-        onPress={() => onSelect('password')}
+        onPress={() => onSelect(AUTH_METHOD.PASSWORD)}
         style={[styles.tab, !emailCodeSelected && styles.selected, disabled && styles.disabled]}
       >
         <Text style={[styles.label, !emailCodeSelected && styles.selectedLabel]}>Password</Text>
       </Pressable>
       <Pressable
-        accessibilityRole="button"
+        accessibilityRole={ACCESSIBILITY_ROLE.BUTTON}
         accessibilityLabel="Email code"
         accessibilityState={{disabled, selected: emailCodeSelected}}
         disabled={disabled}
-        onPress={() => onSelect('emailCode')}
+        onPress={() => onSelect(AUTH_METHOD.EMAIL_CODE)}
         style={[styles.tab, emailCodeSelected && styles.selected, disabled && styles.disabled]}
       >
         <Text style={[styles.label, emailCodeSelected && styles.selectedLabel]}>Email code</Text>
@@ -45,7 +47,7 @@ export function AuthMethodTabs({
 
 const styles = StyleSheet.create({
   tabs: {
-    flexDirection: 'row',
+    flexDirection: FLEX_DIRECTION.ROW,
     padding: tokens.spacing.tiny,
     borderRadius: tokens.radii.slot,
     backgroundColor: tokens.colors.subtleSurface,
@@ -54,8 +56,8 @@ const styles = StyleSheet.create({
     flex: 1,
     minHeight: 48,
     padding: tokens.spacing.small,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: FLEX_ALIGNMENT.CENTER,
+    justifyContent: FLEX_ALIGNMENT.CENTER,
     borderRadius: tokens.radii.control,
   },
   selected: {backgroundColor: tokens.colors.surface},

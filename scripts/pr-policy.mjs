@@ -3,6 +3,10 @@ import {execFileSync} from 'node:child_process';
 
 import {validateCommit, validatePullRequest} from './policy.mjs';
 
+import {GIT_BRANCH} from './policy-constants.mjs';
+
+import {MISSING_VALUE} from './policy-constants.mjs';
+
 const event = JSON.parse(readFileSync(process.env.GITHUB_EVENT_PATH, 'utf8'));
 
 const pr = event.pull_request;
@@ -18,12 +22,12 @@ const error =
 
 if (error) throw new Error(error);
 
-if (pr.base.ref === 'develop') {
+if (pr.base.ref === GIT_BRANCH.DEVELOP) {
   const ticket = /WEA-\d+/.exec(pr.head.ref)[0];
 
   if (!pr.title.endsWith(`[${ticket}]`)) throw new Error('PR title must use the branch ticket.');
 
-  const body = pr.body ?? '';
+  const body = pr.body ?? MISSING_VALUE;
   const match = /Spec: (specs\/[a-z0-9-]+)\/spec\.md/.exec(body);
 
   if (

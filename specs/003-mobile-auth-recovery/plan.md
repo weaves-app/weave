@@ -153,3 +153,13 @@ Center one bounded frame (maximum480 wide/740 high at window widths600+) inside 
 ## T054 responsive composition
 
 Extract a feature-local AuthLayout responsible for safe area, tablet classification and optional landscape artwork. Tablet-sized windows require both dimensions>=600; split view additionally requires landscape and width>=960. Phone forms fill a top-aligned pane, portrait tablet forms retain the480×740 centered frame, and landscape tablet forms occupy a centered bounded frame in the right half. Keep the form subtree stable across resizing. Use a dedicated decorative artwork composition with local image and the reference tagline. Test real Dimensions changes, preservation of partial input and native layouts before restoring real apps on both iOS simulators.
+
+## T055 implementation note
+
+Keep exported values with their owning domain, adapter, UI component or repository policy. Derive mobile SessionStatus from SESSION_STATUS. The shared weave-values/no-literal-comparisons rule covers equality/relational operands and switch cases in root staged-file lint and app configurations, and rejects directly referenced non-exported static constants. Do not auto-fix: names and ownership require judgment. Tests exercise the actual mobile, web and root configurations before implementation; existing auth tests and repository/database checks verify unchanged behavior.
+
+T055 correction: the owner identified `state.error?.code ?? 'unexpected'`. S22/S23 also cover string/numeric fallback values with `??` and `||`. Mobile AUTH_ERROR_CODE supplies runtime error values and the derived union/validation vocabulary; preserve existing error handling and presentation.
+
+T055 navigation correction: own ROUTE_NAME and NAVIGATION_KEY in mobile navigation/routes.ts, reuse in RootParams and navigator registration. Extend the existing rule for Screen.name/navigationKey, Group.navigationKey and Navigator.initialRouteName JSX member props. Verify through actual lint configurations and existing navigation tests.
+
+T055 mobile audit: add a contextual-type ESLint rule for finite string options to mobile and root staged-file configurations. Reuse existing domain constants; own wire commands in the native adapter and renderer options in mobile components. Do not apply platform renderer options to framework-free domain code. TypeScript is an explicit peer of the shared ESLint configuration.

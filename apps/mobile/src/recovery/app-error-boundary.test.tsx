@@ -6,6 +6,10 @@ import {AppErrorBoundary} from './app-error-boundary';
 import {RecoveryScreen} from './recovery-screen';
 import type {RecoveryScreenProps} from './recovery-screen';
 
+export const LIFECYCLE_PHASE = 'lifecycle';
+
+export const RENDER_PHASE = 'render';
+
 const seededSecret = 'seeded-credential-must-stay-private';
 
 let consoleErrors: jest.SpyInstance;
@@ -39,10 +43,10 @@ function isRecoveryScreenProps(value: unknown): value is RecoveryScreenProps {
 
 function Fault({phase}: FaultProps): React.JSX.Element {
   useLayoutEffect(() => {
-    if (phase === 'lifecycle') throw new Error(seededSecret);
+    if (phase === LIFECYCLE_PHASE) throw new Error(seededSecret);
   }, [phase]);
 
-  if (phase === 'render') throw new Error(seededSecret);
+  if (phase === RENDER_PHASE) throw new Error(seededSecret);
 
   return <Text>Private Home content</Text>;
 }

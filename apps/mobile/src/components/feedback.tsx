@@ -2,6 +2,8 @@ import {StyleSheet, Text} from 'react-native';
 
 import {tokens} from '@weave/design-tokens';
 
+import {ACCESSIBILITY_LIVE_REGION, ACCESSIBILITY_ROLE} from './native-options';
+
 export interface FeedbackProps {
   readonly message: string;
   readonly busy?: boolean;
@@ -10,8 +12,8 @@ export interface FeedbackProps {
 export function Feedback({message, busy = false}: FeedbackProps): React.JSX.Element {
   return (
     <Text
-      accessibilityRole="alert"
-      accessibilityLiveRegion="polite"
+      accessibilityRole={ACCESSIBILITY_ROLE.ALERT}
+      accessibilityLiveRegion={ACCESSIBILITY_LIVE_REGION.POLITE}
       accessibilityState={{busy}}
       style={styles.text}
     >

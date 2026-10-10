@@ -2,6 +2,12 @@ import {createAuthController} from './application/auth-controller';
 import {active, deferred, signedOut, TestClock, TestGateway} from './testing/fakes';
 import type {AuthResult, SessionSnapshot} from './domain/auth-models';
 
+import {SESSION_STATUS, AUTH_METHOD, CODE_PURPOSE} from './domain/auth-models';
+
+export const SIGN_OUT_COMMAND = 'signOut';
+
+export const RESOLVE_COMMAND = 'resolve';
+
 function requestContext(gateway: TestGateway, index: number) {
   const input = gateway.requests[index]?.input;
 
@@ -64,9 +70,9 @@ test('S07 ignores old revisions but removes access on ordered revocation', async
 
   const generation = controller.getSnapshot().session.generation;
 
-  gateway.emit({status: 'signedOut', generation, revision: 2});
+  gateway.emit({status: SESSION_STATUS.SIGNED_OUT, generation, revision: 2});
   expect(controller.getSnapshot().session.status).toBe('active');
-  gateway.emit({status: 'signedOut', generation, revision: 4});
+  gateway.emit({status: SESSION_STATUS.SIGNED_OUT, generation, revision: 4});
   expect(controller.getSnapshot().session.status).toBe('signedOut');
   gateway.emit(active({generation: generation - 1, operationId: 'old'}, 10));
   expect(controller.getSnapshot().session.status).toBe('signedOut');
@@ -118,7 +124,7 @@ test.each(['password', 'emailCode', 'google'] as const)(
     await controller.start();
     await controller.login(method, ' person@example.com ', 'password ');
     expect(gateway.requests.map((request) => request.method)).toContain(
-      method === 'emailCode' ? 'requestCode' : method,
+      method === AUTH_METHOD.EMAIL_CODE ? 'requestCode' : method,
     );
     expect(controller.getSnapshot().session.status).toBe('active');
     expect(JSON.stringify(controller.getSnapshot())).not.toContain('password ');
@@ -170,7 +176,7 @@ test.each(['signIn', 'deviceTrust'] as const)(
 
     await controller.start();
     await controller.login(
-      codePurpose === 'deviceTrust' ? 'password' : 'emailCode',
+      codePurpose === CODE_PURPOSE.DEVICE_TRUST ? 'password' : 'emailCode',
       'person@example.com',
       'password',
     );
@@ -293,7 +299,7 @@ test('S09/S11 logout prevents duplicates and removes the active session on confi
   const ready = controller.logout();
 
   await controller.logout();
-  expect(gateway.requests.filter((request) => request.method === 'signOut')).toHaveLength(1);
+  expect(gateway.requests.filter((request) => request.method === SIGN_OUT_COMMAND)).toHaveLength(1);
   expect(controller.getSnapshot().pending).toBe(true);
 
   const input = gateway.requests.at(-1)?.input;
@@ -313,7 +319,7 @@ test.each(['active', 'signedOut', 'unavailable'] as const)(
 
     gateway.resolveResult = async (input) => active(input);
     gateway.signOutResult = async (input) => ({
-      ...(status === 'active' ? active(input) : signedOut(input)),
+      ...(status === SESSION_STATUS.ACTIVE ? active(input) : signedOut(input)),
       status,
       error: {code: 'network', messageKey: 'network'},
     });
@@ -359,7 +365,7 @@ test.each(['signIn', 'deviceTrust'] as const)(
 
     await controller.start();
     await controller.login(
-      codePurpose === 'signIn' ? 'emailCode' : 'password',
+      codePurpose === CODE_PURPOSE.SIGN_IN ? 'emailCode' : 'password',
       'person@example.com',
       'password',
     );
@@ -427,7 +433,7 @@ test('S09/S10 foreground does not supersede an in-flight logout reconciliation',
 
   controller.setForeground(false);
   controller.setForeground(true);
-  expect(gateway.requests.filter((request) => request.method === 'resolve')).toHaveLength(1);
+  expect(gateway.requests.filter((request) => request.method === RESOLVE_COMMAND)).toHaveLength(1);
   result.resolve(signedOut(input));
   await ready;
   expect(controller.getSnapshot().session.status).toBe('signedOut');
@@ -444,7 +450,7 @@ test('S07 equal revision callbacks cannot reverse a revocation', async () => {
 
   const generation = controller.getSnapshot().session.generation;
 
-  gateway.emit({status: 'signedOut', generation, revision: 2});
+  gateway.emit({status: SESSION_STATUS.SIGNED_OUT, generation, revision: 2});
   gateway.emit(active({generation, operationId: 'duplicate'}, 2));
   expect(controller.getSnapshot().session.status).toBe('signedOut');
 });
@@ -454,7 +460,7 @@ test('S10 unavailable command outcome at revision zero fails closed during logou
 
   gateway.resolveResult = async (input) => active(input);
   gateway.signOutResult = async (input) => ({
-    status: 'unavailable',
+    status: SESSION_STATUS.UNAVAILABLE,
     generation: input.generation,
     revision: 0,
     error: {code: 'unexpected', messageKey: 'unexpected'},
@@ -476,7 +482,7 @@ test('S10 malformed logout failure overrides a higher revision intermediate acti
     gateway.emit(active(input, 3));
 
     return {
-      status: 'unavailable',
+      status: SESSION_STATUS.UNAVAILABLE,
       generation: input.generation,
       revision: 0,
       error: {code: 'unexpected', messageKey: 'unexpected'},
@@ -523,7 +529,7 @@ test('S04/S07 retry after subscription failure reinstalls invalidation before gr
   await controller.refresh();
   expect(controller.getSnapshot().session.status).toBe('active');
   gateway.emit({
-    status: 'signedOut',
+    status: SESSION_STATUS.SIGNED_OUT,
     generation: controller.getSnapshot().session.generation,
     revision: 2,
   });

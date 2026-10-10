@@ -11,7 +11,17 @@ import {
 
 import {tokens} from '@weave/design-tokens';
 
+import {AUTO_COMPLETE} from '../../components/input-constants';
+import {
+  ACCESSIBILITY_IMPORTANCE,
+  NATIVE_EVENT,
+  OVERFLOW,
+  POINTER_EVENTS,
+  POSITION,
+} from '../../components/native-options';
 import {FormField} from '../../components/form-field';
+
+export const COLLAPSED_HEIGHT = 0;
 
 interface PasswordTransitionProps {
   readonly visible: boolean;
@@ -47,10 +57,13 @@ export function PasswordTransition({
       }
     }
 
-    const subscription = AccessibilityInfo.addEventListener('reduceMotionChanged', (enabled) => {
-      receivedEvent = true;
-      applyPreference(enabled);
-    });
+    const subscription = AccessibilityInfo.addEventListener(
+      NATIVE_EVENT.REDUCE_MOTION_CHANGED,
+      (enabled) => {
+        receivedEvent = true;
+        applyPreference(enabled);
+      },
+    );
 
     void AccessibilityInfo.isReduceMotionEnabled()
       .then((enabled) => {
@@ -66,7 +79,7 @@ export function PasswordTransition({
   useEffect(() => {
     target.current = visible ? 1 : 0;
 
-    if (reduceMotion.current || height === 0) {
+    if (reduceMotion.current || height === COLLAPSED_HEIGHT) {
       progress.setValue(visible ? 1 : 0);
 
       return;
@@ -87,9 +100,11 @@ export function PasswordTransition({
   return (
     <View style={{minHeight: height + actionHeight}}>
       <Animated.View
-        pointerEvents={visible ? 'auto' : 'none'}
+        pointerEvents={visible ? POINTER_EVENTS.AUTO : POINTER_EVENTS.NONE}
         accessibilityElementsHidden={!visible}
-        importantForAccessibility={visible ? 'auto' : 'no-hide-descendants'}
+        importantForAccessibility={
+          visible ? ACCESSIBILITY_IMPORTANCE.AUTO : ACCESSIBILITY_IMPORTANCE.HIDE_DESCENDANTS
+        }
         style={[
           styles.clip,
           {height: progress.interpolate({inputRange: [0, 1], outputRange: [0, height]})},
@@ -120,7 +135,7 @@ export function PasswordTransition({
               value={value}
               onChangeText={onChangeText}
               placeholder="Enter your password"
-              autoComplete="current-password"
+              autoComplete={AUTO_COMPLETE.CURRENT_PASSWORD}
               secret
               disabled={disabled || !visible}
             />
@@ -133,7 +148,7 @@ export function PasswordTransition({
 }
 
 const styles = StyleSheet.create({
-  clip: {overflow: 'hidden'},
-  password: {position: 'absolute', top: 0, left: 0, right: 0},
+  clip: {overflow: OVERFLOW.HIDDEN},
+  password: {position: POSITION.ABSOLUTE, top: 0, left: 0, right: 0},
   measure: {paddingBottom: tokens.spacing.large},
 });

@@ -3,6 +3,8 @@ import {appendFileSync, writeFileSync} from 'node:fs';
 
 import {nextVersion} from './release-policy.mjs';
 
+export const INITIAL_RELEASE_VERSION = '0.0.0';
+
 const git = (...args) => execFileSync('git', args, {encoding: 'utf8'}).trim();
 
 const tags = git('tag', '--list', 'v*', '--sort=-version:refname')
@@ -23,7 +25,8 @@ const commits = git('log', '--no-merges', '--format=%s', range)
   .split('\n')
   .filter((value) => /^[a-z]+(?:\([^)]*\))?!?: /.test(value));
 
-const version = existing?.slice(1) ?? nextVersion(previous?.slice(1) ?? '0.0.0', commits);
+const version =
+  existing?.slice(1) ?? nextVersion(previous?.slice(1) ?? INITIAL_RELEASE_VERSION, commits);
 
 if (!version) throw new Error('No releasable commits.');
 

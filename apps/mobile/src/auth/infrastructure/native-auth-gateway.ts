@@ -1,3 +1,7 @@
+import type {NativeAuthCommand} from './native-auth-commands';
+
+import {NATIVE_AUTH_COMMAND} from './native-auth-commands';
+
 import type {AuthenticationGateway, OperationContext} from '../application/authentication-gateway';
 import type {
   AuthErrorCode,
@@ -7,8 +11,19 @@ import type {
   SessionSnapshot,
 } from '../domain/auth-models';
 
+import {
+  AUTH_ERROR_CODE,
+  AUTH_RESULT_KIND,
+  CODE_PURPOSE,
+  SESSION_STATUS,
+} from '../domain/auth-models';
+
+export const MIN_NATIVE_COUNT = 0;
+
+export const EMPTY_IDENTIFIER_LENGTH = 0;
+
 export interface NativeAuthTransport {
-  execute(command: string, payload: string): Promise<unknown>;
+  execute(command: NativeAuthCommand, payload: string): Promise<unknown>;
   subscribe(observer: (value: unknown) => void): () => void;
 }
 
@@ -16,34 +31,20 @@ interface UnknownRecord {
   readonly [key: string]: unknown;
 }
 
-const codes: readonly AuthErrorCode[] = [
-  'invalidInput',
-  'rejectedCredentials',
-  'codeInvalid',
-  'codeExpired',
-  'rateLimited',
-  'existingAccountRequired',
-  'cancelled',
-  'network',
-  'timeout',
-  'configuration',
-  'verificationRequired',
-  'storage',
-  'unexpected',
-];
+const codes: readonly AuthErrorCode[] = Object.values(AUTH_ERROR_CODE);
 
 function record(value: unknown): value is UnknownRecord {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
 }
 
 function count(value: unknown): value is number {
-  return typeof value === 'number' && Number.isSafeInteger(value) && value >= 0;
+  return typeof value === 'number' && Number.isSafeInteger(value) && value >= MIN_NATIVE_COUNT;
 }
 
 function safeError(value: unknown): SafeAuthError {
   const code = record(value)
-    ? (codes.find((item) => item === value.code) ?? 'unexpected')
-    : 'unexpected';
+    ? (codes.find((item) => item === value.code) ?? AUTH_ERROR_CODE.UNEXPECTED)
+    : AUTH_ERROR_CODE.UNEXPECTED;
   const retryAfterSeconds =
     record(value) && count(value.retryAfterSeconds) ? value.retryAfterSeconds : undefined;
 
@@ -51,7 +52,7 @@ function safeError(value: unknown): SafeAuthError {
 }
 
 function failure(value: unknown): AuthFailure {
-  return {kind: 'error', ...safeError(value)};
+  return {kind: AUTH_RESULT_KIND.ERROR, ...safeError(value)};
 }
 
 function decode(value: unknown): unknown {
@@ -71,16 +72,16 @@ function normalize(value: unknown): AuthResult {
 
   if (!record(body)) return failure(undefined);
 
-  if (body.kind === 'error') return failure(body);
+  if (body.kind === AUTH_RESULT_KIND.ERROR) return failure(body);
 
   if (
-    body.kind === 'challenge' &&
+    body.kind === AUTH_RESULT_KIND.CHALLENGE &&
     typeof body.attemptId === 'string' &&
-    body.attemptId.length > 0 &&
-    (body.codePurpose === 'signIn' || body.codePurpose === 'deviceTrust')
+    body.attemptId.length > EMPTY_IDENTIFIER_LENGTH &&
+    (body.codePurpose === CODE_PURPOSE.SIGN_IN || body.codePurpose === CODE_PURPOSE.DEVICE_TRUST)
   ) {
     return {
-      kind: 'challenge',
+      kind: AUTH_RESULT_KIND.CHALLENGE,
       attemptId: body.attemptId,
       codePurpose: body.codePurpose,
       ...(count(body.retryAfterSeconds) ? {retryAfterSeconds: body.retryAfterSeconds} : {}),
@@ -92,15 +93,15 @@ function normalize(value: unknown): AuthResult {
   const status = body.status;
 
   if (
-    status !== 'active' &&
-    status !== 'signedOut' &&
-    status !== 'unavailable' &&
-    status !== 'resolving'
+    status !== SESSION_STATUS.ACTIVE &&
+    status !== SESSION_STATUS.SIGNED_OUT &&
+    status !== SESSION_STATUS.UNAVAILABLE &&
+    status !== SESSION_STATUS.RESOLVING
   )
     return failure(undefined);
 
   if (
-    status === 'active' &&
+    status === SESSION_STATUS.ACTIVE &&
     (typeof body.sessionId !== 'string' ||
       !body.sessionId ||
       typeof body.accountId !== 'string' ||
@@ -113,7 +114,7 @@ function normalize(value: unknown): AuthResult {
     status,
     generation: body.generation,
     revision: body.revision,
-    ...(status === 'active' &&
+    ...(status === SESSION_STATUS.ACTIVE &&
     typeof body.sessionId === 'string' &&
     typeof body.accountId === 'string' &&
     count(body.validatedAt)
@@ -127,7 +128,7 @@ function snapshot(result: AuthResult, context: OperationContext): SessionSnapsho
   if (!('kind' in result) && result.generation === context.generation) return result;
 
   return {
-    status: 'unavailable',
+    status: SESSION_STATUS.UNAVAILABLE,
     generation: context.generation,
     revision: 0,
     error: 'code' in result ? safeError(result) : safeError(undefined),
@@ -139,9 +140,9 @@ export function createNativeAuthGateway(transport: NativeAuthTransport): Authent
   let latestContext: OperationContext | undefined;
   let latestRevision = 0;
 
-  const execute = async (command: string, input: object): Promise<AuthResult> => {
+  const execute = async (command: NativeAuthCommand, input: object): Promise<AuthResult> => {
     if (
-      command !== 'abandon' &&
+      command !== NATIVE_AUTH_COMMAND.ABANDON &&
       'generation' in input &&
       'operationId' in input &&
       count(input.generation) &&
@@ -165,7 +166,10 @@ export function createNativeAuthGateway(transport: NativeAuthTransport): Authent
 
   return {
     resolveSession: async (input) =>
-      snapshot(await execute('resolveSession', {...input, forceFresh: true}), input),
+      snapshot(
+        await execute(NATIVE_AUTH_COMMAND.RESOLVE_SESSION, {...input, forceFresh: true}),
+        input,
+      ),
 
     subscribe: (observer) => {
       const stop = transport.subscribe((value) => {
@@ -178,7 +182,7 @@ export function createNativeAuthGateway(transport: NativeAuthTransport): Authent
           observer(result);
         } else if (latestContext)
           observer({
-            status: 'unavailable',
+            status: SESSION_STATUS.UNAVAILABLE,
             generation: latestContext.generation,
             revision: ++latestRevision,
             error: safeError(undefined),
@@ -195,20 +199,20 @@ export function createNativeAuthGateway(transport: NativeAuthTransport): Authent
       return unsubscribe;
     },
 
-    password: (input) => execute('password', input),
+    password: (input) => execute(NATIVE_AUTH_COMMAND.PASSWORD, input),
 
-    requestCode: (input) => execute('requestCode', input),
+    requestCode: (input) => execute(NATIVE_AUTH_COMMAND.REQUEST_CODE, input),
 
-    verifyCode: (input) => execute('verifyCode', input),
+    verifyCode: (input) => execute(NATIVE_AUTH_COMMAND.VERIFY_CODE, input),
 
-    resendCode: (input) => execute('resendCode', input),
+    resendCode: (input) => execute(NATIVE_AUTH_COMMAND.RESEND_CODE, input),
 
-    google: (input) => execute('google', input),
+    google: (input) => execute(NATIVE_AUTH_COMMAND.GOOGLE, input),
 
-    signOut: async (input) => snapshot(await execute('signOut', input), input),
+    signOut: async (input) => snapshot(await execute(NATIVE_AUTH_COMMAND.SIGN_OUT, input), input),
 
     abandon: async (input) => {
-      await execute('abandon', input);
+      await execute(NATIVE_AUTH_COMMAND.ABANDON, input);
     },
 
     dispose: () => {

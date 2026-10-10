@@ -162,3 +162,17 @@ Owner reported Login top-aligned versus centered OTP on iPad. Under S15/S16/S19 
 ## Responsive authentication layout — 2026-10-09
 
 Owner requests phone alignment near the top, centered portrait tablet layout, and landscape tablet composition like the supplied web reference. Use a linen artwork/tagline panel on the left and cream Login/OTP pane on the right in wide tablet landscape. Both forms keep common header/heading origins; rotation retains entered email/code and authentication state. Phones (including landscape) and narrow windows use the full top-aligned layout. Keyboard and enlarged-text content remain scrollable.
+
+## Exported comparison constants — 2026-10-09
+
+Owner approved T055 and expanded it to string and numeric comparisons across authored TypeScript/JavaScript. Existing mobile session-status construction also uses SESSION_STATUS, and SessionStatus is derived from its values. Runtime behavior and wire values stay unchanged.
+
+- S21 (happy): Given exported named comparison constants, when auth and repository operations run, then behavior is unchanged and lint accepts the comparisons.
+- S22 (sad): Given inline strings/numbers or directly referenced non-exported static constants in equality/relational comparisons or switch cases, when either app or root staged-file lint runs, then it reports an error.
+- S23 (edge): Reversed operands, signed numbers, static templates, TypeScript assertions, computed/optional access and switch cases are checked. Null/undefined, booleans, typeof checks, runtime values, and literal assertion arguments in tests remain valid. Generated/vendor source is excluded.
+
+T055 correction: the owner identified `state.error?.code ?? 'unexpected'`. S22/S23 also cover string/numeric fallback values with `??` and `||`. Mobile AUTH_ERROR_CODE supplies runtime error values and the derived union/validation vocabulary; preserve existing error handling and presentation.
+
+T055 navigation correction (S21–S23): runtime route names and public/protected navigation keys use exported constants; reject hardcoded navigation identifier props while preserving ordinary UI text and typed route/history behavior.
+
+T055 mobile audit (S21–S23): grouped runtime options must be reused in calls, assignments, returns, defaults and JSX, not only comparisons. Derive authored finite-string types from the vocabulary. Preserve human copy, structural keys, formatting/empty strings, independent test fixtures and framework-required codegen literals.

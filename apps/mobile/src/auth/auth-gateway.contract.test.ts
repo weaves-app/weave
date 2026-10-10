@@ -1,10 +1,12 @@
 import {createNativeAuthGateway} from './infrastructure/native-auth-gateway';
 import type {NativeAuthTransport} from './infrastructure/native-auth-gateway';
 
+import {SESSION_STATUS} from './domain/auth-models';
+
 const context = {generation: 1, operationId: 'test-1'};
 
 const active = {
-  status: 'active',
+  status: SESSION_STATUS.ACTIVE,
   generation: 1,
   revision: 1,
   sessionId: 'session',
@@ -31,7 +33,7 @@ test('S05 validates a fresh native session and removes unrecognized credential f
 test.each([
   null,
   [],
-  {status: 'active'},
+  {status: SESSION_STATUS.ACTIVE},
   {...active, validatedAt: undefined},
   {...active, generation: -1},
   {...active, status: 'unknown'},
@@ -107,7 +109,7 @@ test('S04 mismatched response generation fails closed instead of leaving resolut
   const gateway = createNativeAuthGateway(transport({...active, generation: 0}));
 
   expect(await gateway.resolveSession(context)).toMatchObject({
-    status: 'unavailable',
+    status: SESSION_STATUS.UNAVAILABLE,
     generation: 1,
     error: {code: 'unexpected'},
   });
@@ -133,7 +135,7 @@ test('S07 malformed event revokes protected access with a safe current-generatio
   gateway.subscribe((value) => received.push(value));
   observer('{invalid-event');
   expect(received[0]).toMatchObject({
-    status: 'unavailable',
+    status: SESSION_STATUS.UNAVAILABLE,
     generation: 1,
     error: {code: 'unexpected'},
   });

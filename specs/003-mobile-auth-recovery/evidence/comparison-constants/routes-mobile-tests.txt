@@ -1,0 +1,29 @@
+$ pnpm run test:privacy && jest --runInBand
+$ node scripts/apply-renderer-privacy.mjs && node scripts/renderer-privacy-probe.mjs
+Applied pinned React Native renderer diagnostics privacy patch.
+Renderer privacy probe: three severities sanitized; fatality preserved.
+2026-10-09T21:28:07,913: [cli] unable to talk to your watchman on /var/folders/0s/k9brkk2x3f74kq29m_5r4wrr0000gn/T//pravinraj-state/sock! (Operation not permitted)
+
+Watchman:  watchman --no-pretty get-sockname returned with exit code=1, signal=null, stderr= 2026-10-09T21:28:07,913: [cli] unable to talk to your watchman on /var/folders/0s/k9brkk2x3f74kq29m_5r4wrr0000gn/T//pravinraj-state/sock! (Operation not permitted)
+
+node:events:485
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: watchman --no-pretty get-sockname returned with exit code=1, signal=null, stderr= 2026-10-09T21:28:07,913: [cli] unable to talk to your watchman on /var/folders/0s/k9brkk2x3f74kq29m_5r4wrr0000gn/T//pravinraj-state/sock! (Operation not permitted)
+
+    at ChildProcess.<anonymous> (/Users/pravinraj/workspace/weave/node_modules/fb-watchman/index.js:203:18)
+    at ChildProcess.emit (node:events:507:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:305:5)
+Emitted 'error' event on Client instance at:
+    at spawnError (/Users/pravinraj/workspace/weave/node_modules/fb-watchman/index.js:174:10)
+    at ChildProcess.<anonymous> (/Users/pravinraj/workspace/weave/node_modules/fb-watchman/index.js:203:7)
+    at ChildProcess.emit (node:events:507:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:305:5)
+
+Node.js v24.2.0
+/Users/pravinraj/workspace/weave/apps/mobile:
+[ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL] @weave/mobile@0.0.0 test: `pnpm run test:privacy && jest --runInBand`
+Exit status 1
