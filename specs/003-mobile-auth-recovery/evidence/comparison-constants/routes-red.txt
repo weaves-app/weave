@@ -1,0 +1,432 @@
+✔ S22/S23 mobile: rejects comparison magic values: state.session.status === 'resolving'; (152.078042ms)
+✔ S22/S23 mobile: rejects comparison magic values: 'active' !== state.session.status; (1.144625ms)
+✔ S22/S23 mobile: rejects comparison magic values: session?.['status'] == `signedOut`; (1.374792ms)
+✔ S22/S23 mobile: rejects comparison magic values: mode !== 'password'; (0.653542ms)
+✔ S22/S23 mobile: rejects comparison magic values: count >= 6; (0.897458ms)
+✔ S22/S23 mobile: rejects comparison magic values: state.error?.code ?? 'unexpected'; (0.821167ms)
+✔ S22/S23 mobile: rejects comparison magic values: message || `unavailable`; (0.539875ms)
+✔ S22/S23 mobile: rejects comparison magic values: count ?? 0; (0.533833ms)
+✔ S22/S23 mobile: rejects comparison magic values: count || -1; (0.699375ms)
+✔ S22/S23 mobile: rejects comparison magic values: const FALLBACK = 'unexpected'; state.error?.code ?? FALLBACK; (1.980125ms)
+✔ S22/S23 mobile: rejects comparison magic values: -1 < index; (0.961083ms)
+✔ S22/S23 mobile: rejects comparison magic values: offset === 0; (0.535292ms)
+✔ S22/S23 mobile: rejects comparison magic values: offset === +1; (0.491666ms)
+✔ S22/S23 mobile: rejects comparison magic values: status === ('active' satisfies string); (0.693334ms)
+✔ S22/S23 mobile: rejects comparison magic values: const statuses = {active: 'active'} as const; status === statuses.active; (1.125292ms)
+✔ S22/S23 mobile: rejects comparison magic values: switch (kind) {case 'complete': break;} (0.832ms)
+✔ S22/S23 mobile: rejects comparison magic values: switch (code) {case 200: break;} (0.889667ms)
+✔ S22/S23 mobile: rejects comparison magic values: status === ('active' as const); (0.694417ms)
+✔ S22/S23 mobile: rejects comparison magic values: const LIMIT = 6; count > LIMIT; (0.578375ms)
+✔ S22/S23 mobile: rejects comparison magic values: const STATUS = {ACTIVE: 'active'} as const; status === STATUS.ACTIVE; (0.549042ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: export const STATUS = {ACTIVE: 'active'} as const; status === STATUS.ACTIVE; (0.8935ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: export const LIMIT = 6; count >= LIMIT; (0.501041ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: const LIMIT = 6; export {LIMIT}; count >= LIMIT; (0.877625ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: import {STATUS} from './constants'; status === STATUS.ACTIVE; (0.767458ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: switch (status) {case SESSION_STATUS.ACTIVE: break;} (0.435167ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: typeof value === 'string'; (0.378916ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: 'object' !== typeof value; (0.394375ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: switch (typeof value) {case 'string': break;} (0.406875ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: value === null; (0.323209ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: value !== undefined; (0.403209ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: ready === false; (0.322167ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: count > otherCount; (0.35475ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: const label = 'active'; (0.574708ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: const size = 6; (0.39575ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: export const ERRORS = {UNEXPECTED: 'unexpected'} as const; state.error?.code ?? ERRORS.UNEXPECTED; (0.699042ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: value ?? defaultValue; (0.367833ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: value || defaultValue; (0.374041ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: value ?? null; (0.335791ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: value ?? false; (0.342833ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: const limit = getLimit(); count > limit; (0.732959ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: const current = {status: readStatus()}; status === current.status; (0.494084ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: expect(status).toBe('active'); (0.367166ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: assert.equal(count, 6); (0.361667ms)
+✖ S21/S22/S23 mobile: navigation identifiers: <Stack.Screen name="Home" />; (1.515ms)
+✖ S21/S22/S23 mobile: navigation identifiers: <Stack.Screen navigationKey="protected" />; (0.696083ms)
+✖ S21/S22/S23 mobile: navigation identifiers: <Stack.Screen name={'Home'} />; (0.614209ms)
+✖ S21/S22/S23 mobile: navigation identifiers: <Stack.Screen navigationKey={`protected`} />; (0.476833ms)
+✖ S21/S22/S23 mobile: navigation identifiers: <Stack.Navigator initialRouteName="Login" />; (0.402459ms)
+✖ S21/S22/S23 mobile: navigation identifiers: <Stack.Group navigationKey="public" />; (0.370958ms)
+✖ S21/S22/S23 mobile: navigation identifiers: const KEY = 'public'; <Stack.Group navigationKey={KEY} />; (0.511916ms)
+✔ S21/S22/S23 mobile: navigation identifiers: export const ROUTE = {HOME: 'Home'} as const; <Stack.Screen name={ROUTE.HOME} />; (0.572416ms)
+✔ S21/S22/S23 mobile: navigation identifiers: import {KEY} from './routes'; <Stack.Group navigationKey={KEY.PUBLIC} />; (0.558375ms)
+✔ S21/S22/S23 mobile: navigation identifiers: <Stack.Screen navigationKey={sessionKey} />; (0.384167ms)
+✔ S21/S22/S23 mobile: navigation identifiers: <input name="email" />; (0.333417ms)
+✔ S21/S22/S23 mobile: navigation identifiers: <Text>Home</Text>; (0.557375ms)
+✔ S21/S22/S23 mobile: navigation identifiers: <Stack.Screen options={{title: "Home"}} />; (0.466125ms)
+✔ S22/S23 web: rejects comparison magic values: state.session.status === 'resolving'; (7.816959ms)
+✔ S22/S23 web: rejects comparison magic values: 'active' !== state.session.status; (0.572083ms)
+✔ S22/S23 web: rejects comparison magic values: session?.['status'] == `signedOut`; (0.508ms)
+✔ S22/S23 web: rejects comparison magic values: mode !== 'password'; (0.843875ms)
+✔ S22/S23 web: rejects comparison magic values: count >= 6; (0.68625ms)
+✔ S22/S23 web: rejects comparison magic values: state.error?.code ?? 'unexpected'; (0.715709ms)
+✔ S22/S23 web: rejects comparison magic values: message || `unavailable`; (0.507583ms)
+✔ S22/S23 web: rejects comparison magic values: count ?? 0; (0.604083ms)
+✔ S22/S23 web: rejects comparison magic values: count || -1; (0.602792ms)
+✔ S22/S23 web: rejects comparison magic values: const FALLBACK = 'unexpected'; state.error?.code ?? FALLBACK; (0.602791ms)
+✔ S22/S23 web: rejects comparison magic values: -1 < index; (0.46575ms)
+✔ S22/S23 web: rejects comparison magic values: offset === 0; (0.417042ms)
+✔ S22/S23 web: rejects comparison magic values: offset === +1; (0.425291ms)
+✔ S22/S23 web: rejects comparison magic values: status === ('active' satisfies string); (0.525375ms)
+✔ S22/S23 web: rejects comparison magic values: const statuses = {active: 'active'} as const; status === statuses.active; (0.57325ms)
+✔ S22/S23 web: rejects comparison magic values: switch (kind) {case 'complete': break;} (0.464958ms)
+✔ S22/S23 web: rejects comparison magic values: switch (code) {case 200: break;} (0.449959ms)
+✔ S22/S23 web: rejects comparison magic values: status === ('active' as const); (0.479625ms)
+✔ S22/S23 web: rejects comparison magic values: const LIMIT = 6; count > LIMIT; (0.499583ms)
+✔ S22/S23 web: rejects comparison magic values: const STATUS = {ACTIVE: 'active'} as const; status === STATUS.ACTIVE; (0.581625ms)
+✔ S21/S23 web: allows constants and agreed exceptions: export const STATUS = {ACTIVE: 'active'} as const; status === STATUS.ACTIVE; (0.585125ms)
+✔ S21/S23 web: allows constants and agreed exceptions: export const LIMIT = 6; count >= LIMIT; (0.614458ms)
+✔ S21/S23 web: allows constants and agreed exceptions: const LIMIT = 6; export {LIMIT}; count >= LIMIT; (0.751834ms)
+✔ S21/S23 web: allows constants and agreed exceptions: import {STATUS} from './constants'; status === STATUS.ACTIVE; (0.678167ms)
+✔ S21/S23 web: allows constants and agreed exceptions: switch (status) {case SESSION_STATUS.ACTIVE: break;} (0.603625ms)
+✔ S21/S23 web: allows constants and agreed exceptions: typeof value === 'string'; (0.494375ms)
+✔ S21/S23 web: allows constants and agreed exceptions: 'object' !== typeof value; (0.488791ms)
+✔ S21/S23 web: allows constants and agreed exceptions: switch (typeof value) {case 'string': break;} (0.482666ms)
+✔ S21/S23 web: allows constants and agreed exceptions: value === null; (0.433ms)
+✔ S21/S23 web: allows constants and agreed exceptions: value !== undefined; (0.692875ms)
+✔ S21/S23 web: allows constants and agreed exceptions: ready === false; (0.559834ms)
+✔ S21/S23 web: allows constants and agreed exceptions: count > otherCount; (0.450167ms)
+✔ S21/S23 web: allows constants and agreed exceptions: const label = 'active'; (0.571916ms)
+✔ S21/S23 web: allows constants and agreed exceptions: const size = 6; (0.569875ms)
+✔ S21/S23 web: allows constants and agreed exceptions: export const ERRORS = {UNEXPECTED: 'unexpected'} as const; state.error?.code ?? ERRORS.UNEXPECTED; (0.947583ms)
+✔ S21/S23 web: allows constants and agreed exceptions: value ?? defaultValue; (0.545125ms)
+✔ S21/S23 web: allows constants and agreed exceptions: value || defaultValue; (0.450333ms)
+✔ S21/S23 web: allows constants and agreed exceptions: value ?? null; (0.68675ms)
+✔ S21/S23 web: allows constants and agreed exceptions: value ?? false; (0.709458ms)
+✔ S21/S23 web: allows constants and agreed exceptions: const limit = getLimit(); count > limit; (0.664709ms)
+✔ S21/S23 web: allows constants and agreed exceptions: const current = {status: readStatus()}; status === current.status; (1.135208ms)
+✔ S21/S23 web: allows constants and agreed exceptions: expect(status).toBe('active'); (0.724291ms)
+✔ S21/S23 web: allows constants and agreed exceptions: assert.equal(count, 6); (0.789ms)
+✔ S22/S23 root staged files: rejects comparison magic values: state.session.status === 'resolving'; (13.817542ms)
+✔ S22/S23 root staged files: rejects comparison magic values: 'active' !== state.session.status; (0.2765ms)
+✔ S22/S23 root staged files: rejects comparison magic values: session?.['status'] == `signedOut`; (0.250625ms)
+✔ S22/S23 root staged files: rejects comparison magic values: mode !== 'password'; (0.198417ms)
+✔ S22/S23 root staged files: rejects comparison magic values: count >= 6; (0.208125ms)
+✔ S22/S23 root staged files: rejects comparison magic values: state.error?.code ?? 'unexpected'; (0.209625ms)
+✔ S22/S23 root staged files: rejects comparison magic values: message || `unavailable`; (0.198708ms)
+✔ S22/S23 root staged files: rejects comparison magic values: count ?? 0; (0.208792ms)
+✔ S22/S23 root staged files: rejects comparison magic values: count || -1; (0.189709ms)
+✔ S22/S23 root staged files: rejects comparison magic values: const FALLBACK = 'unexpected'; state.error?.code ?? FALLBACK; (0.314542ms)
+✔ S22/S23 root staged files: rejects comparison magic values: -1 < index; (0.219334ms)
+✔ S22/S23 root staged files: rejects comparison magic values: offset === 0; (0.181541ms)
+✔ S22/S23 root staged files: rejects comparison magic values: offset === +1; (0.217958ms)
+✔ S22/S23 root staged files: rejects comparison magic values: status === ('active' satisfies string); (0.20675ms)
+✔ S22/S23 root staged files: rejects comparison magic values: const statuses = {active: 'active'} as const; status === statuses.active; (0.304125ms)
+✔ S22/S23 root staged files: rejects comparison magic values: switch (kind) {case 'complete': break;} (0.243334ms)
+✔ S22/S23 root staged files: rejects comparison magic values: switch (code) {case 200: break;} (0.27375ms)
+✔ S22/S23 root staged files: rejects comparison magic values: status === ('active' as const); (0.226167ms)
+✔ S22/S23 root staged files: rejects comparison magic values: const LIMIT = 6; count > LIMIT; (0.251208ms)
+✔ S22/S23 root staged files: rejects comparison magic values: const STATUS = {ACTIVE: 'active'} as const; status === STATUS.ACTIVE; (0.291666ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: export const STATUS = {ACTIVE: 'active'} as const; status === STATUS.ACTIVE; (0.289958ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: export const LIMIT = 6; count >= LIMIT; (0.258375ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: const LIMIT = 6; export {LIMIT}; count >= LIMIT; (0.293875ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: import {STATUS} from './constants'; status === STATUS.ACTIVE; (0.269042ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: switch (status) {case SESSION_STATUS.ACTIVE: break;} (0.222ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: typeof value === 'string'; (0.196167ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: 'object' !== typeof value; (0.175917ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: switch (typeof value) {case 'string': break;} (0.202833ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: value === null; (0.209584ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: value !== undefined; (0.20325ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: ready === false; (0.207042ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: count > otherCount; (0.191708ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: const label = 'active'; (0.230375ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: const size = 6; (0.192958ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: export const ERRORS = {UNEXPECTED: 'unexpected'} as const; state.error?.code ?? ERRORS.UNEXPECTED; (0.297708ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: value ?? defaultValue; (0.208583ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: value || defaultValue; (0.188791ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: value ?? null; (0.193416ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: value ?? false; (0.17025ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: const limit = getLimit(); count > limit; (0.245667ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: const current = {status: readStatus()}; status === current.status; (0.241ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: expect(status).toBe('active'); (0.208458ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: assert.equal(count, 6); (0.221667ms)
+✖ S21/S22/S23 root staged files: navigation identifiers: <Stack.Screen name="Home" />; (0.289292ms)
+✖ S21/S22/S23 root staged files: navigation identifiers: <Stack.Screen navigationKey="protected" />; (0.267917ms)
+✖ S21/S22/S23 root staged files: navigation identifiers: <Stack.Screen name={'Home'} />; (0.239625ms)
+✖ S21/S22/S23 root staged files: navigation identifiers: <Stack.Screen navigationKey={`protected`} />; (0.2315ms)
+✖ S21/S22/S23 root staged files: navigation identifiers: <Stack.Navigator initialRouteName="Login" />; (0.23275ms)
+✖ S21/S22/S23 root staged files: navigation identifiers: <Stack.Group navigationKey="public" />; (0.231167ms)
+✖ S21/S22/S23 root staged files: navigation identifiers: const KEY = 'public'; <Stack.Group navigationKey={KEY} />; (0.288292ms)
+✔ S21/S22/S23 root staged files: navigation identifiers: export const ROUTE = {HOME: 'Home'} as const; <Stack.Screen name={ROUTE.HOME} />; (0.290375ms)
+✔ S21/S22/S23 root staged files: navigation identifiers: import {KEY} from './routes'; <Stack.Group navigationKey={KEY.PUBLIC} />; (0.476334ms)
+✔ S21/S22/S23 root staged files: navigation identifiers: <Stack.Screen navigationKey={sessionKey} />; (0.368417ms)
+✔ S21/S22/S23 root staged files: navigation identifiers: <input name="email" />; (0.296458ms)
+✔ S21/S22/S23 root staged files: navigation identifiers: <Text>Home</Text>; (0.3575ms)
+✔ S21/S22/S23 root staged files: navigation identifiers: <Stack.Screen options={{title: "Home"}} />; (0.231708ms)
+✔ S22/S23 scripts: rejects comparison magic values: state.session.status === 'resolving'; (3.566583ms)
+✔ S22/S23 scripts: rejects comparison magic values: 'active' !== state.session.status; (0.223625ms)
+✔ S22/S23 scripts: rejects comparison magic values: session?.['status'] == `signedOut`; (0.231583ms)
+✔ S22/S23 scripts: rejects comparison magic values: mode !== 'password'; (0.166ms)
+✔ S22/S23 scripts: rejects comparison magic values: count >= 6; (0.170875ms)
+✔ S22/S23 scripts: rejects comparison magic values: state.error?.code ?? 'unexpected'; (0.2015ms)
+✔ S22/S23 scripts: rejects comparison magic values: message || `unavailable`; (0.19125ms)
+✔ S22/S23 scripts: rejects comparison magic values: count ?? 0; (0.177291ms)
+✔ S22/S23 scripts: rejects comparison magic values: count || -1; (0.200166ms)
+✔ S22/S23 scripts: rejects comparison magic values: const FALLBACK = 'unexpected'; state.error?.code ?? FALLBACK; (0.276125ms)
+✔ S22/S23 scripts: rejects comparison magic values: -1 < index; (0.194166ms)
+✔ S22/S23 scripts: rejects comparison magic values: offset === 0; (0.174791ms)
+✔ S22/S23 scripts: rejects comparison magic values: offset === +1; (0.174959ms)
+✔ S22/S23 scripts: rejects comparison magic values: status === ('active' satisfies string); (0.18325ms)
+✔ S22/S23 scripts: rejects comparison magic values: const statuses = {active: 'active'} as const; status === statuses.active; (0.282333ms)
+✔ S22/S23 scripts: rejects comparison magic values: switch (kind) {case 'complete': break;} (0.2605ms)
+✔ S22/S23 scripts: rejects comparison magic values: switch (code) {case 200: break;} (0.265166ms)
+✔ S22/S23 scripts: rejects comparison magic values: status === ('active' as const); (0.236125ms)
+✔ S22/S23 scripts: rejects comparison magic values: const LIMIT = 6; count > LIMIT; (0.228375ms)
+✔ S22/S23 scripts: rejects comparison magic values: const STATUS = {ACTIVE: 'active'} as const; status === STATUS.ACTIVE; (0.277334ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: export const STATUS = {ACTIVE: 'active'} as const; status === STATUS.ACTIVE; (0.302417ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: export const LIMIT = 6; count >= LIMIT; (0.279875ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: const LIMIT = 6; export {LIMIT}; count >= LIMIT; (0.284208ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: import {STATUS} from './constants'; status === STATUS.ACTIVE; (0.284084ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: switch (status) {case SESSION_STATUS.ACTIVE: break;} (0.227875ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: typeof value === 'string'; (0.2075ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: 'object' !== typeof value; (0.21675ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: switch (typeof value) {case 'string': break;} (0.21925ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: value === null; (0.187334ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: value !== undefined; (0.219209ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: ready === false; (0.202958ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: count > otherCount; (0.218625ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: const label = 'active'; (0.241125ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: const size = 6; (0.250791ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: export const ERRORS = {UNEXPECTED: 'unexpected'} as const; state.error?.code ?? ERRORS.UNEXPECTED; (0.395625ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: value ?? defaultValue; (0.24025ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: value || defaultValue; (0.210167ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: value ?? null; (0.199208ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: value ?? false; (0.18225ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: const limit = getLimit(); count > limit; (0.238375ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: const current = {status: readStatus()}; status === current.status; (0.288084ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: expect(status).toBe('active'); (0.228625ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: assert.equal(count, 6); (0.230125ms)
+ℹ tests 198
+ℹ suites 0
+ℹ pass 184
+ℹ fail 14
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 779.611041
+
+✖ failing tests:
+
+test at tests/policy/comparison-constants.test.mjs:115:7
+✖ S21/S22/S23 mobile: navigation identifiers: <Stack.Screen name="Home" />; (1.515ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  0 !== 1
+
+      at TestContext.<anonymous> (file:///Users/pravinraj/workspace/weave/tests/policy/comparison-constants.test.mjs:119:16)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual'
+  }
+
+test at tests/policy/comparison-constants.test.mjs:115:7
+✖ S21/S22/S23 mobile: navigation identifiers: <Stack.Screen navigationKey="protected" />; (0.696083ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  0 !== 1
+
+      at TestContext.<anonymous> (file:///Users/pravinraj/workspace/weave/tests/policy/comparison-constants.test.mjs:119:16)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual'
+  }
+
+test at tests/policy/comparison-constants.test.mjs:115:7
+✖ S21/S22/S23 mobile: navigation identifiers: <Stack.Screen name={'Home'} />; (0.614209ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  0 !== 1
+
+      at TestContext.<anonymous> (file:///Users/pravinraj/workspace/weave/tests/policy/comparison-constants.test.mjs:119:16)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual'
+  }
+
+test at tests/policy/comparison-constants.test.mjs:115:7
+✖ S21/S22/S23 mobile: navigation identifiers: <Stack.Screen navigationKey={`protected`} />; (0.476833ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  0 !== 1
+
+      at TestContext.<anonymous> (file:///Users/pravinraj/workspace/weave/tests/policy/comparison-constants.test.mjs:119:16)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual'
+  }
+
+test at tests/policy/comparison-constants.test.mjs:115:7
+✖ S21/S22/S23 mobile: navigation identifiers: <Stack.Navigator initialRouteName="Login" />; (0.402459ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  0 !== 1
+
+      at TestContext.<anonymous> (file:///Users/pravinraj/workspace/weave/tests/policy/comparison-constants.test.mjs:119:16)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual'
+  }
+
+test at tests/policy/comparison-constants.test.mjs:115:7
+✖ S21/S22/S23 mobile: navigation identifiers: <Stack.Group navigationKey="public" />; (0.370958ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  0 !== 1
+
+      at TestContext.<anonymous> (file:///Users/pravinraj/workspace/weave/tests/policy/comparison-constants.test.mjs:119:16)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual'
+  }
+
+test at tests/policy/comparison-constants.test.mjs:115:7
+✖ S21/S22/S23 mobile: navigation identifiers: const KEY = 'public'; <Stack.Group navigationKey={KEY} />; (0.511916ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  0 !== 1
+
+      at TestContext.<anonymous> (file:///Users/pravinraj/workspace/weave/tests/policy/comparison-constants.test.mjs:119:16)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual'
+  }
+
+test at tests/policy/comparison-constants.test.mjs:115:7
+✖ S21/S22/S23 root staged files: navigation identifiers: <Stack.Screen name="Home" />; (0.289292ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  0 !== 1
+
+      at TestContext.<anonymous> (file:///Users/pravinraj/workspace/weave/tests/policy/comparison-constants.test.mjs:119:16)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual'
+  }
+
+test at tests/policy/comparison-constants.test.mjs:115:7
+✖ S21/S22/S23 root staged files: navigation identifiers: <Stack.Screen navigationKey="protected" />; (0.267917ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  0 !== 1
+
+      at TestContext.<anonymous> (file:///Users/pravinraj/workspace/weave/tests/policy/comparison-constants.test.mjs:119:16)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual'
+  }
+
+test at tests/policy/comparison-constants.test.mjs:115:7
+✖ S21/S22/S23 root staged files: navigation identifiers: <Stack.Screen name={'Home'} />; (0.239625ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  0 !== 1
+
+      at TestContext.<anonymous> (file:///Users/pravinraj/workspace/weave/tests/policy/comparison-constants.test.mjs:119:16)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual'
+  }
+
+test at tests/policy/comparison-constants.test.mjs:115:7
+✖ S21/S22/S23 root staged files: navigation identifiers: <Stack.Screen navigationKey={`protected`} />; (0.2315ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  0 !== 1
+
+      at TestContext.<anonymous> (file:///Users/pravinraj/workspace/weave/tests/policy/comparison-constants.test.mjs:119:16)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual'
+  }
+
+test at tests/policy/comparison-constants.test.mjs:115:7
+✖ S21/S22/S23 root staged files: navigation identifiers: <Stack.Navigator initialRouteName="Login" />; (0.23275ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  0 !== 1
+
+      at TestContext.<anonymous> (file:///Users/pravinraj/workspace/weave/tests/policy/comparison-constants.test.mjs:119:16)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual'
+  }
+
+test at tests/policy/comparison-constants.test.mjs:115:7
+✖ S21/S22/S23 root staged files: navigation identifiers: <Stack.Group navigationKey="public" />; (0.231167ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  0 !== 1
+
+      at TestContext.<anonymous> (file:///Users/pravinraj/workspace/weave/tests/policy/comparison-constants.test.mjs:119:16)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual'
+  }
+
+test at tests/policy/comparison-constants.test.mjs:115:7
+✖ S21/S22/S23 root staged files: navigation identifiers: const KEY = 'public'; <Stack.Group navigationKey={KEY} />; (0.288292ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  0 !== 1
+
+      at TestContext.<anonymous> (file:///Users/pravinraj/workspace/weave/tests/policy/comparison-constants.test.mjs:119:16)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual'
+  }

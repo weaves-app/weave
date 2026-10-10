@@ -1,0 +1,153 @@
+
+> @weave/mobile@0.0.0 test
+> jest --runInBand --watchman=false login.test.tsx
+
+FAIL src/auth/login.test.tsx
+  ✕ S02/S03 offers exactly three methods and accessible password validation (1115 ms)
+  ✕ S08 password stays untrimmed in request, fields clear and pending actions disable (3 ms)
+  ✕ S16/S19 supports signIn verification and method return (1 ms)
+  ✕ S16/S19 supports deviceTrust verification and method return (1 ms)
+  ✕ S17/S18/S20 displays safe existingAccountRequired feedback and usable method controls (2 ms)
+  ✕ S17/S18/S20 displays safe verificationRequired feedback and usable method controls (1 ms)
+  ✕ S17/S18/S20 displays safe cancelled feedback and usable method controls (1 ms)
+
+  ● S02/S03 offers exactly three methods and accessible password validation
+
+    Unable to find an element with accessibility label: Email
+
+    [36m<View />[39m
+
+      11 | }
+      12 | test('S02/S03 offers exactly three methods and accessible password validation',async()=>{
+    > 13 |   setup(); await waitFor(()=>expect(screen.getByLabelText('Email')).toBeTruthy());
+         |                         ^
+      14 |   expect(screen.getByRole('button',{name:'Email and password'})).toBeTruthy();
+      15 |   expect(screen.getByRole('button',{name:'Email code'})).toBeTruthy();
+      16 |   expect(screen.getByRole('button',{name:'Continue with Google'})).toBeTruthy();
+
+      at Object.<anonymous> (src/auth/login.test.tsx:13:25)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at Object.<anonymous> (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12)
+
+  ● S08 password stays untrimmed in request, fields clear and pending actions disable
+
+    Unable to find an element with accessibility label: Email
+
+    [36m<View />[39m
+
+      21 |   const gateway=new TestGateway(); const result=deferred<AuthResult>(); gateway.loginResult=()=>result.promise; setup(gateway);
+      22 |   await waitFor(()=>expect(gateway.requests).toHaveLength(1));
+    > 23 |   fireEvent.changeText(screen.getByLabelText('Email'),'person@example.com'); fireEvent.changeText(screen.getByLabelText('Password'),' password ');
+         |                               ^
+      24 |   fireEvent.press(screen.getByRole('button',{name:'Log in'}));
+      25 |   expect(screen.getByLabelText('Password').props.value).toBe('');
+      26 |   expect(screen.getByRole('button',{name:'Log in'})).toBeDisabled();
+
+      at Object.getByLabelText (src/auth/login.test.tsx:23:31)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● S16/S19 supports signIn verification and method return
+
+    Unable to find an element with accessibility label: Email
+
+    [36m<View />[39m
+
+      32 |   const gateway=new TestGateway(); gateway.loginResult=async()=>({kind:'challenge',attemptId:'attempt',codePurpose}); setup(gateway);
+      33 |   await waitFor(()=>expect(gateway.requests).toHaveLength(1));
+    > 34 |   fireEvent.changeText(screen.getByLabelText('Email'),'person@example.com');
+         |                               ^
+      35 |   if(codePurpose==='signIn') fireEvent.press(screen.getByRole('button',{name:'Email code'}));
+      36 |   else fireEvent.changeText(screen.getByLabelText('Password'),'password');
+      37 |   fireEvent.press(screen.getByRole('button',{name:codePurpose==='signIn'?'Send code':'Log in'}));
+
+      at getByLabelText (src/auth/login.test.tsx:34:31)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● S16/S19 supports deviceTrust verification and method return
+
+    Unable to find an element with accessibility label: Email
+
+    [36m<View />[39m
+
+      32 |   const gateway=new TestGateway(); gateway.loginResult=async()=>({kind:'challenge',attemptId:'attempt',codePurpose}); setup(gateway);
+      33 |   await waitFor(()=>expect(gateway.requests).toHaveLength(1));
+    > 34 |   fireEvent.changeText(screen.getByLabelText('Email'),'person@example.com');
+         |                               ^
+      35 |   if(codePurpose==='signIn') fireEvent.press(screen.getByRole('button',{name:'Email code'}));
+      36 |   else fireEvent.changeText(screen.getByLabelText('Password'),'password');
+      37 |   fireEvent.press(screen.getByRole('button',{name:codePurpose==='signIn'?'Send code':'Log in'}));
+
+      at getByLabelText (src/auth/login.test.tsx:34:31)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● S17/S18/S20 displays safe existingAccountRequired feedback and usable method controls
+
+    Unable to find an element with role: button, name: Continue with Google
+
+    [36m<View />[39m
+
+      53 |   const gateway=new TestGateway(); gateway.loginResult=async()=>({kind:'error',code,messageKey:code}); setup(gateway);
+      54 |   await waitFor(()=>expect(gateway.requests).toHaveLength(1));
+    > 55 |   fireEvent.press(screen.getByRole('button',{name:'Continue with Google'}));
+         |                          ^
+      56 |   await waitFor(()=>expect(screen.getByRole('alert')).toHaveTextContent(message));
+      57 |   expect(screen.getByRole('button',{name:'Email and password'})).not.toBeDisabled();
+      58 | });
+
+      at getByRole (src/auth/login.test.tsx:55:26)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● S17/S18/S20 displays safe verificationRequired feedback and usable method controls
+
+    Unable to find an element with role: button, name: Continue with Google
+
+    [36m<View />[39m
+
+      53 |   const gateway=new TestGateway(); gateway.loginResult=async()=>({kind:'error',code,messageKey:code}); setup(gateway);
+      54 |   await waitFor(()=>expect(gateway.requests).toHaveLength(1));
+    > 55 |   fireEvent.press(screen.getByRole('button',{name:'Continue with Google'}));
+         |                          ^
+      56 |   await waitFor(()=>expect(screen.getByRole('alert')).toHaveTextContent(message));
+      57 |   expect(screen.getByRole('button',{name:'Email and password'})).not.toBeDisabled();
+      58 | });
+
+      at getByRole (src/auth/login.test.tsx:55:26)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● S17/S18/S20 displays safe cancelled feedback and usable method controls
+
+    Unable to find an element with role: button, name: Continue with Google
+
+    [36m<View />[39m
+
+      53 |   const gateway=new TestGateway(); gateway.loginResult=async()=>({kind:'error',code,messageKey:code}); setup(gateway);
+      54 |   await waitFor(()=>expect(gateway.requests).toHaveLength(1));
+    > 55 |   fireEvent.press(screen.getByRole('button',{name:'Continue with Google'}));
+         |                          ^
+      56 |   await waitFor(()=>expect(screen.getByRole('alert')).toHaveTextContent(message));
+      57 |   expect(screen.getByRole('button',{name:'Email and password'})).not.toBeDisabled();
+      58 | });
+
+      at getByRole (src/auth/login.test.tsx:55:26)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+Test Suites: 1 failed, 1 total
+Tests:       7 failed, 7 total
+Snapshots:   0 total
+Time:        1.713 s
+Ran all test suites matching /login.test.tsx/i.
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path /Users/pravinraj/workspace/weave/apps/mobile
+npm error workspace @weave/mobile@0.0.0
+npm error location /Users/pravinraj/workspace/weave/apps/mobile
+npm error command failed
+npm error command sh -c jest --runInBand --watchman=false login.test.tsx

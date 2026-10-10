@@ -1,0 +1,42 @@
+
+> @weave/mobile@0.0.0 test
+> jest --runInBand --watchman=false
+
+PASS src/auth/login.test.tsx
+PASS src/components/form-field.test.tsx
+PASS src/navigation/root-navigator.test.tsx
+PASS src/recovery/app-error-boundary.test.tsx
+PASS src/auth/home.test.tsx
+PASS src/components/button.test.tsx
+FAIL src/components/feedback.test.tsx
+  ● S15 feedback announces validation and pending status
+
+    TypeError: expect(...).toHaveAccessibilityState is not a function
+
+      4 |   render(<Feedback message="Check your email address" busy />);
+      5 |   expect(screen.getByRole('alert')).toHaveProp('accessibilityLiveRegion', 'polite');
+    > 6 |   expect(screen.getByRole('alert')).toHaveAccessibilityState({busy: true});
+        |                                     ^
+      7 |   expect(screen.getByText('Check your email address')).toBeTruthy();
+      8 | });
+      9 |
+
+      at Object.toHaveAccessibilityState (src/components/feedback.test.tsx:6:37)
+
+PASS src/components/registration.test.ts
+PASS src/auth/auth-controller.test.ts
+PASS src/auth/auth-gateway.contract.test.ts
+PASS src/components/typography.test.tsx
+
+Test Suites: 1 failed, 10 passed, 11 total
+Tests:       1 failed, 62 passed, 63 total
+Snapshots:   0 total
+Time:        1.818 s, estimated 4 s
+Ran all test suites.
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path /Users/pravinraj/workspace/weave/apps/mobile
+npm error workspace @weave/mobile@0.0.0
+npm error location /Users/pravinraj/workspace/weave/apps/mobile
+npm error command failed
+npm error command sh -c jest --runInBand --watchman=false

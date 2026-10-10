@@ -1,0 +1,16 @@
+
+> @weave/mobile@0.0.0 test
+> jest --runInBand --watchman=false app-recovery.test.tsx
+
+PASS src/auth/app-recovery.test.tsx
+  ✓ S12/S13 provider failure Reload freshly resolves active without old routes (52 ms)
+  ✓ S12/S13 provider failure Reload freshly resolves signedOut without old routes (13 ms)
+  ✓ S12/S13 provider failure Reload freshly resolves unavailable without old routes (4 ms)
+  ✓ S14 persistent provider failure returns Reload without an automatic retry loop (3 ms)
+  ✓ S13 a mounted auth failure disposes old subscriptions and prevents late old-root activation after Reload (111 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       5 passed, 5 total
+Snapshots:   0 total
+Time:        0.833 s, estimated 1 s
+Ran all test suites matching /app-recovery.test.tsx/i.

@@ -1,0 +1,289 @@
+
+> @weave/mobile@0.0.0 test
+> jest --runInBand --watchman=false src/auth/auth-gateway.contract.test.ts
+
+FAIL src/auth/auth-gateway.contract.test.ts
+  ✕ S05 validates a fresh native session and removes unrecognized credential fields (3 ms)
+  ✕ S04 malformed native result fails closed: null
+  ✕ S04 malformed native result fails closed: []
+  ✕ S04 malformed native result fails closed: {"status": "active"}
+  ✕ S04 malformed native result fails closed: {"accountId": "account", "generation": 1, "revision": 1, "sessionId": "session", "status": "active", "validatedAt": undefined}
+  ✕ S04 malformed native result fails closed: {"accountId": "account", "generation": -1, "revision": 1, "sessionId": "session", "status": "active", "validatedAt": 1000}
+  ✕ S04 malformed native result fails closed: {"accountId": "account", "generation": 1, "revision": 1, "sessionId": "session", "status": "unknown", "validatedAt": 1000}
+  ✕ S04 malformed native result fails closed: {"accountId": 1, "generation": 1, "revision": 1, "sessionId": "session", "status": "active", "validatedAt": 1000} (1 ms)
+  ✕ FR-012 native rejection never exposes provider message or stack
+  ✕ FR-012 secure-storage rejection has safe feedback
+  ✕ S19 retains the opaque device-trust challenge without provider objects
+  ✕ S07 subscription validates native events and disposes listener (1 ms)
+
+  ● S05 validates a fresh native session and removes unrecognized credential fields
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 6
+    + Received  + 3
+
+      Object {
+    -   "accountId": "account",
+    -   "generation": 1,
+    -   "revision": 1,
+    -   "sessionId": "session",
+    -   "status": "active",
+    -   "validatedAt": 1000,
+    +   "generation": 0,
+    +   "revision": 0,
+    +   "status": "unavailable",
+      }
+
+       8 | test('S05 validates a fresh native session and removes unrecognized credential fields', async () => {
+       9 |   const gateway = createNativeAuthGateway(transport({...active, token: 'seeded-secret', email: 'private@example.test'}));
+    > 10 |   expect(await gateway.resolveSession(context)).toEqual(active);
+         |                                                 ^
+      11 | });
+      12 | test.each([null, [], {status: 'active'}, {...active, validatedAt: undefined}, {...active, generation: -1}, {...active, status: 'unknown'}, {...active, accountId: 1}])('S04 malformed native result fails closed: %p', async value => {
+      13 |   const result = await createNativeAuthGateway(transport(value)).resolveSession(context);
+
+      at Object.toEqual (src/auth/auth-gateway.contract.test.ts:10:49)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● S04 malformed native result fails closed: null
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "unexpected"
+    Received: undefined
+
+      13 |   const result = await createNativeAuthGateway(transport(value)).resolveSession(context);
+      14 |   expect(result.status).toBe('unavailable');
+    > 15 |   expect(result.error?.code).toBe('unexpected');
+         |                              ^
+      16 | });
+      17 | test('FR-012 native rejection never exposes provider message or stack', async () => {
+      18 |   const gateway = createNativeAuthGateway({execute: async () => {throw new Error('seeded-secret');}, subscribe: () => () => undefined});
+
+      at toBe (src/auth/auth-gateway.contract.test.ts:15:30)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● S04 malformed native result fails closed: []
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "unexpected"
+    Received: undefined
+
+      13 |   const result = await createNativeAuthGateway(transport(value)).resolveSession(context);
+      14 |   expect(result.status).toBe('unavailable');
+    > 15 |   expect(result.error?.code).toBe('unexpected');
+         |                              ^
+      16 | });
+      17 | test('FR-012 native rejection never exposes provider message or stack', async () => {
+      18 |   const gateway = createNativeAuthGateway({execute: async () => {throw new Error('seeded-secret');}, subscribe: () => () => undefined});
+
+      at toBe (src/auth/auth-gateway.contract.test.ts:15:30)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● S04 malformed native result fails closed: {"status": "active"}
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "unexpected"
+    Received: undefined
+
+      13 |   const result = await createNativeAuthGateway(transport(value)).resolveSession(context);
+      14 |   expect(result.status).toBe('unavailable');
+    > 15 |   expect(result.error?.code).toBe('unexpected');
+         |                              ^
+      16 | });
+      17 | test('FR-012 native rejection never exposes provider message or stack', async () => {
+      18 |   const gateway = createNativeAuthGateway({execute: async () => {throw new Error('seeded-secret');}, subscribe: () => () => undefined});
+
+      at toBe (src/auth/auth-gateway.contract.test.ts:15:30)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● S04 malformed native result fails closed: {"accountId": "account", "generation": 1, "revision": 1, "sessionId": "session", "status": "active", "validatedAt": undefined}
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "unexpected"
+    Received: undefined
+
+      13 |   const result = await createNativeAuthGateway(transport(value)).resolveSession(context);
+      14 |   expect(result.status).toBe('unavailable');
+    > 15 |   expect(result.error?.code).toBe('unexpected');
+         |                              ^
+      16 | });
+      17 | test('FR-012 native rejection never exposes provider message or stack', async () => {
+      18 |   const gateway = createNativeAuthGateway({execute: async () => {throw new Error('seeded-secret');}, subscribe: () => () => undefined});
+
+      at toBe (src/auth/auth-gateway.contract.test.ts:15:30)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● S04 malformed native result fails closed: {"accountId": "account", "generation": -1, "revision": 1, "sessionId": "session", "status": "active", "validatedAt": 1000}
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "unexpected"
+    Received: undefined
+
+      13 |   const result = await createNativeAuthGateway(transport(value)).resolveSession(context);
+      14 |   expect(result.status).toBe('unavailable');
+    > 15 |   expect(result.error?.code).toBe('unexpected');
+         |                              ^
+      16 | });
+      17 | test('FR-012 native rejection never exposes provider message or stack', async () => {
+      18 |   const gateway = createNativeAuthGateway({execute: async () => {throw new Error('seeded-secret');}, subscribe: () => () => undefined});
+
+      at toBe (src/auth/auth-gateway.contract.test.ts:15:30)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● S04 malformed native result fails closed: {"accountId": "account", "generation": 1, "revision": 1, "sessionId": "session", "status": "unknown", "validatedAt": 1000}
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "unexpected"
+    Received: undefined
+
+      13 |   const result = await createNativeAuthGateway(transport(value)).resolveSession(context);
+      14 |   expect(result.status).toBe('unavailable');
+    > 15 |   expect(result.error?.code).toBe('unexpected');
+         |                              ^
+      16 | });
+      17 | test('FR-012 native rejection never exposes provider message or stack', async () => {
+      18 |   const gateway = createNativeAuthGateway({execute: async () => {throw new Error('seeded-secret');}, subscribe: () => () => undefined});
+
+      at toBe (src/auth/auth-gateway.contract.test.ts:15:30)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● S04 malformed native result fails closed: {"accountId": 1, "generation": 1, "revision": 1, "sessionId": "session", "status": "active", "validatedAt": 1000}
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "unexpected"
+    Received: undefined
+
+      13 |   const result = await createNativeAuthGateway(transport(value)).resolveSession(context);
+      14 |   expect(result.status).toBe('unavailable');
+    > 15 |   expect(result.error?.code).toBe('unexpected');
+         |                              ^
+      16 | });
+      17 | test('FR-012 native rejection never exposes provider message or stack', async () => {
+      18 |   const gateway = createNativeAuthGateway({execute: async () => {throw new Error('seeded-secret');}, subscribe: () => () => undefined});
+
+      at toBe (src/auth/auth-gateway.contract.test.ts:15:30)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● FR-012 native rejection never exposes provider message or stack
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "unexpected"
+    Received: undefined
+
+      18 |   const gateway = createNativeAuthGateway({execute: async () => {throw new Error('seeded-secret');}, subscribe: () => () => undefined});
+      19 |   const result = await gateway.resolveSession(context);
+    > 20 |   expect(result.error?.code).toBe('unexpected');
+         |                              ^
+      21 |   expect(JSON.stringify(result)).not.toContain('seeded-secret');
+      22 | });
+      23 | test('FR-012 secure-storage rejection has safe feedback', async () => {
+
+      at Object.toBe (src/auth/auth-gateway.contract.test.ts:20:30)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● FR-012 secure-storage rejection has safe feedback
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "storage"
+    Received: undefined
+
+      23 | test('FR-012 secure-storage rejection has safe feedback', async () => {
+      24 |   const result = await createNativeAuthGateway(transport({kind: 'error', code: 'storage', message: 'seeded-secret'})).resolveSession(context);
+    > 25 |   expect(result.error?.code).toBe('storage');
+         |                              ^
+      26 |   expect(JSON.stringify(result)).not.toContain('seeded-secret');
+      27 | });
+      28 | test('S19 retains the opaque device-trust challenge without provider objects', async () => {
+
+      at Object.toBe (src/auth/auth-gateway.contract.test.ts:25:30)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● S19 retains the opaque device-trust challenge without provider objects
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 3
+    + Received  + 3
+
+      Object {
+    -   "attemptId": "opaque",
+    -   "codePurpose": "deviceTrust",
+    -   "kind": "challenge",
+    +   "generation": 0,
+    +   "revision": 0,
+    +   "status": "unavailable",
+      }
+
+      28 | test('S19 retains the opaque device-trust challenge without provider objects', async () => {
+      29 |   const result = await createNativeAuthGateway(transport({kind: 'challenge', attemptId: 'opaque', codePurpose: 'deviceTrust', token: 'secret'})).password({...context,email:'a@example.test',password:'password'});
+    > 30 |   expect(result).toEqual({kind:'challenge',attemptId:'opaque',codePurpose:'deviceTrust'});
+         |                  ^
+      31 | });
+      32 | test('S07 subscription validates native events and disposes listener', () => {
+      33 |   let observer: (value: unknown) => void = () => undefined;
+
+      at Object.toEqual (src/auth/auth-gateway.contract.test.ts:30:18)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● S07 subscription validates native events and disposes listener
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 10
+    + Received  +  1
+
+    - Array [
+    -   Object {
+    -     "accountId": "account",
+    -     "generation": 1,
+    -     "revision": 1,
+    -     "sessionId": "session",
+    -     "status": "active",
+    -     "validatedAt": 1000,
+    -   },
+    - ]
+    + Array []
+
+      37 |   const unsubscribe = gateway.subscribe(value => received.push(value));
+      38 |   observer(JSON.stringify(active));
+    > 39 |   expect(received).toEqual([active]);
+         |                    ^
+      40 |   unsubscribe();
+      41 |   expect(disposed).toBe(true);
+      42 | });
+
+      at Object.toEqual (src/auth/auth-gateway.contract.test.ts:39:20)
+
+Test Suites: 1 failed, 1 total
+Tests:       12 failed, 12 total
+Snapshots:   0 total
+Time:        0.41 s
+Ran all test suites matching /src\/auth\/auth-gateway.contract.test.ts/i.
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path /Users/pravinraj/workspace/weave/apps/mobile
+npm error workspace @weave/mobile@0.0.0
+npm error location /Users/pravinraj/workspace/weave/apps/mobile
+npm error command failed
+npm error command sh -c jest --runInBand --watchman=false src/auth/auth-gateway.contract.test.ts

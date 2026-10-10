@@ -1,0 +1,14 @@
+portrait
+login-password logo y 688 769 heading y 872
+login-email-code logo y 688 769 heading y 872
+otp-keyboard logo y 688 769 heading y 872
+otp-invalid logo y 688 769 heading y 872
+login-restored logo y 688 769 heading y 872
+PASS: stationary logo and common heading origin across five states
+landscape
+login-password logo y 344 425 heading y 528
+login-email-code logo y 344 425 heading y 528
+otp-keyboard logo y 344 425 heading y 528
+otp-invalid logo y 344 425 heading y 528
+login-restored logo y 344 425 heading y 528
+PASS: stationary logo and common heading origin across five states

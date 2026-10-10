@@ -1,11 +1,11 @@
 import {render, screen} from '@testing-library/react-native';
 
-import {Typography} from './typography';
+import {Typography, VARIANT} from './typography';
 
 test('S08 title exposes heading semantics and body text remains readable', () => {
   render(
     <>
-      <Typography variant="title">Weave</Typography>
+      <Typography variant={VARIANT.TITLE}>Weave</Typography>
       <Typography>Your workspace</Typography>
     </>,
   );

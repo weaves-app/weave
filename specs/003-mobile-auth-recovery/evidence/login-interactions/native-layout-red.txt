@@ -1,0 +1,27 @@
+{
+  "Weave": {
+    "before": "[86,436][422,543]",
+    "after": "[86,568][422,675]"
+  },
+  "Welcome back": {
+    "before": "[63,629][1017,730]",
+    "after": "[63,761][1017,862]"
+  },
+  "Continue with Google": {
+    "before": "[63,875][1017,1012]",
+    "after": "[63,1007][1017,1144]"
+  },
+  "Email code": {
+    "before": "[540,1197][1007,1323]",
+    "after": "[540,1329][1007,1455]"
+  },
+  "Email": {
+    "before": "[63,1396][1017,1439]",
+    "after": "[63,1528][1017,1571]"
+  }
+}
+Traceback (most recent call last):
+  File "/private/tmp/weave-method-layout-check.py", line 16, in <module>
+    assert all(v['before']==v['after'] for v in result.values()), 'method switch moved fixed login controls'
+           ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: method switch moved fixed login controls

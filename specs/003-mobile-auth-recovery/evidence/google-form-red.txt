@@ -1,0 +1,44 @@
+
+> @weave/mobile@0.0.0 test
+> jest --runInBand --watchman=false login.test.tsx
+
+FAIL src/auth/login.test.tsx
+  ✓ S02/S03 offers exactly three methods and accessible password validation (139 ms)
+  ✓ S08 password stays untrimmed in request, fields clear and pending actions disable (13 ms)
+  ✓ S16/S19 supports signIn verification and method return (68 ms)
+  ✓ S16/S19 supports deviceTrust verification and method return (68 ms)
+  ✓ S17/S18/S20 displays safe existingAccountRequired feedback and usable method controls (59 ms)
+  ✓ S17/S18/S20 displays safe verificationRequired feedback and usable method controls (60 ms)
+  ✓ S17/S18/S20 displays safe cancelled feedback and usable method controls (61 ms)
+  ✕ S17 cancelled Google returns a working visible password form (1083 ms)
+
+  ● S17 cancelled Google returns a working visible password form
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "password"
+    Received: "google"
+
+      63 |   fireEvent.changeText(screen.getByLabelText('Email'),'person@example.com');fireEvent.changeText(screen.getByLabelText('Password'),'password');
+      64 |   fireEvent.press(screen.getByRole('button',{name:'Log in'}));
+    > 65 |   await waitFor(()=>expect(gateway.requests.at(-1)?.method).toBe('password'));
+         |                ^
+      66 | });
+      67 |
+
+      at Object.<anonymous> (src/auth/login.test.tsx:65:16)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 7 passed, 8 total
+Snapshots:   0 total
+Time:        1.995 s
+Ran all test suites matching /login.test.tsx/i.
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path /Users/pravinraj/workspace/weave/apps/mobile
+npm error workspace @weave/mobile@0.0.0
+npm error location /Users/pravinraj/workspace/weave/apps/mobile
+npm error command failed
+npm error command sh -c jest --runInBand --watchman=false login.test.tsx

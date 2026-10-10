@@ -1,0 +1,25 @@
+Starting: Intent { cmp=si.tryweave/.MainActivity }
+Status: ok
+LaunchState: COLD
+Activity: si.tryweave/.MainActivity
+TotalTime: 1917
+WaitTime: 1918
+Complete
+
+Waiting for flows to complete...
+[Passed] WEA-10 T053 tablet common form origin (53s)
+
+1/1 Flow Passed in 53s
+
+FIXTURE_RESULT 0
+PRODUCTION_ENTRY_RESTORED
+Deleted 1 rows
+EMULATOR_HANDWRITING_PREFERENCE_RESTORED
+EMULATOR_KEYBOARD_PREFERENCE_RESTORED
+Starting: Intent { cmp=si.tryweave/.MainActivity }
+Status: ok
+LaunchState: COLD
+Activity: si.tryweave/.MainActivity
+TotalTime: 5169
+WaitTime: 5204
+Complete

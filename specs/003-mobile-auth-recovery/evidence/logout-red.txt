@@ -1,0 +1,158 @@
+
+> @weave/mobile@0.0.0 test
+> jest --runInBand --watchman=false auth-controller.test.ts home.test.tsx root-navigator.test.tsx
+
+FAIL src/auth/home.test.tsx
+  ● S09/S11 Home has one Logout action with accessible pending feedback and one request
+
+    expect(received).toHaveLength(expected)
+
+    Expected length: 1
+    Received length: 0
+    Received array:  []
+
+      12 |   expect(screen.getAllByRole('button')).toHaveLength(1);
+      13 |   fireEvent.press(screen.getByRole('button',{name:'Logout'}));fireEvent.press(screen.getByRole('button',{name:'Logout'}));
+    > 14 |   expect(gateway.requests.filter(request=>request.method==='signOut')).toHaveLength(1);
+         |                                                                        ^
+      15 |   expect(screen.getByRole('button',{name:'Logout'})).toBeDisabled();expect(screen.getByRole('alert')).toHaveTextContent(/Signing out/);
+      16 |   unmount();
+      17 | });
+
+      at Object.toHaveLength (src/auth/home.test.tsx:14:72)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+FAIL src/navigation/root-navigator.test.tsx
+  ● S09 logout removes Home history and fresh reopen remains signed out
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Array [
+    -   "Login",
+    +   "Home",
+      ]
+
+      50 |   const {controller,navigationRef}=setup(gateway);await waitFor(()=>expect(navigationRef.isReady()).toBe(true));
+      51 |   await act(async()=>controller.logout());
+    > 52 |   await waitFor(()=>expect(navigationRef.getRootState()?.routeNames).toEqual(['Login']));
+         |                ^
+      53 |   expect(navigationRef.canGoBack()).toBe(false);expect(screen.queryByText('Home')).toBeNull();
+      54 |   gateway.resolveResult=async input=>({status:'signedOut',generation:input.generation,revision:1});
+      55 |   await act(async()=>controller.refresh());expect(navigationRef.getCurrentRoute()?.name).toBe('Login');
+
+      at Object.<anonymous> (src/navigation/root-navigator.test.tsx:52:16)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+FAIL src/auth/auth-controller.test.ts
+  ● S09/S11 logout prevents duplicates and removes the active session on confirmed clear
+
+    expect(received).toHaveLength(expected)
+
+    Expected length: 1
+    Received length: 0
+    Received array:  []
+
+      111 |   const gateway=new TestGateway(); gateway.resolveResult=async input=>active(input); const result=deferred<SessionSnapshot>();gateway.signOutResult=()=>result.promise;
+      112 |   const controller=createAuthController(gateway,new TestClock());await controller.start();const ready=controller.logout();await controller.logout();
+    > 113 |   expect(gateway.requests.filter(request=>request.method==='signOut')).toHaveLength(1);expect(controller.getSnapshot().pending).toBe(true);
+          |                                                                        ^
+      114 |   const input=gateway.requests.at(-1)?.input;if(!input) throw new Error('missing signout');result.resolve(signedOut(input));await ready;
+      115 |   expect(controller.getSnapshot().session.status).toBe('signedOut');expect(controller.getSnapshot().pending).toBe(false);
+      116 | });
+
+      at Object.toHaveLength (src/auth/auth-controller.test.ts:113:72)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● S10 logout partial failure truthfully reports active
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "network"
+    Received: undefined
+
+      119 |   gateway.signOutResult=async input=>({...status==='active'?active(input):signedOut(input),status,error:{code:'network',messageKey:'network'}});
+      120 |   const controller=createAuthController(gateway,new TestClock());await controller.start();await controller.logout();
+    > 121 |   expect(controller.getSnapshot().session.status).toBe(status);expect(controller.getSnapshot().error?.code).toBe('network');expect(controller.getSnapshot().pending).toBe(false);
+          |                                                                                                             ^
+      122 | });
+      123 | test('S10 logout deadline hides uncertain protected access until revalidation',async()=>{
+      124 |   jest.useFakeTimers();const gateway=new TestGateway();gateway.resolveResult=async input=>active(input);gateway.signOutResult=()=>new Promise(()=>undefined);
+
+      at toBe (src/auth/auth-controller.test.ts:121:109)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● S10 logout partial failure truthfully reports signedOut
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "signedOut"
+    Received: "active"
+
+      119 |   gateway.signOutResult=async input=>({...status==='active'?active(input):signedOut(input),status,error:{code:'network',messageKey:'network'}});
+      120 |   const controller=createAuthController(gateway,new TestClock());await controller.start();await controller.logout();
+    > 121 |   expect(controller.getSnapshot().session.status).toBe(status);expect(controller.getSnapshot().error?.code).toBe('network');expect(controller.getSnapshot().pending).toBe(false);
+          |                                                   ^
+      122 | });
+      123 | test('S10 logout deadline hides uncertain protected access until revalidation',async()=>{
+      124 |   jest.useFakeTimers();const gateway=new TestGateway();gateway.resolveResult=async input=>active(input);gateway.signOutResult=()=>new Promise(()=>undefined);
+
+      at toBe (src/auth/auth-controller.test.ts:121:51)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● S10 logout partial failure truthfully reports unavailable
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "unavailable"
+    Received: "active"
+
+      119 |   gateway.signOutResult=async input=>({...status==='active'?active(input):signedOut(input),status,error:{code:'network',messageKey:'network'}});
+      120 |   const controller=createAuthController(gateway,new TestClock());await controller.start();await controller.logout();
+    > 121 |   expect(controller.getSnapshot().session.status).toBe(status);expect(controller.getSnapshot().error?.code).toBe('network');expect(controller.getSnapshot().pending).toBe(false);
+          |                                                   ^
+      122 | });
+      123 | test('S10 logout deadline hides uncertain protected access until revalidation',async()=>{
+      124 |   jest.useFakeTimers();const gateway=new TestGateway();gateway.resolveResult=async input=>active(input);gateway.signOutResult=()=>new Promise(()=>undefined);
+
+      at toBe (src/auth/auth-controller.test.ts:121:51)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● S10 logout deadline hides uncertain protected access until revalidation
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "unavailable"
+    Received: "active"
+
+      124 |   jest.useFakeTimers();const gateway=new TestGateway();gateway.resolveResult=async input=>active(input);gateway.signOutResult=()=>new Promise(()=>undefined);
+      125 |   const controller=createAuthController(gateway,new TestClock());await controller.start();const ready=controller.logout();await jest.advanceTimersByTimeAsync(30_000);await ready;
+    > 126 |   expect(controller.getSnapshot().session.status).toBe('unavailable');expect(controller.getSnapshot().error?.code).toBe('timeout');
+          |                                                   ^
+      127 | });
+      128 |
+
+      at Object.toBe (src/auth/auth-controller.test.ts:126:51)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+Test Suites: 3 failed, 3 total
+Tests:       7 failed, 25 passed, 32 total
+Snapshots:   0 total
+Time:        2.286 s
+Ran all test suites matching /auth-controller.test.ts|home.test.tsx|root-navigator.test.tsx/i.
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path /Users/pravinraj/workspace/weave/apps/mobile
+npm error workspace @weave/mobile@0.0.0
+npm error location /Users/pravinraj/workspace/weave/apps/mobile
+npm error command failed
+npm error command sh -c jest --runInBand --watchman=false auth-controller.test.ts home.test.tsx root-navigator.test.tsx

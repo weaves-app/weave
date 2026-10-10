@@ -7,6 +7,14 @@ import {AuthShell} from '../../auth/presentation/auth-shell';
 import {SignOutControl} from '../../auth/presentation/home-view';
 import type {OrganizationFlow} from '../application/contracts';
 
+export const DEFAULT_ORGANIZATION_INITIALS = 'yo';
+
+export const DEFAULT_ORGANIZATION_NAME = 'Your organization';
+
+export const CREATE_ORGANIZATION_MODE = 'create';
+
+export const EMPTY_ORGANIZATION_COUNT = 0;
+
 export interface OrganizationViewProps {
   readonly flow: OrganizationFlow;
   readonly mode: 'choose' | 'create';
@@ -35,7 +43,7 @@ export function OrganizationView({
   const state = useSyncExternalStore(flow.subscribe, flow.getSnapshot, flow.getSnapshot);
   const [name, setName] = useState('');
   const selected = state.organizations.find((org) => org.id === state.selectedId);
-  const create = mode === 'create';
+  const create = mode === CREATE_ORGANIZATION_MODE;
 
   const submit = (event: FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
@@ -91,7 +99,7 @@ export function OrganizationView({
               Reload organizations
             </button>
           )}
-          {create || state.organizations.length > 0 ? (
+          {create || state.organizations.length > EMPTY_ORGANIZATION_COUNT ? (
             <form onSubmit={submit} aria-busy={busy}>
               {create ? (
                 <>
@@ -109,10 +117,12 @@ export function OrganizationView({
                   />
                   <div className="org-preview">
                     <span className="org-monogram">
-                      {initials(state.created?.name ?? name) || 'yo'}
+                      {initials(state.created?.name ?? name) || DEFAULT_ORGANIZATION_INITIALS}
                     </span>
                     <span>
-                      <strong>{state.created?.name ?? (name.trim() || 'Your organization')}</strong>
+                      <strong>
+                        {state.created?.name ?? (name.trim() || DEFAULT_ORGANIZATION_NAME)}
+                      </strong>
                       <small>Your role · Administrator</small>
                     </span>
                   </div>

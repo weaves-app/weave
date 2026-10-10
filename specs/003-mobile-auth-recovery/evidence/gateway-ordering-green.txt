@@ -1,0 +1,25 @@
+
+> @weave/mobile@0.0.0 test
+> jest --runInBand --watchman=false auth-gateway.contract.test.ts
+
+PASS src/auth/auth-gateway.contract.test.ts
+  ✓ S05 validates a fresh native session and removes unrecognized credential fields (1 ms)
+  ✓ S04 malformed native result fails closed: null (1 ms)
+  ✓ S04 malformed native result fails closed: []
+  ✓ S04 malformed native result fails closed: {"status": "active"}
+  ✓ S04 malformed native result fails closed: {"accountId": "account", "generation": 1, "revision": 1, "sessionId": "session", "status": "active", "validatedAt": undefined}
+  ✓ S04 malformed native result fails closed: {"accountId": "account", "generation": -1, "revision": 1, "sessionId": "session", "status": "active", "validatedAt": 1000}
+  ✓ S04 malformed native result fails closed: {"accountId": "account", "generation": 1, "revision": 1, "sessionId": "session", "status": "unknown", "validatedAt": 1000} (1 ms)
+  ✓ S04 malformed native result fails closed: {"accountId": 1, "generation": 1, "revision": 1, "sessionId": "session", "status": "active", "validatedAt": 1000}
+  ✓ FR-012 native rejection never exposes provider message or stack
+  ✓ FR-012 secure-storage rejection has safe feedback
+  ✓ S19 retains the opaque device-trust challenge without provider objects
+  ✓ S07 subscription validates native events and disposes listener
+  ✓ S04 mismatched response generation fails closed instead of leaving resolution stuck
+  ✓ S07 malformed event revokes protected access with a safe current-generation snapshot
+
+Test Suites: 1 passed, 1 total
+Tests:       14 passed, 14 total
+Snapshots:   0 total
+Time:        0.246 s, estimated 1 s
+Ran all test suites matching /auth-gateway.contract.test.ts/i.

@@ -1,0 +1,61 @@
+from pathlib import Path
+import subprocess,xml.etree.ElementTree as ET,re,json
+adb='/Users/pravinraj/Library/Android/sdk/platform-tools/adb'
+def run(*args):return subprocess.check_output([adb,'-s','emulator-5554',*args])
+def snapshot(name):
+ run('shell','uiautomator','dump','/data/local/tmp/weave-method.xml')
+ p=Path('/private/tmp/weave-method-'+name+'.xml');p.write_bytes(run('exec-out','cat','/data/local/tmp/weave-method.xml'))
+ return ET.parse(p)
+def node(tree,label):
+ nodes=list(tree.iter('node'))
+ match=next((n for n in nodes if n.get('content-desc')==label),None)
+ return match if match is not None else next(n for n in nodes if n.get('text')==label)
+def tap(tree,label):
+ x1,y1,x2,y2=map(int,re.findall(r'\d+',node(tree,label).get('bounds')))
+ run('shell','input','tap',str((x1+x2)//2),str((y1+y2)//2))
+
+import sys,subprocess
+font=run('shell','settings','get','system','font_scale').decode().strip()
+motion=run('shell','settings','get','global','transition_animation_scale').decode().strip()
+try:
+ initial=snapshot('motion-initial')
+ for _ in range(4):
+  if any(n.get('text')=='Welcome back' for n in initial.iter('node')):break
+  initial=snapshot('motion-initial')
+ tap(initial,'Email and password');before=snapshot('motion-password')
+ video=subprocess.Popen([adb,'-s','emulator-5554','shell','screenrecord','--time-limit','8','/sdcard/weave-method-animation.mp4'])
+ try:
+  tap(before,'Email code');after=snapshot('motion-code')
+  tap(after,'Email and password');snapshot('motion-restored')
+  video.wait(timeout=20)
+  run('pull','/sdcard/weave-method-animation.mp4','/private/tmp/weave-method-animation.mp4')
+ finally:
+  if video.poll() is None:video.terminate()
+  run('shell','rm','-f','/sdcard/weave-method-animation.mp4')
+ run('shell','settings','put','system','font_scale','1.6')
+ run('shell','settings','put','global','transition_animation_scale','0')
+ run('shell','am','force-stop','si.tryweave');run('shell','am','start','-W','-n','si.tryweave/.MainActivity')
+ before=snapshot('large-motion-before')
+ for _ in range(4):
+  if any(n.get('text')=='Welcome back' for n in before.iter('node')):break
+  before=snapshot('large-motion-before')
+ tap(before,'Email and password');before=snapshot('large-motion-password')
+ tap(before,'Email code');after=snapshot('large-motion-code')
+ labels=['Weave','Welcome back','Continue with Google','Email code','Email']
+ result={label:{'before':node(before,label).get('bounds'),'after':node(after,label).get('bounds')} for label in labels}
+ print(json.dumps(result,indent=2))
+ assert all(v['before']==v['after'] for v in result.values()), 'enlarged reduced-motion switch moved fixed controls'
+ def coords(tree,label):
+  x1,y1,x2,y2=map(int,re.findall(r'\d+',node(tree,label).get('bounds')))
+  return str((x1+x2)//2)+' '+str((y1+y2)//2)
+ run('shell','input tap '+coords(after,'Email code')+'; input tap '+coords(after,'Email and password')+'; input tap '+coords(after,'Email code'))
+ final=snapshot('large-motion-rapid')
+ assert any(n.get('content-desc')=='Send code' for n in final.iter('node')), 'rapid toggling settled on wrong method'
+ assert not any(n.get('content-desc')=='Password' for n in final.iter('node')), 'hidden password remains accessible'
+ assert all(node(final,label).get('bounds')==v['before'] for label,v in result.items()), 'rapid toggle moved shared controls'
+ print('PASS: fontScale1.6, Reduce Motion and rapid toggle; hidden password excluded')
+finally:
+ run('shell','settings','put','system','font_scale',font)
+ if motion=='null':run('shell','settings','delete','global','transition_animation_scale')
+ else:run('shell','settings','put','global','transition_animation_scale',motion)
+ print('Original font and motion preferences restored')

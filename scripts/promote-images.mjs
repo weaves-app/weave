@@ -5,6 +5,8 @@ import {execFileSync} from 'node:child_process';
 
 import {validatePromotion} from './release-manifest.mjs';
 
+export const PRODUCTION_ENVIRONMENT = 'production';
+
 const manifest = JSON.parse(readFileSync('release-manifest.json', 'utf8'));
 
 const repository = process.env.GITHUB_REPOSITORY;
@@ -13,7 +15,7 @@ const environment = process.env.TARGET_ENVIRONMENT;
 
 const qa = {};
 
-if (environment === 'production')
+if (environment === PRODUCTION_ENVIRONMENT)
   for (const app of ['api', 'web']) qa[app] = imageDigest(`ghcr.io/${repository}-${app}:qa`);
 
 validatePromotion(manifest, {repository, version: process.env.VERSION, environment, qa});

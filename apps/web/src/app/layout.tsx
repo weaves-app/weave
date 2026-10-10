@@ -4,7 +4,7 @@ import {connection} from 'next/server';
 
 import {readClerkConfiguration} from '../features/auth/infrastructure/configuration';
 
-import type {Metadata} from 'next';
+import type {Metadata, Viewport} from 'next';
 
 import {tokens} from '@weave/design-tokens';
 
@@ -22,7 +22,10 @@ export const metadata: Metadata = {
   title: 'Weave',
   description: 'Everything, woven together.',
   icons: {icon: '/brand/favicon.svg'},
+  manifest: '/site.webmanifest',
 };
+
+export const viewport: Viewport = {themeColor: tokens.colors.primary};
 
 export default async function RootLayout({
   children,

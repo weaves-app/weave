@@ -3,27 +3,72 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0260DCD71DEBBC286CF4964F /* WeaveAuthBehaviorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5758615D6F396873E2368E /* WeaveAuthBehaviorTests.swift */; };
+		0503CCA505CFE7242CD38F52 /* KeychainHealthCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439FBBAEC659D64F9A8EF51C /* KeychainHealthCheck.swift */; };
 		0C80B921A6F3F58F76C31292 /* libPods-Weave.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-Weave.a */; };
+		116538D0D0C8EB6AA6988043 /* ClerkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B2399E45410C3B586BC61E /* ClerkProvider.swift */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
+		1A8070D8AA9EA574AB62AF6F /* WeaveAuthConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3853B54B9CF7D65538F22A10 /* WeaveAuthConfiguration.swift */; };
+		20E2D065D39823C6670EA0B1 /* ClerkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B2399E45410C3B586BC61E /* ClerkProvider.swift */; };
+		28785F00A91D0DD6CCD6E753 /* KeychainHealthCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439FBBAEC659D64F9A8EF51C /* KeychainHealthCheck.swift */; };
+		2CD56B97279EC767780619AA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D1AAF1B061E25179705C450 /* Foundation.framework */; };
+		40AD765419521D83977D0D6B /* Figtree-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 076A686AC70D44A179B309A1 /* Figtree-Regular.ttf */; };
+		50DB323F18881246E5405A37 /* ClerkProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2F00969ED1146DADF415C1 /* ClerkProviderTests.swift */; };
+		67C2A94C5AFD885E8B2DF5C0 /* WeaveAuthModule.mm in Sources */ = {isa = PBXBuildFile; fileRef = 685C1A9CEFE47615B69FCA52 /* WeaveAuthModule.mm */; };
+		6CA0D2E9F0F55F8332D3C980 /* Figtree-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9335A9E2ED2007B30098CB06 /* Figtree-Bold.ttf */; };
+		759EE23EED99DB57D89C7543 /* KeychainHealthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061718AE5E97C6081DA92F1B /* KeychainHealthTests.swift */; };
 		761780ED2CA45674006654EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654EE /* AppDelegate.swift */; };
+		77AFD2D6AE264A84260C244E /* WeaveAuthModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA35BB2DB9B5555F82A06D5 /* WeaveAuthModule.swift */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		9D6F0CE974C70175F8D2330C /* WeaveAuthConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3853B54B9CF7D65538F22A10 /* WeaveAuthConfiguration.swift */; };
+		9E656FA5E45A3857EE187904 /* WeaveAuthRuntime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05ED1A003A283B4B9577AEBD /* WeaveAuthRuntime.swift */; };
+		AC9E20C17F6E34A20F303AAB /* WeaveAuthRuntime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05ED1A003A283B4B9577AEBD /* WeaveAuthRuntime.swift */; };
+		AD1319AA28B8FC5FF4C1E6E2 /* AuthContracts.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41815E5846B99B9D993227B /* AuthContracts.swift */; };
+		BF5353D49680987A1D732157 /* ClerkAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE25D3665F13A229C070F6C1 /* ClerkAuthService.swift */; };
+		D835C8F0B272ACFC351D1090 /* WeaveAuthModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7570501CE18DA7FD191CB5 /* WeaveAuthModuleTests.swift */; };
+		ECB426B43881D1C2B4C0C735 /* WeaveAuthModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA35BB2DB9B5555F82A06D5 /* WeaveAuthModule.swift */; };
+		F01F94131A9BF2431FD380EB /* AuthConfigurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF65D5B41BB5B8A61EE2678 /* AuthConfigurationTests.swift */; };
+		F0A64F74A83B96797830FFEA /* ClerkKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8413339310F12AFB6EB5586F /* ClerkKit */; };
+		F0EEDA95530DDE6779E5DF98 /* Figtree-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E7C32B7A8A9D5BD0E10610B9 /* Figtree-SemiBold.ttf */; };
+		F1833383DD1CAE4DF0B15836 /* AuthContracts.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41815E5846B99B9D993227B /* AuthContracts.swift */; };
+		F212618307BEC7C314BB8EC8 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */; };
+		F2BBA4DD8F5A97F243242F3C /* ClerkKit in Frameworks */ = {isa = PBXBuildFile; productRef = 0B07679AAAD96D60B716FC3B /* ClerkKit */; };
+		F75F13146DC7BFA44EBFA99C /* ClerkAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE25D3665F13A229C070F6C1 /* ClerkAuthService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		05ED1A003A283B4B9577AEBD /* WeaveAuthRuntime.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WeaveAuthRuntime.swift; path = Weave/Auth/WeaveAuthRuntime.swift; sourceTree = "<group>"; };
+		061718AE5E97C6081DA92F1B /* KeychainHealthTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = KeychainHealthTests.swift; path = WeaveTests/KeychainHealthTests.swift; sourceTree = "<group>"; };
+		076A686AC70D44A179B309A1 /* Figtree-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Figtree-Regular.ttf"; path = "../assets/fonts/Figtree-Regular.ttf"; sourceTree = SOURCE_ROOT; };
 		13B07F961A680F5B00A75B9A /* Weave.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weave.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Weave/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Weave/Info.plist; sourceTree = "<group>"; };
 		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = Weave/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		3853B54B9CF7D65538F22A10 /* WeaveAuthConfiguration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WeaveAuthConfiguration.swift; path = Weave/Auth/WeaveAuthConfiguration.swift; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-Weave.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weave.debug.xcconfig"; path = "Target Support Files/Pods-Weave/Pods-Weave.debug.xcconfig"; sourceTree = "<group>"; };
+		3B5758615D6F396873E2368E /* WeaveAuthBehaviorTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WeaveAuthBehaviorTests.swift; path = WeaveTests/WeaveAuthBehaviorTests.swift; sourceTree = "<group>"; };
+		439FBBAEC659D64F9A8EF51C /* KeychainHealthCheck.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = KeychainHealthCheck.swift; path = Weave/Auth/KeychainHealthCheck.swift; sourceTree = "<group>"; };
+		4A7570501CE18DA7FD191CB5 /* WeaveAuthModuleTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WeaveAuthModuleTests.swift; path = WeaveTests/WeaveAuthModuleTests.swift; sourceTree = "<group>"; };
+		4EA35BB2DB9B5555F82A06D5 /* WeaveAuthModule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WeaveAuthModule.swift; path = Weave/Auth/WeaveAuthModule.swift; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-Weave.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weave.release.xcconfig"; path = "Target Support Files/Pods-Weave/Pods-Weave.release.xcconfig"; sourceTree = "<group>"; };
+		5D2F00969ED1146DADF415C1 /* ClerkProviderTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ClerkProviderTests.swift; path = WeaveTests/ClerkProviderTests.swift; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-Weave.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Weave.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		685C1A9CEFE47615B69FCA52 /* WeaveAuthModule.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = WeaveAuthModule.mm; path = Weave/Auth/WeaveAuthModule.mm; sourceTree = "<group>"; };
+		73B2399E45410C3B586BC61E /* ClerkProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ClerkProvider.swift; path = Weave/Auth/ClerkProvider.swift; sourceTree = "<group>"; };
 		761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Weave/AppDelegate.swift; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Weave/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8D1AAF1B061E25179705C450 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		9335A9E2ED2007B30098CB06 /* Figtree-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Figtree-Bold.ttf"; path = "../assets/fonts/Figtree-Bold.ttf"; sourceTree = SOURCE_ROOT; };
+		AB971A9DA5AD307A6A6B6C4D /* WeaveTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeaveTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE25D3665F13A229C070F6C1 /* ClerkAuthService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ClerkAuthService.swift; path = Weave/Auth/ClerkAuthService.swift; sourceTree = "<group>"; };
+		C41815E5846B99B9D993227B /* AuthContracts.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AuthContracts.swift; path = Weave/Auth/AuthContracts.swift; sourceTree = "<group>"; };
+		E7C32B7A8A9D5BD0E10610B9 /* Figtree-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Figtree-SemiBold.ttf"; path = "../assets/fonts/Figtree-SemiBold.ttf"; sourceTree = SOURCE_ROOT; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		FBF65D5B41BB5B8A61EE2678 /* AuthConfigurationTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AuthConfigurationTests.swift; path = WeaveTests/AuthConfigurationTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +77,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C80B921A6F3F58F76C31292 /* libPods-Weave.a in Frameworks */,
+				F0A64F74A83B96797830FFEA /* ClerkKit in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9DBB6B717417A79C6BE4C920 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2CD56B97279EC767780619AA /* Foundation.framework in Frameworks */,
+				F2BBA4DD8F5A97F243242F3C /* ClerkKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -41,6 +96,9 @@
 		13B07FAE1A68108700A75B9A /* Weave */ = {
 			isa = PBXGroup;
 			children = (
+				076A686AC70D44A179B309A1 /* Figtree-Regular.ttf */,
+				E7C32B7A8A9D5BD0E10610B9 /* Figtree-SemiBold.ttf */,
+				9335A9E2ED2007B30098CB06 /* Figtree-Bold.ttf */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				761780EC2CA45674006654EE /* AppDelegate.swift */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
@@ -55,6 +113,7 @@
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				5DCACB8F33CDC322A6C60F78 /* libPods-Weave.a */,
+				C75CC7836FF4EFE2BED347EC /* iOS */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -74,6 +133,19 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				4EA35BB2DB9B5555F82A06D5 /* WeaveAuthModule.swift */,
+				4A7570501CE18DA7FD191CB5 /* WeaveAuthModuleTests.swift */,
+				685C1A9CEFE47615B69FCA52 /* WeaveAuthModule.mm */,
+				C41815E5846B99B9D993227B /* AuthContracts.swift */,
+				BE25D3665F13A229C070F6C1 /* ClerkAuthService.swift */,
+				3B5758615D6F396873E2368E /* WeaveAuthBehaviorTests.swift */,
+				73B2399E45410C3B586BC61E /* ClerkProvider.swift */,
+				439FBBAEC659D64F9A8EF51C /* KeychainHealthCheck.swift */,
+				3853B54B9CF7D65538F22A10 /* WeaveAuthConfiguration.swift */,
+				05ED1A003A283B4B9577AEBD /* WeaveAuthRuntime.swift */,
+				FBF65D5B41BB5B8A61EE2678 /* AuthConfigurationTests.swift */,
+				5D2F00969ED1146DADF415C1 /* ClerkProviderTests.swift */,
+				061718AE5E97C6081DA92F1B /* KeychainHealthTests.swift */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -84,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				13B07F961A680F5B00A75B9A /* Weave.app */,
+				AB971A9DA5AD307A6A6B6C4D /* WeaveTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -95,6 +168,14 @@
 				5709B34CF0A7D63546082F79 /* Pods-Weave.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		C75CC7836FF4EFE2BED347EC /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				8D1AAF1B061E25179705C450 /* Foundation.framework */,
+			);
+			name = iOS;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -117,9 +198,32 @@
 			dependencies = (
 			);
 			name = Weave;
+			packageProductDependencies = (
+				8413339310F12AFB6EB5586F /* ClerkKit */,
+			);
 			productName = Weave;
 			productReference = 13B07F961A680F5B00A75B9A /* Weave.app */;
 			productType = "com.apple.product-type.application";
+		};
+		83382418C61929A1DE589D56 /* WeaveTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 39FD2645E76B197F2208BB80 /* Build configuration list for PBXNativeTarget "WeaveTests" */;
+			buildPhases = (
+				89EA6FE05CA0015491BC102B /* Sources */,
+				9DBB6B717417A79C6BE4C920 /* Frameworks */,
+				E3AAFA9C9ABA05A432A4794F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WeaveTests;
+			packageProductDependencies = (
+				0B07679AAAD96D60B716FC3B /* ClerkKit */,
+			);
+			productName = WeaveTests;
+			productReference = AB971A9DA5AD307A6A6B6C4D /* WeaveTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -143,11 +247,15 @@
 				Base,
 			);
 			mainGroup = 83CBB9F61A601CBA00E9B192;
+			packageReferences = (
+				2F3D19D779D46BE9D0DA99A4 /* XCLocalSwiftPackageReference "../vendor/clerk-ios" */,
+			);
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				13B07F861A680F5B00A75B9A /* Weave */,
+				83382418C61929A1DE589D56 /* WeaveTests */,
 			);
 		};
 /* End PBXProject section */
@@ -158,7 +266,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
+				40AD765419521D83977D0D6B /* Figtree-Regular.ttf in Resources */,
+				F0EEDA95530DDE6779E5DF98 /* Figtree-SemiBold.ttf in Resources */,
+				6CA0D2E9F0F55F8332D3C980 /* Figtree-Bold.ttf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				F212618307BEC7C314BB8EC8 /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E3AAFA9C9ABA05A432A4794F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,9 +308,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Weave/Pods-Weave-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Weave/Pods-Weave-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -228,9 +351,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Weave/Pods-Weave-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Weave/Pods-Weave-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -245,6 +372,33 @@
 			buildActionMask = 2147483647;
 			files = (
 				761780ED2CA45674006654EE /* AppDelegate.swift in Sources */,
+				77AFD2D6AE264A84260C244E /* WeaveAuthModule.swift in Sources */,
+				67C2A94C5AFD885E8B2DF5C0 /* WeaveAuthModule.mm in Sources */,
+				AD1319AA28B8FC5FF4C1E6E2 /* AuthContracts.swift in Sources */,
+				BF5353D49680987A1D732157 /* ClerkAuthService.swift in Sources */,
+				116538D0D0C8EB6AA6988043 /* ClerkProvider.swift in Sources */,
+				0503CCA505CFE7242CD38F52 /* KeychainHealthCheck.swift in Sources */,
+				9D6F0CE974C70175F8D2330C /* WeaveAuthConfiguration.swift in Sources */,
+				AC9E20C17F6E34A20F303AAB /* WeaveAuthRuntime.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		89EA6FE05CA0015491BC102B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECB426B43881D1C2B4C0C735 /* WeaveAuthModule.swift in Sources */,
+				D835C8F0B272ACFC351D1090 /* WeaveAuthModuleTests.swift in Sources */,
+				F1833383DD1CAE4DF0B15836 /* AuthContracts.swift in Sources */,
+				F75F13146DC7BFA44EBFA99C /* ClerkAuthService.swift in Sources */,
+				0260DCD71DEBBC286CF4964F /* WeaveAuthBehaviorTests.swift in Sources */,
+				20E2D065D39823C6670EA0B1 /* ClerkProvider.swift in Sources */,
+				28785F00A91D0DD6CCD6E753 /* KeychainHealthCheck.swift in Sources */,
+				1A8070D8AA9EA574AB62AF6F /* WeaveAuthConfiguration.swift in Sources */,
+				9E656FA5E45A3857EE187904 /* WeaveAuthRuntime.swift in Sources */,
+				F01F94131A9BF2431FD380EB /* AuthConfigurationTests.swift in Sources */,
+				50DB323F18881246E5405A37 /* ClerkProviderTests.swift in Sources */,
+				759EE23EED99DB57D89C7543 /* KeychainHealthTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,9 +412,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 44E9RE43KD;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Weave/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -271,13 +426,16 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = si.tryweave;
 				PRODUCT_NAME = Weave;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "Weave-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
+				WEAVE_AUTH_CALLBACK_SCHEME = "$(PRODUCT_BUNDLE_IDENTIFIER)";
+				WEAVE_AUTH_CALLBACK_URL = "$(WEAVE_AUTH_CALLBACK_SCHEME)://callback";
 			};
 			name = Debug;
 		};
@@ -288,8 +446,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 44E9RE43KD;
 				INFOPLIST_FILE = Weave/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -300,12 +459,15 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = si.tryweave;
 				PRODUCT_NAME = Weave;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "Weave-Swift.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
+				WEAVE_AUTH_CALLBACK_SCHEME = "$(PRODUCT_BUNDLE_IDENTIFIER)";
+				WEAVE_AUTH_CALLBACK_URL = "$(WEAVE_AUTH_CALLBACK_SCHEME)://callback";
 			};
 			name = Release;
 		};
@@ -358,7 +520,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,
 					"$(inherited)",
@@ -370,6 +532,10 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"-DRCT_REMOVE_LEGACY_ARCH=1",
+				);
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
 					"-DFOLLY_NO_CONFIG",
@@ -377,8 +543,14 @@
 					"-DFOLLY_USE_LIBCPP=1",
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
+					"-DRCT_REMOVE_LEGACY_ARCH=1",
 				);
+				PODFILE_DIR = "$(SRCROOT)";
+				REACT_NATIVE_PATH = "${PODS_ROOT}/../../../../node_modules/react-native";
 				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
+				SWIFT_ENABLE_EXPLICIT_MODULES = NO;
+				USE_HERMES = true;
 			};
 			name = Debug;
 		};
@@ -424,7 +596,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,
 					"$(inherited)",
@@ -435,6 +607,10 @@
 					"\"$(inherited)\"",
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"-DRCT_REMOVE_LEGACY_ARCH=1",
+				);
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
 					"-DFOLLY_NO_CONFIG",
@@ -442,11 +618,45 @@
 					"-DFOLLY_USE_LIBCPP=1",
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
+					"-DRCT_REMOVE_LEGACY_ARCH=1",
 				);
+				PODFILE_DIR = "$(SRCROOT)";
+				REACT_NATIVE_PATH = "${PODS_ROOT}/../../../../node_modules/react-native";
 				SDKROOT = iphoneos;
+				SWIFT_ENABLE_EXPLICIT_MODULES = NO;
+				USE_HERMES = true;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
+		};
+		A87245490F6FEF9C973E590D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGNING_ALLOWED = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				PRODUCT_BUNDLE_IDENTIFIER = si.tryweave.auth.contract.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E8F928ABD7B3781160FB59FD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGNING_ALLOWED = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				PRODUCT_BUNDLE_IDENTIFIER = si.tryweave.auth.contract.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
 		};
 /* End XCBuildConfiguration section */
 
@@ -456,6 +666,15 @@
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
 				13B07F951A680F5B00A75B9A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		39FD2645E76B197F2208BB80 /* Build configuration list for PBXNativeTarget "WeaveTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A87245490F6FEF9C973E590D /* Release */,
+				E8F928ABD7B3781160FB59FD /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -470,6 +689,26 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		2F3D19D779D46BE9D0DA99A4 /* XCLocalSwiftPackageReference "../vendor/clerk-ios" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = "../vendor/clerk-ios";
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0B07679AAAD96D60B716FC3B /* ClerkKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2F3D19D779D46BE9D0DA99A4 /* XCLocalSwiftPackageReference "../vendor/clerk-ios" */;
+			productName = ClerkKit;
+		};
+		8413339310F12AFB6EB5586F /* ClerkKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2F3D19D779D46BE9D0DA99A4 /* XCLocalSwiftPackageReference "../vendor/clerk-ios" */;
+			productName = ClerkKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 83CBB9F71A601CBA00E9B192 /* Project object */;
 }

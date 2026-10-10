@@ -4,6 +4,14 @@ import path from 'node:path';
 
 import {evaluateTool, isScenarioConfirmed} from './agent-policy.mjs';
 
+export const PRE_TOOL_USE_EVENT = 'PreToolUse';
+
+export const SESSION_START_EVENT = 'SessionStart';
+
+export const POST_TOOL_USE_EVENT = 'PostToolUse';
+
+export const STOP_EVENT = 'Stop';
+
 const event = JSON.parse(readFileSync(0, 'utf8'));
 
 process.chdir(execFileSync('git', ['rev-parse', '--show-toplevel'], {encoding: 'utf8'}).trim());
@@ -29,7 +37,7 @@ const confirmed = isScenarioConfirmed(state, branch);
 
 const name = event.hook_event_name;
 
-if (name === 'PreToolUse') {
+if (name === PRE_TOOL_USE_EVENT) {
   const reason = evaluateTool(event, branch, confirmed);
 
   if (reason)
@@ -43,7 +51,7 @@ if (name === 'PreToolUse') {
       }),
     );
   else console.log('{}');
-} else if (name === 'SessionStart') {
+} else if (name === SESSION_START_EVENT) {
   console.log(
     JSON.stringify({
       hookSpecificOutput: {
@@ -53,7 +61,7 @@ if (name === 'PreToolUse') {
       },
     }),
   );
-} else if (name === 'PostToolUse') {
+} else if (name === POST_TOOL_USE_EVENT) {
   console.log(
     JSON.stringify({
       hookSpecificOutput: {
@@ -63,7 +71,7 @@ if (name === 'PreToolUse') {
       },
     }),
   );
-} else if (name === 'Stop') {
+} else if (name === STOP_EVENT) {
   console.log(
     JSON.stringify({
       systemMessage:

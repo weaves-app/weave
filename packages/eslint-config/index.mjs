@@ -1,3 +1,4 @@
+import {comparisonConstantsConfig} from './comparison-constants.mjs';
 import {readabilityConfig} from './readability.mjs';
 
 import tseslint from 'typescript-eslint';
@@ -6,6 +7,7 @@ import hooks from 'eslint-plugin-react-hooks';
 export function createConfig(directory, project = 'tsconfig.json') {
   return tseslint.config(
     readabilityConfig,
+    comparisonConstantsConfig,
     {
       ignores: [
         '**/node_modules/**',

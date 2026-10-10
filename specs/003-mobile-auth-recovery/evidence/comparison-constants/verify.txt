@@ -1,0 +1,540 @@
+$ pnpm run lint && pnpm run format:check && pnpm run typecheck && pnpm test && pnpm run build
+$ turbo run lint && eslint scripts tests && node scripts/check-architecture.mjs
+
+   • turbo 2.11.7
+   • Packages in scope: @weave/api, @weave/design-tokens, @weave/eslint-config, @weave/mobile, @weave/typescript-config, @weave/web
+   • Running lint in 6 packages
+   • Remote caching disabled
+
+@weave/eslint-config:lint: cache miss, executing 166133e59f3d1cc4
+@weave/api:db:generate: cache hit, replaying logs 1242c9f50ab5defb
+@weave/api:db:generate: $ prisma generate
+@weave/api:db:generate: Loaded Prisma config from prisma.config.ts.
+@weave/api:db:generate:
+@weave/api:db:generate: Prisma schema loaded from prisma/schema.prisma.
+@weave/api:db:generate: ┌─────────────────────────────────────────────────────────┐
+@weave/api:db:generate: │  Update available 7.10.0 -> 8.0.0-rc.22                 │
+@weave/api:db:generate: │                                                         │
+@weave/api:db:generate: │  This is a major update - please follow the guide at    │
+@weave/api:db:generate: │  https://pris.ly/d/major-version-upgrade                │
+@weave/api:db:generate: │                                                         │
+@weave/api:db:generate: │  Run the following to update                            │
+@weave/api:db:generate: │    npm i --save-dev prisma@latest                       │
+@weave/api:db:generate: │    npm i @prisma/client@latest                          │
+@weave/api:db:generate: └─────────────────────────────────────────────────────────┘
+@weave/api:db:generate:
+@weave/api:db:generate: ✔ Generated Prisma Client (7.10.0) to ./src/generated/prisma in 18ms
+@weave/api:db:generate:
+@weave/eslint-config:lint: $ eslint .
+@weave/api:lint: cache miss, executing dd6b6688822c6977
+@weave/design-tokens:lint: cache miss, executing 9f5d0058bb4b46e1
+@weave/design-tokens:lint: $ eslint .
+@weave/api:lint: $ eslint .
+@weave/web:lint: cache miss, executing f5fda98adf6308ea
+@weave/mobile:lint: cache miss, executing 01839c7c56973321
+@weave/mobile:lint: $ eslint .
+@weave/web:lint: $ eslint .
+
+ Tasks:    6 successful, 6 total
+Cached:    1 cached, 6 total
+  Time:    36.458s
+
+Architecture and interface injection checks passed.
+$ prettier --check .
+Checking formatting...
+All matched files use Prettier code style!
+$ turbo run typecheck
+
+   • turbo 2.11.7
+   • Packages in scope: @weave/api, @weave/design-tokens, @weave/eslint-config, @weave/mobile, @weave/typescript-config, @weave/web
+   • Running typecheck in 6 packages
+   • Remote caching disabled
+
+@weave/design-tokens:typecheck: cache miss, executing 2f31ee2673725f2e
+@weave/api:db:generate: cache hit, replaying logs 1242c9f50ab5defb
+@weave/api:db:generate: $ prisma generate
+@weave/api:db:generate: Loaded Prisma config from prisma.config.ts.
+@weave/api:db:generate:
+@weave/api:db:generate: Prisma schema loaded from prisma/schema.prisma.
+@weave/api:db:generate: ┌─────────────────────────────────────────────────────────┐
+@weave/api:db:generate: │  Update available 7.10.0 -> 8.0.0-rc.22                 │
+@weave/api:db:generate: │                                                         │
+@weave/api:db:generate: │  This is a major update - please follow the guide at    │
+@weave/api:db:generate: │  https://pris.ly/d/major-version-upgrade                │
+@weave/api:db:generate: │                                                         │
+@weave/api:db:generate: │  Run the following to update                            │
+@weave/api:db:generate: │    npm i --save-dev prisma@latest                       │
+@weave/api:db:generate: │    npm i @prisma/client@latest                          │
+@weave/api:db:generate: └─────────────────────────────────────────────────────────┘
+@weave/api:db:generate:
+@weave/api:db:generate: ✔ Generated Prisma Client (7.10.0) to ./src/generated/prisma in 18ms
+@weave/api:db:generate:
+@weave/api:typecheck: cache miss, executing 1f23e0d4b7a52300
+@weave/design-tokens:typecheck: $ tsc --noEmit
+@weave/api:typecheck: $ tsc --noEmit
+@weave/web:typecheck: cache miss, executing 5d81435d88cb2dce
+@weave/mobile:typecheck: cache miss, executing cb485eb1c9cf8acf
+@weave/mobile:typecheck: $ tsc --noEmit
+@weave/web:typecheck: $ next typegen && tsc --noEmit
+@weave/web:typecheck: Generating route types...
+@weave/web:typecheck: ✓ Types generated successfully
+
+ Tasks:    5 successful, 5 total
+Cached:    1 cached, 5 total
+  Time:    10.563s
+
+$ pnpm run test:policy && turbo run test
+$ node --test tests/policy/*.test.mjs
+✔ S10 tool guard permits investigation and specs, gates source edits (3.3095ms)
+✔ S10 missing/foreign feature state cannot authorize an implementation branch (0.747459ms)
+✔ S15 read-only shell syntax passes while output files remain gated (1.477583ms)
+✔ S15 edit tools inspect destinations rather than documentation contents (0.318292ms)
+✔ S04 rejects outward domain dependencies and cross-module internals (6007.467375ms)
+✔ S05 requires interface types for injected dependencies (2858.669959ms)
+✔ S04 rejects resolved controller imports from the application layer (745.612417ms)
+✔ S14 resolves aliases within their owning workspace (1817.078709ms)
+✔ S01 accepts ticket branches and rejects shared/malformed names (1.8685ms)
+✔ S15 Claude hook envelopes use shared rules without Stop loops (3171.478208ms)
+✔ S02 conventional commits are single-line, imperative and traceable (1.836625ms)
+✔ S03 release PRs only originate from same-repository develop (0.64575ms)
+✔ S22/S23 mobile: rejects comparison magic values: state.session.status === 'resolving'; (820.016292ms)
+✔ S22/S23 mobile: rejects comparison magic values: 'active' !== state.session.status; (9.447291ms)
+✔ S22/S23 mobile: rejects comparison magic values: session?.['status'] == `signedOut`; (8.021625ms)
+✔ S22/S23 mobile: rejects comparison magic values: mode !== 'password'; (6.483833ms)
+✔ S22/S23 mobile: rejects comparison magic values: count >= 6; (4.42325ms)
+✔ S22/S23 mobile: rejects comparison magic values: -1 < index; (4.646458ms)
+✔ S22/S23 mobile: rejects comparison magic values: offset === 0; (7.58125ms)
+✔ S22/S23 mobile: rejects comparison magic values: offset === +1; (4.216666ms)
+✔ S22/S23 mobile: rejects comparison magic values: status === ('active' satisfies string); (10.237042ms)
+✔ S22/S23 mobile: rejects comparison magic values: const statuses = {active: 'active'} as const; status === statuses.active; (17.618542ms)
+✔ S22/S23 mobile: rejects comparison magic values: switch (kind) {case 'complete': break;} (9.735ms)
+✔ S22/S23 mobile: rejects comparison magic values: switch (code) {case 200: break;} (7.421ms)
+✔ S22/S23 mobile: rejects comparison magic values: status === ('active' as const); (7.371083ms)
+✔ S22/S23 mobile: rejects comparison magic values: const LIMIT = 6; count > LIMIT; (7.349417ms)
+✔ S22/S23 mobile: rejects comparison magic values: const STATUS = {ACTIVE: 'active'} as const; status === STATUS.ACTIVE; (3.547ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: export const STATUS = {ACTIVE: 'active'} as const; status === STATUS.ACTIVE; (12.578708ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: export const LIMIT = 6; count >= LIMIT; (4.299291ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: const LIMIT = 6; export {LIMIT}; count >= LIMIT; (5.264625ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: import {STATUS} from './constants'; status === STATUS.ACTIVE; (8.247291ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: switch (status) {case SESSION_STATUS.ACTIVE: break;} (12.757667ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: typeof value === 'string'; (3.163542ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: 'object' !== typeof value; (3.287417ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: switch (typeof value) {case 'string': break;} (3.457041ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: value === null; (5.580542ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: value !== undefined; (2.818583ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: ready === false; (2.868042ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: count > otherCount; (1.866584ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: const label = 'active'; (2.7275ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: const size = 6; (1.307292ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: const limit = getLimit(); count > limit; (6.972542ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: const current = {status: readStatus()}; status === current.status; (8.818917ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: expect(status).toBe('active'); (5.74725ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: assert.equal(count, 6); (5.6795ms)
+✔ S22/S23 web: rejects comparison magic values: state.session.status === 'resolving'; (21.706041ms)
+✔ S22/S23 web: rejects comparison magic values: 'active' !== state.session.status; (2.08325ms)
+✔ S22/S23 web: rejects comparison magic values: session?.['status'] == `signedOut`; (3.142458ms)
+✔ S22/S23 web: rejects comparison magic values: mode !== 'password'; (3.234458ms)
+✔ S22/S23 web: rejects comparison magic values: count >= 6; (2.619667ms)
+✔ S22/S23 web: rejects comparison magic values: -1 < index; (4.281708ms)
+✔ S22/S23 web: rejects comparison magic values: offset === 0; (2.942833ms)
+✔ S22/S23 web: rejects comparison magic values: offset === +1; (4.4895ms)
+✔ S22/S23 web: rejects comparison magic values: status === ('active' satisfies string); (2.131542ms)
+✔ S22/S23 web: rejects comparison magic values: const statuses = {active: 'active'} as const; status === statuses.active; (2.820333ms)
+✔ S22/S23 web: rejects comparison magic values: switch (kind) {case 'complete': break;} (4.102083ms)
+✔ S22/S23 web: rejects comparison magic values: switch (code) {case 200: break;} (6.652833ms)
+✔ S22/S23 web: rejects comparison magic values: status === ('active' as const); (2.329958ms)
+✔ S22/S23 web: rejects comparison magic values: const LIMIT = 6; count > LIMIT; (3.645667ms)
+✔ S22/S23 web: rejects comparison magic values: const STATUS = {ACTIVE: 'active'} as const; status === STATUS.ACTIVE; (5.071167ms)
+✔ S21/S23 web: allows constants and agreed exceptions: export const STATUS = {ACTIVE: 'active'} as const; status === STATUS.ACTIVE; (5.611208ms)
+✔ S21/S23 web: allows constants and agreed exceptions: export const LIMIT = 6; count >= LIMIT; (3.07475ms)
+✔ S21/S23 web: allows constants and agreed exceptions: const LIMIT = 6; export {LIMIT}; count >= LIMIT; (2.692708ms)
+✔ S21/S23 web: allows constants and agreed exceptions: import {STATUS} from './constants'; status === STATUS.ACTIVE; (3.318125ms)
+✔ S21/S23 web: allows constants and agreed exceptions: switch (status) {case SESSION_STATUS.ACTIVE: break;} (2.317792ms)
+✔ S21/S23 web: allows constants and agreed exceptions: typeof value === 'string'; (5.32375ms)
+✔ S21/S23 web: allows constants and agreed exceptions: 'object' !== typeof value; (1.764291ms)
+✔ S21/S23 web: allows constants and agreed exceptions: switch (typeof value) {case 'string': break;} (1.657834ms)
+✔ S21/S23 web: allows constants and agreed exceptions: value === null; (2.708667ms)
+✔ S21/S23 web: allows constants and agreed exceptions: value !== undefined; (5.068166ms)
+✔ S21/S23 web: allows constants and agreed exceptions: ready === false; (5.363375ms)
+✔ S21/S23 web: allows constants and agreed exceptions: count > otherCount; (2.234709ms)
+✔ S21/S23 web: allows constants and agreed exceptions: const label = 'active'; (2.034417ms)
+✔ S21/S23 web: allows constants and agreed exceptions: const size = 6; (2.783666ms)
+✔ S21/S23 web: allows constants and agreed exceptions: const limit = getLimit(); count > limit; (4.494666ms)
+✔ S21/S23 web: allows constants and agreed exceptions: const current = {status: readStatus()}; status === current.status; (3.397709ms)
+✔ S21/S23 web: allows constants and agreed exceptions: expect(status).toBe('active'); (2.217375ms)
+✔ S21/S23 web: allows constants and agreed exceptions: assert.equal(count, 6); (2.266958ms)
+✔ S22/S23 root staged files: rejects comparison magic values: state.session.status === 'resolving'; (39.626583ms)
+✔ S22/S23 root staged files: rejects comparison magic values: 'active' !== state.session.status; (1.747666ms)
+✔ S22/S23 root staged files: rejects comparison magic values: session?.['status'] == `signedOut`; (2.85075ms)
+✔ S22/S23 root staged files: rejects comparison magic values: mode !== 'password'; (2.189958ms)
+✔ S22/S23 root staged files: rejects comparison magic values: count >= 6; (1.964667ms)
+✔ S22/S23 root staged files: rejects comparison magic values: -1 < index; (1.654292ms)
+✔ S22/S23 root staged files: rejects comparison magic values: offset === 0; (2.112125ms)
+✔ S22/S23 root staged files: rejects comparison magic values: offset === +1; (2.10975ms)
+✔ S22/S23 root staged files: rejects comparison magic values: status === ('active' satisfies string); (2.024458ms)
+✔ S22/S23 root staged files: rejects comparison magic values: const statuses = {active: 'active'} as const; status === statuses.active; (4.913042ms)
+✔ S22/S23 root staged files: rejects comparison magic values: switch (kind) {case 'complete': break;} (2.040542ms)
+✔ S22/S23 root staged files: rejects comparison magic values: switch (code) {case 200: break;} (1.705083ms)
+✔ S22/S23 root staged files: rejects comparison magic values: status === ('active' as const); (4.0855ms)
+✔ S22/S23 root staged files: rejects comparison magic values: const LIMIT = 6; count > LIMIT; (2.873833ms)
+✔ S22/S23 root staged files: rejects comparison magic values: const STATUS = {ACTIVE: 'active'} as const; status === STATUS.ACTIVE; (9.0605ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: export const STATUS = {ACTIVE: 'active'} as const; status === STATUS.ACTIVE; (3.123958ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: export const LIMIT = 6; count >= LIMIT; (3.146625ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: const LIMIT = 6; export {LIMIT}; count >= LIMIT; (2.166791ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: import {STATUS} from './constants'; status === STATUS.ACTIVE; (3.911167ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: switch (status) {case SESSION_STATUS.ACTIVE: break;} (4.785791ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: typeof value === 'string'; (3.02075ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: 'object' !== typeof value; (4.944208ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: switch (typeof value) {case 'string': break;} (3.789834ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: value === null; (2.9365ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: value !== undefined; (2.013167ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: ready === false; (2.358667ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: count > otherCount; (1.629542ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: const label = 'active'; (1.657333ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: const size = 6; (1.784167ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: const limit = getLimit(); count > limit; (5.44725ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: const current = {status: readStatus()}; status === current.status; (3.186917ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: expect(status).toBe('active'); (1.45075ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: assert.equal(count, 6); (1.956ms)
+✔ S22/S23 scripts: rejects comparison magic values: state.session.status === 'resolving'; (12.750042ms)
+✔ S22/S23 scripts: rejects comparison magic values: 'active' !== state.session.status; (1.536625ms)
+✔ S22/S23 scripts: rejects comparison magic values: session?.['status'] == `signedOut`; (3.01275ms)
+✔ S22/S23 scripts: rejects comparison magic values: mode !== 'password'; (2.140042ms)
+✔ S22/S23 scripts: rejects comparison magic values: count >= 6; (1.32675ms)
+✔ S22/S23 scripts: rejects comparison magic values: -1 < index; (5.388708ms)
+✔ S22/S23 scripts: rejects comparison magic values: offset === 0; (1.5575ms)
+✔ S22/S23 scripts: rejects comparison magic values: offset === +1; (1.757125ms)
+✔ S22/S23 scripts: rejects comparison magic values: status === ('active' satisfies string); (4.423708ms)
+✔ S22/S23 scripts: rejects comparison magic values: const statuses = {active: 'active'} as const; status === statuses.active; (5.607125ms)
+✔ S22/S23 scripts: rejects comparison magic values: switch (kind) {case 'complete': break;} (2.90375ms)
+✔ S22/S23 scripts: rejects comparison magic values: switch (code) {case 200: break;} (2.803167ms)
+✔ S22/S23 scripts: rejects comparison magic values: status === ('active' as const); (3.924625ms)
+✔ S22/S23 scripts: rejects comparison magic values: const LIMIT = 6; count > LIMIT; (1.749917ms)
+✔ S22/S23 scripts: rejects comparison magic values: const STATUS = {ACTIVE: 'active'} as const; status === STATUS.ACTIVE; (4.55225ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: export const STATUS = {ACTIVE: 'active'} as const; status === STATUS.ACTIVE; (2.982042ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: export const LIMIT = 6; count >= LIMIT; (2.245542ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: const LIMIT = 6; export {LIMIT}; count >= LIMIT; (5.135291ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: import {STATUS} from './constants'; status === STATUS.ACTIVE; (6.429042ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: switch (status) {case SESSION_STATUS.ACTIVE: break;} (3.738666ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: typeof value === 'string'; (2.761458ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: 'object' !== typeof value; (2.301667ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: switch (typeof value) {case 'string': break;} (13.057333ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: value === null; (2.804417ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: value !== undefined; (1.039083ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: ready === false; (0.893792ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: count > otherCount; (1.371583ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: const label = 'active'; (3.71875ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: const size = 6; (1.188875ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: const limit = getLimit(); count > limit; (1.349709ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: const current = {status: readStatus()}; status === current.status; (0.930209ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: expect(status).toBe('active'); (0.657833ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: assert.equal(count, 6); (0.598542ms)
+✔ S17 dependency adoption accepts only genuine scoped proposals (1.323625ms)
+✔ WEA-8 S06 accepts pnpm lockfile proposals without widening policy scope (0.181208ms)
+✔ S21 dependency adoption permits the default personal CLI profile when the optional key is absent (872.008625ms)
+✔ S21 local config distinguishes absent keys, explicit profiles and Git errors (624.9695ms)
+✔ S10 publishing verifies actual account instead of trusting credential labels (1.435583ms)
+✔ S13 forbidden identities are local policy, not a hard-coded account (0.245ms)
+✔ S16 creates an immutable manifest and rejects malformed boundaries (2.931291ms)
+✔ S16 production requires the matching QA digests for every app (1.185958ms)
+✔ S16 retries accept the same release and reject artifact replacement (0.429ms)
+✔ S16 only matching incomplete drafts may recover missing assets (0.621916ms)
+✔ S22 missing QA aliases fail with the production policy message before mutation (713.951916ms)
+✔ R01/R03: rejects and fixes missing spacing: import groups and imports ending (93.975083ms)
+✔ R01/R03: rejects and fixes missing spacing: TypeScript declarations (39.093292ms)
+✔ R01/R03: rejects and fixes missing spacing: validation, operation and result (36.961958ms)
+✔ R01/R03: rejects and fixes missing spacing: class methods (10.945042ms)
+✔ R01/R03: rejects and fixes missing spacing: object methods (14.978ms)
+✔ R01/R03: rejects and fixes missing spacing: attached comments and directives (17.686417ms)
+✔ R02: leaves same-group imports and compliant code unchanged (8.180792ms)
+✔ R03: keeps decorators attached to their declaration (14.866375ms)
+✔ S12 main releases classify Conventional Commits by highest impact (1.937625ms)
+✔ S17 breaking changes stay in development versions until explicit 1.0 (0.522167ms)
+ℹ tests 165
+ℹ suites 0
+ℹ pass 165
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 12332.571958
+
+   • turbo 2.11.7
+   • Packages in scope: @weave/api, @weave/design-tokens, @weave/eslint-config, @weave/mobile, @weave/typescript-config, @weave/web
+   • Running test in 6 packages
+   • Remote caching disabled
+
+@weave/api:test: cache miss, executing a5d35dd9dde65238
+@weave/design-tokens:typecheck: cache hit, replaying logs 2f31ee2673725f2e
+@weave/design-tokens:typecheck: $ tsc --noEmit
+@weave/web:test: cache miss, executing 5f61fa30083d8932
+@weave/mobile:test: cache miss, executing da8625db2c3e07a9
+@weave/mobile:test: $ pnpm run test:privacy && jest --runInBand
+@weave/web:test: $ node --import tsx --test test/*.test.ts test/*.test.tsx
+@weave/api:test: $ node --import tsx --test test/*.test.ts
+@weave/api:test: ✔ S06 liveness does not depend on database; readiness checks database (93.712375ms)
+@weave/api:test: ✔ S06 unavailable database rejects readiness but preserves liveness (1.680917ms)
+@weave/api:test: ℹ tests 2
+@weave/api:test: ℹ suites 0
+@weave/api:test: ℹ pass 2
+@weave/api:test: ℹ fail 0
+@weave/api:test: ℹ cancelled 0
+@weave/api:test: ℹ skipped 0
+@weave/api:test: ℹ todo 0
+@weave/api:test: ℹ duration_ms 2516.86825
+@weave/web:test: ✔ WEA-10 S01 SDK adapter uses email/password then email verification before finalize (5.180417ms)
+@weave/web:test: ✔ WEA-10 S03 SDK invitation request contains ticket/password and no substitute email (0.981792ms)
+@weave/web:test: ✔ WEA-10 S02/S07 SDK Device Trust and signout follow supported APIs (1.008875ms)
+@weave/web:test: ✔ WEA-10 S08 SDK returned error is rejected, incomplete status cannot finalize (0.851709ms)
+@weave/web:test: ✔ WEA-10 S11 Google adapter uses the supported SSO API and protected callback destinations (0.48675ms)
+@weave/mobile:test: $ node scripts/apply-renderer-privacy.mjs && node scripts/renderer-privacy-probe.mjs
+@weave/mobile:test: Applied pinned React Native renderer diagnostics privacy patch.
+@weave/mobile:test: Renderer privacy probe: three severities sanitized; fatality preserved.
+@weave/web:test: ✔ WEA-10 S11 callback without a completed attempt shows retry rather than endless verification (3978.992ms)
+@weave/web:test: ✔ WEA-10 S11 callback rejected operation and timeout recover without navigation (163.254667ms)
+@weave/web:test: ✔ WEA-10 S11 only completed callback navigates; additional requirements are visible (130.761209ms)
+@weave/web:test: ✔ WEA-10 S11 callback waits for browser SDK readiness before resolving hydrated server auth (77.903667ms)
+@weave/web:test: ✔ WEA-10 S01 signup sends verification, never activates before correct code, then opens Home (4.282ms)
+@weave/web:test: ✔ WEA-10 S01/S08 wrong or expired code is recoverable and resend can be retried (2.958958ms)
+@weave/web:test: ✔ WEA-10 S01/S08 empty/malformed email and missing password/code make no provider calls (1.506792ms)
+@weave/web:test: ✔ WEA-10 S01/S08 unverified provider completion or unsupported requirements cannot activate (2.410041ms)
+@weave/web:test: ✔ WEA-10 S02 password login and Device Trust verification both reach Home (1.660584ms)
+@weave/web:test: ✔ WEA-10 S07 interrupted verification restores without needing password again (1.072916ms)
+@weave/web:test: ✔ WEA-10 S08 duplicate/signup/invalid login/network/rejected-password errors finish loading (7.769375ms)
+@weave/web:test: ✔ WEA-10 S08 repeated submits issue one mutation and cancellation prevents late activation (0.410208ms)
+@weave/web:test: ✔ WEA-10 S07/S08 cancellation during activation clears late session and never navigates (1.993583ms)
+@weave/web:test: ✔ WEA-10 S07 signout awaits provider, clears state and reports recoverable failure (0.524542ms)
+@weave/web:test: ✔ WEA-10 S03 invitation signup supplies only ticket/password and reaches intended Home (0.692916ms)
+@weave/web:test: ✔ WEA-10 S03/S08 missing/expired/reused invitation keeps context and never falls back (0.488208ms)
+@weave/web:test: ✔ WEA-10 S03/S08 failed invitation activation can retry without replaying the consumed ticket (1.984625ms)
+@weave/web:test: ✔ WEA-10 S08 timeout finishes loading and blocks late authentication activation (29.624292ms)
+@weave/web:test: ✔ WEA-10 S11/S12 branded Google signup rejects duplicate clicks, then recovers provider failure (4246.473375ms)
+@weave/web:test: ✔ WEA-10 S11 Google signin starts provider authentication without premature Home (114.660834ms)
+@weave/web:test: ✔ WEA-10 S12 missing configuration retains branding and offers no fake signup success (108.4515ms)
+@weave/web:test: ✔ WEA-10 S18 bag remains static after image readiness and pointer movement (4248.799209ms)
+@weave/web:test: ✔ WEA-10 S11 unresolved callback refuses activation; completed callback finalizes only once (5.480792ms)
+@weave/web:test: ✔ WEA-10 S11 transfer reads current SDK snapshot after awaited create (3.3255ms)
+@weave/web:test: ✔ WEA-10 S11 extra fields and verification direct users to actual requirements, never Home (1.030833ms)
+@weave/web:test: ✔ WEA-10 S11 returned finalize errors cannot report Home success (1.383ms)
+@weave/web:test: ✔ WEA-10 S11 pending organization session explains the blocker and never navigates Home (0.481584ms)
+@weave/web:test: ✔ WEA-10 S03/S08 invitation entry preserves opaque ticket across auth navigation (2.229792ms)
+@weave/web:test: ✔ WEA-10 S03/S08 missing/malformed/ambiguous invitation never falls back to public signup (1.570667ms)
+@weave/web:test: ✔ WEA-10 S02/S07 verified active identity is allowed; unverified or signed-out is denied (0.520583ms)
+@weave/web:test: ✔ WEA-10 S07 unresolved auth exposes no protected result before the provider resolves (0.267166ms)
+@weave/web:test: ✔ WEA-10 S07/S08 provider/network session failure denies access safely (0.275958ms)
+@weave/web:test: ✔ WEA-10 S02/S07 protected resource is no-store and requires verified matching session user (71.263167ms)
+@weave/web:test: ✔ WEA-10 S02 signed-out protected request avoids user lookup; outage is 503 (0.828792ms)
+@weave/web:test: ✔ WEA-10 S15 verified identity without an active organization cannot read protected resources (0.511917ms)
+@weave/web:test: ✔ WEA-10 S01 public form labels/password → verification → Home callback (3520.69375ms)
+@weave/web:test: ✔ WEA-10 S08 pending/error states disable duplicates, finish loading and allow retry (216.149542ms)
+@weave/web:test: ✔ WEA-10 S07 Home stays hidden until auth resolves and after signout; signout failure recovers (99.378959ms)
+@weave/web:test: ✔ WEA-10 S01/S07 signed-in unverified session never renders Home (21.542708ms)
+@weave/web:test: ✔ WEA-10 S07/S08 signout timeout releases loading and offers a retry (69.273333ms)
+@weave/web:test: ✔ WEA-10 S08 unknown-account error survives refreshed SDK resources and callbacks (186.98275ms)
+@weave/web:test: ✔ WEA-10 S08 pending organization task is explicit and cannot show a fresh login or Home (33.433708ms)
+@weave/web:test: ✔ WEA-10 S07 server auth hydration cannot show credentials before browser SDK loads (35.848ms)
+@weave/web:test: ✔ S07 client accepts valid health and rejects bad responses safely (2.914041ms)
+@weave/web:test: ✔ WEA-10 S13 adapter loads every page, merges invitations and prefers existing membership (8.150125ms)
+@weave/web:test: ✔ WEA-10 S13 one list opens membership and accepts pending invitation before activation (3.342542ms)
+@weave/web:test: ✔ WEA-10 S14 list failure recovers, empty list remains usable (0.785667ms)
+@weave/web:test: ✔ WEA-10 S14 blank name is rejected; activation retry reuses created organization (44.970375ms)
+@weave/web:test: ✔ WEA-10 S14 acceptance failure denies Home; accepted invitation is not accepted twice after activation failure (22.982625ms)
+@weave/web:test: ✔ WEA-10 S15 duplicate mutation starts once and cancellation blocks late navigation (1.104292ms)
+@weave/web:test: ✔ WEA-10 S14 a stalled list request times out and allows retry without a late stale result (85.289ms)
+@weave/web:test: ✔ WEA-10 S13 approved picker lists memberships and invitation in one fieldset and opens selected workspace (960.28925ms)
+@weave/web:test: ✔ WEA-10 S14 empty picker offers create; create form has required labelled input and retryable errors (234.799625ms)
+@weave/web:test: ℹ tests 58
+@weave/web:test: ℹ suites 0
+@weave/web:test: ℹ pass 58
+@weave/web:test: ℹ fail 0
+@weave/web:test: ℹ cancelled 0
+@weave/web:test: ℹ skipped 0
+@weave/web:test: ℹ todo 0
+@weave/web:test: ℹ duration_ms 14969.670667
+@weave/mobile:test: watchman warning:  Recrawled this watch 5 times, most recently because:
+@weave/mobile:test: MustScanSubDirs UserDroppedTo resolve, please review the information on
+@weave/mobile:test: https://facebook.github.io/watchman/docs/troubleshooting.html#recrawl
+@weave/mobile:test: To clear this warning, run:
+@weave/mobile:test: `watchman watch-del '/Users/pravinraj/workspace/weave' ; watchman watch-project '/Users/pravinraj/workspace/weave'`
+@weave/mobile:test:
+@weave/mobile:test: PASS src/auth/login.test.tsx (7.785 s)
+@weave/mobile:test: PASS src/navigation/root-navigator.test.tsx
+@weave/mobile:test: PASS src/recovery/app-error-boundary.test.tsx
+@weave/mobile:test: PASS src/auth/app-recovery.test.tsx
+@weave/mobile:test: PASS src/components/registration.test.ts
+@weave/mobile:test: PASS src/auth/home.test.tsx
+@weave/mobile:test: PASS src/auth/auth-controller.test.ts
+@weave/mobile:test: PASS src/components/code-field.test.tsx
+@weave/mobile:test: PASS src/components/form-field.test.tsx
+@weave/mobile:test: PASS src/components/typography.test.tsx
+@weave/mobile:test: PASS src/components/button.test.tsx
+@weave/mobile:test: PASS src/components/feedback.test.tsx
+@weave/mobile:test: PASS src/auth/auth-gateway.contract.test.ts
+@weave/mobile:test:
+@weave/mobile:test: Test Suites: 13 passed, 13 total
+@weave/mobile:test: Tests:       94 passed, 94 total
+@weave/mobile:test: Snapshots:   0 total
+@weave/mobile:test: Time:        13.888 s
+@weave/mobile:test: Ran all test suites.
+
+ Tasks:    4 successful, 4 total
+Cached:    1 cached, 4 total
+  Time:    31.39s
+
+$ turbo run build
+
+   • turbo 2.11.7
+   • Packages in scope: @weave/api, @weave/design-tokens, @weave/eslint-config, @weave/mobile, @weave/typescript-config, @weave/web
+   • Running build in 6 packages
+   • Remote caching disabled
+
+@weave/mobile:build: cache miss, executing b98eab2187b0ca58
+@weave/api:build: cache miss, executing 76d2eb5b3844bfc7
+@weave/web:build: cache miss, executing 4f3de888581e4aec
+@weave/api:build: $ prisma generate && nest build
+@weave/mobile:build: $ pnpm run clean && pnpm run bundle:android && pnpm run bundle:ios
+@weave/web:build: $ next build
+@weave/mobile:build: $ node -e "require('node:fs').rmSync('dist',{recursive:true,force:true})"
+@weave/web:build: ▲ Next.js 16.3.8 (Turbopack)
+@weave/web:build: ✓ Running next.config.ts took 342ms
+@weave/mobile:build: $ react-native bundle --entry-file index.ts --platform android --dev false --bundle-output dist/android/index.android.bundle --assets-dest dist/android --sourcemap-output dist/android/index.android.bundle.map
+@weave/web:build:
+@weave/web:build:   Creating an optimized production build ...
+@weave/api:build: Loaded Prisma config from prisma.config.ts.
+@weave/api:build:
+@weave/api:build: Prisma schema loaded from prisma/schema.prisma.
+@weave/api:build:
+@weave/api:build: ✔ Generated Prisma Client (7.10.0) to ./src/generated/prisma in 606ms
+@weave/api:build:
+@weave/mobile:build:
+@weave/mobile:build:                         ▒▒▓▓▓▓▒▒
+@weave/mobile:build:                      ▒▓▓▓▒▒░░▒▒▓▓▓▒
+@weave/mobile:build:                   ▒▓▓▓▓░░░▒▒▒▒░░░▓▓▓▓▒
+@weave/mobile:build:                  ▓▓▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▒▒▒▓▓
+@weave/mobile:build:                  ▓▓░░░░░▒▓▓▓▓▓▓▒░░░░░▓▓
+@weave/mobile:build:                  ▓▓░░▓▓▒░░░▒▒░░░▒▓▒░░▓▓
+@weave/mobile:build:                  ▓▓░░▓▓▓▓▓▒▒▒▒▓▓▓▓▒░░▓▓
+@weave/mobile:build:                  ▓▓░░▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░▓▓
+@weave/mobile:build:                  ▓▓▒░░▒▒▓▓▓▓▓▓▓▓▒░░░▒▓▓
+@weave/mobile:build:                   ▒▓▓▓▒░░░▒▓▓▒░░░▒▓▓▓▒
+@weave/mobile:build:                      ▒▓▓▓▒░░░░▒▓▓▓▒
+@weave/mobile:build:                         ▒▒▓▓▓▓▒▒
+@weave/mobile:build:
+@weave/mobile:build:
+@weave/mobile:build:                 Welcome to Metro v0.84.5
+@weave/mobile:build:               Fast - Scalable - Integrated
+@weave/mobile:build:
+@weave/mobile:build:
+@weave/mobile:build:  WARN  Watchman `watch-project` returned a warning: Recrawled this watch 5 times, most recently because:
+@weave/mobile:build: MustScanSubDirs UserDroppedTo resolve, please review the information on
+@weave/mobile:build: https://facebook.github.io/watchman/docs/troubleshooting.html#recrawl
+@weave/mobile:build: To clear this warning, run:
+@weave/mobile:build: `watchman watch-del '/Users/pravinraj/workspace/weave' ; watchman watch-project '/Users/pravinraj/workspace/weave'`
+@weave/mobile:build:
+@weave/mobile:build:  WARN  Watchman `watch-project` returned a warning: Recrawled this watch 5 times, most recently because:
+@weave/mobile:build: MustScanSubDirs UserDroppedTo resolve, please review the information on
+@weave/mobile:build: https://facebook.github.io/watchman/docs/troubleshooting.html#recrawl
+@weave/mobile:build: To clear this warning, run:
+@weave/mobile:build: `watchman watch-del '/Users/pravinraj/workspace/weave' ; watchman watch-project '/Users/pravinraj/workspace/weave'`
+@weave/mobile:build:
+@weave/mobile:build:  WARN  Watchman `watch-project` returned a warning: Recrawled this watch 5 times, most recently because:
+@weave/mobile:build: MustScanSubDirs UserDroppedTo resolve, please review the information on
+@weave/mobile:build: https://facebook.github.io/watchman/docs/troubleshooting.html#recrawl
+@weave/mobile:build: To clear this warning, run:
+@weave/mobile:build: `watchman watch-del '/Users/pravinraj/workspace/weave' ; watchman watch-project '/Users/pravinraj/workspace/weave'`
+@weave/mobile:build:
+@weave/mobile:build:  WARN  Watchman `query` returned a warning: Recrawled this watch 5 times, most recently because:
+@weave/mobile:build: MustScanSubDirs UserDroppedTo resolve, please review the information on
+@weave/mobile:build: https://facebook.github.io/watchman/docs/troubleshooting.html#recrawl
+@weave/mobile:build: To clear this warning, run:
+@weave/mobile:build: `watchman watch-del '/Users/pravinraj/workspace/weave' ; watchman watch-project '/Users/pravinraj/workspace/weave'`
+@weave/mobile:build:
+@weave/web:build: ✓ Compiled successfully in 17.7s
+@weave/web:build:   Running TypeScript ...
+@weave/mobile:build: LOG:Writing bundle output to: dist/android/index.android.bundle
+@weave/mobile:build: LOG:Writing sourcemap output to: dist/android/index.android.bundle.map
+@weave/mobile:build: LOG:Done writing bundle output
+@weave/mobile:build: LOG:Done writing sourcemap output
+@weave/mobile:build: Copying 22 asset files
+@weave/mobile:build: Done copying assets
+@weave/mobile:build: $ react-native bundle --entry-file index.ts --platform ios --dev false --bundle-output dist/ios/main.jsbundle --assets-dest dist/ios --sourcemap-output dist/ios/main.jsbundle.map
+@weave/web:build:   Finished TypeScript in 24.2s ...
+@weave/web:build:   Collecting page data using 9 workers ...
+@weave/mobile:build:
+@weave/mobile:build:                         ▒▒▓▓▓▓▒▒
+@weave/mobile:build:                      ▒▓▓▓▒▒░░▒▒▓▓▓▒
+@weave/mobile:build:                   ▒▓▓▓▓░░░▒▒▒▒░░░▓▓▓▓▒
+@weave/mobile:build:                  ▓▓▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▒▒▒▓▓
+@weave/mobile:build:                  ▓▓░░░░░▒▓▓▓▓▓▓▒░░░░░▓▓
+@weave/mobile:build:                  ▓▓░░▓▓▒░░░▒▒░░░▒▓▒░░▓▓
+@weave/mobile:build:                  ▓▓░░▓▓▓▓▓▒▒▒▒▓▓▓▓▒░░▓▓
+@weave/mobile:build:                  ▓▓░░▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░▓▓
+@weave/mobile:build:                  ▓▓▒░░▒▒▓▓▓▓▓▓▓▓▒░░░▒▓▓
+@weave/mobile:build:                   ▒▓▓▓▒░░░▒▓▓▒░░░▒▓▓▓▒
+@weave/mobile:build:                      ▒▓▓▓▒░░░░▒▓▓▓▒
+@weave/mobile:build:                         ▒▒▓▓▓▓▒▒
+@weave/mobile:build:
+@weave/mobile:build:
+@weave/mobile:build:                 Welcome to Metro v0.84.5
+@weave/mobile:build:               Fast - Scalable - Integrated
+@weave/mobile:build:
+@weave/mobile:build:
+@weave/web:build:   Generating static pages using 9 workers (0/8) ...
+@weave/web:build:   Generating static pages using 9 workers (2/8)
+@weave/web:build:   Generating static pages using 9 workers (4/8)
+@weave/web:build:   Generating static pages using 9 workers (6/8)
+@weave/mobile:build:  WARN  Watchman `watch-project` returned a warning: Recrawled this watch 5 times, most recently because:
+@weave/mobile:build: MustScanSubDirs UserDroppedTo resolve, please review the information on
+@weave/mobile:build: https://facebook.github.io/watchman/docs/troubleshooting.html#recrawl
+@weave/mobile:build: To clear this warning, run:
+@weave/mobile:build: `watchman watch-del '/Users/pravinraj/workspace/weave' ; watchman watch-project '/Users/pravinraj/workspace/weave'`
+@weave/mobile:build:
+@weave/mobile:build:  WARN  Watchman `watch-project` returned a warning: Recrawled this watch 5 times, most recently because:
+@weave/mobile:build: MustScanSubDirs UserDroppedTo resolve, please review the information on
+@weave/mobile:build: https://facebook.github.io/watchman/docs/troubleshooting.html#recrawl
+@weave/mobile:build: To clear this warning, run:
+@weave/mobile:build: `watchman watch-del '/Users/pravinraj/workspace/weave' ; watchman watch-project '/Users/pravinraj/workspace/weave'`
+@weave/mobile:build:
+@weave/mobile:build:  WARN  Watchman `watch-project` returned a warning: Recrawled this watch 5 times, most recently because:
+@weave/mobile:build: MustScanSubDirs UserDroppedTo resolve, please review the information on
+@weave/mobile:build: https://facebook.github.io/watchman/docs/troubleshooting.html#recrawl
+@weave/mobile:build: To clear this warning, run:
+@weave/mobile:build: `watchman watch-del '/Users/pravinraj/workspace/weave' ; watchman watch-project '/Users/pravinraj/workspace/weave'`
+@weave/mobile:build:
+@weave/mobile:build:  WARN  Watchman `query` returned a warning: Recrawled this watch 5 times, most recently because:
+@weave/mobile:build: MustScanSubDirs UserDroppedTo resolve, please review the information on
+@weave/mobile:build: https://facebook.github.io/watchman/docs/troubleshooting.html#recrawl
+@weave/mobile:build: To clear this warning, run:
+@weave/mobile:build: `watchman watch-del '/Users/pravinraj/workspace/weave' ; watchman watch-project '/Users/pravinraj/workspace/weave'`
+@weave/mobile:build:
+@weave/web:build: ✓ Generating static pages using 9 workers (8/8) in 1722ms
+@weave/web:build:   Finalizing page optimization ...
+@weave/web:build:
+@weave/web:build: Route (app)
+@weave/web:build: ┌ ƒ /
+@weave/web:build: ├ ƒ /_not-found
+@weave/web:build: ├ ƒ /api/session
+@weave/web:build: ├ ○ /apple-icon.png
+@weave/web:build: ├ ○ /icon.svg
+@weave/web:build: ├ ƒ /organizations
+@weave/web:build: ├ ƒ /organizations/create
+@weave/web:build: ├ ƒ /sign-in
+@weave/web:build: ├ ƒ /sign-up
+@weave/web:build: └ ƒ /sso-callback
+@weave/web:build:
+@weave/web:build:
+@weave/web:build: ƒ Proxy (Middleware)
+@weave/web:build:
+@weave/web:build: ○  (Static)   prerendered as static content
+@weave/web:build: ƒ  (Dynamic)  server-rendered on demand
+@weave/web:build:
+@weave/mobile:build: LOG:Writing bundle output to: dist/ios/main.jsbundle
+@weave/mobile:build: LOG:Writing sourcemap output to: dist/ios/main.jsbundle.map
+@weave/mobile:build: LOG:Done writing bundle output
+@weave/mobile:build: LOG:Done writing sourcemap output
+@weave/mobile:build: Copying 18 asset files
+@weave/mobile:build: Done copying assets
+
+ Tasks:    3 successful, 3 total
+Cached:    0 cached, 3 total
+  Time:    1m21.812s

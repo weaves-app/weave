@@ -31,3 +31,16 @@ coverage/
 **/*.keystore
 **/*.jks
 **/.xcode.env.local
+
+# Pinned native package resolution; generated workspace remains ignored.
+!apps/mobile/ios/Weave.xcworkspace/
+apps/mobile/ios/Weave.xcworkspace/*
+!apps/mobile/ios/Weave.xcworkspace/xcshareddata/
+apps/mobile/ios/Weave.xcworkspace/xcshareddata/*
+!apps/mobile/ios/Weave.xcworkspace/xcshareddata/swiftpm/
+apps/mobile/ios/Weave.xcworkspace/xcshareddata/swiftpm/*
+!apps/mobile/ios/Weave.xcworkspace/xcshareddata/swiftpm/Package.resolved
+apps/mobile/vendor/**/.build/
+apps/mobile/vendor/**/.gradle/
+apps/mobile/vendor/**/.kotlin/
+apps/mobile/vendor/**/build/

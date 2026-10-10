@@ -1,0 +1,189 @@
+package com.clerk.api.network
+
+internal object ApiPaths {
+  internal object Client {
+    internal const val BASE = "client"
+
+    internal object DeviceAttestation {
+      internal const val BASE = "${Client.BASE}/device_attestation"
+      internal const val CHALLENGES = "${BASE}/challenges"
+      internal const val VERIFY = "${Client.BASE}/verify"
+    }
+
+    internal object BiometricCredential {
+      internal const val VALIDATE = "${Client.BASE}/biometric_credentials/validate"
+    }
+
+    internal object Sessions {
+      internal const val BASE = "${Client.BASE}/sessions"
+      internal const val WITH_ID = "${BASE}/{id}"
+      internal const val REMOVE = "${WITH_ID}/remove"
+      internal const val TOKENS = "${WITH_ID}/tokens"
+      internal const val TOKEN_TEMPLATE = "${TOKENS}/{template}"
+      internal const val SET_ACTIVE = "${WITH_ID}/touch"
+      internal const val VERIFY = "${WITH_ID}/verify"
+      internal const val PREPARE_FIRST_FACTOR = "${VERIFY}/prepare_first_factor"
+      internal const val ATTEMPT_FIRST_FACTOR = "${VERIFY}/attempt_first_factor"
+      internal const val PREPARE_SECOND_FACTOR = "${VERIFY}/prepare_second_factor"
+      internal const val ATTEMPT_SECOND_FACTOR = "${VERIFY}/attempt_second_factor"
+    }
+
+    internal object SignIn {
+      internal const val BASE = "${Client.BASE}/sign_ins"
+      internal const val WITH_ID = "${BASE}/{id}"
+      internal const val ATTEMPT_FIRST_FACTOR = "${WITH_ID}/attempt_first_factor"
+      internal const val ATTEMPT_SECOND_FACTOR = "${WITH_ID}/attempt_second_factor"
+      internal const val PREPARE_FIRST_FACTOR = "${WITH_ID}/prepare_first_factor"
+      internal const val PREPARE_SECOND_FACTOR = "${WITH_ID}/prepare_second_factor"
+      internal const val RESET_PASSWORD = "${WITH_ID}/reset_password"
+    }
+
+    internal object HostedAuth {
+      internal const val BASE = "${Client.BASE}/hosted_auth"
+    }
+
+    internal object MagicLinks {
+      internal const val BASE = "${Client.BASE}/magic_links"
+      internal const val COMPLETE = "${BASE}/complete"
+    }
+
+    internal object SignUp {
+      internal const val BASE = "${Client.BASE}/sign_ups"
+      internal const val WITH_ID = "${BASE}/{id}"
+      internal const val PREPARE_VERIFICATION = "${WITH_ID}/prepare_verification"
+      internal const val ATTEMPT_VERIFICATION = "${WITH_ID}/attempt_verification"
+    }
+  }
+
+  internal const val ENVIRONMENT = "environment"
+
+  internal object User {
+    internal const val BASE = "me"
+    internal const val METADATA = "${BASE}/metadata"
+    internal const val PROFILE_IMAGE = "${BASE}/profile_image"
+
+    internal const val ORGANIZATION_INVITATIONS = "${BASE}/organization_invitations"
+    internal const val ORGANIZATION_SUGGESTIONS = "${BASE}/organization_suggestions"
+    internal const val ORGANIZATION_CREATION_DEFAULTS = "${BASE}/organization_creation_defaults"
+    internal const val ACCEPT_ORGANIZATION_INVITATION =
+      "${ORGANIZATION_INVITATIONS}/{invitation_id}/accept"
+    internal const val ACCEPT_ORGANIZATION_SUGGESTION =
+      "$ORGANIZATION_SUGGESTIONS/{suggestion_id}/accept"
+    internal const val BACKUP_CODES = "${BASE}/backup_codes"
+
+    internal const val ORGANIZATION_MEMBERSHIPS = "${BASE}/organization_memberships"
+    internal const val ORGANIZATION_MEMBERSHIP_WITH_ID =
+      "${ORGANIZATION_MEMBERSHIPS}/{organization_id}"
+
+    internal object Password {
+      internal const val UPDATE = "${User.BASE}/change_password"
+      internal const val DELETE = "${User.BASE}/remove_password"
+    }
+
+    internal object Sessions {
+      internal const val BASE = "${User.BASE}/sessions"
+      internal const val REVOKE = "${BASE}/{session_id}/revoke"
+      internal const val ACTIVE = "${BASE}/active"
+    }
+
+    internal object EmailAddress {
+      internal const val BASE = "${User.BASE}/email_addresses"
+      internal const val WITH_ID = "${BASE}/{email_id}"
+      internal const val ATTEMPT_VERIFICATION = "${WITH_ID}/attempt_verification"
+      internal const val PREPARE_VERIFICATION = "${WITH_ID}/prepare_verification"
+    }
+
+    internal object PhoneNumber {
+      internal const val BASE = "${User.BASE}/phone_numbers"
+      internal const val WITH_ID = "${BASE}/{phone_number_id}"
+      internal const val ATTEMPT_VERIFICATION = "${WITH_ID}/attempt_verification"
+      internal const val PREPARE_VERIFICATION = "${WITH_ID}/prepare_verification"
+    }
+
+    internal object Passkey {
+      internal const val BASE = "${User.BASE}/passkeys"
+      internal const val WITH_ID = "${BASE}/{passkey_id}"
+      internal const val ATTEMPT_VERIFICATION = "${WITH_ID}/attempt_verification"
+    }
+
+    internal object BiometricCredential {
+      internal const val BASE = "${User.BASE}/biometric_credentials"
+      internal const val WITH_ID = "${BASE}/{biometric_credential_id}"
+      internal const val PREPARE = "${BASE}/prepare"
+      internal const val ATTEMPT = "${BASE}/attempt"
+    }
+
+    internal object ExternalAccount {
+      internal const val BASE = "${User.BASE}/external_accounts"
+      internal const val WITH_ID = "${BASE}/{external_account_id}"
+      internal const val REAUTHORIZE = "${WITH_ID}/reauthorize"
+      internal const val REVOKE_TOKENS = "${WITH_ID}/tokens"
+    }
+
+    internal object TOTP {
+      internal const val BASE = "${User.BASE}/totp"
+      internal const val ATTEMPT_VERIFICATION = "${BASE}/attempt_verification"
+    }
+  }
+
+  internal object Organization {
+    internal const val BASE = "organizations"
+    internal const val WITH_ID = "${BASE}/{organization_id}"
+
+    internal object Invitations {
+      internal const val BASE = "${Organization.WITH_ID}/invitations"
+      internal const val BULK_CREATE = "${BASE}/bulk"
+      internal const val REVOKE = "${BASE}/{invitation_id}/revoke"
+    }
+
+    internal object MembershipRequests {
+      internal const val BASE = "${Organization.WITH_ID}/membership_requests"
+      internal const val ACCEPT = "${BASE}/{request_id}/accept"
+      internal const val REJECT = "${BASE}/{request_id}/reject"
+    }
+
+    internal const val LOGO = "${WITH_ID}/logo"
+    internal const val ROLES = "${WITH_ID}/roles"
+
+    internal const val MEMBERSHIPS = "${WITH_ID}/memberships"
+
+    internal const val MEMBERSHIP_WITH_USER_ID = "${MEMBERSHIPS}/{user_id}"
+
+    internal object Domain {
+      internal const val BASE = "${Organization.WITH_ID}/domains"
+      internal const val WITH_ID = "${BASE}/{domain_id}"
+      internal const val UPDATE_ENROLLMENT_MODE = "${WITH_ID}/update_enrollment_mode"
+      internal const val PREPARE_AFFILIATION = "${WITH_ID}/prepare_affiliation_verification"
+      internal const val ATTEMPT_AFFILIATION = "${WITH_ID}/attempt_affiliation_verification"
+    }
+  }
+
+  internal object Billing {
+    internal const val PLANS = "billing/plans"
+    internal const val PLAN = "${PLANS}/{id}"
+
+    internal object User {
+      internal const val BASE = "${ApiPaths.User.BASE}/billing"
+      internal const val SUBSCRIPTION = "${BASE}/subscription"
+      internal const val STATEMENTS = "${BASE}/statements"
+      internal const val STATEMENT = "${STATEMENTS}/{id}"
+      internal const val PAYMENT_ATTEMPTS = "${BASE}/payment_attempts"
+      internal const val PAYMENT_ATTEMPT = "${PAYMENT_ATTEMPTS}/{id}"
+      internal const val CREDITS = "${BASE}/credits"
+      internal const val CREDIT_HISTORY = "${CREDITS}/history"
+      internal const val PAYMENT_METHODS = "${BASE}/payment_methods"
+    }
+
+    internal object Organization {
+      internal const val BASE = "${ApiPaths.Organization.WITH_ID}/billing"
+      internal const val SUBSCRIPTION = "${BASE}/subscription"
+      internal const val STATEMENTS = "${BASE}/statements"
+      internal const val STATEMENT = "${STATEMENTS}/{id}"
+      internal const val PAYMENT_ATTEMPTS = "${BASE}/payment_attempts"
+      internal const val PAYMENT_ATTEMPT = "${PAYMENT_ATTEMPTS}/{id}"
+      internal const val CREDITS = "${BASE}/credits"
+      internal const val CREDIT_HISTORY = "${CREDITS}/history"
+      internal const val PAYMENT_METHODS = "${BASE}/payment_methods"
+    }
+  }
+}

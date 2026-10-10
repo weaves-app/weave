@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testsuites>
+  <testsuite name="Test Suite" device="weave-e2e-api35" tests="1" failures="0" time="21.314" timestamp="2026-10-08T16:35:17">
+    <testcase id="WEA-10 S01 S03 signed-out launch and empty input" name="WEA-10 S01 S03 signed-out launch and empty input" classname="WEA-10 S01 S03 signed-out launch and empty input" file="apps/mobile/e2e/flows/signed-out.yaml" time="21.292" timestamp="2026-10-08T16:35:17" status="SUCCESS"/>
+  </testsuite>
+</testsuites>

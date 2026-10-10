@@ -1,0 +1,22 @@
+from pathlib import Path
+import subprocess,xml.etree.ElementTree as ET,re,json
+adb='/Users/pravinraj/Library/Android/sdk/platform-tools/adb'
+def run(*args):return subprocess.check_output([adb,'-s','emulator-5554',*args])
+def snapshot(name):
+ run('shell','uiautomator','dump','/data/local/tmp/weave-method.xml')
+ p=Path('/private/tmp/weave-method-'+name+'.xml');p.write_bytes(run('exec-out','cat','/data/local/tmp/weave-method.xml'))
+ return ET.parse(p)
+def node(tree,label):
+ nodes=list(tree.iter('node'))
+ match=next((n for n in nodes if n.get('content-desc')==label),None)
+ return match if match is not None else next(n for n in nodes if n.get('text')==label)
+def tap(tree,label):
+ x1,y1,x2,y2=map(int,re.findall(r'\d+',node(tree,label).get('bounds')))
+ run('shell','input','tap',str((x1+x2)//2),str((y1+y2)//2))
+initial=snapshot('initial');tap(initial,'Email and password');before=snapshot('before');tap(before,'Email code');after=snapshot('after')
+result={label:{'before':node(before,label).get('bounds'),'after':node(after,label).get('bounds')} for label in ['Weave','Welcome back','Continue with Google','Email code','Email']}
+print(json.dumps(result,indent=2))
+assert all(v['before']==v['after'] for v in result.values()), 'method switch moved fixed login controls'
+tap(after,'Email and password');back=snapshot('back')
+assert all(node(back,label).get('bounds')==v['before'] for label,v in result.items()), 'return to password moved fixed login controls'
+print('PASS: shared controls stay anchored in both directions')

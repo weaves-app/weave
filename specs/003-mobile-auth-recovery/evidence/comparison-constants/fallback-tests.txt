@@ -1,0 +1,337 @@
+$ pnpm run test:policy && turbo run test
+$ node --test tests/policy/*.test.mjs
+✔ S10 tool guard permits investigation and specs, gates source edits (0.772125ms)
+✔ S10 missing/foreign feature state cannot authorize an implementation branch (0.133417ms)
+✔ S15 read-only shell syntax passes while output files remain gated (0.180084ms)
+✔ S15 edit tools inspect destinations rather than documentation contents (0.06375ms)
+✔ S04 rejects outward domain dependencies and cross-module internals (978.288584ms)
+✔ S05 requires interface types for injected dependencies (493.256ms)
+✔ S04 rejects resolved controller imports from the application layer (162.249083ms)
+✔ S14 resolves aliases within their owning workspace (710.181542ms)
+✔ S01 accepts ticket branches and rejects shared/malformed names (0.426667ms)
+✔ S15 Claude hook envelopes use shared rules without Stop loops (415.589625ms)
+✔ S02 conventional commits are single-line, imperative and traceable (0.552209ms)
+✔ S03 release PRs only originate from same-repository develop (0.127916ms)
+✔ S22/S23 mobile: rejects comparison magic values: state.session.status === 'resolving'; (151.98125ms)
+✔ S22/S23 mobile: rejects comparison magic values: 'active' !== state.session.status; (3.142166ms)
+✔ S22/S23 mobile: rejects comparison magic values: session?.['status'] == `signedOut`; (3.459084ms)
+✔ S22/S23 mobile: rejects comparison magic values: mode !== 'password'; (1.043167ms)
+✔ S22/S23 mobile: rejects comparison magic values: count >= 6; (0.975666ms)
+✔ S22/S23 mobile: rejects comparison magic values: state.error?.code ?? 'unexpected'; (0.916667ms)
+✔ S22/S23 mobile: rejects comparison magic values: message || `unavailable`; (0.6975ms)
+✔ S22/S23 mobile: rejects comparison magic values: count ?? 0; (0.652ms)
+✔ S22/S23 mobile: rejects comparison magic values: count || -1; (0.854458ms)
+✔ S22/S23 mobile: rejects comparison magic values: const FALLBACK = 'unexpected'; state.error?.code ?? FALLBACK; (5.82375ms)
+✔ S22/S23 mobile: rejects comparison magic values: -1 < index; (1.171875ms)
+✔ S22/S23 mobile: rejects comparison magic values: offset === 0; (0.568583ms)
+✔ S22/S23 mobile: rejects comparison magic values: offset === +1; (0.480041ms)
+✔ S22/S23 mobile: rejects comparison magic values: status === ('active' satisfies string); (0.620333ms)
+✔ S22/S23 mobile: rejects comparison magic values: const statuses = {active: 'active'} as const; status === statuses.active; (1.120292ms)
+✔ S22/S23 mobile: rejects comparison magic values: switch (kind) {case 'complete': break;} (0.890417ms)
+✔ S22/S23 mobile: rejects comparison magic values: switch (code) {case 200: break;} (0.900167ms)
+✔ S22/S23 mobile: rejects comparison magic values: status === ('active' as const); (1.630833ms)
+✔ S22/S23 mobile: rejects comparison magic values: const LIMIT = 6; count > LIMIT; (0.880458ms)
+✔ S22/S23 mobile: rejects comparison magic values: const STATUS = {ACTIVE: 'active'} as const; status === STATUS.ACTIVE; (0.640584ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: export const STATUS = {ACTIVE: 'active'} as const; status === STATUS.ACTIVE; (1.732125ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: export const LIMIT = 6; count >= LIMIT; (2.65875ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: const LIMIT = 6; export {LIMIT}; count >= LIMIT; (3.6375ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: import {STATUS} from './constants'; status === STATUS.ACTIVE; (3.588166ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: switch (status) {case SESSION_STATUS.ACTIVE: break;} (1.87475ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: typeof value === 'string'; (1.770292ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: 'object' !== typeof value; (1.208917ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: switch (typeof value) {case 'string': break;} (0.632209ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: value === null; (0.519083ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: value !== undefined; (1.380709ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: ready === false; (2.044041ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: count > otherCount; (1.019709ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: const label = 'active'; (1.136125ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: const size = 6; (0.755958ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: export const ERRORS = {UNEXPECTED: 'unexpected'} as const; state.error?.code ?? ERRORS.UNEXPECTED; (1.005584ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: value ?? defaultValue; (0.470208ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: value || defaultValue; (0.525667ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: value ?? null; (0.457875ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: value ?? false; (0.42675ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: const limit = getLimit(); count > limit; (0.961208ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: const current = {status: readStatus()}; status === current.status; (0.837291ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: expect(status).toBe('active'); (0.600042ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: assert.equal(count, 6); (0.495083ms)
+✔ S22/S23 web: rejects comparison magic values: state.session.status === 'resolving'; (10.043708ms)
+✔ S22/S23 web: rejects comparison magic values: 'active' !== state.session.status; (0.589208ms)
+✔ S22/S23 web: rejects comparison magic values: session?.['status'] == `signedOut`; (0.507708ms)
+✔ S22/S23 web: rejects comparison magic values: mode !== 'password'; (0.393958ms)
+✔ S22/S23 web: rejects comparison magic values: count >= 6; (0.436084ms)
+✔ S22/S23 web: rejects comparison magic values: state.error?.code ?? 'unexpected'; (0.696417ms)
+✔ S22/S23 web: rejects comparison magic values: message || `unavailable`; (0.665958ms)
+✔ S22/S23 web: rejects comparison magic values: count ?? 0; (0.493208ms)
+✔ S22/S23 web: rejects comparison magic values: count || -1; (0.4735ms)
+✔ S22/S23 web: rejects comparison magic values: const FALLBACK = 'unexpected'; state.error?.code ?? FALLBACK; (0.587625ms)
+✔ S22/S23 web: rejects comparison magic values: -1 < index; (0.397667ms)
+✔ S22/S23 web: rejects comparison magic values: offset === 0; (0.365916ms)
+✔ S22/S23 web: rejects comparison magic values: offset === +1; (0.375542ms)
+✔ S22/S23 web: rejects comparison magic values: status === ('active' satisfies string); (0.451458ms)
+✔ S22/S23 web: rejects comparison magic values: const statuses = {active: 'active'} as const; status === statuses.active; (0.543458ms)
+✔ S22/S23 web: rejects comparison magic values: switch (kind) {case 'complete': break;} (0.421875ms)
+✔ S22/S23 web: rejects comparison magic values: switch (code) {case 200: break;} (0.361208ms)
+✔ S22/S23 web: rejects comparison magic values: status === ('active' as const); (0.388208ms)
+✔ S22/S23 web: rejects comparison magic values: const LIMIT = 6; count > LIMIT; (0.417625ms)
+✔ S22/S23 web: rejects comparison magic values: const STATUS = {ACTIVE: 'active'} as const; status === STATUS.ACTIVE; (0.522875ms)
+✔ S21/S23 web: allows constants and agreed exceptions: export const STATUS = {ACTIVE: 'active'} as const; status === STATUS.ACTIVE; (0.521084ms)
+✔ S21/S23 web: allows constants and agreed exceptions: export const LIMIT = 6; count >= LIMIT; (0.420292ms)
+✔ S21/S23 web: allows constants and agreed exceptions: const LIMIT = 6; export {LIMIT}; count >= LIMIT; (0.435542ms)
+✔ S21/S23 web: allows constants and agreed exceptions: import {STATUS} from './constants'; status === STATUS.ACTIVE; (0.4655ms)
+✔ S21/S23 web: allows constants and agreed exceptions: switch (status) {case SESSION_STATUS.ACTIVE: break;} (0.363708ms)
+✔ S21/S23 web: allows constants and agreed exceptions: typeof value === 'string'; (0.31175ms)
+✔ S21/S23 web: allows constants and agreed exceptions: 'object' !== typeof value; (0.319792ms)
+✔ S21/S23 web: allows constants and agreed exceptions: switch (typeof value) {case 'string': break;} (0.340834ms)
+✔ S21/S23 web: allows constants and agreed exceptions: value === null; (0.302917ms)
+✔ S21/S23 web: allows constants and agreed exceptions: value !== undefined; (0.290625ms)
+✔ S21/S23 web: allows constants and agreed exceptions: ready === false; (0.279708ms)
+✔ S21/S23 web: allows constants and agreed exceptions: count > otherCount; (0.28425ms)
+✔ S21/S23 web: allows constants and agreed exceptions: const label = 'active'; (0.368917ms)
+✔ S21/S23 web: allows constants and agreed exceptions: const size = 6; (0.335458ms)
+✔ S21/S23 web: allows constants and agreed exceptions: export const ERRORS = {UNEXPECTED: 'unexpected'} as const; state.error?.code ?? ERRORS.UNEXPECTED; (0.553167ms)
+✔ S21/S23 web: allows constants and agreed exceptions: value ?? defaultValue; (0.295792ms)
+✔ S21/S23 web: allows constants and agreed exceptions: value || defaultValue; (0.317125ms)
+✔ S21/S23 web: allows constants and agreed exceptions: value ?? null; (0.374792ms)
+✔ S21/S23 web: allows constants and agreed exceptions: value ?? false; (0.299917ms)
+✔ S21/S23 web: allows constants and agreed exceptions: const limit = getLimit(); count > limit; (0.375667ms)
+✔ S21/S23 web: allows constants and agreed exceptions: const current = {status: readStatus()}; status === current.status; (0.424333ms)
+✔ S21/S23 web: allows constants and agreed exceptions: expect(status).toBe('active'); (5.353ms)
+✔ S21/S23 web: allows constants and agreed exceptions: assert.equal(count, 6); (0.696ms)
+✔ S22/S23 root staged files: rejects comparison magic values: state.session.status === 'resolving'; (4.846667ms)
+✔ S22/S23 root staged files: rejects comparison magic values: 'active' !== state.session.status; (0.394541ms)
+✔ S22/S23 root staged files: rejects comparison magic values: session?.['status'] == `signedOut`; (0.375708ms)
+✔ S22/S23 root staged files: rejects comparison magic values: mode !== 'password'; (0.280708ms)
+✔ S22/S23 root staged files: rejects comparison magic values: count >= 6; (0.294666ms)
+✔ S22/S23 root staged files: rejects comparison magic values: state.error?.code ?? 'unexpected'; (0.332375ms)
+✔ S22/S23 root staged files: rejects comparison magic values: message || `unavailable`; (0.30225ms)
+✔ S22/S23 root staged files: rejects comparison magic values: count ?? 0; (0.438958ms)
+✔ S22/S23 root staged files: rejects comparison magic values: count || -1; (0.273042ms)
+✔ S22/S23 root staged files: rejects comparison magic values: const FALLBACK = 'unexpected'; state.error?.code ?? FALLBACK; (0.457083ms)
+✔ S22/S23 root staged files: rejects comparison magic values: -1 < index; (0.296708ms)
+✔ S22/S23 root staged files: rejects comparison magic values: offset === 0; (0.254583ms)
+✔ S22/S23 root staged files: rejects comparison magic values: offset === +1; (0.254375ms)
+✔ S22/S23 root staged files: rejects comparison magic values: status === ('active' satisfies string); (0.731292ms)
+✔ S22/S23 root staged files: rejects comparison magic values: const statuses = {active: 'active'} as const; status === statuses.active; (1.322167ms)
+✔ S22/S23 root staged files: rejects comparison magic values: switch (kind) {case 'complete': break;} (0.85925ms)
+✔ S22/S23 root staged files: rejects comparison magic values: switch (code) {case 200: break;} (0.441334ms)
+✔ S22/S23 root staged files: rejects comparison magic values: status === ('active' as const); (0.910459ms)
+✔ S22/S23 root staged files: rejects comparison magic values: const LIMIT = 6; count > LIMIT; (0.94775ms)
+✔ S22/S23 root staged files: rejects comparison magic values: const STATUS = {ACTIVE: 'active'} as const; status === STATUS.ACTIVE; (0.594791ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: export const STATUS = {ACTIVE: 'active'} as const; status === STATUS.ACTIVE; (0.451ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: export const LIMIT = 6; count >= LIMIT; (0.467917ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: const LIMIT = 6; export {LIMIT}; count >= LIMIT; (0.429791ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: import {STATUS} from './constants'; status === STATUS.ACTIVE; (0.348958ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: switch (status) {case SESSION_STATUS.ACTIVE: break;} (0.296ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: typeof value === 'string'; (0.271708ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: 'object' !== typeof value; (0.243958ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: switch (typeof value) {case 'string': break;} (0.259875ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: value === null; (0.2315ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: value !== undefined; (0.224292ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: ready === false; (0.228041ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: count > otherCount; (0.2555ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: const label = 'active'; (0.332209ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: const size = 6; (0.265833ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: export const ERRORS = {UNEXPECTED: 'unexpected'} as const; state.error?.code ?? ERRORS.UNEXPECTED; (0.404125ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: value ?? defaultValue; (0.24125ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: value || defaultValue; (0.236208ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: value ?? null; (0.236791ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: value ?? false; (0.232208ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: const limit = getLimit(); count > limit; (0.312958ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: const current = {status: readStatus()}; status === current.status; (0.327041ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: expect(status).toBe('active'); (0.3265ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: assert.equal(count, 6); (0.272875ms)
+✔ S22/S23 scripts: rejects comparison magic values: state.session.status === 'resolving'; (4.854958ms)
+✔ S22/S23 scripts: rejects comparison magic values: 'active' !== state.session.status; (0.42225ms)
+✔ S22/S23 scripts: rejects comparison magic values: session?.['status'] == `signedOut`; (0.390125ms)
+✔ S22/S23 scripts: rejects comparison magic values: mode !== 'password'; (0.292833ms)
+✔ S22/S23 scripts: rejects comparison magic values: count >= 6; (0.242625ms)
+✔ S22/S23 scripts: rejects comparison magic values: state.error?.code ?? 'unexpected'; (0.272ms)
+✔ S22/S23 scripts: rejects comparison magic values: message || `unavailable`; (0.242875ms)
+✔ S22/S23 scripts: rejects comparison magic values: count ?? 0; (0.259ms)
+✔ S22/S23 scripts: rejects comparison magic values: count || -1; (0.241958ms)
+✔ S22/S23 scripts: rejects comparison magic values: const FALLBACK = 'unexpected'; state.error?.code ?? FALLBACK; (0.339041ms)
+✔ S22/S23 scripts: rejects comparison magic values: -1 < index; (0.242208ms)
+✔ S22/S23 scripts: rejects comparison magic values: offset === 0; (0.227208ms)
+✔ S22/S23 scripts: rejects comparison magic values: offset === +1; (0.218125ms)
+✔ S22/S23 scripts: rejects comparison magic values: status === ('active' satisfies string); (0.251083ms)
+✔ S22/S23 scripts: rejects comparison magic values: const statuses = {active: 'active'} as const; status === statuses.active; (0.384667ms)
+✔ S22/S23 scripts: rejects comparison magic values: switch (kind) {case 'complete': break;} (0.26375ms)
+✔ S22/S23 scripts: rejects comparison magic values: switch (code) {case 200: break;} (0.230584ms)
+✔ S22/S23 scripts: rejects comparison magic values: status === ('active' as const); (0.364875ms)
+✔ S22/S23 scripts: rejects comparison magic values: const LIMIT = 6; count > LIMIT; (0.267375ms)
+✔ S22/S23 scripts: rejects comparison magic values: const STATUS = {ACTIVE: 'active'} as const; status === STATUS.ACTIVE; (0.307667ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: export const STATUS = {ACTIVE: 'active'} as const; status === STATUS.ACTIVE; (0.328959ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: export const LIMIT = 6; count >= LIMIT; (0.286ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: const LIMIT = 6; export {LIMIT}; count >= LIMIT; (0.503542ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: import {STATUS} from './constants'; status === STATUS.ACTIVE; (1.094209ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: switch (status) {case SESSION_STATUS.ACTIVE: break;} (0.456166ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: typeof value === 'string'; (0.341583ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: 'object' !== typeof value; (0.29775ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: switch (typeof value) {case 'string': break;} (0.321916ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: value === null; (0.212625ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: value !== undefined; (0.2115ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: ready === false; (0.209333ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: count > otherCount; (0.2075ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: const label = 'active'; (0.277208ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: const size = 6; (0.249875ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: export const ERRORS = {UNEXPECTED: 'unexpected'} as const; state.error?.code ?? ERRORS.UNEXPECTED; (0.404416ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: value ?? defaultValue; (0.232416ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: value || defaultValue; (0.213708ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: value ?? null; (0.247916ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: value ?? false; (0.277292ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: const limit = getLimit(); count > limit; (0.3895ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: const current = {status: readStatus()}; status === current.status; (0.431542ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: expect(status).toBe('active'); (0.376584ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: assert.equal(count, 6); (0.380208ms)
+✔ S17 dependency adoption accepts only genuine scoped proposals (0.96875ms)
+✔ WEA-8 S06 accepts pnpm lockfile proposals without widening policy scope (0.15575ms)
+✔ S21 dependency adoption permits the default personal CLI profile when the optional key is absent (659.731583ms)
+✔ S21 local config distinguishes absent keys, explicit profiles and Git errors (63.9825ms)
+✔ S10 publishing verifies actual account instead of trusting credential labels (0.435375ms)
+✔ S13 forbidden identities are local policy, not a hard-coded account (0.06875ms)
+✔ S16 creates an immutable manifest and rejects malformed boundaries (0.8895ms)
+✔ S16 production requires the matching QA digests for every app (0.457958ms)
+✔ S16 retries accept the same release and reject artifact replacement (0.290167ms)
+✔ S16 only matching incomplete drafts may recover missing assets (0.305084ms)
+✔ S22 missing QA aliases fail with the production policy message before mutation (618.427ms)
+✔ R01/R03: rejects and fixes missing spacing: import groups and imports ending (31.068333ms)
+✔ R01/R03: rejects and fixes missing spacing: TypeScript declarations (6.186375ms)
+✔ R01/R03: rejects and fixes missing spacing: validation, operation and result (4.622625ms)
+✔ R01/R03: rejects and fixes missing spacing: class methods (8.906834ms)
+✔ R01/R03: rejects and fixes missing spacing: object methods (3.704083ms)
+✔ R01/R03: rejects and fixes missing spacing: attached comments and directives (2.559917ms)
+✔ R02: leaves same-group imports and compliant code unchanged (1.54875ms)
+✔ R03: keeps decorators attached to their declaration (1.117875ms)
+✔ S12 main releases classify Conventional Commits by highest impact (0.64025ms)
+✔ S17 breaking changes stay in development versions until explicit 1.0 (0.06175ms)
+ℹ tests 205
+ℹ suites 0
+ℹ pass 205
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2606.292083
+
+   • turbo 2.11.7
+   • Packages in scope: @weave/api, @weave/design-tokens, @weave/eslint-config, @weave/mobile, @weave/typescript-config, @weave/web
+   • Running test in 6 packages
+   • Remote caching disabled
+
+@weave/api:test: cache miss, executing a7a0c3f12abf3a14
+@weave/design-tokens:typecheck: cache miss, executing 6794243445d48236
+@weave/api:test: $ node --import tsx --test test/*.test.ts
+@weave/design-tokens:typecheck: $ tsc --noEmit
+@weave/api:test: ✔ S06 liveness does not depend on database; readiness checks database (0.579ms)
+@weave/api:test: ✔ S06 unavailable database rejects readiness but preserves liveness (0.198542ms)
+@weave/api:test: ℹ tests 2
+@weave/api:test: ℹ suites 0
+@weave/api:test: ℹ pass 2
+@weave/api:test: ℹ fail 0
+@weave/api:test: ℹ cancelled 0
+@weave/api:test: ℹ skipped 0
+@weave/api:test: ℹ todo 0
+@weave/api:test: ℹ duration_ms 110.811667
+@weave/mobile:test: cache miss, executing ef66d775819ecfaa
+@weave/web:test: cache miss, executing deaa24490d336cfd
+@weave/mobile:test: $ pnpm run test:privacy && jest --runInBand
+@weave/web:test: $ node --import tsx --test test/*.test.ts test/*.test.tsx
+@weave/web:test: ✔ WEA-10 S01 SDK adapter uses email/password then email verification before finalize (2.192417ms)
+@weave/web:test: ✔ WEA-10 S03 SDK invitation request contains ticket/password and no substitute email (0.296666ms)
+@weave/web:test: ✔ WEA-10 S02/S07 SDK Device Trust and signout follow supported APIs (0.395958ms)
+@weave/web:test: ✔ WEA-10 S08 SDK returned error is rejected, incomplete status cannot finalize (0.438625ms)
+@weave/web:test: ✔ WEA-10 S11 Google adapter uses the supported SSO API and protected callback destinations (0.290583ms)
+@weave/mobile:test: $ node scripts/apply-renderer-privacy.mjs && node scripts/renderer-privacy-probe.mjs
+@weave/mobile:test: Applied pinned React Native renderer diagnostics privacy patch.
+@weave/mobile:test: Renderer privacy probe: three severities sanitized; fatality preserved.
+@weave/web:test: ✔ WEA-10 S11 callback without a completed attempt shows retry rather than endless verification (80.994542ms)
+@weave/web:test: ✔ WEA-10 S11 callback rejected operation and timeout recover without navigation (22.266125ms)
+@weave/web:test: ✔ WEA-10 S11 only completed callback navigates; additional requirements are visible (62.572375ms)
+@weave/web:test: ✔ WEA-10 S11 callback waits for browser SDK readiness before resolving hydrated server auth (9.545334ms)
+@weave/web:test: ✔ WEA-10 S01 signup sends verification, never activates before correct code, then opens Home (2.317292ms)
+@weave/web:test: ✔ WEA-10 S01/S08 wrong or expired code is recoverable and resend can be retried (0.461042ms)
+@weave/web:test: ✔ WEA-10 S01/S08 empty/malformed email and missing password/code make no provider calls (0.166333ms)
+@weave/web:test: ✔ WEA-10 S01/S08 unverified provider completion or unsupported requirements cannot activate (0.120417ms)
+@weave/web:test: ✔ WEA-10 S02 password login and Device Trust verification both reach Home (0.188625ms)
+@weave/web:test: ✔ WEA-10 S07 interrupted verification restores without needing password again (0.084292ms)
+@weave/web:test: ✔ WEA-10 S08 duplicate/signup/invalid login/network/rejected-password errors finish loading (0.190167ms)
+@weave/web:test: ✔ WEA-10 S08 repeated submits issue one mutation and cancellation prevents late activation (0.112084ms)
+@weave/web:test: ✔ WEA-10 S07/S08 cancellation during activation clears late session and never navigates (0.113084ms)
+@weave/web:test: ✔ WEA-10 S07 signout awaits provider, clears state and reports recoverable failure (0.131833ms)
+@weave/web:test: ✔ WEA-10 S03 invitation signup supplies only ticket/password and reaches intended Home (0.204583ms)
+@weave/web:test: ✔ WEA-10 S03/S08 missing/expired/reused invitation keeps context and never falls back (0.201209ms)
+@weave/web:test: ✔ WEA-10 S03/S08 failed invitation activation can retry without replaying the consumed ticket (0.13125ms)
+@weave/web:test: ✔ WEA-10 S08 timeout finishes loading and blocks late authentication activation (16.328125ms)
+@weave/web:test: ✔ WEA-10 S11/S12 branded Google signup rejects duplicate clicks, then recovers provider failure (126.756875ms)
+@weave/web:test: ✔ WEA-10 S11 Google signin starts provider authentication without premature Home (10.526334ms)
+@weave/web:test: ✔ WEA-10 S12 missing configuration retains branding and offers no fake signup success (14.641375ms)
+@weave/web:test: ✔ WEA-10 S18 bag remains static after image readiness and pointer movement (30.911125ms)
+@weave/web:test: ✔ WEA-10 S11 unresolved callback refuses activation; completed callback finalizes only once (2.073875ms)
+@weave/web:test: ✔ WEA-10 S11 transfer reads current SDK snapshot after awaited create (0.9285ms)
+@weave/web:test: ✔ WEA-10 S11 extra fields and verification direct users to actual requirements, never Home (0.334458ms)
+@weave/web:test: ✔ WEA-10 S11 returned finalize errors cannot report Home success (0.390125ms)
+@weave/web:test: ✔ WEA-10 S11 pending organization session explains the blocker and never navigates Home (0.160208ms)
+@weave/web:test: ✔ WEA-10 S03/S08 invitation entry preserves opaque ticket across auth navigation (0.557667ms)
+@weave/web:test: ✔ WEA-10 S03/S08 missing/malformed/ambiguous invitation never falls back to public signup (0.103709ms)
+@weave/web:test: ✔ WEA-10 S02/S07 verified active identity is allowed; unverified or signed-out is denied (0.100709ms)
+@weave/web:test: ✔ WEA-10 S07 unresolved auth exposes no protected result before the provider resolves (0.064125ms)
+@weave/web:test: ✔ WEA-10 S07/S08 provider/network session failure denies access safely (0.064791ms)
+@weave/web:test: ✔ WEA-10 S02/S07 protected resource is no-store and requires verified matching session user (31.602542ms)
+@weave/web:test: ✔ WEA-10 S02 signed-out protected request avoids user lookup; outage is 503 (0.553125ms)
+@weave/web:test: ✔ WEA-10 S15 verified identity without an active organization cannot read protected resources (0.167416ms)
+@weave/web:test: ✔ WEA-10 S01 public form labels/password → verification → Home callback (110.402875ms)
+@weave/web:test: ✔ WEA-10 S08 pending/error states disable duplicates, finish loading and allow retry (29.971583ms)
+@weave/web:test: ✔ WEA-10 S07 Home stays hidden until auth resolves and after signout; signout failure recovers (13.57325ms)
+@weave/web:test: ✔ WEA-10 S01/S07 signed-in unverified session never renders Home (2.138542ms)
+@weave/web:test: ✔ WEA-10 S07/S08 signout timeout releases loading and offers a retry (11.462042ms)
+@weave/web:test: ✔ WEA-10 S08 unknown-account error survives refreshed SDK resources and callbacks (19.547625ms)
+@weave/web:test: ✔ WEA-10 S08 pending organization task is explicit and cannot show a fresh login or Home (3.624292ms)
+@weave/web:test: ✔ WEA-10 S07 server auth hydration cannot show credentials before browser SDK loads (2.829625ms)
+@weave/web:test: ✔ S07 client accepts valid health and rejects bad responses safely (1.1015ms)
+@weave/web:test: ✔ WEA-10 S13 adapter loads every page, merges invitations and prefers existing membership (0.828958ms)
+@weave/web:test: ✔ WEA-10 S13 one list opens membership and accepts pending invitation before activation (2.070166ms)
+@weave/web:test: ✔ WEA-10 S14 list failure recovers, empty list remains usable (0.52525ms)
+@weave/web:test: ✔ WEA-10 S14 blank name is rejected; activation retry reuses created organization (0.6955ms)
+@weave/web:test: ✔ WEA-10 S14 acceptance failure denies Home; accepted invitation is not accepted twice after activation failure (0.905916ms)
+@weave/web:test: ✔ WEA-10 S15 duplicate mutation starts once and cancellation blocks late navigation (0.300584ms)
+@weave/web:test: ✔ WEA-10 S14 a stalled list request times out and allows retry without a late stale result (21.131417ms)
+@weave/web:test: ✔ WEA-10 S13 approved picker lists memberships and invitation in one fieldset and opens selected workspace (100.059541ms)
+@weave/web:test: ✔ WEA-10 S14 empty picker offers create; create form has required labelled input and retryable errors (17.322ms)
+@weave/web:test: ℹ tests 58
+@weave/web:test: ℹ suites 0
+@weave/web:test: ℹ pass 58
+@weave/web:test: ℹ fail 0
+@weave/web:test: ℹ cancelled 0
+@weave/web:test: ℹ skipped 0
+@weave/web:test: ℹ todo 0
+@weave/web:test: ℹ duration_ms 1238.622375
+@weave/mobile:test: watchman warning:  Recrawled this watch 5 times, most recently because:
+@weave/mobile:test: MustScanSubDirs UserDroppedTo resolve, please review the information on
+@weave/mobile:test: https://facebook.github.io/watchman/docs/troubleshooting.html#recrawl
+@weave/mobile:test: To clear this warning, run:
+@weave/mobile:test: `watchman watch-del '/Users/pravinraj/workspace/weave' ; watchman watch-project '/Users/pravinraj/workspace/weave'`
+@weave/mobile:test:
+@weave/mobile:test: PASS src/auth/login.test.tsx
+@weave/mobile:test: PASS src/navigation/root-navigator.test.tsx
+@weave/mobile:test: PASS src/auth/app-recovery.test.tsx
+@weave/mobile:test: PASS src/recovery/app-error-boundary.test.tsx
+@weave/mobile:test: PASS src/components/registration.test.ts
+@weave/mobile:test: PASS src/components/code-field.test.tsx
+@weave/mobile:test: PASS src/auth/home.test.tsx
+@weave/mobile:test: PASS src/auth/auth-controller.test.ts
+@weave/mobile:test: PASS src/auth/auth-gateway.contract.test.ts
+@weave/mobile:test: PASS src/components/form-field.test.tsx
+@weave/mobile:test: PASS src/components/button.test.tsx
+@weave/mobile:test: PASS src/components/typography.test.tsx
+@weave/mobile:test: PASS src/components/feedback.test.tsx
+@weave/mobile:test:
+@weave/mobile:test: Test Suites: 13 passed, 13 total
+@weave/mobile:test: Tests:       94 passed, 94 total
+@weave/mobile:test: Snapshots:   0 total
+@weave/mobile:test: Time:        2.811 s, estimated 14 s
+@weave/mobile:test: Ran all test suites.
+
+ Tasks:    4 successful, 4 total
+Cached:    0 cached, 4 total
+  Time:    4.968s

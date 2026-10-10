@@ -1,0 +1,170 @@
+$ sh scripts/ios-host-contracts.sh
+Fetching https://github.com/PhoneNumberKit/PhoneNumberKit from cache
+Fetching https://github.com/kean/Nuke from cache
+Fetched https://github.com/kean/Nuke from cache (0.06s)
+Fetched https://github.com/PhoneNumberKit/PhoneNumberKit from cache (0.06s)
+Creating working copy for https://github.com/kean/Nuke
+Creating working copy for https://github.com/PhoneNumberKit/PhoneNumberKit
+Working copy of https://github.com/PhoneNumberKit/PhoneNumberKit resolved at 5.0.11
+Working copy of https://github.com/kean/Nuke resolved at 13.2.0
+Building for debugging...
+[Constructing description]
+[Planning deferred tasks]
+[13 / 97] WeaveAuthContractTests-product
+[46 / 97] ClerkKit
+[63 / 97] Clerk_ClerkKit
+[65 / 97]
+[66 / 98] ClerkKit
+[76 / 179]
+[77 / 179]
+[79 / 179]
+[83 / 179]
+[87 / 179]
+[88 / 179]
+[89 / 179]
+[90 / 179]
+[94 / 179]
+[95 / 179]
+[97 / 179]
+[98 / 179]
+[99 / 179]
+[102 / 179]
+[103 / 179]
+[108 / 179]
+[110 / 179]
+[111 / 179]
+[113 / 179]
+[114 / 179]
+[125 / 179]
+[126 / 179]
+[128 / 179]
+[129 / 179]
+[132 / 179]
+[134 / 179]
+[136 / 179]
+[146 / 179] ClerkKit
+[147 / 179] ClerkKit
+[154 / 180]
+[154 / 180] WeaveAuthContract
+[158 / 188] WeaveAuthContract
+[161 / 188] WeaveAuthContract
+[166 / 188] WeaveAuthContract
+[167 / 188] WeaveAuthContractTests-product
+[169 / 188] WeaveAuthContractTests-product
+[170 / 188] WeaveAuthContract
+/Users/pravinraj/workspace/weave/apps/mobile/vendor/clerk-ios/Sources/ClerkKit/Core/AuthFlowRequestScope.swift:16:24: warning: 'withValue(_:operation:isolation:file:line:)' is deprecated: Prefer the 'nonisolated(nonsending)' overload with stricter execution on caller context semantics: withValue(_:operation:file:line:) [#DeprecatedDeclaration]
+14 |     operation: () async throws -> T
+15 |   ) async rethrows -> T {
+16 |     try await $ownerId.withValue(ownerId, operation: operation)
+   |                        `- warning: 'withValue(_:operation:isolation:file:line:)' is deprecated: Prefer the 'nonisolated(nonsending)' overload with stricter execution on caller context semantics: withValue(_:operation:file:line:) [#DeprecatedDeclaration]
+17 |   }
+18 | }
+
+[#DeprecatedDeclaration]: <https://docs.swift.org/compiler/documentation/diagnostics/deprecated-declaration>
+[171 / 188] ClerkKit
+/Users/pravinraj/workspace/weave/apps/mobile/vendor/clerk-ios/Sources/ClerkKit/Logging/ClerkLogger.swift:240:9: warning: initialization of immutable value 'timestampString' was never used; consider replacing with assignment to '_' or removing it [#NoUsage]
+238 |     let line = context.line
+239 |     let fileName = URL(fileURLWithPath: file).lastPathComponent
+240 |     let timestampString = DateFormatter.logFormatter.string(from: Date())
+    |         `- warning: initialization of immutable value 'timestampString' was never used; consider replacing with assignment to '_' or removing it [#NoUsage]
+241 |     let timestamp = Date()
+242 | 
+
+[#NoUsage]: <https://docs.swift.org/compiler/documentation/diagnostics/no-usage>
+[173 / 188] ClerkKit
+[178 / 189] WeaveAuthContractTests-product
+[180 / 202]
+[182 / 202]
+[183 / 202]
+[191 / 202] WeaveAuthContractTests-product
+[196 / 202] WeaveAuthContractTests-product
+[198 / 202] WeaveAuthContractTests-product
+[200 / 202] WeaveAuthContractTests-product
+Build complete! (28.34 secs)
+Test Suite 'All tests' started at 2026-10-09 16:46:30.476.
+Test Suite 'WeaveAuthContractTests.xctest' started at 2026-10-09 16:46:30.479.
+Test Suite 'AuthConfigurationTests' started at 2026-10-09 16:46:30.479.
+Test Case '-[WeaveAuthContractTests.AuthConfigurationTests testMissingInvalidOrMismatchedConfigurationFailsClosed]' started.
+Test Case '-[WeaveAuthContractTests.AuthConfigurationTests testMissingInvalidOrMismatchedConfigurationFailsClosed]' passed (0.007 seconds).
+Test Case '-[WeaveAuthContractTests.AuthConfigurationTests testValidatedNativeConfigurationUsesExplicitOwnerIdentity]' started.
+Test Case '-[WeaveAuthContractTests.AuthConfigurationTests testValidatedNativeConfigurationUsesExplicitOwnerIdentity]' passed (0.004 seconds).
+Test Suite 'AuthConfigurationTests' passed at 2026-10-09 16:46:30.492.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.011 (0.012) seconds
+Test Suite 'ClerkProviderTests' started at 2026-10-09 16:46:30.492.
+Test Case '-[WeaveAuthContractTests.ClerkProviderTests testActualSDKErrorCodesDiscardRawProviderDescriptions]' started.
+Test Case '-[WeaveAuthContractTests.ClerkProviderTests testActualSDKErrorCodesDiscardRawProviderDescriptions]' passed (0.003 seconds).
+Test Case '-[WeaveAuthContractTests.ClerkProviderTests testActualSDKStatusesAllowOnlyCompleteAndSupportedEmailChallenges]' started.
+Test Case '-[WeaveAuthContractTests.ClerkProviderTests testActualSDKStatusesAllowOnlyCompleteAndSupportedEmailChallenges]' passed (0.001 seconds).
+Test Case '-[WeaveAuthContractTests.ClerkProviderTests testTransferableUnknownOAuthIdentityStaysExistingAccountsOnly]' started.
+Test Case '-[WeaveAuthContractTests.ClerkProviderTests testTransferableUnknownOAuthIdentityStaysExistingAccountsOnly]' passed (0.000 seconds).
+Test Suite 'ClerkProviderTests' passed at 2026-10-09 16:46:30.496.
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.004 (0.004) seconds
+Test Suite 'KeychainHealthTests' started at 2026-10-09 16:46:30.496.
+Test Case '-[WeaveAuthContractTests.KeychainHealthTests testHealthProbeRoundTripsAndClearsOnlyItsOwnSyntheticItem]' started.
+Test Case '-[WeaveAuthContractTests.KeychainHealthTests testHealthProbeRoundTripsAndClearsOnlyItsOwnSyntheticItem]' passed (0.001 seconds).
+Test Case '-[WeaveAuthContractTests.KeychainHealthTests testReadWriteClearFailuresBlockAuthenticationSafely]' started.
+Test Case '-[WeaveAuthContractTests.KeychainHealthTests testReadWriteClearFailuresBlockAuthenticationSafely]' passed (0.001 seconds).
+Test Suite 'KeychainHealthTests' passed at 2026-10-09 16:46:30.498.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.001 (0.002) seconds
+Test Suite 'WeaveAuthBehaviorTests' started at 2026-10-09 16:46:30.498.
+Test Case '-[WeaveAuthContractTests.WeaveAuthBehaviorTests testAbandonedLateActivationEndsOnlyObsoleteNewSession]' started.
+Test Case '-[WeaveAuthContractTests.WeaveAuthBehaviorTests testAbandonedLateActivationEndsOnlyObsoleteNewSession]' passed (0.003 seconds).
+Test Case '-[WeaveAuthContractTests.WeaveAuthBehaviorTests testAbandonReleasesProviderAttemptsWithoutWipingSessionCredentials]' started.
+Test Case '-[WeaveAuthContractTests.WeaveAuthBehaviorTests testAbandonReleasesProviderAttemptsWithoutWipingSessionCredentials]' passed (0.001 seconds).
+Test Case '-[WeaveAuthContractTests.WeaveAuthBehaviorTests testCachedIdentityDoesNotAuthorizeWhenFreshValidationFails]' started.
+Test Case '-[WeaveAuthContractTests.WeaveAuthBehaviorTests testCachedIdentityDoesNotAuthorizeWhenFreshValidationFails]' passed (0.000 seconds).
+Test Case '-[WeaveAuthContractTests.WeaveAuthBehaviorTests testCompletedPasswordRequiresFreshActiveSessionValidation]' started.
+Test Case '-[WeaveAuthContractTests.WeaveAuthBehaviorTests testCompletedPasswordRequiresFreshActiveSessionValidation]' passed (0.001 seconds).
+Test Case '-[WeaveAuthContractTests.WeaveAuthBehaviorTests testDeviceTrustResendAndVerificationRetainPurposeAndSafeRetryErrors]' started.
+Test Case '-[WeaveAuthContractTests.WeaveAuthBehaviorTests testDeviceTrustResendAndVerificationRetainPurposeAndSafeRetryErrors]' passed (0.001 seconds).
+Test Case '-[WeaveAuthContractTests.WeaveAuthBehaviorTests testEmailCodeChallengeSurvivesNewVerificationGeneration]' started.
+Test Case '-[WeaveAuthContractTests.WeaveAuthBehaviorTests testEmailCodeChallengeSurvivesNewVerificationGeneration]' passed (0.003 seconds).
+Test Case '-[WeaveAuthContractTests.WeaveAuthBehaviorTests testForgedCodePurposeCannotBypassVerificationAndDisposePreservesSessionCredentials]' started.
+Test Case '-[WeaveAuthContractTests.WeaveAuthBehaviorTests testForgedCodePurposeCannotBypassVerificationAndDisposePreservesSessionCredentials]' passed (0.004 seconds).
+Test Case '-[WeaveAuthContractTests.WeaveAuthBehaviorTests testFreshResolutionCannotAuthorizeWhileAbandonedActivationStillRuns]' started.
+Test Case '-[WeaveAuthContractTests.WeaveAuthBehaviorTests testFreshResolutionCannotAuthorizeWhileAbandonedActivationStillRuns]' passed (0.002 seconds).
+Test Case '-[WeaveAuthContractTests.WeaveAuthBehaviorTests testGoogleExplicitlyDisablesSignupTransfer]' started.
+Test Case '-[WeaveAuthContractTests.WeaveAuthBehaviorTests testGoogleExplicitlyDisablesSignupTransfer]' passed (0.001 seconds).
+Test Case '-[WeaveAuthContractTests.WeaveAuthBehaviorTests testLearnedInvalidationPublishesOrderedSignedOutEvent]' started.
+Test Case '-[WeaveAuthContractTests.WeaveAuthBehaviorTests testLearnedInvalidationPublishesOrderedSignedOutEvent]' passed (0.001 seconds).
+Test Case '-[WeaveAuthContractTests.WeaveAuthBehaviorTests testLearnedLocalClearLeavesProtectedUIWhileLogoutNetworkIsPending]' started.
+Test Case '-[WeaveAuthContractTests.WeaveAuthBehaviorTests testLearnedLocalClearLeavesProtectedUIWhileLogoutNetworkIsPending]' passed (0.001 seconds).
+Test Case '-[WeaveAuthContractTests.WeaveAuthBehaviorTests testLogoutCannotClearUnrelatedCurrentSession]' started.
+Test Case '-[WeaveAuthContractTests.WeaveAuthBehaviorTests testLogoutCannotClearUnrelatedCurrentSession]' passed (0.001 seconds).
+Test Case '-[WeaveAuthContractTests.WeaveAuthBehaviorTests testLogoutClearsOnlyCurrentSessionAndReturnsSignedOut]' started.
+Test Case '-[WeaveAuthContractTests.WeaveAuthBehaviorTests testLogoutClearsOnlyCurrentSessionAndReturnsSignedOut]' passed (0.000 seconds).
+Test Case '-[WeaveAuthContractTests.WeaveAuthBehaviorTests testLogoutRemoteFailureAfterLocalClearReportsSignedOut]' started.
+Test Case '-[WeaveAuthContractTests.WeaveAuthBehaviorTests testLogoutRemoteFailureAfterLocalClearReportsSignedOut]' passed (0.000 seconds).
+Test Case '-[WeaveAuthContractTests.WeaveAuthBehaviorTests testLogoutStorageFailureBeforeClearDoesNotReportSuccess]' started.
+Test Case '-[WeaveAuthContractTests.WeaveAuthBehaviorTests testLogoutStorageFailureBeforeClearDoesNotReportSuccess]' passed (0.000 seconds).
+Test Case '-[WeaveAuthContractTests.WeaveAuthBehaviorTests testPasswordDeviceTrustChallengeUsesSupportedCodePurpose]' started.
+Test Case '-[WeaveAuthContractTests.WeaveAuthBehaviorTests testPasswordDeviceTrustChallengeUsesSupportedCodePurpose]' passed (0.001 seconds).
+Test Case '-[WeaveAuthContractTests.WeaveAuthBehaviorTests testProviderErrorsAreSafeAndSpecific]' started.
+Test Case '-[WeaveAuthContractTests.WeaveAuthBehaviorTests testProviderErrorsAreSafeAndSpecific]' passed (0.001 seconds).
+Test Case '-[WeaveAuthContractTests.WeaveAuthBehaviorTests testProviderSessionTasksBlockCompletedAuthentication]' started.
+Test Case '-[WeaveAuthContractTests.WeaveAuthBehaviorTests testProviderSessionTasksBlockCompletedAuthentication]' passed (0.001 seconds).
+Test Case '-[WeaveAuthContractTests.WeaveAuthBehaviorTests testReloadCannotAuthorizeUntilPendingLogoutActuallySettles]' started.
+Test Case '-[WeaveAuthContractTests.WeaveAuthBehaviorTests testReloadCannotAuthorizeUntilPendingLogoutActuallySettles]' passed (0.001 seconds).
+Test Case '-[WeaveAuthContractTests.WeaveAuthBehaviorTests testSDKLogoutInvalidationDoesNotCancelItsOwnSuccessfulOutcome]' started.
+Test Case '-[WeaveAuthContractTests.WeaveAuthBehaviorTests testSDKLogoutInvalidationDoesNotCancelItsOwnSuccessfulOutcome]' passed (0.001 seconds).
+Test Case '-[WeaveAuthContractTests.WeaveAuthBehaviorTests testUnknownGoogleIdentityDoesNotActivateOrCreateAccount]' started.
+Test Case '-[WeaveAuthContractTests.WeaveAuthBehaviorTests testUnknownGoogleIdentityDoesNotActivateOrCreateAccount]' passed (0.000 seconds).
+Test Case '-[WeaveAuthContractTests.WeaveAuthBehaviorTests testUnsupportedFactorDoesNotActivateSession]' started.
+Test Case '-[WeaveAuthContractTests.WeaveAuthBehaviorTests testUnsupportedFactorDoesNotActivateSession]' passed (0.000 seconds).
+Test Suite 'WeaveAuthBehaviorTests' passed at 2026-10-09 16:46:30.526.
+	 Executed 22 tests, with 0 failures (0 unexpected) in 0.023 (0.028) seconds
+Test Suite 'WeaveAuthModuleTests' started at 2026-10-09 16:46:30.526.
+Test Case '-[WeaveAuthContractTests.WeaveAuthModuleTests testAbandonCancelsTheTaskOwningExternalAuthentication]' started.
+Test Case '-[WeaveAuthContractTests.WeaveAuthModuleTests testAbandonCancelsTheTaskOwningExternalAuthentication]' passed (0.001 seconds).
+Test Case '-[WeaveAuthContractTests.WeaveAuthModuleTests testShellNeverGrantsAccessWithoutConfiguredAuthentication]' started.
+Test Case '-[WeaveAuthContractTests.WeaveAuthModuleTests testShellNeverGrantsAccessWithoutConfiguredAuthentication]' passed (0.001 seconds).
+Test Suite 'WeaveAuthModuleTests' passed at 2026-10-09 16:46:30.528.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.001 (0.002) seconds
+Test Suite 'WeaveAuthContractTests.xctest' passed at 2026-10-09 16:46:30.528.
+	 Executed 31 tests, with 0 failures (0 unexpected) in 0.040 (0.048) seconds
+Test Suite 'All tests' passed at 2026-10-09 16:46:30.528.
+	 Executed 31 tests, with 0 failures (0 unexpected) in 0.040 (0.052) seconds
+◇ Test run started.
+↳ Testing Library Version: 2084
+↳ Target Platform: arm64e-apple-macos14.0
+✔ Test run with 0 tests in 0 suites passed after 0.001 seconds.

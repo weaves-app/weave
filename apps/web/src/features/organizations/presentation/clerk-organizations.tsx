@@ -11,6 +11,16 @@ import {AuthShell} from '../../auth/presentation/auth-shell';
 import {SignOutControl} from '../../auth/presentation/home-view';
 import {pendingTaskMessage} from '../../auth/application/session-task';
 
+import {SESSION_TASK} from '../../auth/application/auth-constants';
+
+export const EMPTY_EMAIL_ADDRESS = '';
+
+export const CLERK_ACTIVE_STATUS = 'active';
+
+export const CLERK_VERIFIED_STATUS = 'verified';
+
+export const CHOOSE_ORGANIZATION_MODE = 'choose';
+
 export interface ClerkOrganizationsProps {
   readonly mode: 'choose' | 'create';
 }
@@ -78,7 +88,7 @@ export function ClerkOrganizations({mode}: ClerkOrganizationsProps): React.JSX.E
 
             navigate: ({session}) => {
               ready =
-                session?.status === 'active' &&
+                session?.status === CLERK_ACTIVE_STATUS &&
                 !session.currentTask &&
                 session.lastActiveOrganizationId === id;
             },
@@ -98,8 +108,8 @@ export function ClerkOrganizations({mode}: ClerkOrganizationsProps): React.JSX.E
   const eligible =
     loaded &&
     auth.isSignedIn === true &&
-    (!task || task === 'choose-organization') &&
-    clerk.user?.primaryEmailAddress?.verification.status === 'verified';
+    (!task || task === SESSION_TASK.CHOOSE_ORGANIZATION) &&
+    clerk.user?.primaryEmailAddress?.verification.status === CLERK_VERIFIED_STATUS;
 
   useEffect(() => {
     if (!loaded) return;
@@ -111,7 +121,7 @@ export function ClerkOrganizations({mode}: ClerkOrganizationsProps): React.JSX.E
       return;
     }
 
-    if (eligible && mode === 'choose') void flow.load();
+    if (eligible && mode === CHOOSE_ORGANIZATION_MODE) void flow.load();
   }, [flow, loaded, auth.isSignedIn, eligible, mode, router]);
   useEffect(() => () => flow.cancel(), [flow]);
 
@@ -152,7 +162,7 @@ export function ClerkOrganizations({mode}: ClerkOrganizationsProps): React.JSX.E
     <OrganizationView
       flow={flow}
       mode={mode}
-      email={clerk.user?.primaryEmailAddress?.emailAddress ?? ''}
+      email={clerk.user?.primaryEmailAddress?.emailAddress ?? EMPTY_EMAIL_ADDRESS}
       signOut={() => clerk.signOut()}
       signedOut={() => {
         router.replace('/sign-in');

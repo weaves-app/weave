@@ -4,11 +4,19 @@ import {execFileSync} from 'node:child_process';
 import {randomUUID} from 'node:crypto';
 import {setTimeout as delay} from 'node:timers/promises';
 
+export const DEFAULT_API_IMAGE = 'weave-api:test';
+
+export const DEFAULT_WEB_IMAGE = 'weave-web:test';
+
+export const NATIVE_PLATFORM = 'native';
+
+export const MAX_STARTUP_ATTEMPTS = 100;
+
 const platform = process.env.IMAGE_PLATFORM;
 
 const images = {
-  api: process.env.API_IMAGE || 'weave-api:test',
-  web: process.env.WEB_IMAGE || 'weave-web:test',
+  api: process.env.API_IMAGE || DEFAULT_API_IMAGE,
+  web: process.env.WEB_IMAGE || DEFAULT_WEB_IMAGE,
 };
 
 const docker = (...args) =>
@@ -22,7 +30,7 @@ const docker = (...args) =>
   ).trim();
 
 async function wait(url) {
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < MAX_STARTUP_ATTEMPTS; i++) {
     try {
       const r = await fetch(url, {signal: AbortSignal.timeout(500)});
 
@@ -38,7 +46,7 @@ async function wait(url) {
 }
 
 void test('Production containers run as nonroot, preserve API liveness and deny unconfigured auth access', async (t) => {
-  console.log('Testing immutable candidates:', images, 'platform:', platform || 'native');
+  console.log('Testing immutable candidates:', images, 'platform:', platform || NATIVE_PLATFORM);
 
   if (process.env.EXPECTED_REVISION)
     for (const app of ['api', 'web']) {

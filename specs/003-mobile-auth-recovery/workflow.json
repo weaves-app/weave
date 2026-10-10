@@ -1,0 +1,708 @@
+{
+  "ticket": "WEA-10",
+  "scenariosConfirmed": true,
+  "confirmation": {
+    "date": "2026-10-07",
+    "userStatement": "Confirm S01\u2013S20 and proceed",
+    "scenarioIds": [
+      "S01",
+      "S02",
+      "S03",
+      "S04",
+      "S05",
+      "S06",
+      "S07",
+      "S08",
+      "S09",
+      "S10",
+      "S11",
+      "S12",
+      "S13",
+      "S14",
+      "S15",
+      "S16",
+      "S17",
+      "S18",
+      "S19",
+      "S20"
+    ]
+  },
+  "scenarioIds": [
+    "S01",
+    "S02",
+    "S03",
+    "S04",
+    "S05",
+    "S06",
+    "S07",
+    "S08",
+    "S09",
+    "S10",
+    "S11",
+    "S12",
+    "S13",
+    "S14",
+    "S15",
+    "S16",
+    "S17",
+    "S18",
+    "S19",
+    "S20",
+    "S21",
+    "S22",
+    "S23"
+  ],
+  "publicTestSeams": [
+    "AuthenticationGateway and Clock controller contracts",
+    "Login/Home screen interactions",
+    "Real conditional RootNavigator route and history behavior",
+    "Top-level boundary and root-generation Reload interaction",
+    "Native adapter callbacks, persistence and no-transfer OAuth contract"
+  ],
+  "status": "implemented-awaiting-live-acceptance",
+  "pending": [
+    "Live/provider account fixture acceptance on both platforms; development key/methods/Android and iOS registrations/callbacks configured. Xcode-signed iOS simulator reaches Login.",
+    "Both-platform accessibility/lifecycle/restart/callback/SC-002 timing and iOS17 runtime checks",
+    "Pinned SDK per-key swallowed persistence failure observability",
+    "Actual GitHub required CI and code-owner review"
+  ],
+  "ticketUrl": "https://linear.app/weaveapp/issue/WEA-10/implement-clerk-authentication-in-nextjs-and-react-native",
+  "clarifications": {
+    "date": "2026-10-07",
+    "loginMethods": ["email-password", "email-code", "google"],
+    "registration": "existing-accounts-only",
+    "minimumIosVersion": "17.0"
+  },
+  "scenarioTestMapping": "contracts/scenario-tests.md",
+  "planGate": {
+    "status": "passed",
+    "scope": "Phase 0 research and Phase 1 design",
+    "reason": "User approved iOS 17+; source/runtime/native verification belongs to implementation"
+  },
+  "platformApproval": {
+    "date": "2026-10-07",
+    "userStatement": "Yes support iOS 17+",
+    "minimumIosVersion": "17.0",
+    "integration": "Official Clerk core Android/iOS SDKs through a React Native TurboModule"
+  },
+  "taskArtifact": "tasks.md",
+  "taskSummary": {
+    "total": 54,
+    "byStory": {
+      "US1": 12,
+      "US2": 5,
+      "US3": 4
+    },
+    "shared": 29,
+    "parallelTaskIds": ["T014", "T016", "T017", "T019", "T020", "T023", "T024", "T031"]
+  },
+  "analysisRemediation": {
+    "date": "2026-10-07",
+    "authorization": "go with recommendations",
+    "findingIds": ["C1", "I1", "A1"],
+    "changes": [
+      "Require native contract test execution in CI",
+      "Separate controller fake validation from native behavioral RED/GREEN",
+      "Add S19 email device verification and S20 unsupported verification"
+    ],
+    "scope": "Specification and planning artifacts only; full scenario agreement remains pending"
+  },
+  "implementationSetup": {
+    "date": "2026-10-07",
+    "completedTasks": [
+      "T001",
+      "T002",
+      "T003",
+      "T004",
+      "T005",
+      "T006",
+      "T007",
+      "T008",
+      "T009",
+      "T010",
+      "T011",
+      "T012",
+      "T013",
+      "T014",
+      "T015",
+      "T016",
+      "T017",
+      "T018",
+      "T019",
+      "T020",
+      "T021",
+      "T022",
+      "T023",
+      "T024",
+      "T026",
+      "T027",
+      "T028",
+      "T029",
+      "T031",
+      "T032",
+      "T033",
+      "T038",
+      "T039",
+      "T040",
+      "T041",
+      "T046",
+      "T047",
+      "T049",
+      "T050",
+      "T051",
+      "T052",
+      "T053"
+    ],
+    "branch": "feat/WEA-10/mobile-auth-recovery",
+    "base": "27698fb1a257259e12946e1526e57b1c6fc58836",
+    "remoteDevelopVerified": true,
+    "author": "Pravin Raj <pravinrajmb@gmail.com>",
+    "committer": "Pravin Raj <pravinrajmb@gmail.com>",
+    "scenarioAgreementRequested": "Confirmed by user: Confirm S01\u2013S20 and proceed",
+    "nativeToolchainsObserved": {
+      "xcode": "27.0",
+      "swift": "6.4",
+      "java": "17.0.15"
+    },
+    "sourceChangesStarted": true,
+    "packageManagerRuling": "Preserve verified develop npm@11.19.0 workspaces/package-lock.json; exclude unmerged WEA-8 pnpm migration",
+    "partialDependencyAdoption": {
+      "native": "7.5.0",
+      "nativeStack": "7.20.0",
+      "screens": "4.28.0",
+      "status": "JS dependencies installed only; T004 remains incomplete"
+    }
+  },
+  "sdkCompatibility": {
+    "task": "T003",
+    "finding": "Pinned native SDKs have raw diagnostic sinks without adequate disable controls",
+    "proposal": "contracts/sdk-compatibility.md",
+    "iOSCapabilityProbe": "unmodified exit 1; locally patched logger exit 0",
+    "applicationSdkPatched": true,
+    "decision": {
+      "date": "2026-10-08",
+      "userStatement": "accept proposed",
+      "path": "Adopt scoped maintained SDK logging patches"
+    },
+    "rendererPatch": "SHA-256-checked RN0.86.3 diagnostic object sanitization with severity/fatality preserved"
+  },
+  "verification": {
+    "mobileTests": 93,
+    "androidNativeTests": 30,
+    "iosNativeTests": 31,
+    "rootVerify": "passed",
+    "metroBundles": "both passed",
+    "androidBuild": "all4ABIs passed",
+    "iosBuild": "arm64/x86_64 simulator passed",
+    "databaseIntegration": "3/3 passed isolated Postgres18.1; Postgres17CI unrun",
+    "ci": "unrun",
+    "workflowLint": "actionlint passed; equivalent pinned zizmor1.30.1 offline passed"
+  },
+  "convergence": {
+    "outcome": "tasks_appended",
+    "artifact": "convergence.md",
+    "remainingTasks": ["T042", "T043", "T044", "T045"],
+    "findings": 4
+  },
+  "nativeIdentityChange": {
+    "date": "2026-10-08",
+    "userStatement": "change package names for android and ios as well",
+    "domain": "tryweave.si",
+    "androidApplicationId": "si.tryweave",
+    "iosBundleIdentifier": "si.tryweave",
+    "selection": "Reverse-domain identifier selected from the owner-supplied domain",
+    "scope": "Native identity/configuration rename; existing S01\u2013S20 behavior remains confirmed",
+    "publicTestSeams": [
+      "Built Android manifest/application ID and codegen compilation",
+      "Built iOS Info.plist/bundle identifier and existing configuration contract tests"
+    ],
+    "acceptance": [
+      "Both app builds expose si.tryweave",
+      "Clerk callbacks use the new identity",
+      "Missing public key still fails closed; stale/mismatched callbacks remain rejected"
+    ],
+    "verification": "passed; evidence/native-identity.txt",
+    "remoteRegistration": "Android and iOS development registrations plus all three callback URLs saved and verified; live provider acceptance remains pending.",
+    "task": "T046"
+  },
+  "clerkConfiguration": {
+    "date": "2026-10-08",
+    "authorization": "open browser, I ll login to clerk take what ever you want and configure; user signed in and said done",
+    "application": "Weave",
+    "environment": "development",
+    "frontendDomain": "balanced-mutt-649.clerk.accounts.dev",
+    "observedEnabled": [
+      "Native API",
+      "email sign-in",
+      "email verification code",
+      "password",
+      "Google shared development OAuth"
+    ],
+    "publicConfiguration": "Ignored apps/mobile/.env.local; actual key injected into both native builds and verified",
+    "nativeBuilds": "Both passed; /private/tmp/weave-clerk-configured-{android,ios}.log",
+    "androidRegistration": "Saved and verified in Clerk development instance: namespace android_app, package si.tryweave, local debug SHA-256 fingerprint",
+    "redirectRegistration": "Saved and verified in dashboard: all three exact callback URLs",
+    "iosRegistration": "Saved by owner and verified in Weave development dashboard: App ID Prefix 44E9RE43KD, bundle si.tryweave; matches Xcode-generated simulator application identifier.",
+    "testAccountReadiness": "Owner account has verified email/password; no linked Google social account shown. No credentials changed or accounts provisioned.",
+    "secretKeyAccessed": false,
+    "production": "No production instance exists; domain tryweave.si recorded; no production/DNS changes",
+    "appleAccountStatus": {
+      "userStatement": "Currently I dont have apple developer account",
+      "date": "2026-10-08",
+      "xcodeSignIn": {
+        "date": "2026-10-08",
+        "userStatement": "btw I signed into Xcode",
+        "configuredTeam": "44E9RE43KD",
+        "observedSimulatorApplicationIdentifier": "44E9RE43KD.si.tryweave",
+        "signing": "Xcode-managed ad-hoc simulator build passed; Login renders and startup Keychain check passes",
+        "membership": "Paid membership/certificate/device provisioning not verified"
+      }
+    },
+    "registrationConfirmation": {
+      "date": "2026-10-08",
+      "userStatement": "go haead",
+      "scope": "Prepared Android development registration and three exact mobile redirect URLs; iOS native application registration remains deferred"
+    },
+    "androidCertificateSha256": "CC:0C:B6:EE:D3:A2:95:7A:42:54:81:5C:63:07:E3:CE:8A:51:FA:F9:71:F9:30:64:64:0B:5C:D1:0B:B9:08:5E",
+    "registeredRedirectUrls": [
+      "clerk://si.tryweave.callback",
+      "clerk://si.tryweave.oauth",
+      "si.tryweave://callback"
+    ],
+    "browserEvidence": "/private/tmp/weave-clerk-development-configured.png",
+    "iosRegistrationPreparation": {
+      "date": "2026-10-08",
+      "prefix": "44E9RE43KD",
+      "bundleId": "si.tryweave",
+      "status": "saved-by-owner-verified",
+      "evidence": "/private/tmp/weave-clerk-ios-registration-prepared.png",
+      "userStatement": "Added the iOS app",
+      "savedEvidence": "evidence/clerk-ios-registered.png"
+    }
+  },
+  "brandingUpdate": {
+    "date": "2026-10-08",
+    "userStatement": "App logo and guidelines are available in /Users/pravinraj/Downloads/kit, Please update apps",
+    "task": "T047",
+    "scope": "Presentation/assets only: web and native app icons, supplied outlined logo, brand palette and Figtree font; preserve confirmed S01\u2013S20 authentication, route and recovery behavior.",
+    "design": "Cream surfaces with olive text/buttons, supplied horizontal logo on cream, full-bleed square icon masters with OS masking, proportional one-band clear space. Home retains only Logout.",
+    "publicTestSeams": [
+      "Existing login/navigation/recovery regression suites",
+      "Metro asset resolution and native/web production builds",
+      "Rendered app/browser/launch screen and built icon/font resources"
+    ],
+    "verification": "Passed: 81 mobile tests, root npm run verify (web production + both Metro bundles), Android all-ABI APK, iOS arm64/x86_64 simulator build, built font/icon resources and asset geometry/opacity checks; web rendered preview verified. Native Login preview blocked by missing Keychain entitlements in unsigned simulator build; temporary local signing attempt rejected by SpringBoard.",
+    "behavioralRed": "Not applicable to asset/style replacement; no new application behavior or fabricated RED evidence.",
+    "evidence": "evidence.md; evidence/brand-web-preview.png; evidence/brand-ios-storage-state.png",
+    "iosPreview": "Verified branded Login on iPhone17Pro iOS26.2 using Xcode-managed simulator signing; evidence/brand-ios-login.png. Earlier unsigned-build Keychain limitation superseded for this simulator run."
+  },
+  "e2eAcceptance": {
+    "status": "in-progress",
+    "date": "2026-10-08",
+    "authorization": "Finish e2e testing for both android and iOS",
+    "scope": "Confirmed S01\u2013S20 and native/manual acceptance map; no account creation or shared authentication policy changes. Owner supplied existing account email; credentials are not recorded in artifacts.",
+    "devices": {
+      "ios": "iPhone17Pro iOS26.2, Xcode-managed signing",
+      "android": "Temporary Pixel7 API35 Google Play arm64 emulator, emulator-5554",
+      "androidPhysical": "OnePlus 11R 5G (CPH2487), Android16, USB-debugging authorized"
+    },
+    "results": {
+      "signedOutLaunchAndEmptyInput": {
+        "android": "passed",
+        "ios": "passed",
+        "scope": "S01 signed-out launch and S03 empty-input validation; Home unavailable; both method forms usable",
+        "evidence": "evidence/native-e2e/*-signed-out.xml"
+      },
+      "googleBrowserCancellation": {
+        "android": "passed",
+        "ios": "passed",
+        "scope": "S17 browser dismissal returns usable Login, method change works, Home unavailable; other S17 callback failures remain unrun",
+        "evidence": "evidence/native-e2e/*-google-cancel.xml"
+      },
+      "unregisteredPasswordAndEmailCode": {
+        "android": "passed",
+        "ios": "passed",
+        "scope": "S18 native provider rejects unregistered Clerk test identifier through password and email-code; Home/verification unavailable; provider user count 2 before and after, searched fixture absent. Google unknown-account rejection remains unrun.",
+        "evidence": "evidence/native-e2e/*-unregistered.xml",
+        "providerAccountCountBefore": 2,
+        "providerAccountCountAfter": 2,
+        "fixtureSearch": "No users found"
+      },
+      "physicalAndroidStartup": {
+        "status": "passed",
+        "scope": "S01 signed-out startup only; real configured native SDK and Metro served app; branded Login and all three methods visible. Successful sign-in not asserted.",
+        "evidence": "evidence/native-e2e/android-physical-login.png",
+        "installation": "Uncompressed adb push plus pm install returned Success; reverse tcp:8081 followed by cold app restart."
+      }
+    }
+  },
+  "googleOAuthBranding": {
+    "date": "2026-10-08",
+    "authorization": "In google login, it should show weave logo and Weave as app name; owner logged into Google",
+    "current": "Owner saved custom Google credentials in Clerk development connection; enabled switch, populated fields, no unsaved changes, and client ID matches the Weave Clerk development Google client.",
+    "target": "Owner prefers Weave; authorized fallback Weave App. Both exact names rejected by Google. Saved name remains Weave (tryweave.si) with supplied logo.",
+    "status": "custom-credentials-saved-brand-display-blocked-by-development-and-unverified-branding",
+    "constraints": "Do not change signup policy, expand OAuth scopes, or publish production without required owner action/Google verification",
+    "projectId": "tryweave-auth",
+    "projectName": "Weave",
+    "projectCreation": "verified in Google Cloud project selector",
+    "appName": "Weave (tryweave.si)",
+    "supportContact": "Owner Weave Google account",
+    "audience": "External testing",
+    "publicTestSeams": [
+      "Google consent name/logo rendered from owner OAuth client",
+      "Both native real-provider OAuth handoffs preserve existing-account-only authentication"
+    ],
+    "policyAgreement": "Owner completed Google policy agreement and said I agreed for terms",
+    "googleRejection": "The request failed because the app name does not comply with Google\u2019s requirements.",
+    "nameOptionsPresented": [
+      "Weave (tryweave.si)",
+      "TryWeave",
+      "Keep exact Weave; pause Google setup"
+    ],
+    "logo": "Supplied kit/png/weave-symbol.png saved; dashboard confirms Branding changes saved.",
+    "authorizedRedirectUri": "https://balanced-mutt-649.clerk.accounts.dev/v1/oauth_callback",
+    "customCredentials": "Saved by owner and verified read-only on 2026-10-08. Credential values are excluded from retained evidence.",
+    "nameDecision": "Google Save rejected both Weave and Weave App on 2026-10-08 with app-name noncompliance error; discarded failed edits and retained the previously accepted saved name.",
+    "clientDraft": {
+      "type": "Web application",
+      "name": "Weave Clerk development",
+      "javascriptOrigins": [],
+      "redirectUris": ["https://balanced-mutt-649.clerk.accounts.dev/v1/oauth_callback"],
+      "created": true
+    },
+    "handoff": "Credential-entry handoff completed by owner. Native Google consent identity and successful existing-account login still require acceptance; device-window control cannot click the simulator through Computer Use.",
+    "clientCreation": {
+      "userStatement": "created",
+      "verification": "Google modal heading OAuth client created; credentials not read or stored."
+    },
+    "ownerCredentialSubmission": {
+      "userStatement": "done",
+      "date": "2026-10-08",
+      "verification": "Custom credentials enabled; both fields populated; saved state has no Unsaved changes; expected public client ID matches.",
+      "evidence": "evidence/clerk-google-custom-saved.jpg"
+    },
+    "latestNameAttempts": {
+      "date": "2026-10-08",
+      "authorization": "App logo is missing and it says accounts.dev as App name, If Weave is not accepted use Weave App",
+      "results": {
+        "Weave": "rejected: app name does not comply with Google requirements",
+        "Weave App": "rejected: same app-name noncompliance error"
+      },
+      "savedName": "Weave (tryweave.si)",
+      "evidence": "evidence/google-weave-app-rejected.jpg"
+    },
+    "displayInvestigation": {
+      "ownerScreenshot": "evidence/google-domain-only-owner.png",
+      "savedLogo": "Correct supplied Weave symbol visually verified in Google Branding; evidence/google-saved-brand-logo.jpg",
+      "verificationState": "Google Verification centre says verification is not required because app is in Testing; no verification action offered. evidence/google-testing-verification.jpg",
+      "brandingUrls": "Application homepage, privacy policy and Terms of Service URLs empty; authorized domain accounts.dev",
+      "publicDomain": "https://tryweave.si/ is a Hostinger parked-domain page, verified through browser",
+      "explanation": "Official Clerk docs describe accounts.dev OAuth display in development. Official Google docs require verified/published branding for app name/logo display.",
+      "sources": [
+        "https://clerk.com/docs/guides/development/managing-environments",
+        "https://support.google.com/cloud/answer/15549049?hl=en"
+      ],
+      "remaining": [
+        "Owner public homepage/privacy-policy URLs and verified domain",
+        "Clerk production-domain setup and corresponding Google production client/review as appropriate",
+        "Google-approved exact app name and published brand verification",
+        "Fresh native branded handoff/login acceptance on both platforms"
+      ],
+      "ownerPublicSiteStatus": {
+        "date": "2026-10-08",
+        "userStatement": "No we are just getting started and we dont have anything",
+        "status": "Public homepage/privacy-policy prerequisites do not exist; branding completion awaits those prerequisites."
+      }
+    }
+  },
+  "loginUxRedesign": {
+    "date": "2026-10-08",
+    "userStatement": "approved",
+    "status": "complete; full authentication acceptance remains pending",
+    "task": "T049",
+    "design": "evidence/login-ux-approved.png",
+    "reference": "Owner supplied current web login screenshot",
+    "scope": "Login/OTP presentation, compact branding, outlined Google button, selected password/code tabs, focused six-slot OTP with one accessible input; preserve existing accounts, routes and provider validation.",
+    "scenarios": ["S03", "S08", "S15", "S16", "S19"],
+    "examples": {
+      "happy": "Choose password or email code with visible selected state; type/paste/autofill six-digit code and explicitly verify.",
+      "sad": "Provider rejection/expired code keeps accessible feedback and correction/resend controls.",
+      "edge": "Pending disables all input/actions; empty/partial code remains editable; enlarged text and keyboard scrolling retain reachable controls. Native cursor/range movement and correction update the visual code focus without restricting ordinary editing."
+    },
+    "publicTestSeams": [
+      "Real LoginScreen with controlled gateway boundary",
+      "Single native Verification code TextInput and passive slot presentation",
+      "Accessible selected method buttons; existing pending/feedback regression",
+      "Both native Metro bundles and actual platform rendered layout"
+    ],
+    "review": {
+      "finding": "OTP visual focus must follow native selection when correcting a middle digit",
+      "status": "resolved; reviewer follow-up found no further scoped issues",
+      "evidence": "evidence/login-ux/review.txt",
+      "red": "Two native-selection visual focus assertions failed",
+      "green": "86 tests in 13 suites passed"
+    },
+    "verification": {
+      "components": "86 tests /13 suites passed",
+      "rootVerify": "passed: lint, format, architecture, types, policy/application tests, web build and both production Metro bundles",
+      "iosPresentation": "passed on iOS26.2 at normal and accessibility-large text sizes",
+      "androidPresentation": "passed on Pixel7 API35 at fontScale1.0 and1.6; numeric keyboard, scrolling, pending/error, resend and Back checked",
+      "realProviderAcceptance": "remains open under T043/T044; fixture results are presentation-only",
+      "evidence": "evidence/login-ux/README.md"
+    },
+    "interactionSupersededBy": "T050/T051: owner requested stationary method switching and automatic six-digit verification; prior explicit-submit evidence is historical."
+  },
+  "loginInteractionFollowup": {
+    "date": "2026-10-08",
+    "status": "complete; full authentication acceptance remains pending",
+    "authorization": [
+      "When I click between password or Email code, the entire app layout jumps, I want only the fields changing to move that too with a nice animation.",
+      "In OTP screen as soon as last digit is entered auto verify, Dont wait for button press"
+    ],
+    "tasks": ["T050", "T051"],
+    "scenarios": ["S03", "S08", "S15", "S16", "S19"],
+    "examples": {
+      "happy": "Method changes keep branding/Google/tabs/email anchored while the password row and submit action transition locally; entering/pasting the sixth digit verifies automatically.",
+      "sad": "Invalid code announces feedback and permits a new automatic attempt; method changes clear old password/errors without moving fixed controls.",
+      "edge": "Partial codes do not submit; pending prevents duplicate verification; rapid toggling settles on selected method; reduced motion is immediate; enlarged text remains scrollable."
+    },
+    "publicTestSeams": [
+      "Real native screen bounds and animation recording",
+      "LoginScreen through AuthenticationGateway request/feedback boundary",
+      "Native password focus/accessibility exclusion and Reduce Motion preference"
+    ],
+    "verification": {
+      "components": "89 tests /13 suites passed, including both code purposes, partial input, pending duplicates, invalid-code retry and preserved scroll extent",
+      "rootVerify": "passed: lint, architecture, format, types, policy/application tests, web build and both production Metro bundles",
+      "androidPresentation": "Pixel7 API35 normal native flow passed; shared bounds unchanged in both directions; fontScale1.6, Reduce Motion and rapid toggle passed",
+      "iosPresentation": "iPhone17Pro iOS26.2 normal and accessibility-large flows passed; normal pending/keyboard dismissal and enlarged automatic invalid-code result/retry checked without Verify tap",
+      "review": "Both scroll extent findings resolved; final scoped review found no remaining actionable issues",
+      "realProviderAcceptance": "remains pending under original T043/T044; deterministic native presentation checks do not authenticate",
+      "evidence": "evidence/login-interactions/README.md"
+    }
+  },
+  "authHeaderFollowup": {
+    "date": "2026-10-09",
+    "authorization": "Keep logo centered so it stays consistent in both pages. Back button to be on the top",
+    "status": "complete",
+    "task": "T052",
+    "scenarioIds": ["S15", "S16", "S19"],
+    "design": "One shared safe-area header with identical centered Weave logo on Login and verification; verification Back at top-left, independent of scrolling/keyboard/form feedback.",
+    "happy": "Login and both verification purposes retain the same logo placement; Back returns to password selection.",
+    "sad": "Pending verification disables Back; rejected verification retains the header and usable retry.",
+    "edge": "Keyboard, scrolling and enlarged text leave top header accessible without logo displacement.",
+    "publicTestSeams": [
+      "LoginScreen accessible Weave image and Choose another method action",
+      "Native Login/OTP screenshot bounds and scroll interaction"
+    ],
+    "notApplicable": "No new permissions, data contracts, account policy, provider integration or concurrency behavior; existing S01\u2013S20 coverage remains authoritative.",
+    "verification": {
+      "mobileTests": 91,
+      "native": "Both Android API35/iOS26.2, normal and enlarged text, passed deterministic OTP/back/scroll flows; identical centered logo bounds in five states.",
+      "evidence": "evidence/auth-header",
+      "repository": "npm run verify passed with documented local DATABASE_URL: lint/architecture, formatting, types, tests, web production and both Metro builds."
+    },
+    "ipadLaunch": {
+      "date": "2026-10-09",
+      "device": "iPad Pro 13-inch (M5), iPadOS26.2",
+      "udid": "CBFFC726-1D7E-46ED-AFA9-2CB10B0E9EF5",
+      "result": "Installed existing universal simulator build; production app launched and Login rendering verified. Device Hub iPad window selected and raised.",
+      "evidence": "evidence/auth-header/ipad-current-login.png"
+    }
+  },
+  "businessAccountClarification": {
+    "date": "2026-10-09",
+    "ownerStatement": "B2B business where only the invited users can use this app",
+    "appleLoginAssessment": "Potential Guideline 4.8 business-account exemption when access requires organization-provisioned existing enterprise accounts; invitation-only alone does not guarantee exemption. App Review decides. No Apple login or account-policy change authorized.",
+    "source": "https://developer.apple.com/app-store/review/guidelines/#login-services"
+  },
+  "tabletAlignmentFollowup": {
+    "date": "2026-10-09",
+    "task": "T053",
+    "authorization": "Check the ipad, the login is from top down where as otp screen is centered, not consistent. UX in ipad is not good",
+    "status": "complete",
+    "scenarioIds": ["S15", "S16", "S19"],
+    "designAssumption": "Use one centered bounded frame on tablet-width windows; both forms start below the same shared logo/header. Optional preference asked; proceeding with stated recommendation after allowing response time.",
+    "happy": "Login, email-code and both OTP purposes share header/heading origin; Back returns without moving frame.",
+    "sad": "Pending/error feedback does not recenter the form; pending Back remains disabled.",
+    "edge": "Portrait/landscape tablet windows, narrow split views, enlarged text and keyboard scroll preserve reachability.",
+    "publicTestSeams": [
+      "LoginScreen alignment across challenge transition",
+      "Native tablet screenshots and accessible heading bounds"
+    ],
+    "notApplicable": "No new account, provider, permission, storage or network behavior.",
+    "verification": {
+      "mobileTests": 93,
+      "tablet": "Portrait, landscape and enlarged-text deterministic flows passed. Native logo/heading origins match across five normal-size states in each orientation.",
+      "iphone": "Normal-size automatic OTP/error/resend/Back regression passed.",
+      "evidence": "evidence/tablet-alignment",
+      "android": "Normal-size automatic OTP/error/resend/Back regression passed.",
+      "repository": "Full npm run verify passed with documented local DATABASE_URL, including93 mobile tests and web/both Metro builds.",
+      "restoration": "Original iPad portrait/text size restored; production app explicitly cold-launched on iPad/iPhone, and Android restored by runner."
+    }
+  },
+  "responsiveAuthFollowup": {
+    "date": "2026-10-09",
+    "task": "T054",
+    "authorization": "run latest code in both ios phone and ipad; centered does not look good in mobile but good in tab; landscape tab layout similar to shared web",
+    "status": "implemented-verification-in-progress",
+    "scenarioIds": ["S15", "S16", "S19"],
+    "design": "Top-aligned phone form in both orientations; centered single-column portrait tablet; landscape tablet split with linen bag artwork/tagline on left and cream authentication pane on right. Header/form origin remains shared for Login and OTP.",
+    "happy": "Rotate tablet between portrait and landscape; show the split only when both dimensions are tablet-sized and width permits; email/code state persists.",
+    "sad": "Pending/error/back and auto-code behavior remain unchanged.",
+    "edge": "Rotated phones and narrow tablet windows never display the wide split; enlarged text/keyboard scroll within authentication pane.",
+    "publicTestSeams": [
+      "LoginScreen with real Dimensions changes and gateway/controller seam",
+      "Native iPhone/tablet portrait/landscape captures and interactions"
+    ],
+    "artwork": "Adapt the supplied web reference into a standalone bag image; keep UI logo from the original brand kit.",
+    "edgeToEdgeCorrection": {
+      "authorization": "Why is there a gap in bottom?",
+      "cause": "The outer safe-area wrapper exposes cream around the entire split.",
+      "behavior": "Decorative artwork extends to screen edges; form controls and artwork copy retain safe-area protection.",
+      "verification": "Regression checks artwork is outside the form safe area; native screenshot checks bottom strip."
+    },
+    "verification": {
+      "mobileTests": 94,
+      "repository": "Full npm run verify passed including web and both Metro production builds.",
+      "iphone": "Normal Login/OTP automatic verification/error/resend/Back flow passes29s after safe-area correction.",
+      "ipad": "Normal landscape Login/OTP flow passes31s before safe-area follow-up. Portrait/landscape production visuals inspected. Enlarged text automation interfered with iPad windowing; not a passing acceptance result.",
+      "evidence": "evidence/responsive-auth"
+    },
+    "orientationDiagnosis": {
+      "date": "2026-10-09",
+      "finding": "Simulator frame rotated while iPadOS Home and Weave remained landscape; installed app supports all iPad orientations.",
+      "recovery": "After simulator restart/test-driver reinitialization and Device Hub rotations, verified portrait-landscape-portrait. Exact underlying simulator trigger unconfirmed.",
+      "sourceChanged": false,
+      "finalState": "Real app upright portrait; enlarged-text acceptance still pending."
+    }
+  },
+  "publication": {
+    "date": "2026-10-09",
+    "authorization": "Looks good commit and create PR",
+    "baseIntegrated": "810974c",
+    "packageManager": "pnpm@11.1.1",
+    "status": "validated-for-draft-pr",
+    "evidence": "evidence/publication/summary.txt",
+    "remainingAcceptance": "Existing F1-F4, T048 and T054 remain open; required CI/code-owner review pending."
+  },
+  "comparisonConstantsFollowup": {
+    "task": "T055",
+    "date": "2026-10-09",
+    "confirmation": "Approve; then requested all comparisons and answered yes to strings and numbers across authored TypeScript/JavaScript",
+    "scope": "Exported constants for string/numeric comparison operands and switch cases across authored TS/JS. Allow null/undefined, booleans, typeof checks, and literal test expectations. Preserve mobile session status construction constants.",
+    "scenarios": [
+      "S21 exported comparison constants preserve behavior and pass lint",
+      "S22 inline strings/numbers and non-exported static comparison constants fail lint",
+      "S23 reversed/relational comparisons, static templates, negative numbers, switch cases, and root/app lint entrypoints; agreed language/test exceptions remain allowed"
+    ],
+    "publicTestSeams": [
+      "ESLint Linter through actual mobile and root configurations",
+      "Existing native gateway, auth controller and navigation tests"
+    ],
+    "status": "complete",
+    "verification": {
+      "ruleCases": 132,
+      "policyTests": 165,
+      "mobileTests": 94,
+      "webTests": 58,
+      "apiTests": 2,
+      "integrationTests": 3,
+      "repository": "pnpm run verify passed, including both Metro production bundles and API/web builds",
+      "database": "Isolated PostgreSQL18; corrected test-port startup error before successful rerun",
+      "simulators": "iPhone17Pro and iPadPro13M5 relaunched; latest Login screens visually verified"
+    },
+    "evidence": "evidence/comparison-constants",
+    "fallbackCorrection": {
+      "authorization": "Why is this state.error?.code ?? 'unexpected' ? a string",
+      "scope": "Extend approved constants policy to string/numeric fallbacks using ?? and ||; use AUTH_ERROR_CODE for authored mobile error values and derive its union/validation vocabulary.",
+      "scenarios": [
+        "S22 rejects literal and non-exported static fallback values",
+        "S23 permits exported fallback constants, runtime fallbacks and null/undefined/boolean values"
+      ],
+      "status": "complete",
+      "ruleTests": 172,
+      "policyTests": 205,
+      "verification": "Mobile/web/shared/scripts lint, workspace types and all tests pass. Fallback RED:20 expected failures, then172 rule cases GREEN.",
+      "evidence": "evidence/comparison-constants/fallback-green.txt"
+    },
+    "routeCorrection": {
+      "authorization": "Stack.Screen name=\"Home\" this ?; and this navigationKey=\"protected\"",
+      "scope": "Export route names and navigation keys; enforce navigation Screen/Group/Navigator identifier props. Preserve navigation behavior and readable UI/test expectations.",
+      "scenarios": [
+        "S21 exported route/key constants preserve signed-in/out navigation",
+        "S22 literal or non-exported static navigation identifiers fail lint",
+        "S23 JSX expression/template values are covered; ordinary UI/form props remain allowed"
+      ],
+      "publicTestSeams": [
+        "Actual mobile/root ESLint configurations",
+        "RootNavigator route/history integration tests"
+      ],
+      "status": "complete",
+      "verification": "14 expected lint RED failures; 198 rule and 231 policy tests pass. Mobile typecheck, 94 mobile tests, mobile/web/shared/root lint pass.",
+      "evidence": "evidence/comparison-constants/routes-green.txt"
+    },
+    "alignmentCorrection": {
+      "authorization": "START_ALIGNMENT refactor to ALIGMENT.START and ALIGNMENT.CENTER",
+      "scope": "Group BrandLogo alignment values in exported ALIGNMENT; derive prop type and use CENTER as default. Existing layout behavior preserved.",
+      "scenarioIds": ["S21"],
+      "status": "complete",
+      "verification": "Mobile typecheck, lint and all 94 mobile tests pass after rename."
+    },
+    "buttonVariantCorrection": {
+      "authorization": "Same for this export const PRIMARY_BUTTON_VARIANT = 'primary';",
+      "scope": "Group primary/outline/text in exported BUTTON_VARIANT; reuse in prop type, default, comparisons and caller props. Preserve behavior under S21.",
+      "status": "complete",
+      "verification": "Mobile typecheck, targeted lint and all94 mobile tests pass; evidence/comparison-constants/button-variant-tests.txt"
+    },
+    "typographyVariantCorrection": {
+      "authorization": "Change TITLE_VARIANT and HEADING_VARIANT to VARIANT.TITLE",
+      "scope": "Group typography variants in exported VARIANT; reuse in prop type, default, comparisons and caller props. Preserve S21 rendering/accessibility behavior.",
+      "status": "complete",
+      "verification": "Mobile lint, typecheck and all94 mobile tests pass; evidence/comparison-constants/typography-variant-tests.txt"
+    },
+    "keyboardTypeCorrection": {
+      "authorization": "readonly keyboardType?: 'email-address' | 'number-pad' | 'default';",
+      "scope": "Export shared KEYBOARD_TYPE; derive FormField keyboard type and reuse defaults/callers, preserving S21 input behavior.",
+      "status": "complete",
+      "verification": "Mobile lint, typecheck and94 mobile tests pass; evidence/comparison-constants/keyboard-type-tests.txt"
+    },
+    "mobileAudit": {
+      "authorization": "Do a complete check on mobile app and fix these issue",
+      "scope": "Audit all authored mobile TS/TSX runtime option values, including argument/assignment/return/default/JSX contexts, group vocabularies and derive unions. Preserve copy, structural keys, test expectations, formatting strings, style dimensions and required native codegen literal. Add typed finite-string-option lint in mobile and root entrypoints.",
+      "scenarios": [
+        "S21 grouped constants preserve auth/navigation/component behavior",
+        "S22 inline finite-string options fail lint in calls, objects, defaults, return values and JSX",
+        "S23 allow exported constant definitions, display text, structural keys, general strings and independent test fixtures; catch new vocabularies without a value list"
+      ],
+      "publicTestSeams": [
+        "Actual typed ESLint in mobile and root configurations",
+        "Existing auth controller/gateway/navigation/component suites"
+      ],
+      "status": "complete",
+      "verification": {
+        "typedRuleCases": 48,
+        "policyTests": 279,
+        "mobileTests": 94,
+        "webTests": 58,
+        "apiTests": 2,
+        "lint": "mobile and root scoped mobile/scripts/tests/shared config pass",
+        "typecheck": "mobile passes",
+        "bundles": "Android and iOS production Metro bundles pass; only environment color warnings",
+        "nativeBuilds": "not repeated; no native behavior changes",
+        "database": "not repeated; no database changes",
+        "workspace": "Full pnpm test passed after offline frozen dependency synchronization; all4 workspace tasks uncached. Fresh mobile typecheck and app/root lint passed afterward."
+      },
+      "evidence": "evidence/comparison-constants/mobile-audit.md"
+    },
+    "publication": {
+      "date": "2026-10-10",
+      "authorization": "push changes",
+      "verification": "pnpm run verify passed;279 policy,94 mobile,58 web,2 API tests;production builds pass.3/3 database integration tests pass on isolated PostgreSQL18.",
+      "evidence": "evidence/comparison-constants/publish-verify.txt",
+      "branch": "feat/WEA-10/mobile-auth-recovery",
+      "pullRequest": "https://github.com/weaves-app/weave/pull/11"
+    }
+  }
+}

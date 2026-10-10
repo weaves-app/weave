@@ -1,5 +1,7 @@
 import type {OrganizationGateway, OrganizationOption} from '../application/contracts';
 
+export const MIN_ORGANIZATION_COUNT = 0;
+
 export interface OrganizationPage {
   readonly data: readonly OrganizationOption[];
   readonly totalCount: number;
@@ -36,7 +38,7 @@ export function createClerkOrganizationGateway(port: OrganizationPort): Organiza
 
       if (
         !Number.isInteger(page.totalCount) ||
-        page.totalCount < 0 ||
+        page.totalCount < MIN_ORGANIZATION_COUNT ||
         (!page.data.length && result.length < page.totalCount)
       )
         throw new Error('Invalid organization response');

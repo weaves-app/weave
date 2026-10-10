@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testsuites>
+  <testsuite name="Test Suite" device="iPhone 17 Pro - iOS 26.2 - C4BFD4BD-394C-459F-8A0D-A7C04178C96B" tests="1" failures="0" time="18.33" timestamp="2026-10-08T17:02:16">
+    <testcase id="WEA-10 S18 unregistered email password and code" name="WEA-10 S18 unregistered email password and code" classname="WEA-10 S18 unregistered email password and code" file="/private/tmp/weave-unknown-ios.yaml" time="18.32" timestamp="2026-10-08T17:02:16" status="SUCCESS"/>
+  </testsuite>
+</testsuites>

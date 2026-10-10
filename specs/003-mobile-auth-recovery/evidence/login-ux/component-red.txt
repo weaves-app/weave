@@ -1,0 +1,99 @@
+
+> @weave/mobile@0.0.0 test
+> npm run test:privacy && jest --runInBand --watchman=false --runTestsByPath src/auth/login.test.tsx
+
+
+> @weave/mobile@0.0.0 test:privacy
+> node scripts/apply-renderer-privacy.mjs && node scripts/renderer-privacy-probe.mjs
+
+Applied pinned React Native renderer diagnostics privacy patch.
+Renderer privacy probe: three severities sanitized; fatality preserved.
+FAIL src/auth/login.test.tsx
+  ✓ S02/S03 offers exactly three methods and accessible password validation (154 ms)
+  ✓ S08 password stays untrimmed in request, fields clear and pending actions disable (14 ms)
+  ✓ S16/S19 supports signIn verification and method return (69 ms)
+  ✓ S16/S19 supports deviceTrust verification and method return (68 ms)
+  ✓ S17/S18/S20 displays safe existingAccountRequired feedback and usable method controls (59 ms)
+  ✓ S17/S18/S20 displays safe verificationRequired feedback and usable method controls (60 ms)
+  ✓ S17/S18/S20 displays safe cancelled feedback and usable method controls (59 ms)
+  ✓ S17 cancelled Google returns a working visible password form (69 ms)
+  ✓ S15 the complete login form applies safe-area edges around its keyboard-aware scroll layout (8 ms)
+  ✕ S15 method selection communicates the selected form to assistive technology (7 ms)
+  ✕ S15/S16 formatted code paste fills one editable verification value (63 ms)
+  ✕ S15/S19 verification requests the native one-time-code autofill keyboard (63 ms)
+
+  ● S15 method selection communicates the selected form to assistive technology
+
+    expect(element).toHaveProp("accessibilityState", ObjectContaining {"selected": true})
+
+    Expected element to have prop:
+      accessibilityState={ObjectContaining {"selected": true}}
+    Received:
+      accessibilityState={{"busy": false, "checked": undefined, "disabled": false, "expanded": undefined, "selected": undefined}}
+
+      107 |   setup();
+      108 |   await waitFor(() => expect(screen.getByLabelText('Email')).toBeTruthy());
+    > 109 |   expect(screen.getByRole('button', {name: 'Email and password'})).toHaveProp(
+          |                                                                    ^
+      110 |     'accessibilityState', expect.objectContaining({selected: true}),
+      111 |   );
+      112 |   fireEvent.press(screen.getByRole('button', {name: 'Email code'}));
+
+      at Object.toHaveProp (src/auth/login.test.tsx:109:68)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● S15/S16 formatted code paste fills one editable verification value
+
+    expect(element).toHaveDisplayValue()
+
+    Expected element to have display value:
+      123456
+    Received:
+      12 34-56
+
+      130 |   await waitFor(() => expect(screen.getByLabelText('Verification code')).toBeTruthy());
+      131 |   fireEvent.changeText(screen.getByLabelText('Verification code'), '12 34-56');
+    > 132 |   expect(screen.getByLabelText('Verification code')).toHaveDisplayValue('123456');
+          |                                                      ^
+      133 |   fireEvent.changeText(screen.getByLabelText('Verification code'), '123');
+      134 |   expect(screen.getByLabelText('Verification code')).toHaveDisplayValue('123');
+      135 |   expect(screen.getByRole('button', {name: 'Verify code'})).not.toBeDisabled();
+
+      at Object.toHaveDisplayValue (src/auth/login.test.tsx:132:54)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● S15/S19 verification requests the native one-time-code autofill keyboard
+
+    expect(element).toHaveProp("autoComplete", "one-time-code")
+
+    Expected element to have prop:
+      autoComplete="one-time-code"
+    Received:
+      undefined
+
+      145 |   fireEvent.press(screen.getByRole('button', {name: 'Log in'}));
+      146 |   await waitFor(() => expect(screen.getByLabelText('Verification code')).toBeTruthy());
+    > 147 |   expect(screen.getByLabelText('Verification code')).toHaveProp('autoComplete', 'one-time-code');
+          |                                                      ^
+      148 |   expect(screen.getByLabelText('Verification code')).toHaveProp('keyboardType', 'number-pad');
+      149 |   expect(screen.getByLabelText('Verification code')).toHaveProp('autoFocus', true);
+      150 | });
+
+      at Object.toHaveProp (src/auth/login.test.tsx:147:54)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+Test Suites: 1 failed, 1 total
+Tests:       3 failed, 9 passed, 12 total
+Snapshots:   0 total
+Time:        1.075 s, estimated 2 s
+Ran all test suites within paths "src/auth/login.test.tsx".
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path /Users/pravinraj/workspace/weave/apps/mobile
+npm error workspace @weave/mobile@0.0.0
+npm error location /Users/pravinraj/workspace/weave/apps/mobile
+npm error command failed
+npm error command sh -c npm run test:privacy && jest --runInBand --watchman=false --runTestsByPath src/auth/login.test.tsx

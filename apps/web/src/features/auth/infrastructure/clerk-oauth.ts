@@ -1,8 +1,18 @@
+import {
+  CLERK_COMPLETE_STATUS,
+  CLERK_MISSING_REQUIREMENTS_STATUS,
+  NO_MISSING_FIELDS,
+  CLERK_CLIENT_TRUST_STATUS,
+  CLERK_SECOND_FACTOR_STATUS,
+} from './clerk-constants';
+
 import {pendingTaskMessage} from '../application/session-task';
 
 import type {SignInFutureResource, SignUpFutureResource} from '@clerk/nextjs/types';
 
 import type {CallbackResult, OAuthGateway} from '../application/contracts';
+
+import {SESSION_TASK, AUTH_MODE} from '../application/auth-constants';
 
 export interface OAuthResources {
   readonly signIn: Pick<
@@ -40,7 +50,7 @@ export function createOAuthGateway(resources: OAuthResources): OAuthGateway {
       decorateUrl,
     }) => {
       result =
-        session?.currentTask && session.currentTask.key !== 'choose-organization'
+        session?.currentTask && session.currentTask.key !== SESSION_TASK.CHOOSE_ORGANIZATION
           ? {
               error: pendingTaskMessage(session.currentTask.key),
             }
@@ -48,7 +58,9 @@ export function createOAuthGateway(resources: OAuthResources): OAuthGateway {
     };
 
     const finalize = async (mode: 'signup' | 'signin'): Promise<CallbackResult> => {
-      const {error} = await (mode === 'signin' ? resources.signIn : resources.signUp).finalize({
+      const {error} = await (
+        mode === AUTH_MODE.SIGN_IN ? resources.signIn : resources.signUp
+      ).finalize({
         navigate,
       });
 
@@ -57,9 +69,10 @@ export function createOAuthGateway(resources: OAuthResources): OAuthGateway {
       return result;
     };
 
-    const signinComplete = (): boolean => resources.signIn.status === 'complete';
+    const signinComplete = (): boolean => resources.signIn.status === CLERK_COMPLETE_STATUS;
 
-    if (resources.pendingTask === 'choose-organization') return {destination: '/organizations'};
+    if (resources.pendingTask === SESSION_TASK.CHOOSE_ORGANIZATION)
+      return {destination: '/organizations'};
 
     if (resources.pendingTask) return {error: pendingTaskMessage(resources.pendingTask)};
 
@@ -79,7 +92,7 @@ export function createOAuthGateway(resources: OAuthResources): OAuthGateway {
       if (error) throw error;
     }
 
-    if (resources.signUp.status === 'complete') return finalize('signup');
+    if (resources.signUp.status === CLERK_COMPLETE_STATUS) return finalize('signup');
 
     const existing = resources.signIn.existingSession ?? resources.signUp.existingSession;
 
@@ -89,8 +102,8 @@ export function createOAuthGateway(resources: OAuthResources): OAuthGateway {
       return result;
     }
 
-    if (resources.signUp.status === 'missing_requirements') {
-      if (resources.signUp.missingFields.length > 0)
+    if (resources.signUp.status === CLERK_MISSING_REQUIREMENTS_STATUS) {
+      if (resources.signUp.missingFields.length > NO_MISSING_FIELDS)
         return {
           error: `Google sign-up requires additional information: ${resources.signUp.missingFields.map((field) => field.replaceAll('_', ' ')).join(', ')}. Contact your workspace administrator to complete these requirements.`,
         };
@@ -100,8 +113,8 @@ export function createOAuthGateway(resources: OAuthResources): OAuthGateway {
     }
 
     if (
-      resources.signIn.status === 'needs_client_trust' ||
-      resources.signIn.status === 'needs_second_factor'
+      resources.signIn.status === CLERK_CLIENT_TRUST_STATUS ||
+      resources.signIn.status === CLERK_SECOND_FACTOR_STATUS
     )
       return {destination: '/sign-in'};
 

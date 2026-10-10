@@ -1,6 +1,14 @@
 import ts from 'typescript';
 import path from 'node:path';
 
+export const COMMONJS_LOADER = 'require';
+
+export const EMPTY_FLAGS = 0;
+
+export const NO_DECORATORS = 0;
+
+export const INJECT_DECORATOR = 'Inject';
+
 // Inspects authored API constructors and imports. Module composition factories are
 // deliberately outside the constructor rule; TypeScript checks their contracts.
 export function inspectSources(sources, workspaceOptions = {}) {
@@ -153,7 +161,7 @@ export function inspectSources(sources, workspaceOptions = {}) {
       if (
         ts.isCallExpression(node) &&
         (node.expression.kind === ts.SyntaxKind.ImportKeyword ||
-          node.expression.getText(source) === 'require')
+          node.expression.getText(source) === COMMONJS_LOADER)
       ) {
         if (node.arguments[0] && ts.isStringLiteral(node.arguments[0]))
           dependency(node, node.arguments[0].text);
@@ -162,15 +170,16 @@ export function inspectSources(sources, workspaceOptions = {}) {
 
       if (relative.startsWith('apps/api/src/') && ts.isConstructorDeclaration(node)) {
         const decorated =
-          ts.canHaveDecorators(node.parent) && (ts.getDecorators(node.parent)?.length ?? 0) > 0;
+          ts.canHaveDecorators(node.parent) &&
+          (ts.getDecorators(node.parent)?.length ?? NO_DECORATORS) > NO_DECORATORS;
 
         for (const parameter of node.parameters) {
           const type = checker.getTypeAtLocation(parameter);
           const primitive =
             (type.flags &
               (ts.TypeFlags.StringLike | ts.TypeFlags.NumberLike | ts.TypeFlags.BooleanLike)) !==
-            0;
-          const contract = (type.getSymbol()?.flags & ts.SymbolFlags.Interface) !== 0;
+            EMPTY_FLAGS;
+          const contract = (type.getSymbol()?.flags & ts.SymbolFlags.Interface) !== EMPTY_FLAGS;
 
           if (!primitive && !contract)
             report(
@@ -184,7 +193,7 @@ export function inspectSources(sources, workspaceOptions = {}) {
             !(ts.getDecorators(parameter) ?? []).some(
               (d) =>
                 ts.isCallExpression(d.expression) &&
-                d.expression.expression.getText(source) === 'Inject',
+                d.expression.expression.getText(source) === INJECT_DECORATOR,
             )
           )
             report(parameter, 'Decorated interface injection requires an explicit @Inject token.');

@@ -1,3 +1,5 @@
+export const PRE_STABLE_MAJOR_VERSION = 0;
+
 export function nextVersion(previous, commits) {
   if (!/^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/.test(previous))
     throw new Error('Invalid stable SemVer');
@@ -7,7 +9,7 @@ export function nextVersion(previous, commits) {
   let [major, minor, patch] = previous.split('.').map(Number);
 
   if (commits.some((commit) => /^[a-z]+(?:\([^)]*\))?!:/.test(commit))) {
-    if (major === 0) minor++;
+    if (major === PRE_STABLE_MAJOR_VERSION) minor++;
     else {
       major++;
       minor = 0;
