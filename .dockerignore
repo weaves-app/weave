@@ -11,3 +11,6 @@
 .codex
 .specify
 .claude
+
+# Developer-local pnpm cache.
+.pnpm-store/

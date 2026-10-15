@@ -1,0 +1,10 @@
+PASS src/auth/infrastructure/zustand-auth-state-store.test.ts
+  ✓ WEA-27 S01/S06 replacement synchronously updates both readers and removes old error (1 ms)
+  ✓ WEA-27 S06 unsubscribe and disposal isolate lifetimes and reject later writes
+  ✓ WEA-27 S06 identical replacement preserves snapshot identity without notification
+
+Test Suites: 1 passed, 1 total
+Tests:       3 passed, 3 total
+Snapshots:   0 total
+Time:        0.411 s, estimated 1 s
+Ran all test suites matching /src\/auth\/infrastructure\/zustand-auth-state-store.test.ts/i.

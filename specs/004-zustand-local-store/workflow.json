@@ -1,0 +1,147 @@
+{
+  "ticket": "WEA-27",
+  "ticketUrl": "https://linear.app/weaveapp/issue/WEA-27/integrate-zustand-local-state-in-the-react-native-app",
+  "status": "implemented-awaiting-live-acceptance",
+  "scenariosConfirmed": true,
+  "scenarioIds": ["S01", "S02", "S03", "S04", "S05", "S06", "S07"],
+  "publicTestSeams": [
+    "Framework-free state port and controller contracts",
+    "App-root store factory, subscription and disposal contract",
+    "Selected-state hook consumers",
+    "Login/Home and RootNavigator interactions",
+    "AppErrorBoundary Reload and native gateway fake callbacks"
+  ],
+  "stack": {
+    "parentPr": "https://github.com/weaves-app/weave/pull/11",
+    "baseBranch": "feat/WEA-10/mobile-auth-recovery",
+    "baseCommit": "c9998b4af2af8762c6c2ea10dbc756263aab1e9c"
+  },
+  "sourceChangesStarted": true,
+  "hooks": {
+    "before_specify": "No extensions.yml present",
+    "after_specify": "No extensions.yml present",
+    "before_plan": "No extensions.yml present",
+    "after_plan": "No extensions.yml present",
+    "before_tasks": "No extensions.yml present",
+    "after_tasks": "No extensions.yml present",
+    "before_implement": "No extensions.yml present",
+    "after_implement": "No extensions.yml present",
+    "before_converge": "No extensions.yml present",
+    "after_converge": "No extensions.yml present"
+  },
+  "plan": {
+    "date": "2026-10-15",
+    "authorization": "User invoked speckit-plan; not scenario confirmation",
+    "artifacts": [
+      "plan.md",
+      "research.md",
+      "data-model.md",
+      "quickstart.md",
+      "contracts/local-state.md",
+      "contracts/scenario-tests.md"
+    ],
+    "dependency": {
+      "name": "zustand",
+      "version": "5.0.15",
+      "installed": false,
+      "selectionPolicy": "latest stable at implementation; save exact resolved version",
+      "latestVerifiedOn": "2026-10-15",
+      "verificationSource": "https://registry.npmjs.org/zustand/latest"
+    },
+    "gate": "Phase 0 research and Phase 1 design complete; implementation gated on scenario confirmation, tasks and analyze",
+    "actualBranch": "feat/WEA-27/zustand-local-store",
+    "setupReportedBranch": "004-zustand-local-store"
+  },
+  "taskArtifact": "tasks.md",
+  "taskSummary": {
+    "total": 37,
+    "byStory": {
+      "US1": 8,
+      "US2": 7,
+      "US3": 5
+    },
+    "shared": 17,
+    "parallelTaskIds": ["T010", "T011", "T018", "T019", "T020", "T027", "T028", "T031"],
+    "formatValidated": true
+  },
+  "analysisRemediation": {
+    "date": "2026-10-15",
+    "authorization": "take all recommended",
+    "findingIds": ["C1", "U1", "A1"],
+    "changes": [
+      "Runtime/provider ownership tests T014 precede first implementation T015",
+      "Effect-owned activation: fresh runtime per setup; terminal cleanup; explicit replay and initialization feedback",
+      "Explicit shared automated and Android/iOS acceptance matrix"
+    ],
+    "scope": "Design artifacts only; scenario confirmation remains pending",
+    "analysisRerun": "Read-only analysis completed in chat: no findings; all 13 requirements/outcomes covered."
+  },
+  "confirmation": {
+    "date": "2026-10-15",
+    "userStatement": "$speckit-implement",
+    "interpretation": "Explicit implementation request for the reviewed S01\u2013S07 specification after the user asked what next and was instructed to confirm and implement.",
+    "scenarioIds": ["S01", "S02", "S03", "S04", "S05", "S06", "S07"]
+  },
+  "implementation": {
+    "date": "2026-10-15",
+    "resolvedZustand": "5.0.15",
+    "baselineMobileTests": 94,
+    "behavioralRedLogs": [
+      "evidence/foundation-red.txt",
+      "evidence/us1-controller-red.txt",
+      "evidence/us1-lifecycle-red.txt",
+      "evidence/us3-selector-red.txt"
+    ],
+    "greenLogs": [
+      "evidence/foundation-green.txt",
+      "evidence/us1-controller-green.txt",
+      "evidence/us1-lifecycle-green.txt",
+      "evidence/us1-green.txt",
+      "evidence/us2-green.txt",
+      "evidence/us3-green.txt"
+    ],
+    "codeReview": "No production defects found; S07 restart coverage gap addressed with verification/active-session tests",
+    "initialStateFactory": "Existing controller defaults extracted during tested refactor; no new domain states",
+    "providerBinding": "One-shot state subscription binds on first controller publication; removes readiness listener immediately",
+    "subscriptionContract": "Framework-free listener receives current and previous AuthViewState to satisfy Zustand structural typing"
+  },
+  "verification": {
+    "mobileTests": 108,
+    "policyTests": 279,
+    "webTests": 58,
+    "apiTests": 2,
+    "rootVerify": "passed with disposable DATABASE_URL and local Watchman/cache access",
+    "frozenInstall": "passed offline",
+    "databaseIntegration": "3/3 passed PostgreSQL18.1 isolated fixture",
+    "metroBundles": "Android and iOS passed",
+    "androidNativeTests": "passed",
+    "androidBuild": "passed",
+    "iosNativeTests": "passed",
+    "iosHostContracts": "31 passed",
+    "iosBuild": "passed unsigned simulator",
+    "liveDeviceAcceptance": "unrun; no active devices or supplied live test fixtures",
+    "ci": "No checks reported at creation; required CI/review remain open",
+    "codeOwnerReview": "pending"
+  },
+  "convergence": {
+    "outcome": "tasks_appended",
+    "artifact": "convergence.md",
+    "findingIds": ["F1"],
+    "remainingTasks": ["T034", "T037"],
+    "draftPublication": "Permitted for review with live acceptance gap disclosed; not merge-ready"
+  },
+  "publication": {
+    "date": "2026-10-15",
+    "pullRequest": "https://github.com/weaves-app/weave/pull/12",
+    "isDraft": true,
+    "baseBranch": "feat/WEA-10/mobile-auth-recovery",
+    "implementationCommit": "1677ab6d5302a71ba50cb9aecc066b5b6f0f3608",
+    "verifiedAuthor": "Pravin Raj <pravinrajmb@gmail.com>",
+    "verifiedCommitter": "Pravin Raj <pravinrajmb@gmail.com>",
+    "verifiedGithubAccount": "pravinrajmb",
+    "checksAtCreation": "No status checks reported in initial GitHub snapshot",
+    "retargetAfterParentMerge": "develop",
+    "localHooks": "pre-commit, commit-msg and pre-push passed without bypass"
+  },
+  "remainingTasks": ["T034", "T037"]
+}

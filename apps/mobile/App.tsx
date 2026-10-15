@@ -2,8 +2,8 @@ import {StatusBar} from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 import {STATUS_BAR_STYLE} from './src/components/native-options';
-import {createAuthController} from './src/auth/application/auth-controller';
-import type {AuthController} from './src/auth/application/auth-controller';
+import {createAuthRuntime} from './src/auth/auth-runtime';
+import type {AuthRuntime} from './src/auth/auth-runtime';
 import {createNativeAuthGateway} from './src/auth/infrastructure/native-auth-gateway';
 import {createNativeAuthTransport} from './src/auth/infrastructure/native-auth-transport';
 import {systemClock} from './src/auth/infrastructure/system-clock';
@@ -12,23 +12,23 @@ import {RootNavigator} from './src/navigation/root-navigator';
 import {AppErrorBoundary} from './src/recovery/app-error-boundary';
 
 export interface AppProps {
-  readonly createController?: () => AuthController;
+  readonly createRuntime?: () => AuthRuntime;
 }
 
-function createController(): AuthController {
-  return createAuthController(createNativeAuthGateway(createNativeAuthTransport()), systemClock);
+function createRuntime(): AuthRuntime {
+  return createAuthRuntime(createNativeAuthGateway(createNativeAuthTransport()), systemClock);
 }
 
-export function App({createController: factory = createController}: AppProps): React.JSX.Element {
+export function App({createRuntime: factory = createRuntime}: AppProps): React.JSX.Element {
   return (
     <AppErrorBoundary
       renderChildren={() => (
-        <AuthProvider createController={factory}>
-          <SafeAreaProvider>
+        <SafeAreaProvider>
+          <AuthProvider createRuntime={factory}>
             <RootNavigator />
             <StatusBar barStyle={STATUS_BAR_STYLE.DARK_CONTENT} />
-          </SafeAreaProvider>
-        </AuthProvider>
+          </AuthProvider>
+        </SafeAreaProvider>
       )}
     />
   );

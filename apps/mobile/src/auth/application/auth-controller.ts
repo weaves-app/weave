@@ -1,3 +1,4 @@
+import type {AuthStateStore} from './auth-state-store';
 import type {OperationContext, AuthenticationGateway} from './authentication-gateway';
 import type {Clock} from './clock';
 import type {
@@ -35,13 +36,11 @@ export interface AuthController {
   dispose(): void;
 }
 
-export function createAuthController(gateway: AuthenticationGateway, clock: Clock): AuthController {
-  let state: AuthViewState = {
-    session: {status: SESSION_STATUS.RESOLVING, generation: 0, revision: 0},
-    attempt: {method: AUTH_METHOD.PASSWORD, stage: LOGIN_STAGE.IDLE},
-    pending: false,
-  };
-  const listeners = new Set<() => void>();
+export function createAuthController(
+  gateway: AuthenticationGateway,
+  clock: Clock,
+  store: AuthStateStore,
+): AuthController {
   let disposed = false;
   let foreground = true;
   let started = false;
@@ -54,8 +53,7 @@ export function createAuthController(gateway: AuthenticationGateway, clock: Cloc
   function publish(next: AuthViewState): void {
     if (disposed) return;
 
-    state = next;
-    listeners.forEach((listener) => listener());
+    store.replace(next);
   }
 
   function accept(snapshot: SessionSnapshot, fromCommand = false): void {
@@ -65,8 +63,11 @@ export function createAuthController(gateway: AuthenticationGateway, clock: Cloc
       context?.generation === snapshot.generation
     ) {
       publish({
-        ...state,
-        session: {...snapshot, revision: Math.max(snapshot.revision, state.session.revision)},
+        ...store.getState(),
+        session: {
+          ...snapshot,
+          revision: Math.max(snapshot.revision, store.getState().session.revision),
+        },
         error: snapshot.error,
       });
 
@@ -76,14 +77,14 @@ export function createAuthController(gateway: AuthenticationGateway, clock: Cloc
     if (
       !context ||
       snapshot.generation !== context.generation ||
-      snapshot.revision < state.session.revision ||
-      (snapshot.revision === state.session.revision &&
-        state.session.status !== SESSION_STATUS.RESOLVING &&
+      snapshot.revision < store.getState().session.revision ||
+      (snapshot.revision === store.getState().session.revision &&
+        store.getState().session.status !== SESSION_STATUS.RESOLVING &&
         !fromCommand)
     )
       return;
 
-    publish({...state, session: snapshot, error: snapshot.error});
+    publish({...store.getState(), session: snapshot, error: snapshot.error});
   }
 
   function abandon(): void {
@@ -102,7 +103,8 @@ export function createAuthController(gateway: AuthenticationGateway, clock: Cloc
       return;
     }
 
-    const preserveChallenge = !state.pending && state.attempt.stage === LOGIN_STAGE.AWAITING_CODE;
+    const preserveChallenge =
+      !store.getState().pending && store.getState().attempt.stage === LOGIN_STAGE.AWAITING_CODE;
 
     if (!preserveChallenge) abandon();
 
@@ -113,11 +115,11 @@ export function createAuthController(gateway: AuthenticationGateway, clock: Cloc
 
     context = operation;
     publish({
-      ...state,
+      ...store.getState(),
       session: {status: SESSION_STATUS.RESOLVING, generation: operation.generation, revision: 0},
       attempt: preserveChallenge
-        ? state.attempt
-        : {method: state.attempt.method, stage: LOGIN_STAGE.IDLE},
+        ? store.getState().attempt
+        : {method: store.getState().attempt.method, stage: LOGIN_STAGE.IDLE},
       pending: false,
       error: undefined,
     });
@@ -169,7 +171,12 @@ export function createAuthController(gateway: AuthenticationGateway, clock: Cloc
     stage: AuthViewState['attempt']['stage'],
     invoke: (operation: OperationContext) => Promise<AuthResult>,
   ): Promise<void> {
-    if (disposed || state.pending || state.session.status !== SESSION_STATUS.SIGNED_OUT) return;
+    if (
+      disposed ||
+      store.getState().pending ||
+      store.getState().session.status !== SESSION_STATUS.SIGNED_OUT
+    )
+      return;
 
     const operation: OperationContext = {
       generation: clock.nextGeneration(),
@@ -178,9 +185,9 @@ export function createAuthController(gateway: AuthenticationGateway, clock: Cloc
 
     context = operation;
     publish({
-      ...state,
+      ...store.getState(),
       session: {status: SESSION_STATUS.SIGNED_OUT, generation: operation.generation, revision: 0},
-      attempt: {...state.attempt, method, stage},
+      attempt: {...store.getState().attempt, method, stage},
       pending: true,
       error: undefined,
     });
@@ -204,7 +211,7 @@ export function createAuthController(gateway: AuthenticationGateway, clock: Cloc
         if (context === operation && !disposed && result) {
           if ('kind' in result && result.kind === AUTH_RESULT_KIND.CHALLENGE) {
             publish({
-              ...state,
+              ...store.getState(),
               pending: false,
               attempt: {
                 method,
@@ -217,12 +224,14 @@ export function createAuthController(gateway: AuthenticationGateway, clock: Cloc
             });
           } else if ('kind' in result) {
             publish({
-              ...state,
+              ...store.getState(),
               pending: false,
               attempt: {
-                ...state.attempt,
+                ...store.getState().attempt,
                 method: method === AUTH_METHOD.GOOGLE ? AUTH_METHOD.PASSWORD : method,
-                stage: state.attempt.attemptId ? LOGIN_STAGE.AWAITING_CODE : LOGIN_STAGE.FAILED,
+                stage: store.getState().attempt.attemptId
+                  ? LOGIN_STAGE.AWAITING_CODE
+                  : LOGIN_STAGE.FAILED,
               },
               error: {
                 code: result.code,
@@ -232,7 +241,11 @@ export function createAuthController(gateway: AuthenticationGateway, clock: Cloc
             });
           } else {
             accept(result, true);
-            publish({...state, pending: false, attempt: {method, stage: LOGIN_STAGE.IDLE}});
+            publish({
+              ...store.getState(),
+              pending: false,
+              attempt: {method, stage: LOGIN_STAGE.IDLE},
+            });
           }
         }
 
@@ -245,7 +258,7 @@ export function createAuthController(gateway: AuthenticationGateway, clock: Cloc
         void gateway.abandon(operation).catch(() => undefined);
 
         if (context === operation)
-          publish({...state, attempt: {method, stage: LOGIN_STAGE.FAILED}});
+          publish({...store.getState(), attempt: {method, stage: LOGIN_STAGE.FAILED}});
 
         finish({kind: AUTH_RESULT_KIND.ERROR, ...safeError(AUTH_ERROR_CODE.TIMEOUT)});
 
@@ -276,15 +289,17 @@ export function createAuthController(gateway: AuthenticationGateway, clock: Cloc
   }
 
   async function logout(): Promise<void> {
+    const session = store.getState().session;
+
     if (
       disposed ||
-      state.pending ||
-      state.session.status !== SESSION_STATUS.ACTIVE ||
-      !state.session.sessionId
+      store.getState().pending ||
+      session.status !== SESSION_STATUS.ACTIVE ||
+      !session.sessionId
     )
       return;
 
-    const sessionId = state.session.sessionId;
+    const sessionId = session.sessionId;
     const operation: OperationContext = {
       generation: clock.nextGeneration(),
       operationId: `logout-${clock.now()}`,
@@ -292,8 +307,8 @@ export function createAuthController(gateway: AuthenticationGateway, clock: Cloc
 
     context = operation;
     publish({
-      ...state,
-      session: {...state.session, generation: operation.generation, revision: 0},
+      ...store.getState(),
+      session: {...store.getState().session, generation: operation.generation, revision: 0},
       pending: true,
       error: undefined,
     });
@@ -311,7 +326,7 @@ export function createAuthController(gateway: AuthenticationGateway, clock: Cloc
         if (snapshot && context === operation && !disposed) {
           accept(snapshot, true);
           publish({
-            ...state,
+            ...store.getState(),
             pending: false,
             attempt: {method: AUTH_METHOD.PASSWORD, stage: LOGIN_STAGE.IDLE},
           });
@@ -328,7 +343,7 @@ export function createAuthController(gateway: AuthenticationGateway, clock: Cloc
         finish({
           status: SESSION_STATUS.UNAVAILABLE,
           generation: operation.generation,
-          revision: state.session.revision + 1,
+          revision: store.getState().session.revision + 1,
           error: safeError(AUTH_ERROR_CODE.TIMEOUT),
         });
 
@@ -338,7 +353,7 @@ export function createAuthController(gateway: AuthenticationGateway, clock: Cloc
         finish({
           status: SESSION_STATUS.UNAVAILABLE,
           generation: operation.generation,
-          revision: state.session.revision + 1,
+          revision: store.getState().session.revision + 1,
           error: safeError(AUTH_ERROR_CODE.UNEXPECTED),
         }),
       );
@@ -346,7 +361,7 @@ export function createAuthController(gateway: AuthenticationGateway, clock: Cloc
   }
 
   function selectMethod(method: AuthMethod): void {
-    if (disposed || state.session.status !== SESSION_STATUS.SIGNED_OUT) return;
+    if (disposed || store.getState().session.status !== SESSION_STATUS.SIGNED_OUT) return;
 
     abandon();
     context = {generation: clock.nextGeneration(), operationId: `select-${clock.now()}`};
@@ -371,7 +386,7 @@ export function createAuthController(gateway: AuthenticationGateway, clock: Cloc
       unsubscribe?.();
       unsubscribe = undefined;
       publish({
-        ...state,
+        ...store.getState(),
         session: {
           status: SESSION_STATUS.UNAVAILABLE,
           generation: clock.nextGeneration(),
@@ -384,21 +399,14 @@ export function createAuthController(gateway: AuthenticationGateway, clock: Cloc
   }
 
   return {
-    getSnapshot: () => state,
-
-    subscribe: (listener) => {
-      listeners.add(listener);
-
-      return () => {
-        listeners.delete(listener);
-      };
-    },
+    getSnapshot: store.getState,
+    subscribe: store.subscribe,
 
     start,
     refresh,
 
     login: async (method, email = '', password = '') => {
-      if (state.pending || disposed) return;
+      if (store.getState().pending || disposed) return;
 
       const normalizedEmail = email.trim();
 
@@ -407,7 +415,7 @@ export function createAuthController(gateway: AuthenticationGateway, clock: Cloc
         (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(normalizedEmail) ||
           (method === AUTH_METHOD.PASSWORD && !password))
       ) {
-        publish({...state, error: safeError(AUTH_ERROR_CODE.INVALID_INPUT)});
+        publish({...store.getState(), error: safeError(AUTH_ERROR_CODE.INVALID_INPUT)});
 
         return;
       }
@@ -425,10 +433,10 @@ export function createAuthController(gateway: AuthenticationGateway, clock: Cloc
     },
 
     verify: async (code) => {
-      const {attemptId, codePurpose, method} = state.attempt;
+      const {attemptId, codePurpose, method} = store.getState().attempt;
 
       if (!attemptId || !codePurpose || !code.trim()) {
-        publish({...state, error: safeError(AUTH_ERROR_CODE.INVALID_INPUT)});
+        publish({...store.getState(), error: safeError(AUTH_ERROR_CODE.INVALID_INPUT)});
 
         return;
       }
@@ -439,7 +447,7 @@ export function createAuthController(gateway: AuthenticationGateway, clock: Cloc
     },
 
     resend: async () => {
-      const {attemptId, codePurpose, method} = state.attempt;
+      const {attemptId, codePurpose, method} = store.getState().attempt;
 
       if (!attemptId || !codePurpose) return;
 
@@ -456,13 +464,13 @@ export function createAuthController(gateway: AuthenticationGateway, clock: Cloc
 
       foreground = next;
 
-      if (state.pending && state.attempt.method === AUTH_METHOD.GOOGLE) {
+      if (store.getState().pending && store.getState().attempt.method === AUTH_METHOD.GOOGLE) {
         if (next) resumeDeadline?.();
         else pauseDeadline?.();
       } else if (
         next &&
         started &&
-        !(state.pending && state.session.status === SESSION_STATUS.ACTIVE)
+        !(store.getState().pending && store.getState().session.status === SESSION_STATUS.ACTIVE)
       )
         void refresh();
     },
@@ -472,7 +480,6 @@ export function createAuthController(gateway: AuthenticationGateway, clock: Cloc
       disposed = true;
       unsubscribe?.();
       gateway.dispose();
-      listeners.clear();
     },
   };
 }

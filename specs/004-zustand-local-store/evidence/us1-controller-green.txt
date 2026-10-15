@@ -1,0 +1,20 @@
+PASS src/auth/auth-controller.test.ts
+PASS src/auth/login.test.tsx
+PASS src/navigation/root-navigator.test.tsx
+PASS src/auth/infrastructure/zustand-auth-state-store.test.ts
+PASS src/auth/app-recovery.test.tsx
+PASS src/recovery/app-error-boundary.test.tsx
+PASS src/auth/home.test.tsx
+PASS src/components/registration.test.ts
+PASS src/components/code-field.test.tsx
+PASS src/components/form-field.test.tsx
+PASS src/auth/auth-gateway.contract.test.ts
+PASS src/components/typography.test.tsx
+PASS src/components/button.test.tsx
+PASS src/components/feedback.test.tsx
+
+Test Suites: 14 passed, 14 total
+Tests:       98 passed, 98 total
+Snapshots:   0 total
+Time:        3.042 s, estimated 6 s
+Ran all test suites.

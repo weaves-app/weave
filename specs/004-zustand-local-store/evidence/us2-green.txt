@@ -1,0 +1,10 @@
+PASS src/auth/app-recovery.test.tsx
+PASS src/navigation/root-navigator.test.tsx
+PASS src/auth/home.test.tsx
+PASS src/auth/auth-runtime.test.ts
+
+Test Suites: 4 passed, 4 total
+Tests:       19 passed, 19 total
+Snapshots:   0 total
+Time:        2.771 s, estimated 3 s
+Ran all test suites matching /src\/auth\/auth-runtime.test.ts|src\/auth\/app-recovery.test.tsx|src\/auth\/home.test.tsx|src\/navigation\/root-navigator.test.tsx/i.

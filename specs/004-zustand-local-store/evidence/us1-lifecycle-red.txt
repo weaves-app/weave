@@ -1,0 +1,88 @@
+FAIL src/auth/presentation/auth-lifecycle.test.tsx
+  ● WEA-27 S05 effect replay replaces a disposed runtime and preserves fresh resolution
+
+    Unable to find an element with text: signedOut
+
+    [36m<Text>[39m
+      [0mresolving[0m
+    [36m</Text>[39m
+
+      30 |   const view = render(<StrictMode><AuthProvider createRuntime={factory}><Status /></AuthProvider></StrictMode>);
+      31 |
+    > 32 |   await waitFor(() => expect(screen.getByText('signedOut')).toBeTruthy());
+         |                ^
+      33 |   expect(gateways).toHaveLength(2);
+      34 |   expect(gateways[0]?.disposed).toBe(true);
+      35 |   expect(gateways[1]?.disposed).toBe(false);
+
+      at Object.<anonymous> (src/auth/presentation/auth-lifecycle.test.tsx:32:16)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at Object.<anonymous> (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12)
+
+  ● WEA-27 S05 suspended abandoned render allocates no runtime or native work
+
+    expect(jest.fn()).not.toHaveBeenCalled()
+
+    Expected number of calls: 0
+    Received number of calls: 2
+
+    1: called with 0 arguments
+    2: called with 0 arguments
+
+      51 |
+      52 |   expect(screen.getByText('Waiting')).toBeTruthy();
+    > 53 |   expect(factory).not.toHaveBeenCalled();
+         |                       ^
+      54 |   view.unmount();
+      55 | });
+      56 |
+
+      at Object.toHaveBeenCalled (src/auth/presentation/auth-lifecycle.test.tsx:53:23)
+
+FAIL src/auth/auth-runtime.test.ts
+  ● WEA-27 S05/S07 disposing runtime closes its store and releases gateway exactly once
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      16 |   runtime.dispose();
+      17 |   store.replace({...before, pending: true});
+    > 18 |   expect(gateway.disposed).toBe(true);
+         |                            ^
+      19 |   expect(dispose).toHaveBeenCalledTimes(1);
+      20 |   expect(store.getState()).toBe(before);
+      21 |   expect(runtime.state).not.toHaveProperty('replace');
+
+      at Object.toBe (src/auth/auth-runtime.test.ts:18:28)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● WEA-27 S05 factory failure releases an already acquired gateway
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      28 |     throw new Error('allocation failed');
+      29 |   })).toThrow('allocation failed');
+    > 30 |   expect(gateway.disposed).toBe(true);
+         |                            ^
+      31 | });
+      32 |
+      33 | test('WEA-27 S01 initial lifetimes are fresh and resolve only through their own gateway', async () => {
+
+      at Object.toBe (src/auth/auth-runtime.test.ts:30:28)
+
+Test Suites: 2 failed, 2 total
+Tests:       4 failed, 1 passed, 5 total
+Snapshots:   0 total
+Time:        1.362 s, estimated 2 s
+Ran all test suites matching /src\/auth\/auth-runtime.test.ts|src\/auth\/presentation\/auth-lifecycle.test.tsx/i.
+undefined
+/Users/pravinraj/workspace/weave/apps/mobile:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: jest --runInBand '--watchman=false' src/auth/auth-runtime.test.ts src/auth/presentation/auth-lifecycle.test.tsx
