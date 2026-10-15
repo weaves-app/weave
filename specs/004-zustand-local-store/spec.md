@@ -4,7 +4,7 @@
 
 **Created**: 2026-10-15
 
-**Status**: Draft — proposed scenarios awaiting agreement
+**Status**: Implemented — automated/native verification passed; live acceptance pending
 
 **Input**: User description: "I want to integrate Zustand as a local store for Weave RN app. Take PR #11 as a base and do a stacked PR on top. Create a ticket in linear."
 
@@ -91,7 +91,7 @@ As a contributor, I can use shared local state without coupling unrelated consum
 
 ### Measurable Outcomes
 
-- **SC-001**: All seven proposed acceptance scenarios pass once agreed and implemented: shared automated checks cover S01–S07, and Android and iOS journeys cover S01–S05 and S07. S06 is verified by deterministic shared adapter/React tests; production platform compatibility is checked by both bundles and native builds.
+- **SC-001**: All seven agreed acceptance scenarios must pass: shared automated checks cover S01–S07, and Android and iOS journeys cover S01–S05 and S07. S06 is verified by deterministic shared adapter/React tests; production platform compatibility is checked by both bundles and native builds.
 - **SC-002**: Zero protected Home displays occur before session resolution or after successful sign-out in the agreed journeys.
 - **SC-003**: Across 20 successive root resets, zero prior-root callbacks or listeners alter the new lifetime.
 - **SC-004**: Across 100 unrelated state changes, a consumer whose selected value stays equal receives zero updates.

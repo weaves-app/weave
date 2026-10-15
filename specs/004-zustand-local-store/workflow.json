@@ -120,7 +120,7 @@
     "iosHostContracts": "31 passed",
     "iosBuild": "passed unsigned simulator",
     "liveDeviceAcceptance": "unrun; no active devices or supplied live test fixtures",
-    "ci": "pending",
+    "ci": "No checks reported at creation; required CI/review remain open",
     "codeOwnerReview": "pending"
   },
   "convergence": {
@@ -129,5 +129,19 @@
     "findingIds": ["F1"],
     "remainingTasks": ["T034", "T037"],
     "draftPublication": "Permitted for review with live acceptance gap disclosed; not merge-ready"
-  }
+  },
+  "publication": {
+    "date": "2026-10-15",
+    "pullRequest": "https://github.com/weaves-app/weave/pull/12",
+    "isDraft": true,
+    "baseBranch": "feat/WEA-10/mobile-auth-recovery",
+    "implementationCommit": "1677ab6d5302a71ba50cb9aecc066b5b6f0f3608",
+    "verifiedAuthor": "Pravin Raj <pravinrajmb@gmail.com>",
+    "verifiedCommitter": "Pravin Raj <pravinrajmb@gmail.com>",
+    "verifiedGithubAccount": "pravinrajmb",
+    "checksAtCreation": "No status checks reported in initial GitHub snapshot",
+    "retargetAfterParentMerge": "develop",
+    "localHooks": "pre-commit, commit-msg and pre-push passed without bypass"
+  },
+  "remainingTasks": ["T034", "T037"]
 }
