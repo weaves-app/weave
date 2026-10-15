@@ -5,7 +5,7 @@ import {createNavigationContainerRef} from '@react-navigation/native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 import {AuthProvider} from '../auth/presentation/auth-context';
-import {createAuthController} from '../auth/application/auth-controller';
+import {createAuthRuntime} from '../auth/auth-runtime';
 import {active, deferred, TestClock, TestGateway} from '../auth/testing/fakes';
 import type {SessionSnapshot} from '../auth/domain/auth-models';
 import {RootNavigator} from './root-navigator';
@@ -19,12 +19,13 @@ const metrics = {
 };
 
 function setup(gateway = new TestGateway()) {
-  const controller = createAuthController(gateway, new TestClock());
+  const runtime = createAuthRuntime(gateway, new TestClock());
+  const controller = runtime.controller;
   const navigationRef = createNavigationContainerRef<RootParams>();
 
   render(
     <SafeAreaProvider initialMetrics={metrics}>
-      <AuthProvider createController={() => controller}>
+      <AuthProvider createRuntime={() => runtime}>
         <RootNavigator navigationRef={navigationRef} />
       </AuthProvider>
     </SafeAreaProvider>,
