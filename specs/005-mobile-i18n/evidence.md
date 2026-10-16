@@ -79,3 +79,7 @@ Android native contracts and debug APK passed; iOS 31 native and 31 host contrac
 ## T050
 
 Convergence assessed source against all original intent; appended T052 device acceptance, T053 publication and T054 external CI/review/retarget. No new source gap found. T047/T052/T054 remain open; see convergence.md.
+
+## T051, T053
+
+Published and attached draft PR #13 above #12 with verified personal identity and passing pre-push hooks. Linear WEA-28 updated In Progress with PR/spec/evidence/convergence links on the one permitted retry. No CI checks/review decision reported; T047/T052/T054 remain open.

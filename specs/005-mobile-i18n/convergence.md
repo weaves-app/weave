@@ -23,3 +23,7 @@ Three partial findings: one HIGH, two MEDIUM; zero missing, contradictory or unr
 - Fresh feature review found two important and one minor issue. Regression RED/GREEN and final 227 tests verify the fixes; external code-owner review remains required.
 
 No extensions.yml exists; before/after convergence hooks are absent. Convergence only appended Phase 7 to tasks.md; this report is subsequent implementation bookkeeping for T050. Continue implementation of T053 now. Complete T052/T054 when their actual prerequisites and required review are available, then rerun convergence. Do not mark the ticket done or merge-ready before those obligations pass.
+
+## Delivery follow-up
+
+F2 is resolved: [draft PR #13](https://github.com/weaves-app/weave/pull/13) was created above PR #12, attached to this chat, and linked to existing Linear WEA-28 with status In Progress. Personal author/committer and GitHub credential were verified, and required pre-push lint/typecheck/tests passed. See workflow.json. F1 and F3 remain open. No check results or review decision were reported at the delivery snapshot. This follow-up is implementation bookkeeping, not a clean rerun of convergence.

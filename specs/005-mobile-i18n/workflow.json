@@ -1,7 +1,7 @@
 {
   "ticket": "WEA-28",
   "ticketUrl": "https://linear.app/weaveapp/issue/WEA-28/add-internationalization-to-the-react-native-app",
-  "status": "implementing",
+  "status": "draft-review; device acceptance and merge readiness open",
   "scenariosConfirmed": true,
   "scenarioIds": ["S01", "S02", "S03", "S04", "S05", "S06", "S07", "S08"],
   "languageScope": {
@@ -82,7 +82,7 @@
     "foundational": 12,
     "crossCutting": 9,
     "analysis": "Read-only reanalysis passed; 16 requirements covered, 51 tasks and 51 catalog entries consistent; no findings",
-    "execution": "in progress",
+    "execution": "source/local verification/draft delivery complete; T047/T052/T054 open",
     "gate": "Actual S01\u2013S08 agreement and blocking analysis resolution required before source/test/dependency changes",
     "originalTotal": 51,
     "convergenceAdded": 3
@@ -100,7 +100,7 @@
     "validation": "51 sequential checklist tasks, 9/8/9 story counts, all task references and local links valid; source and scenario gates unchanged"
   },
   "implementation": {
-    "status": "implementing",
+    "status": "draft published; acceptance open",
     "checklists": {
       "requirements.md": {
         "total": 16,
@@ -168,7 +168,9 @@
       "T046",
       "T048",
       "T049",
-      "T050"
+      "T050",
+      "T051",
+      "T053"
     ],
     "tests": {
       "suites": 29,
@@ -181,7 +183,7 @@
       "status": "Two important and one minor finding fixed with observed regression RED/GREEN",
       "artifact": "evidence/review.md"
     },
-    "linearStatusUpdate": "Automatic permission review timed out; one retry remains",
+    "linearStatusUpdate": "Succeeded on the single permitted retry; WEA-28 In Progress, PR/evidence/convergence links saved",
     "verification": {
       "repository": "passed; policy 279/web 58/API 2/mobile 227; lint, format, types, builds and both bundles",
       "database": "isolated PostgreSQL 18.1, migrations and 3 integration tests passed",
@@ -196,7 +198,23 @@
       "tasks": ["T052", "T053", "T054"],
       "deviceAcceptance": "open",
       "sourceGapsFound": 0
-    }
+    },
+    "publication": {
+      "pr": "https://github.com/weaves-app/weave/pull/13",
+      "draft": true,
+      "baseBranch": "feat/WEA-27/zustand-local-store",
+      "parentVerifiedHead": "04aeaf5ed3946547d55e8e5d32990d8453d95c17",
+      "implementationCommit": "145350ff47638634ca245e4a96ec25fed8236ca4",
+      "author": "Pravin Raj <pravinrajmb@gmail.com>",
+      "committer": "Pravin Raj <pravinrajmb@gmail.com>",
+      "personalGithubLogin": "pravinrajmb",
+      "prePushChecks": "passed; lint/typecheck/tests with unchanged-source Turbo cache reuse",
+      "ci": "No checks reported at delivery snapshot; stacked target requires retarget after parent merge",
+      "reviewDecision": "No decision reported; code-owner review required",
+      "linearState": "In Progress",
+      "mergeReady": false
+    },
+    "openTasks": ["T047", "T052", "T054"]
   },
   "scenarioConfirmation": {
     "date": "2026-10-15",
