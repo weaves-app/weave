@@ -1,0 +1,166 @@
+FAIL src/localization/presentation/localization-journey.test.tsx
+  ✓ WEA-28 S07 locale changes add no auth operations or resets beyond matched parent draft foreground behavior (238 ms)
+  ✓ WEA-28 S07 locale changes add no auth operations or resets beyond matched parent pending foreground behavior (256 ms)
+  ✕ WEA-28 S07 locale changes add no auth operations or resets beyond matched parent verification foreground behavior (1137 ms)
+  ✓ WEA-28 S07 locale changes add no auth operations or resets beyond matched parent active foreground behavior (224 ms)
+
+  ● WEA-28 S07 locale changes add no auth operations or resets beyond matched parent verification foreground behavior
+
+    Unable to find an element with text: Welcome back
+
+    [36m<View>[39m
+      [36m<RNSScreenStack>[39m
+        [36m<RNSScreen[39m
+          [33maria-hidden[39m=[32m{false}[39m
+        [36m>[39m
+          [36m<RNSScreenContentWrapper>[39m
+            [36m<View>[39m
+              [36m<RNCSafeAreaView[39m
+                [33mtestID[39m=[32m"login-safe-area"[39m
+              [36m>[39m
+                [36m<View>[39m
+                  [36m<View>[39m
+                    [36m<View>[39m
+                      [36m<View[39m
+                        [33maccessibilityLabel[39m=[32m"Choose another method"[39m
+                        [33maccessibilityRole[39m=[32m"button"[39m
+                        [33maccessibilityState[39m=[32m{
+                          {
+                            "disabled": false,
+                          }
+                        }[39m
+                        [33maccessible[39m=[32m{true}[39m
+                      [36m>[39m
+                        [36m<Text>[39m
+                          [0m←[0m
+                        [36m</Text>[39m
+                      [36m</View>[39m
+                    [36m</View>[39m
+                    [36m<View>[39m
+                      [36m<Image[39m
+                        [33maccessibilityLabel[39m=[32m"Weave"[39m
+                        [33maccessibilityRole[39m=[32m"image"[39m
+                      [36m/>[39m
+                    [36m</View>[39m
+                    [36m<View />[39m
+                  [36m</View>[39m
+                  [36m<View>[39m
+                    [36m<RCTScrollView>[39m
+                      [36m<View>[39m
+                        [36m<View>[39m
+                          [36m<View>[39m
+                            [36m<Text[39m
+                              [33maccessibilityRole[39m=[32m"header"[39m
+                            [36m>[39m
+                              [0mCheck your email[0m
+                            [36m</Text>[39m
+                            [36m<View>[39m
+                              [36m<Text>[39m
+                                [0mEnter the verification code sent to[0m
+                              [36m</Text>[39m
+                              [36m<Text />[39m
+                            [36m</View>[39m
+                          [36m</View>[39m
+                          [36m<View>[39m
+                            [36m<Text>[39m
+                              [0mVerification code[0m
+                            [36m</Text>[39m
+                            [36m<View>[39m
+                              [36m<TextInput[39m
+                                [33maccessibilityHint[39m=[32m"Enter or paste the six-digit code from your email"[39m
+                                [33maccessibilityLabel[39m=[32m"Verification code"[39m
+                                [33maccessibilityState[39m=[32m{
+                                  {
+                                    "disabled": false,
+                                  }
+                                }[39m
+                                [33meditable[39m=[32m{true}[39m
+                                [33mtestID[39m=[32m"field-verification-code"[39m
+                                [33mvalue[39m=[32m""[39m
+                              [36m/>[39m
+                            [36m</View>[39m
+                            [36m<Text>[39m
+                              [0mEnter the 6-digit code from your email.[0m
+                            [36m</Text>[39m
+                          [36m</View>[39m
+                          [36m<View[39m
+                            [33maccessibilityLabel[39m=[32m"Verify code"[39m
+                            [33maccessibilityRole[39m=[32m"button"[39m
+                            [33maccessibilityState[39m=[32m{
+                              {
+                                "busy": false,
+                                "disabled": false,
+                              }
+                            }[39m
+                            [33maccessible[39m=[32m{true}[39m
+                          [36m>[39m
+                            [36m<View>[39m
+                              [36m<Text>[39m
+                                [0mVerify code[0m
+                              [36m</Text>[39m
+                              [36m<Text[39m
+                                [33maccessibilityElementsHidden[39m=[32m{true}[39m
+                                [33mimportantForAccessibility[39m=[32m"no"[39m
+                              [36m>[39m
+                                [0m→[0m
+                              [36m</Text>[39m
+                            [36m</View>[39m
+                          [36m</View>[39m
+                          [36m<View>[39m
+                            [36m<Text>[39m
+                              [0mDidn't receive it?[0m
+                            [36m</Text>[39m
+                            [36m<View[39m
+                              [33maccessibilityLabel[39m=[32m"Resend code"[39m
+                              [33maccessibilityRole[39m=[32m"button"[39m
+                              [33maccessibilityState[39m=[32m{
+                                {
+                                  "busy": false,
+                                  "disabled": false,
+                                }
+                              }[39m
+                              [33maccessible[39m=[32m{true}[39m
+                            [36m>[39m
+                              [36m<View>[39m
+                                [36m<Text>[39m
+                                  [0mResend code[0m
+                                [36m</Text>[39m
+                              [36m</View>[39m
+                            [36m</View>[39m
+                          [36m</View>[39m
+                        [36m</View>[39m
+                      [36m</View>[39m
+                    [36m</RCTScrollView>[39m
+                  [36m</View>[39m
+                [36m</View>[39m
+              [36m</RNCSafeAreaView>[39m
+            [36m</View>[39m
+          [36m</RNSScreenContentWrapper>[39m
+          [36m<RNSScreenStackHeaderConfig[39m
+            [33mpointerEvents[39m=[32m"box-none"[39m
+            [33mtitle[39m=[32m"Login"[39m
+          [36m/>[39m
+        [36m</RNSScreen>[39m
+      [36m</RNSScreenStack>[39m
+    [36m</View>[39m
+
+      43 |   if(changeLocale) locale='fr-FR';
+      44 |   act(()=>{for(const listener of [...listeners]) listener('active');});
+    > 45 |   await waitFor(()=>expect(screen.getByText(stage==='active'?'Home':'Welcome back')).toBeTruthy());
+         |                ^
+      46 |   // Existing auth refresh may remount a form; compare its result with the control run.
+      47 |   const result={operations:gateway.requests.length-before,authConstructions:authFactory.mock.calls.length,localeConstructions:localeFactory.mock.calls.length,localeReads:read.mock.calls.length,email:stage==='active'?undefined:screen.getByLabelText('Email').props.value};
+      48 |   if(stage==='pending') {
+
+      at src/localization/presentation/localization-journey.test.tsx:45:16
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 3 passed, 4 total
+Snapshots:   0 total
+Time:        2.357 s
+Ran all test suites matching /src\/localization\/presentation\/localization-journey.test.tsx/i.
+undefined
+/Users/pravinraj/workspace/weave/apps/mobile:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: jest --runInBand '--watchman=false' src/localization/presentation/localization-journey.test.tsx

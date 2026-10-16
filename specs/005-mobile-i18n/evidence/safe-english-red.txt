@@ -1,0 +1,136 @@
+FAIL src/localization/safe-english.test.ts
+  ✕ WEA-28 S05 uses approved static English and preserves exact emergency actions (1 ms)
+  ✕ WEA-28 S05 never exposes unusable static text ""
+  ✕ WEA-28 S05 never exposes unusable static text "  "
+  ✕ WEA-28 S05 never exposes unusable static text {}
+  ✕ WEA-28 S05 never exposes unusable static text "login.submit"
+  ✕ WEA-28 S05 never exposes unusable static text "{{count}}"
+  ✕ WEA-28 S05 pure fallback works without Intl and never echoes corrupt resource text
+
+  ● WEA-28 S05 uses approved static English and preserves exact emergency actions
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "Log in"
+    Received: ""
+
+      4 |
+      5 | test('WEA-28 S05 uses approved static English and preserves exact emergency actions', () => {
+    > 6 |   expect(createSafeEnglishTranslator(completeEnglishFixture).text(MESSAGE.LOGIN_SUBMIT)).toBe('Log in');
+        |                                                                                          ^
+      7 |   const safe = createSafeEnglishTranslator({});
+      8 |   expect(safe.text(MESSAGE.RECOVERY_RELOAD)).toBe('Reload');
+      9 |   expect(safe.text(MESSAGE.HOME_LOGOUT)).toBe('Logout');
+
+      at Object.toBe (src/localization/safe-english.test.ts:6:90)
+
+  ● WEA-28 S05 never exposes unusable static text ""
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "Log in"
+    Received: ""
+
+      13 |
+      14 | test.each(['', '  ', {}, 'login.submit', '{{count}}'])('WEA-28 S05 never exposes unusable static text %p', (value) => {
+    > 15 |   expect(createSafeEnglishTranslator({'login.submit': value}).text(MESSAGE.LOGIN_SUBMIT)).toBe('Log in');
+         |                                                                                           ^
+      16 | });
+      17 |
+      18 | test('WEA-28 S05 pure fallback works without Intl and never echoes corrupt resource text', () => {
+
+      at toBe (src/localization/safe-english.test.ts:15:91)
+
+  ● WEA-28 S05 never exposes unusable static text "  "
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "Log in"
+    Received: ""
+
+      13 |
+      14 | test.each(['', '  ', {}, 'login.submit', '{{count}}'])('WEA-28 S05 never exposes unusable static text %p', (value) => {
+    > 15 |   expect(createSafeEnglishTranslator({'login.submit': value}).text(MESSAGE.LOGIN_SUBMIT)).toBe('Log in');
+         |                                                                                           ^
+      16 | });
+      17 |
+      18 | test('WEA-28 S05 pure fallback works without Intl and never echoes corrupt resource text', () => {
+
+      at toBe (src/localization/safe-english.test.ts:15:91)
+
+  ● WEA-28 S05 never exposes unusable static text {}
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "Log in"
+    Received: ""
+
+      13 |
+      14 | test.each(['', '  ', {}, 'login.submit', '{{count}}'])('WEA-28 S05 never exposes unusable static text %p', (value) => {
+    > 15 |   expect(createSafeEnglishTranslator({'login.submit': value}).text(MESSAGE.LOGIN_SUBMIT)).toBe('Log in');
+         |                                                                                           ^
+      16 | });
+      17 |
+      18 | test('WEA-28 S05 pure fallback works without Intl and never echoes corrupt resource text', () => {
+
+      at toBe (src/localization/safe-english.test.ts:15:91)
+
+  ● WEA-28 S05 never exposes unusable static text "login.submit"
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "Log in"
+    Received: ""
+
+      13 |
+      14 | test.each(['', '  ', {}, 'login.submit', '{{count}}'])('WEA-28 S05 never exposes unusable static text %p', (value) => {
+    > 15 |   expect(createSafeEnglishTranslator({'login.submit': value}).text(MESSAGE.LOGIN_SUBMIT)).toBe('Log in');
+         |                                                                                           ^
+      16 | });
+      17 |
+      18 | test('WEA-28 S05 pure fallback works without Intl and never echoes corrupt resource text', () => {
+
+      at toBe (src/localization/safe-english.test.ts:15:91)
+
+  ● WEA-28 S05 never exposes unusable static text "{{count}}"
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "Log in"
+    Received: ""
+
+      13 |
+      14 | test.each(['', '  ', {}, 'login.submit', '{{count}}'])('WEA-28 S05 never exposes unusable static text %p', (value) => {
+    > 15 |   expect(createSafeEnglishTranslator({'login.submit': value}).text(MESSAGE.LOGIN_SUBMIT)).toBe('Log in');
+         |                                                                                           ^
+      16 | });
+      17 |
+      18 | test('WEA-28 S05 pure fallback works without Intl and never echoes corrupt resource text', () => {
+
+      at toBe (src/localization/safe-english.test.ts:15:91)
+
+  ● WEA-28 S05 pure fallback works without Intl and never echoes corrupt resource text
+
+    expect(received).toMatch(expected)
+
+    Expected pattern: /\S/
+    Received string:  ""
+
+      22 |     const safe = createSafeEnglishTranslator(null);
+      23 |     for (const id of Object.values(MESSAGE).filter((id) => !id.startsWith('retry.'))) {
+    > 24 |       expect(safe.text(id as Exclude<typeof id, 'retry.after_one' | 'retry.after_other'>)).toMatch(/\S/);
+         |                                                                                            ^
+      25 |     }
+      26 |   } finally {Object.defineProperty(global, 'Intl', {value: saved, configurable: true});}
+      27 | });
+
+      at Object.toMatch (src/localization/safe-english.test.ts:24:92)
+
+Test Suites: 1 failed, 1 total
+Tests:       7 failed, 7 total
+Snapshots:   0 total
+Time:        0.248 s
+Ran all test suites matching /src\/localization\/safe-english.test.ts/i.
+undefined
+/Users/pravinraj/workspace/weave/apps/mobile:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: jest --runInBand '--watchman=false' src/localization/safe-english.test.ts

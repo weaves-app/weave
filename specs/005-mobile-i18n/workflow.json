@@ -1,0 +1,231 @@
+{
+  "ticket": "WEA-28",
+  "ticketUrl": "https://linear.app/weaveapp/issue/WEA-28/add-internationalization-to-the-react-native-app",
+  "status": "draft-review; device acceptance and merge readiness open",
+  "scenariosConfirmed": true,
+  "scenarioIds": ["S01", "S02", "S03", "S04", "S05", "S06", "S07", "S08"],
+  "languageScope": {
+    "date": "2026-10-15",
+    "userStatement": "english only",
+    "productionLanguages": ["en"],
+    "fallbackLanguage": "en",
+    "selection": "device preferences at app activation; English fallback",
+    "inAppPicker": false,
+    "persistedOverride": false
+  },
+  "publicTestSeams": [
+    "Supported-language selection with controlled device-preference input",
+    "Message resolution, completeness and role-appropriate fallback",
+    "Display interpolation and English plural examples",
+    "Login/Home/navigation and accessibility text",
+    "Recovery outside normal providers and offline startup",
+    "Independent app-root contexts, session/form preservation and expanded-text layout checks"
+  ],
+  "stack": {
+    "parentPr": "https://github.com/weaves-app/weave/pull/12",
+    "baseBranch": "feat/WEA-27/zustand-local-store",
+    "baseCommit": "04aeaf5ed3946547d55e8e5d32990d8453d95c17",
+    "branch": "feat/WEA-28/mobile-i18n",
+    "policy": "Current PR-target policy only accepts develop/main; retarget after parent merges without bypass"
+  },
+  "sourceChangesStarted": true,
+  "hooks": {
+    "before_specify": "No extensions.yml present",
+    "after_specify": "No extensions.yml present",
+    "before_plan": "No extensions.yml present",
+    "after_plan": "No extensions.yml present",
+    "before_tasks": "No extensions.yml present",
+    "after_tasks": "No extensions.yml present",
+    "before_implement": "No extensions.yml present",
+    "after_implement": "No extensions.yml present",
+    "before_converge": "No extensions.yml present",
+    "after_converge": "No extensions.yml present"
+  },
+  "plan": {
+    "date": "2026-10-15",
+    "authorization": "User invoked speckit-plan; English-only scope previously confirmed, scenario agreement remains pending",
+    "artifacts": [
+      "plan.md",
+      "research.md",
+      "data-model.md",
+      "quickstart.md",
+      "contracts/localization.md",
+      "contracts/message-inventory.md",
+      "contracts/scenario-tests.md",
+      "contracts/native-fixture.md"
+    ],
+    "dependency": {
+      "name": "i18next",
+      "verifiedStableVersion": "26.4.5",
+      "verifiedOn": "2026-10-15",
+      "source": "https://registry.npmjs.org/i18next/latest",
+      "installed": true,
+      "adoption": "Recheck stable latest at implementation and save exact resolved version"
+    },
+    "reactBinding": "App-owned typed Context; no react-i18next/global plugin",
+    "localeSource": "Best-effort guarded runtime Intl locale; all inputs select en, no ordered OS preference guarantee",
+    "requiredCatalogEntries": 51,
+    "gate": "Research/design complete; source changes require scenario agreement, tasks and analyze",
+    "actualBranch": "feat/WEA-28/mobile-i18n",
+    "setupReportedBranch": "005-mobile-i18n"
+  },
+  "tasks": {
+    "date": "2026-10-15",
+    "artifact": "tasks.md",
+    "total": 54,
+    "byUserStory": {
+      "US1": 9,
+      "US2": 8,
+      "US3": 9
+    },
+    "setup": 4,
+    "foundational": 12,
+    "crossCutting": 9,
+    "analysis": "Read-only reanalysis passed; 16 requirements covered, 51 tasks and 51 catalog entries consistent; no findings",
+    "execution": "source/local verification/draft delivery complete; T047/T052/T054 open",
+    "gate": "Actual S01\u2013S08 agreement and blocking analysis resolution required before source/test/dependency changes",
+    "originalTotal": 51,
+    "convergenceAdded": 3
+  },
+  "remediation": {
+    "date": "2026-10-15",
+    "authorization": "User: use recommendation",
+    "findings": {
+      "I1": "Matched locale-control foreground runs preserve parent auth refresh and require zero added locale-caused changes",
+      "I2": "Recovery/Reload accessibility explicitly assigned to US2/S06; US1 normal journeys only",
+      "U1": "Native fixture contract, launch procedure and T035\u2013T037 test-first implementation tasks added"
+    },
+    "sourceChangesStarted": false,
+    "scenarioAgreement": "Still pending; remediation approval is not S01\u2013S08 agreement",
+    "validation": "51 sequential checklist tasks, 9/8/9 story counts, all task references and local links valid; source and scenario gates unchanged"
+  },
+  "implementation": {
+    "status": "draft published; acceptance open",
+    "checklists": {
+      "requirements.md": {
+        "total": 16,
+        "checked": 16,
+        "unchecked": 0
+      }
+    },
+    "baseline": {
+      "suites": 17,
+      "tests": 108,
+      "result": "passed",
+      "command": "pnpm --filter @weave/mobile exec jest --runInBand --watchman=false"
+    },
+    "rulings": [
+      "Keep the prepared ticket branch in the current checkout; no unrelated tracked changes or active worktrees.",
+      "Copy audit found tablet-only brand.story omitted from inventory; required catalog now 51 entries (49 static, two plural). Scope remains existing app copy.",
+      "Inline skill task extractor expects Task N headings; Spec Kit uses checklist IDs. Preserve the mandated Spec Kit format and extract task briefs by Tnnn instead."
+    ],
+    "completedTasks": [
+      "T001",
+      "T002",
+      "T003",
+      "T004",
+      "T005",
+      "T006",
+      "T007",
+      "T008",
+      "T009",
+      "T010",
+      "T011",
+      "T012",
+      "T013",
+      "T014",
+      "T015",
+      "T016",
+      "T017",
+      "T018",
+      "T019",
+      "T020",
+      "T021",
+      "T022",
+      "T023",
+      "T024",
+      "T025",
+      "T026",
+      "T027",
+      "T028",
+      "T029",
+      "T030",
+      "T031",
+      "T032",
+      "T033",
+      "T034",
+      "T035",
+      "T036",
+      "T037",
+      "T038",
+      "T039",
+      "T040",
+      "T041",
+      "T042",
+      "T043",
+      "T044",
+      "T045",
+      "T046",
+      "T048",
+      "T049",
+      "T050",
+      "T051",
+      "T053"
+    ],
+    "tests": {
+      "suites": 29,
+      "tests": 227,
+      "privacy": "passed",
+      "lint": "passed",
+      "typecheck": "passed"
+    },
+    "review": {
+      "status": "Two important and one minor finding fixed with observed regression RED/GREEN",
+      "artifact": "evidence/review.md"
+    },
+    "linearStatusUpdate": "Succeeded on the single permitted retry; WEA-28 In Progress, PR/evidence/convergence links saved",
+    "verification": {
+      "repository": "passed; policy 279/web 58/API 2/mobile 227; lint, format, types, builds and both bundles",
+      "database": "isolated PostgreSQL 18.1, migrations and 3 integration tests passed",
+      "android": "native contracts and debug APK passed",
+      "ios": "31 native and 31 host contracts; unsigned simulator build passed",
+      "fixtures": "10 fixture bundles included selected entry/expanded catalog; both normal bundle graphs exclude test modules",
+      "deviceAcceptance": "open; see evidence/device-acceptance.md"
+    },
+    "convergence": {
+      "outcome": "tasks_appended",
+      "artifact": "convergence.md",
+      "tasks": ["T052", "T053", "T054"],
+      "deviceAcceptance": "open",
+      "sourceGapsFound": 0
+    },
+    "publication": {
+      "pr": "https://github.com/weaves-app/weave/pull/13",
+      "draft": true,
+      "baseBranch": "feat/WEA-27/zustand-local-store",
+      "parentVerifiedHead": "04aeaf5ed3946547d55e8e5d32990d8453d95c17",
+      "implementationCommit": "145350ff47638634ca245e4a96ec25fed8236ca4",
+      "author": "Pravin Raj <pravinrajmb@gmail.com>",
+      "committer": "Pravin Raj <pravinrajmb@gmail.com>",
+      "personalGithubLogin": "pravinrajmb",
+      "prePushChecks": "passed; lint/typecheck/tests with unchanged-source Turbo cache reuse",
+      "ci": "No checks reported at delivery snapshot; stacked target requires retarget after parent merge",
+      "reviewDecision": "No decision reported; code-owner review required",
+      "linearState": "In Progress",
+      "mergeReady": false
+    },
+    "openTasks": ["T047", "T052", "T054"]
+  },
+  "scenarioConfirmation": {
+    "date": "2026-10-15",
+    "userStatement": "confirm",
+    "scenarioIds": ["S01", "S02", "S03", "S04", "S05", "S06", "S07", "S08"],
+    "context": "Explicit reply to request for S01\u2013S08 agreement before source edits"
+  },
+  "confirmation": {
+    "date": "2026-10-15",
+    "userStatement": "confirm",
+    "scenarioIds": ["S01", "S02", "S03", "S04", "S05", "S06", "S07", "S08"],
+    "context": "Explicit reply to request for S01\u2013S08 agreement before source edits"
+  }
+}

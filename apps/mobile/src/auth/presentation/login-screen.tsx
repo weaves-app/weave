@@ -1,3 +1,6 @@
+import {useTextTranslator} from '../../localization/presentation/localization-context';
+import {MESSAGE} from '../../localization/messages';
+
 import {useState} from 'react';
 import type {ReactNode} from 'react';
 import {
@@ -35,7 +38,7 @@ import {Feedback} from '../../components/feedback';
 import {KEYBOARD_TYPE, AUTO_COMPLETE} from '../../components/input-constants';
 import {FormField} from '../../components/form-field';
 import {Typography, VARIANT} from '../../components/typography';
-import {authMessages} from './auth-messages';
+import {resolveAuthMessage} from './auth-messages';
 import {AuthMethodTabs} from './auth-method-tabs';
 import {AuthLayout} from './auth-layout';
 import {PasswordTransition} from './password-transition';
@@ -82,6 +85,7 @@ function ActionArrow(): React.JSX.Element {
 }
 
 function LoginForm({login}: LoginPresentationProps): React.JSX.Element {
+  const text = useTextTranslator();
   const {state} = login;
   const emailCode = state.attempt.method === AUTH_METHOD.EMAIL_CODE;
 
@@ -89,12 +93,12 @@ function LoginForm({login}: LoginPresentationProps): React.JSX.Element {
     <>
       <View style={styles.loginHeader}>
         <View style={styles.heading}>
-          <Typography variant={VARIANT.HEADING}>Welcome back</Typography>
-          <Typography variant={VARIANT.SUPPORTING}>Sign in to your Weave workspace.</Typography>
+          <Typography variant={VARIANT.HEADING}>{text.text(MESSAGE.LOGIN_TITLE)}</Typography>
+          <Typography variant={VARIANT.SUPPORTING}>{text.text(MESSAGE.LOGIN_SUBTITLE)}</Typography>
         </View>
       </View>
       <Button
-        label="Continue with Google"
+        label={text.text(MESSAGE.LOGIN_GOOGLE)}
         variant={BUTTON_VARIANT.OUTLINE}
         onPress={login.google}
         disabled={state.pending}
@@ -102,7 +106,7 @@ function LoginForm({login}: LoginPresentationProps): React.JSX.Element {
       />
       <View style={styles.divider}>
         <View style={styles.dividerLine} />
-        <Typography variant={VARIANT.CAPTION}>or continue with email</Typography>
+        <Typography variant={VARIANT.CAPTION}>{text.text(MESSAGE.LOGIN_EMAIL_DIVIDER)}</Typography>
         <View style={styles.dividerLine} />
       </View>
       <AuthMethodTabs
@@ -112,11 +116,11 @@ function LoginForm({login}: LoginPresentationProps): React.JSX.Element {
       />
       <View style={styles.form}>
         <FormField
-          label="Email"
+          label={text.text(MESSAGE.LOGIN_EMAIL_LABEL)}
           value={login.email}
           onChangeText={login.setEmail}
           keyboardType={KEYBOARD_TYPE.EMAIL_ADDRESS}
-          placeholder="you@company.com"
+          placeholder={text.text(MESSAGE.LOGIN_EMAIL_PLACEHOLDER)}
           autoComplete={AUTO_COMPLETE.EMAIL}
           disabled={state.pending}
         />
@@ -128,7 +132,9 @@ function LoginForm({login}: LoginPresentationProps): React.JSX.Element {
             disabled={state.pending}
             action={
               <Button
-                label={emailCode ? 'Send code' : 'Log in'}
+                label={
+                  emailCode ? text.text(MESSAGE.LOGIN_SEND_CODE) : text.text(MESSAGE.LOGIN_SUBMIT)
+                }
                 onPress={login.submit}
                 loading={state.pending}
                 trailing={<ActionArrow />}
@@ -142,6 +148,7 @@ function LoginForm({login}: LoginPresentationProps): React.JSX.Element {
 }
 
 function AuthHeader({login}: LoginPresentationProps): React.JSX.Element {
+  const text = useTextTranslator();
   const {state} = login;
   const challenge = Boolean(state.attempt.attemptId);
 
@@ -151,7 +158,7 @@ function AuthHeader({login}: LoginPresentationProps): React.JSX.Element {
         {challenge && (
           <Pressable
             accessibilityRole={ACCESSIBILITY_ROLE.BUTTON}
-            accessibilityLabel="Choose another method"
+            accessibilityLabel={text.text(MESSAGE.VERIFICATION_ANOTHER_METHOD)}
             accessibilityState={{disabled: state.pending}}
             disabled={state.pending}
             onPress={() => login.selectMethod(AUTH_METHOD.PASSWORD)}
@@ -168,6 +175,7 @@ function AuthHeader({login}: LoginPresentationProps): React.JSX.Element {
 }
 
 function VerificationForm({login}: LoginPresentationProps): React.JSX.Element {
+  const text = useTextTranslator();
   const {state} = login;
 
   return (
@@ -175,26 +183,37 @@ function VerificationForm({login}: LoginPresentationProps): React.JSX.Element {
       <View style={styles.challengeHeading}>
         <Typography variant={VARIANT.HEADING}>
           {state.attempt.codePurpose === CODE_PURPOSE.DEVICE_TRUST
-            ? 'Verify this device'
-            : 'Check your email'}
+            ? text.text(MESSAGE.VERIFICATION_DEVICE_TITLE)
+            : text.text(MESSAGE.VERIFICATION_EMAIL_TITLE)}
         </Typography>
         <View style={styles.emailDescription}>
-          <Typography variant={VARIANT.SUPPORTING}>Enter the verification code sent to</Typography>
+          <Typography variant={VARIANT.SUPPORTING}>
+            {text.text(MESSAGE.VERIFICATION_DESCRIPTION)}
+          </Typography>
           <Text style={styles.email}>{login.email.trim()}</Text>
         </View>
       </View>
-      <CodeField value={login.code} onChangeText={login.setCode} disabled={state.pending} />
+      <CodeField
+        label={text.text(MESSAGE.VERIFICATION_CODE_LABEL)}
+        hint={text.text(MESSAGE.VERIFICATION_CODE_HINT)}
+        instructions={text.text(MESSAGE.VERIFICATION_CODE_INSTRUCTIONS)}
+        value={login.code}
+        onChangeText={login.setCode}
+        disabled={state.pending}
+      />
       <Button
-        label="Verify code"
+        label={text.text(MESSAGE.VERIFICATION_SUBMIT)}
         onPress={login.submit}
         disabled={state.pending}
         loading={state.pending && state.attempt.stage === LOGIN_STAGE.VERIFYING}
         trailing={<ActionArrow />}
       />
       <View style={styles.resend}>
-        <Typography variant={VARIANT.CAPTION}>Didn't receive it?</Typography>
+        <Typography variant={VARIANT.CAPTION}>
+          {text.text(MESSAGE.VERIFICATION_NOT_RECEIVED)}
+        </Typography>
         <Button
-          label="Resend code"
+          label={text.text(MESSAGE.VERIFICATION_RESEND)}
           variant={BUTTON_VARIANT.TEXT}
           onPress={login.resend}
           disabled={state.pending}
@@ -206,6 +225,7 @@ function VerificationForm({login}: LoginPresentationProps): React.JSX.Element {
 }
 
 export function LoginScreen(): React.JSX.Element {
+  const text = useTextTranslator();
   const login = useLogin();
   const {state} = login;
   const challenge = Boolean(state.attempt.attemptId);
@@ -226,16 +246,16 @@ export function LoginScreen(): React.JSX.Element {
                 message={
                   challenge
                     ? state.attempt.stage === LOGIN_STAGE.VERIFYING
-                      ? 'Verifying code…'
-                      : 'Sending code…'
-                    : 'Signing in…'
+                      ? text.text(MESSAGE.STATUS_VERIFYING_CODE)
+                      : text.text(MESSAGE.STATUS_SENDING_CODE)
+                    : text.text(MESSAGE.STATUS_SIGNING_IN)
                 }
                 busy
               />
             )}
-            {state.error && <Feedback message={authMessages[state.error.code]} />}
+            {state.error && <Feedback message={resolveAuthMessage(state.error.code, text)} />}
             {state.attempt.retryAfterSeconds !== undefined && (
-              <Feedback message={`Try again after ${state.attempt.retryAfterSeconds} seconds.`} />
+              <Feedback message={text.retryAfterSeconds(state.attempt.retryAfterSeconds)} />
             )}
           </View>
         </LoginScroll>

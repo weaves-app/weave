@@ -21,7 +21,15 @@ afterEach(() => {
 function EditableCode(): React.JSX.Element {
   const [code, setCode] = useState('123456');
 
-  return <CodeField value={code} onChangeText={setCode} />;
+  return (
+    <CodeField
+      label="Verification code"
+      hint="Enter or paste the six-digit code from your email"
+      instructions="Enter the 6-digit code from your email."
+      value={code}
+      onChangeText={setCode}
+    />
+  );
 }
 
 test('S15/S16 moving the native cursor highlights the digit being corrected', () => {
@@ -65,4 +73,22 @@ test('S15/S16 a native selection range highlights only its code digits', () => {
   expect(screen.getByTestId('code-slot-5', {includeHiddenElements: true})).toHaveStyle({
     borderColor: tokens.colors.border,
   });
+});
+
+test('WEA-28 S03 CodeField takes supplied accessible text without exposing decorative digits', () => {
+  render(
+    <CodeField
+      label="Enter the emailed code"
+      hint="Paste all six digits"
+      instructions="Use the code in your email"
+      value="123456"
+      onChangeText={() => undefined}
+    />,
+  );
+  expect(screen.getByLabelText('Enter the emailed code')).toHaveProp(
+    'accessibilityHint',
+    'Paste all six digits',
+  );
+  expect(screen.getByText('Use the code in your email')).toBeTruthy();
+  expect(screen.queryByTestId('code-slot-0')).toBeNull();
 });

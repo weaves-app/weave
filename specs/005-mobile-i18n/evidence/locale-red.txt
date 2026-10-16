@@ -1,0 +1,139 @@
+FAIL src/localization/infrastructure/runtime-locale-source.test.ts
+  ✕ WEA-28 S02 samples opaque locale "en" (1 ms)
+  ✕ WEA-28 S02 samples opaque locale "en-GB" (1 ms)
+  ✕ WEA-28 S02 samples opaque locale "en-IN"
+  ✕ WEA-28 S02 samples opaque locale "fr-FR"
+  ✕ WEA-28 S02 samples opaque locale ""
+  ✓ WEA-28 S02 samples opaque locale undefined
+  ✕ WEA-28 S02 samples opaque locale []
+  ✕ WEA-28 S02 samples opaque locale {}
+  ✓ WEA-28 S02 catches a throwing locale source
+  ✓ WEA-28 S02 guards absent Intl
+
+  ● WEA-28 S02 samples opaque locale "en"
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "en"
+    Received: undefined
+
+      2 |
+      3 | test.each(['en', 'en-GB', 'en-IN', 'fr-FR', '', undefined, [], {}])('WEA-28 S02 samples opaque locale %p', (locale) => {
+    > 4 |   expect(createRuntimeLocaleSource(() => locale).read()).toBe(locale);
+        |                                                          ^
+      5 | });
+      6 |
+      7 | test('WEA-28 S02 catches a throwing locale source', () => {
+
+      at toBe (src/localization/infrastructure/runtime-locale-source.test.ts:4:58)
+
+  ● WEA-28 S02 samples opaque locale "en-GB"
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "en-GB"
+    Received: undefined
+
+      2 |
+      3 | test.each(['en', 'en-GB', 'en-IN', 'fr-FR', '', undefined, [], {}])('WEA-28 S02 samples opaque locale %p', (locale) => {
+    > 4 |   expect(createRuntimeLocaleSource(() => locale).read()).toBe(locale);
+        |                                                          ^
+      5 | });
+      6 |
+      7 | test('WEA-28 S02 catches a throwing locale source', () => {
+
+      at toBe (src/localization/infrastructure/runtime-locale-source.test.ts:4:58)
+
+  ● WEA-28 S02 samples opaque locale "en-IN"
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "en-IN"
+    Received: undefined
+
+      2 |
+      3 | test.each(['en', 'en-GB', 'en-IN', 'fr-FR', '', undefined, [], {}])('WEA-28 S02 samples opaque locale %p', (locale) => {
+    > 4 |   expect(createRuntimeLocaleSource(() => locale).read()).toBe(locale);
+        |                                                          ^
+      5 | });
+      6 |
+      7 | test('WEA-28 S02 catches a throwing locale source', () => {
+
+      at toBe (src/localization/infrastructure/runtime-locale-source.test.ts:4:58)
+
+  ● WEA-28 S02 samples opaque locale "fr-FR"
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "fr-FR"
+    Received: undefined
+
+      2 |
+      3 | test.each(['en', 'en-GB', 'en-IN', 'fr-FR', '', undefined, [], {}])('WEA-28 S02 samples opaque locale %p', (locale) => {
+    > 4 |   expect(createRuntimeLocaleSource(() => locale).read()).toBe(locale);
+        |                                                          ^
+      5 | });
+      6 |
+      7 | test('WEA-28 S02 catches a throwing locale source', () => {
+
+      at toBe (src/localization/infrastructure/runtime-locale-source.test.ts:4:58)
+
+  ● WEA-28 S02 samples opaque locale ""
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: ""
+    Received: undefined
+
+      2 |
+      3 | test.each(['en', 'en-GB', 'en-IN', 'fr-FR', '', undefined, [], {}])('WEA-28 S02 samples opaque locale %p', (locale) => {
+    > 4 |   expect(createRuntimeLocaleSource(() => locale).read()).toBe(locale);
+        |                                                          ^
+      5 | });
+      6 |
+      7 | test('WEA-28 S02 catches a throwing locale source', () => {
+
+      at toBe (src/localization/infrastructure/runtime-locale-source.test.ts:4:58)
+
+  ● WEA-28 S02 samples opaque locale []
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: []
+    Received: undefined
+
+      2 |
+      3 | test.each(['en', 'en-GB', 'en-IN', 'fr-FR', '', undefined, [], {}])('WEA-28 S02 samples opaque locale %p', (locale) => {
+    > 4 |   expect(createRuntimeLocaleSource(() => locale).read()).toBe(locale);
+        |                                                          ^
+      5 | });
+      6 |
+      7 | test('WEA-28 S02 catches a throwing locale source', () => {
+
+      at toBe (src/localization/infrastructure/runtime-locale-source.test.ts:4:58)
+
+  ● WEA-28 S02 samples opaque locale {}
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: {}
+    Received: undefined
+
+      2 |
+      3 | test.each(['en', 'en-GB', 'en-IN', 'fr-FR', '', undefined, [], {}])('WEA-28 S02 samples opaque locale %p', (locale) => {
+    > 4 |   expect(createRuntimeLocaleSource(() => locale).read()).toBe(locale);
+        |                                                          ^
+      5 | });
+      6 |
+      7 | test('WEA-28 S02 catches a throwing locale source', () => {
+
+      at toBe (src/localization/infrastructure/runtime-locale-source.test.ts:4:58)
+
+Test Suites: 1 failed, 1 total
+Tests:       7 failed, 3 passed, 10 total
+Snapshots:   0 total
+Time:        0.236 s
+Ran all test suites matching /src\/localization\/infrastructure\/runtime-locale-source.test.ts/i.
+undefined
+/Users/pravinraj/workspace/weave/apps/mobile:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: jest --runInBand '--watchman=false' src/localization/infrastructure/runtime-locale-source.test.ts

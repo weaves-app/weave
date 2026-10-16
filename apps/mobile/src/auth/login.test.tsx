@@ -1,3 +1,6 @@
+import {LocalizationProvider} from '../localization/presentation/localization-context';
+import {createSentinelLocalization} from '../localization/testing/sentinel-localization';
+
 import {Dimensions, ScrollView, StyleSheet} from 'react-native';
 import type {StyleProp, ViewStyle} from 'react-native';
 import {act, fireEvent, render, screen, waitFor, within} from '@testing-library/react-native';
@@ -401,4 +404,73 @@ test('S15 tablet rotation changes the composition without losing email or partia
   } finally {
     act(() => Dimensions.set({window: original}));
   }
+});
+
+test('WEA-28 S01/S03 normal and verification journeys consume scoped visible and spoken English', async () => {
+  const gateway = new TestGateway();
+
+  gateway.loginResult = async () => ({
+    kind: 'challenge',
+    attemptId: 'fixture-attempt',
+    codePurpose: CODE_PURPOSE.SIGN_IN,
+  });
+
+  const runtime = createAuthRuntime(gateway, new TestClock());
+
+  render(
+    <LocalizationProvider createRuntime={createSentinelLocalization}>
+      <AuthProvider createRuntime={() => runtime}>
+        <LoginScreen />
+      </AuthProvider>
+    </LocalizationProvider>,
+  );
+  await waitFor(() => expect(screen.getByText('English fixture: Welcome back')).toBeTruthy());
+  expect(screen.getByText('English fixture: Sign in to your Weave workspace.')).toBeTruthy();
+  expect(screen.getByRole('button', {name: 'English fixture: Continue with Google'})).toBeTruthy();
+  expect(screen.getByLabelText('English fixture: Password')).toBeTruthy();
+  expect(screen.getByPlaceholderText('English fixture: Enter your password')).toBeTruthy();
+  fireEvent.changeText(screen.getByLabelText('English fixture: Email'), 'person@example.com');
+  fireEvent.press(screen.getByRole('button', {name: 'English fixture: Email code'}));
+  fireEvent.press(screen.getByRole('button', {name: 'English fixture: Send code'}));
+  await waitFor(() => expect(screen.getByText('English fixture: Check your email')).toBeTruthy());
+  expect(screen.getByText('person@example.com')).toBeTruthy();
+  expect(screen.getByLabelText('English fixture: Verification code')).toHaveProp(
+    'accessibilityHint',
+    'English fixture: Enter or paste the six-digit code from your email',
+  );
+  expect(screen.getByRole('button', {name: 'English fixture: Verify code'})).toBeTruthy();
+  expect(screen.getByRole('button', {name: 'English fixture: Choose another method'})).toBeTruthy();
+  expect(screen.getByRole('button', {name: 'English fixture: Resend code'})).toBeTruthy();
+});
+
+test.each([
+  [0, 'English fixture: Try again after 0 seconds.'],
+  [1, 'English fixture: Try again after 1 second.'],
+  [2, 'English fixture: Try again after 2 seconds.'],
+  [60, 'English fixture: Try again after 60 seconds.'],
+])('WEA-28 S04 renders scoped retry %p without changing email display', async (count, expected) => {
+  const gateway = new TestGateway();
+
+  gateway.loginResult = async () => ({
+    kind: 'challenge',
+    attemptId: 'retry-fixture-attempt',
+    codePurpose: CODE_PURPOSE.SIGN_IN,
+    retryAfterSeconds: Number(count),
+  });
+
+  const runtime = createAuthRuntime(gateway, new TestClock());
+
+  render(
+    <LocalizationProvider createRuntime={createSentinelLocalization}>
+      <AuthProvider createRuntime={() => runtime}>
+        <LoginScreen />
+      </AuthProvider>
+    </LocalizationProvider>,
+  );
+  await waitFor(() => expect(screen.getByLabelText('English fixture: Email')).toBeTruthy());
+  fireEvent.changeText(screen.getByLabelText('English fixture: Email'), 'person@example.com');
+  fireEvent.changeText(screen.getByLabelText('English fixture: Password'), 'password');
+  fireEvent.press(screen.getByRole('button', {name: 'English fixture: Log in'}));
+  await waitFor(() => expect(screen.getByText(String(expected))).toBeTruthy());
+  expect(screen.getByText('person@example.com')).toBeTruthy();
 });

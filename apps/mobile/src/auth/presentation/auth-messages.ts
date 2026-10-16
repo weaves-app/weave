@@ -1,18 +1,29 @@
+import {AUTH_ERROR_CODE} from '../domain/auth-models';
 import type {AuthErrorCode} from '../domain/auth-models';
+import type {TextTranslator} from '../../localization/application/text-translator';
+import {MESSAGE} from '../../localization/messages';
+import type {StaticMessageId} from '../../localization/messages';
 
-export const authMessages: Readonly<Record<AuthErrorCode, string>> = {
-  invalidInput: 'Enter a valid email address and the required password or code.',
-  rejectedCredentials: 'The email or password was not accepted. Try again.',
-  codeInvalid: 'That code was not accepted. Check it and try again.',
-  codeExpired: 'That code has expired. Request another code.',
-  rateLimited: 'Please wait before trying again.',
-  existingAccountRequired: 'An existing account is required. Contact your administrator.',
-  cancelled: 'Sign-in was cancelled. Choose a method to try again.',
-  network: 'Unable to connect. Check your connection and try again.',
-  timeout: 'The request took too long. Please try again.',
-  configuration: 'Login is unavailable. Contact your administrator.',
-  verificationRequired:
-    'Your account requires verification that this app does not support. Choose another method or contact your administrator.',
-  storage: 'Unable to access secure session storage. Please try again.',
-  unexpected: 'Something went wrong. Please try again.',
+const messageIds: Readonly<Record<AuthErrorCode, StaticMessageId>> = {
+  [AUTH_ERROR_CODE.INVALID_INPUT]: MESSAGE.AUTH_ERROR_INVALID_INPUT,
+  [AUTH_ERROR_CODE.REJECTED_CREDENTIALS]: MESSAGE.AUTH_ERROR_REJECTED_CREDENTIALS,
+  [AUTH_ERROR_CODE.CODE_INVALID]: MESSAGE.AUTH_ERROR_CODE_INVALID,
+  [AUTH_ERROR_CODE.CODE_EXPIRED]: MESSAGE.AUTH_ERROR_CODE_EXPIRED,
+  [AUTH_ERROR_CODE.RATE_LIMITED]: MESSAGE.AUTH_ERROR_RATE_LIMITED,
+  [AUTH_ERROR_CODE.EXISTING_ACCOUNT_REQUIRED]: MESSAGE.AUTH_ERROR_EXISTING_ACCOUNT_REQUIRED,
+  [AUTH_ERROR_CODE.CANCELLED]: MESSAGE.AUTH_ERROR_CANCELLED,
+  [AUTH_ERROR_CODE.NETWORK]: MESSAGE.AUTH_ERROR_NETWORK,
+  [AUTH_ERROR_CODE.TIMEOUT]: MESSAGE.AUTH_ERROR_TIMEOUT,
+  [AUTH_ERROR_CODE.CONFIGURATION]: MESSAGE.AUTH_ERROR_CONFIGURATION,
+  [AUTH_ERROR_CODE.VERIFICATION_REQUIRED]: MESSAGE.AUTH_ERROR_VERIFICATION_REQUIRED,
+  [AUTH_ERROR_CODE.STORAGE]: MESSAGE.AUTH_ERROR_STORAGE,
+  [AUTH_ERROR_CODE.UNEXPECTED]: MESSAGE.AUTH_ERROR_UNEXPECTED,
 };
+
+function isAuthErrorCode(value: unknown): value is AuthErrorCode {
+  return Object.values(AUTH_ERROR_CODE).some((code) => code === value);
+}
+
+export function resolveAuthMessage(code: unknown, text: TextTranslator): string {
+  return text.text(messageIds[isAuthErrorCode(code) ? code : AUTH_ERROR_CODE.UNEXPECTED]);
+}

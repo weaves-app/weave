@@ -1,0 +1,3 @@
+export const TEXT_TRANSLATOR = Symbol('TEXT_TRANSLATOR');
+
+export const DEVICE_LOCALE_SOURCE = Symbol('DEVICE_LOCALE_SOURCE');

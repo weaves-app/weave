@@ -1,3 +1,6 @@
+import {useTextTranslator} from '../../localization/presentation/localization-context';
+import {MESSAGE} from '../../localization/messages';
+
 import {createContext, useContext, useEffect, useState} from 'react';
 import type {ReactNode} from 'react';
 import {AppState} from 'react-native';
@@ -23,6 +26,7 @@ interface Activation {
 }
 
 export function AuthProvider({createRuntime, children}: AuthProviderProps): React.JSX.Element {
+  const text = useTextTranslator();
   const [activation, setActivation] = useState<Activation>();
 
   useEffect(() => {
@@ -68,7 +72,7 @@ export function AuthProvider({createRuntime, children}: AuthProviderProps): Reac
   if (!activation?.active)
     return (
       <Screen>
-        <Feedback message="Checking your session…" busy />
+        <Feedback message={text.text(MESSAGE.STATUS_CHECKING_SESSION)} busy />
       </Screen>
     );
 
