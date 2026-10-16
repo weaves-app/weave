@@ -1,0 +1,9 @@
+PASS src/auth/localization-layout.test.tsx
+PASS src/localization/testing/native-fixture.test.tsx
+PASS src/localization/presentation/localization-journey.test.tsx
+
+Test Suites: 3 passed, 3 total
+Tests:       23 passed, 23 total
+Snapshots:   0 total
+Time:        3.071 s, estimated 16 s
+Ran all test suites matching /src\/localization\/testing\/native-fixture.test.tsx|src\/auth\/localization-layout.test.tsx|src\/localization\/presentation\/localization-journey.test.tsx/i.

@@ -1,0 +1,209 @@
+FAIL src/localization/infrastructure/i18next-translator.test.ts
+  ● WEA-28 S04/S05 rejects a resource that changes the numeric token: "Try again after 10 seconds."
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "Try again after 1 second."
+    Received: "Try again after 10 seconds."
+
+      105 |   const text = createI18nextTranslator({createEngine: () => engine});
+      106 |   engine.addResourceBundle('en', 'translation', {'retry.after_one': template}, true, true);
+    > 107 |   expect(text.retryAfterSeconds(1)).toBe('Try again after 1 second.');
+          |                                     ^
+      108 |   expect(createI18nextTranslator({catalog: {'retry.after_one': template}}).retryAfterSeconds(1)).toBe('Try again after 1 second.');
+      109 | });
+      110 |
+
+      at toBe (src/localization/infrastructure/i18next-translator.test.ts:107:37)
+
+  ● WEA-28 S04/S05 rejects a resource that changes the numeric token: "Try again after {{count}}0 seconds."
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "Try again after 1 second."
+    Received: "Try again after 10 seconds."
+
+      105 |   const text = createI18nextTranslator({createEngine: () => engine});
+      106 |   engine.addResourceBundle('en', 'translation', {'retry.after_one': template}, true, true);
+    > 107 |   expect(text.retryAfterSeconds(1)).toBe('Try again after 1 second.');
+          |                                     ^
+      108 |   expect(createI18nextTranslator({catalog: {'retry.after_one': template}}).retryAfterSeconds(1)).toBe('Try again after 1 second.');
+      109 | });
+      110 |
+
+      at toBe (src/localization/infrastructure/i18next-translator.test.ts:107:37)
+
+  ● WEA-28 S04/S05 rejects a resource that changes the numeric token: "Try again after -{{count}} seconds."
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "Try again after 1 second."
+    Received: "Try again after -1 seconds."
+
+      105 |   const text = createI18nextTranslator({createEngine: () => engine});
+      106 |   engine.addResourceBundle('en', 'translation', {'retry.after_one': template}, true, true);
+    > 107 |   expect(text.retryAfterSeconds(1)).toBe('Try again after 1 second.');
+          |                                     ^
+      108 |   expect(createI18nextTranslator({catalog: {'retry.after_one': template}}).retryAfterSeconds(1)).toBe('Try again after 1 second.');
+      109 | });
+      110 |
+
+      at toBe (src/localization/infrastructure/i18next-translator.test.ts:107:37)
+
+  ● WEA-28 S04/S05 rejects a resource that changes the numeric token: "Try again after {{count}}.0 seconds."
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "Try again after 1 second."
+    Received: "Try again after 1.0 seconds."
+
+      105 |   const text = createI18nextTranslator({createEngine: () => engine});
+      106 |   engine.addResourceBundle('en', 'translation', {'retry.after_one': template}, true, true);
+    > 107 |   expect(text.retryAfterSeconds(1)).toBe('Try again after 1 second.');
+          |                                     ^
+      108 |   expect(createI18nextTranslator({catalog: {'retry.after_one': template}}).retryAfterSeconds(1)).toBe('Try again after 1 second.');
+      109 | });
+      110 |
+
+      at toBe (src/localization/infrastructure/i18next-translator.test.ts:107:37)
+
+  ● WEA-28 S05 unsupported nesting cannot expose an arbitrary raw identifier
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "Log in"
+    Received: "unknown.translation"
+
+      113 |   const text = createI18nextTranslator({createEngine: () => engine});
+      114 |   engine.addResource('en', 'translation', 'login.submit', '$t(unknown.translation)');
+    > 115 |   expect(text.text(MESSAGE.LOGIN_SUBMIT)).toBe('Log in');
+          |                                           ^
+      116 |   expect(createI18nextTranslator({catalog: {'login.submit': '$t(unknown.translation)'}}).text(MESSAGE.LOGIN_SUBMIT)).toBe('Log in');
+      117 | });
+      118 |
+
+      at Object.toBe (src/localization/infrastructure/i18next-translator.test.ts:115:43)
+
+  ● WEA-28 S04 retains English grammar after resource corruption for 1
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "Try again after 1 second."
+    Received: "Try again after 1 seconds."
+
+      121 |   const text = createI18nextTranslator({createEngine: () => engine});
+      122 |   engine.addResourceBundle('en', 'translation', {[String(id)]: template}, true, true);
+    > 123 |   expect(text.retryAfterSeconds(count)).toBe(expected);
+          |                                         ^
+      124 | });
+      125 |
+
+      at toBe (src/localization/infrastructure/i18next-translator.test.ts:123:41)
+
+  ● WEA-28 S04 retains English grammar after resource corruption for 2
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "Try again after 2 seconds."
+    Received: "Try again after 2 second."
+
+      121 |   const text = createI18nextTranslator({createEngine: () => engine});
+      122 |   engine.addResourceBundle('en', 'translation', {[String(id)]: template}, true, true);
+    > 123 |   expect(text.retryAfterSeconds(count)).toBe(expected);
+          |                                         ^
+      124 | });
+      125 |
+
+      at toBe (src/localization/infrastructure/i18next-translator.test.ts:123:41)
+
+FAIL src/localization/safe-english.test.ts
+  ● WEA-28 S05 pure fallback rejects nesting rather than displaying a marker
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "Log in"
+    Received: "$t(unknown.translation)"
+
+      62 |
+      63 | test('WEA-28 S05 pure fallback rejects nesting rather than displaying a marker', () => {
+    > 64 |   expect(createSafeEnglishTranslator({'login.submit': '$t(unknown.translation)'}).text(MESSAGE.LOGIN_SUBMIT)).toBe('Log in');
+         |                                                                                                               ^
+      65 | });
+      66 |
+      67 | test('WEA-28 S04/S05 pure fallback rejects numeric adjacency to its count placeholder', () => {
+
+      at Object.toBe (src/localization/safe-english.test.ts:64:111)
+
+  ● WEA-28 S04/S05 pure fallback rejects numeric adjacency to its count placeholder
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "Try again after 1 second."
+    Received: "Try again after 10 seconds."
+
+      66 |
+      67 | test('WEA-28 S04/S05 pure fallback rejects numeric adjacency to its count placeholder', () => {
+    > 68 |   expect(createSafeEnglishTranslator({'retry.after_one': 'Try again after {{count}}0 seconds.'}).retryAfterSeconds(1)).toBe('Try again after 1 second.');
+         |                                                                                                                        ^
+      69 | });
+      70 |
+
+      at Object.toBe (src/localization/safe-english.test.ts:68:120)
+
+FAIL src/localization/catalog.test.ts
+  ● WEA-28 S05 rejects unsupported formatting "$t(unknown.translation)"
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected value: "login.submit"
+    Received array: []
+
+      55 | test.each(['$t(unknown.translation)', 'Try again after {{count}}0 seconds.', 'Try again after -{{count}} seconds.'])('WEA-28 S05 rejects unsupported formatting %p', (value) => {
+      56 |   const id = value.startsWith('$t(') ? MESSAGE.LOGIN_SUBMIT : MESSAGE.RETRY_AFTER_ONE;
+    > 57 |   expect(validateEnglishCatalog({...completeEnglishFixture, [id]: value})).toContain(id);
+         |                                                                            ^
+      58 | });
+      59 |
+
+      at toContain (src/localization/catalog.test.ts:57:76)
+
+  ● WEA-28 S05 rejects unsupported formatting "Try again after {{count}}0 seconds."
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected value: "retry.after_one"
+    Received array: []
+
+      55 | test.each(['$t(unknown.translation)', 'Try again after {{count}}0 seconds.', 'Try again after -{{count}} seconds.'])('WEA-28 S05 rejects unsupported formatting %p', (value) => {
+      56 |   const id = value.startsWith('$t(') ? MESSAGE.LOGIN_SUBMIT : MESSAGE.RETRY_AFTER_ONE;
+    > 57 |   expect(validateEnglishCatalog({...completeEnglishFixture, [id]: value})).toContain(id);
+         |                                                                            ^
+      58 | });
+      59 |
+
+      at toContain (src/localization/catalog.test.ts:57:76)
+
+  ● WEA-28 S05 rejects unsupported formatting "Try again after -{{count}} seconds."
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected value: "retry.after_one"
+    Received array: []
+
+      55 | test.each(['$t(unknown.translation)', 'Try again after {{count}}0 seconds.', 'Try again after -{{count}} seconds.'])('WEA-28 S05 rejects unsupported formatting %p', (value) => {
+      56 |   const id = value.startsWith('$t(') ? MESSAGE.LOGIN_SUBMIT : MESSAGE.RETRY_AFTER_ONE;
+    > 57 |   expect(validateEnglishCatalog({...completeEnglishFixture, [id]: value})).toContain(id);
+         |                                                                            ^
+      58 | });
+      59 |
+
+      at toContain (src/localization/catalog.test.ts:57:76)
+
+Test Suites: 3 failed, 3 total
+Tests:       12 failed, 35 passed, 47 total
+Snapshots:   0 total
+Time:        0.296 s, estimated 1 s
+Ran all test suites matching /src\/localization\/infrastructure\/i18next-translator.test.ts|src\/localization\/catalog.test.ts|src\/localization\/safe-english.test.ts/i.
+undefined
+/Users/pravinraj/workspace/weave/apps/mobile:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: jest --runInBand '--watchman=false' src/localization/infrastructure/i18next-translator.test.ts src/localization/catalog.test.ts src/localization/safe-english.test.ts

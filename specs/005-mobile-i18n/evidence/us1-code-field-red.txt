@@ -1,0 +1,97 @@
+FAIL src/components/code-field.test.tsx
+  ✓ S15/S16 moving the native cursor highlights the digit being corrected (53 ms)
+  ✓ S15/S16 a native selection range highlights only its code digits (3 ms)
+  ✕ WEA-28 S03 CodeField takes supplied accessible text without exposing decorative digits (2 ms)
+
+  ● WEA-28 S03 CodeField takes supplied accessible text without exposing decorative digits
+
+    Unable to find an element with accessibility label: Enter the emailed code
+
+    [36m<View>[39m
+      [36m<Text>[39m
+        [0mVerification code[0m
+      [36m</Text>[39m
+      [36m<View>[39m
+        [36m<View[39m
+          [33maccessibilityElementsHidden[39m=[32m{true}[39m
+          [33mimportantForAccessibility[39m=[32m"no-hide-descendants"[39m
+        [36m>[39m
+          [36m<View[39m
+            [33mtestID[39m=[32m"code-slot-0"[39m
+          [36m>[39m
+            [36m<Text>[39m
+              [0m1[0m
+            [36m</Text>[39m
+          [36m</View>[39m
+          [36m<View[39m
+            [33mtestID[39m=[32m"code-slot-1"[39m
+          [36m>[39m
+            [36m<Text>[39m
+              [0m2[0m
+            [36m</Text>[39m
+          [36m</View>[39m
+          [36m<View[39m
+            [33mtestID[39m=[32m"code-slot-2"[39m
+          [36m>[39m
+            [36m<Text>[39m
+              [0m3[0m
+            [36m</Text>[39m
+          [36m</View>[39m
+          [36m<View[39m
+            [33mtestID[39m=[32m"code-slot-3"[39m
+          [36m>[39m
+            [36m<Text>[39m
+              [0m4[0m
+            [36m</Text>[39m
+          [36m</View>[39m
+          [36m<View[39m
+            [33mtestID[39m=[32m"code-slot-4"[39m
+          [36m>[39m
+            [36m<Text>[39m
+              [0m5[0m
+            [36m</Text>[39m
+          [36m</View>[39m
+          [36m<View[39m
+            [33mtestID[39m=[32m"code-slot-5"[39m
+          [36m>[39m
+            [36m<Text>[39m
+              [0m6[0m
+            [36m</Text>[39m
+          [36m</View>[39m
+        [36m</View>[39m
+        [36m<TextInput[39m
+          [33maccessibilityHint[39m=[32m"Enter or paste the six-digit code from your email"[39m
+          [33maccessibilityLabel[39m=[32m"Verification code"[39m
+          [33maccessibilityState[39m=[32m{
+            {
+              "disabled": false,
+            }
+          }[39m
+          [33meditable[39m=[32m{true}[39m
+          [33mtestID[39m=[32m"field-verification-code"[39m
+          [33mvalue[39m=[32m"123456"[39m
+        [36m/>[39m
+      [36m</View>[39m
+      [36m<Text>[39m
+        [0mEnter the 6-digit code from your email.[0m
+      [36m</Text>[39m
+    [36m</View>[39m
+
+      70 | test('WEA-28 S03 CodeField takes supplied accessible text without exposing decorative digits', () => {
+      71 |   render(<CodeField label="Enter the emailed code" hint="Paste all six digits" instructions="Use the code in your email" value="123456" onChangeText={() => undefined} />);
+    > 72 |   expect(screen.getByLabelText('Enter the emailed code')).toHaveProp('accessibilityHint', 'Paste all six digits');
+         |                 ^
+      73 |   expect(screen.getByText('Use the code in your email')).toBeTruthy();
+      74 |   expect(screen.getByTestId('code-slot-0', {includeHiddenElements: true})).not.toBeVisible();
+      75 | });
+
+      at Object.getByLabelText (src/components/code-field.test.tsx:72:17)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 2 passed, 3 total
+Snapshots:   0 total
+Time:        0.341 s, estimated 1 s
+Ran all test suites matching /src\/components\/code-field.test.tsx/i.
+undefined
+/Users/pravinraj/workspace/weave/apps/mobile:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: jest --runInBand '--watchman=false' src/components/code-field.test.tsx

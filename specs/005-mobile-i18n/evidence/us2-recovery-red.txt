@@ -1,0 +1,89 @@
+FAIL src/recovery/recovery-screen.test.tsx
+  ● WEA-28 S06 actual recovery uses pure bundled English without a normal provider or engine
+
+    Unable to find an element with text: Fixture recovery heading
+
+    [36m<RNCSafeAreaView>[39m
+      [36m<RCTScrollView>[39m
+        [36m<View>[39m
+          [36m<Text[39m
+            [33maccessibilityRole[39m=[32m"header"[39m
+          [36m>[39m
+            [0mSomething went wrong[0m
+          [36m</Text>[39m
+          [36m<Text[39m
+            [33maccessibilityRole[39m=[32m"alert"[39m
+            [33maccessibilityState[39m=[32m{
+              {
+                "busy": false,
+              }
+            }[39m
+          [36m>[39m
+            [0mThe app could not display this screen. Reload to try again.[0m
+          [36m</Text>[39m
+          [36m<View[39m
+            [33maccessibilityLabel[39m=[32m"Reload"[39m
+            [33maccessibilityRole[39m=[32m"button"[39m
+            [33maccessibilityState[39m=[32m{
+              {
+                "busy": false,
+                "disabled": false,
+              }
+            }[39m
+            [33maccessible[39m=[32m{true}[39m
+          [36m>[39m
+            [36m<View>[39m
+              [36m<Text>[39m
+                [0mReload[0m
+              [36m</Text>[39m
+            [36m</View>[39m
+          [36m</View>[39m
+        [36m</View>[39m
+      [36m</RCTScrollView>[39m
+    [36m</RNCSafeAreaView>[39m
+
+      11 |   const reload = jest.fn();
+      12 |   render(<RecoveryScreen onReload={reload} />);
+    > 13 |   expect(screen.getByText('Fixture recovery heading')).toBeTruthy();
+         |                 ^
+      14 |   expect(screen.getByRole('alert')).toHaveTextContent('Fixture recovery information');
+      15 |   fireEvent.press(screen.getByRole('button', {name: 'Reload this fixture'}));
+      16 |   expect(reload).toHaveBeenCalledTimes(1);
+
+      at Object.getByText (src/recovery/recovery-screen.test.tsx:13:17)
+
+FAIL src/localization/safe-english.test.ts
+  ● WEA-28 S06 corrupt canonical recovery copy preserves the pure emergency action
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 3
+    + Received  + 3
+
+      Object {
+    -   "description": "The app could not display this screen. Reload to try again.",
+    -   "reload": "Reload",
+    -   "title": "Something went wrong",
+    +   "description": "",
+    +   "reload": "",
+    +   "title": "",
+      }
+
+      44 |
+      45 | test('WEA-28 S06 corrupt canonical recovery copy preserves the pure emergency action', () => {
+    > 46 |   expect(recoveryText({})).toEqual({title: 'Something went wrong', description: 'The app could not display this screen. Reload to try again.', reload: 'Reload'});
+         |                            ^
+      47 |   const saved = global.Intl;
+      48 |   Object.defineProperty(global, 'Intl', {value: undefined, configurable: true});
+      49 |   try {expect(recoveryText(null).reload).toBe('Reload');}
+
+      at Object.toEqual (src/localization/safe-english.test.ts:46:28)
+
+Test Suites: 2 failed, 2 total
+Tests:       2 failed, 7 passed, 9 total
+Snapshots:   0 total
+Time:        0.407 s, estimated 1 s
+Ran all test suites matching /src\/localization\/safe-english.test.ts|src\/recovery\/recovery-screen.test.tsx/i.
+undefined
+/Users/pravinraj/workspace/weave/apps/mobile:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: jest --runInBand '--watchman=false' src/localization/safe-english.test.ts src/recovery/recovery-screen.test.tsx

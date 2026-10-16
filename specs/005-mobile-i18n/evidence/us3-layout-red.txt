@@ -1,0 +1,1905 @@
+FAIL src/auth/localization-layout.test.tsx (9.769 s)
+  ✕ WEA-28 S08 expanded text keeps semantic controls and scroll layout at 390/844 font 1 (1047 ms)
+  ✕ WEA-28 S08 expanded text keeps semantic controls and scroll layout at 390/844 font 1.5 (1008 ms)
+  ✕ WEA-28 S08 expanded text keeps semantic controls and scroll layout at 390/844 font 2 (1009 ms)
+  ✕ WEA-28 S08 expanded text keeps semantic controls and scroll layout at 844/390 font 1 (1010 ms)
+  ✕ WEA-28 S08 expanded text keeps semantic controls and scroll layout at 844/390 font 2 (1008 ms)
+  ✕ WEA-28 S08 expanded text keeps semantic controls and scroll layout at 768/1024 font 1 (1010 ms)
+  ✕ WEA-28 S08 expanded text keeps semantic controls and scroll layout at 768/1024 font 2 (1008 ms)
+  ✕ WEA-28 S08 expanded text keeps semantic controls and scroll layout at 1024/768 font 1 (1006 ms)
+  ✕ WEA-28 S08 expanded text keeps semantic controls and scroll layout at 1024/768 font 2 (1006 ms)
+
+  ● WEA-28 S08 expanded text keeps semantic controls and scroll layout at 390/844 font 1
+
+    Unable to find an element with text: Welcome back Welcome back
+
+    [36m<View>[39m
+      [36m<RNSScreenStack>[39m
+        [36m<RNSScreen[39m
+          [33maria-hidden[39m=[32m{false}[39m
+        [36m>[39m
+          [36m<RNSScreenContentWrapper>[39m
+            [36m<View>[39m
+              [36m<RNCSafeAreaView[39m
+                [33mtestID[39m=[32m"login-safe-area"[39m
+              [36m>[39m
+                [36m<View>[39m
+                  [36m<View>[39m
+                    [36m<View />[39m
+                    [36m<View>[39m
+                      [36m<Image[39m
+                        [33maccessibilityLabel[39m=[32m"Weave"[39m
+                        [33maccessibilityRole[39m=[32m"image"[39m
+                      [36m/>[39m
+                    [36m</View>[39m
+                    [36m<View />[39m
+                  [36m</View>[39m
+                  [36m<View>[39m
+                    [36m<RCTScrollView>[39m
+                      [36m<View>[39m
+                        [36m<View>[39m
+                          [36m<View>[39m
+                            [36m<View>[39m
+                              [36m<Text[39m
+                                [33maccessibilityRole[39m=[32m"header"[39m
+                              [36m>[39m
+                                [0mWelcome back[0m
+                              [36m</Text>[39m
+                              [36m<Text>[39m
+                                [0mSign in to your Weave workspace.[0m
+                              [36m</Text>[39m
+                            [36m</View>[39m
+                          [36m</View>[39m
+                          [36m<View[39m
+                            [33maccessibilityLabel[39m=[32m"Continue with Google"[39m
+                            [33maccessibilityRole[39m=[32m"button"[39m
+                            [33maccessibilityState[39m=[32m{
+                              {
+                                "busy": false,
+                                "disabled": false,
+                              }
+                            }[39m
+                            [33maccessible[39m=[32m{true}[39m
+                          [36m>[39m
+                            [36m<View>[39m
+                              [36m<Image[39m
+                                [33maccessible[39m=[32m{false}[39m
+                              [36m/>[39m
+                              [36m<Text>[39m
+                                [0mContinue with Google[0m
+                              [36m</Text>[39m
+                            [36m</View>[39m
+                          [36m</View>[39m
+                          [36m<View>[39m
+                            [36m<View />[39m
+                            [36m<Text>[39m
+                              [0mor continue with email[0m
+                            [36m</Text>[39m
+                            [36m<View />[39m
+                          [36m</View>[39m
+                          [36m<View>[39m
+                            [36m<View[39m
+                              [33maccessibilityLabel[39m=[32m"Email and password"[39m
+                              [33maccessibilityRole[39m=[32m"button"[39m
+                              [33maccessibilityState[39m=[32m{
+                                {
+                                  "disabled": false,
+                                  "selected": true,
+                                }
+                              }[39m
+                              [33maccessible[39m=[32m{true}[39m
+                            [36m>[39m
+                              [36m<Text>[39m
+                                [0mPassword[0m
+                              [36m</Text>[39m
+                            [36m</View>[39m
+                            [36m<View[39m
+                              [33maccessibilityLabel[39m=[32m"Email code"[39m
+                              [33maccessibilityRole[39m=[32m"button"[39m
+                              [33maccessibilityState[39m=[32m{
+                                {
+                                  "disabled": false,
+                                  "selected": false,
+                                }
+                              }[39m
+                              [33maccessible[39m=[32m{true}[39m
+                            [36m>[39m
+                              [36m<Text>[39m
+                                [0mEmail code[0m
+                              [36m</Text>[39m
+                            [36m</View>[39m
+                          [36m</View>[39m
+                          [36m<View>[39m
+                            [36m<View>[39m
+                              [36m<Text>[39m
+                                [0mEmail[0m
+                              [36m</Text>[39m
+                              [36m<TextInput[39m
+                                [33maccessibilityLabel[39m=[32m"Email"[39m
+                                [33maccessibilityState[39m=[32m{
+                                  {
+                                    "disabled": false,
+                                  }
+                                }[39m
+                                [33meditable[39m=[32m{true}[39m
+                                [33mplaceholder[39m=[32m"you@company.com"[39m
+                                [33mtestID[39m=[32m"field-email"[39m
+                                [33mvalue[39m=[32m""[39m
+                              [36m/>[39m
+                            [36m</View>[39m
+                            [36m<View>[39m
+                              [36m<View>[39m
+                                [36m<View[39m
+                                  [33maccessibilityElementsHidden[39m=[32m{false}[39m
+                                  [33mimportantForAccessibility[39m=[32m"auto"[39m
+                                  [33mpointerEvents[39m=[32m"auto"[39m
+                                [36m>[39m
+                                  [36m<View>[39m
+                                    [36m<View>[39m
+                                      [36m<View>[39m
+                                        [36m<Text>[39m
+                                          [0mPassword[0m
+                                        [36m</Text>[39m
+                                        [36m<TextInput[39m
+                                          [33maccessibilityLabel[39m=[32m"Password"[39m
+                                          [33maccessibilityState[39m=[32m{
+                                            {
+                                              "disabled": false,
+                                            }
+                                          }[39m
+                                          [33meditable[39m=[32m{true}[39m
+                                          [33mplaceholder[39m=[32m"Enter your password"[39m
+                                          [33mtestID[39m=[32m"field-password"[39m
+                                          [33mvalue[39m=[32m""[39m
+                                        [36m/>[39m
+                                      [36m</View>[39m
+                                    [36m</View>[39m
+                                  [36m</View>[39m
+                                [36m</View>[39m
+                                [36m<View>[39m
+                                  [36m<View[39m
+                                    [33maccessibilityLabel[39m=[32m"Log in"[39m
+                                    [33maccessibilityRole[39m=[32m"button"[39m
+                                    [33maccessibilityState[39m=[32m{
+                                      {
+                                        "busy": false,
+                                        "disabled": false,
+                                      }
+                                    }[39m
+                                    [33maccessible[39m=[32m{true}[39m
+                                  [36m>[39m
+                                    [36m<View>[39m
+                                      [36m<Text>[39m
+                                        [0mLog in[0m
+                                      [36m</Text>[39m
+                                      [36m<Text[39m
+                                        [33maccessibilityElementsHidden[39m=[32m{true}[39m
+                                        [33mimportantForAccessibility[39m=[32m"no"[39m
+                                      [36m>[39m
+                                        [0m→[0m
+                                      [36m</Text>[39m
+                                    [36m</View>[39m
+                                  [36m</View>[39m
+                                [36m</View>[39m
+                              [36m</View>[39m
+                            [36m</View>[39m
+                          [36m</View>[39m
+                        [36m</View>[39m
+                      [36m</View>[39m
+                    [36m</RCTScrollView>[39m
+                  [36m</View>[39m
+                [36m</View>[39m
+              [36m</RNCSafeAreaView>[39m
+            [36m</View>[39m
+          [36m</RNSScreenContentWrapper>[39m
+          [36m<RNSScreenStackHeaderConfig[39m
+            [33mpointerEvents[39m=[32m"box-none"[39m
+            [33mtitle[39m=[32m"Login"[39m
+          [36m/>[39m
+        [36m</RNSScreen>[39m
+      [36m</RNSScreenStack>[39m
+    [36m</View>[39m
+
+      22 |   const gateway = new TestGateway();
+      23 |   const view = render(<App createRuntime={() => createAuthRuntime(gateway,new TestClock())} createLocalization={() => createLocalizationRuntime({translator:createI18nextTranslator({catalog:expandedEnglishCatalog})})} />);
+    > 24 |   await waitFor(() => expect(screen.getByText('Welcome back Welcome back')).toBeTruthy());
+         |                ^
+      25 |   expect(screen.getByRole('button',{name:'Log in Log in'})).toBeEnabled();
+      26 |   expect(screen.getByLabelText('Email Email')).toHaveProp('autoComplete','email');
+      27 |   expect(StyleSheet.flatten(view.UNSAFE_getByType(ScrollView).props.contentContainerStyle)).toMatchObject({flexGrow:1});
+
+      at src/auth/localization-layout.test.tsx:24:16
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12
+      at apply (src/auth/localization-layout.test.tsx:33:2)
+
+  ● WEA-28 S08 expanded text keeps semantic controls and scroll layout at 390/844 font 1.5
+
+    Unable to find an element with text: Welcome back Welcome back
+
+    [36m<View>[39m
+      [36m<RNSScreenStack>[39m
+        [36m<RNSScreen[39m
+          [33maria-hidden[39m=[32m{false}[39m
+        [36m>[39m
+          [36m<RNSScreenContentWrapper>[39m
+            [36m<View>[39m
+              [36m<RNCSafeAreaView[39m
+                [33mtestID[39m=[32m"login-safe-area"[39m
+              [36m>[39m
+                [36m<View>[39m
+                  [36m<View>[39m
+                    [36m<View />[39m
+                    [36m<View>[39m
+                      [36m<Image[39m
+                        [33maccessibilityLabel[39m=[32m"Weave"[39m
+                        [33maccessibilityRole[39m=[32m"image"[39m
+                      [36m/>[39m
+                    [36m</View>[39m
+                    [36m<View />[39m
+                  [36m</View>[39m
+                  [36m<View>[39m
+                    [36m<RCTScrollView>[39m
+                      [36m<View>[39m
+                        [36m<View>[39m
+                          [36m<View>[39m
+                            [36m<View>[39m
+                              [36m<Text[39m
+                                [33maccessibilityRole[39m=[32m"header"[39m
+                              [36m>[39m
+                                [0mWelcome back[0m
+                              [36m</Text>[39m
+                              [36m<Text>[39m
+                                [0mSign in to your Weave workspace.[0m
+                              [36m</Text>[39m
+                            [36m</View>[39m
+                          [36m</View>[39m
+                          [36m<View[39m
+                            [33maccessibilityLabel[39m=[32m"Continue with Google"[39m
+                            [33maccessibilityRole[39m=[32m"button"[39m
+                            [33maccessibilityState[39m=[32m{
+                              {
+                                "busy": false,
+                                "disabled": false,
+                              }
+                            }[39m
+                            [33maccessible[39m=[32m{true}[39m
+                          [36m>[39m
+                            [36m<View>[39m
+                              [36m<Image[39m
+                                [33maccessible[39m=[32m{false}[39m
+                              [36m/>[39m
+                              [36m<Text>[39m
+                                [0mContinue with Google[0m
+                              [36m</Text>[39m
+                            [36m</View>[39m
+                          [36m</View>[39m
+                          [36m<View>[39m
+                            [36m<View />[39m
+                            [36m<Text>[39m
+                              [0mor continue with email[0m
+                            [36m</Text>[39m
+                            [36m<View />[39m
+                          [36m</View>[39m
+                          [36m<View>[39m
+                            [36m<View[39m
+                              [33maccessibilityLabel[39m=[32m"Email and password"[39m
+                              [33maccessibilityRole[39m=[32m"button"[39m
+                              [33maccessibilityState[39m=[32m{
+                                {
+                                  "disabled": false,
+                                  "selected": true,
+                                }
+                              }[39m
+                              [33maccessible[39m=[32m{true}[39m
+                            [36m>[39m
+                              [36m<Text>[39m
+                                [0mPassword[0m
+                              [36m</Text>[39m
+                            [36m</View>[39m
+                            [36m<View[39m
+                              [33maccessibilityLabel[39m=[32m"Email code"[39m
+                              [33maccessibilityRole[39m=[32m"button"[39m
+                              [33maccessibilityState[39m=[32m{
+                                {
+                                  "disabled": false,
+                                  "selected": false,
+                                }
+                              }[39m
+                              [33maccessible[39m=[32m{true}[39m
+                            [36m>[39m
+                              [36m<Text>[39m
+                                [0mEmail code[0m
+                              [36m</Text>[39m
+                            [36m</View>[39m
+                          [36m</View>[39m
+                          [36m<View>[39m
+                            [36m<View>[39m
+                              [36m<Text>[39m
+                                [0mEmail[0m
+                              [36m</Text>[39m
+                              [36m<TextInput[39m
+                                [33maccessibilityLabel[39m=[32m"Email"[39m
+                                [33maccessibilityState[39m=[32m{
+                                  {
+                                    "disabled": false,
+                                  }
+                                }[39m
+                                [33meditable[39m=[32m{true}[39m
+                                [33mplaceholder[39m=[32m"you@company.com"[39m
+                                [33mtestID[39m=[32m"field-email"[39m
+                                [33mvalue[39m=[32m""[39m
+                              [36m/>[39m
+                            [36m</View>[39m
+                            [36m<View>[39m
+                              [36m<View>[39m
+                                [36m<View[39m
+                                  [33maccessibilityElementsHidden[39m=[32m{false}[39m
+                                  [33mimportantForAccessibility[39m=[32m"auto"[39m
+                                  [33mpointerEvents[39m=[32m"auto"[39m
+                                [36m>[39m
+                                  [36m<View>[39m
+                                    [36m<View>[39m
+                                      [36m<View>[39m
+                                        [36m<Text>[39m
+                                          [0mPassword[0m
+                                        [36m</Text>[39m
+                                        [36m<TextInput[39m
+                                          [33maccessibilityLabel[39m=[32m"Password"[39m
+                                          [33maccessibilityState[39m=[32m{
+                                            {
+                                              "disabled": false,
+                                            }
+                                          }[39m
+                                          [33meditable[39m=[32m{true}[39m
+                                          [33mplaceholder[39m=[32m"Enter your password"[39m
+                                          [33mtestID[39m=[32m"field-password"[39m
+                                          [33mvalue[39m=[32m""[39m
+                                        [36m/>[39m
+                                      [36m</View>[39m
+                                    [36m</View>[39m
+                                  [36m</View>[39m
+                                [36m</View>[39m
+                                [36m<View>[39m
+                                  [36m<View[39m
+                                    [33maccessibilityLabel[39m=[32m"Log in"[39m
+                                    [33maccessibilityRole[39m=[32m"button"[39m
+                                    [33maccessibilityState[39m=[32m{
+                                      {
+                                        "busy": false,
+                                        "disabled": false,
+                                      }
+                                    }[39m
+                                    [33maccessible[39m=[32m{true}[39m
+                                  [36m>[39m
+                                    [36m<View>[39m
+                                      [36m<Text>[39m
+                                        [0mLog in[0m
+                                      [36m</Text>[39m
+                                      [36m<Text[39m
+                                        [33maccessibilityElementsHidden[39m=[32m{true}[39m
+                                        [33mimportantForAccessibility[39m=[32m"no"[39m
+                                      [36m>[39m
+                                        [0m→[0m
+                                      [36m</Text>[39m
+                                    [36m</View>[39m
+                                  [36m</View>[39m
+                                [36m</View>[39m
+                              [36m</View>[39m
+                            [36m</View>[39m
+                          [36m</View>[39m
+                        [36m</View>[39m
+                      [36m</View>[39m
+                    [36m</RCTScrollView>[39m
+                  [36m</View>[39m
+                [36m</View>[39m
+              [36m</RNCSafeAreaView>[39m
+            [36m</View>[39m
+          [36m</RNSScreenContentWrapper>[39m
+          [36m<RNSScreenStackHeaderConfig[39m
+            [33mpointerEvents[39m=[32m"box-none"[39m
+            [33mtitle[39m=[32m"Login"[39m
+          [36m/>[39m
+        [36m</RNSScreen>[39m
+      [36m</RNSScreenStack>[39m
+    [36m</View>[39m
+
+      22 |   const gateway = new TestGateway();
+      23 |   const view = render(<App createRuntime={() => createAuthRuntime(gateway,new TestClock())} createLocalization={() => createLocalizationRuntime({translator:createI18nextTranslator({catalog:expandedEnglishCatalog})})} />);
+    > 24 |   await waitFor(() => expect(screen.getByText('Welcome back Welcome back')).toBeTruthy());
+         |                ^
+      25 |   expect(screen.getByRole('button',{name:'Log in Log in'})).toBeEnabled();
+      26 |   expect(screen.getByLabelText('Email Email')).toHaveProp('autoComplete','email');
+      27 |   expect(StyleSheet.flatten(view.UNSAFE_getByType(ScrollView).props.contentContainerStyle)).toMatchObject({flexGrow:1});
+
+      at src/auth/localization-layout.test.tsx:24:16
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12
+      at apply (src/auth/localization-layout.test.tsx:33:2)
+
+  ● WEA-28 S08 expanded text keeps semantic controls and scroll layout at 390/844 font 2
+
+    Unable to find an element with text: Welcome back Welcome back
+
+    [36m<View>[39m
+      [36m<RNSScreenStack>[39m
+        [36m<RNSScreen[39m
+          [33maria-hidden[39m=[32m{false}[39m
+        [36m>[39m
+          [36m<RNSScreenContentWrapper>[39m
+            [36m<View>[39m
+              [36m<RNCSafeAreaView[39m
+                [33mtestID[39m=[32m"login-safe-area"[39m
+              [36m>[39m
+                [36m<View>[39m
+                  [36m<View>[39m
+                    [36m<View />[39m
+                    [36m<View>[39m
+                      [36m<Image[39m
+                        [33maccessibilityLabel[39m=[32m"Weave"[39m
+                        [33maccessibilityRole[39m=[32m"image"[39m
+                      [36m/>[39m
+                    [36m</View>[39m
+                    [36m<View />[39m
+                  [36m</View>[39m
+                  [36m<View>[39m
+                    [36m<RCTScrollView>[39m
+                      [36m<View>[39m
+                        [36m<View>[39m
+                          [36m<View>[39m
+                            [36m<View>[39m
+                              [36m<Text[39m
+                                [33maccessibilityRole[39m=[32m"header"[39m
+                              [36m>[39m
+                                [0mWelcome back[0m
+                              [36m</Text>[39m
+                              [36m<Text>[39m
+                                [0mSign in to your Weave workspace.[0m
+                              [36m</Text>[39m
+                            [36m</View>[39m
+                          [36m</View>[39m
+                          [36m<View[39m
+                            [33maccessibilityLabel[39m=[32m"Continue with Google"[39m
+                            [33maccessibilityRole[39m=[32m"button"[39m
+                            [33maccessibilityState[39m=[32m{
+                              {
+                                "busy": false,
+                                "disabled": false,
+                              }
+                            }[39m
+                            [33maccessible[39m=[32m{true}[39m
+                          [36m>[39m
+                            [36m<View>[39m
+                              [36m<Image[39m
+                                [33maccessible[39m=[32m{false}[39m
+                              [36m/>[39m
+                              [36m<Text>[39m
+                                [0mContinue with Google[0m
+                              [36m</Text>[39m
+                            [36m</View>[39m
+                          [36m</View>[39m
+                          [36m<View>[39m
+                            [36m<View />[39m
+                            [36m<Text>[39m
+                              [0mor continue with email[0m
+                            [36m</Text>[39m
+                            [36m<View />[39m
+                          [36m</View>[39m
+                          [36m<View>[39m
+                            [36m<View[39m
+                              [33maccessibilityLabel[39m=[32m"Email and password"[39m
+                              [33maccessibilityRole[39m=[32m"button"[39m
+                              [33maccessibilityState[39m=[32m{
+                                {
+                                  "disabled": false,
+                                  "selected": true,
+                                }
+                              }[39m
+                              [33maccessible[39m=[32m{true}[39m
+                            [36m>[39m
+                              [36m<Text>[39m
+                                [0mPassword[0m
+                              [36m</Text>[39m
+                            [36m</View>[39m
+                            [36m<View[39m
+                              [33maccessibilityLabel[39m=[32m"Email code"[39m
+                              [33maccessibilityRole[39m=[32m"button"[39m
+                              [33maccessibilityState[39m=[32m{
+                                {
+                                  "disabled": false,
+                                  "selected": false,
+                                }
+                              }[39m
+                              [33maccessible[39m=[32m{true}[39m
+                            [36m>[39m
+                              [36m<Text>[39m
+                                [0mEmail code[0m
+                              [36m</Text>[39m
+                            [36m</View>[39m
+                          [36m</View>[39m
+                          [36m<View>[39m
+                            [36m<View>[39m
+                              [36m<Text>[39m
+                                [0mEmail[0m
+                              [36m</Text>[39m
+                              [36m<TextInput[39m
+                                [33maccessibilityLabel[39m=[32m"Email"[39m
+                                [33maccessibilityState[39m=[32m{
+                                  {
+                                    "disabled": false,
+                                  }
+                                }[39m
+                                [33meditable[39m=[32m{true}[39m
+                                [33mplaceholder[39m=[32m"you@company.com"[39m
+                                [33mtestID[39m=[32m"field-email"[39m
+                                [33mvalue[39m=[32m""[39m
+                              [36m/>[39m
+                            [36m</View>[39m
+                            [36m<View>[39m
+                              [36m<View>[39m
+                                [36m<View[39m
+                                  [33maccessibilityElementsHidden[39m=[32m{false}[39m
+                                  [33mimportantForAccessibility[39m=[32m"auto"[39m
+                                  [33mpointerEvents[39m=[32m"auto"[39m
+                                [36m>[39m
+                                  [36m<View>[39m
+                                    [36m<View>[39m
+                                      [36m<View>[39m
+                                        [36m<Text>[39m
+                                          [0mPassword[0m
+                                        [36m</Text>[39m
+                                        [36m<TextInput[39m
+                                          [33maccessibilityLabel[39m=[32m"Password"[39m
+                                          [33maccessibilityState[39m=[32m{
+                                            {
+                                              "disabled": false,
+                                            }
+                                          }[39m
+                                          [33meditable[39m=[32m{true}[39m
+                                          [33mplaceholder[39m=[32m"Enter your password"[39m
+                                          [33mtestID[39m=[32m"field-password"[39m
+                                          [33mvalue[39m=[32m""[39m
+                                        [36m/>[39m
+                                      [36m</View>[39m
+                                    [36m</View>[39m
+                                  [36m</View>[39m
+                                [36m</View>[39m
+                                [36m<View>[39m
+                                  [36m<View[39m
+                                    [33maccessibilityLabel[39m=[32m"Log in"[39m
+                                    [33maccessibilityRole[39m=[32m"button"[39m
+                                    [33maccessibilityState[39m=[32m{
+                                      {
+                                        "busy": false,
+                                        "disabled": false,
+                                      }
+                                    }[39m
+                                    [33maccessible[39m=[32m{true}[39m
+                                  [36m>[39m
+                                    [36m<View>[39m
+                                      [36m<Text>[39m
+                                        [0mLog in[0m
+                                      [36m</Text>[39m
+                                      [36m<Text[39m
+                                        [33maccessibilityElementsHidden[39m=[32m{true}[39m
+                                        [33mimportantForAccessibility[39m=[32m"no"[39m
+                                      [36m>[39m
+                                        [0m→[0m
+                                      [36m</Text>[39m
+                                    [36m</View>[39m
+                                  [36m</View>[39m
+                                [36m</View>[39m
+                              [36m</View>[39m
+                            [36m</View>[39m
+                          [36m</View>[39m
+                        [36m</View>[39m
+                      [36m</View>[39m
+                    [36m</RCTScrollView>[39m
+                  [36m</View>[39m
+                [36m</View>[39m
+              [36m</RNCSafeAreaView>[39m
+            [36m</View>[39m
+          [36m</RNSScreenContentWrapper>[39m
+          [36m<RNSScreenStackHeaderConfig[39m
+            [33mpointerEvents[39m=[32m"box-none"[39m
+            [33mtitle[39m=[32m"Login"[39m
+          [36m/>[39m
+        [36m</RNSScreen>[39m
+      [36m</RNSScreenStack>[39m
+    [36m</View>[39m
+
+      22 |   const gateway = new TestGateway();
+      23 |   const view = render(<App createRuntime={() => createAuthRuntime(gateway,new TestClock())} createLocalization={() => createLocalizationRuntime({translator:createI18nextTranslator({catalog:expandedEnglishCatalog})})} />);
+    > 24 |   await waitFor(() => expect(screen.getByText('Welcome back Welcome back')).toBeTruthy());
+         |                ^
+      25 |   expect(screen.getByRole('button',{name:'Log in Log in'})).toBeEnabled();
+      26 |   expect(screen.getByLabelText('Email Email')).toHaveProp('autoComplete','email');
+      27 |   expect(StyleSheet.flatten(view.UNSAFE_getByType(ScrollView).props.contentContainerStyle)).toMatchObject({flexGrow:1});
+
+      at src/auth/localization-layout.test.tsx:24:16
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12
+      at apply (src/auth/localization-layout.test.tsx:33:2)
+
+  ● WEA-28 S08 expanded text keeps semantic controls and scroll layout at 844/390 font 1
+
+    Unable to find an element with text: Welcome back Welcome back
+
+    [36m<View>[39m
+      [36m<RNSScreenStack>[39m
+        [36m<RNSScreen[39m
+          [33maria-hidden[39m=[32m{false}[39m
+        [36m>[39m
+          [36m<RNSScreenContentWrapper>[39m
+            [36m<View>[39m
+              [36m<RNCSafeAreaView[39m
+                [33mtestID[39m=[32m"login-safe-area"[39m
+              [36m>[39m
+                [36m<View>[39m
+                  [36m<View>[39m
+                    [36m<View />[39m
+                    [36m<View>[39m
+                      [36m<Image[39m
+                        [33maccessibilityLabel[39m=[32m"Weave"[39m
+                        [33maccessibilityRole[39m=[32m"image"[39m
+                      [36m/>[39m
+                    [36m</View>[39m
+                    [36m<View />[39m
+                  [36m</View>[39m
+                  [36m<View>[39m
+                    [36m<RCTScrollView>[39m
+                      [36m<View>[39m
+                        [36m<View>[39m
+                          [36m<View>[39m
+                            [36m<View>[39m
+                              [36m<Text[39m
+                                [33maccessibilityRole[39m=[32m"header"[39m
+                              [36m>[39m
+                                [0mWelcome back[0m
+                              [36m</Text>[39m
+                              [36m<Text>[39m
+                                [0mSign in to your Weave workspace.[0m
+                              [36m</Text>[39m
+                            [36m</View>[39m
+                          [36m</View>[39m
+                          [36m<View[39m
+                            [33maccessibilityLabel[39m=[32m"Continue with Google"[39m
+                            [33maccessibilityRole[39m=[32m"button"[39m
+                            [33maccessibilityState[39m=[32m{
+                              {
+                                "busy": false,
+                                "disabled": false,
+                              }
+                            }[39m
+                            [33maccessible[39m=[32m{true}[39m
+                          [36m>[39m
+                            [36m<View>[39m
+                              [36m<Image[39m
+                                [33maccessible[39m=[32m{false}[39m
+                              [36m/>[39m
+                              [36m<Text>[39m
+                                [0mContinue with Google[0m
+                              [36m</Text>[39m
+                            [36m</View>[39m
+                          [36m</View>[39m
+                          [36m<View>[39m
+                            [36m<View />[39m
+                            [36m<Text>[39m
+                              [0mor continue with email[0m
+                            [36m</Text>[39m
+                            [36m<View />[39m
+                          [36m</View>[39m
+                          [36m<View>[39m
+                            [36m<View[39m
+                              [33maccessibilityLabel[39m=[32m"Email and password"[39m
+                              [33maccessibilityRole[39m=[32m"button"[39m
+                              [33maccessibilityState[39m=[32m{
+                                {
+                                  "disabled": false,
+                                  "selected": true,
+                                }
+                              }[39m
+                              [33maccessible[39m=[32m{true}[39m
+                            [36m>[39m
+                              [36m<Text>[39m
+                                [0mPassword[0m
+                              [36m</Text>[39m
+                            [36m</View>[39m
+                            [36m<View[39m
+                              [33maccessibilityLabel[39m=[32m"Email code"[39m
+                              [33maccessibilityRole[39m=[32m"button"[39m
+                              [33maccessibilityState[39m=[32m{
+                                {
+                                  "disabled": false,
+                                  "selected": false,
+                                }
+                              }[39m
+                              [33maccessible[39m=[32m{true}[39m
+                            [36m>[39m
+                              [36m<Text>[39m
+                                [0mEmail code[0m
+                              [36m</Text>[39m
+                            [36m</View>[39m
+                          [36m</View>[39m
+                          [36m<View>[39m
+                            [36m<View>[39m
+                              [36m<Text>[39m
+                                [0mEmail[0m
+                              [36m</Text>[39m
+                              [36m<TextInput[39m
+                                [33maccessibilityLabel[39m=[32m"Email"[39m
+                                [33maccessibilityState[39m=[32m{
+                                  {
+                                    "disabled": false,
+                                  }
+                                }[39m
+                                [33meditable[39m=[32m{true}[39m
+                                [33mplaceholder[39m=[32m"you@company.com"[39m
+                                [33mtestID[39m=[32m"field-email"[39m
+                                [33mvalue[39m=[32m""[39m
+                              [36m/>[39m
+                            [36m</View>[39m
+                            [36m<View>[39m
+                              [36m<View>[39m
+                                [36m<View[39m
+                                  [33maccessibilityElementsHidden[39m=[32m{false}[39m
+                                  [33mimportantForAccessibility[39m=[32m"auto"[39m
+                                  [33mpointerEvents[39m=[32m"auto"[39m
+                                [36m>[39m
+                                  [36m<View>[39m
+                                    [36m<View>[39m
+                                      [36m<View>[39m
+                                        [36m<Text>[39m
+                                          [0mPassword[0m
+                                        [36m</Text>[39m
+                                        [36m<TextInput[39m
+                                          [33maccessibilityLabel[39m=[32m"Password"[39m
+                                          [33maccessibilityState[39m=[32m{
+                                            {
+                                              "disabled": false,
+                                            }
+                                          }[39m
+                                          [33meditable[39m=[32m{true}[39m
+                                          [33mplaceholder[39m=[32m"Enter your password"[39m
+                                          [33mtestID[39m=[32m"field-password"[39m
+                                          [33mvalue[39m=[32m""[39m
+                                        [36m/>[39m
+                                      [36m</View>[39m
+                                    [36m</View>[39m
+                                  [36m</View>[39m
+                                [36m</View>[39m
+                                [36m<View>[39m
+                                  [36m<View[39m
+                                    [33maccessibilityLabel[39m=[32m"Log in"[39m
+                                    [33maccessibilityRole[39m=[32m"button"[39m
+                                    [33maccessibilityState[39m=[32m{
+                                      {
+                                        "busy": false,
+                                        "disabled": false,
+                                      }
+                                    }[39m
+                                    [33maccessible[39m=[32m{true}[39m
+                                  [36m>[39m
+                                    [36m<View>[39m
+                                      [36m<Text>[39m
+                                        [0mLog in[0m
+                                      [36m</Text>[39m
+                                      [36m<Text[39m
+                                        [33maccessibilityElementsHidden[39m=[32m{true}[39m
+                                        [33mimportantForAccessibility[39m=[32m"no"[39m
+                                      [36m>[39m
+                                        [0m→[0m
+                                      [36m</Text>[39m
+                                    [36m</View>[39m
+                                  [36m</View>[39m
+                                [36m</View>[39m
+                              [36m</View>[39m
+                            [36m</View>[39m
+                          [36m</View>[39m
+                        [36m</View>[39m
+                      [36m</View>[39m
+                    [36m</RCTScrollView>[39m
+                  [36m</View>[39m
+                [36m</View>[39m
+              [36m</RNCSafeAreaView>[39m
+            [36m</View>[39m
+          [36m</RNSScreenContentWrapper>[39m
+          [36m<RNSScreenStackHeaderConfig[39m
+            [33mpointerEvents[39m=[32m"box-none"[39m
+            [33mtitle[39m=[32m"Login"[39m
+          [36m/>[39m
+        [36m</RNSScreen>[39m
+      [36m</RNSScreenStack>[39m
+    [36m</View>[39m
+
+      22 |   const gateway = new TestGateway();
+      23 |   const view = render(<App createRuntime={() => createAuthRuntime(gateway,new TestClock())} createLocalization={() => createLocalizationRuntime({translator:createI18nextTranslator({catalog:expandedEnglishCatalog})})} />);
+    > 24 |   await waitFor(() => expect(screen.getByText('Welcome back Welcome back')).toBeTruthy());
+         |                ^
+      25 |   expect(screen.getByRole('button',{name:'Log in Log in'})).toBeEnabled();
+      26 |   expect(screen.getByLabelText('Email Email')).toHaveProp('autoComplete','email');
+      27 |   expect(StyleSheet.flatten(view.UNSAFE_getByType(ScrollView).props.contentContainerStyle)).toMatchObject({flexGrow:1});
+
+      at src/auth/localization-layout.test.tsx:24:16
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12
+      at apply (src/auth/localization-layout.test.tsx:33:2)
+
+  ● WEA-28 S08 expanded text keeps semantic controls and scroll layout at 844/390 font 2
+
+    Unable to find an element with text: Welcome back Welcome back
+
+    [36m<View>[39m
+      [36m<RNSScreenStack>[39m
+        [36m<RNSScreen[39m
+          [33maria-hidden[39m=[32m{false}[39m
+        [36m>[39m
+          [36m<RNSScreenContentWrapper>[39m
+            [36m<View>[39m
+              [36m<RNCSafeAreaView[39m
+                [33mtestID[39m=[32m"login-safe-area"[39m
+              [36m>[39m
+                [36m<View>[39m
+                  [36m<View>[39m
+                    [36m<View />[39m
+                    [36m<View>[39m
+                      [36m<Image[39m
+                        [33maccessibilityLabel[39m=[32m"Weave"[39m
+                        [33maccessibilityRole[39m=[32m"image"[39m
+                      [36m/>[39m
+                    [36m</View>[39m
+                    [36m<View />[39m
+                  [36m</View>[39m
+                  [36m<View>[39m
+                    [36m<RCTScrollView>[39m
+                      [36m<View>[39m
+                        [36m<View>[39m
+                          [36m<View>[39m
+                            [36m<View>[39m
+                              [36m<Text[39m
+                                [33maccessibilityRole[39m=[32m"header"[39m
+                              [36m>[39m
+                                [0mWelcome back[0m
+                              [36m</Text>[39m
+                              [36m<Text>[39m
+                                [0mSign in to your Weave workspace.[0m
+                              [36m</Text>[39m
+                            [36m</View>[39m
+                          [36m</View>[39m
+                          [36m<View[39m
+                            [33maccessibilityLabel[39m=[32m"Continue with Google"[39m
+                            [33maccessibilityRole[39m=[32m"button"[39m
+                            [33maccessibilityState[39m=[32m{
+                              {
+                                "busy": false,
+                                "disabled": false,
+                              }
+                            }[39m
+                            [33maccessible[39m=[32m{true}[39m
+                          [36m>[39m
+                            [36m<View>[39m
+                              [36m<Image[39m
+                                [33maccessible[39m=[32m{false}[39m
+                              [36m/>[39m
+                              [36m<Text>[39m
+                                [0mContinue with Google[0m
+                              [36m</Text>[39m
+                            [36m</View>[39m
+                          [36m</View>[39m
+                          [36m<View>[39m
+                            [36m<View />[39m
+                            [36m<Text>[39m
+                              [0mor continue with email[0m
+                            [36m</Text>[39m
+                            [36m<View />[39m
+                          [36m</View>[39m
+                          [36m<View>[39m
+                            [36m<View[39m
+                              [33maccessibilityLabel[39m=[32m"Email and password"[39m
+                              [33maccessibilityRole[39m=[32m"button"[39m
+                              [33maccessibilityState[39m=[32m{
+                                {
+                                  "disabled": false,
+                                  "selected": true,
+                                }
+                              }[39m
+                              [33maccessible[39m=[32m{true}[39m
+                            [36m>[39m
+                              [36m<Text>[39m
+                                [0mPassword[0m
+                              [36m</Text>[39m
+                            [36m</View>[39m
+                            [36m<View[39m
+                              [33maccessibilityLabel[39m=[32m"Email code"[39m
+                              [33maccessibilityRole[39m=[32m"button"[39m
+                              [33maccessibilityState[39m=[32m{
+                                {
+                                  "disabled": false,
+                                  "selected": false,
+                                }
+                              }[39m
+                              [33maccessible[39m=[32m{true}[39m
+                            [36m>[39m
+                              [36m<Text>[39m
+                                [0mEmail code[0m
+                              [36m</Text>[39m
+                            [36m</View>[39m
+                          [36m</View>[39m
+                          [36m<View>[39m
+                            [36m<View>[39m
+                              [36m<Text>[39m
+                                [0mEmail[0m
+                              [36m</Text>[39m
+                              [36m<TextInput[39m
+                                [33maccessibilityLabel[39m=[32m"Email"[39m
+                                [33maccessibilityState[39m=[32m{
+                                  {
+                                    "disabled": false,
+                                  }
+                                }[39m
+                                [33meditable[39m=[32m{true}[39m
+                                [33mplaceholder[39m=[32m"you@company.com"[39m
+                                [33mtestID[39m=[32m"field-email"[39m
+                                [33mvalue[39m=[32m""[39m
+                              [36m/>[39m
+                            [36m</View>[39m
+                            [36m<View>[39m
+                              [36m<View>[39m
+                                [36m<View[39m
+                                  [33maccessibilityElementsHidden[39m=[32m{false}[39m
+                                  [33mimportantForAccessibility[39m=[32m"auto"[39m
+                                  [33mpointerEvents[39m=[32m"auto"[39m
+                                [36m>[39m
+                                  [36m<View>[39m
+                                    [36m<View>[39m
+                                      [36m<View>[39m
+                                        [36m<Text>[39m
+                                          [0mPassword[0m
+                                        [36m</Text>[39m
+                                        [36m<TextInput[39m
+                                          [33maccessibilityLabel[39m=[32m"Password"[39m
+                                          [33maccessibilityState[39m=[32m{
+                                            {
+                                              "disabled": false,
+                                            }
+                                          }[39m
+                                          [33meditable[39m=[32m{true}[39m
+                                          [33mplaceholder[39m=[32m"Enter your password"[39m
+                                          [33mtestID[39m=[32m"field-password"[39m
+                                          [33mvalue[39m=[32m""[39m
+                                        [36m/>[39m
+                                      [36m</View>[39m
+                                    [36m</View>[39m
+                                  [36m</View>[39m
+                                [36m</View>[39m
+                                [36m<View>[39m
+                                  [36m<View[39m
+                                    [33maccessibilityLabel[39m=[32m"Log in"[39m
+                                    [33maccessibilityRole[39m=[32m"button"[39m
+                                    [33maccessibilityState[39m=[32m{
+                                      {
+                                        "busy": false,
+                                        "disabled": false,
+                                      }
+                                    }[39m
+                                    [33maccessible[39m=[32m{true}[39m
+                                  [36m>[39m
+                                    [36m<View>[39m
+                                      [36m<Text>[39m
+                                        [0mLog in[0m
+                                      [36m</Text>[39m
+                                      [36m<Text[39m
+                                        [33maccessibilityElementsHidden[39m=[32m{true}[39m
+                                        [33mimportantForAccessibility[39m=[32m"no"[39m
+                                      [36m>[39m
+                                        [0m→[0m
+                                      [36m</Text>[39m
+                                    [36m</View>[39m
+                                  [36m</View>[39m
+                                [36m</View>[39m
+                              [36m</View>[39m
+                            [36m</View>[39m
+                          [36m</View>[39m
+                        [36m</View>[39m
+                      [36m</View>[39m
+                    [36m</RCTScrollView>[39m
+                  [36m</View>[39m
+                [36m</View>[39m
+              [36m</RNCSafeAreaView>[39m
+            [36m</View>[39m
+          [36m</RNSScreenContentWrapper>[39m
+          [36m<RNSScreenStackHeaderConfig[39m
+            [33mpointerEvents[39m=[32m"box-none"[39m
+            [33mtitle[39m=[32m"Login"[39m
+          [36m/>[39m
+        [36m</RNSScreen>[39m
+      [36m</RNSScreenStack>[39m
+    [36m</View>[39m
+
+      22 |   const gateway = new TestGateway();
+      23 |   const view = render(<App createRuntime={() => createAuthRuntime(gateway,new TestClock())} createLocalization={() => createLocalizationRuntime({translator:createI18nextTranslator({catalog:expandedEnglishCatalog})})} />);
+    > 24 |   await waitFor(() => expect(screen.getByText('Welcome back Welcome back')).toBeTruthy());
+         |                ^
+      25 |   expect(screen.getByRole('button',{name:'Log in Log in'})).toBeEnabled();
+      26 |   expect(screen.getByLabelText('Email Email')).toHaveProp('autoComplete','email');
+      27 |   expect(StyleSheet.flatten(view.UNSAFE_getByType(ScrollView).props.contentContainerStyle)).toMatchObject({flexGrow:1});
+
+      at src/auth/localization-layout.test.tsx:24:16
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12
+      at apply (src/auth/localization-layout.test.tsx:33:2)
+
+  ● WEA-28 S08 expanded text keeps semantic controls and scroll layout at 768/1024 font 1
+
+    Unable to find an element with text: Welcome back Welcome back
+
+    [36m<View>[39m
+      [36m<RNSScreenStack>[39m
+        [36m<RNSScreen[39m
+          [33maria-hidden[39m=[32m{false}[39m
+        [36m>[39m
+          [36m<RNSScreenContentWrapper>[39m
+            [36m<View>[39m
+              [36m<RNCSafeAreaView[39m
+                [33mtestID[39m=[32m"login-safe-area"[39m
+              [36m>[39m
+                [36m<View>[39m
+                  [36m<View>[39m
+                    [36m<View />[39m
+                    [36m<View>[39m
+                      [36m<Image[39m
+                        [33maccessibilityLabel[39m=[32m"Weave"[39m
+                        [33maccessibilityRole[39m=[32m"image"[39m
+                      [36m/>[39m
+                    [36m</View>[39m
+                    [36m<View />[39m
+                  [36m</View>[39m
+                  [36m<View>[39m
+                    [36m<RCTScrollView>[39m
+                      [36m<View>[39m
+                        [36m<View>[39m
+                          [36m<View>[39m
+                            [36m<View>[39m
+                              [36m<Text[39m
+                                [33maccessibilityRole[39m=[32m"header"[39m
+                              [36m>[39m
+                                [0mWelcome back[0m
+                              [36m</Text>[39m
+                              [36m<Text>[39m
+                                [0mSign in to your Weave workspace.[0m
+                              [36m</Text>[39m
+                            [36m</View>[39m
+                          [36m</View>[39m
+                          [36m<View[39m
+                            [33maccessibilityLabel[39m=[32m"Continue with Google"[39m
+                            [33maccessibilityRole[39m=[32m"button"[39m
+                            [33maccessibilityState[39m=[32m{
+                              {
+                                "busy": false,
+                                "disabled": false,
+                              }
+                            }[39m
+                            [33maccessible[39m=[32m{true}[39m
+                          [36m>[39m
+                            [36m<View>[39m
+                              [36m<Image[39m
+                                [33maccessible[39m=[32m{false}[39m
+                              [36m/>[39m
+                              [36m<Text>[39m
+                                [0mContinue with Google[0m
+                              [36m</Text>[39m
+                            [36m</View>[39m
+                          [36m</View>[39m
+                          [36m<View>[39m
+                            [36m<View />[39m
+                            [36m<Text>[39m
+                              [0mor continue with email[0m
+                            [36m</Text>[39m
+                            [36m<View />[39m
+                          [36m</View>[39m
+                          [36m<View>[39m
+                            [36m<View[39m
+                              [33maccessibilityLabel[39m=[32m"Email and password"[39m
+                              [33maccessibilityRole[39m=[32m"button"[39m
+                              [33maccessibilityState[39m=[32m{
+                                {
+                                  "disabled": false,
+                                  "selected": true,
+                                }
+                              }[39m
+                              [33maccessible[39m=[32m{true}[39m
+                            [36m>[39m
+                              [36m<Text>[39m
+                                [0mPassword[0m
+                              [36m</Text>[39m
+                            [36m</View>[39m
+                            [36m<View[39m
+                              [33maccessibilityLabel[39m=[32m"Email code"[39m
+                              [33maccessibilityRole[39m=[32m"button"[39m
+                              [33maccessibilityState[39m=[32m{
+                                {
+                                  "disabled": false,
+                                  "selected": false,
+                                }
+                              }[39m
+                              [33maccessible[39m=[32m{true}[39m
+                            [36m>[39m
+                              [36m<Text>[39m
+                                [0mEmail code[0m
+                              [36m</Text>[39m
+                            [36m</View>[39m
+                          [36m</View>[39m
+                          [36m<View>[39m
+                            [36m<View>[39m
+                              [36m<Text>[39m
+                                [0mEmail[0m
+                              [36m</Text>[39m
+                              [36m<TextInput[39m
+                                [33maccessibilityLabel[39m=[32m"Email"[39m
+                                [33maccessibilityState[39m=[32m{
+                                  {
+                                    "disabled": false,
+                                  }
+                                }[39m
+                                [33meditable[39m=[32m{true}[39m
+                                [33mplaceholder[39m=[32m"you@company.com"[39m
+                                [33mtestID[39m=[32m"field-email"[39m
+                                [33mvalue[39m=[32m""[39m
+                              [36m/>[39m
+                            [36m</View>[39m
+                            [36m<View>[39m
+                              [36m<View>[39m
+                                [36m<View[39m
+                                  [33maccessibilityElementsHidden[39m=[32m{false}[39m
+                                  [33mimportantForAccessibility[39m=[32m"auto"[39m
+                                  [33mpointerEvents[39m=[32m"auto"[39m
+                                [36m>[39m
+                                  [36m<View>[39m
+                                    [36m<View>[39m
+                                      [36m<View>[39m
+                                        [36m<Text>[39m
+                                          [0mPassword[0m
+                                        [36m</Text>[39m
+                                        [36m<TextInput[39m
+                                          [33maccessibilityLabel[39m=[32m"Password"[39m
+                                          [33maccessibilityState[39m=[32m{
+                                            {
+                                              "disabled": false,
+                                            }
+                                          }[39m
+                                          [33meditable[39m=[32m{true}[39m
+                                          [33mplaceholder[39m=[32m"Enter your password"[39m
+                                          [33mtestID[39m=[32m"field-password"[39m
+                                          [33mvalue[39m=[32m""[39m
+                                        [36m/>[39m
+                                      [36m</View>[39m
+                                    [36m</View>[39m
+                                  [36m</View>[39m
+                                [36m</View>[39m
+                                [36m<View>[39m
+                                  [36m<View[39m
+                                    [33maccessibilityLabel[39m=[32m"Log in"[39m
+                                    [33maccessibilityRole[39m=[32m"button"[39m
+                                    [33maccessibilityState[39m=[32m{
+                                      {
+                                        "busy": false,
+                                        "disabled": false,
+                                      }
+                                    }[39m
+                                    [33maccessible[39m=[32m{true}[39m
+                                  [36m>[39m
+                                    [36m<View>[39m
+                                      [36m<Text>[39m
+                                        [0mLog in[0m
+                                      [36m</Text>[39m
+                                      [36m<Text[39m
+                                        [33maccessibilityElementsHidden[39m=[32m{true}[39m
+                                        [33mimportantForAccessibility[39m=[32m"no"[39m
+                                      [36m>[39m
+                                        [0m→[0m
+                                      [36m</Text>[39m
+                                    [36m</View>[39m
+                                  [36m</View>[39m
+                                [36m</View>[39m
+                              [36m</View>[39m
+                            [36m</View>[39m
+                          [36m</View>[39m
+                        [36m</View>[39m
+                      [36m</View>[39m
+                    [36m</RCTScrollView>[39m
+                  [36m</View>[39m
+                [36m</View>[39m
+              [36m</RNCSafeAreaView>[39m
+            [36m</View>[39m
+          [36m</RNSScreenContentWrapper>[39m
+          [36m<RNSScreenStackHeaderConfig[39m
+            [33mpointerEvents[39m=[32m"box-none"[39m
+            [33mtitle[39m=[32m"Login"[39m
+          [36m/>[39m
+        [36m</RNSScreen>[39m
+      [36m</RNSScreenStack>[39m
+    [36m</View>[39m
+
+      22 |   const gateway = new TestGateway();
+      23 |   const view = render(<App createRuntime={() => createAuthRuntime(gateway,new TestClock())} createLocalization={() => createLocalizationRuntime({translator:createI18nextTranslator({catalog:expandedEnglishCatalog})})} />);
+    > 24 |   await waitFor(() => expect(screen.getByText('Welcome back Welcome back')).toBeTruthy());
+         |                ^
+      25 |   expect(screen.getByRole('button',{name:'Log in Log in'})).toBeEnabled();
+      26 |   expect(screen.getByLabelText('Email Email')).toHaveProp('autoComplete','email');
+      27 |   expect(StyleSheet.flatten(view.UNSAFE_getByType(ScrollView).props.contentContainerStyle)).toMatchObject({flexGrow:1});
+
+      at src/auth/localization-layout.test.tsx:24:16
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12
+      at apply (src/auth/localization-layout.test.tsx:33:2)
+
+  ● WEA-28 S08 expanded text keeps semantic controls and scroll layout at 768/1024 font 2
+
+    Unable to find an element with text: Welcome back Welcome back
+
+    [36m<View>[39m
+      [36m<RNSScreenStack>[39m
+        [36m<RNSScreen[39m
+          [33maria-hidden[39m=[32m{false}[39m
+        [36m>[39m
+          [36m<RNSScreenContentWrapper>[39m
+            [36m<View>[39m
+              [36m<RNCSafeAreaView[39m
+                [33mtestID[39m=[32m"login-safe-area"[39m
+              [36m>[39m
+                [36m<View>[39m
+                  [36m<View>[39m
+                    [36m<View />[39m
+                    [36m<View>[39m
+                      [36m<Image[39m
+                        [33maccessibilityLabel[39m=[32m"Weave"[39m
+                        [33maccessibilityRole[39m=[32m"image"[39m
+                      [36m/>[39m
+                    [36m</View>[39m
+                    [36m<View />[39m
+                  [36m</View>[39m
+                  [36m<View>[39m
+                    [36m<RCTScrollView>[39m
+                      [36m<View>[39m
+                        [36m<View>[39m
+                          [36m<View>[39m
+                            [36m<View>[39m
+                              [36m<Text[39m
+                                [33maccessibilityRole[39m=[32m"header"[39m
+                              [36m>[39m
+                                [0mWelcome back[0m
+                              [36m</Text>[39m
+                              [36m<Text>[39m
+                                [0mSign in to your Weave workspace.[0m
+                              [36m</Text>[39m
+                            [36m</View>[39m
+                          [36m</View>[39m
+                          [36m<View[39m
+                            [33maccessibilityLabel[39m=[32m"Continue with Google"[39m
+                            [33maccessibilityRole[39m=[32m"button"[39m
+                            [33maccessibilityState[39m=[32m{
+                              {
+                                "busy": false,
+                                "disabled": false,
+                              }
+                            }[39m
+                            [33maccessible[39m=[32m{true}[39m
+                          [36m>[39m
+                            [36m<View>[39m
+                              [36m<Image[39m
+                                [33maccessible[39m=[32m{false}[39m
+                              [36m/>[39m
+                              [36m<Text>[39m
+                                [0mContinue with Google[0m
+                              [36m</Text>[39m
+                            [36m</View>[39m
+                          [36m</View>[39m
+                          [36m<View>[39m
+                            [36m<View />[39m
+                            [36m<Text>[39m
+                              [0mor continue with email[0m
+                            [36m</Text>[39m
+                            [36m<View />[39m
+                          [36m</View>[39m
+                          [36m<View>[39m
+                            [36m<View[39m
+                              [33maccessibilityLabel[39m=[32m"Email and password"[39m
+                              [33maccessibilityRole[39m=[32m"button"[39m
+                              [33maccessibilityState[39m=[32m{
+                                {
+                                  "disabled": false,
+                                  "selected": true,
+                                }
+                              }[39m
+                              [33maccessible[39m=[32m{true}[39m
+                            [36m>[39m
+                              [36m<Text>[39m
+                                [0mPassword[0m
+                              [36m</Text>[39m
+                            [36m</View>[39m
+                            [36m<View[39m
+                              [33maccessibilityLabel[39m=[32m"Email code"[39m
+                              [33maccessibilityRole[39m=[32m"button"[39m
+                              [33maccessibilityState[39m=[32m{
+                                {
+                                  "disabled": false,
+                                  "selected": false,
+                                }
+                              }[39m
+                              [33maccessible[39m=[32m{true}[39m
+                            [36m>[39m
+                              [36m<Text>[39m
+                                [0mEmail code[0m
+                              [36m</Text>[39m
+                            [36m</View>[39m
+                          [36m</View>[39m
+                          [36m<View>[39m
+                            [36m<View>[39m
+                              [36m<Text>[39m
+                                [0mEmail[0m
+                              [36m</Text>[39m
+                              [36m<TextInput[39m
+                                [33maccessibilityLabel[39m=[32m"Email"[39m
+                                [33maccessibilityState[39m=[32m{
+                                  {
+                                    "disabled": false,
+                                  }
+                                }[39m
+                                [33meditable[39m=[32m{true}[39m
+                                [33mplaceholder[39m=[32m"you@company.com"[39m
+                                [33mtestID[39m=[32m"field-email"[39m
+                                [33mvalue[39m=[32m""[39m
+                              [36m/>[39m
+                            [36m</View>[39m
+                            [36m<View>[39m
+                              [36m<View>[39m
+                                [36m<View[39m
+                                  [33maccessibilityElementsHidden[39m=[32m{false}[39m
+                                  [33mimportantForAccessibility[39m=[32m"auto"[39m
+                                  [33mpointerEvents[39m=[32m"auto"[39m
+                                [36m>[39m
+                                  [36m<View>[39m
+                                    [36m<View>[39m
+                                      [36m<View>[39m
+                                        [36m<Text>[39m
+                                          [0mPassword[0m
+                                        [36m</Text>[39m
+                                        [36m<TextInput[39m
+                                          [33maccessibilityLabel[39m=[32m"Password"[39m
+                                          [33maccessibilityState[39m=[32m{
+                                            {
+                                              "disabled": false,
+                                            }
+                                          }[39m
+                                          [33meditable[39m=[32m{true}[39m
+                                          [33mplaceholder[39m=[32m"Enter your password"[39m
+                                          [33mtestID[39m=[32m"field-password"[39m
+                                          [33mvalue[39m=[32m""[39m
+                                        [36m/>[39m
+                                      [36m</View>[39m
+                                    [36m</View>[39m
+                                  [36m</View>[39m
+                                [36m</View>[39m
+                                [36m<View>[39m
+                                  [36m<View[39m
+                                    [33maccessibilityLabel[39m=[32m"Log in"[39m
+                                    [33maccessibilityRole[39m=[32m"button"[39m
+                                    [33maccessibilityState[39m=[32m{
+                                      {
+                                        "busy": false,
+                                        "disabled": false,
+                                      }
+                                    }[39m
+                                    [33maccessible[39m=[32m{true}[39m
+                                  [36m>[39m
+                                    [36m<View>[39m
+                                      [36m<Text>[39m
+                                        [0mLog in[0m
+                                      [36m</Text>[39m
+                                      [36m<Text[39m
+                                        [33maccessibilityElementsHidden[39m=[32m{true}[39m
+                                        [33mimportantForAccessibility[39m=[32m"no"[39m
+                                      [36m>[39m
+                                        [0m→[0m
+                                      [36m</Text>[39m
+                                    [36m</View>[39m
+                                  [36m</View>[39m
+                                [36m</View>[39m
+                              [36m</View>[39m
+                            [36m</View>[39m
+                          [36m</View>[39m
+                        [36m</View>[39m
+                      [36m</View>[39m
+                    [36m</RCTScrollView>[39m
+                  [36m</View>[39m
+                [36m</View>[39m
+              [36m</RNCSafeAreaView>[39m
+            [36m</View>[39m
+          [36m</RNSScreenContentWrapper>[39m
+          [36m<RNSScreenStackHeaderConfig[39m
+            [33mpointerEvents[39m=[32m"box-none"[39m
+            [33mtitle[39m=[32m"Login"[39m
+          [36m/>[39m
+        [36m</RNSScreen>[39m
+      [36m</RNSScreenStack>[39m
+    [36m</View>[39m
+
+      22 |   const gateway = new TestGateway();
+      23 |   const view = render(<App createRuntime={() => createAuthRuntime(gateway,new TestClock())} createLocalization={() => createLocalizationRuntime({translator:createI18nextTranslator({catalog:expandedEnglishCatalog})})} />);
+    > 24 |   await waitFor(() => expect(screen.getByText('Welcome back Welcome back')).toBeTruthy());
+         |                ^
+      25 |   expect(screen.getByRole('button',{name:'Log in Log in'})).toBeEnabled();
+      26 |   expect(screen.getByLabelText('Email Email')).toHaveProp('autoComplete','email');
+      27 |   expect(StyleSheet.flatten(view.UNSAFE_getByType(ScrollView).props.contentContainerStyle)).toMatchObject({flexGrow:1});
+
+      at src/auth/localization-layout.test.tsx:24:16
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12
+      at apply (src/auth/localization-layout.test.tsx:33:2)
+
+  ● WEA-28 S08 expanded text keeps semantic controls and scroll layout at 1024/768 font 1
+
+    Unable to find an element with text: Welcome back Welcome back
+
+    [36m<View>[39m
+      [36m<RNSScreenStack>[39m
+        [36m<RNSScreen[39m
+          [33maria-hidden[39m=[32m{false}[39m
+        [36m>[39m
+          [36m<RNSScreenContentWrapper>[39m
+            [36m<View>[39m
+              [36m<View>[39m
+                [36m<Image[39m
+                  [33maccessible[39m=[32m{false}[39m
+                [36m/>[39m
+                [36m<RNCSafeAreaView>[39m
+                  [36m<Text[39m
+                    [33maccessibilityRole[39m=[32m"header"[39m
+                  [36m>[39m
+                    [0mEverything, woven together.[0m
+                  [36m</Text>[39m
+                  [36m<Text>[39m
+                    [0mNo more loose threads.
+    From order to shelf.[0m
+                  [36m</Text>[39m
+                [36m</RNCSafeAreaView>[39m
+              [36m</View>[39m
+              [36m<RNCSafeAreaView[39m
+                [33mtestID[39m=[32m"login-safe-area"[39m
+              [36m>[39m
+                [36m<View>[39m
+                  [36m<View>[39m
+                    [36m<View />[39m
+                    [36m<View>[39m
+                      [36m<Image[39m
+                        [33maccessibilityLabel[39m=[32m"Weave"[39m
+                        [33maccessibilityRole[39m=[32m"image"[39m
+                      [36m/>[39m
+                    [36m</View>[39m
+                    [36m<View />[39m
+                  [36m</View>[39m
+                  [36m<View>[39m
+                    [36m<RCTScrollView>[39m
+                      [36m<View>[39m
+                        [36m<View>[39m
+                          [36m<View>[39m
+                            [36m<View>[39m
+                              [36m<Text[39m
+                                [33maccessibilityRole[39m=[32m"header"[39m
+                              [36m>[39m
+                                [0mWelcome back[0m
+                              [36m</Text>[39m
+                              [36m<Text>[39m
+                                [0mSign in to your Weave workspace.[0m
+                              [36m</Text>[39m
+                            [36m</View>[39m
+                          [36m</View>[39m
+                          [36m<View[39m
+                            [33maccessibilityLabel[39m=[32m"Continue with Google"[39m
+                            [33maccessibilityRole[39m=[32m"button"[39m
+                            [33maccessibilityState[39m=[32m{
+                              {
+                                "busy": false,
+                                "disabled": false,
+                              }
+                            }[39m
+                            [33maccessible[39m=[32m{true}[39m
+                          [36m>[39m
+                            [36m<View>[39m
+                              [36m<Image[39m
+                                [33maccessible[39m=[32m{false}[39m
+                              [36m/>[39m
+                              [36m<Text>[39m
+                                [0mContinue with Google[0m
+                              [36m</Text>[39m
+                            [36m</View>[39m
+                          [36m</View>[39m
+                          [36m<View>[39m
+                            [36m<View />[39m
+                            [36m<Text>[39m
+                              [0mor continue with email[0m
+                            [36m</Text>[39m
+                            [36m<View />[39m
+                          [36m</View>[39m
+                          [36m<View>[39m
+                            [36m<View[39m
+                              [33maccessibilityLabel[39m=[32m"Email and password"[39m
+                              [33maccessibilityRole[39m=[32m"button"[39m
+                              [33maccessibilityState[39m=[32m{
+                                {
+                                  "disabled": false,
+                                  "selected": true,
+                                }
+                              }[39m
+                              [33maccessible[39m=[32m{true}[39m
+                            [36m>[39m
+                              [36m<Text>[39m
+                                [0mPassword[0m
+                              [36m</Text>[39m
+                            [36m</View>[39m
+                            [36m<View[39m
+                              [33maccessibilityLabel[39m=[32m"Email code"[39m
+                              [33maccessibilityRole[39m=[32m"button"[39m
+                              [33maccessibilityState[39m=[32m{
+                                {
+                                  "disabled": false,
+                                  "selected": false,
+                                }
+                              }[39m
+                              [33maccessible[39m=[32m{true}[39m
+                            [36m>[39m
+                              [36m<Text>[39m
+                                [0mEmail code[0m
+                              [36m</Text>[39m
+                            [36m</View>[39m
+                          [36m</View>[39m
+                          [36m<View>[39m
+                            [36m<View>[39m
+                              [36m<Text>[39m
+                                [0mEmail[0m
+                              [36m</Text>[39m
+                              [36m<TextInput[39m
+                                [33maccessibilityLabel[39m=[32m"Email"[39m
+                                [33maccessibilityState[39m=[32m{
+                                  {
+                                    "disabled": false,
+                                  }
+                                }[39m
+                                [33meditable[39m=[32m{true}[39m
+                                [33mplaceholder[39m=[32m"you@company.com"[39m
+                                [33mtestID[39m=[32m"field-email"[39m
+                                [33mvalue[39m=[32m""[39m
+                              [36m/>[39m
+                            [36m</View>[39m
+                            [36m<View>[39m
+                              [36m<View>[39m
+                                [36m<View[39m
+                                  [33maccessibilityElementsHidden[39m=[32m{false}[39m
+                                  [33mimportantForAccessibility[39m=[32m"auto"[39m
+                                  [33mpointerEvents[39m=[32m"auto"[39m
+                                [36m>[39m
+                                  [36m<View>[39m
+                                    [36m<View>[39m
+                                      [36m<View>[39m
+                                        [36m<Text>[39m
+                                          [0mPassword[0m
+                                        [36m</Text>[39m
+                                        [36m<TextInput[39m
+                                          [33maccessibilityLabel[39m=[32m"Password"[39m
+                                          [33maccessibilityState[39m=[32m{
+                                            {
+                                              "disabled": false,
+                                            }
+                                          }[39m
+                                          [33meditable[39m=[32m{true}[39m
+                                          [33mplaceholder[39m=[32m"Enter your password"[39m
+                                          [33mtestID[39m=[32m"field-password"[39m
+                                          [33mvalue[39m=[32m""[39m
+                                        [36m/>[39m
+                                      [36m</View>[39m
+                                    [36m</View>[39m
+                                  [36m</View>[39m
+                                [36m</View>[39m
+                                [36m<View>[39m
+                                  [36m<View[39m
+                                    [33maccessibilityLabel[39m=[32m"Log in"[39m
+                                    [33maccessibilityRole[39m=[32m"button"[39m
+                                    [33maccessibilityState[39m=[32m{
+                                      {
+                                        "busy": false,
+                                        "disabled": false,
+                                      }
+                                    }[39m
+                                    [33maccessible[39m=[32m{true}[39m
+                                  [36m>[39m
+                                    [36m<View>[39m
+                                      [36m<Text>[39m
+                                        [0mLog in[0m
+                                      [36m</Text>[39m
+                                      [36m<Text[39m
+                                        [33maccessibilityElementsHidden[39m=[32m{true}[39m
+                                        [33mimportantForAccessibility[39m=[32m"no"[39m
+                                      [36m>[39m
+                                        [0m→[0m
+                                      [36m</Text>[39m
+                                    [36m</View>[39m
+                                  [36m</View>[39m
+                                [36m</View>[39m
+                              [36m</View>[39m
+                            [36m</View>[39m
+                          [36m</View>[39m
+                        [36m</View>[39m
+                      [36m</View>[39m
+                    [36m</RCTScrollView>[39m
+                  [36m</View>[39m
+                [36m</View>[39m
+              [36m</RNCSafeAreaView>[39m
+            [36m</View>[39m
+          [36m</RNSScreenContentWrapper>[39m
+          [36m<RNSScreenStackHeaderConfig[39m
+            [33mpointerEvents[39m=[32m"box-none"[39m
+            [33mtitle[39m=[32m"Login"[39m
+          [36m/>[39m
+        [36m</RNSScreen>[39m
+      [36m</RNSScreenStack>[39m
+    [36m</View>[39m
+
+      22 |   const gateway = new TestGateway();
+      23 |   const view = render(<App createRuntime={() => createAuthRuntime(gateway,new TestClock())} createLocalization={() => createLocalizationRuntime({translator:createI18nextTranslator({catalog:expandedEnglishCatalog})})} />);
+    > 24 |   await waitFor(() => expect(screen.getByText('Welcome back Welcome back')).toBeTruthy());
+         |                ^
+      25 |   expect(screen.getByRole('button',{name:'Log in Log in'})).toBeEnabled();
+      26 |   expect(screen.getByLabelText('Email Email')).toHaveProp('autoComplete','email');
+      27 |   expect(StyleSheet.flatten(view.UNSAFE_getByType(ScrollView).props.contentContainerStyle)).toMatchObject({flexGrow:1});
+
+      at src/auth/localization-layout.test.tsx:24:16
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12
+      at apply (src/auth/localization-layout.test.tsx:33:2)
+
+  ● WEA-28 S08 expanded text keeps semantic controls and scroll layout at 1024/768 font 2
+
+    Unable to find an element with text: Welcome back Welcome back
+
+    [36m<View>[39m
+      [36m<RNSScreenStack>[39m
+        [36m<RNSScreen[39m
+          [33maria-hidden[39m=[32m{false}[39m
+        [36m>[39m
+          [36m<RNSScreenContentWrapper>[39m
+            [36m<View>[39m
+              [36m<View>[39m
+                [36m<Image[39m
+                  [33maccessible[39m=[32m{false}[39m
+                [36m/>[39m
+                [36m<RNCSafeAreaView>[39m
+                  [36m<Text[39m
+                    [33maccessibilityRole[39m=[32m"header"[39m
+                  [36m>[39m
+                    [0mEverything, woven together.[0m
+                  [36m</Text>[39m
+                  [36m<Text>[39m
+                    [0mNo more loose threads.
+    From order to shelf.[0m
+                  [36m</Text>[39m
+                [36m</RNCSafeAreaView>[39m
+              [36m</View>[39m
+              [36m<RNCSafeAreaView[39m
+                [33mtestID[39m=[32m"login-safe-area"[39m
+              [36m>[39m
+                [36m<View>[39m
+                  [36m<View>[39m
+                    [36m<View />[39m
+                    [36m<View>[39m
+                      [36m<Image[39m
+                        [33maccessibilityLabel[39m=[32m"Weave"[39m
+                        [33maccessibilityRole[39m=[32m"image"[39m
+                      [36m/>[39m
+                    [36m</View>[39m
+                    [36m<View />[39m
+                  [36m</View>[39m
+                  [36m<View>[39m
+                    [36m<RCTScrollView>[39m
+                      [36m<View>[39m
+                        [36m<View>[39m
+                          [36m<View>[39m
+                            [36m<View>[39m
+                              [36m<Text[39m
+                                [33maccessibilityRole[39m=[32m"header"[39m
+                              [36m>[39m
+                                [0mWelcome back[0m
+                              [36m</Text>[39m
+                              [36m<Text>[39m
+                                [0mSign in to your Weave workspace.[0m
+                              [36m</Text>[39m
+                            [36m</View>[39m
+                          [36m</View>[39m
+                          [36m<View[39m
+                            [33maccessibilityLabel[39m=[32m"Continue with Google"[39m
+                            [33maccessibilityRole[39m=[32m"button"[39m
+                            [33maccessibilityState[39m=[32m{
+                              {
+                                "busy": false,
+                                "disabled": false,
+                              }
+                            }[39m
+                            [33maccessible[39m=[32m{true}[39m
+                          [36m>[39m
+                            [36m<View>[39m
+                              [36m<Image[39m
+                                [33maccessible[39m=[32m{false}[39m
+                              [36m/>[39m
+                              [36m<Text>[39m
+                                [0mContinue with Google[0m
+                              [36m</Text>[39m
+                            [36m</View>[39m
+                          [36m</View>[39m
+                          [36m<View>[39m
+                            [36m<View />[39m
+                            [36m<Text>[39m
+                              [0mor continue with email[0m
+                            [36m</Text>[39m
+                            [36m<View />[39m
+                          [36m</View>[39m
+                          [36m<View>[39m
+                            [36m<View[39m
+                              [33maccessibilityLabel[39m=[32m"Email and password"[39m
+                              [33maccessibilityRole[39m=[32m"button"[39m
+                              [33maccessibilityState[39m=[32m{
+                                {
+                                  "disabled": false,
+                                  "selected": true,
+                                }
+                              }[39m
+                              [33maccessible[39m=[32m{true}[39m
+                            [36m>[39m
+                              [36m<Text>[39m
+                                [0mPassword[0m
+                              [36m</Text>[39m
+                            [36m</View>[39m
+                            [36m<View[39m
+                              [33maccessibilityLabel[39m=[32m"Email code"[39m
+                              [33maccessibilityRole[39m=[32m"button"[39m
+                              [33maccessibilityState[39m=[32m{
+                                {
+                                  "disabled": false,
+                                  "selected": false,
+                                }
+                              }[39m
+                              [33maccessible[39m=[32m{true}[39m
+                            [36m>[39m
+                              [36m<Text>[39m
+                                [0mEmail code[0m
+                              [36m</Text>[39m
+                            [36m</View>[39m
+                          [36m</View>[39m
+                          [36m<View>[39m
+                            [36m<View>[39m
+                              [36m<Text>[39m
+                                [0mEmail[0m
+                              [36m</Text>[39m
+                              [36m<TextInput[39m
+                                [33maccessibilityLabel[39m=[32m"Email"[39m
+                                [33maccessibilityState[39m=[32m{
+                                  {
+                                    "disabled": false,
+                                  }
+                                }[39m
+                                [33meditable[39m=[32m{true}[39m
+                                [33mplaceholder[39m=[32m"you@company.com"[39m
+                                [33mtestID[39m=[32m"field-email"[39m
+                                [33mvalue[39m=[32m""[39m
+                              [36m/>[39m
+                            [36m</View>[39m
+                            [36m<View>[39m
+                              [36m<View>[39m
+                                [36m<View[39m
+                                  [33maccessibilityElementsHidden[39m=[32m{false}[39m
+                                  [33mimportantForAccessibility[39m=[32m"auto"[39m
+                                  [33mpointerEvents[39m=[32m"auto"[39m
+                                [36m>[39m
+                                  [36m<View>[39m
+                                    [36m<View>[39m
+                                      [36m<View>[39m
+                                        [36m<Text>[39m
+                                          [0mPassword[0m
+                                        [36m</Text>[39m
+                                        [36m<TextInput[39m
+                                          [33maccessibilityLabel[39m=[32m"Password"[39m
+                                          [33maccessibilityState[39m=[32m{
+                                            {
+                                              "disabled": false,
+                                            }
+                                          }[39m
+                                          [33meditable[39m=[32m{true}[39m
+                                          [33mplaceholder[39m=[32m"Enter your password"[39m
+                                          [33mtestID[39m=[32m"field-password"[39m
+                                          [33mvalue[39m=[32m""[39m
+                                        [36m/>[39m
+                                      [36m</View>[39m
+                                    [36m</View>[39m
+                                  [36m</View>[39m
+                                [36m</View>[39m
+                                [36m<View>[39m
+                                  [36m<View[39m
+                                    [33maccessibilityLabel[39m=[32m"Log in"[39m
+                                    [33maccessibilityRole[39m=[32m"button"[39m
+                                    [33maccessibilityState[39m=[32m{
+                                      {
+                                        "busy": false,
+                                        "disabled": false,
+                                      }
+                                    }[39m
+                                    [33maccessible[39m=[32m{true}[39m
+                                  [36m>[39m
+                                    [36m<View>[39m
+                                      [36m<Text>[39m
+                                        [0mLog in[0m
+                                      [36m</Text>[39m
+                                      [36m<Text[39m
+                                        [33maccessibilityElementsHidden[39m=[32m{true}[39m
+                                        [33mimportantForAccessibility[39m=[32m"no"[39m
+                                      [36m>[39m
+                                        [0m→[0m
+                                      [36m</Text>[39m
+                                    [36m</View>[39m
+                                  [36m</View>[39m
+                                [36m</View>[39m
+                              [36m</View>[39m
+                            [36m</View>[39m
+                          [36m</View>[39m
+                        [36m</View>[39m
+                      [36m</View>[39m
+                    [36m</RCTScrollView>[39m
+                  [36m</View>[39m
+                [36m</View>[39m
+              [36m</RNCSafeAreaView>[39m
+            [36m</View>[39m
+          [36m</RNSScreenContentWrapper>[39m
+          [36m<RNSScreenStackHeaderConfig[39m
+            [33mpointerEvents[39m=[32m"box-none"[39m
+            [33mtitle[39m=[32m"Login"[39m
+          [36m/>[39m
+        [36m</RNSScreen>[39m
+      [36m</RNSScreenStack>[39m
+    [36m</View>[39m
+
+      22 |   const gateway = new TestGateway();
+      23 |   const view = render(<App createRuntime={() => createAuthRuntime(gateway,new TestClock())} createLocalization={() => createLocalizationRuntime({translator:createI18nextTranslator({catalog:expandedEnglishCatalog})})} />);
+    > 24 |   await waitFor(() => expect(screen.getByText('Welcome back Welcome back')).toBeTruthy());
+         |                ^
+      25 |   expect(screen.getByRole('button',{name:'Log in Log in'})).toBeEnabled();
+      26 |   expect(screen.getByLabelText('Email Email')).toHaveProp('autoComplete','email');
+      27 |   expect(StyleSheet.flatten(view.UNSAFE_getByType(ScrollView).props.contentContainerStyle)).toMatchObject({flexGrow:1});
+
+      at src/auth/localization-layout.test.tsx:24:16
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12
+      at apply (src/auth/localization-layout.test.tsx:33:2)
+
+Test Suites: 1 failed, 1 total
+Tests:       9 failed, 9 total
+Snapshots:   0 total
+Time:        9.804 s
+Ran all test suites matching /src\/auth\/localization-layout.test.tsx/i.
+undefined
+/Users/pravinraj/workspace/weave/apps/mobile:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: jest --runInBand '--watchman=false' src/auth/localization-layout.test.tsx
