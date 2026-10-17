@@ -1,0 +1,18 @@
+▶ S11 PostgreSQL distributed notification budget and bounded cleanup
+  ✔ two clients admit exactly one claimant and no resumed burst (5.046375ms)
+  ✔ account 5 second grant cooldown persists and rejected attempts do not extend retention (4.17025ms)
+  ✔ one sweep deletes at most 100 expired rows, retains global/cooldown, and runs once per minute across replicas (2.330917ms)
+  ✔ concurrent reservation blocks deletion of refreshed expired row (1.447709ms)
+Notification budget cleanup unavailable
+  ✔ failed sweep retains distributed cooldown and cannot reverse a successful account reservation (3.92975ms)
+  ✔ maintenance command performs one bounded batch, reports only aggregate and exits (195.089458ms)
+  ✔ storage outage fails closed (0.142833ms)
+✔ S11 PostgreSQL distributed notification budget and bounded cleanup (217.016791ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 336.808583

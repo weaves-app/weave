@@ -1,0 +1,57 @@
+✖ S11 compiled production modules boot health and expose both safe routes with missing config (187.538208ms)
+✔ S11 compiled CommonJS signer loads jose ESM and produces verified ES256 grant (42.080959ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 1
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 312.326792
+
+✖ failing tests:
+
+test at apps/api/test/notification-runtime.test.ts:2:988
+✖ S11 compiled production modules boot health and expose both safe routes with missing config (187.538208ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+
+    [
+      {
+        body: {
+          service: 'weave-api',
+          status: 'ok'
+  ...
+        body: {
+  +       error: 'Not Found',
+  +       message: 'Cannot POST /api/notifications/identity-grant',
+  +       statusCode: 404
+  -       code: 'notifications_unavailable'
+        },
+  +     status: 404
+  -     status: 503
+      },
+      {
+        body: {
+  +       error: 'Not Found',
+  +       message: 'Cannot POST /api/notifications/readiness',
+  +       statusCode: 404
+  -       code: 'notifications_unavailable'
+        },
+  +     status: 404
+  -     status: 503
+      }
+    ]
+
+      at TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-runtime.test.ts:9:9)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.start (node:internal/test_runner/test:959:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:332:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { status: 200, body: [Object] }, { status: 404, body: [Object] }, { status: 404, body: [Object] } ],
+    expected: [ { status: 200, body: [Object] }, { status: 503, body: [Object] }, { status: 503, body: [Object] } ],
+    operator: 'deepStrictEqual'
+  }

@@ -1,0 +1,28 @@
+FAIL src/features/notifications/notification-runtime.test.ts
+  ✕ S01/S03 runtime follows validated auth and clears on sign-out without modifying authentication (2 ms)
+  ✓ S09 disposed root unsubscribes and cannot reconcile future auth changes (1 ms)
+
+  ● S01/S03 runtime follows validated auth and clears on sign-out without modifying authentication
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "permission-needed"
+    Received: "hidden"
+
+      26 |   const signedIn = auth.getState();
+      27 |   await tick();
+    > 28 |   expect(runtime.state.getState().status).toBe('permission-needed');
+         |                                           ^
+      29 |   await runtime.controller.enable();
+      30 |   expect(auth.getState()).toBe(signedIn);
+      31 |   auth.replace({...auth.getState(), session: {status: 'signedOut', generation: 2, revision: 2}});
+
+      at Object.toBe (src/features/notifications/notification-runtime.test.ts:28:43)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 passed, 2 total
+Snapshots:   0 total
+Time:        0.38 s
+Ran all test suites matching /src\/features\/notifications\/notification-runtime.test.ts/i.

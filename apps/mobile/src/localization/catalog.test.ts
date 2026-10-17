@@ -16,7 +16,7 @@ test('WEA-28 S05 rejects deletion of every independently required message', () =
 test.each([undefined, null, [], '', 0])(
   'WEA-28 S05 rejects unavailable catalog %p',
   (candidate) => {
-    expect(validateEnglishCatalog(candidate)).toHaveLength(51);
+    expect(validateEnglishCatalog(candidate)).toHaveLength(64);
   },
 );
 

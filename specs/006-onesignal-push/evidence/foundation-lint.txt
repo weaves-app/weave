@@ -1,0 +1,6 @@
+
+/Users/pravinraj/workspace/weave/apps/mobile/src/features/notifications/testing/fakes.ts
+  101:17  error  Use an exported grouped constant for this typed option value  weave-values/no-inline-option-values
+  132:17  error  Use an exported grouped constant for this typed option value  weave-values/no-inline-option-values
+
+✖ 2 problems (2 errors, 0 warnings)

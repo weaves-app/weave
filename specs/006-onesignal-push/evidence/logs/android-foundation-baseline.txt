@@ -1,0 +1,10 @@
+$ cd android && ./gradlew :app:testDebugUnitTest :clerk-api:testDebugUnitTest --no-daemon
+Exception in thread "main" java.io.FileNotFoundException: /Users/pravinraj/.gradle/wrapper/dists/gradle-9.3.1-bin/23ovyewtku6u96viwx3xl3oks/gradle-9.3.1-bin.zip.lck (Operation not permitted)
+	at java.base/java.io.RandomAccessFile.open0(Native Method)
+	at java.base/java.io.RandomAccessFile.open(RandomAccessFile.java:344)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:259)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:213)
+	at org.gradle.wrapper.GradleWrapperMain.main(SourceFile:67)
+/Users/pravinraj/workspace/weave/apps/mobile:
+[ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL] @weave/mobile@0.0.0 test:native:android: `cd android && ./gradlew :app:testDebugUnitTest :clerk-api:testDebugUnitTest --no-daemon`
+Exit status 1

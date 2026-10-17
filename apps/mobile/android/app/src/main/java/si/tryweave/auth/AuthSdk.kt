@@ -24,6 +24,8 @@ interface AuthSdk {
 
   fun currentSession(): ProviderSession?
 
+  suspend fun tokenForSession(sessionId: String): String? = null
+
   suspend fun password(email: String, password: String): ProviderAttempt
 
   suspend fun requestCode(email: String): ProviderAttempt

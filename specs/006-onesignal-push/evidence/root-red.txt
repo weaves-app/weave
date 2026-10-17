@@ -1,0 +1,53 @@
+FAIL src/features/notifications/notification-root.test.tsx
+  ✕ S01 Home composes notification controls without replacing Logout or invoking auth commands (1033 ms)
+
+  ● S01 Home composes notification controls without replacing Logout or invoking auth commands
+
+    Unable to find an element with role: button, name: Enable notifications
+
+    [36m<RNCSafeAreaView>[39m
+      [36m<View>[39m
+        [36m<Text[39m
+          [33maccessibilityRole[39m=[32m"header"[39m
+        [36m>[39m
+          [0mHome[0m
+        [36m</Text>[39m
+        [36m<View[39m
+          [33maccessibilityLabel[39m=[32m"Logout"[39m
+          [33maccessibilityRole[39m=[32m"button"[39m
+          [33maccessibilityState[39m=[32m{
+            {
+              "busy": false,
+              "disabled": false,
+            }
+          }[39m
+          [33maccessible[39m=[32m{true}[39m
+        [36m>[39m
+          [36m<View>[39m
+            [36m<Text>[39m
+              [0mLogout[0m
+            [36m</Text>[39m
+          [36m</View>[39m
+        [36m</View>[39m
+      [36m</View>[39m
+    [36m</RNCSafeAreaView>[39m
+
+      19 |     </NotificationRoot>
+      20 |   </AuthProvider>);
+    > 21 |   await waitFor(() => expect(screen.getByRole('button', {name: 'Enable notifications'})).toBeTruthy());
+         |                ^
+      22 |   expect(screen.getByRole('button', {name: 'Logout'})).toBeTruthy();
+      23 |   const previous = gateway.requests.length;
+      24 |   fireEvent.press(screen.getByRole('button', {name: 'Enable notifications'}));
+
+      at Object.<anonymous> (src/features/notifications/notification-root.test.tsx:21:16)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at Object.<anonymous> (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.372 s
+Ran all test suites matching /src\/features\/notifications\/notification-root.test.tsx/i.

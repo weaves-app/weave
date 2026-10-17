@@ -1,3 +1,4 @@
+import {NotificationPanel} from '../../features/notifications';
 import {useTextTranslator} from '../../localization/presentation/localization-context';
 import {MESSAGE} from '../../localization/messages';
 import {Screen} from '../../components/screen';
@@ -14,7 +15,7 @@ export function HomeScreen(): React.JSX.Element {
   const error = useAuthSelector((state) => state.error);
 
   return (
-    <Screen>
+    <Screen scrollable>
       <Typography variant={VARIANT.TITLE}>{text.text(MESSAGE.HOME_TITLE)}</Typography>
       <Button
         label={text.text(MESSAGE.HOME_LOGOUT)}
@@ -23,6 +24,7 @@ export function HomeScreen(): React.JSX.Element {
         }}
         loading={pending}
       />
+      <NotificationPanel />
       {pending && <Feedback message={text.text(MESSAGE.STATUS_SIGNING_OUT)} busy />}
       {error && <Feedback message={resolveAuthMessage(error.code, text)} />}
     </Screen>

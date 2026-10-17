@@ -1,0 +1,85 @@
+$ cd android && ./gradlew :app:testDebugUnitTest :clerk-api:testDebugUnitTest --no-daemon
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.3.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build
+> Task :gradle-plugin:settings-plugin:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :gradle-plugin:shared:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :gradle-plugin:shared:compileKotlin UP-TO-DATE
+> Task :gradle-plugin:shared:compileJava NO-SOURCE
+> Task :gradle-plugin:shared:processResources NO-SOURCE
+> Task :gradle-plugin:shared:classes UP-TO-DATE
+> Task :gradle-plugin:shared:jar UP-TO-DATE
+> Task :gradle-plugin:settings-plugin:compileKotlin UP-TO-DATE
+> Task :gradle-plugin:settings-plugin:compileJava NO-SOURCE
+> Task :gradle-plugin:settings-plugin:pluginDescriptors UP-TO-DATE
+> Task :gradle-plugin:settings-plugin:processResources UP-TO-DATE
+> Task :gradle-plugin:settings-plugin:classes UP-TO-DATE
+> Task :gradle-plugin:settings-plugin:jar UP-TO-DATE
+> Task :gradle-plugin:react-native-gradle-plugin:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :gradle-plugin:react-native-gradle-plugin:compileKotlin UP-TO-DATE
+> Task :gradle-plugin:react-native-gradle-plugin:compileJava NO-SOURCE
+> Task :gradle-plugin:react-native-gradle-plugin:pluginDescriptors UP-TO-DATE
+> Task :gradle-plugin:react-native-gradle-plugin:processResources UP-TO-DATE
+> Task :gradle-plugin:react-native-gradle-plugin:classes UP-TO-DATE
+> Task :gradle-plugin:react-native-gradle-plugin:jar UP-TO-DATE
+
+[Incubating] Problems report is available at: file:///Users/pravinraj/workspace/weave/apps/mobile/android/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Could not determine the dependencies of task ':app:testDebugUnitTest'.
+> Could not resolve all dependencies for configuration ':app:debugUnitTestRuntimeClasspath'.
+   > Resolved 'com.google.firebase:firebase-iid-interop:17.1.0' which is not part of the dependency lock state
+   > Resolved 'com.onesignal:core:5.10.2' which is not part of the dependency lock state
+   > Resolved 'androidx.lifecycle:lifecycle-service:2.10.0' which is not part of the dependency lock state
+   > Resolved 'com.google.firebase:firebase-messaging:24.0.0' which is not part of the dependency lock state
+   > Resolved 'androidx.work:work-runtime-ktx:2.8.1' which is not part of the dependency lock state
+   > Resolved 'com.google.firebase:firebase-annotations:16.2.0' which is not part of the dependency lock state
+   > Resolved 'com.google.firebase:firebase-encoders:17.0.0' which is not part of the dependency lock state
+   > Resolved 'androidx.legacy:legacy-support-core-utils:1.0.0' which is not part of the dependency lock state
+   > Resolved 'androidx.sqlite:sqlite-framework:2.3.0' which is not part of the dependency lock state
+   > Resolved 'com.google.firebase:firebase-common-ktx:21.0.0' which is not part of the dependency lock state
+   > Resolved 'com.google.firebase:firebase-datatransport:18.2.0' which is not part of the dependency lock state
+   > Resolved 'com.onesignal:kmp-android:5.10.2' which is not part of the dependency lock state
+   > Resolved 'com.google.firebase:firebase-installations-interop:17.1.1' which is not part of the dependency lock state
+   > Resolved 'androidx.room:room-runtime:2.5.0' which is not part of the dependency lock state
+   > Resolved 'com.google.firebase:firebase-encoders-json:18.0.0' which is not part of the dependency lock state
+   > Resolved 'com.onesignal:in-app-messages:5.10.2' which is not part of the dependency lock state
+   > Resolved 'androidx.documentfile:documentfile:1.0.0' which is not part of the dependency lock state
+   > Resolved 'androidx.sqlite:sqlite:2.3.0' which is not part of the dependency lock state
+   > Resolved 'com.onesignal:kmp:5.10.2' which is not part of the dependency lock state
+   > Resolved 'com.google.android.datatransport:transport-runtime:3.1.9' which is not part of the dependency lock state
+   > Resolved 'com.google.android.gms:play-services-stats:17.0.2' which is not part of the dependency lock state
+   > Resolved 'com.google.firebase:firebase-measurement-connector:19.0.0' which is not part of the dependency lock state
+   > Resolved 'com.google.firebase:firebase-components:18.0.0' which is not part of the dependency lock state
+   > Resolved 'com.google.android.datatransport:transport-api:3.1.0' which is not part of the dependency lock state
+   > Resolved 'com.google.firebase:firebase-common:21.0.0' which is not part of the dependency lock state
+   > Resolved 'com.google.firebase:firebase-encoders-proto:16.0.0' which is not part of the dependency lock state
+   > Resolved 'com.google.android.datatransport:transport-backend-cct:3.1.9' which is not part of the dependency lock state
+   > Resolved 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0' which is not part of the dependency lock state
+   > Resolved 'androidx.room:room-common:2.5.0' which is not part of the dependency lock state
+   > Resolved 'androidx.print:print:1.0.0' which is not part of the dependency lock state
+   > Resolved 'com.google.android.gms:play-services-cloud-messaging:17.2.0' which is not part of the dependency lock state
+   > Resolved 'androidx.lifecycle:lifecycle-livedata:2.10.0' which is not part of the dependency lock state
+   > Resolved 'org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.11.0' which is not part of the dependency lock state
+   > Resolved 'com.google.firebase:firebase-installations:17.2.0' which is not part of the dependency lock state
+   > Resolved 'com.onesignal:notifications:5.10.2' which is not part of the dependency lock state
+   > Resolved 'androidx.work:work-runtime:2.8.1' which is not part of the dependency lock state
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights from a Build Scan (powered by Develocity).
+> Get more help at https://help.gradle.org.
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 10.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/9.3.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD FAILED in 14s
+10 actionable tasks: 10 up-to-date
+/Users/pravinraj/workspace/weave/apps/mobile:
+[ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL] @weave/mobile@0.0.0 test:native:android: `cd android && ./gradlew :app:testDebugUnitTest :clerk-api:testDebugUnitTest --no-daemon`
+Exit status 1

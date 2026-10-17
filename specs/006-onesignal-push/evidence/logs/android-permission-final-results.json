@@ -1,0 +1,66 @@
+[
+  {
+    "name": "si.tryweave.auth.AndroidAuthenticationContractTest",
+    "tests": "20",
+    "skipped": "0",
+    "failures": "0",
+    "errors": "0",
+    "timestamp": "2026-10-17T04:27:32.735Z"
+  },
+  {
+    "name": "si.tryweave.auth.AndroidBootstrapContractTest",
+    "tests": "2",
+    "skipped": "0",
+    "failures": "0",
+    "errors": "0",
+    "timestamp": "2026-10-17T04:27:32.751Z"
+  },
+  {
+    "name": "si.tryweave.auth.ClerkErrorMappingTest",
+    "tests": "3",
+    "skipped": "0",
+    "failures": "0",
+    "errors": "0",
+    "timestamp": "2026-10-17T04:27:32.752Z"
+  },
+  {
+    "name": "si.tryweave.auth.ClerkPrivacyTest",
+    "tests": "1",
+    "skipped": "0",
+    "failures": "0",
+    "errors": "0",
+    "timestamp": "2026-10-17T04:27:32.776Z"
+  },
+  {
+    "name": "si.tryweave.auth.WeaveAuthBridgeTest",
+    "tests": "2",
+    "skipped": "0",
+    "failures": "0",
+    "errors": "0",
+    "timestamp": "2026-10-17T04:27:32.778Z"
+  },
+  {
+    "name": "si.tryweave.auth.WeaveAuthModuleTest",
+    "tests": "1",
+    "skipped": "0",
+    "failures": "0",
+    "errors": "0",
+    "timestamp": "2026-10-17T04:27:33.326Z"
+  },
+  {
+    "name": "si.tryweave.notifications.NotificationPermissionTest",
+    "tests": "10",
+    "skipped": "0",
+    "failures": "0",
+    "errors": "0",
+    "timestamp": "2026-10-17T04:27:32.664Z"
+  },
+  {
+    "name": "com.clerk.api.sso.WeaveAuthenticationBridgeTest",
+    "tests": "1",
+    "skipped": "0",
+    "failures": "0",
+    "errors": "0",
+    "timestamp": "2026-10-17T04:23:58.329Z"
+  }
+]

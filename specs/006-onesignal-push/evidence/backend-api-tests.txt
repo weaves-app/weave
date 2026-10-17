@@ -1,0 +1,121 @@
+$ pnpm run build && node --import tsx --test test/*.test.ts
+$ prisma generate && nest build
+Loaded Prisma config from prisma.config.ts.
+
+Prisma schema loaded from prisma/schema.prisma.
+┌─────────────────────────────────────────────────────────┐
+│  Update available 7.10.0 -> 8.0.0-rc.23                 │
+│                                                         │
+│  This is a major update - please follow the guide at    │
+│  https://pris.ly/d/major-version-upgrade                │
+│                                                         │
+│  Run the following to update                            │
+│    npm i --save-dev prisma@latest                       │
+│    npm i @prisma/client@latest                          │
+└─────────────────────────────────────────────────────────┘
+
+✔ Generated Prisma Client (7.10.0) to ./src/generated/prisma in 17ms
+
+✔ S06 liveness does not depend on database; readiness checks database (0.588459ms)
+✔ S06 unavailable database rejects readiness but preserves liveness (0.202708ms)
+▶ S11 real Clerk signature validation plus live session authority
+  ✔ native bearer without azp and permitted web azp derive account and expiry (26.244375ms)
+  ✔ rejects issuer before live lookup (3.842292ms)
+  ✔ rejects emptySubject before live lookup (2.489291ms)
+  ✔ rejects emptySession before live lookup (1.555167ms)
+  ✔ rejects numericSession before live lookup (1.459292ms)
+  ✔ rejects expired before live lookup (2.011417ms)
+  ✔ rejects future before live lookup (2.286834ms)
+  ✔ rejects pending before live lookup (3.709375ms)
+  ✔ rejects unknownStatus before live lookup (2.066292ms)
+  ✔ rejects origin before live lookup (1.460208ms)
+  ✔ rejects malformedOrigin before live lookup (1.794208ms)
+  ✔ invalid signature and machine bearer rejected (41.983916ms)
+  ✔ configured audience is mandatory and must match (7.112167ms)
+  ✔ live pending session is rejected (2.552042ms)
+  ✔ live revoked session is rejected (1.73525ms)
+  ✔ live ended session is rejected (7.833667ms)
+  ✔ live expired session is rejected (1.987292ms)
+  ✔ live unexpected session is rejected (4.25525ms)
+  ✔ live ownership and session ID must match (3.698667ms)
+  ✔ live lookup is bounded at five seconds and fails unavailable (5005.093375ms)
+  ✔ missing trusted public key is unavailable without key-discovery retries (2.7865ms)
+  ✔ missing session is unauthorized but provider outages/config faults unavailable (13.678833ms)
+✔ S11 real Clerk signature validation plus live session authority (5314.841583ms)
+✔ S11 notification config fails closed for missing/malformed app or secrets (1.325083ms)
+▶ S11 live HTTP enforces bearer, strict DTOs, limits and safe result mapping
+  ✔ both exact routes produce no-store 200 responses (23.424ms)
+  ✔ invalid or absent bearer cannot use cookies (1.489291ms)
+  ✔ invalid or absent bearer cannot use cookies (0.845167ms)
+  ✔ invalid or absent bearer cannot use cookies (0.702333ms)
+  ✔ strict grant body rejects input without calling provider (0.6285ms)
+  ✔ strict grant body rejects input without calling provider (2.043459ms)
+  ✔ strict grant body rejects input without calling provider (2.036542ms)
+  ✔ strict grant body rejects input without calling provider (2.18425ms)
+  ✔ strict grant body rejects input without calling provider (2.580833ms)
+  ✔ strict grant body rejects input without calling provider (1.731958ms)
+  ✔ strict grant body rejects input without calling provider (1.307084ms)
+  ✔ readiness rejects malformed and caller-owned account fields (1.146459ms)
+  ✔ readiness rejects malformed and caller-owned account fields (0.979458ms)
+  ✔ readiness rejects malformed and caller-owned account fields (0.532708ms)
+  ✔ readiness rejects malformed and caller-owned account fields (0.48225ms)
+  ✔ readiness rejects malformed and caller-owned account fields (0.434208ms)
+  ✔ caller query, wrong media type and malformed JSON rejected (1.33875ms)
+  ✔ 4 KiB enforced before use case including unknown-size bodies (0.782166ms)
+  ✔ safe errors and Retry-After agree (0.515292ms)
+  ✔ safe errors and Retry-After agree (0.845292ms)
+  ✔ safe errors and Retry-After agree (0.825084ms)
+  ✔ safe errors and Retry-After agree (0.556125ms)
+✔ S11 live HTTP enforces bearer, strict DTOs, limits and safe result mapping (110.485542ms)
+▶ S11 ES256 identity grant contains only identity/issuer/expiry and never outlives bearer
+  ✔ signs 15 seconds with exact constrained claims (6.187958ms)
+  ✔ signs 16 seconds with exact constrained claims (1.866041ms)
+  ✔ signs 60 seconds with exact constrained claims (2.706833ms)
+  ✔ signs 1000 seconds with exact constrained claims (1.465ms)
+  ✔ remaining -1 refuses signing with bounded retry (0.938375ms)
+  ✔ remaining 0 refuses signing with bounded retry (0.553334ms)
+  ✔ remaining 14 refuses signing with bounded retry (1.31175ms)
+  ✔ time advancing after session validation is counted at signing (0.450959ms)
+  ✔ invalid/missing key fails safely without leaking material (0.786917ms)
+✔ S11 ES256 identity grant contains only identity/issuer/expiry and never outlives bearer (52.338375ms)
+▶ S10 HTTP, provider errors and maintenance logs retain no private sentinel
+  ✔ HTTP suppresses raw errors from both authentication and use cases (86.641042ms)
+  ✔ provider error body stays unread and identity credential reaches only fixed authorization (3.864125ms)
+  ✔ storage failures redact underlying errors and cleanup emits aggregate diagnostic only (0.626708ms)
+✔ S10 HTTP, provider errors and maintenance logs retain no private sentinel (92.095084ms)
+▶ S11 provider validates exact app/account/installation and preserves failures
+  ✔ exact eligible installation and iOS type succeed without app_id (24.348167ms)
+  ✔ mismatched installation {"id":"other"} stays pending (1.395958ms)
+  ✔ mismatched installation {"type":"iOSPush"} stays pending (4.237667ms)
+  ✔ mismatched installation {"enabled":false} stays pending (3.784917ms)
+  ✔ mismatched installation {"token":""} stays pending (1.174541ms)
+  ✔ mismatched installation {"app_id":"wrong-app"} stays pending (1.563209ms)
+  ✔ wrong account, no subscription and 404 indistinguishable (3.017459ms)
+  ✔ malformed success is unavailable (1.656792ms)
+  ✔ malformed success is unavailable (0.997ms)
+  ✔ malformed success is unavailable (0.754625ms)
+  ✔ malformed success is unavailable (0.674333ms)
+  ✔ malformed success is unavailable (0.550125ms)
+  ✔ malformed success is unavailable (1.116125ms)
+  ✔ 429 stores full cooldown and clamps public retry without issuing automatic retries (1.863208ms)
+  ✔ 429 cooldown survives absent or oversized error bodies (1.071167ms)
+  ✔ provider 400 is safe unavailable without retry (0.356291ms)
+  ✔ provider 401 is safe unavailable without retry (0.472708ms)
+  ✔ provider 403 is safe unavailable without retry (0.593333ms)
+  ✔ provider 500 is safe unavailable without retry (0.785208ms)
+  ✔ oversized streaming body rejected without reading a complete profile (3.506625ms)
+  ✔ timeout is bounded and cannot return previous success (5004.135167ms)
+✔ S11 provider validates exact app/account/installation and preserves failures (5111.741083ms)
+✔ S11 compiled production modules boot health and expose both safe routes with missing config (385.985459ms)
+✔ S11 compiled CommonJS signer loads jose ESM and produces verified ES256 grant (46.792166ms)
+✔ S11 HMAC budget keys span sessions but isolate app/account/operation without identifiers (0.836958ms)
+✔ S11 grant reserves account budget before signing and rejects without signing (0.37625ms)
+✔ S11 same context coalesces only in-flight readiness and failures release entries (2.841291ms)
+ℹ tests 90
+ℹ suites 0
+ℹ pass 90
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5726.956041

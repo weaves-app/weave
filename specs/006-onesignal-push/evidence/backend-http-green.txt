@@ -1,0 +1,32 @@
+▶ S11 live HTTP enforces bearer, strict DTOs, limits and safe result mapping
+  ✔ both exact routes produce no-store 200 responses (22.470208ms)
+  ✔ invalid or absent bearer cannot use cookies (1.300584ms)
+  ✔ invalid or absent bearer cannot use cookies (0.806291ms)
+  ✔ invalid or absent bearer cannot use cookies (0.743042ms)
+  ✔ strict grant body rejects input without calling provider (0.617458ms)
+  ✔ strict grant body rejects input without calling provider (0.821833ms)
+  ✔ strict grant body rejects input without calling provider (0.529542ms)
+  ✔ strict grant body rejects input without calling provider (0.880834ms)
+  ✔ strict grant body rejects input without calling provider (1.372167ms)
+  ✔ strict grant body rejects input without calling provider (0.604917ms)
+  ✔ strict grant body rejects input without calling provider (0.51725ms)
+  ✔ readiness rejects malformed and caller-owned account fields (0.466625ms)
+  ✔ readiness rejects malformed and caller-owned account fields (0.425167ms)
+  ✔ readiness rejects malformed and caller-owned account fields (0.367875ms)
+  ✔ readiness rejects malformed and caller-owned account fields (0.382125ms)
+  ✔ readiness rejects malformed and caller-owned account fields (0.386917ms)
+  ✔ caller query, wrong media type and malformed JSON rejected (1.14725ms)
+  ✔ 4 KiB enforced before use case including unknown-size bodies (2.27775ms)
+  ✔ safe errors and Retry-After agree (0.579042ms)
+  ✔ safe errors and Retry-After agree (0.448542ms)
+  ✔ safe errors and Retry-After agree (0.44475ms)
+  ✔ safe errors and Retry-After agree (0.412166ms)
+✔ S11 live HTTP enforces bearer, strict DTOs, limits and safe result mapping (77.542459ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 23
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 265.820084

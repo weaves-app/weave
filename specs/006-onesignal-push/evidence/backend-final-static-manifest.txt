@@ -1,0 +1,10 @@
+2026-10-17T04:43:44.973822+00:00 START pnpm --filter @weave/api run typecheck -> backend-typecheck.txt
+2026-10-17T04:43:45.802845+00:00 END exit=0
+2026-10-17T04:43:45.802897+00:00 START pnpm --filter @weave/api run lint -> backend-lint.txt
+2026-10-17T04:43:47.560269+00:00 END exit=1
+2026-10-17T04:44:12.784299+00:00 START pnpm --filter @weave/api run lint -> backend-lint.txt
+2026-10-17T04:44:15.039262+00:00 END exit=0
+2026-10-17T04:44:15.039398+00:00 START pnpm exec eslint tests/integration/notification-budget.test.mjs tests/integration/notification-runtime.test.mjs -> backend-integration-lint.txt
+2026-10-17T04:44:15.772734+00:00 END exit=0
+2026-10-17T04:44:15.772778+00:00 START node scripts/check-architecture.mjs -> backend-architecture.txt
+2026-10-17T04:44:47.415189+00:00 END exit=0

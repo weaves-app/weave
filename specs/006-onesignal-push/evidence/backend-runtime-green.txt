@@ -1,0 +1,10 @@
+✔ S11 compiled production modules boot health and expose both safe routes with missing config (203.459958ms)
+✔ S11 compiled CommonJS signer loads jose ESM and produces verified ES256 grant (41.952417ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 332.709083

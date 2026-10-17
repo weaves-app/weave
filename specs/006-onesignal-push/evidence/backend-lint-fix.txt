@@ -1,0 +1,24 @@
+
+/Users/pravinraj/workspace/weave/apps/api/src/modules/notifications/infrastructure/onesignal-readiness-reader.ts
+  77:113  error  Use an exported named constant for this comparison, fallback, or navigation identifier  weave-values/no-literal-comparisons
+
+/Users/pravinraj/workspace/weave/apps/api/src/modules/notifications/presentation/notification-http.ts
+  67:80  error  '_next' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/pravinraj/workspace/weave/apps/api/test/notification-authentication.test.ts
+  23:38  error  Use an exported named constant for this comparison, fallback, or navigation identifier  weave-values/no-literal-comparisons
+
+/Users/pravinraj/workspace/weave/apps/api/test/notification-config.test.ts
+  13:54  error  Use an exported named constant for this comparison, fallback, or navigation identifier  weave-values/no-literal-comparisons
+  14:55  error  Use an exported named constant for this comparison, fallback, or navigation identifier  weave-values/no-literal-comparisons
+
+/Users/pravinraj/workspace/weave/apps/api/test/notification-http.test.ts
+  30:201  error  Use an exported named constant for this comparison, fallback, or navigation identifier  weave-values/no-literal-comparisons
+  45:126  error  Unsafe member access .externalId on an `any` value                                      @typescript-eslint/no-unsafe-member-access
+  49:66   error  Unsafe member access .validForSeconds on an `any` value                                 @typescript-eslint/no-unsafe-member-access
+
+✖ 8 problems (8 errors, 0 warnings)
+
+undefined
+/Users/pravinraj/workspace/weave/apps/api:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: eslint . --fix

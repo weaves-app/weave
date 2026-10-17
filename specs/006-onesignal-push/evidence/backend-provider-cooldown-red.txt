@@ -1,0 +1,62 @@
+▶ S11 provider validates exact app/account/installation and preserves failures
+  ✔ exact eligible installation and iOS type succeed without app_id (9.530708ms)
+  ✔ mismatched installation {"id":"other"} stays pending (0.597042ms)
+  ✔ mismatched installation {"type":"iOSPush"} stays pending (1.890041ms)
+  ✔ mismatched installation {"enabled":false} stays pending (0.472ms)
+  ✔ mismatched installation {"token":""} stays pending (0.325542ms)
+  ✔ mismatched installation {"app_id":"wrong-app"} stays pending (0.326875ms)
+  ✔ wrong account, no subscription and 404 indistinguishable (0.888708ms)
+  ✔ malformed success is unavailable (0.568958ms)
+  ✔ malformed success is unavailable (0.291375ms)
+  ✔ malformed success is unavailable (0.302875ms)
+  ✔ malformed success is unavailable (0.296583ms)
+  ✔ malformed success is unavailable (0.256333ms)
+  ✔ malformed success is unavailable (0.247459ms)
+  ✔ 429 stores full cooldown and clamps public retry without issuing automatic retries (1.005958ms)
+  ✖ 429 cooldown survives absent or oversized error bodies (1.188584ms)
+  ✔ provider 400 is safe unavailable without retry (0.732125ms)
+  ✔ provider 401 is safe unavailable without retry (0.293583ms)
+  ✔ provider 403 is safe unavailable without retry (0.332417ms)
+  ✔ provider 500 is safe unavailable without retry (0.268666ms)
+  ✔ oversized streaming body rejected without reading a complete profile (1.301208ms)
+  ✔ timeout is bounded and cannot return previous success (5005.62875ms)
+✖ S11 provider validates exact app/account/installation and preserves failures (5043.920542ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 20
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5165.44675
+
+✖ failing tests:
+
+test at apps/api/test/notification-readiness.test.ts:2:5493
+✖ 429 cooldown survives absent or oversized error bodies (1.188584ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+    Comparison {
+  +   code: 'notifications_unavailable',
+  +   retryAfterSeconds: undefined
+  -   code: 'retry_later',
+  -   retryAfterSeconds: 60
+    }
+
+      at async TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-readiness.test.ts:151:7)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: notifications_unavailable
+        at boundedText (/Users/pravinraj/workspace/weave/apps/api/src/modules/notifications/infrastructure/onesignal-readiness-reader.ts:38:22)
+        at OneSignalReadinessReader.read (/Users/pravinraj/workspace/weave/apps/api/src/modules/notifications/infrastructure/onesignal-readiness-reader.ts:135:26)
+        at async waitForActual (node:assert:565:5)
+        at async strict.rejects (node:assert:686:25)
+        at async TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-readiness.test.ts:151:7)
+        at async Test.run (node:internal/test_runner/test:1069:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:752:7),
+    expected: { code: 'retry_later', retryAfterSeconds: 60 },
+    operator: 'rejects'
+  }

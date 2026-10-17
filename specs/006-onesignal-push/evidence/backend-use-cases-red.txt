@@ -1,0 +1,58 @@
+✖ S11 HMAC budget keys span sessions but isolate app/account/operation without identifiers (0.920666ms)
+✖ S11 grant reserves account budget before signing and rejects without signing (0.113083ms)
+✖ S11 same context coalesces only in-flight readiness and failures release entries (1.717542ms)
+(node:56562) PromiseRejectionHandledWarning: Promise rejection was handled asynchronously (rejection id: 2)
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:56562) PromiseRejectionHandledWarning: Promise rejection was handled asynchronously (rejection id: 3)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 0
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 104.125958
+
+✖ failing tests:
+
+test at apps/api/test/notification-use-cases.test.ts:2:1327
+✖ S11 HMAC budget keys span sessions but isolate app/account/operation without identifiers (0.920666ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /^app:app:account:[a-f0-9]{64}:grant$/. Input:
+
+  ''
+
+      at TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-use-cases.test.ts:12:9)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.start (node:internal/test_runner/test:959:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:332:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '',
+    expected: /^app:app:account:[a-f0-9]{64}:grant$/,
+    operator: 'match'
+  }
+
+test at apps/api/test/notification-use-cases.test.ts:2:2006
+✖ S11 grant reserves account budget before signing and rejects without signing (0.113083ms)
+  Error: Not implemented
+      at IssueIdentityGrant.execute (/Users/pravinraj/workspace/weave/apps/api/src/modules/notifications/application/issue-identity-grant.ts:7:80)
+      at TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-use-cases.test.ts:21:32)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:752:18)
+      at Test.postRun (node:internal/test_runner/test:1191:19)
+      at Test.run (node:internal/test_runner/test:1119:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:332:3)
+
+test at apps/api/test/notification-use-cases.test.ts:2:2955
+✖ S11 same context coalesces only in-flight readiness and failures release entries (1.717542ms)
+  Error: Not implemented
+      at VerifyReadiness.execute (/Users/pravinraj/workspace/weave/apps/api/src/modules/notifications/application/verify-readiness.ts:7:106)
+      at TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-use-cases.test.ts:33:23)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:752:18)
+      at Test.postRun (node:internal/test_runner/test:1191:19)
+      at Test.run (node:internal/test_runner/test:1119:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7)

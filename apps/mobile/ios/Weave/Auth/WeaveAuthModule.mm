@@ -1,5 +1,7 @@
 #import <WeaveAuthSpec/WeaveAuthSpec.h>
 #import <React-RCTAppDelegate/RCTDefaultReactNativeFactoryDelegate.h>
+#import <OneSignalNotifications/OneSignalNotifications.h>
+#import <OneSignalUser/OneSignalUser-Swift.h>
 #import "Weave-Swift.h"
 
 @interface WeaveAuthModule : NativeWeaveAuthSpecBase <NativeWeaveAuthSpec>

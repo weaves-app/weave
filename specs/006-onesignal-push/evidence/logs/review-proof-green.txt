@@ -1,0 +1,26 @@
+PASS src/features/notifications/readiness.test.ts
+  ✓ S11 only correlated server proof enables ready and expiration never polls (1 ms)
+  ✓ S11 separate native origin cannot extend JS attempt-start cap across a delayed response
+  ✓ S11 rejects invalid or wrong-context proof {"remainingValidityMs": 0}
+  ✓ S11 rejects invalid or wrong-context proof {"remainingValidityMs": 60001}
+  ✓ S11 rejects invalid or wrong-context proof {"remainingValidityMs": 1.5}
+  ✓ S11 rejects invalid or wrong-context proof {"attemptId": "unknown"}
+  ✓ S11 rejects invalid or wrong-context proof {"rootLease": "other-root"}
+  ✓ S11 rejects invalid or wrong-context proof {"generation": 99}
+  ✓ S11 rejects invalid or wrong-context proof {"revision": 99}
+  ✓ S11 never verifies ineligible local installation {"registrationPresent": false} (1 ms)
+  ✓ S11 never verifies ineligible local installation {"enabled": false} (1 ms)
+  ✓ S11 never verifies ineligible local installation {"matchesCurrentAccount": false}
+  ✓ S11 never verifies ineligible local installation {"permission": "denied"}
+  ✓ S11 revocation, rotation, background and root disposal invalidate proof immediately
+  ✓ S11 late proof after expiry or A→B→A never restores ready
+  ✓ S11 same-revision duplicate observations retain but never renew a proof
+  ✓ S11 retry guidance blocks rapid attempts without a scheduled retry (1 ms)
+  ✓ S11 a failed refresh invalidates its previous proof even after duplicate observations
+  ✓ S02/S11 an obsolete attempt failure cannot replace a newer denied permission state
+
+Test Suites: 1 passed, 1 total
+Tests:       19 passed, 19 total
+Snapshots:   0 total
+Time:        0.254 s, estimated 1 s
+Ran all test suites matching /readiness.test.ts/i.
