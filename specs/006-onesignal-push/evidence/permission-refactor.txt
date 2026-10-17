@@ -1,0 +1,37 @@
+PASS src/auth/app-recovery.test.tsx
+PASS src/auth/login.test.tsx
+PASS src/localization/presentation/localization-journey.test.tsx
+PASS src/localization/testing/native-fixture.test.tsx
+PASS src/auth/localization-layout.test.tsx
+PASS src/features/notifications/permission.test.ts
+PASS src/navigation/root-navigator.test.tsx
+PASS src/features/notifications/notification-controls.test.tsx
+PASS src/localization/presentation/localization-context.test.tsx
+PASS src/auth/presentation/auth-context.test.tsx
+PASS src/auth/home.test.tsx
+PASS src/auth/presentation/auth-lifecycle.test.tsx
+PASS src/recovery/app-error-boundary.test.tsx
+PASS src/components/registration.test.ts
+PASS src/recovery/recovery-screen.test.tsx
+PASS src/components/code-field.test.tsx
+PASS src/components/form-field.test.tsx
+PASS src/components/typography.test.tsx
+PASS src/components/button.test.tsx
+PASS src/auth/auth-controller.test.ts
+PASS src/components/feedback.test.tsx
+PASS src/localization/infrastructure/i18next-translator.test.ts
+PASS src/auth/auth-runtime.test.ts
+PASS src/localization/safe-english.test.ts
+PASS src/localization/retry-feedback.test.ts
+PASS src/localization/catalog.test.ts
+PASS src/auth/presentation/auth-messages.test.ts
+PASS src/auth/auth-gateway.contract.test.ts
+PASS src/localization/localization-runtime.test.ts
+PASS src/localization/infrastructure/runtime-locale-source.test.ts
+PASS src/auth/infrastructure/zustand-auth-state-store.test.ts
+
+Test Suites: 31 passed, 31 total
+Tests:       239 passed, 239 total
+Snapshots:   0 total
+Time:        8.056 s
+Ran all test suites.

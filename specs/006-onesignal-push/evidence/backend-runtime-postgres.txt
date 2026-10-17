@@ -1,0 +1,9 @@
+✔ S11 compiled production authentication/grant/readiness composition with PostgreSQL and controlled providers (167.112792ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 328.120917

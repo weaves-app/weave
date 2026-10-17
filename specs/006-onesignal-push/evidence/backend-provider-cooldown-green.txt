@@ -1,0 +1,31 @@
+▶ S11 provider validates exact app/account/installation and preserves failures
+  ✔ exact eligible installation and iOS type succeed without app_id (11.673541ms)
+  ✔ mismatched installation {"id":"other"} stays pending (0.49625ms)
+  ✔ mismatched installation {"type":"iOSPush"} stays pending (0.395708ms)
+  ✔ mismatched installation {"enabled":false} stays pending (0.360625ms)
+  ✔ mismatched installation {"token":""} stays pending (0.334666ms)
+  ✔ mismatched installation {"app_id":"wrong-app"} stays pending (0.356292ms)
+  ✔ wrong account, no subscription and 404 indistinguishable (0.973ms)
+  ✔ malformed success is unavailable (0.571042ms)
+  ✔ malformed success is unavailable (0.270792ms)
+  ✔ malformed success is unavailable (0.260875ms)
+  ✔ malformed success is unavailable (0.305041ms)
+  ✔ malformed success is unavailable (0.328667ms)
+  ✔ malformed success is unavailable (0.286125ms)
+  ✔ 429 stores full cooldown and clamps public retry without issuing automatic retries (1.104792ms)
+  ✔ 429 cooldown survives absent or oversized error bodies (0.657791ms)
+  ✔ provider 400 is safe unavailable without retry (0.229208ms)
+  ✔ provider 401 is safe unavailable without retry (0.214542ms)
+  ✔ provider 403 is safe unavailable without retry (0.236583ms)
+  ✔ provider 500 is safe unavailable without retry (0.2055ms)
+  ✔ oversized streaming body rejected without reading a complete profile (1.247125ms)
+  ✔ timeout is bounded and cannot return previous success (5004.908542ms)
+✔ S11 provider validates exact app/account/installation and preserves failures (5042.416041ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 22
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5154.045333

@@ -1,0 +1,152 @@
+FAIL src/features/notifications/readiness.test.ts
+  ● S09 each proof attempt has a monotonic canonical sequence independent of root identity
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 2
+    + Received  + 2
+
+      Array [
+    -   "1",
+    -   "2",
+    +   "root-a:1",
+    +   "root-a:2",
+      ]
+
+      261 |   await tick();
+      262 |   await controller.refresh();
+    > 263 |   expect(jest.mocked(platform.checkReadiness).mock.calls.map((call) => call[2])).toEqual(['1', '2']);
+          |                                                                                  ^
+      264 |   controller.dispose();
+      265 | });
+      266 |
+
+      at Object.toEqual (src/features/notifications/readiness.test.ts:263:82)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+FAIL src/features/notifications/native-notification-gateway.test.ts
+  ● rejects noncanonical attempt sequence 01 before native dispatch
+
+    expect(received).rejects.toThrow()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"attemptId": "01", "generation": 1, "remainingValidityMs": 40000, "revision": 2, "rootLease": "root-a", "status": "ready"}
+
+      186 |   await gateway.reconcile(TEST_CONTEXT, 'root-a', 1);
+      187 |   execute.mockResolvedValue(JSON.stringify({...readiness, attemptId}));
+    > 188 |   await expect(gateway.checkReadiness(TEST_CONTEXT, 2, attemptId)).rejects.toThrow('Notification unavailable');
+          |         ^
+      189 |   expect(execute).not.toHaveBeenCalledWith('refresh', expect.anything());
+      190 | });
+      191 |
+
+      at expect (../../node_modules/expect/build/index.js:113:15)
+      at expect (src/features/notifications/native-notification-gateway.test.ts:188:9)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● rejects noncanonical attempt sequence 0 before native dispatch
+
+    expect(received).rejects.toThrow()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"attemptId": "0", "generation": 1, "remainingValidityMs": 40000, "revision": 2, "rootLease": "root-a", "status": "ready"}
+
+      186 |   await gateway.reconcile(TEST_CONTEXT, 'root-a', 1);
+      187 |   execute.mockResolvedValue(JSON.stringify({...readiness, attemptId}));
+    > 188 |   await expect(gateway.checkReadiness(TEST_CONTEXT, 2, attemptId)).rejects.toThrow('Notification unavailable');
+          |         ^
+      189 |   expect(execute).not.toHaveBeenCalledWith('refresh', expect.anything());
+      190 | });
+      191 |
+
+      at expect (../../node_modules/expect/build/index.js:113:15)
+      at expect (src/features/notifications/native-notification-gateway.test.ts:188:9)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● rejects noncanonical attempt sequence -1 before native dispatch
+
+    expect(received).rejects.toThrow()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"attemptId": "-1", "generation": 1, "remainingValidityMs": 40000, "revision": 2, "rootLease": "root-a", "status": "ready"}
+
+      186 |   await gateway.reconcile(TEST_CONTEXT, 'root-a', 1);
+      187 |   execute.mockResolvedValue(JSON.stringify({...readiness, attemptId}));
+    > 188 |   await expect(gateway.checkReadiness(TEST_CONTEXT, 2, attemptId)).rejects.toThrow('Notification unavailable');
+          |         ^
+      189 |   expect(execute).not.toHaveBeenCalledWith('refresh', expect.anything());
+      190 | });
+      191 |
+
+      at expect (../../node_modules/expect/build/index.js:113:15)
+      at expect (src/features/notifications/native-notification-gateway.test.ts:188:9)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● rejects noncanonical attempt sequence 1e0 before native dispatch
+
+    expect(received).rejects.toThrow()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"attemptId": "1e0", "generation": 1, "remainingValidityMs": 40000, "revision": 2, "rootLease": "root-a", "status": "ready"}
+
+      186 |   await gateway.reconcile(TEST_CONTEXT, 'root-a', 1);
+      187 |   execute.mockResolvedValue(JSON.stringify({...readiness, attemptId}));
+    > 188 |   await expect(gateway.checkReadiness(TEST_CONTEXT, 2, attemptId)).rejects.toThrow('Notification unavailable');
+          |         ^
+      189 |   expect(execute).not.toHaveBeenCalledWith('refresh', expect.anything());
+      190 | });
+      191 |
+
+      at expect (../../node_modules/expect/build/index.js:113:15)
+      at expect (src/features/notifications/native-notification-gateway.test.ts:188:9)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● rejects noncanonical attempt sequence 9007199254740992 before native dispatch
+
+    expect(received).rejects.toThrow()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"attemptId": "9007199254740992", "generation": 1, "remainingValidityMs": 40000, "revision": 2, "rootLease": "root-a", "status": "ready"}
+
+      186 |   await gateway.reconcile(TEST_CONTEXT, 'root-a', 1);
+      187 |   execute.mockResolvedValue(JSON.stringify({...readiness, attemptId}));
+    > 188 |   await expect(gateway.checkReadiness(TEST_CONTEXT, 2, attemptId)).rejects.toThrow('Notification unavailable');
+          |         ^
+      189 |   expect(execute).not.toHaveBeenCalledWith('refresh', expect.anything());
+      190 | });
+      191 |
+
+      at expect (../../node_modules/expect/build/index.js:113:15)
+      at expect (src/features/notifications/native-notification-gateway.test.ts:188:9)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● never dispatches a reused attempt even after generation changes or same-lease acquisition
+
+    expect(received).rejects.toThrow()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"attemptId": "1", "generation": 2, "remainingValidityMs": 40000, "revision": 2, "rootLease": "root-a", "status": "ready"}
+
+      200 |   await gateway.reconcile(next, 'root-a', 2);
+      201 |   execute.mockResolvedValue(JSON.stringify({...readiness, generation: 2}));
+    > 202 |   await expect(gateway.checkReadiness(next, 2, '1')).rejects.toThrow('Notification unavailable');
+          |         ^
+      203 | });
+      204 |
+
+      at expect (../../node_modules/expect/build/index.js:113:15)
+      at Object.expect (src/features/notifications/native-notification-gateway.test.ts:202:9)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+Test Suites: 2 failed, 2 total
+Tests:       7 failed, 43 passed, 50 total
+Snapshots:   0 total
+Time:        0.44 s, estimated 1 s
+Ran all test suites matching /native-notification-gateway.test.ts|readiness.test.ts/i.

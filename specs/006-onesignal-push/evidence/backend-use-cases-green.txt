@@ -1,0 +1,11 @@
+✔ S11 HMAC budget keys span sessions but isolate app/account/operation without identifiers (0.44175ms)
+✔ S11 grant reserves account budget before signing and rejects without signing (0.27225ms)
+✔ S11 same context coalesces only in-flight readiness and failures release entries (2.0265ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 105.052333

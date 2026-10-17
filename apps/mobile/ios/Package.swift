@@ -6,7 +6,7 @@ let package = Package(
   platforms: [.macOS(.v14), .iOS(.v17)],
   dependencies: [.package(path: "../vendor/clerk-ios")],
   targets: [
-    .target(name: "WeaveAuthContract", dependencies: [.product(name: "ClerkKit", package: "clerk-ios")], path: "Weave/Auth", exclude: ["WeaveAuthModule.mm"]),
+    .target(name: "WeaveAuthContract", dependencies: [.product(name: "ClerkKit", package: "clerk-ios")], path: "Weave", exclude: ["AppDelegate.swift", "Auth/WeaveAuthModule.mm", "Notifications/WeaveNotificationsModule.mm", "Images.xcassets", "Info.plist", "LaunchScreen.storyboard", "PrivacyInfo.xcprivacy", "Weave.entitlements"]),
     .testTarget(name: "WeaveAuthContractTests", dependencies: ["WeaveAuthContract", .product(name: "ClerkKit", package: "clerk-ios")], path: "WeaveTests"),
   ]
 )

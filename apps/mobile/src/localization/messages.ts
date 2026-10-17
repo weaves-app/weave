@@ -1,4 +1,18 @@
 export const MESSAGE = {
+  NOTIFICATIONS_TITLE: 'notifications.title',
+  NOTIFICATIONS_EXPLANATION: 'notifications.explanation',
+  NOTIFICATIONS_ENABLE: 'notifications.enable',
+  NOTIFICATIONS_SETTINGS: 'notifications.settings',
+  NOTIFICATIONS_RETRY: 'notifications.retry',
+  NOTIFICATIONS_CHECKING: 'notifications.checking',
+  NOTIFICATIONS_PENDING: 'notifications.pending',
+  NOTIFICATIONS_READY: 'notifications.ready',
+  NOTIFICATIONS_DISABLED: 'notifications.disabled',
+  NOTIFICATIONS_RESTRICTED: 'notifications.restricted',
+  NOTIFICATIONS_UNAVAILABLE: 'notifications.unavailable',
+  NOTIFICATIONS_CONFIGURATION_UNAVAILABLE: 'notifications.configurationUnavailable',
+  NOTIFICATIONS_RETRY_LATER: 'notifications.retryLater',
+
   BRAND_TAGLINE: 'brand.tagline',
   BRAND_STORY: 'brand.story',
   LOGIN_TITLE: 'login.title',

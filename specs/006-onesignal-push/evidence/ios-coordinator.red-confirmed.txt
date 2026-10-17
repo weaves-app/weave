@@ -1,0 +1,162 @@
+iOS contracts: 15 sources and 9 test/support files discovered.
+warning: /Users/pravinraj/Library/org.swift.swiftpm/configuration is not accessible or not writable, disabling user-level cache features.
+warning: /Users/pravinraj/Library/org.swift.swiftpm/security is not accessible or not writable, disabling user-level cache features.
+warning: /Users/pravinraj/Library/Caches/org.swift.swiftpm is not accessible or not writable, disabling user-level cache features.
+warning: 'ios': failed storing manifest for 'ios' in cache: attempt to write a readonly database
+warning: 'clerk-ios': failed storing manifest for 'clerk-ios' in cache: attempt to write a readonly database
+warning: 'nuke': failed storing manifest for 'nuke' in cache: attempt to write a readonly database
+warning: 'phonenumberkit': failed storing manifest for 'phonenumberkit' in cache: attempt to write a readonly database
+Building for debugging...
+[2 / 11] WeaveAuthContractTests-product
+[5 / 18]
+error: SwiftCompile normal arm64 /Users/pravinraj/workspace/weave/apps/mobile/ios/WeaveTests/NotificationCoordinatorTests.swift failed with a nonzero exit code. Command line:     cd /Users/pravinraj/workspace/weave/apps/mobile
+    builtin-SwiftPerFileCompile NotificationCoordinatorTests.swift
+/Users/pravinraj/workspace/weave/apps/mobile/ios/WeaveTests/NotificationCoordinatorTests.swift:48:17: error: type 'Any' does not conform to the 'Sendable' protocol
+ 46 |     fixture.transport.pauseGrant = true
+ 47 |     _ = await fixture.call("acquire")
+ 48 |     let setup = Task { await fixture.call("reconcile", bound: true, generation: 7) }
+    |                 `- error: type 'Any' does not conform to the 'Sendable' protocol
+ 49 |     for _ in 0..<100 where fixture.transport.grants == 0 { await Task.yield() }
+ 50 |     _ = await fixture.call("reconcile", generation: 8)
+
+/Users/pravinraj/workspace/weave/apps/mobile/ios/WeaveTests/NotificationCoordinatorTests.swift:48:17: error: type 'Any' does not conform to the 'Sendable' protocol
+ 46 |     fixture.transport.pauseGrant = true
+ 47 |     _ = await fixture.call("acquire")
+ 48 |     let setup = Task { await fixture.call("reconcile", bound: true, generation: 7) }
+    |                 `- error: type 'Any' does not conform to the 'Sendable' protocol
+ 49 |     for _ in 0..<100 where fixture.transport.grants == 0 { await Task.yield() }
+ 50 |     _ = await fixture.call("reconcile", generation: 8)
+
+/Users/pravinraj/workspace/weave/apps/mobile/ios/WeaveTests/NotificationCoordinatorTests.swift:48:9: error: type 'Any' does not conform to the 'Sendable' protocol
+ 46 |     fixture.transport.pauseGrant = true
+ 47 |     _ = await fixture.call("acquire")
+ 48 |     let setup = Task { await fixture.call("reconcile", bound: true, generation: 7) }
+    |         `- error: type 'Any' does not conform to the 'Sendable' protocol
+ 49 |     for _ in 0..<100 where fixture.transport.grants == 0 { await Task.yield() }
+ 50 |     _ = await fixture.call("reconcile", generation: 8)
+
+/Users/pravinraj/workspace/weave/apps/mobile/ios/WeaveTests/NotificationCoordinatorTests.swift:52:21: error: type 'Any' does not conform to the 'Sendable' protocol
+ 50 |     _ = await fixture.call("reconcile", generation: 8)
+ 51 |     fixture.transport.grantGate.resolve(fixture.transport.grantResponse)
+ 52 |     _ = await setup.value
+    |                     `- error: type 'Any' does not conform to the 'Sendable' protocol
+ 53 |     XCTAssertTrue(fixture.sdk.logins.isEmpty)
+ 54 |     XCTAssertNil(fixture.sdk.externalId)
+
+/Users/pravinraj/workspace/weave/apps/mobile/ios/WeaveTests/NotificationCoordinatorTests.swift:52:15: error: non-Sendable type 'Task<[String : Any], Never>' cannot exit main actor-isolated context in call to nonisolated property 'value' [#NonSendableExitingActor]
+ 50 |     _ = await fixture.call("reconcile", generation: 8)
+ 51 |     fixture.transport.grantGate.resolve(fixture.transport.grantResponse)
+ 52 |     _ = await setup.value
+    |               `- error: non-Sendable type 'Task<[String : Any], Never>' cannot exit main actor-isolated context in call to nonisolated property 'value' [#NonSendableExitingActor]
+ 53 |     XCTAssertTrue(fixture.sdk.logins.isEmpty)
+ 54 |     XCTAssertNil(fixture.sdk.externalId)
+
+/Users/pravinraj/workspace/weave/apps/mobile/ios/WeaveTests/NotificationCoordinatorTests.swift:52:21: error: non-Sendable type '[String : Any]' of nonisolated property 'value' cannot be sent to main actor-isolated context
+ 50 |     _ = await fixture.call("reconcile", generation: 8)
+ 51 |     fixture.transport.grantGate.resolve(fixture.transport.grantResponse)
+ 52 |     _ = await setup.value
+    |                     `- error: non-Sendable type '[String : Any]' of nonisolated property 'value' cannot be sent to main actor-isolated context
+ 53 |     XCTAssertTrue(fixture.sdk.logins.isEmpty)
+ 54 |     XCTAssertNil(fixture.sdk.externalId)
+
+/Users/pravinraj/workspace/weave/apps/mobile/ios/WeaveTests/NotificationCoordinatorTests.swift:79:19: error: type 'Any' does not conform to the 'Sendable' protocol
+ 77 |     let observation = await fixture.call("reconcile", bound: true, generation: 7)
+ 78 |     fixture.transport.pauseReadiness = true
+ 79 |     let request = Task { await fixture.call("refresh", bound: true, generation: 7, extra: ["revision": observation["revision"] ?? 0, "attemptId": "attempt-a"]) }
+    |                   `- error: type 'Any' does not conform to the 'Sendable' protocol
+ 80 |     for _ in 0..<100 where fixture.transport.checks == 0 { await Task.yield() }
+ 81 |     fixture.clock.advance(12)
+
+/Users/pravinraj/workspace/weave/apps/mobile/ios/WeaveTests/NotificationCoordinatorTests.swift:79:19: error: type 'Any' does not conform to the 'Sendable' protocol
+ 77 |     let observation = await fixture.call("reconcile", bound: true, generation: 7)
+ 78 |     fixture.transport.pauseReadiness = true
+ 79 |     let request = Task { await fixture.call("refresh", bound: true, generation: 7, extra: ["revision": observation["revision"] ?? 0, "attemptId": "attempt-a"]) }
+    |                   `- error: type 'Any' does not conform to the 'Sendable' protocol
+ 80 |     for _ in 0..<100 where fixture.transport.checks == 0 { await Task.yield() }
+ 81 |     fixture.clock.advance(12)
+
+/Users/pravinraj/workspace/weave/apps/mobile/ios/WeaveTests/NotificationCoordinatorTests.swift:79:9: error: type 'Any' does not conform to the 'Sendable' protocol
+ 77 |     let observation = await fixture.call("reconcile", bound: true, generation: 7)
+ 78 |     fixture.transport.pauseReadiness = true
+ 79 |     let request = Task { await fixture.call("refresh", bound: true, generation: 7, extra: ["revision": observation["revision"] ?? 0, "attemptId": "attempt-a"]) }
+    |         `- error: type 'Any' does not conform to the 'Sendable' protocol
+ 80 |     for _ in 0..<100 where fixture.transport.checks == 0 { await Task.yield() }
+ 81 |     fixture.clock.advance(12)
+
+/Users/pravinraj/workspace/weave/apps/mobile/ios/WeaveTests/NotificationCoordinatorTests.swift:83:32: error: type 'Any' does not conform to the 'Sendable' protocol
+ 81 |     fixture.clock.advance(12)
+ 82 |     fixture.transport.readinessGate.resolve(.response(status: 200, body: Data("{\"status\":\"ready\",\"checkedAt\":\"2026-10-17T00:00:00Z\",\"validForSeconds\":60}".utf8)))
+ 83 |     let result = await request.value
+    |                                `- error: type 'Any' does not conform to the 'Sendable' protocol
+ 84 |     XCTAssertEqual(result["kind"] as? String, "readiness")
+ 85 |     XCTAssertEqual(result["attemptId"] as? String, "attempt-a")
+
+/Users/pravinraj/workspace/weave/apps/mobile/ios/WeaveTests/NotificationCoordinatorTests.swift:83:24: error: non-Sendable type 'Task<[String : Any], Never>' cannot exit main actor-isolated context in call to nonisolated property 'value' [#NonSendableExitingActor]
+ 81 |     fixture.clock.advance(12)
+ 82 |     fixture.transport.readinessGate.resolve(.response(status: 200, body: Data("{\"status\":\"ready\",\"checkedAt\":\"2026-10-17T00:00:00Z\",\"validForSeconds\":60}".utf8)))
+ 83 |     let result = await request.value
+    |                        `- error: non-Sendable type 'Task<[String : Any], Never>' cannot exit main actor-isolated context in call to nonisolated property 'value' [#NonSendableExitingActor]
+ 84 |     XCTAssertEqual(result["kind"] as? String, "readiness")
+ 85 |     XCTAssertEqual(result["attemptId"] as? String, "attempt-a")
+
+/Users/pravinraj/workspace/weave/apps/mobile/ios/WeaveTests/NotificationCoordinatorTests.swift:83:32: error: non-Sendable type '[String : Any]' of nonisolated property 'value' cannot be sent to main actor-isolated context
+ 81 |     fixture.clock.advance(12)
+ 82 |     fixture.transport.readinessGate.resolve(.response(status: 200, body: Data("{\"status\":\"ready\",\"checkedAt\":\"2026-10-17T00:00:00Z\",\"validForSeconds\":60}".utf8)))
+ 83 |     let result = await request.value
+    |                                `- error: non-Sendable type '[String : Any]' of nonisolated property 'value' cannot be sent to main actor-isolated context
+ 84 |     XCTAssertEqual(result["kind"] as? String, "readiness")
+ 85 |     XCTAssertEqual(result["attemptId"] as? String, "attempt-a")
+
+/Users/pravinraj/workspace/weave/apps/mobile/ios/WeaveTests/NotificationCoordinatorTests.swift:95:19: error: type 'Any' does not conform to the 'Sendable' protocol
+ 93 |     let observation = await fixture.call("reconcile", bound: true, generation: 7)
+ 94 |     fixture.transport.pauseReadiness = true
+ 95 |     let request = Task { await fixture.call("refresh", bound: true, generation: 7, extra: ["revision": observation["revision"] ?? 0, "attemptId": "attempt-a"]) }
+    |                   `- error: type 'Any' does not conform to the 'Sendable' protocol
+ 96 |     for _ in 0..<100 where fixture.transport.checks == 0 { await Task.yield() }
+ 97 |     fixture.sdk.subscriptionId = "e3d647d0-8277-4ae0-b46d-a2d836bd839d"
+
+/Users/pravinraj/workspace/weave/apps/mobile/ios/WeaveTests/NotificationCoordinatorTests.swift:95:19: error: type 'Any' does not conform to the 'Sendable' protocol
+ 93 |     let observation = await fixture.call("reconcile", bound: true, generation: 7)
+ 94 |     fixture.transport.pauseReadiness = true
+ 95 |     let request = Task { await fixture.call("refresh", bound: true, generation: 7, extra: ["revision": observation["revision"] ?? 0, "attemptId": "attempt-a"]) }
+    |                   `- error: type 'Any' does not conform to the 'Sendable' protocol
+ 96 |     for _ in 0..<100 where fixture.transport.checks == 0 { await Task.yield() }
+ 97 |     fixture.sdk.subscriptionId = "e3d647d0-8277-4ae0-b46d-a2d836bd839d"
+
+/Users/pravinraj/workspace/weave/apps/mobile/ios/WeaveTests/NotificationCoordinatorTests.swift:95:9: error: type 'Any' does not conform to the 'Sendable' protocol
+ 93 |     let observation = await fixture.call("reconcile", bound: true, generation: 7)
+ 94 |     fixture.transport.pauseReadiness = true
+ 95 |     let request = Task { await fixture.call("refresh", bound: true, generation: 7, extra: ["revision": observation["revision"] ?? 0, "attemptId": "attempt-a"]) }
+    |         `- error: type 'Any' does not conform to the 'Sendable' protocol
+ 96 |     for _ in 0..<100 where fixture.transport.checks == 0 { await Task.yield() }
+ 97 |     fixture.sdk.subscriptionId = "e3d647d0-8277-4ae0-b46d-a2d836bd839d"
+
+/Users/pravinraj/workspace/weave/apps/mobile/ios/WeaveTests/NotificationCoordinatorTests.swift:100:32: error: type 'Any' does not conform to the 'Sendable' protocol
+ 98 |     fixture.sdk.onChanged?()
+ 99 |     fixture.transport.readinessGate.resolve(.response(status: 200, body: Data("{\"status\":\"ready\",\"checkedAt\":\"2026-10-17T00:00:00Z\",\"validForSeconds\":60}".utf8)))
+100 |     let result = await request.value
+    |                                `- error: type 'Any' does not conform to the 'Sendable' protocol
+101 |     XCTAssertNotEqual(result["status"] as? String, "ready")
+102 |   }
+
+/Users/pravinraj/workspace/weave/apps/mobile/ios/WeaveTests/NotificationCoordinatorTests.swift:100:24: error: non-Sendable type 'Task<[String : Any], Never>' cannot exit main actor-isolated context in call to nonisolated property 'value' [#NonSendableExitingActor]
+ 98 |     fixture.sdk.onChanged?()
+ 99 |     fixture.transport.readinessGate.resolve(.response(status: 200, body: Data("{\"status\":\"ready\",\"checkedAt\":\"2026-10-17T00:00:00Z\",\"validForSeconds\":60}".utf8)))
+100 |     let result = await request.value
+    |                        `- error: non-Sendable type 'Task<[String : Any], Never>' cannot exit main actor-isolated context in call to nonisolated property 'value' [#NonSendableExitingActor]
+101 |     XCTAssertNotEqual(result["status"] as? String, "ready")
+102 |   }
+
+/Users/pravinraj/workspace/weave/apps/mobile/ios/WeaveTests/NotificationCoordinatorTests.swift:100:32: error: non-Sendable type '[String : Any]' of nonisolated property 'value' cannot be sent to main actor-isolated context
+ 98 |     fixture.sdk.onChanged?()
+ 99 |     fixture.transport.readinessGate.resolve(.response(status: 200, body: Data("{\"status\":\"ready\",\"checkedAt\":\"2026-10-17T00:00:00Z\",\"validForSeconds\":60}".utf8)))
+100 |     let result = await request.value
+    |                                `- error: non-Sendable type '[String : Any]' of nonisolated property 'value' cannot be sent to main actor-isolated context
+101 |     XCTAssertNotEqual(result["status"] as? String, "ready")
+102 |   }
+
+[#NonSendableExitingActor]: <https://docs.swift.org/compiler/documentation/diagnostics/getting-non-sendable-values-out-of-actors>
+Failed frontend command:
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swift-frontend -frontend -c /Users/pravinraj/workspace/weave/apps/mobile/ios/build/host-contracts/out/Intermediates.noindex/WeaveNativeContracts.build/Debug/WeaveAuthContractTests-p.build/DerivedSources/test_entry_point.swift /Users/pravinraj/workspace/weave/apps/mobile/ios/WeaveTests/AuthConfigurationTests.swift /Users/pravinraj/workspace/weave/apps/mobile/ios/WeaveTests/ClerkLoggingPrivacyProbe.swift /Users/pravinraj/workspace/weave/apps/mobile/ios/WeaveTests/ClerkProviderTests.swift /Users/pravinraj/workspace/weave/apps/mobile/ios/WeaveTests/KeychainHealthTests.swift /Users/pravinraj/workspace/weave/apps/mobile/ios/WeaveTests/NotificationAccountTests.swift -primary-file /Users/pravinraj/workspace/weave/apps/mobile/ios/WeaveTests/NotificationCoordinatorTests.swift /Users/pravinraj/workspace/weave/apps/mobile/ios/WeaveTests/NotificationFakes.swift /Users/pravinraj/workspace/weave/apps/mobile/ios/WeaveTests/NotificationPermissionTests.swift /Users/pravinraj/workspace/weave/apps/mobile/ios/WeaveTests/WeaveAuthBehaviorTests.swift /Users/pravinraj/workspace/weave/apps/mobile/ios/WeaveTests/WeaveAuthModuleTests.swift -emit-dependencies-path /Users/pravinraj/workspace/weave/apps/mobile/ios/build/host-contracts/out/Intermediates.noindex/WeaveNativeContracts.build/Debug/WeaveAuthContractTests-p.build/Objects-normal/arm64/NotificationCoordinatorTests.d -emit-const-values-path /Users/pravinraj/workspace/weave/apps/mobile/ios/build/host-contracts/out/Intermediates.noindex/WeaveNativeContracts.build/Debug/WeaveAuthContractTests-p.build/Objects-normal/arm64/NotificationCoordinatorTests.swiftconstvalues -emit-reference-dependencies-path /Users/pravinraj/workspace/weave/apps/mobile/ios/build/host-contracts/out/Intermediates.noindex/WeaveNativeContracts.build/Debug/WeaveAuthContractTests-p.build/Objects-normal/arm64/NotificationCoordinatorTests.swiftdeps -serialize-diagnostics-path /Users/pravinraj/workspace/weave/apps/mobile/ios/build/host-contracts/out/Intermediates.noindex/WeaveNativeContracts.build/Debug/WeaveAuthContractTests-p.build/Objects-normal/arm64/NotificationCoordinatorTests.dia -target arm64-apple-macos14.0 -module-can-import-version Testing 2084 0 -module-can-import-version XCTest 25228 0 -disable-cross-import-overlay-search -swift-module-cross-import AuthenticationServices /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Cryptexes/OS/System/Library/Frameworks/AuthenticationServices.framework/Modules/AuthenticationServices.swiftcrossimport/SwiftUI.swiftoverlay -swift-module-cross-import AuthenticationServices /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/AuthenticationServices.framework/Modules/AuthenticationServices.swiftcrossimport/SwiftUI.swiftoverlay -swift-module-cross-import Testing /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks/Testing.framework/Modules/Testing.swiftcrossimport/AppKit.swiftoverlay -swift-module-cross-import Testing /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks/Testing.framework/Modules/Testing.swiftcrossimport/CoreGraphics.swiftoverlay -swift-module-cross-import Testing /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks/Testing.framework/Modules/Testing.swiftcrossimport/CoreImage.swiftoverlay -swift-module-cross-import Testing /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks/Testing.framework/Modules/Testing.swiftcrossimport/CoreTransferable.swiftoverlay -swift-module-cross-import Testing /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks/Testing.framework/Modules/Testing.swiftcrossimport/Foundation.swiftoverlay -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib/swift/host/plugins/libFoundationMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server\#FoundationMacros -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib/swift/host/plugins/libObservationMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server\#ObservationMacros -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib/swift/host/plugins/libPreviewsMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server\#PreviewsMacros -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib/swift/host/plugins/libSwiftMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server\#SwiftMacros -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib/swift/host/plugins/libSwiftUIMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server\#SwiftUIMacros -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing/libTestingMacros.dylib\#\#TestingMacros -disable-implicit-swift-modules -Xcc -fno-implicit-modules -Xcc -fno-implicit-module-maps -explicit-swift-module-map-file /Users/pravinraj/workspace/weave/apps/mobile/ios/build/host-contracts/out/Intermediates.noindex/WeaveNativeContracts.build/Debug/WeaveAuthContractTests-p.build/Objects-normal/arm64/WeaveAuthContractTests-dependencies-1.json -Xllvm -aarch64-use-tbi -enable-objc-interop -stack-check -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk -I /Users/pravinraj/workspace/weave/apps/mobile/ios/build/host-contracts/out/Products/Debug -Isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib -F /Users/pravinraj/workspace/weave/apps/mobile/ios/build/host-contracts/out/Products/Debug/PackageFrameworks -F /Users/pravinraj/workspace/weave/apps/mobile/ios/build/host-contracts/out/Products/Debug -F /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks -module-cache-path /Users/pravinraj/workspace/weave/apps/mobile/ios/build/host-contracts/out/Intermediates.noindex/SwiftExplicitPrecompiledModules -no-color-diagnostics -Xcc -fno-color-diagnostics -enable-testing -g -debug-info-format\=dwarf -dwarf-version\=4 -swift-version 6 -Onone -D SWIFT_PACKAGE -D DEBUG -D Xcode -serialize-debugging-options -enable-experimental-feature DebugDescriptionMacro -empty-abi-descriptor -validate-clang-modules-once -clang-build-session-file /Users/pravinraj/workspace/weave/apps/mobile/ios/build/host-contracts/out/ModuleCache.noindex/Session.modulevalidation -disable-sandbox -Xcc -working-directory -Xcc /Users/pravinraj/workspace/weave/apps/mobile -enable-anonymous-context-mangled-names -file-compilation-dir /Users/pravinraj/workspace/weave/apps/mobile -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -Xcc -ivfsstatcache -Xcc /Users/pravinraj/workspace/weave/apps/mobile/ios/build/host-contracts/out/SDKStatCaches.noindex/macosx27.0-26A425-a0facfad118c1a7a18f0aad9463f65497231f6df4def33e022ae2eb8f782df1a.sdkstatcache -Xcc -fmodules-prune-interval\=86400 -Xcc -fmodules-prune-after\=345600 -Xcc -I/Users/pravinraj/workspace/weave/apps/mobile/ios/build/host-contracts/out/Products/Debug/include -Xcc -I/Users/pravinraj/workspace/weave/apps/mobile/ios/build/host-contracts/out/Intermediates.noindex/WeaveNativeContracts.build/Debug/WeaveAuthContractTests-p.build/DerivedSources-normal/arm64 -Xcc -I/Users/pravinraj/workspace/weave/apps/mobile/ios/build/host-contracts/out/Intermediates.noindex/WeaveNativeContracts.build/Debug/WeaveAuthContractTests-p.build/DerivedSources/arm64 -Xcc -I/Users/pravinraj/workspace/weave/apps/mobile/ios/build/host-contracts/out/Intermediates.noindex/WeaveNativeContracts.build/Debug/WeaveAuthContractTests-p.build/DerivedSources -Xcc -DSWIFT_PACKAGE -Xcc -DDEBUG\=1 -no-auto-bridging-header-chaining -module-name WeaveAuthContractTests -package-name ios -const-gather-protocols-file /Users/pravinraj/workspace/weave/apps/mobile/ios/build/host-contracts/out/Intermediates.noindex/WeaveNativeContracts.build/Debug/WeaveAuthContractTests-p.build/Objects-normal/arm64/WeaveAuthContractTests_const_extract_protocols.json -disable-clang-spi -clang-target arm64-apple-macos27.0 -target-sdk-version 27.0 -target-sdk-name macosx27.0 -in-process-plugin-server-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/libSwiftInProcPluginServer.dylib -parse-as-library -o /Users/pravinraj/workspace/weave/apps/mobile/ios/build/host-contracts/out/Intermediates.noindex/WeaveNativeContracts.build/Debug/WeaveAuthContractTests-p.build/Objects-normal/arm64/NotificationCoordinatorTests.o -debug-module-path /Users/pravinraj/workspace/weave/apps/mobile/ios/build/host-contracts/out/Intermediates.noindex/WeaveNativeContracts.build/Debug/WeaveAuthContractTests-p.build/Objects-normal/arm64/WeaveAuthContractTests.swiftmodule -index-unit-output-path /WeaveNativeContracts.build/Debug/WeaveAuthContractTests-p.build/Objects-normal/arm64/NotificationCoordinatorTests.o -index-store-path /Users/pravinraj/workspace/weave/apps/mobile/ios/build/host-contracts/out -index-system-modules
+error: Build failed
+error: fatalError

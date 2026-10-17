@@ -1,0 +1,178 @@
+$ eslint .
+
+/Users/pravinraj/workspace/weave/apps/api/src/modules/authentication/authentication.module.ts
+  12:111  error  Add a blank line between these logical blocks  weave/readability
+  20:5    error  Add a blank line between these logical blocks  weave/readability
+
+/Users/pravinraj/workspace/weave/apps/api/src/modules/authentication/contracts/index.ts
+  2:1  error  Add a blank line between these logical blocks  weave/readability
+  3:1  error  Add a blank line between these logical blocks  weave/readability
+  4:1  error  Add a blank line between these logical blocks  weave/readability
+  5:1  error  Add a blank line between these logical blocks  weave/readability
+  6:1  error  Add a blank line between these logical blocks  weave/readability
+
+/Users/pravinraj/workspace/weave/apps/api/src/modules/authentication/infrastructure/clerk-session-authenticator.ts
+  25:7  error  Add a blank line between these logical blocks  weave/readability
+  44:9  error  Add a blank line between these logical blocks  weave/readability
+  45:9  error  Add a blank line between these logical blocks  weave/readability
+  48:9  error  Add a blank line between these logical blocks  weave/readability
+
+/Users/pravinraj/workspace/weave/apps/api/src/modules/authentication/presentation/session.guard.ts
+  28:5  error  Add a blank line between these logical blocks  weave/readability
+
+/Users/pravinraj/workspace/weave/apps/api/src/modules/notifications/application/verify-readiness.ts
+  21:5  error  Add a blank line between these logical blocks  weave/readability
+  26:5  error  Add a blank line between these logical blocks  weave/readability
+
+/Users/pravinraj/workspace/weave/apps/api/src/modules/notifications/infrastructure/onesignal-readiness-reader.ts
+  27:7    error  Add a blank line between these logical blocks                                           weave/readability
+  28:7    error  Add a blank line between these logical blocks                                           weave/readability
+  29:7    error  Add a blank line between these logical blocks                                           weave/readability
+  38:3    error  Add a blank line between these logical blocks                                           weave/readability
+  64:7    error  Add a blank line between these logical blocks                                           weave/readability
+  68:7    error  Add a blank line between these logical blocks                                           weave/readability
+  71:113  error  Use an exported named constant for this comparison, fallback, or navigation identifier  weave-values/no-literal-comparisons
+  75:9    error  Add a blank line between these logical blocks                                           weave/readability
+  77:7    error  Add a blank line between these logical blocks                                           weave/readability
+
+/Users/pravinraj/workspace/weave/apps/api/src/modules/notifications/infrastructure/postgres-request-budget.ts
+  23:7  error  Add a blank line between these logical blocks  weave/readability
+  24:7  error  Add a blank line between these logical blocks  weave/readability
+  29:7  error  Add a blank line between these logical blocks  weave/readability
+  37:5  error  Add a blank line between these logical blocks  weave/readability
+
+/Users/pravinraj/workspace/weave/apps/api/src/modules/notifications/notifications.module.ts
+  23:51  error  Add a blank line between these logical blocks  weave/readability
+  26:40  error  Add a blank line between these logical blocks  weave/readability
+  28:73  error  Add a blank line between these logical blocks  weave/readability
+  30:5   error  Add a blank line between these logical blocks  weave/readability
+  32:7   error  Add a blank line between these logical blocks  weave/readability
+
+/Users/pravinraj/workspace/weave/apps/api/src/modules/notifications/presentation/notification-http.ts
+  27:3    error  Add a blank line between these logical blocks  weave/readability
+  29:5    error  Add a blank line between these logical blocks  weave/readability
+  30:5    error  Add a blank line between these logical blocks  weave/readability
+  31:5    error  Add a blank line between these logical blocks  weave/readability
+  32:5    error  Add a blank line between these logical blocks  weave/readability
+  34:3    error  Add a blank line between these logical blocks  weave/readability
+  35:3    error  Add a blank line between these logical blocks  weave/readability
+  36:3    error  Add a blank line between these logical blocks  weave/readability
+  46:91   error  Add a blank line between these logical blocks  weave/readability
+  47:5    error  Add a blank line between these logical blocks  weave/readability
+  48:5    error  Add a blank line between these logical blocks  weave/readability
+  48:178  error  Add a blank line between these logical blocks  weave/readability
+  49:5    error  Add a blank line between these logical blocks  weave/readability
+  52:80   error  '_next' is defined but never used              @typescript-eslint/no-unused-vars
+
+/Users/pravinraj/workspace/weave/apps/api/src/modules/notifications/presentation/notification-input.ts
+  15:3  error  Add a blank line between these logical blocks  weave/readability
+  24:3  error  Add a blank line between these logical blocks  weave/readability
+
+/Users/pravinraj/workspace/weave/apps/api/test/notification-authentication.test.ts
+  19:5   error  Add a blank line between these logical blocks                                           weave/readability
+  21:5   error  Add a blank line between these logical blocks                                           weave/readability
+  21:42  error  Use an exported named constant for this comparison, fallback, or navigation identifier  weave-values/no-literal-comparisons
+  24:3   error  Add a blank line between these logical blocks                                           weave/readability
+  25:3   error  Add a blank line between these logical blocks                                           weave/readability
+  32:3   error  Add a blank line between these logical blocks                                           weave/readability
+  35:7   error  Add a blank line between these logical blocks                                           weave/readability
+  39:3   error  Add a blank line between these logical blocks                                           weave/readability
+  42:5   error  Add a blank line between these logical blocks                                           weave/readability
+  47:5   error  Add a blank line between these logical blocks                                           weave/readability
+  48:5   error  Add a blank line between these logical blocks                                           weave/readability
+  50:3   error  Add a blank line between these logical blocks                                           weave/readability
+  54:3   error  Add a blank line between these logical blocks                                           weave/readability
+  62:5   error  Add a blank line between these logical blocks                                           weave/readability
+  63:5   error  Add a blank line between these logical blocks                                           weave/readability
+  68:5   error  Add a blank line between these logical blocks                                           weave/readability
+  74:5   error  Add a blank line between these logical blocks                                           weave/readability
+
+/Users/pravinraj/workspace/weave/apps/api/test/notification-config.test.ts
+   8:2   error  Add a blank line between these logical blocks                                           weave/readability
+   9:2   error  Add a blank line between these logical blocks                                           weave/readability
+  10:2   error  Add a blank line between these logical blocks                                           weave/readability
+  10:55  error  Use an exported named constant for this comparison, fallback, or navigation identifier  weave-values/no-literal-comparisons
+  11:55  error  Use an exported named constant for this comparison, fallback, or navigation identifier  weave-values/no-literal-comparisons
+
+/Users/pravinraj/workspace/weave/apps/api/test/notification-http.test.ts
+  19:53   error  Add a blank line between these logical blocks                                           weave/readability
+  19:78   error  Add a blank line between these logical blocks                                           weave/readability
+  19:219  error  Add a blank line between these logical blocks                                           weave/readability
+  19:244  error  Add a blank line between these logical blocks                                           weave/readability
+  20:3    error  Add a blank line between these logical blocks                                           weave/readability
+  21:201  error  Use an exported named constant for this comparison, fallback, or navigation identifier  weave-values/no-literal-comparisons
+  21:285  error  Add a blank line between these logical blocks                                           weave/readability
+  22:3    error  Add a blank line between these logical blocks                                           weave/readability
+  23:3    error  Add a blank line between these logical blocks                                           weave/readability
+  24:3    error  Add a blank line between these logical blocks                                           weave/readability
+  25:3    error  Add a blank line between these logical blocks                                           weave/readability
+  26:3    error  Add a blank line between these logical blocks                                           weave/readability
+  27:46   error  Add a blank line between these logical blocks                                           weave/readability
+  27:171  error  Unsafe member access .externalId on an `any` value                                      @typescript-eslint/no-unsafe-member-access
+  28:5    error  Add a blank line between these logical blocks                                           weave/readability
+  28:112  error  Add a blank line between these logical blocks                                           weave/readability
+  28:177  error  Unsafe member access .validForSeconds on an `any` value                                 @typescript-eslint/no-unsafe-member-access
+  30:3    error  Add a blank line between these logical blocks                                           weave/readability
+  31:124  error  Add a blank line between these logical blocks                                           weave/readability
+  33:3    error  Add a blank line between these logical blocks                                           weave/readability
+  34:73   error  Add a blank line between these logical blocks                                           weave/readability
+  36:3    error  Add a blank line between these logical blocks                                           weave/readability
+  36:429  error  Add a blank line between these logical blocks                                           weave/readability
+  37:3    error  Add a blank line between these logical blocks                                           weave/readability
+  40:5    error  Add a blank line between these logical blocks                                           weave/readability
+  41:5    error  Add a blank line between these logical blocks                                           weave/readability
+  44:92   error  Add a blank line between these logical blocks                                           weave/readability
+  46:3    error  Add a blank line between these logical blocks                                           weave/readability
+  47:19   error  Add a blank line between these logical blocks                                           weave/readability
+  47:63   error  Add a blank line between these logical blocks                                           weave/readability
+
+/Users/pravinraj/workspace/weave/apps/api/test/notification-identity-grant.test.ts
+  17:5  error  Add a blank line between these logical blocks  weave/readability
+  21:3  error  Add a blank line between these logical blocks  weave/readability
+  24:3  error  Add a blank line between these logical blocks  weave/readability
+  30:5  error  Add a blank line between these logical blocks  weave/readability
+
+/Users/pravinraj/workspace/weave/apps/api/test/notification-readiness.test.ts
+  20:51   error  Add a blank line between these logical blocks  weave/readability
+  20:113  error  Add a blank line between these logical blocks  weave/readability
+  24:5    error  Add a blank line between these logical blocks  weave/readability
+  24:88   error  Add a blank line between these logical blocks  weave/readability
+  27:5    error  Add a blank line between these logical blocks  weave/readability
+  30:3    error  Add a blank line between these logical blocks  weave/readability
+  35:3    error  Add a blank line between these logical blocks  weave/readability
+  39:3    error  Add a blank line between these logical blocks  weave/readability
+  44:3    error  Add a blank line between these logical blocks  weave/readability
+  47:3    error  Add a blank line between these logical blocks  weave/readability
+  48:49   error  Add a blank line between these logical blocks  weave/readability
+  49:5    error  Add a blank line between these logical blocks  weave/readability
+  54:3    error  Add a blank line between these logical blocks  weave/readability
+  55:18   error  Add a blank line between these logical blocks  weave/readability
+  55:37   error  Add a blank line between these logical blocks  weave/readability
+  57:3    error  Add a blank line between these logical blocks  weave/readability
+  59:5    error  Add a blank line between these logical blocks  weave/readability
+  64:5    error  Add a blank line between these logical blocks  weave/readability
+  65:5    error  Add a blank line between these logical blocks  weave/readability
+
+/Users/pravinraj/workspace/weave/apps/api/test/notification-runtime.test.ts
+   9:2    error  Add a blank line between these logical blocks  weave/readability
+  14:131  error  Add a blank line between these logical blocks  weave/readability
+
+/Users/pravinraj/workspace/weave/apps/api/test/notification-use-cases.test.ts
+  12:2    error  Add a blank line between these logical blocks  weave/readability
+  19:69   error  Add a blank line between these logical blocks  weave/readability
+  19:87   error  Add a blank line between these logical blocks  weave/readability
+  20:91   error  Add a blank line between these logical blocks  weave/readability
+  21:2    error  Add a blank line between these logical blocks  weave/readability
+  30:94   error  Add a blank line between these logical blocks  weave/readability
+  30:112  error  Add a blank line between these logical blocks  weave/readability
+  31:61   error  Add a blank line between these logical blocks  weave/readability
+  34:2    error  Add a blank line between these logical blocks  weave/readability
+  35:2    error  Add a blank line between these logical blocks  weave/readability
+  36:2    error  Add a blank line between these logical blocks  weave/readability
+
+✖ 136 problems (136 errors, 0 warnings)
+  128 errors and 0 warnings potentially fixable with the `--fix` option.
+
+/Users/pravinraj/workspace/weave/apps/api:
+[ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL] @weave/api@0.0.0 lint: `eslint .`
+Exit status 1

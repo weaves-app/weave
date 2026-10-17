@@ -21,5 +21,7 @@ object AuthBootstrap {
 }
 
 object AuthDependencies {
-  val service: AuthenticationService by lazy { ClerkAuthService(NativeClerkSdk()) }
+  private val implementation by lazy { ClerkAuthService(NativeClerkSdk()) }
+  val service: AuthenticationService get() = implementation
+  val notificationAuthority: NativeNotificationAuthAuthority get() = implementation
 }

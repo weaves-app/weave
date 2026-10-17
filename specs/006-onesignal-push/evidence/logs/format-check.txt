@@ -1,0 +1,4 @@
+Checking formatting...
+[warn] specs/006-onesignal-push/evidence/android-foundation.md
+[warn] specs/006-onesignal-push/evidence/android-permission.md
+[warn] Code style issues found in 2 files. Run Prettier with --write to fix.

@@ -1,0 +1,10 @@
+2026-10-17T04:43:43.829769+00:00 START DATABASE_URL=postgresql://weave@127.0.0.1:55449/wea29_verify pnpm --filter @weave/api test -> backend-api-tests.txt
+2026-10-17T04:43:52.213733+00:00 END exit=0
+2026-10-17T04:43:52.213887+00:00 START DATABASE_URL=postgresql://weave@127.0.0.1:55449/wea29_verify node --test tests/integration/notification-budget.test.mjs tests/integration/notification-runtime.test.mjs -> backend-integration-tests.txt
+2026-10-17T04:43:52.612801+00:00 END exit=0
+2026-10-17T04:46:08.884643+00:00 START TSX_TSCONFIG_PATH=apps/api/tsconfig.json node --import tsx --test apps/api/test/notification-privacy.test.ts -> backend-privacy-green.txt
+2026-10-17T04:46:09.363749+00:00 END exit=0
+2026-10-17T04:46:09.363810+00:00 START TSX_TSCONFIG_PATH=apps/api/tsconfig.json pnpm exec prettier --check apps/api/package.json apps/api/prisma/schema.prisma apps/api/src/modules/authentication apps/api/src/modules/notifications apps/api/src/scripts/cleanup-notification-budgets.ts apps/api/src/app.module.ts apps/api/src/main.ts apps/api/test tests/integration/notification-budget.test.mjs tests/integration/notification-runtime.test.mjs specs/006-onesignal-push/evidence/backend.md -> backend-format.txt
+2026-10-17T04:46:09.903120+00:00 END exit=2
+2026-10-17T04:46:16.892278+00:00 START pnpm exec prettier --check apps/api/package.json apps/api/src/modules/authentication apps/api/src/modules/notifications apps/api/src/scripts/cleanup-notification-budgets.ts apps/api/src/app.module.ts apps/api/src/main.ts apps/api/test tests/integration/notification-budget.test.mjs tests/integration/notification-runtime.test.mjs specs/006-onesignal-push/evidence/backend.md -> backend-format.txt
+2026-10-17T04:46:17.852402+00:00 END exit=0

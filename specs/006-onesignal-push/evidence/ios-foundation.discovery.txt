@@ -1,0 +1,9 @@
+iOS contracts: 11 sources and 7 test/support files discovered.
+iOS contracts: 11 sources and 7 test/support files discovered.
+/var/folders/0s/k9brkk2x3f74kq29m_5r4wrr0000gn/T/weave-ios-discovery-by1esyc0/ios/Weave.xcodeproj/project.pbxproj: OK
+warning: /Users/pravinraj/Library/org.swift.swiftpm/configuration is not accessible or not writable, disabling user-level cache features.
+warning: /Users/pravinraj/Library/org.swift.swiftpm/security is not accessible or not writable, disabling user-level cache features.
+warning: /Users/pravinraj/Library/Caches/org.swift.swiftpm is not accessible or not writable, disabling user-level cache features.
+warning: 'ios': failed storing manifest for 'ios' in cache: attempt to write a readonly database
+
+PASS: future Swift/ObjC/test discovery, unchanged auth memberships, excluded privacy probe, deterministic idempotence, and host Swift-only source discovery.

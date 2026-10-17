@@ -1,0 +1,8 @@
+
+/Users/pravinraj/workspace/weave/apps/mobile/src/features/notifications/notification-root.test.tsx
+  104:15  error  Use an exported named constant for this comparison, fallback, or navigation identifier  weave-values/no-literal-comparisons
+
+/Users/pravinraj/workspace/weave/apps/mobile/src/features/notifications/readiness.test.ts
+  6:29  error  Use an exported named constant for this comparison, fallback, or navigation identifier  weave-values/no-literal-comparisons
+
+✖ 2 problems (2 errors, 0 warnings)

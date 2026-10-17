@@ -15,6 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
   ) -> Bool {
     WeaveAuthRuntime.configure(info: Bundle.main.infoDictionary ?? [:])
+    WeaveNotificationsRuntime.configure(info: Bundle.main.infoDictionary ?? [:], launchOptions: launchOptions)
     let delegate = ReactNativeDelegate()
     let factory = RCTReactNativeFactory(delegate: delegate)
     delegate.dependencyProvider = RCTAppDependencyProvider()

@@ -1,6 +1,7 @@
 #!/bin/sh
 set -eu
 MOBILE_ROOT=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+node "$MOBILE_ROOT/scripts/ios-contract-discovery.mjs"
 "$MOBILE_ROOT/scripts/ios-sdk-privacy.sh"
 if [ -z "${WEAVE_IOS_TEST_DESTINATION:-}" ]; then
   SIMULATOR_ID=$(xcrun simctl list devices available -j | python3 -c 'import json,sys; devices=[d for group in json.load(sys.stdin)["devices"].values() for d in group if d.get("isAvailable") and "iPhone" in d["name"]]; devices.sort(key=lambda d:d["state"]!="Booted"); print(devices[0]["udid"] if devices else "")')

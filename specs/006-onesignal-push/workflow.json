@@ -1,0 +1,316 @@
+{
+  "ticket": "WEA-29",
+  "ticketUrl": "https://linear.app/weaveapp/issue/WEA-29/integrate-onesignal-push-notifications-in-the-react-native-app",
+  "status": "Code and automated checks complete; draft stacked review handoff; controlled provider/device acceptance open",
+  "scenariosConfirmed": true,
+  "scenarioIds": ["S01", "S02", "S03", "S04", "S05", "S06", "S07", "S08", "S09", "S10", "S11"],
+  "sourceChangesStarted": true,
+  "featureDirectory": "specs/006-onesignal-push",
+  "specification": {
+    "date": "2026-10-16",
+    "userStatement": "Integrate One Signal for push notification",
+    "scope": "Android/iOS mobile foundation, authenticated backend readiness verification and secure account binding; English app-owned copy",
+    "scopeBasis": "User explicitly selected server-confirmed status on 2026-10-16; unrelated business notification scope remains excluded",
+    "qualityChecklist": {
+      "total": 16,
+      "checked": 16,
+      "unchecked": 0
+    },
+    "readiness": "Approved for implementation; external acceptance prerequisites remain open",
+    "template": ".specify/templates/spec-template.md",
+    "numbering": "006 is next after the existing 005 feature observed before changing ticket branches",
+    "approaches": {
+      "chosenDefault": "Mobile foundation plus user-selected authenticated backend verification; no business sender",
+      "alternative": "Local-only readiness rejected by user choice"
+    }
+  },
+  "branch": {
+    "name": "feat/WEA-29/onesignal-push",
+    "baseBranch": "feat/WEA-28/mobile-i18n",
+    "baseCommit": "75814ad85894460ddeae46c9aa337f0d09463f5c",
+    "reason": "User explicitly confirmed stacking on PR #13 on 2026-10-17",
+    "prerequisitePr": "https://github.com/weaves-app/weave/pull/13",
+    "prerequisiteHeadAtInspection": "75814ad85894460ddeae46c9aa337f0d09463f5c",
+    "implementationGate": "Satisfied: fast-forwarded ticket branch to approved parent head"
+  },
+  "publicTestSeams": [
+    "Permission requests and status with controlled permission/registration states",
+    "Validated account association, logout/switch reconciliation and stale completion rejection",
+    "Foreground receipt and safe cold/warm notification taps through the existing session gate",
+    "Duplicate events, root Reload and lifecycle ownership",
+    "Offline/configuration/provider faults without changes to authentication",
+    "English/a11y controls plus real Android/iOS controlled delivery and shared-device journeys",
+    "Authenticated identity-grant and readiness HTTP contracts; JWT signing and session validation",
+    "Provider response parsing and distributed PostgreSQL budget contention",
+    "Native session-bound HTTP transport with paused token/response account-switch tests"
+  ],
+  "hooks": {
+    "before_specify": "No extensions.yml present",
+    "after_specify": "No extensions.yml present",
+    "before_plan": "No extensions.yml present",
+    "after_plan": "No extensions.yml present (checked after artifact generation)",
+    "before_tasks": "No extensions.yml present",
+    "after_tasks": "No extensions.yml present (checked after task generation)",
+    "before_implement": "No extensions.yml present",
+    "after_implement": "No extensions.yml present (checked after implementation)",
+    "before_converge": "No extensions.yml present",
+    "after_converge": "No extensions.yml present"
+  },
+  "externalPrerequisites": [
+    "Configured OneSignal app and intended Android/iOS platform credentials",
+    "Suitable controlled Android/iOS push-capable test devices and two test accounts",
+    "Authenticated mobile and English catalog baseline through PR #13",
+    "OneSignal Token Identity Verification beta access and compatible app-wide configuration",
+    "Server-only signing/Clerk configuration and reachable HTTPS API; no unsigned fallback"
+  ],
+  "researchReferences": [
+    {
+      "url": "https://documentation.onesignal.com/docs/en/react-native-sdk-setup",
+      "checkedOn": "2026-10-16",
+      "relevance": "Native setup and device/platform prerequisites; no version or implementation adopted during specify"
+    },
+    {
+      "url": "https://documentation.onesignal.com/docs/en/mobile-sdk-reference",
+      "checkedOn": "2026-10-16",
+      "relevance": "Account unlink and subscription eligibility are separate; permission differs from registration"
+    }
+  ],
+  "actions": {
+    "linearIssue": "WEA-29 Backlog updated successfully with user-approved server-confirmed product scope and revised scenario counts/next phase; detailed architecture/repository-metadata update was rejected by automatic approval review and not published",
+    "sourceEdits": true,
+    "dependenciesInstalled": true,
+    "providerProvisioning": false,
+    "notificationSends": false,
+    "publication": "User authorized a draft PR stacked on PR #13; final commit/push/PR identity is recorded by Git and the review handoff"
+  },
+  "planning": {
+    "date": "2026-10-16",
+    "userDecision": "Server-confirmed status: expand scope with a backend verification component before showing ready",
+    "scopeDecisionConfirmed": true,
+    "scenarioAgreementImplied": false,
+    "artifacts": [
+      "plan.md",
+      "research.md",
+      "data-model.md",
+      "quickstart.md",
+      "contracts/application.md",
+      "contracts/backend.md",
+      "contracts/native-and-ui.md",
+      "contracts/scenarios.md"
+    ],
+    "sdk": {
+      "reactNativeOneSignal": "5.5.15",
+      "androidOneSignal": "5.10.2",
+      "iosOneSignal": "5.8.0"
+    },
+    "serverDependencies": {
+      "clerkBackend": "3.23.0",
+      "jose": "6.2.12"
+    },
+    "constitutionCheck": "Design passes; source and external acceptance gates remain explicit",
+    "next": "speckit-tasks then speckit-analyze",
+    "researchAgent": "onesignal_sdk_research; read-only SDK/native/auth research",
+    "verification": "Passed: feature-only Prettier formatting, local Markdown links, 11 scenario / 13 requirement / 8 success-criterion counts, artifact existence and unchanged source gates. No implementation/build/device pass."
+  },
+  "taskGeneration": {
+    "date": "2026-10-16",
+    "artifact": "tasks.md",
+    "total": 61,
+    "perStory": {
+      "US1": 9,
+      "US2": 11,
+      "US3": 5,
+      "US4": 8,
+      "US5": 14
+    },
+    "shared": 14,
+    "parallelTasks": 20,
+    "storyOrder": ["US1", "US5", "US2", "US3", "US4"],
+    "next": "speckit-analyze",
+    "validation": "61 sequential unchecked IDs; required story labels and file paths; all task references resolve; S01\u2013S11 coverage; local links and template-marker checks pass. Documentation validation only; no source or implementation test run.",
+    "pathReconciliation": "Plan and tasks use apps/mobile/src/auth and apps/mobile/src/localization; no relocation planned"
+  },
+  "remediation": {
+    "date": "2026-10-17",
+    "authorization": "User: use recommended",
+    "scope": "Documentation-only clarifications; no scenario agreement or source execution inferred",
+    "findings": {
+      "A1": "Separate native/JS monotonic clock domains using attemptId and remainingValidityMs; proof cannot exceed JS attempt-start cap",
+      "A2": "Minimum 15 seconds before signing, explicit 14/15/16 boundaries, no refresh loop; native body cap 16 KiB",
+      "A3": "Account budget expiry nextAllowedAt + 24 hours; global rows never expire; 100-row cleanup at most once per 60 seconds per app with concurrency checks and one-shot maintenance command",
+      "I1": "Plan auth/localization paths synchronized with prerequisite baseline and tasks"
+    },
+    "validation": "Passed document format/ID/path/link and unchanged-source-gate checks; consult the accompanying read-only analysis report for semantic findings. No implementation or device tests executed.",
+    "sourceChanges": false
+  },
+  "analysis": {
+    "date": "2026-10-17",
+    "result": "PASS: zero findings in the completed speckit-analyze immediately preceding the implementation request",
+    "requirements": 13,
+    "successCriteria": 8,
+    "scenarios": 11,
+    "tasks": 61,
+    "plannedCoveragePercent": 100,
+    "implementationEvidence": false
+  },
+  "implementationPreflight": {
+    "date": "2026-10-17",
+    "checklist": {
+      "total": 16,
+      "checked": 16,
+      "unchecked": 0
+    },
+    "prerequisitePrState": "OPEN",
+    "prerequisiteHead": "75814ad85894460ddeae46c9aa337f0d09463f5c",
+    "prerequisiteBase": "feat/WEA-27/zustand-local-store",
+    "verifiedPersonalIdentity": {
+      "name": "Pravin Raj",
+      "email": "pravinrajmb@gmail.com"
+    },
+    "pending": [],
+    "sourceOrDependencyChanges": false
+  },
+  "scenarioAgreement": {
+    "date": "2026-10-17",
+    "userStatement": "confirm",
+    "confirms": "S01\u2013S11 and stacking WEA-29 on PR #13, in response to the explicit joint confirmation request"
+  },
+  "implementationProgress": {
+    "completedTasks": [
+      "T001",
+      "T002",
+      "T003",
+      "T004",
+      "T005",
+      "T006",
+      "T007",
+      "T008",
+      "T009",
+      "T010",
+      "T011",
+      "T012",
+      "T013",
+      "T014",
+      "T015",
+      "T016",
+      "T017",
+      "T018",
+      "T019",
+      "T020",
+      "T021",
+      "T022",
+      "T023",
+      "T024",
+      "T025",
+      "T026",
+      "T027",
+      "T028",
+      "T029",
+      "T030",
+      "T031",
+      "T032",
+      "T033",
+      "T034",
+      "T035",
+      "T036",
+      "T037",
+      "T038",
+      "T039",
+      "T040",
+      "T041",
+      "T042",
+      "T044",
+      "T045",
+      "T046",
+      "T047",
+      "T049",
+      "T050",
+      "T051",
+      "T052",
+      "T053",
+      "T054",
+      "T055",
+      "T057",
+      "T058",
+      "T059",
+      "T060",
+      "T061"
+    ],
+    "mobileNotificationTests": 80,
+    "lastFullMobileRegression": {
+      "suites": 40,
+      "tests": 311,
+      "evidence": "evidence/logs/repository-verify-final-green.txt"
+    },
+    "nativePermissionTests": {
+      "note": "Permission cases included in final full native suites; counts below include other notification and baseline auth tests.",
+      "androidFullSuite": 75,
+      "iosHostFullSuite": 71,
+      "iosSimulatorFullSuite": 71
+    },
+    "nativeSdkWired": true,
+    "backendWork": "T019\u2013T029 complete: 90 API tests, 10 real PostgreSQL integration tests, compiled runtime, lint/types/architecture passed; see evidence/backend.md",
+    "providerAcceptance": "Unperformed",
+    "knownNext": [
+      "Publish requested stacked draft PR",
+      "Complete controlled external acceptance T043/T048/T056/T062 when setup is available, then converge again"
+    ],
+    "jsReview": "Two independently reproduced proof/revision findings fixed with RED/GREEN; no unresolved Critical/Important findings in JS scope",
+    "androidVerification": {
+      "tests": 75,
+      "debugBuild": "PASS: all four default ABIs",
+      "resolvedLocationAudit": "PASS: actual debug merged manifest/dependency graph",
+      "review": "No remaining confirmed findings after account-retirement, replay and JWT/async-error fixes",
+      "evidence": "evidence/android-implementation.md"
+    },
+    "iosVerification": {
+      "hostTests": 71,
+      "simulatorTests": 71,
+      "nativeBuild": "PASS: actual app and codegen bridges with modular OneSignal 5.8.0, unsigned Debug simulator",
+      "resolvedArtifactAudit": "PASS: eight modular frameworks, privacy manifests, no location/IAM, iOS wrapper excluded",
+      "review": "No confirmed remaining findings after JWT renewal episode/revision fix",
+      "evidence": "evidence/ios-implementation.md"
+    },
+    "repositoryVerification": {
+      "result": "PASS",
+      "mobileTests": 311,
+      "apiTests": 90,
+      "webTests": 58,
+      "policyTests": 279,
+      "postgresIntegrationTests": 13,
+      "evidence": "evidence/logs/repository-verify-final-green.txt",
+      "integrationEvidence": "evidence/logs/integration-full.txt"
+    }
+  },
+  "externalAcceptanceDecision": {
+    "date": "2026-10-17",
+    "userStatement": "Not yet\u2014finish the code and document remaining setup",
+    "action": "Complete implementation and automated verification; leave actual OneSignal provisioning/device/delivery acceptance open with setup guide",
+    "productionProvisioningAuthorized": false
+  },
+  "reviewHandoff": {
+    "base": "feat/WEA-28/mobile-i18n",
+    "basePr": 13,
+    "draft": true,
+    "ciLimitation": "Current CI and PR base policy target develop/main. Retarget after ancestors merge, then required CI and code-owner review before merge. No bypass.",
+    "acceptance": "Open: T043, T048, T056; user requested code and remaining setup documentation",
+    "personalAuthorAndCommitter": "Pravin Raj <pravinrajmb@gmail.com>, verified before publication"
+  },
+  "convergence": {
+    "date": "2026-10-17",
+    "outcome": "tasks_appended",
+    "report": "convergence.md",
+    "findings": 1,
+    "severity": "HIGH",
+    "gapType": "partial",
+    "appendedTasks": ["T062"],
+    "codeComplete": true,
+    "featureAcceptanceComplete": false,
+    "openTasks": ["T043", "T048", "T056", "T062"]
+  },
+  "confirmation": {
+    "date": "2026-10-17",
+    "userStatement": "confirm",
+    "confirms": "S01\u2013S11 and stacking WEA-29 on PR #13, in response to the explicit joint confirmation request"
+  }
+}

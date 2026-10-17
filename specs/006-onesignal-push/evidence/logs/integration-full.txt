@@ -1,0 +1,24 @@
+$ node --test tests/integration/*.test.mjs
+▶ S11 PostgreSQL distributed notification budget and bounded cleanup
+  ✔ two clients admit exactly one claimant and no resumed burst (7.114083ms)
+  ✔ account 5 second grant cooldown persists and rejected attempts do not extend retention (5.642833ms)
+  ✔ one sweep deletes at most 100 expired rows, retains global/cooldown, and runs once per minute across replicas (4.482666ms)
+  ✔ concurrent reservation blocks deletion of refreshed expired row (2.539084ms)
+Notification budget cleanup unavailable
+  ✔ failed sweep retains distributed cooldown and cannot reverse a successful account reservation (9.67675ms)
+  ✔ maintenance command performs one bounded batch, reports only aggregate and exits (243.78175ms)
+  ✔ database rejects expiring-before-cooldown and non-expiring account rows (2.378958ms)
+  ✔ storage outage fails closed (0.174209ms)
+✔ S11 PostgreSQL distributed notification budget and bounded cleanup (285.094292ms)
+✔ S11 compiled production authentication/grant/readiness composition with PostgreSQL and controlled providers (207.442625ms)
+✔ S06 API liveness/readiness; WEA-10 S02/S03/S08 web denies access without auth configuration (858.969041ms)
+✔ S06 database outage returns 503 readiness and 200 liveness (276.476667ms)
+✔ S09 committed schema persists a user and enforces unique email (7.893208ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1212.4675

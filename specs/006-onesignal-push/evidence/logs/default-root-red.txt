@@ -1,0 +1,65 @@
+FAIL src/features/notifications/account-delivery.test.tsx
+  ✕ S03/S08 the production root exposes safe notification recovery when the native module is unavailable (1086 ms)
+
+  ● S03/S08 the production root exposes safe notification recovery when the native module is unavailable
+
+    Unable to find an element with text: Notifications
+
+    [36m<View>[39m
+      [36m<RNSScreenStack>[39m
+        [36m<RNSScreen[39m
+          [33maria-hidden[39m=[32m{false}[39m
+        [36m>[39m
+          [36m<RNSScreenContentWrapper>[39m
+            [36m<RNCSafeAreaView>[39m
+              [36m<View>[39m
+                [36m<Text[39m
+                  [33maccessibilityRole[39m=[32m"header"[39m
+                [36m>[39m
+                  [0mHome[0m
+                [36m</Text>[39m
+                [36m<View[39m
+                  [33maccessibilityLabel[39m=[32m"Logout"[39m
+                  [33maccessibilityRole[39m=[32m"button"[39m
+                  [33maccessibilityState[39m=[32m{
+                    {
+                      "busy": false,
+                      "disabled": false,
+                    }
+                  }[39m
+                  [33maccessible[39m=[32m{true}[39m
+                [36m>[39m
+                  [36m<View>[39m
+                    [36m<Text>[39m
+                      [0mLogout[0m
+                    [36m</Text>[39m
+                  [36m</View>[39m
+                [36m</View>[39m
+              [36m</View>[39m
+            [36m</RNCSafeAreaView>[39m
+          [36m</RNSScreenContentWrapper>[39m
+          [36m<RNSScreenStackHeaderConfig[39m
+            [33mpointerEvents[39m=[32m"box-none"[39m
+            [33mtitle[39m=[32m"Home"[39m
+          [36m/>[39m
+        [36m</RNSScreen>[39m
+      [36m</RNSScreenStack>[39m
+    [36m</View>[39m
+
+      17 |     render(<App createRuntime={() => auth} />);
+      18 |     await waitFor(() => expect(screen.getByText('Home')).toBeTruthy());
+    > 19 |     await waitFor(() => expect(screen.getByText('Notifications')).toBeTruthy());
+         |                  ^
+      20 |     expect(screen.getByRole('button', {name: 'Retry notifications'})).toBeTruthy();
+      21 |     expect(screen.getByRole('button', {name: 'Logout'})).toBeTruthy();
+      22 |     expect(gateway.requests).toHaveLength(1);
+
+      at Object.<anonymous> (src/features/notifications/account-delivery.test.tsx:19:18)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.919 s
+Ran all test suites matching /account-delivery.test.tsx/i.

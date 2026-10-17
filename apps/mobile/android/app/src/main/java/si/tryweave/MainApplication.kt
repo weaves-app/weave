@@ -16,6 +16,7 @@ class MainApplication : Application(), ReactApplication {
         PackageList(this).packages.apply {
           // Packages that cannot be autolinked yet can be added manually here, for example:
           add(si.tryweave.auth.WeaveAuthPackage())
+          add(si.tryweave.notifications.WeaveNotificationsPackage())
         },
     )
   }
@@ -29,6 +30,7 @@ class MainApplication : Application(), ReactApplication {
         com.clerk.api.ClerkConfigurationOptions(enableDebugMode = false, telemetryEnabled = false),
       )
     }
+    si.tryweave.notifications.NotificationDependencies.initialize(this)
     loadReactNative(this)
   }
 }

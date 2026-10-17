@@ -1,0 +1,377 @@
+FAIL src/features/notifications/native-notification-gateway.test.ts
+  ✕ binds versioned intents and returns only public observation fields (1 ms)
+  ✓ rejects malformed or stale observations {"token":"secret-token"} (1 ms)
+  ✓ rejects malformed or stale observations {"externalId":"private-account"}
+  ✓ rejects malformed or stale observations {"kind":"click","url":"https://evil.test"} (1 ms)
+  ✓ rejects malformed or stale observations {"revision":-1}
+  ✓ rejects malformed or stale observations {"generation":0}
+  ✓ rejects malformed or stale observations {"permission":"provisional"}
+  ✓ rejects malformed or stale observations {"enabled":"true"} (1 ms)
+  ✓ rejects malformed or stale observations {"rootLease":"old-root"}
+  ✓ rejects malformed or stale observations {"version":2}
+  ✕ filters events and stops the native subscription on removal
+  ✕ accepts only correlated bounded readiness and no native clock origin
+  ✕ rejects invalid readiness {"attemptId":"old"}
+  ✕ rejects invalid readiness {"revision":1}
+  ✕ rejects invalid readiness {"remainingValidityMs":60001}
+  ✕ rejects invalid readiness {"remainingValidityMs":1.5}
+  ✕ rejects invalid readiness {"remainingValidityMs":0}
+  ✕ rejects invalid readiness {"status":"pending"}
+  ✕ rejects invalid readiness {"retryAfterSeconds":0}
+  ✕ rejects invalid readiness {"retryAfterSeconds":61}
+  ✕ rejects invalid readiness {"deadline":999999}
+  ✕ rejects invalid readiness {"token":"private"} (1 ms)
+  ✕ drops delayed results after signed-out intent and ignores stale release
+  ✓ sanitizes native failures and never forwards their private details
+
+  ● binds versioned intents and returns only public observation fields
+
+    Notification unavailable
+
+      13 |     release: () => undefined,
+      14 |     observe: () => () => undefined,
+    > 15 |     reconcile: async () => { throw new Error('Notification unavailable'); },
+         |                                    ^
+      16 |     enable: async () => { throw new Error('Notification unavailable'); },
+      17 |     openSettings: async () => undefined,
+      18 |     checkReadiness: async () => { throw new Error('Notification unavailable'); },
+
+      at Object.<anonymous> (src/features/notifications/infrastructure/native-notification-gateway.ts:15:36)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at Object.<anonymous> (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12)
+      at Object.apply [as reconcile] (src/features/notifications/infrastructure/native-notification-gateway.ts:15:14)
+      at Object.reconcile (src/features/notifications/native-notification-gateway.test.ts:24:32)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at Object.<anonymous> (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12)
+
+  ● filters events and stops the native subscription on removal
+
+    Notification unavailable
+
+      13 |     release: () => undefined,
+      14 |     observe: () => () => undefined,
+    > 15 |     reconcile: async () => { throw new Error('Notification unavailable'); },
+         |                                    ^
+      16 |     enable: async () => { throw new Error('Notification unavailable'); },
+      17 |     openSettings: async () => undefined,
+      18 |     checkReadiness: async () => { throw new Error('Notification unavailable'); },
+
+      at Object.<anonymous> (src/features/notifications/infrastructure/native-notification-gateway.ts:15:36)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at Object.<anonymous> (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12)
+      at Object.apply [as reconcile] (src/features/notifications/infrastructure/native-notification-gateway.ts:15:14)
+      at Object.reconcile (src/features/notifications/native-notification-gateway.test.ts:43:17)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at Object.<anonymous> (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12)
+
+  ● accepts only correlated bounded readiness and no native clock origin
+
+    Notification unavailable
+
+      13 |     release: () => undefined,
+      14 |     observe: () => () => undefined,
+    > 15 |     reconcile: async () => { throw new Error('Notification unavailable'); },
+         |                                    ^
+      16 |     enable: async () => { throw new Error('Notification unavailable'); },
+      17 |     openSettings: async () => undefined,
+      18 |     checkReadiness: async () => { throw new Error('Notification unavailable'); },
+
+      at Object.<anonymous> (src/features/notifications/infrastructure/native-notification-gateway.ts:15:36)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at Object.<anonymous> (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12)
+      at Object.apply [as reconcile] (src/features/notifications/infrastructure/native-notification-gateway.ts:15:14)
+      at Object.reconcile (src/features/notifications/native-notification-gateway.test.ts:59:17)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at Object.<anonymous> (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12)
+
+  ● rejects invalid readiness {"attemptId":"old"}
+
+    Notification unavailable
+
+      13 |     release: () => undefined,
+      14 |     observe: () => () => undefined,
+    > 15 |     reconcile: async () => { throw new Error('Notification unavailable'); },
+         |                                    ^
+      16 |     enable: async () => { throw new Error('Notification unavailable'); },
+      17 |     openSettings: async () => undefined,
+      18 |     checkReadiness: async () => { throw new Error('Notification unavailable'); },
+
+      at Object.<anonymous> (src/features/notifications/infrastructure/native-notification-gateway.ts:15:36)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at Object.<anonymous> (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12)
+      at Object.apply [as reconcile] (src/features/notifications/infrastructure/native-notification-gateway.ts:15:14)
+      at reconcile (src/features/notifications/native-notification-gateway.test.ts:71:17)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12
+      at apply (src/features/notifications/native-notification-gateway.test.ts:74:2)
+
+  ● rejects invalid readiness {"revision":1}
+
+    Notification unavailable
+
+      13 |     release: () => undefined,
+      14 |     observe: () => () => undefined,
+    > 15 |     reconcile: async () => { throw new Error('Notification unavailable'); },
+         |                                    ^
+      16 |     enable: async () => { throw new Error('Notification unavailable'); },
+      17 |     openSettings: async () => undefined,
+      18 |     checkReadiness: async () => { throw new Error('Notification unavailable'); },
+
+      at Object.<anonymous> (src/features/notifications/infrastructure/native-notification-gateway.ts:15:36)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at Object.<anonymous> (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12)
+      at Object.apply [as reconcile] (src/features/notifications/infrastructure/native-notification-gateway.ts:15:14)
+      at reconcile (src/features/notifications/native-notification-gateway.test.ts:71:17)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12
+      at apply (src/features/notifications/native-notification-gateway.test.ts:74:2)
+
+  ● rejects invalid readiness {"remainingValidityMs":60001}
+
+    Notification unavailable
+
+      13 |     release: () => undefined,
+      14 |     observe: () => () => undefined,
+    > 15 |     reconcile: async () => { throw new Error('Notification unavailable'); },
+         |                                    ^
+      16 |     enable: async () => { throw new Error('Notification unavailable'); },
+      17 |     openSettings: async () => undefined,
+      18 |     checkReadiness: async () => { throw new Error('Notification unavailable'); },
+
+      at Object.<anonymous> (src/features/notifications/infrastructure/native-notification-gateway.ts:15:36)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at Object.<anonymous> (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12)
+      at Object.apply [as reconcile] (src/features/notifications/infrastructure/native-notification-gateway.ts:15:14)
+      at reconcile (src/features/notifications/native-notification-gateway.test.ts:71:17)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12
+      at apply (src/features/notifications/native-notification-gateway.test.ts:74:2)
+
+  ● rejects invalid readiness {"remainingValidityMs":1.5}
+
+    Notification unavailable
+
+      13 |     release: () => undefined,
+      14 |     observe: () => () => undefined,
+    > 15 |     reconcile: async () => { throw new Error('Notification unavailable'); },
+         |                                    ^
+      16 |     enable: async () => { throw new Error('Notification unavailable'); },
+      17 |     openSettings: async () => undefined,
+      18 |     checkReadiness: async () => { throw new Error('Notification unavailable'); },
+
+      at Object.<anonymous> (src/features/notifications/infrastructure/native-notification-gateway.ts:15:36)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at Object.<anonymous> (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12)
+      at Object.apply [as reconcile] (src/features/notifications/infrastructure/native-notification-gateway.ts:15:14)
+      at reconcile (src/features/notifications/native-notification-gateway.test.ts:71:17)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12
+      at apply (src/features/notifications/native-notification-gateway.test.ts:74:2)
+
+  ● rejects invalid readiness {"remainingValidityMs":0}
+
+    Notification unavailable
+
+      13 |     release: () => undefined,
+      14 |     observe: () => () => undefined,
+    > 15 |     reconcile: async () => { throw new Error('Notification unavailable'); },
+         |                                    ^
+      16 |     enable: async () => { throw new Error('Notification unavailable'); },
+      17 |     openSettings: async () => undefined,
+      18 |     checkReadiness: async () => { throw new Error('Notification unavailable'); },
+
+      at Object.<anonymous> (src/features/notifications/infrastructure/native-notification-gateway.ts:15:36)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at Object.<anonymous> (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12)
+      at Object.apply [as reconcile] (src/features/notifications/infrastructure/native-notification-gateway.ts:15:14)
+      at reconcile (src/features/notifications/native-notification-gateway.test.ts:71:17)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12
+      at apply (src/features/notifications/native-notification-gateway.test.ts:74:2)
+
+  ● rejects invalid readiness {"status":"pending"}
+
+    Notification unavailable
+
+      13 |     release: () => undefined,
+      14 |     observe: () => () => undefined,
+    > 15 |     reconcile: async () => { throw new Error('Notification unavailable'); },
+         |                                    ^
+      16 |     enable: async () => { throw new Error('Notification unavailable'); },
+      17 |     openSettings: async () => undefined,
+      18 |     checkReadiness: async () => { throw new Error('Notification unavailable'); },
+
+      at Object.<anonymous> (src/features/notifications/infrastructure/native-notification-gateway.ts:15:36)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at Object.<anonymous> (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12)
+      at Object.apply [as reconcile] (src/features/notifications/infrastructure/native-notification-gateway.ts:15:14)
+      at reconcile (src/features/notifications/native-notification-gateway.test.ts:71:17)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12
+      at apply (src/features/notifications/native-notification-gateway.test.ts:74:2)
+
+  ● rejects invalid readiness {"retryAfterSeconds":0}
+
+    Notification unavailable
+
+      13 |     release: () => undefined,
+      14 |     observe: () => () => undefined,
+    > 15 |     reconcile: async () => { throw new Error('Notification unavailable'); },
+         |                                    ^
+      16 |     enable: async () => { throw new Error('Notification unavailable'); },
+      17 |     openSettings: async () => undefined,
+      18 |     checkReadiness: async () => { throw new Error('Notification unavailable'); },
+
+      at Object.<anonymous> (src/features/notifications/infrastructure/native-notification-gateway.ts:15:36)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at Object.<anonymous> (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12)
+      at Object.apply [as reconcile] (src/features/notifications/infrastructure/native-notification-gateway.ts:15:14)
+      at reconcile (src/features/notifications/native-notification-gateway.test.ts:71:17)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12
+      at apply (src/features/notifications/native-notification-gateway.test.ts:74:2)
+
+  ● rejects invalid readiness {"retryAfterSeconds":61}
+
+    Notification unavailable
+
+      13 |     release: () => undefined,
+      14 |     observe: () => () => undefined,
+    > 15 |     reconcile: async () => { throw new Error('Notification unavailable'); },
+         |                                    ^
+      16 |     enable: async () => { throw new Error('Notification unavailable'); },
+      17 |     openSettings: async () => undefined,
+      18 |     checkReadiness: async () => { throw new Error('Notification unavailable'); },
+
+      at Object.<anonymous> (src/features/notifications/infrastructure/native-notification-gateway.ts:15:36)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at Object.<anonymous> (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12)
+      at Object.apply [as reconcile] (src/features/notifications/infrastructure/native-notification-gateway.ts:15:14)
+      at reconcile (src/features/notifications/native-notification-gateway.test.ts:71:17)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12
+      at apply (src/features/notifications/native-notification-gateway.test.ts:74:2)
+
+  ● rejects invalid readiness {"deadline":999999}
+
+    Notification unavailable
+
+      13 |     release: () => undefined,
+      14 |     observe: () => () => undefined,
+    > 15 |     reconcile: async () => { throw new Error('Notification unavailable'); },
+         |                                    ^
+      16 |     enable: async () => { throw new Error('Notification unavailable'); },
+      17 |     openSettings: async () => undefined,
+      18 |     checkReadiness: async () => { throw new Error('Notification unavailable'); },
+
+      at Object.<anonymous> (src/features/notifications/infrastructure/native-notification-gateway.ts:15:36)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at Object.<anonymous> (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12)
+      at Object.apply [as reconcile] (src/features/notifications/infrastructure/native-notification-gateway.ts:15:14)
+      at reconcile (src/features/notifications/native-notification-gateway.test.ts:71:17)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12
+      at apply (src/features/notifications/native-notification-gateway.test.ts:74:2)
+
+  ● rejects invalid readiness {"token":"private"}
+
+    Notification unavailable
+
+      13 |     release: () => undefined,
+      14 |     observe: () => () => undefined,
+    > 15 |     reconcile: async () => { throw new Error('Notification unavailable'); },
+         |                                    ^
+      16 |     enable: async () => { throw new Error('Notification unavailable'); },
+      17 |     openSettings: async () => undefined,
+      18 |     checkReadiness: async () => { throw new Error('Notification unavailable'); },
+
+      at Object.<anonymous> (src/features/notifications/infrastructure/native-notification-gateway.ts:15:36)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at Object.<anonymous> (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12)
+      at Object.apply [as reconcile] (src/features/notifications/infrastructure/native-notification-gateway.ts:15:14)
+      at reconcile (src/features/notifications/native-notification-gateway.test.ts:71:17)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12
+      at apply (src/features/notifications/native-notification-gateway.test.ts:74:2)
+
+  ● drops delayed results after signed-out intent and ignores stale release
+
+    Notification unavailable
+
+      13 |     release: () => undefined,
+      14 |     observe: () => () => undefined,
+    > 15 |     reconcile: async () => { throw new Error('Notification unavailable'); },
+         |                                    ^
+      16 |     enable: async () => { throw new Error('Notification unavailable'); },
+      17 |     openSettings: async () => undefined,
+      18 |     checkReadiness: async () => { throw new Error('Notification unavailable'); },
+
+      at Object.<anonymous> (src/features/notifications/infrastructure/native-notification-gateway.ts:15:36)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at Object.<anonymous> (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12)
+      at Object.apply [as reconcile] (src/features/notifications/infrastructure/native-notification-gateway.ts:15:14)
+      at Object.reconcile (src/features/notifications/native-notification-gateway.test.ts:78:17)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at Object.<anonymous> (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12)
+
+Test Suites: 1 failed, 1 total
+Tests:       14 failed, 10 passed, 24 total
+Snapshots:   0 total
+Time:        0.368 s
+Ran all test suites matching /native-notification-gateway.test.ts/i.

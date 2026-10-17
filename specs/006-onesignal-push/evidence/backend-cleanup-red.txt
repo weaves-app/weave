@@ -1,0 +1,58 @@
+▶ S11 PostgreSQL distributed notification budget and bounded cleanup
+  ✔ two clients admit exactly one claimant and no resumed burst (5.040125ms)
+  ✔ account 5 second grant cooldown persists and rejected attempts do not extend retention (3.694083ms)
+  ✔ one sweep deletes at most 100 expired rows, retains global/cooldown, and runs once per minute across replicas (2.983583ms)
+  ✔ concurrent reservation blocks deletion of refreshed expired row (1.596875ms)
+Notification budget cleanup unavailable
+  ✖ failed sweep retains distributed cooldown and cannot reverse a successful account reservation (4.258583ms)
+  ✖ maintenance command performs one bounded batch, reports only aggregate and exits (90.145833ms)
+  ✔ storage outage fails closed (0.199792ms)
+✖ S11 PostgreSQL distributed notification budget and bounded cleanup (113.325708ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 5
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 234.295667
+
+✖ failing tests:
+
+test at tests/integration/notification-budget.test.mjs:62:11
+✖ failed sweep retains distributed cooldown and cannot reverse a successful account reservation (4.258583ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  0 !== 1
+
+      at TestContext.<anonymous> (file:///Users/pravinraj/workspace/weave/tests/integration/notification-budget.test.mjs:72:14)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual'
+  }
+
+test at tests/integration/notification-budget.test.mjs:79:11
+✖ maintenance command performs one bounded batch, reports only aggregate and exits (90.145833ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+    {
+  +   deleted: 0
+  -   deleted: 100
+    }
+
+      at TestContext.<anonymous> (file:///Users/pravinraj/workspace/weave/tests/integration/notification-budget.test.mjs:84:14)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { deleted: 0 },
+    expected: { deleted: 100 },
+    operator: 'deepStrictEqual'
+  }

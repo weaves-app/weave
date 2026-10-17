@@ -44,8 +44,16 @@
 		<key>NSAllowsLocalNetworking</key>
 		<true/>
 	</dict>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<key>OneSignal_suppress_launch_urls</key>
+	<true/>
+	<key>WeaveOneSignalAppId</key>
+	<string>$(ONESIGNAL_APP_ID)</string>
+	<key>WeaveNotificationsAPIOrigin</key>
+	<string>$(NOTIFICATIONS_API_ORIGIN)</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
 	<key>RCTNewArchEnabled</key>
 	<true/>
 	<key>UIAppFonts</key>

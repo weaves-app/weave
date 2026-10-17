@@ -1,0 +1,214 @@
+▶ S11 ES256 identity grant contains only identity/issuer/expiry and never outlives bearer
+  ✖ signs 15 seconds with exact constrained claims (0.408916ms)
+  ✖ signs 16 seconds with exact constrained claims (0.126083ms)
+  ✖ signs 60 seconds with exact constrained claims (0.040917ms)
+  ✖ signs 1000 seconds with exact constrained claims (0.029083ms)
+  ✖ remaining -1 refuses signing with bounded retry (1.255208ms)
+  ✖ remaining 0 refuses signing with bounded retry (0.193458ms)
+  ✖ remaining 14 refuses signing with bounded retry (0.113375ms)
+  ✖ time advancing after session validation is counted at signing (0.112042ms)
+  ✖ invalid/missing key fails safely without leaking material (0.138333ms)
+✖ S11 ES256 identity grant contains only identity/issuer/expiry and never outlives bearer (20.325917ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 0
+ℹ fail 10
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 131.206833
+
+✖ failing tests:
+
+test at apps/api/test/notification-identity-grant.test.ts:2:1672
+✖ signs 15 seconds with exact constrained claims (0.408916ms)
+  Error: Not implemented
+      at JoseIdentityGrantSigner.sign (/Users/pravinraj/workspace/weave/apps/api/src/modules/notifications/infrastructure/jose-identity-grant-signer.ts:9:77)
+      at TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-identity-grant.test.ts:15:32)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.start (node:internal/test_runner/test:959:17)
+      at TestContext.test (node:internal/test_runner/test:373:13)
+      at TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-identity-grant.test.ts:14:55)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:332:3)
+
+test at apps/api/test/notification-identity-grant.test.ts:2:1672
+✖ signs 16 seconds with exact constrained claims (0.126083ms)
+  Error: Not implemented
+      at JoseIdentityGrantSigner.sign (/Users/pravinraj/workspace/weave/apps/api/src/modules/notifications/infrastructure/jose-identity-grant-signer.ts:9:77)
+      at TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-identity-grant.test.ts:15:32)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:752:18)
+      at Test.postRun (node:internal/test_runner/test:1191:19)
+      at Test.run (node:internal/test_runner/test:1119:12)
+
+test at apps/api/test/notification-identity-grant.test.ts:2:1672
+✖ signs 60 seconds with exact constrained claims (0.040917ms)
+  Error: Not implemented
+      at JoseIdentityGrantSigner.sign (/Users/pravinraj/workspace/weave/apps/api/src/modules/notifications/infrastructure/jose-identity-grant-signer.ts:9:77)
+      at TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-identity-grant.test.ts:15:32)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:752:18)
+      at Test.postRun (node:internal/test_runner/test:1191:19)
+      at Test.run (node:internal/test_runner/test:1119:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7)
+
+test at apps/api/test/notification-identity-grant.test.ts:2:1672
+✖ signs 1000 seconds with exact constrained claims (0.029083ms)
+  Error: Not implemented
+      at JoseIdentityGrantSigner.sign (/Users/pravinraj/workspace/weave/apps/api/src/modules/notifications/infrastructure/jose-identity-grant-signer.ts:9:77)
+      at TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-identity-grant.test.ts:15:32)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:752:18)
+      at Test.postRun (node:internal/test_runner/test:1191:19)
+      at Test.run (node:internal/test_runner/test:1119:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7)
+
+test at apps/api/test/notification-identity-grant.test.ts:2:2376
+✖ remaining -1 refuses signing with bounded retry (1.255208ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+  + Comparison {}
+  - Comparison {
+  -   code: 'notifications_unavailable',
+  -   retryAfterSeconds: 5
+  - }
+
+      at async TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-identity-grant.test.ts:22:5)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: Not implemented
+        at JoseIdentityGrantSigner.sign (/Users/pravinraj/workspace/weave/apps/api/src/modules/notifications/infrastructure/jose-identity-grant-signer.ts:9:77)
+        at TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-identity-grant.test.ts:22:33)
+        at Test.runInAsyncScope (node:async_hooks:214:14)
+        at Test.run (node:internal/test_runner/test:1062:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:752:18)
+        at Test.postRun (node:internal/test_runner/test:1191:19)
+        at Test.run (node:internal/test_runner/test:1119:12)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:752:7),
+    expected: { code: 'notifications_unavailable', retryAfterSeconds: 5 },
+    operator: 'rejects'
+  }
+
+test at apps/api/test/notification-identity-grant.test.ts:2:2376
+✖ remaining 0 refuses signing with bounded retry (0.193458ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+  + Comparison {}
+  - Comparison {
+  -   code: 'notifications_unavailable',
+  -   retryAfterSeconds: 5
+  - }
+
+      at async TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-identity-grant.test.ts:22:5)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: Not implemented
+        at JoseIdentityGrantSigner.sign (/Users/pravinraj/workspace/weave/apps/api/src/modules/notifications/infrastructure/jose-identity-grant-signer.ts:9:77)
+        at TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-identity-grant.test.ts:22:33)
+        at Test.runInAsyncScope (node:async_hooks:214:14)
+        at Test.run (node:internal/test_runner/test:1062:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:752:18)
+        at Test.postRun (node:internal/test_runner/test:1191:19)
+        at Test.run (node:internal/test_runner/test:1119:12)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:752:7),
+    expected: { code: 'notifications_unavailable', retryAfterSeconds: 5 },
+    operator: 'rejects'
+  }
+
+test at apps/api/test/notification-identity-grant.test.ts:2:2376
+✖ remaining 14 refuses signing with bounded retry (0.113375ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+  + Comparison {}
+  - Comparison {
+  -   code: 'notifications_unavailable',
+  -   retryAfterSeconds: 5
+  - }
+
+      at async TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-identity-grant.test.ts:22:5)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: Not implemented
+        at JoseIdentityGrantSigner.sign (/Users/pravinraj/workspace/weave/apps/api/src/modules/notifications/infrastructure/jose-identity-grant-signer.ts:9:77)
+        at TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-identity-grant.test.ts:22:33)
+        at Test.runInAsyncScope (node:async_hooks:214:14)
+        at Test.run (node:internal/test_runner/test:1062:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:752:18)
+        at Test.postRun (node:internal/test_runner/test:1191:19)
+        at Test.run (node:internal/test_runner/test:1119:12)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:752:7),
+    expected: { code: 'notifications_unavailable', retryAfterSeconds: 5 },
+    operator: 'rejects'
+  }
+
+test at apps/api/test/notification-identity-grant.test.ts:2:2669
+✖ time advancing after session validation is counted at signing (0.112042ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+  + Comparison {}
+  - Comparison {
+  -   code: 'notifications_unavailable',
+  -   retryAfterSeconds: 5
+  - }
+
+      at async TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-identity-grant.test.ts:26:5)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: Not implemented
+        at JoseIdentityGrantSigner.sign (/Users/pravinraj/workspace/weave/apps/api/src/modules/notifications/infrastructure/jose-identity-grant-signer.ts:9:77)
+        at TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-identity-grant.test.ts:26:33)
+        at Test.runInAsyncScope (node:async_hooks:214:14)
+        at Test.run (node:internal/test_runner/test:1062:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:752:18)
+        at Test.postRun (node:internal/test_runner/test:1191:19)
+        at Test.run (node:internal/test_runner/test:1119:12)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:752:7),
+    expected: { code: 'notifications_unavailable', retryAfterSeconds: 5 },
+    operator: 'rejects'
+  }
+
+test at apps/api/test/notification-identity-grant.test.ts:2:3005
+✖ invalid/missing key fails safely without leaking material (0.138333ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+    Comparison {
+  +   message: 'Not implemented'
+  -   code: 'notifications_unavailable',
+  -   message: 'notifications_unavailable'
+    }
+
+      at async TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-identity-grant.test.ts:30:54)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: Not implemented
+        at JoseIdentityGrantSigner.sign (/Users/pravinraj/workspace/weave/apps/api/src/modules/notifications/infrastructure/jose-identity-grant-signer.ts:9:77)
+        at TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-identity-grant.test.ts:30:134)
+        at Test.runInAsyncScope (node:async_hooks:214:14)
+        at Test.run (node:internal/test_runner/test:1062:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:752:18)
+        at Test.postRun (node:internal/test_runner/test:1191:19)
+        at Test.run (node:internal/test_runner/test:1119:12)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:752:7),
+    expected: { code: 'notifications_unavailable', message: 'notifications_unavailable' },
+    operator: 'rejects'
+  }

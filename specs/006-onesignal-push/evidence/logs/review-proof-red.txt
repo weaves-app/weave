@@ -1,0 +1,71 @@
+FAIL src/features/notifications/readiness.test.ts
+  ✓ S11 only correlated server proof enables ready and expiration never polls (1 ms)
+  ✓ S11 separate native origin cannot extend JS attempt-start cap across a delayed response (1 ms)
+  ✓ S11 rejects invalid or wrong-context proof {"remainingValidityMs": 0}
+  ✓ S11 rejects invalid or wrong-context proof {"remainingValidityMs": 60001}
+  ✓ S11 rejects invalid or wrong-context proof {"remainingValidityMs": 1.5}
+  ✓ S11 rejects invalid or wrong-context proof {"attemptId": "unknown"} (1 ms)
+  ✓ S11 rejects invalid or wrong-context proof {"rootLease": "other-root"}
+  ✓ S11 rejects invalid or wrong-context proof {"generation": 99}
+  ✓ S11 rejects invalid or wrong-context proof {"revision": 99}
+  ✓ S11 never verifies ineligible local installation {"registrationPresent": false}
+  ✓ S11 never verifies ineligible local installation {"enabled": false}
+  ✓ S11 never verifies ineligible local installation {"matchesCurrentAccount": false}
+  ✓ S11 never verifies ineligible local installation {"permission": "denied"} (1 ms)
+  ✓ S11 revocation, rotation, background and root disposal invalidate proof immediately
+  ✓ S11 late proof after expiry or A→B→A never restores ready
+  ✓ S11 same-revision duplicate observations retain but never renew a proof
+  ✓ S11 retry guidance blocks rapid attempts without a scheduled retry
+  ✕ S11 a failed refresh invalidates its previous proof even after duplicate observations (2 ms)
+  ✕ S02/S11 an obsolete attempt failure cannot replace a newer denied permission state (1 ms)
+
+  ● S11 a failed refresh invalidates its previous proof even after duplicate observations
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "pending"
+    Received: "ready"
+
+      233 |   expect(state.getState().status).toBe('unavailable');
+      234 |   platform.emit(observed);
+    > 235 |   expect(state.getState().status).toBe('pending');
+          |                                   ^
+      236 |   controller.dispose();
+      237 | });
+      238 |
+
+      at Object.toBe (src/features/notifications/readiness.test.ts:235:35)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● S02/S11 an obsolete attempt failure cannot replace a newer denied permission state
+
+    expect(received).toMatchObject(expected)
+
+    - Expected  - 1
+    + Received  + 1
+
+      Object {
+        "busy": false,
+        "permission": "denied",
+    -   "status": "disabled",
+    +   "status": "unavailable",
+      }
+
+      247 |   pending.reject(new Error('stale native result'));
+      248 |   await tick();
+    > 249 |   expect(state.getState()).toMatchObject({status: 'disabled', permission: 'denied', busy: false});
+          |                            ^
+      250 |   controller.dispose();
+      251 | });
+      252 |
+
+      at Object.toMatchObject (src/features/notifications/readiness.test.ts:249:28)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 17 passed, 19 total
+Snapshots:   0 total
+Time:        0.378 s, estimated 1 s
+Ran all test suites matching /readiness.test.ts/i.

@@ -1,0 +1,11 @@
+PASS src/navigation/notification-open.test.tsx
+  ✓ S06/S07 notification payloads cannot alter the normal active session gate (51 ms)
+  ✓ S06/S07 notification payloads cannot alter the normal expired session gate (49 ms)
+  ✓ S06/S07 notification payloads cannot alter the normal checking session gate (2 ms)
+  ✓ S06/S07 notification payloads cannot alter the normal signedOut session gate (8 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       4 passed, 4 total
+Snapshots:   0 total
+Time:        1.225 s
+Ran all test suites matching /notification-open.test.tsx/i.
