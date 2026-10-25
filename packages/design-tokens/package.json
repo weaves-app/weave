@@ -10,7 +10,7 @@
   "devDependencies": {
     "@weave/typescript-config": "workspace:*",
     "@weave/eslint-config": "workspace:*",
-    "typescript": "6.0.3"
+    "typescript": "7.0.2"
   },
   "type": "module"
 }
