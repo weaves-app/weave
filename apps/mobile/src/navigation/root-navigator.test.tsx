@@ -1,3 +1,5 @@
+import {LocalizationProvider} from '../localization/presentation/localization-context';
+import {createSentinelLocalization} from '../localization/testing/sentinel-localization';
 import {ROUTE_NAME} from './routes';
 
 import {act, render, screen, waitFor} from '@testing-library/react-native';
@@ -133,4 +135,38 @@ test('S09 logout removes Home history and fresh reopen remains signed out', asyn
   });
   await act(async () => controller.refresh());
   expect(navigationRef.getCurrentRoute()?.name).toBe('Login');
+});
+
+test('WEA-28 S01 session checking and recoverable errors consume scoped English', async () => {
+  const gateway = new TestGateway();
+  const result = deferred<SessionSnapshot>();
+
+  gateway.resolveResult = () => result.promise;
+
+  const runtime = createAuthRuntime(gateway, new TestClock());
+
+  render(
+    <LocalizationProvider createRuntime={createSentinelLocalization}>
+      <AuthProvider createRuntime={() => runtime}>
+        <RootNavigator />
+      </AuthProvider>
+    </LocalizationProvider>,
+  );
+  expect(screen.getByText('English fixture: Checking your session…')).toBeTruthy();
+
+  const context = gateway.requests[0]?.input;
+
+  if (!context) throw new Error('missing resolve context');
+
+  await act(async () =>
+    result.resolve({
+      status: SESSION_STATUS.UNAVAILABLE,
+      generation: context.generation,
+      revision: 1,
+    }),
+  );
+  expect(screen.getByRole('button', {name: 'English fixture: Try again'})).toBeTruthy();
+  expect(screen.getByRole('alert')).toHaveTextContent(
+    'English fixture: Something went wrong. Please try again.',
+  );
 });

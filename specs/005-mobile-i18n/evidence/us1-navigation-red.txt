@@ -1,0 +1,88 @@
+FAIL src/navigation/root-navigator.test.tsx
+  ● WEA-28 S01 session checking and recoverable errors consume scoped English
+
+    Unable to find an element with text: English fixture: Checking your session…
+
+    [36m<RNCSafeAreaView>[39m
+      [36m<View>[39m
+        [36m<Text[39m
+          [33maccessibilityRole[39m=[32m"alert"[39m
+          [33maccessibilityState[39m=[32m{
+            {
+              "busy": true,
+            }
+          }[39m
+        [36m>[39m
+          [0mChecking your session…[0m
+        [36m</Text>[39m
+      [36m</View>[39m
+    [36m</RNCSafeAreaView>[39m
+
+      144 |   const runtime = createAuthRuntime(gateway, new TestClock());
+      145 |   render(<LocalizationProvider createRuntime={createSentinelLocalization}><AuthProvider createRuntime={() => runtime}><RootNavigator /></AuthProvider></LocalizationProvider>);
+    > 146 |   expect(screen.getByText('English fixture: Checking your session…')).toBeTruthy();
+          |                 ^
+      147 |   const context = gateway.requests[0]?.input;
+      148 |   if (!context) throw new Error('missing resolve context');
+      149 |   await act(async () => result.resolve({status: SESSION_STATUS.UNAVAILABLE, generation: context.generation, revision: 1}));
+
+      at Object.getByText (src/navigation/root-navigator.test.tsx:146:17)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at Object.<anonymous> (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12)
+
+FAIL src/auth/home.test.tsx
+  ● WEA-28 S01/S03 Home and sign-out announcements consume scoped English
+
+    Unable to find an element with text: English fixture: Home
+
+    [36m<RNCSafeAreaView>[39m
+      [36m<View>[39m
+        [36m<Text[39m
+          [33maccessibilityRole[39m=[32m"header"[39m
+        [36m>[39m
+          [0mHome[0m
+        [36m</Text>[39m
+        [36m<View[39m
+          [33maccessibilityLabel[39m=[32m"Logout"[39m
+          [33maccessibilityRole[39m=[32m"button"[39m
+          [33maccessibilityState[39m=[32m{
+            {
+              "busy": false,
+              "disabled": false,
+            }
+          }[39m
+          [33maccessible[39m=[32m{true}[39m
+        [36m>[39m
+          [36m<View>[39m
+            [36m<Text>[39m
+              [0mLogout[0m
+            [36m</Text>[39m
+          [36m</View>[39m
+        [36m</View>[39m
+      [36m</View>[39m
+    [36m</RNCSafeAreaView>[39m
+
+      48 |   const runtime = createAuthRuntime(gateway, new TestClock());
+      49 |   render(<LocalizationProvider createRuntime={createSentinelLocalization}><AuthProvider createRuntime={() => runtime}><HomeScreen /></AuthProvider></LocalizationProvider>);
+    > 50 |   await waitFor(() => expect(screen.getByText('English fixture: Home')).toBeTruthy());
+         |                ^
+      51 |   fireEvent.press(screen.getByRole('button', {name: 'English fixture: Logout'}));
+      52 |   expect(screen.getByRole('alert')).toHaveTextContent('English fixture: Signing out…');
+      53 | });
+
+      at Object.<anonymous> (src/auth/home.test.tsx:50:16)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at Object.<anonymous> (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12)
+
+Test Suites: 2 failed, 2 total
+Tests:       2 failed, 7 passed, 9 total
+Snapshots:   0 total
+Time:        1.988 s
+Ran all test suites matching /src\/auth\/home.test.tsx|src\/navigation\/root-navigator.test.tsx/i.
+undefined
+/Users/pravinraj/workspace/weave/apps/mobile:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: jest --runInBand '--watchman=false' src/auth/home.test.tsx src/navigation/root-navigator.test.tsx

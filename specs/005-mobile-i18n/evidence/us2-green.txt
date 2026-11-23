@@ -1,0 +1,32 @@
+PASS src/auth/login.test.tsx
+PASS src/auth/app-recovery.test.tsx
+PASS src/navigation/root-navigator.test.tsx
+PASS src/localization/presentation/localization-context.test.tsx
+PASS src/auth/presentation/auth-context.test.tsx
+PASS src/auth/home.test.tsx
+PASS src/auth/presentation/auth-lifecycle.test.tsx
+PASS src/recovery/app-error-boundary.test.tsx
+PASS src/recovery/recovery-screen.test.tsx
+PASS src/components/registration.test.ts
+PASS src/components/code-field.test.tsx
+PASS src/components/button.test.tsx
+PASS src/components/feedback.test.tsx
+PASS src/components/typography.test.tsx
+PASS src/components/form-field.test.tsx
+PASS src/localization/retry-feedback.test.ts
+PASS src/auth/auth-controller.test.ts
+PASS src/localization/infrastructure/i18next-translator.test.ts
+PASS src/localization/safe-english.test.ts
+PASS src/localization/localization-runtime.test.ts
+PASS src/localization/catalog.test.ts
+PASS src/auth/auth-runtime.test.ts
+PASS src/auth/presentation/auth-messages.test.ts
+PASS src/auth/auth-gateway.contract.test.ts
+PASS src/localization/infrastructure/runtime-locale-source.test.ts
+PASS src/auth/infrastructure/zustand-auth-state-store.test.ts
+
+Test Suites: 26 passed, 26 total
+Tests:       191 passed, 191 total
+Snapshots:   0 total
+Time:        4.857 s, estimated 8 s
+Ran all test suites.

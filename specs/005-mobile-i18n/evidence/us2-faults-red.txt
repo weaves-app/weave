@@ -1,0 +1,107 @@
+FAIL src/localization/infrastructure/i18next-translator.test.ts
+  ✓ WEA-28 S01/S05 uses scoped bundled resources synchronously (2 ms)
+  ✓ WEA-28 S07 engines own independent copied resource trees (1 ms)
+  ✓ WEA-28 S05 rejects invalid engine output ""
+  ✓ WEA-28 S05 rejects invalid engine output "login.submit"
+  ✓ WEA-28 S05 rejects invalid engine output "{{credential}}"
+  ✓ WEA-28 S05 rejects invalid engine output {"value": "bad"}
+  ✓ WEA-28 S05 unavailable engine/resource has readable canonical English
+  ✕ WEA-28 S05 rejects corrupt plural "{{count}} seconds {{count}}" (2 ms)
+  ✕ WEA-28 S05 rejects corrupt plural "retry.after"
+  ✕ WEA-28 S05 rejects corrupt plural ""
+  ✕ WEA-28 S05 rejects corrupt plural "{{unknown}}" (1 ms)
+  ✕ WEA-28 S05 formatter exceptions and missing Intl plural rules keep readable text without loading resources
+
+  ● WEA-28 S05 rejects corrupt plural "{{count}} seconds {{count}}"
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "Try again after 1 second."
+    Received: "Please wait before trying again."
+
+      59 |   const text = createI18nextTranslator({createEngine: () => engine});
+      60 |   engine.addResourceBundle('en', 'translation', {'retry.after_one': template}, true, true);
+    > 61 |   expect(text.retryAfterSeconds(1)).toBe('Try again after 1 second.');
+         |                                     ^
+      62 | });
+      63 |
+      64 | test('WEA-28 S05 formatter exceptions and missing Intl plural rules keep readable text without loading resources', () => {
+
+      at toBe (src/localization/infrastructure/i18next-translator.test.ts:61:37)
+
+  ● WEA-28 S05 rejects corrupt plural "retry.after"
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "Try again after 1 second."
+    Received: "Please wait before trying again."
+
+      59 |   const text = createI18nextTranslator({createEngine: () => engine});
+      60 |   engine.addResourceBundle('en', 'translation', {'retry.after_one': template}, true, true);
+    > 61 |   expect(text.retryAfterSeconds(1)).toBe('Try again after 1 second.');
+         |                                     ^
+      62 | });
+      63 |
+      64 | test('WEA-28 S05 formatter exceptions and missing Intl plural rules keep readable text without loading resources', () => {
+
+      at toBe (src/localization/infrastructure/i18next-translator.test.ts:61:37)
+
+  ● WEA-28 S05 rejects corrupt plural ""
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "Try again after 1 second."
+    Received: "Please wait before trying again."
+
+      59 |   const text = createI18nextTranslator({createEngine: () => engine});
+      60 |   engine.addResourceBundle('en', 'translation', {'retry.after_one': template}, true, true);
+    > 61 |   expect(text.retryAfterSeconds(1)).toBe('Try again after 1 second.');
+         |                                     ^
+      62 | });
+      63 |
+      64 | test('WEA-28 S05 formatter exceptions and missing Intl plural rules keep readable text without loading resources', () => {
+
+      at toBe (src/localization/infrastructure/i18next-translator.test.ts:61:37)
+
+  ● WEA-28 S05 rejects corrupt plural "{{unknown}}"
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "Try again after 1 second."
+    Received: "Please wait before trying again."
+
+      59 |   const text = createI18nextTranslator({createEngine: () => engine});
+      60 |   engine.addResourceBundle('en', 'translation', {'retry.after_one': template}, true, true);
+    > 61 |   expect(text.retryAfterSeconds(1)).toBe('Try again after 1 second.');
+         |                                     ^
+      62 | });
+      63 |
+      64 | test('WEA-28 S05 formatter exceptions and missing Intl plural rules keep readable text without loading resources', () => {
+
+      at toBe (src/localization/infrastructure/i18next-translator.test.ts:61:37)
+
+  ● WEA-28 S05 formatter exceptions and missing Intl plural rules keep readable text without loading resources
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "Try again after 1 second."
+    Received: "Please wait before trying again."
+
+      67 |   jest.spyOn(engine, 't').mockImplementation(() => {throw new Error('synthetic formatter fault');});
+      68 |   expect(text.text(MESSAGE.LOGIN_SUBMIT)).toBe('Log in');
+    > 69 |   expect(text.retryAfterSeconds(1)).toBe('Try again after 1 second.');
+         |                                     ^
+      70 |   const saved = Intl.PluralRules;
+      71 |   Object.defineProperty(Intl, 'PluralRules', {value: undefined, configurable: true});
+      72 |   try {expect(createI18nextTranslator().retryAfterSeconds(2)).toBe('Try again after 2 seconds.');}
+
+      at Object.toBe (src/localization/infrastructure/i18next-translator.test.ts:69:37)
+
+Test Suites: 1 failed, 1 total
+Tests:       5 failed, 7 passed, 12 total
+Snapshots:   0 total
+Time:        0.238 s, estimated 1 s
+Ran all test suites matching /src\/localization\/infrastructure\/i18next-translator.test.ts/i.
+undefined
+/Users/pravinraj/workspace/weave/apps/mobile:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: jest --runInBand '--watchman=false' src/localization/infrastructure/i18next-translator.test.ts

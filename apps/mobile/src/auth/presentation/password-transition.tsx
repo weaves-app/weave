@@ -1,3 +1,6 @@
+import {useTextTranslator} from '../../localization/presentation/localization-context';
+import {MESSAGE} from '../../localization/messages';
+
 import {useEffect, useRef, useState} from 'react';
 import type {ReactNode} from 'react';
 import {
@@ -38,6 +41,7 @@ export function PasswordTransition({
   disabled,
   action,
 }: PasswordTransitionProps): React.JSX.Element {
+  const text = useTextTranslator();
   const progress = useAnimatedValue(visible ? 1 : 0);
   const [height, setHeight] = useState(0);
   const [actionHeight, setActionHeight] = useState(0);
@@ -131,10 +135,10 @@ export function PasswordTransition({
             style={styles.measure}
           >
             <FormField
-              label="Password"
+              label={text.text(MESSAGE.LOGIN_PASSWORD_LABEL)}
               value={value}
               onChangeText={onChangeText}
-              placeholder="Enter your password"
+              placeholder={text.text(MESSAGE.LOGIN_PASSWORD_PLACEHOLDER)}
               autoComplete={AUTO_COMPLETE.CURRENT_PASSWORD}
               secret
               disabled={disabled || !visible}

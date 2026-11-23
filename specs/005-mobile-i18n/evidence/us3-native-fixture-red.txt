@@ -1,0 +1,211 @@
+FAIL src/localization/testing/native-fixture.test.tsx
+  ✕ WEA-28 S08 explicit fixture config rewrites only native entry URLs and preserves platform/source maps (65 ms)
+  ✕ WEA-28 S08 unknown fixture scenario undefined is rejected (48 ms)
+  ✕ WEA-28 S08 unknown fixture scenario "unknown" is rejected (48 ms)
+  ✕ WEA-28 S08 unknown fixture scenario "../index" is rejected (49 ms)
+  ✕ WEA-28 S08 resolver redirects canonical English only outside the expanded module itself (49 ms)
+  ✕ WEA-28 S08 expanded catalog is complete, immutable and approximately doubles every message without extra count markers (1 ms)
+  ✕ WEA-28 S08 native fixture composes the actual Login and verification journey (1021 ms)
+  ✕ WEA-28 S08 native Home fixture signs out through the actual action (1003 ms)
+  ✕ WEA-28 S08 native retry fixture uses the existing challenge countdown path (1003 ms)
+  ✕ WEA-28 S08 native recovery fixture reaches the real boundary and Reload restores Login (1 ms)
+
+  ● WEA-28 S08 explicit fixture config rewrites only native entry URLs and preserves platform/source maps
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "/src/localization/testing/native-entries/login.bundle?platform=android&dev=true"
+    Received: "/index.bundle?platform=android&dev=true"
+
+      21 |
+      22 | test('WEA-28 S08 explicit fixture config rewrites only native entry URLs and preserves platform/source maps', () => {
+    > 23 |   expect(evaluateConfig("console.log(config.server.rewriteRequestUrl('/index.bundle?platform=android&dev=true'))", 'login')).toBe('/src/localization/testing/native-entries/login.bundle?platform=android&dev=true');
+         |                                                                                                                              ^
+      24 |   expect(evaluateConfig("console.log(config.server.rewriteRequestUrl('http://localhost:8081/index.map?platform=ios'))", 'home')).toBe('http://localhost:8081/src/localization/testing/native-entries/home.map?platform=ios');
+      25 |   expect(evaluateConfig("console.log(config.server.rewriteRequestUrl('/assets/logo.png?platform=ios'))", 'login')).toBe('/assets/logo.png?platform=ios');
+      26 | });
+
+      at Object.toBe (src/localization/testing/native-fixture.test.tsx:23:126)
+
+  ● WEA-28 S08 unknown fixture scenario undefined is rejected
+
+    expect(received).toThrow()
+
+    Received function did not throw
+
+      27 |
+      28 | test.each([undefined, 'unknown', '../index'])('WEA-28 S08 unknown fixture scenario %p is rejected', (scenario) => {
+    > 29 |   expect(() => evaluateConfig('console.log("unexpected success")', scenario)).toThrow();
+         |                                                                               ^
+      30 | });
+      31 |
+      32 | test('WEA-28 S08 resolver redirects canonical English only outside the expanded module itself', () => {
+
+      at toThrow (src/localization/testing/native-fixture.test.tsx:29:79)
+
+  ● WEA-28 S08 unknown fixture scenario "unknown" is rejected
+
+    expect(received).toThrow()
+
+    Received function did not throw
+
+      27 |
+      28 | test.each([undefined, 'unknown', '../index'])('WEA-28 S08 unknown fixture scenario %p is rejected', (scenario) => {
+    > 29 |   expect(() => evaluateConfig('console.log("unexpected success")', scenario)).toThrow();
+         |                                                                               ^
+      30 | });
+      31 |
+      32 | test('WEA-28 S08 resolver redirects canonical English only outside the expanded module itself', () => {
+
+      at toThrow (src/localization/testing/native-fixture.test.tsx:29:79)
+
+  ● WEA-28 S08 unknown fixture scenario "../index" is rejected
+
+    expect(received).toThrow()
+
+    Received function did not throw
+
+      27 |
+      28 | test.each([undefined, 'unknown', '../index'])('WEA-28 S08 unknown fixture scenario %p is rejected', (scenario) => {
+    > 29 |   expect(() => evaluateConfig('console.log("unexpected success")', scenario)).toThrow();
+         |                                                                               ^
+      30 | });
+      31 |
+      32 | test('WEA-28 S08 resolver redirects canonical English only outside the expanded module itself', () => {
+
+      at toThrow (src/localization/testing/native-fixture.test.tsx:29:79)
+
+  ● WEA-28 S08 resolver redirects canonical English only outside the expanded module itself
+
+    expect(received).toBe(expected) // Object.is equality
+
+    - Expected  - 1
+    + Received  + 1
+
+    - /src/localization/testing/expanded-en.ts
+    + /src/localization/resources/en.ts
+      /src/localization/resources/en.ts
+
+      32 | test('WEA-28 S08 resolver redirects canonical English only outside the expanded module itself', () => {
+      33 |   const script = `const path=require('node:path'); const canonical=path.resolve('src/localization/resources/en.ts'); const expanded=path.resolve('src/localization/testing/expanded-en.ts'); const context={originModulePath:path.resolve('src/localization/safe-english.ts'),resolveRequest:()=>({type:'sourceFile',filePath:canonical})}; console.log(config.resolver.resolveRequest(context,'../resources/en','ios').filePath.replace(process.cwd(),'')); context.originModulePath=expanded; console.log(config.resolver.resolveRequest(context,'../resources/en','ios').filePath.replace(process.cwd(),''));`;
+    > 34 |   expect(evaluateConfig(script, 'login')).toBe('/src/localization/testing/expanded-en.ts\n/src/localization/resources/en.ts');
+         |                                           ^
+      35 | });
+      36 |
+      37 | test('WEA-28 S08 expanded catalog is complete, immutable and approximately doubles every message without extra count markers', () => {
+
+      at Object.toBe (src/localization/testing/native-fixture.test.tsx:34:43)
+
+  ● WEA-28 S08 expanded catalog is complete, immutable and approximately doubles every message without extra count markers
+
+    expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 4.5
+    Received:    3
+
+      39 |   for (const [id, original] of Object.entries(englishCatalog)) {
+      40 |     const expanded = expandedEnglishCatalog[id as keyof typeof expandedEnglishCatalog];
+    > 41 |     expect(expanded.split(/\s+/).length).toBeGreaterThanOrEqual(original.split(/\s+/).length * 1.5);
+         |                                          ^
+      42 |   }
+      43 |   expect(englishCatalog['login.submit']).toBe('Log in');
+      44 |   expect(Object.isFrozen(expandedEnglishCatalog)).toBe(true);
+
+      at Object.toBeGreaterThanOrEqual (src/localization/testing/native-fixture.test.tsx:41:42)
+
+  ● WEA-28 S08 native fixture composes the actual Login and verification journey
+
+    Unable to find an element with role: button, name: Email code
+
+    [36m<Text>[39m
+      [0mFixture not implemented[0m
+    [36m</Text>[39m
+
+      47 | test('WEA-28 S08 native fixture composes the actual Login and verification journey', async () => {
+      48 |   render(<NativeFixtureApp scenario="verification" />);
+    > 49 |   await waitFor(() => expect(screen.getByRole('button', {name: 'Email code'})).toBeTruthy());
+         |                ^
+      50 |   fireEvent.press(screen.getByRole('button', {name: 'Email code'}));
+      51 |   fireEvent.changeText(screen.getByLabelText('Email'), 'fixture@example.test');
+      52 |   fireEvent.press(screen.getByRole('button', {name: 'Send code'}));
+
+      at Object.<anonymous> (src/localization/testing/native-fixture.test.tsx:49:16)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at Object.<anonymous> (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12)
+
+  ● WEA-28 S08 native Home fixture signs out through the actual action
+
+    Unable to find an element with role: button, name: Logout
+
+    [36m<Text>[39m
+      [0mFixture not implemented[0m
+    [36m</Text>[39m
+
+      57 | test('WEA-28 S08 native Home fixture signs out through the actual action', async () => {
+      58 |   render(<NativeFixtureApp scenario="home" />);
+    > 59 |   await waitFor(() => expect(screen.getByRole('button', {name: 'Logout'})).toBeTruthy());
+         |                ^
+      60 |   fireEvent.press(screen.getByRole('button', {name: 'Logout'}));
+      61 |   await waitFor(() => expect(screen.getByText('Welcome back')).toBeTruthy());
+      62 | });
+
+      at Object.<anonymous> (src/localization/testing/native-fixture.test.tsx:59:16)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at Object.<anonymous> (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12)
+
+  ● WEA-28 S08 native retry fixture uses the existing challenge countdown path
+
+    Unable to find an element with role: button, name: Email code
+
+    [36m<Text>[39m
+      [0mFixture not implemented[0m
+    [36m</Text>[39m
+
+      64 | test('WEA-28 S08 native retry fixture uses the existing challenge countdown path', async () => {
+      65 |   render(<NativeFixtureApp scenario="retry" />);
+    > 66 |   await waitFor(() => expect(screen.getByRole('button', {name: 'Email code'})).toBeTruthy());
+         |                ^
+      67 |   fireEvent.press(screen.getByRole('button', {name: 'Email code'}));
+      68 |   fireEvent.changeText(screen.getByLabelText('Email'), 'fixture@example.test');
+      69 |   fireEvent.press(screen.getByRole('button', {name: 'Send code'}));
+
+      at Object.<anonymous> (src/localization/testing/native-fixture.test.tsx:66:16)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at Object.<anonymous> (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12)
+
+  ● WEA-28 S08 native recovery fixture reaches the real boundary and Reload restores Login
+
+    Unable to find an element with role: button, name: Reload
+
+    [36m<Text>[39m
+      [0mFixture not implemented[0m
+    [36m</Text>[39m
+
+      74 |   jest.spyOn(console, 'error').mockImplementation(() => undefined);
+      75 |   render(<NativeFixtureApp scenario="recovery" />);
+    > 76 |   fireEvent.press(screen.getByRole('button', {name: 'Reload'}));
+         |                          ^
+      77 |   await waitFor(() => expect(screen.getByText('Welcome back')).toBeTruthy());
+      78 | });
+      79 |
+
+      at Object.getByRole (src/localization/testing/native-fixture.test.tsx:76:26)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at Object.<anonymous> (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12)
+
+Test Suites: 1 failed, 1 total
+Tests:       10 failed, 10 total
+Snapshots:   0 total
+Time:        3.606 s, estimated 4 s
+Ran all test suites matching /src\/localization\/testing\/native-fixture.test.tsx/i.
+undefined
+/Users/pravinraj/workspace/weave/apps/mobile:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: jest --runInBand '--watchman=false' src/localization/testing/native-fixture.test.tsx

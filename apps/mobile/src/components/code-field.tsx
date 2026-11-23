@@ -14,6 +14,9 @@ export const EMPTY_CODE_SLOT = '';
 export const OTP_SLOTS_MAX_FONT_SCALE = 1.5;
 
 export interface CodeFieldProps {
+  readonly label: string;
+  readonly hint: string;
+  readonly instructions: string;
   readonly value: string;
   readonly onChangeText: (value: string) => void;
   readonly disabled?: boolean;
@@ -23,6 +26,9 @@ export interface CodeFieldProps {
 const slots = [0, 1, 2, 3, 4, 5] as const;
 
 export function CodeField({
+  label,
+  hint,
+  instructions,
   value,
   onChangeText,
   disabled = false,
@@ -48,7 +54,7 @@ export function CodeField({
 
   return (
     <View style={styles.field}>
-      <Typography variant={VARIANT.LABEL}>Verification code</Typography>
+      <Typography variant={VARIANT.LABEL}>{label}</Typography>
       <View style={[styles.entry, disabled && styles.disabled]}>
         {showSlots && (
           <View
@@ -78,8 +84,8 @@ export function CodeField({
         )}
         <TextInput
           testID="field-verification-code"
-          accessibilityLabel="Verification code"
-          accessibilityHint="Enter or paste the six-digit code from your email"
+          accessibilityLabel={label}
+          accessibilityHint={hint}
           accessibilityState={{disabled}}
           value={value}
           onChangeText={changeCode}
@@ -100,7 +106,7 @@ export function CodeField({
           }
         />
       </View>
-      <Typography variant={VARIANT.CAPTION}>Enter the 6-digit code from your email.</Typography>
+      <Typography variant={VARIANT.CAPTION}>{instructions}</Typography>
     </View>
   );
 }

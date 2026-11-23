@@ -1,0 +1,30 @@
+$ pnpm --filter @weave/api run db:deploy
+$ prisma migrate deploy
+Loaded Prisma config from prisma.config.ts.
+
+Prisma schema loaded from prisma/schema.prisma.
+Datasource "db": PostgreSQL database "weave", schema "public" at "127.0.0.1:55448"
+
+1 migration found in prisma/migrations
+
+Applying migration `20261002000000_init`
+
+The following migration(s) have been applied:
+
+migrations/
+  └─ 20261002000000_init/
+    └─ migration.sql
+
+All migrations have been successfully applied.
+$ node --test tests/integration/*.test.mjs
+✔ S06 API liveness/readiness; WEA-10 S02/S03/S08 web denies access without auth configuration (866.012917ms)
+✔ S06 database outage returns 503 readiness and 200 liveness (273.389791ms)
+✔ S09 committed schema persists a user and enforces unique email (6.248875ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1197.322916

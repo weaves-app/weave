@@ -1,0 +1,8 @@
+PASS src/localization/catalog.test.ts
+PASS src/localization/safe-english.test.ts
+
+Test Suites: 2 passed, 2 total
+Tests:       20 passed, 20 total
+Snapshots:   0 total
+Time:        0.271 s, estimated 1 s
+Ran all test suites matching /src\/localization\/catalog.test.ts|src\/localization\/safe-english.test.ts/i.

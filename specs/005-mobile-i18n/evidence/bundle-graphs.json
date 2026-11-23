@@ -1,0 +1,72 @@
+[
+  {
+    "map": "apps/mobile/dist/i18n-fixtures/ios/recovery.bundle.map",
+    "sources": 813,
+    "expandedCatalog": true,
+    "selectedEntry": true
+  },
+  {
+    "map": "apps/mobile/dist/i18n-fixtures/ios/login.bundle.map",
+    "sources": 813,
+    "expandedCatalog": true,
+    "selectedEntry": true
+  },
+  {
+    "map": "apps/mobile/dist/i18n-fixtures/ios/home.bundle.map",
+    "sources": 813,
+    "expandedCatalog": true,
+    "selectedEntry": true
+  },
+  {
+    "map": "apps/mobile/dist/i18n-fixtures/ios/verification.bundle.map",
+    "sources": 813,
+    "expandedCatalog": true,
+    "selectedEntry": true
+  },
+  {
+    "map": "apps/mobile/dist/i18n-fixtures/ios/retry.bundle.map",
+    "sources": 813,
+    "expandedCatalog": true,
+    "selectedEntry": true
+  },
+  {
+    "map": "apps/mobile/dist/i18n-fixtures/android/recovery.bundle.map",
+    "sources": 813,
+    "expandedCatalog": true,
+    "selectedEntry": true
+  },
+  {
+    "map": "apps/mobile/dist/i18n-fixtures/android/login.bundle.map",
+    "sources": 813,
+    "expandedCatalog": true,
+    "selectedEntry": true
+  },
+  {
+    "map": "apps/mobile/dist/i18n-fixtures/android/home.bundle.map",
+    "sources": 813,
+    "expandedCatalog": true,
+    "selectedEntry": true
+  },
+  {
+    "map": "apps/mobile/dist/i18n-fixtures/android/verification.bundle.map",
+    "sources": 813,
+    "expandedCatalog": true,
+    "selectedEntry": true
+  },
+  {
+    "map": "apps/mobile/dist/i18n-fixtures/android/retry.bundle.map",
+    "sources": 813,
+    "expandedCatalog": true,
+    "selectedEntry": true
+  },
+  {
+    "map": "apps/mobile/dist/android/index.android.bundle.map",
+    "sources": 810,
+    "fixtureModulesExcluded": true
+  },
+  {
+    "map": "apps/mobile/dist/ios/main.jsbundle.map",
+    "sources": 810,
+    "fixtureModulesExcluded": true
+  }
+]

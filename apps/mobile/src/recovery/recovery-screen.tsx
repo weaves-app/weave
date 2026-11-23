@@ -1,3 +1,5 @@
+import {recoveryText} from '../localization/safe-english';
+
 import {Dimensions, ScrollView, StyleSheet} from 'react-native';
 import {initialWindowMetrics, SafeAreaProvider, SafeAreaView} from 'react-native-safe-area-context';
 
@@ -20,13 +22,15 @@ const initialMetrics = initialWindowMetrics ?? {
 };
 
 export function RecoveryScreen({onReload}: RecoveryScreenProps): React.JSX.Element {
+  const text = recoveryText();
+
   return (
     <SafeAreaProvider initialMetrics={initialMetrics}>
       <SafeAreaView style={styles.safe}>
         <ScrollView contentContainerStyle={styles.content}>
-          <Typography variant={VARIANT.TITLE}>Something went wrong</Typography>
-          <Feedback message="The app could not display this screen. Reload to try again." />
-          <Button label="Reload" onPress={onReload} />
+          <Typography variant={VARIANT.TITLE}>{text.title}</Typography>
+          <Feedback message={text.description} />
+          <Button label={text.reload} onPress={onReload} />
         </ScrollView>
       </SafeAreaView>
     </SafeAreaProvider>

@@ -1,3 +1,7 @@
+import {createLocalizationRuntime} from './src/localization/localization-runtime';
+import {LocalizationProvider} from './src/localization/presentation/localization-context';
+import type {LocalizationFactory} from './src/localization/localization-runtime';
+
 import {StatusBar} from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 
@@ -12,6 +16,7 @@ import {RootNavigator} from './src/navigation/root-navigator';
 import {AppErrorBoundary} from './src/recovery/app-error-boundary';
 
 export interface AppProps {
+  readonly createLocalization?: LocalizationFactory;
   readonly createRuntime?: () => AuthRuntime;
 }
 
@@ -19,15 +24,20 @@ function createRuntime(): AuthRuntime {
   return createAuthRuntime(createNativeAuthGateway(createNativeAuthTransport()), systemClock);
 }
 
-export function App({createRuntime: factory = createRuntime}: AppProps): React.JSX.Element {
+export function App({
+  createRuntime: factory = createRuntime,
+  createLocalization = createLocalizationRuntime,
+}: AppProps): React.JSX.Element {
   return (
     <AppErrorBoundary
       renderChildren={() => (
         <SafeAreaProvider>
-          <AuthProvider createRuntime={factory}>
-            <RootNavigator />
-            <StatusBar barStyle={STATUS_BAR_STYLE.DARK_CONTENT} />
-          </AuthProvider>
+          <LocalizationProvider createRuntime={createLocalization}>
+            <AuthProvider createRuntime={factory}>
+              <RootNavigator />
+              <StatusBar barStyle={STATUS_BAR_STYLE.DARK_CONTENT} />
+            </AuthProvider>
+          </LocalizationProvider>
         </SafeAreaProvider>
       )}
     />

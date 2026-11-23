@@ -1,0 +1,96 @@
+FAIL src/auth/presentation/auth-messages.test.ts
+  ✕ WEA-28 S01 safe auth codes resolve through the presentation translator (10 ms)
+  ✕ WEA-28 S05 unknown auth code undefined uses safe English
+  ✕ WEA-28 S05 unknown auth code "provider-secret-value" uses safe English (1 ms)
+  ✕ WEA-28 S05 unknown auth code {} uses safe English
+  ✕ WEA-28 S05 unknown auth code "__proto__" uses safe English
+
+  ● WEA-28 S01 safe auth codes resolve through the presentation translator
+
+    expect(received).toMatch(expected)
+
+    Expected pattern: /^English fixture: /
+    Received string:  ""
+
+       6 |   const text = createSentinelLocalization().translator;
+       7 |   for (const code of Object.values(AUTH_ERROR_CODE)) {
+    >  8 |     expect(resolveAuthMessage(code, text)).toMatch(/^English fixture: /);
+         |                                            ^
+       9 |   }
+      10 |   expect(resolveAuthMessage(AUTH_ERROR_CODE.NETWORK, text)).toBe('English fixture: Unable to connect. Check your connection and try again.');
+      11 | });
+
+      at Object.toMatch (src/auth/presentation/auth-messages.test.ts:8:44)
+
+  ● WEA-28 S05 unknown auth code undefined uses safe English
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "English fixture: Something went wrong. Please try again."
+    Received: ""
+
+      12 |
+      13 | test.each([undefined, 'provider-secret-value', {}, '__proto__'])('WEA-28 S05 unknown auth code %p uses safe English', (code) => {
+    > 14 |   expect(resolveAuthMessage(code, createSentinelLocalization().translator)).toBe('English fixture: Something went wrong. Please try again.');
+         |                                                                             ^
+      15 | });
+      16 |
+
+      at toBe (src/auth/presentation/auth-messages.test.ts:14:77)
+
+  ● WEA-28 S05 unknown auth code "provider-secret-value" uses safe English
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "English fixture: Something went wrong. Please try again."
+    Received: ""
+
+      12 |
+      13 | test.each([undefined, 'provider-secret-value', {}, '__proto__'])('WEA-28 S05 unknown auth code %p uses safe English', (code) => {
+    > 14 |   expect(resolveAuthMessage(code, createSentinelLocalization().translator)).toBe('English fixture: Something went wrong. Please try again.');
+         |                                                                             ^
+      15 | });
+      16 |
+
+      at toBe (src/auth/presentation/auth-messages.test.ts:14:77)
+
+  ● WEA-28 S05 unknown auth code {} uses safe English
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "English fixture: Something went wrong. Please try again."
+    Received: ""
+
+      12 |
+      13 | test.each([undefined, 'provider-secret-value', {}, '__proto__'])('WEA-28 S05 unknown auth code %p uses safe English', (code) => {
+    > 14 |   expect(resolveAuthMessage(code, createSentinelLocalization().translator)).toBe('English fixture: Something went wrong. Please try again.');
+         |                                                                             ^
+      15 | });
+      16 |
+
+      at toBe (src/auth/presentation/auth-messages.test.ts:14:77)
+
+  ● WEA-28 S05 unknown auth code "__proto__" uses safe English
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "English fixture: Something went wrong. Please try again."
+    Received: ""
+
+      12 |
+      13 | test.each([undefined, 'provider-secret-value', {}, '__proto__'])('WEA-28 S05 unknown auth code %p uses safe English', (code) => {
+    > 14 |   expect(resolveAuthMessage(code, createSentinelLocalization().translator)).toBe('English fixture: Something went wrong. Please try again.');
+         |                                                                             ^
+      15 | });
+      16 |
+
+      at toBe (src/auth/presentation/auth-messages.test.ts:14:77)
+
+Test Suites: 1 failed, 1 total
+Tests:       5 failed, 5 total
+Snapshots:   0 total
+Time:        0.243 s
+Ran all test suites matching /src\/auth\/presentation\/auth-messages.test.ts/i.
+undefined
+/Users/pravinraj/workspace/weave/apps/mobile:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: jest --runInBand '--watchman=false' src/auth/presentation/auth-messages.test.ts

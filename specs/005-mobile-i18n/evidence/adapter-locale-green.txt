@@ -1,0 +1,8 @@
+PASS src/localization/infrastructure/i18next-translator.test.ts
+PASS src/localization/infrastructure/runtime-locale-source.test.ts
+
+Test Suites: 2 passed, 2 total
+Tests:       17 passed, 17 total
+Snapshots:   0 total
+Time:        0.258 s, estimated 1 s
+Ran all test suites matching /src\/localization\/infrastructure/i.

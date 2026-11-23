@@ -1,0 +1,214 @@
+FAIL src/localization/localization-runtime.test.ts
+  ● WEA-28 S02 initializes usable English for "en" and resamples without replacing translator
+
+    expect(jest.fn()).toHaveBeenCalledTimes(expected)
+
+    Expected number of calls: 1
+    Received number of calls: 0
+
+       8 |   const runtime = createLocalizationRuntime({localeSource: {read}});
+       9 |   const text = runtime.translator;
+    > 10 |   expect(read).toHaveBeenCalledTimes(1);
+         |                ^
+      11 |   expect(text.language).toBe('en');
+      12 |   runtime.sampleLocale();
+      13 |   expect(read).toHaveBeenCalledTimes(2);
+
+      at toHaveBeenCalledTimes (src/localization/localization-runtime.test.ts:10:16)
+
+  ● WEA-28 S02 initializes usable English for "en-GB" and resamples without replacing translator
+
+    expect(jest.fn()).toHaveBeenCalledTimes(expected)
+
+    Expected number of calls: 1
+    Received number of calls: 0
+
+       8 |   const runtime = createLocalizationRuntime({localeSource: {read}});
+       9 |   const text = runtime.translator;
+    > 10 |   expect(read).toHaveBeenCalledTimes(1);
+         |                ^
+      11 |   expect(text.language).toBe('en');
+      12 |   runtime.sampleLocale();
+      13 |   expect(read).toHaveBeenCalledTimes(2);
+
+      at toHaveBeenCalledTimes (src/localization/localization-runtime.test.ts:10:16)
+
+  ● WEA-28 S02 initializes usable English for "en-IN" and resamples without replacing translator
+
+    expect(jest.fn()).toHaveBeenCalledTimes(expected)
+
+    Expected number of calls: 1
+    Received number of calls: 0
+
+       8 |   const runtime = createLocalizationRuntime({localeSource: {read}});
+       9 |   const text = runtime.translator;
+    > 10 |   expect(read).toHaveBeenCalledTimes(1);
+         |                ^
+      11 |   expect(text.language).toBe('en');
+      12 |   runtime.sampleLocale();
+      13 |   expect(read).toHaveBeenCalledTimes(2);
+
+      at toHaveBeenCalledTimes (src/localization/localization-runtime.test.ts:10:16)
+
+  ● WEA-28 S02 initializes usable English for "fr-FR" and resamples without replacing translator
+
+    expect(jest.fn()).toHaveBeenCalledTimes(expected)
+
+    Expected number of calls: 1
+    Received number of calls: 0
+
+       8 |   const runtime = createLocalizationRuntime({localeSource: {read}});
+       9 |   const text = runtime.translator;
+    > 10 |   expect(read).toHaveBeenCalledTimes(1);
+         |                ^
+      11 |   expect(text.language).toBe('en');
+      12 |   runtime.sampleLocale();
+      13 |   expect(read).toHaveBeenCalledTimes(2);
+
+      at toHaveBeenCalledTimes (src/localization/localization-runtime.test.ts:10:16)
+
+  ● WEA-28 S02 initializes usable English for undefined and resamples without replacing translator
+
+    expect(jest.fn()).toHaveBeenCalledTimes(expected)
+
+    Expected number of calls: 1
+    Received number of calls: 0
+
+       8 |   const runtime = createLocalizationRuntime({localeSource: {read}});
+       9 |   const text = runtime.translator;
+    > 10 |   expect(read).toHaveBeenCalledTimes(1);
+         |                ^
+      11 |   expect(text.language).toBe('en');
+      12 |   runtime.sampleLocale();
+      13 |   expect(read).toHaveBeenCalledTimes(2);
+
+      at toHaveBeenCalledTimes (src/localization/localization-runtime.test.ts:10:16)
+
+  ● WEA-28 S02 initializes usable English for [] and resamples without replacing translator
+
+    expect(jest.fn()).toHaveBeenCalledTimes(expected)
+
+    Expected number of calls: 1
+    Received number of calls: 0
+
+       8 |   const runtime = createLocalizationRuntime({localeSource: {read}});
+       9 |   const text = runtime.translator;
+    > 10 |   expect(read).toHaveBeenCalledTimes(1);
+         |                ^
+      11 |   expect(text.language).toBe('en');
+      12 |   runtime.sampleLocale();
+      13 |   expect(read).toHaveBeenCalledTimes(2);
+
+      at toHaveBeenCalledTimes (src/localization/localization-runtime.test.ts:10:16)
+
+  ● WEA-28 S02 initializes usable English for {} and resamples without replacing translator
+
+    expect(jest.fn()).toHaveBeenCalledTimes(expected)
+
+    Expected number of calls: 1
+    Received number of calls: 0
+
+       8 |   const runtime = createLocalizationRuntime({localeSource: {read}});
+       9 |   const text = runtime.translator;
+    > 10 |   expect(read).toHaveBeenCalledTimes(1);
+         |                ^
+      11 |   expect(text.language).toBe('en');
+      12 |   runtime.sampleLocale();
+      13 |   expect(read).toHaveBeenCalledTimes(2);
+
+      at toHaveBeenCalledTimes (src/localization/localization-runtime.test.ts:10:16)
+
+  ● WEA-28 S07 independent runtime translator injection stays scoped
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "Enter first workspace"
+    Received: "Log in"
+
+      26 |   const first = createLocalizationRuntime({translator: scoped});
+      27 |   const second = createLocalizationRuntime();
+    > 28 |   expect(first.translator.text(MESSAGE.LOGIN_SUBMIT)).toBe('Enter first workspace');
+         |                                                       ^
+      29 |   expect(second.translator.text(MESSAGE.LOGIN_SUBMIT)).toBe('Log in');
+      30 | });
+      31 |
+
+      at Object.toBe (src/localization/localization-runtime.test.ts:28:55)
+
+FAIL src/localization/presentation/localization-context.test.tsx
+  ● WEA-28 S01 scoped text is usable on the first provider render
+
+    Unable to find an element with text: Enter selected workspace
+
+    [36m<Text>[39m
+      [0mLog in[0m
+    [36m</Text>[39m
+
+      23 |   const createRuntime = () => createLocalizationRuntime({translator: createI18nextTranslator({catalog: {...englishCatalog, 'login.submit': 'Enter selected workspace'}})});
+      24 |   render(<LocalizationProvider createRuntime={createRuntime}><Reader /></LocalizationProvider>);
+    > 25 |   expect(screen.getByText('Enter selected workspace')).toBeTruthy();
+         |                 ^
+      26 | });
+      27 |
+      28 | test('WEA-28 S07 foreground samples without reallocating and replay/unmount removes owned listeners', () => {
+
+      at Object.getByText (src/localization/presentation/localization-context.test.tsx:25:17)
+
+  ● WEA-28 S07 foreground samples without reallocating and replay/unmount removes owned listeners
+
+    expect(jest.fn()).toHaveBeenCalledTimes(expected)
+
+    Expected number of calls: 1
+    Received number of calls: 0
+
+      39 |   const constructions = factory.mock.calls.length;
+      40 |   act(() => onChange?.('active'));
+    > 41 |   expect(samples).toHaveBeenCalledTimes(1);
+         |                   ^
+      42 |   expect(factory).toHaveBeenCalledTimes(constructions);
+      43 |   expect(screen.getByText('Log in')).toBeTruthy();
+      44 |   view.unmount();
+
+      at Object.toHaveBeenCalledTimes (src/localization/presentation/localization-context.test.tsx:41:19)
+
+  ● WEA-28 S06/S07 a localization factory fault reaches provider-free recovery and Reload constructs a fresh root
+
+    Unable to find an element with role: button, name: Reload
+
+    [36m<RNCSafeAreaView>[39m
+      [36m<View>[39m
+        [36m<Text[39m
+          [33maccessibilityRole[39m=[32m"alert"[39m
+          [33maccessibilityState[39m=[32m{
+            {
+              "busy": true,
+            }
+          }[39m
+        [36m>[39m
+          [0mChecking your session…[0m
+        [36m</Text>[39m
+      [36m</View>[39m
+    [36m</RNCSafeAreaView>[39m
+
+      63 |   const createAuth = () => createAuthRuntime(gateway, new TestClock());
+      64 |   const view = render(<App createRuntime={createAuth} createLocalization={createLocalization} />);
+    > 65 |   expect(screen.getByRole('button', {name: 'Reload'})).toBeTruthy();
+         |                 ^
+      66 |   expect(gateway.requests).toHaveLength(0);
+      67 |   const before = createLocalization.mock.calls.length;
+      68 |   fail = false;
+
+      at Object.getByRole (src/localization/presentation/localization-context.test.tsx:65:17)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at Object.<anonymous> (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12)
+
+Test Suites: 2 failed, 2 total
+Tests:       11 failed, 2 passed, 13 total
+Snapshots:   0 total
+Time:        0.72 s, estimated 1 s
+Ran all test suites matching /src\/localization\/localization-runtime.test.ts|src\/localization\/presentation\/localization-context.test.tsx/i.
+undefined
+/Users/pravinraj/workspace/weave/apps/mobile:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: jest --runInBand '--watchman=false' src/localization/localization-runtime.test.ts src/localization/presentation/localization-context.test.tsx

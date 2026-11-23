@@ -1,0 +1,635 @@
+FAIL src/auth/login.test.tsx
+  ✕ WEA-28 S04 renders scoped retry 0 without changing email display (1143 ms)
+  ✕ WEA-28 S04 renders scoped retry 1 without changing email display (1024 ms)
+  ✕ WEA-28 S04 renders scoped retry 2 without changing email display (1033 ms)
+  ✕ WEA-28 S04 renders scoped retry 60 without changing email display (1029 ms)
+  ○ skipped S02/S03 offers exactly three methods and accessible password validation
+  ○ skipped S08 password stays untrimmed in request, fields clear and pending actions disable
+  ○ skipped S16/S19 supports signIn verification and method return
+  ○ skipped S16/S19 supports deviceTrust verification and method return
+  ○ skipped S17/S18/S20 displays safe existingAccountRequired feedback and usable method controls
+  ○ skipped S17/S18/S20 displays safe verificationRequired feedback and usable method controls
+  ○ skipped S17/S18/S20 displays safe cancelled feedback and usable method controls
+  ○ skipped S17 cancelled Google returns a working visible password form
+  ○ skipped S15 the complete login form applies safe-area edges around its keyboard-aware scroll layout
+  ○ skipped S15 method selection communicates the selected form to assistive technology
+  ○ skipped S15/S16 formatted code paste fills one editable verification value
+  ○ skipped S15/S19 verification requests the native one-time-code autofill keyboard
+  ○ skipped S16/S19 automatically verifies the sixth digit for signIn and permits correction after rejection
+  ○ skipped S16/S19 automatically verifies the sixth digit for deviceTrust and permits correction after rejection
+  ○ skipped S15 clearing login feedback retains the measured scroll extent on method change
+  ○ skipped S15/S16/S19 keeps branding and signIn Back reachable outside the scrolling form
+  ○ skipped S15/S16/S19 keeps branding and deviceTrust Back reachable outside the scrolling form
+  ○ skipped S15 uses the same form alignment when Login changes to signIn verification
+  ○ skipped S15 uses the same form alignment when Login changes to deviceTrust verification
+  ○ skipped S15 tablet rotation changes the composition without losing email or partial verification code
+  ○ skipped WEA-28 S01/S03 normal and verification journeys consume scoped visible and spoken English
+
+  ● WEA-28 S04 renders scoped retry 0 without changing email display
+
+    Unable to find an element with text: English fixture: Try again after 0 seconds.
+
+    [36m<View>[39m
+      [36m<RNCSafeAreaView[39m
+        [33mtestID[39m=[32m"login-safe-area"[39m
+      [36m>[39m
+        [36m<View>[39m
+          [36m<View>[39m
+            [36m<View>[39m
+              [36m<View[39m
+                [33maccessibilityLabel[39m=[32m"English fixture: Choose another method"[39m
+                [33maccessibilityRole[39m=[32m"button"[39m
+                [33maccessibilityState[39m=[32m{
+                  {
+                    "disabled": false,
+                  }
+                }[39m
+                [33maccessible[39m=[32m{true}[39m
+              [36m>[39m
+                [36m<Text>[39m
+                  [0m←[0m
+                [36m</Text>[39m
+              [36m</View>[39m
+            [36m</View>[39m
+            [36m<View>[39m
+              [36m<Image[39m
+                [33maccessibilityLabel[39m=[32m"Weave"[39m
+                [33maccessibilityRole[39m=[32m"image"[39m
+              [36m/>[39m
+            [36m</View>[39m
+            [36m<View />[39m
+          [36m</View>[39m
+          [36m<View>[39m
+            [36m<RCTScrollView>[39m
+              [36m<View>[39m
+                [36m<View>[39m
+                  [36m<View>[39m
+                    [36m<Text[39m
+                      [33maccessibilityRole[39m=[32m"header"[39m
+                    [36m>[39m
+                      [0mEnglish fixture: Check your email[0m
+                    [36m</Text>[39m
+                    [36m<View>[39m
+                      [36m<Text>[39m
+                        [0mEnglish fixture: Enter the verification code sent to[0m
+                      [36m</Text>[39m
+                      [36m<Text>[39m
+                        [0mperson@example.com[0m
+                      [36m</Text>[39m
+                    [36m</View>[39m
+                  [36m</View>[39m
+                  [36m<View>[39m
+                    [36m<Text>[39m
+                      [0mEnglish fixture: Verification code[0m
+                    [36m</Text>[39m
+                    [36m<View>[39m
+                      [36m<TextInput[39m
+                        [33maccessibilityHint[39m=[32m"English fixture: Enter or paste the six-digit code from your email"[39m
+                        [33maccessibilityLabel[39m=[32m"English fixture: Verification code"[39m
+                        [33maccessibilityState[39m=[32m{
+                          {
+                            "disabled": false,
+                          }
+                        }[39m
+                        [33meditable[39m=[32m{true}[39m
+                        [33mtestID[39m=[32m"field-verification-code"[39m
+                        [33mvalue[39m=[32m""[39m
+                      [36m/>[39m
+                    [36m</View>[39m
+                    [36m<Text>[39m
+                      [0mEnglish fixture: Enter the 6-digit code from your email.[0m
+                    [36m</Text>[39m
+                  [36m</View>[39m
+                  [36m<View[39m
+                    [33maccessibilityLabel[39m=[32m"English fixture: Verify code"[39m
+                    [33maccessibilityRole[39m=[32m"button"[39m
+                    [33maccessibilityState[39m=[32m{
+                      {
+                        "busy": false,
+                        "disabled": false,
+                      }
+                    }[39m
+                    [33maccessible[39m=[32m{true}[39m
+                  [36m>[39m
+                    [36m<View>[39m
+                      [36m<Text>[39m
+                        [0mEnglish fixture: Verify code[0m
+                      [36m</Text>[39m
+                      [36m<Text[39m
+                        [33maccessibilityElementsHidden[39m=[32m{true}[39m
+                        [33mimportantForAccessibility[39m=[32m"no"[39m
+                      [36m>[39m
+                        [0m→[0m
+                      [36m</Text>[39m
+                    [36m</View>[39m
+                  [36m</View>[39m
+                  [36m<View>[39m
+                    [36m<Text>[39m
+                      [0mEnglish fixture: Didn't receive it?[0m
+                    [36m</Text>[39m
+                    [36m<View[39m
+                      [33maccessibilityLabel[39m=[32m"English fixture: Resend code"[39m
+                      [33maccessibilityRole[39m=[32m"button"[39m
+                      [33maccessibilityState[39m=[32m{
+                        {
+                          "busy": false,
+                          "disabled": false,
+                        }
+                      }[39m
+                      [33maccessible[39m=[32m{true}[39m
+                    [36m>[39m
+                      [36m<View>[39m
+                        [36m<Text>[39m
+                          [0mEnglish fixture: Resend code[0m
+                        [36m</Text>[39m
+                      [36m</View>[39m
+                    [36m</View>[39m
+                  [36m</View>[39m
+                  [36m<Text[39m
+                    [33maccessibilityRole[39m=[32m"alert"[39m
+                    [33maccessibilityState[39m=[32m{
+                      {
+                        "busy": false,
+                      }
+                    }[39m
+                  [36m>[39m
+                    [0mTry again after 0 seconds.[0m
+                  [36m</Text>[39m
+                [36m</View>[39m
+              [36m</View>[39m
+            [36m</RCTScrollView>[39m
+          [36m</View>[39m
+        [36m</View>[39m
+      [36m</RNCSafeAreaView>[39m
+    [36m</View>[39m
+
+      472 |   fireEvent.changeText(screen.getByLabelText('English fixture: Password'), 'password');
+      473 |   fireEvent.press(screen.getByRole('button', {name: 'English fixture: Log in'}));
+    > 474 |   await waitFor(() => expect(screen.getByText(String(expected))).toBeTruthy());
+          |                ^
+      475 |   expect(screen.getByText('person@example.com')).toBeTruthy();
+      476 | });
+      477 |
+
+      at src/auth/login.test.tsx:474:16
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● WEA-28 S04 renders scoped retry 1 without changing email display
+
+    Unable to find an element with text: English fixture: Try again after 1 second.
+
+    [36m<View>[39m
+      [36m<RNCSafeAreaView[39m
+        [33mtestID[39m=[32m"login-safe-area"[39m
+      [36m>[39m
+        [36m<View>[39m
+          [36m<View>[39m
+            [36m<View>[39m
+              [36m<View[39m
+                [33maccessibilityLabel[39m=[32m"English fixture: Choose another method"[39m
+                [33maccessibilityRole[39m=[32m"button"[39m
+                [33maccessibilityState[39m=[32m{
+                  {
+                    "disabled": false,
+                  }
+                }[39m
+                [33maccessible[39m=[32m{true}[39m
+              [36m>[39m
+                [36m<Text>[39m
+                  [0m←[0m
+                [36m</Text>[39m
+              [36m</View>[39m
+            [36m</View>[39m
+            [36m<View>[39m
+              [36m<Image[39m
+                [33maccessibilityLabel[39m=[32m"Weave"[39m
+                [33maccessibilityRole[39m=[32m"image"[39m
+              [36m/>[39m
+            [36m</View>[39m
+            [36m<View />[39m
+          [36m</View>[39m
+          [36m<View>[39m
+            [36m<RCTScrollView>[39m
+              [36m<View>[39m
+                [36m<View>[39m
+                  [36m<View>[39m
+                    [36m<Text[39m
+                      [33maccessibilityRole[39m=[32m"header"[39m
+                    [36m>[39m
+                      [0mEnglish fixture: Check your email[0m
+                    [36m</Text>[39m
+                    [36m<View>[39m
+                      [36m<Text>[39m
+                        [0mEnglish fixture: Enter the verification code sent to[0m
+                      [36m</Text>[39m
+                      [36m<Text>[39m
+                        [0mperson@example.com[0m
+                      [36m</Text>[39m
+                    [36m</View>[39m
+                  [36m</View>[39m
+                  [36m<View>[39m
+                    [36m<Text>[39m
+                      [0mEnglish fixture: Verification code[0m
+                    [36m</Text>[39m
+                    [36m<View>[39m
+                      [36m<TextInput[39m
+                        [33maccessibilityHint[39m=[32m"English fixture: Enter or paste the six-digit code from your email"[39m
+                        [33maccessibilityLabel[39m=[32m"English fixture: Verification code"[39m
+                        [33maccessibilityState[39m=[32m{
+                          {
+                            "disabled": false,
+                          }
+                        }[39m
+                        [33meditable[39m=[32m{true}[39m
+                        [33mtestID[39m=[32m"field-verification-code"[39m
+                        [33mvalue[39m=[32m""[39m
+                      [36m/>[39m
+                    [36m</View>[39m
+                    [36m<Text>[39m
+                      [0mEnglish fixture: Enter the 6-digit code from your email.[0m
+                    [36m</Text>[39m
+                  [36m</View>[39m
+                  [36m<View[39m
+                    [33maccessibilityLabel[39m=[32m"English fixture: Verify code"[39m
+                    [33maccessibilityRole[39m=[32m"button"[39m
+                    [33maccessibilityState[39m=[32m{
+                      {
+                        "busy": false,
+                        "disabled": false,
+                      }
+                    }[39m
+                    [33maccessible[39m=[32m{true}[39m
+                  [36m>[39m
+                    [36m<View>[39m
+                      [36m<Text>[39m
+                        [0mEnglish fixture: Verify code[0m
+                      [36m</Text>[39m
+                      [36m<Text[39m
+                        [33maccessibilityElementsHidden[39m=[32m{true}[39m
+                        [33mimportantForAccessibility[39m=[32m"no"[39m
+                      [36m>[39m
+                        [0m→[0m
+                      [36m</Text>[39m
+                    [36m</View>[39m
+                  [36m</View>[39m
+                  [36m<View>[39m
+                    [36m<Text>[39m
+                      [0mEnglish fixture: Didn't receive it?[0m
+                    [36m</Text>[39m
+                    [36m<View[39m
+                      [33maccessibilityLabel[39m=[32m"English fixture: Resend code"[39m
+                      [33maccessibilityRole[39m=[32m"button"[39m
+                      [33maccessibilityState[39m=[32m{
+                        {
+                          "busy": false,
+                          "disabled": false,
+                        }
+                      }[39m
+                      [33maccessible[39m=[32m{true}[39m
+                    [36m>[39m
+                      [36m<View>[39m
+                        [36m<Text>[39m
+                          [0mEnglish fixture: Resend code[0m
+                        [36m</Text>[39m
+                      [36m</View>[39m
+                    [36m</View>[39m
+                  [36m</View>[39m
+                  [36m<Text[39m
+                    [33maccessibilityRole[39m=[32m"alert"[39m
+                    [33maccessibilityState[39m=[32m{
+                      {
+                        "busy": false,
+                      }
+                    }[39m
+                  [36m>[39m
+                    [0mTry again after 1 seconds.[0m
+                  [36m</Text>[39m
+                [36m</View>[39m
+              [36m</View>[39m
+            [36m</RCTScrollView>[39m
+          [36m</View>[39m
+        [36m</View>[39m
+      [36m</RNCSafeAreaView>[39m
+    [36m</View>[39m
+
+      472 |   fireEvent.changeText(screen.getByLabelText('English fixture: Password'), 'password');
+      473 |   fireEvent.press(screen.getByRole('button', {name: 'English fixture: Log in'}));
+    > 474 |   await waitFor(() => expect(screen.getByText(String(expected))).toBeTruthy());
+          |                ^
+      475 |   expect(screen.getByText('person@example.com')).toBeTruthy();
+      476 | });
+      477 |
+
+      at src/auth/login.test.tsx:474:16
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● WEA-28 S04 renders scoped retry 2 without changing email display
+
+    Unable to find an element with text: English fixture: Try again after 2 seconds.
+
+    [36m<View>[39m
+      [36m<RNCSafeAreaView[39m
+        [33mtestID[39m=[32m"login-safe-area"[39m
+      [36m>[39m
+        [36m<View>[39m
+          [36m<View>[39m
+            [36m<View>[39m
+              [36m<View[39m
+                [33maccessibilityLabel[39m=[32m"English fixture: Choose another method"[39m
+                [33maccessibilityRole[39m=[32m"button"[39m
+                [33maccessibilityState[39m=[32m{
+                  {
+                    "disabled": false,
+                  }
+                }[39m
+                [33maccessible[39m=[32m{true}[39m
+              [36m>[39m
+                [36m<Text>[39m
+                  [0m←[0m
+                [36m</Text>[39m
+              [36m</View>[39m
+            [36m</View>[39m
+            [36m<View>[39m
+              [36m<Image[39m
+                [33maccessibilityLabel[39m=[32m"Weave"[39m
+                [33maccessibilityRole[39m=[32m"image"[39m
+              [36m/>[39m
+            [36m</View>[39m
+            [36m<View />[39m
+          [36m</View>[39m
+          [36m<View>[39m
+            [36m<RCTScrollView>[39m
+              [36m<View>[39m
+                [36m<View>[39m
+                  [36m<View>[39m
+                    [36m<Text[39m
+                      [33maccessibilityRole[39m=[32m"header"[39m
+                    [36m>[39m
+                      [0mEnglish fixture: Check your email[0m
+                    [36m</Text>[39m
+                    [36m<View>[39m
+                      [36m<Text>[39m
+                        [0mEnglish fixture: Enter the verification code sent to[0m
+                      [36m</Text>[39m
+                      [36m<Text>[39m
+                        [0mperson@example.com[0m
+                      [36m</Text>[39m
+                    [36m</View>[39m
+                  [36m</View>[39m
+                  [36m<View>[39m
+                    [36m<Text>[39m
+                      [0mEnglish fixture: Verification code[0m
+                    [36m</Text>[39m
+                    [36m<View>[39m
+                      [36m<TextInput[39m
+                        [33maccessibilityHint[39m=[32m"English fixture: Enter or paste the six-digit code from your email"[39m
+                        [33maccessibilityLabel[39m=[32m"English fixture: Verification code"[39m
+                        [33maccessibilityState[39m=[32m{
+                          {
+                            "disabled": false,
+                          }
+                        }[39m
+                        [33meditable[39m=[32m{true}[39m
+                        [33mtestID[39m=[32m"field-verification-code"[39m
+                        [33mvalue[39m=[32m""[39m
+                      [36m/>[39m
+                    [36m</View>[39m
+                    [36m<Text>[39m
+                      [0mEnglish fixture: Enter the 6-digit code from your email.[0m
+                    [36m</Text>[39m
+                  [36m</View>[39m
+                  [36m<View[39m
+                    [33maccessibilityLabel[39m=[32m"English fixture: Verify code"[39m
+                    [33maccessibilityRole[39m=[32m"button"[39m
+                    [33maccessibilityState[39m=[32m{
+                      {
+                        "busy": false,
+                        "disabled": false,
+                      }
+                    }[39m
+                    [33maccessible[39m=[32m{true}[39m
+                  [36m>[39m
+                    [36m<View>[39m
+                      [36m<Text>[39m
+                        [0mEnglish fixture: Verify code[0m
+                      [36m</Text>[39m
+                      [36m<Text[39m
+                        [33maccessibilityElementsHidden[39m=[32m{true}[39m
+                        [33mimportantForAccessibility[39m=[32m"no"[39m
+                      [36m>[39m
+                        [0m→[0m
+                      [36m</Text>[39m
+                    [36m</View>[39m
+                  [36m</View>[39m
+                  [36m<View>[39m
+                    [36m<Text>[39m
+                      [0mEnglish fixture: Didn't receive it?[0m
+                    [36m</Text>[39m
+                    [36m<View[39m
+                      [33maccessibilityLabel[39m=[32m"English fixture: Resend code"[39m
+                      [33maccessibilityRole[39m=[32m"button"[39m
+                      [33maccessibilityState[39m=[32m{
+                        {
+                          "busy": false,
+                          "disabled": false,
+                        }
+                      }[39m
+                      [33maccessible[39m=[32m{true}[39m
+                    [36m>[39m
+                      [36m<View>[39m
+                        [36m<Text>[39m
+                          [0mEnglish fixture: Resend code[0m
+                        [36m</Text>[39m
+                      [36m</View>[39m
+                    [36m</View>[39m
+                  [36m</View>[39m
+                  [36m<Text[39m
+                    [33maccessibilityRole[39m=[32m"alert"[39m
+                    [33maccessibilityState[39m=[32m{
+                      {
+                        "busy": false,
+                      }
+                    }[39m
+                  [36m>[39m
+                    [0mTry again after 2 seconds.[0m
+                  [36m</Text>[39m
+                [36m</View>[39m
+              [36m</View>[39m
+            [36m</RCTScrollView>[39m
+          [36m</View>[39m
+        [36m</View>[39m
+      [36m</RNCSafeAreaView>[39m
+    [36m</View>[39m
+
+      472 |   fireEvent.changeText(screen.getByLabelText('English fixture: Password'), 'password');
+      473 |   fireEvent.press(screen.getByRole('button', {name: 'English fixture: Log in'}));
+    > 474 |   await waitFor(() => expect(screen.getByText(String(expected))).toBeTruthy());
+          |                ^
+      475 |   expect(screen.getByText('person@example.com')).toBeTruthy();
+      476 | });
+      477 |
+
+      at src/auth/login.test.tsx:474:16
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● WEA-28 S04 renders scoped retry 60 without changing email display
+
+    Unable to find an element with text: English fixture: Try again after 60 seconds.
+
+    [36m<View>[39m
+      [36m<RNCSafeAreaView[39m
+        [33mtestID[39m=[32m"login-safe-area"[39m
+      [36m>[39m
+        [36m<View>[39m
+          [36m<View>[39m
+            [36m<View>[39m
+              [36m<View[39m
+                [33maccessibilityLabel[39m=[32m"English fixture: Choose another method"[39m
+                [33maccessibilityRole[39m=[32m"button"[39m
+                [33maccessibilityState[39m=[32m{
+                  {
+                    "disabled": false,
+                  }
+                }[39m
+                [33maccessible[39m=[32m{true}[39m
+              [36m>[39m
+                [36m<Text>[39m
+                  [0m←[0m
+                [36m</Text>[39m
+              [36m</View>[39m
+            [36m</View>[39m
+            [36m<View>[39m
+              [36m<Image[39m
+                [33maccessibilityLabel[39m=[32m"Weave"[39m
+                [33maccessibilityRole[39m=[32m"image"[39m
+              [36m/>[39m
+            [36m</View>[39m
+            [36m<View />[39m
+          [36m</View>[39m
+          [36m<View>[39m
+            [36m<RCTScrollView>[39m
+              [36m<View>[39m
+                [36m<View>[39m
+                  [36m<View>[39m
+                    [36m<Text[39m
+                      [33maccessibilityRole[39m=[32m"header"[39m
+                    [36m>[39m
+                      [0mEnglish fixture: Check your email[0m
+                    [36m</Text>[39m
+                    [36m<View>[39m
+                      [36m<Text>[39m
+                        [0mEnglish fixture: Enter the verification code sent to[0m
+                      [36m</Text>[39m
+                      [36m<Text>[39m
+                        [0mperson@example.com[0m
+                      [36m</Text>[39m
+                    [36m</View>[39m
+                  [36m</View>[39m
+                  [36m<View>[39m
+                    [36m<Text>[39m
+                      [0mEnglish fixture: Verification code[0m
+                    [36m</Text>[39m
+                    [36m<View>[39m
+                      [36m<TextInput[39m
+                        [33maccessibilityHint[39m=[32m"English fixture: Enter or paste the six-digit code from your email"[39m
+                        [33maccessibilityLabel[39m=[32m"English fixture: Verification code"[39m
+                        [33maccessibilityState[39m=[32m{
+                          {
+                            "disabled": false,
+                          }
+                        }[39m
+                        [33meditable[39m=[32m{true}[39m
+                        [33mtestID[39m=[32m"field-verification-code"[39m
+                        [33mvalue[39m=[32m""[39m
+                      [36m/>[39m
+                    [36m</View>[39m
+                    [36m<Text>[39m
+                      [0mEnglish fixture: Enter the 6-digit code from your email.[0m
+                    [36m</Text>[39m
+                  [36m</View>[39m
+                  [36m<View[39m
+                    [33maccessibilityLabel[39m=[32m"English fixture: Verify code"[39m
+                    [33maccessibilityRole[39m=[32m"button"[39m
+                    [33maccessibilityState[39m=[32m{
+                      {
+                        "busy": false,
+                        "disabled": false,
+                      }
+                    }[39m
+                    [33maccessible[39m=[32m{true}[39m
+                  [36m>[39m
+                    [36m<View>[39m
+                      [36m<Text>[39m
+                        [0mEnglish fixture: Verify code[0m
+                      [36m</Text>[39m
+                      [36m<Text[39m
+                        [33maccessibilityElementsHidden[39m=[32m{true}[39m
+                        [33mimportantForAccessibility[39m=[32m"no"[39m
+                      [36m>[39m
+                        [0m→[0m
+                      [36m</Text>[39m
+                    [36m</View>[39m
+                  [36m</View>[39m
+                  [36m<View>[39m
+                    [36m<Text>[39m
+                      [0mEnglish fixture: Didn't receive it?[0m
+                    [36m</Text>[39m
+                    [36m<View[39m
+                      [33maccessibilityLabel[39m=[32m"English fixture: Resend code"[39m
+                      [33maccessibilityRole[39m=[32m"button"[39m
+                      [33maccessibilityState[39m=[32m{
+                        {
+                          "busy": false,
+                          "disabled": false,
+                        }
+                      }[39m
+                      [33maccessible[39m=[32m{true}[39m
+                    [36m>[39m
+                      [36m<View>[39m
+                        [36m<Text>[39m
+                          [0mEnglish fixture: Resend code[0m
+                        [36m</Text>[39m
+                      [36m</View>[39m
+                    [36m</View>[39m
+                  [36m</View>[39m
+                  [36m<Text[39m
+                    [33maccessibilityRole[39m=[32m"alert"[39m
+                    [33maccessibilityState[39m=[32m{
+                      {
+                        "busy": false,
+                      }
+                    }[39m
+                  [36m>[39m
+                    [0mTry again after 60 seconds.[0m
+                  [36m</Text>[39m
+                [36m</View>[39m
+              [36m</View>[39m
+            [36m</RCTScrollView>[39m
+          [36m</View>[39m
+        [36m</View>[39m
+      [36m</RNCSafeAreaView>[39m
+    [36m</View>[39m
+
+      472 |   fireEvent.changeText(screen.getByLabelText('English fixture: Password'), 'password');
+      473 |   fireEvent.press(screen.getByRole('button', {name: 'English fixture: Log in'}));
+    > 474 |   await waitFor(() => expect(screen.getByText(String(expected))).toBeTruthy());
+          |                ^
+      475 |   expect(screen.getByText('person@example.com')).toBeTruthy();
+      476 | });
+      477 |
+
+      at src/auth/login.test.tsx:474:16
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+Test Suites: 1 failed, 1 total
+Tests:       4 failed, 21 skipped, 25 total
+Snapshots:   0 total
+Time:        4.613 s, estimated 6 s
+Ran all test suites matching /src\/auth\/login.test.tsx/i with tests matching "WEA-28 S04".
+undefined
+/Users/pravinraj/workspace/weave/apps/mobile:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: jest --runInBand '--watchman=false' src/auth/login.test.tsx -t 'WEA-28 S04'

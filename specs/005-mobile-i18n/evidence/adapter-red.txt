@@ -1,0 +1,118 @@
+FAIL src/localization/infrastructure/i18next-translator.test.ts
+  ✕ WEA-28 S01/S05 uses scoped bundled resources synchronously (2 ms)
+  ✕ WEA-28 S07 engines own independent copied resource trees
+  ✕ WEA-28 S05 rejects invalid engine output ""
+  ✕ WEA-28 S05 rejects invalid engine output "login.submit"
+  ✕ WEA-28 S05 rejects invalid engine output "{{credential}}"
+  ✕ WEA-28 S05 rejects invalid engine output {"value": "bad"}
+  ✕ WEA-28 S05 unavailable engine/resource has readable canonical English
+
+  ● WEA-28 S01/S05 uses scoped bundled resources synchronously
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "Enter this workspace"
+    Received: "Log in"
+
+       7 | test('WEA-28 S01/S05 uses scoped bundled resources synchronously', () => {
+       8 |   const translator = createI18nextTranslator({catalog: {...englishCatalog, 'login.submit': 'Enter this workspace'}});
+    >  9 |   expect(translator.text(MESSAGE.LOGIN_SUBMIT)).toBe('Enter this workspace');
+         |                                                 ^
+      10 | });
+      11 |
+      12 | test('WEA-28 S07 engines own independent copied resource trees', () => {
+
+      at Object.toBe (src/localization/infrastructure/i18next-translator.test.ts:9:49)
+
+  ● WEA-28 S07 engines own independent copied resource trees
+
+    TypeError: firstEngine.addResource is not a function
+
+      15 |   const first = createI18nextTranslator({createEngine: () => firstEngine});
+      16 |   const second = createI18nextTranslator({createEngine: () => secondEngine});
+    > 17 |   firstEngine.addResource('en', 'translation', 'login.submit', 'Enter first workspace');
+         |               ^
+      18 |   expect(first.text(MESSAGE.LOGIN_SUBMIT)).toBe('Enter first workspace');
+      19 |   expect(second.text(MESSAGE.LOGIN_SUBMIT)).toBe('Log in');
+      20 |   expect(englishCatalog['login.submit']).toBe('Log in');
+
+      at Object.addResource (src/localization/infrastructure/i18next-translator.test.ts:17:15)
+
+  ● WEA-28 S05 rejects invalid engine output ""
+
+    TypeError: engine.addResource is not a function
+
+      24 |   const engine = createInstance();
+      25 |   const translator = createI18nextTranslator({createEngine: () => engine});
+    > 26 |   engine.addResource('en', 'translation', 'login.submit', value);
+         |          ^
+      27 |   expect(translator.text(MESSAGE.LOGIN_SUBMIT)).toBe('Log in');
+      28 | });
+      29 |
+
+      at addResource (src/localization/infrastructure/i18next-translator.test.ts:26:10)
+
+  ● WEA-28 S05 rejects invalid engine output "login.submit"
+
+    TypeError: engine.addResource is not a function
+
+      24 |   const engine = createInstance();
+      25 |   const translator = createI18nextTranslator({createEngine: () => engine});
+    > 26 |   engine.addResource('en', 'translation', 'login.submit', value);
+         |          ^
+      27 |   expect(translator.text(MESSAGE.LOGIN_SUBMIT)).toBe('Log in');
+      28 | });
+      29 |
+
+      at addResource (src/localization/infrastructure/i18next-translator.test.ts:26:10)
+
+  ● WEA-28 S05 rejects invalid engine output "{{credential}}"
+
+    TypeError: engine.addResource is not a function
+
+      24 |   const engine = createInstance();
+      25 |   const translator = createI18nextTranslator({createEngine: () => engine});
+    > 26 |   engine.addResource('en', 'translation', 'login.submit', value);
+         |          ^
+      27 |   expect(translator.text(MESSAGE.LOGIN_SUBMIT)).toBe('Log in');
+      28 | });
+      29 |
+
+      at addResource (src/localization/infrastructure/i18next-translator.test.ts:26:10)
+
+  ● WEA-28 S05 rejects invalid engine output {"value": "bad"}
+
+    TypeError: engine.addResource is not a function
+
+      24 |   const engine = createInstance();
+      25 |   const translator = createI18nextTranslator({createEngine: () => engine});
+    > 26 |   engine.addResource('en', 'translation', 'login.submit', value);
+         |          ^
+      27 |   expect(translator.text(MESSAGE.LOGIN_SUBMIT)).toBe('Log in');
+      28 | });
+      29 |
+
+      at addResource (src/localization/infrastructure/i18next-translator.test.ts:26:10)
+
+  ● WEA-28 S05 unavailable engine/resource has readable canonical English
+
+    TypeError: engine.removeResourceBundle is not a function
+
+      31 |   const engine = createInstance();
+      32 |   const translator = createI18nextTranslator({createEngine: () => engine});
+    > 33 |   engine.removeResourceBundle('en', 'translation');
+         |          ^
+      34 |   expect(translator.text(MESSAGE.LOGIN_SUBMIT)).toBe('Log in');
+      35 |   expect(createI18nextTranslator({createEngine: () => {throw new Error('engine fault');}}).text(MESSAGE.RECOVERY_RELOAD)).toBe('Reload');
+      36 | });
+
+      at Object.removeResourceBundle (src/localization/infrastructure/i18next-translator.test.ts:33:10)
+
+Test Suites: 1 failed, 1 total
+Tests:       7 failed, 7 total
+Snapshots:   0 total
+Time:        0.245 s
+Ran all test suites matching /src\/localization\/infrastructure\/i18next-translator.test.ts/i.
+undefined
+/Users/pravinraj/workspace/weave/apps/mobile:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: jest --runInBand '--watchman=false' src/localization/infrastructure/i18next-translator.test.ts

@@ -1,3 +1,6 @@
+import {useTextTranslator} from '../localization/presentation/localization-context';
+import {MESSAGE} from '../localization/messages';
+
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import type {NavigationContainerRefWithCurrent} from '@react-navigation/native';
@@ -7,10 +10,10 @@ import {Screen} from '../components/screen';
 import {Button} from '../components/button';
 import {Feedback} from '../components/feedback';
 import {useAuthController, useAuthSelector} from '../auth/presentation/auth-context';
-import {authMessages} from '../auth/presentation/auth-messages';
+import {resolveAuthMessage} from '../auth/presentation/auth-messages';
 import {LoginScreen} from '../auth/presentation/login-screen';
 import {HomeScreen} from '../auth/presentation/home-screen';
-import {AUTH_ERROR_CODE, SESSION_STATUS} from '../auth/domain/auth-models';
+import {SESSION_STATUS} from '../auth/domain/auth-models';
 
 // React Navigation requires a type alias to preserve its closed route-name union.
 
@@ -26,6 +29,7 @@ export interface RootNavigatorProps {
 const Stack = createNativeStackNavigator<RootParams>();
 
 export function RootNavigator({navigationRef}: RootNavigatorProps): React.JSX.Element {
+  const text = useTextTranslator();
   const status = useAuthSelector((state) => state.session.status);
   const error = useAuthSelector((state) => state.error);
   const controller = useAuthController();
@@ -33,16 +37,16 @@ export function RootNavigator({navigationRef}: RootNavigatorProps): React.JSX.El
   if (status === SESSION_STATUS.RESOLVING)
     return (
       <Screen>
-        <Feedback message="Checking your session…" busy />
+        <Feedback message={text.text(MESSAGE.STATUS_CHECKING_SESSION)} busy />
       </Screen>
     );
 
   if (status === SESSION_STATUS.UNAVAILABLE)
     return (
       <Screen>
-        <Feedback message={authMessages[error?.code ?? AUTH_ERROR_CODE.UNEXPECTED]} />
+        <Feedback message={resolveAuthMessage(error?.code, text)} />
         <Button
-          label="Try again"
+          label={text.text(MESSAGE.COMMON_TRY_AGAIN)}
           onPress={() => {
             void controller.refresh();
           }}

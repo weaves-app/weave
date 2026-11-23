@@ -1,3 +1,6 @@
+import {useTextTranslator} from '../../localization/presentation/localization-context';
+import {MESSAGE} from '../../localization/messages';
+
 import type {ReactNode} from 'react';
 import {Image, StyleSheet, View, useWindowDimensions} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -23,14 +26,14 @@ interface AuthLayoutProps {
 }
 
 function AuthArtwork(): React.JSX.Element {
+  const text = useTextTranslator();
+
   return (
     <View style={styles.artwork}>
       <Image source={bagHero} style={styles.hero} accessible={false} />
       <SafeAreaView edges={[SAFE_AREA_EDGE.BOTTOM, SAFE_AREA_EDGE.LEFT]} style={styles.story}>
-        <Typography variant={VARIANT.TITLE}>Everything, woven together.</Typography>
-        <Typography variant={VARIANT.SUPPORTING}>
-          {'No more loose threads.\nFrom order to shelf.'}
-        </Typography>
+        <Typography variant={VARIANT.TITLE}>{text.text(MESSAGE.BRAND_TAGLINE)}</Typography>
+        <Typography variant={VARIANT.SUPPORTING}>{text.text(MESSAGE.BRAND_STORY)}</Typography>
       </SafeAreaView>
     </View>
   );

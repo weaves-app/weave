@@ -1,3 +1,6 @@
+import {useTextTranslator} from '../../localization/presentation/localization-context';
+import {MESSAGE} from '../../localization/messages';
+
 import {Pressable, StyleSheet, Text, View} from 'react-native';
 
 import {tokens} from '@weave/design-tokens';
@@ -17,29 +20,34 @@ export function AuthMethodTabs({
   disabled,
   onSelect,
 }: AuthMethodTabsProps): React.JSX.Element {
+  const text = useTextTranslator();
   const emailCodeSelected = method === AUTH_METHOD.EMAIL_CODE;
 
   return (
     <View style={styles.tabs}>
       <Pressable
         accessibilityRole={ACCESSIBILITY_ROLE.BUTTON}
-        accessibilityLabel="Email and password"
+        accessibilityLabel={text.text(MESSAGE.LOGIN_PASSWORD_METHOD_LABEL)}
         accessibilityState={{disabled, selected: !emailCodeSelected}}
         disabled={disabled}
         onPress={() => onSelect(AUTH_METHOD.PASSWORD)}
         style={[styles.tab, !emailCodeSelected && styles.selected, disabled && styles.disabled]}
       >
-        <Text style={[styles.label, !emailCodeSelected && styles.selectedLabel]}>Password</Text>
+        <Text style={[styles.label, !emailCodeSelected && styles.selectedLabel]}>
+          {text.text(MESSAGE.LOGIN_PASSWORD_METHOD)}
+        </Text>
       </Pressable>
       <Pressable
         accessibilityRole={ACCESSIBILITY_ROLE.BUTTON}
-        accessibilityLabel="Email code"
+        accessibilityLabel={text.text(MESSAGE.LOGIN_EMAIL_CODE_METHOD)}
         accessibilityState={{disabled, selected: emailCodeSelected}}
         disabled={disabled}
         onPress={() => onSelect(AUTH_METHOD.EMAIL_CODE)}
         style={[styles.tab, emailCodeSelected && styles.selected, disabled && styles.disabled]}
       >
-        <Text style={[styles.label, emailCodeSelected && styles.selectedLabel]}>Email code</Text>
+        <Text style={[styles.label, emailCodeSelected && styles.selectedLabel]}>
+          {text.text(MESSAGE.LOGIN_EMAIL_CODE_METHOD)}
+        </Text>
       </Pressable>
     </View>
   );
