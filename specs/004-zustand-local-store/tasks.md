@@ -161,3 +161,7 @@ Retain existing domain field contracts: session status/generation/revision with 
 ## Phase 7: Convergence
 
 - [ ] T037 Complete the outstanding Android/iOS live-provider, restart, interruption, screen-reader and enlarged-text journeys in `specs/004-zustand-local-store/contracts/scenario-tests.md`, record actual evidence in `specs/004-zustand-local-store/evidence/device-acceptance.md`, and close T034 only after both platforms are verified per SC-001 (partial, HIGH). Automated/native evidence does not waive this acceptance.
+
+## Review follow-up
+
+- [x] T039 Carry the parent sign-in corrections through the stack and rerun the existing store and recovery tests. Verify through Root-scoped authentication runtime and LoginScreen and record the results.

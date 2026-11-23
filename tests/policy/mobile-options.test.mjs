@@ -11,7 +11,13 @@ for (const [label, cwd, filePath] of [
 ]) {
   const eslint = new ESLint({
     cwd,
-    overrideConfig: {languageOptions: {parserOptions: {tsconfigRootDir: cwd}}},
+    overrideConfig: {
+      languageOptions: {
+        // Each lintText call replaces the source at filePath. Keep the type
+        // program in sync with the snippet, including its real project imports.
+        parserOptions: {tsconfigRootDir: cwd, disallowAutomaticSingleRunInference: true},
+      },
+    },
   });
 
   for (const [source, expected] of [

@@ -15,6 +15,7 @@ final class ProviderFixture: AuthProvider {
   var session: ProviderSession? = ProviderSession(sessionId: "sess_1", accountId: "user_1", active: true, hasPendingTasks: false)
   var attempt = ProviderAttempt(id: "provider_attempt", stage: .complete, createdSessionId: "sess_1")
   var failure: AuthFailure?
+  var signOutFailure: AuthFailure?
   var freshValidationCalls = 0
   var googleTransferable: Bool?
   var verifyPurposes: [String] = []
@@ -50,6 +51,7 @@ final class ProviderFixture: AuthProvider {
   func signOut(sessionId: String) async throws {
     if delaySignOut { await withCheckedContinuation { signOutContinuation = $0 } }
     if clearBeforeSignOutFailure && storedSessionId == sessionId { storedSessionId = nil }
+    if let signOutFailure { throw signOutFailure }
     if let failure { throw failure }
     revoked.append(sessionId)
     if storedSessionId == sessionId { storedSessionId = nil; session = nil }
@@ -63,6 +65,11 @@ final class ProviderFixture: AuthProvider {
 
 final class WeaveAuthBehaviorTests: XCTestCase {
   @MainActor
+  private func makeService(_ provider: ProviderFixture) -> ClerkAuthService {
+    ClerkAuthService(provider: provider, obsoleteSessionStore: KeychainObsoleteSessionStore(access: KeychainFixture()))
+  }
+
+  @MainActor
   private func execute(_ service: ClerkAuthService, _ command: String, _ inputs: [String: Any] = [:], generation: Int = 1) async -> [String: Any] {
     var payload = inputs
     payload["generation"] = generation
@@ -75,7 +82,7 @@ final class WeaveAuthBehaviorTests: XCTestCase {
   @MainActor
   func testCompletedPasswordRequiresFreshActiveSessionValidation() async {
     let provider = ProviderFixture()
-    let result = await execute(ClerkAuthService(provider: provider), "password", ["email": "fixture@example.test", "password": "seeded-secret"])
+    let result = await execute(makeService(provider), "password", ["email": "fixture@example.test", "password": "seeded-secret"])
     XCTAssertEqual(result["status"] as? String, "active")
     XCTAssertEqual(result["sessionId"] as? String, "sess_1")
     XCTAssertEqual(result["accountId"] as? String, "user_1")
@@ -88,7 +95,7 @@ final class WeaveAuthBehaviorTests: XCTestCase {
   func testCachedIdentityDoesNotAuthorizeWhenFreshValidationFails() async {
     let provider = ProviderFixture()
     provider.failure = .network
-    let result = await execute(ClerkAuthService(provider: provider), "resolveSession", ["forceFresh": true])
+    let result = await execute(makeService(provider), "resolveSession", ["forceFresh": true])
     XCTAssertEqual(result["status"] as? String, "unavailable")
     XCTAssertNil(result["sessionId"])
     XCTAssertEqual(provider.freshValidationCalls, 1)
@@ -98,7 +105,7 @@ final class WeaveAuthBehaviorTests: XCTestCase {
   func testProviderSessionTasksBlockCompletedAuthentication() async {
     let provider = ProviderFixture()
     provider.session = ProviderSession(sessionId: "sess_1", accountId: "user_1", active: true, hasPendingTasks: true)
-    let result = await execute(ClerkAuthService(provider: provider), "password", ["email": "fixture@example.test", "password": "seeded-secret"])
+    let result = await execute(makeService(provider), "password", ["email": "fixture@example.test", "password": "seeded-secret"])
     XCTAssertEqual(result["code"] as? String, "verificationRequired")
     XCTAssertNil(result["sessionId"])
   }
@@ -106,7 +113,7 @@ final class WeaveAuthBehaviorTests: XCTestCase {
   @MainActor
   func testGoogleExplicitlyDisablesSignupTransfer() async {
     let provider = ProviderFixture()
-    let result = await execute(ClerkAuthService(provider: provider), "google")
+    let result = await execute(makeService(provider), "google")
     XCTAssertEqual(result["status"] as? String, "active")
     XCTAssertEqual(provider.googleTransferable, false)
   }
@@ -115,7 +122,7 @@ final class WeaveAuthBehaviorTests: XCTestCase {
   func testUnknownGoogleIdentityDoesNotActivateOrCreateAccount() async {
     let provider = ProviderFixture()
     provider.attempt = ProviderAttempt(id: "unknown", stage: .existingAccountRequired, createdSessionId: nil)
-    let result = await execute(ClerkAuthService(provider: provider), "google")
+    let result = await execute(makeService(provider), "google")
     XCTAssertEqual(result["code"] as? String, "existingAccountRequired")
     XCTAssertNil(result["sessionId"])
     XCTAssertEqual(provider.freshValidationCalls, 0)
@@ -125,7 +132,7 @@ final class WeaveAuthBehaviorTests: XCTestCase {
   func testEmailCodeChallengeSurvivesNewVerificationGeneration() async {
     let provider = ProviderFixture()
     provider.attempt = ProviderAttempt(id: "provider_attempt", stage: .emailCode, createdSessionId: nil)
-    let service = ClerkAuthService(provider: provider)
+    let service = makeService(provider)
     let challenge = await execute(service, "requestCode", ["email": "fixture@example.test"])
     XCTAssertEqual(challenge["kind"] as? String, "challenge")
     XCTAssertEqual(challenge["codePurpose"] as? String, "signIn")
@@ -142,7 +149,7 @@ final class WeaveAuthBehaviorTests: XCTestCase {
   func testPasswordDeviceTrustChallengeUsesSupportedCodePurpose() async {
     let provider = ProviderFixture()
     provider.attempt = ProviderAttempt(id: "provider_attempt", stage: .deviceTrust, createdSessionId: nil)
-    let result = await execute(ClerkAuthService(provider: provider), "password", ["email": "fixture@example.test", "password": "seeded-secret"])
+    let result = await execute(makeService(provider), "password", ["email": "fixture@example.test", "password": "seeded-secret"])
     XCTAssertEqual(result["kind"] as? String, "challenge")
     XCTAssertEqual(result["codePurpose"] as? String, "deviceTrust")
     XCTAssertEqual(provider.freshValidationCalls, 0)
@@ -152,7 +159,7 @@ final class WeaveAuthBehaviorTests: XCTestCase {
   func testUnsupportedFactorDoesNotActivateSession() async {
     let provider = ProviderFixture()
     provider.attempt = ProviderAttempt(id: "provider_attempt", stage: .unsupported, createdSessionId: nil)
-    let result = await execute(ClerkAuthService(provider: provider), "password", ["email": "fixture@example.test", "password": "seeded-secret"])
+    let result = await execute(makeService(provider), "password", ["email": "fixture@example.test", "password": "seeded-secret"])
     XCTAssertEqual(result["code"] as? String, "verificationRequired")
     XCTAssertEqual(provider.freshValidationCalls, 0)
   }
@@ -162,7 +169,7 @@ final class WeaveAuthBehaviorTests: XCTestCase {
     for code in [AuthFailure.rejectedCredentials, .codeInvalid, .codeExpired, .rateLimited, .storage, .cancelled] {
       let provider = ProviderFixture()
       provider.failure = code
-      let result = await execute(ClerkAuthService(provider: provider), "password", ["email": "fixture@example.test", "password": "seeded-secret"])
+      let result = await execute(makeService(provider), "password", ["email": "fixture@example.test", "password": "seeded-secret"])
       XCTAssertEqual(result["code"] as? String, code.rawValue)
       XCTAssertNil(result["sessionId"])
       XCTAssertFalse(String(describing: result).contains("seeded-secret"))
@@ -172,7 +179,7 @@ final class WeaveAuthBehaviorTests: XCTestCase {
   @MainActor
   func testLearnedInvalidationPublishesOrderedSignedOutEvent() async {
     let provider = ProviderFixture()
-    let service = ClerkAuthService(provider: provider)
+    let service = makeService(provider)
     var events: [[String: Any]] = []
     service.onSnapshot = { encoded in
       events.append((try! JSONSerialization.jsonObject(with: Data(encoded.utf8))) as! [String: Any])
@@ -189,7 +196,7 @@ final class WeaveAuthBehaviorTests: XCTestCase {
   func testAbandonedLateActivationEndsOnlyObsoleteNewSession() async {
     let provider = ProviderFixture()
     provider.delayPassword = true
-    let service = ClerkAuthService(provider: provider)
+    let service = makeService(provider)
     let pending = Task { await self.execute(service, "password", ["email": "fixture@example.test", "password": "seeded-secret"])["code"] as? String }
     for _ in 0..<20 where provider.passwordContinuation == nil { await Task.yield() }
     XCTAssertNotNil(provider.passwordContinuation)
@@ -202,12 +209,68 @@ final class WeaveAuthBehaviorTests: XCTestCase {
     XCTAssertEqual(provider.storedSessionId, "sess_newer")
   }
 
+  @MainActor
+  func testRetryAndReloadReconcileAbandonedSessionAfterCleanupFailure() async {
+    let provider = ProviderFixture()
+    provider.delayPassword = true
+    let service = makeService(provider)
+    let pending = Task { await self.execute(service, "password", ["email": "fixture@example.test", "password": "seeded-secret"])["code"] as? String }
+    for _ in 0..<20 where provider.passwordContinuation == nil { await Task.yield() }
+    guard let continuation = provider.passwordContinuation else { return XCTFail("Password did not suspend") }
+    _ = await execute(service, "abandon")
+    provider.failure = .network
+    continuation.resume(returning: provider.attempt)
+    let originalFailure = await pending.value
+    XCTAssertEqual(originalFailure, "network")
+
+    let offline = await execute(service, "resolveSession", ["forceFresh": true], generation: 2)
+    XCTAssertEqual(offline["status"] as? String, "unavailable")
+    XCTAssertNil(offline["sessionId"])
+
+    provider.failure = nil
+    let recovered = await execute(service, "resolveSession", ["forceFresh": true], generation: 3)
+    XCTAssertEqual(recovered["status"] as? String, "signedOut")
+    XCTAssertEqual(provider.revoked, ["sess_1"])
+    let reloaded = await execute(service, "resolveSession", ["forceFresh": true], generation: 4)
+    XCTAssertEqual(reloaded["status"] as? String, "signedOut")
+    XCTAssertEqual(provider.revoked, ["sess_1"])
+  }
+
+  @MainActor
+  func testRestartReconcilesStoredObsoleteSessionBeforeAuthorizingAccess() async {
+    let provider = ProviderFixture()
+    let keychain = KeychainFixture()
+    provider.delayPassword = true
+    var service = ClerkAuthService(provider: provider, obsoleteSessionStore: KeychainObsoleteSessionStore(access: keychain))
+    let original = service
+    let pending = Task { await self.execute(original, "password", ["email": "fixture@example.test", "password": "seeded-secret"])["code"] as? String }
+    for _ in 0..<20 where provider.passwordContinuation == nil { await Task.yield() }
+    guard let continuation = provider.passwordContinuation else { return XCTFail("Password did not suspend") }
+    _ = await execute(original, "abandon")
+    provider.signOutFailure = .network
+    continuation.resume(returning: provider.attempt)
+    let originalFailure = await pending.value
+    XCTAssertEqual(originalFailure, "network")
+
+    service = ClerkAuthService(provider: provider, obsoleteSessionStore: KeychainObsoleteSessionStore(access: keychain))
+    let blocked = await execute(service, "resolveSession", ["forceFresh": true])
+    XCTAssertEqual(blocked["status"] as? String, "unavailable")
+    XCTAssertNil(blocked["sessionId"])
+    XCTAssertEqual(provider.storedSessionId, "sess_1")
+
+    provider.signOutFailure = nil
+    let recovered = await execute(service, "resolveSession", ["forceFresh": true], generation: 2)
+    XCTAssertEqual(recovered["status"] as? String, "signedOut")
+    XCTAssertEqual(provider.revoked, ["sess_1"])
+    XCTAssertTrue(keychain.items.isEmpty)
+  }
+
 
   @MainActor
   func testFreshResolutionCannotAuthorizeWhileAbandonedActivationStillRuns() async {
     let provider = ProviderFixture()
     provider.delayPassword = true
-    let service = ClerkAuthService(provider: provider)
+    let service = makeService(provider)
     let pending = Task { await self.execute(service, "password", ["email": "fixture@example.test", "password": "seeded-secret"])["code"] as? String }
     for _ in 0..<20 where provider.passwordContinuation == nil { await Task.yield() }
     XCTAssertNotNil(provider.passwordContinuation)
@@ -223,7 +286,7 @@ final class WeaveAuthBehaviorTests: XCTestCase {
   @MainActor
   func testLogoutClearsOnlyCurrentSessionAndReturnsSignedOut() async {
     let provider = ProviderFixture()
-    let result = await execute(ClerkAuthService(provider: provider), "signOut", ["sessionId": "sess_1"])
+    let result = await execute(makeService(provider), "signOut", ["sessionId": "sess_1"])
     XCTAssertEqual(result["status"] as? String, "signedOut")
     XCTAssertEqual(provider.revoked, ["sess_1"])
     XCTAssertNil(provider.storedSessionId)
@@ -234,7 +297,7 @@ final class WeaveAuthBehaviorTests: XCTestCase {
   func testLogoutStorageFailureBeforeClearDoesNotReportSuccess() async {
     let provider = ProviderFixture()
     provider.failure = .storage
-    let result = await execute(ClerkAuthService(provider: provider), "signOut", ["sessionId": "sess_1"])
+    let result = await execute(makeService(provider), "signOut", ["sessionId": "sess_1"])
     XCTAssertEqual(result["code"] as? String, "storage")
     XCTAssertNil(result["status"])
     XCTAssertEqual(provider.storedSessionId, "sess_1")
@@ -245,7 +308,7 @@ final class WeaveAuthBehaviorTests: XCTestCase {
     let provider = ProviderFixture()
     provider.failure = .network
     provider.clearBeforeSignOutFailure = true
-    let result = await execute(ClerkAuthService(provider: provider), "signOut", ["sessionId": "sess_1"])
+    let result = await execute(makeService(provider), "signOut", ["sessionId": "sess_1"])
     XCTAssertEqual(result["status"] as? String, "signedOut")
     XCTAssertNil(provider.storedSessionId)
   }
@@ -253,7 +316,7 @@ final class WeaveAuthBehaviorTests: XCTestCase {
   @MainActor
   func testLogoutCannotClearUnrelatedCurrentSession() async {
     let provider = ProviderFixture()
-    let result = await execute(ClerkAuthService(provider: provider), "signOut", ["sessionId": "sess_unrelated"])
+    let result = await execute(makeService(provider), "signOut", ["sessionId": "sess_unrelated"])
     XCTAssertEqual(result["code"] as? String, "invalidInput")
     XCTAssertEqual(provider.storedSessionId, "sess_1")
     XCTAssertTrue(provider.revoked.isEmpty)
@@ -264,7 +327,7 @@ final class WeaveAuthBehaviorTests: XCTestCase {
   func testSDKLogoutInvalidationDoesNotCancelItsOwnSuccessfulOutcome() async {
     let provider = ProviderFixture()
     provider.emitInvalidationOnSignOut = true
-    let service = ClerkAuthService(provider: provider)
+    let service = makeService(provider)
     _ = await execute(service, "resolveSession", ["forceFresh": true])
     let result = await execute(service, "signOut", ["sessionId": "sess_1"], generation: 2)
     XCTAssertEqual(result["status"] as? String, "signedOut")
@@ -276,7 +339,7 @@ final class WeaveAuthBehaviorTests: XCTestCase {
   func testReloadCannotAuthorizeUntilPendingLogoutActuallySettles() async {
     let provider = ProviderFixture()
     provider.delaySignOut = true
-    let service = ClerkAuthService(provider: provider)
+    let service = makeService(provider)
     _ = await execute(service, "resolveSession", ["forceFresh": true])
     let pending = Task { await self.execute(service, "signOut", ["sessionId": "sess_1"], generation: 2)["code"] as? String }
     for _ in 0..<20 where provider.signOutContinuation == nil { await Task.yield() }
@@ -295,7 +358,7 @@ final class WeaveAuthBehaviorTests: XCTestCase {
   func testAbandonReleasesProviderAttemptsWithoutWipingSessionCredentials() async {
     let provider = ProviderFixture()
     provider.attempt = ProviderAttempt(id: "provider_attempt", stage: .emailCode, createdSessionId: nil)
-    let service = ClerkAuthService(provider: provider)
+    let service = makeService(provider)
     _ = await execute(service, "requestCode", ["email": "fixture@example.test"])
     _ = await execute(service, "abandon")
     XCTAssertEqual(provider.abandonedAttempts, 1)
@@ -308,7 +371,7 @@ final class WeaveAuthBehaviorTests: XCTestCase {
   func testLearnedLocalClearLeavesProtectedUIWhileLogoutNetworkIsPending() async {
     let provider = ProviderFixture()
     provider.delaySignOut = true
-    let service = ClerkAuthService(provider: provider)
+    let service = makeService(provider)
     var lastStatus: String?
     service.onSnapshot = { value in
       lastStatus = ((try? JSONSerialization.jsonObject(with: Data(value.utf8))) as? [String: Any])?["status"] as? String
@@ -330,7 +393,7 @@ final class WeaveAuthBehaviorTests: XCTestCase {
   func testDeviceTrustResendAndVerificationRetainPurposeAndSafeRetryErrors() async {
     let provider = ProviderFixture()
     provider.attempt = ProviderAttempt(id: "provider_attempt", stage: .deviceTrust, createdSessionId: nil)
-    let service = ClerkAuthService(provider: provider)
+    let service = makeService(provider)
     let challenge = await execute(service, "password", ["email": "fixture@example.test", "password": "seeded-secret"])
     let handle = challenge["attemptId"] as? String ?? "missing"
     let inputs: [String: Any] = ["attemptId": handle, "codePurpose": "deviceTrust", "code": "123456"]
@@ -358,7 +421,7 @@ final class WeaveAuthBehaviorTests: XCTestCase {
   func testForgedCodePurposeCannotBypassVerificationAndDisposePreservesSessionCredentials() async {
     let provider = ProviderFixture()
     provider.attempt = ProviderAttempt(id: "provider_attempt", stage: .emailCode, createdSessionId: nil)
-    let service = ClerkAuthService(provider: provider)
+    let service = makeService(provider)
     let challenge = await execute(service, "requestCode", ["email": "fixture@example.test"])
     let handle = challenge["attemptId"] as? String ?? "missing"
     let forged = await execute(service, "verifyCode", ["attemptId": handle, "codePurpose": "deviceTrust", "code": "123456"], generation: 2)
