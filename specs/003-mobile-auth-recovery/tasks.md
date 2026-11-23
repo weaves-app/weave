@@ -202,3 +202,7 @@ T055 correction: the owner identified `state.error?.code ?? 'unexpected'`. S22/S
 T055 navigation correction: also extract Home/Login and protected/public identifiers; enforce navigation JSX identifier props with meaningful RED/GREEN evidence.
 
 T055 complete audit follow-up: all mobile runtime option contexts audited and corrected. Typed ESLint regressions cover calls, objects, assignments, defaults, returns, ternaries, aliases, templates, assertions and JSX; domain/wire/render behavior verified through existing suites and both production bundles.
+
+## Review follow-up
+
+- [x] T056 Given an abandoned sign-in finishes late, when the first cleanup fails, then Retry, Reload, and a fresh native service must keep access closed until the unwanted session is ended. A successful cleanup lets the app resolve normally and an unrelated session must never be revoked. Given a provider rate-limit error, show the supplied wait time or the generic message, and clear the error duration on recovery. Exercise exported constants and invalid literals with a consistent typed lint program. Verify through ClerkAuthService.execute with a provider and persistence fixture, LoginScreen resend through the authentication gateway, ESLint through the mobile and root settings and record the results.

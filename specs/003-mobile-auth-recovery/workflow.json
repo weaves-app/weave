@@ -704,5 +704,18 @@
       "branch": "feat/WEA-10/mobile-auth-recovery",
       "pullRequest": "https://github.com/weaves-app/weave/pull/11"
     }
+  },
+  "reviewFollowup": {
+    "date": "2026-11-23",
+    "authorization": "Can you fix the comments posted in these PRs and update them",
+    "scenarioIds": ["S04", "S05", "S13", "S16", "S17", "S19", "S21", "S22", "S23"],
+    "scope": "Given an abandoned sign-in finishes late, when the first cleanup fails, then Retry, Reload, and a fresh native service must keep access closed until the unwanted session is ended. A successful cleanup lets the app resolve normally and an unrelated session must never be revoked. Given a provider rate-limit error, show the supplied wait time or the generic message, and clear the error duration on recovery. Exercise exported constants and invalid literals with a consistent typed lint program.",
+    "task": "T056",
+    "publicTestSeams": [
+      "ClerkAuthService.execute with a provider and persistence fixture",
+      "LoginScreen resend through the authentication gateway",
+      "ESLint through the mobile and root settings"
+    ],
+    "evidence": "evidence.md#review-follow-up"
   }
 }
