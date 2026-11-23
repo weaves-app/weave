@@ -1,0 +1,9 @@
+PASS src/features/notifications/account-delivery.test.tsx
+  ✓ S03/S08 the production root exposes safe notification recovery when the native module is unavailable (86 ms)
+  ✓ S03/S11 Home becomes ready only after the current server proof and leaves auth untouched (58 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       2 passed, 2 total
+Snapshots:   0 total
+Time:        1.033 s
+Ran all test suites matching /account-delivery.test.tsx/i.

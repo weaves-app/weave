@@ -1,0 +1,47 @@
+FAIL src/features/notifications/notification-root.test.tsx
+  ✓ S01 Home composes notification controls without replacing Logout or invoking auth commands (84 ms)
+  ✕ S09 removing a notification factory clears its panel and releases its root (536 ms)
+  ✕ S09 a native listener setup failure releases the already-created notification runtime (98 ms)
+
+  ● S09 removing a notification factory clears its panel and releases its root
+
+    expect(received).toBeNull()
+
+    Received: {"_fiber": {"_debugHookTypes": null, "_debugInfo": null, "_debugNeedsRemount": false, "_debugOwner": [FiberNode], "_debugStack": [Error: react-stack-top-frame], "_debugTask": null, "actualDuration": 0, "actualStartTime": 1792211424105, "alternate": [FiberNode], "child": [FiberNode], "childLanes": 0, "deletions": null, "dependencies": null, "elementType": "Text", "flags": 0, "index": 0, "key": null, "lanes": 0, "memoizedProps": [Object], "memoizedState": null, "mode": 3, "pendingProps": [Object], "ref": null, "refCleanup": null, "return": [FiberNode], "selfBaseDuration": 0, "sibling": null, "stateNode": [Object], "subtreeFlags": 0, "tag": 5, "treeBaseDuration": 0, "type": "Text", "updateQueue": null}}
+
+      63 |   await waitFor(() => expect(screen.getByText('Notifications')).toBeTruthy());
+      64 |   rerender(<AuthProvider createRuntime={authFactory}><NotificationRoot><HomeScreen /></NotificationRoot></AuthProvider>);
+    > 65 |   expect(screen.queryByText('Notifications')).toBeNull();
+         |                                               ^
+      66 |   expect(platform.release).toHaveBeenCalledTimes(1);
+      67 | });
+      68 |
+
+      at Object.toBeNull (src/features/notifications/notification-root.test.tsx:65:47)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● S09 a native listener setup failure releases the already-created notification runtime
+
+    expect(jest.fn()).toHaveBeenCalledTimes(expected)
+
+    Expected number of calls: 1
+    Received number of calls: 0
+
+      86 |     </AuthProvider>} />);
+      87 |     await waitFor(() => expect(screen.getByRole('button', {name: 'Reload'})).toBeTruthy());
+    > 88 |     expect(platform.release).toHaveBeenCalledTimes(1);
+         |                              ^
+      89 |   } finally { add.mockRestore(); errorLog.mockRestore(); }
+      90 | });
+      91 |
+
+      at Object.toHaveBeenCalledTimes (src/features/notifications/notification-root.test.tsx:88:30)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 1 passed, 3 total
+Snapshots:   0 total
+Time:        1.055 s
+Ran all test suites matching /src\/features\/notifications\/notification-root.test.tsx/i.

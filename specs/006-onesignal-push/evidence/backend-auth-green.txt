@@ -1,0 +1,29 @@
+▶ S11 real Clerk signature validation plus live session authority
+  ✔ native bearer without azp and permitted web azp derive account and expiry (10.317583ms)
+  ✔ rejects issuer before live lookup (1.072625ms)
+  ✔ rejects emptySubject before live lookup (0.835458ms)
+  ✔ rejects emptySession before live lookup (0.843333ms)
+  ✔ rejects expired before live lookup (1.341208ms)
+  ✔ rejects future before live lookup (0.675709ms)
+  ✔ rejects pending before live lookup (0.725875ms)
+  ✔ rejects unknownStatus before live lookup (0.710791ms)
+  ✔ rejects origin before live lookup (0.798083ms)
+  ✔ rejects malformedOrigin before live lookup (0.721667ms)
+  ✔ invalid signature and machine bearer rejected (36.467292ms)
+  ✔ configured audience is mandatory and must match (3.523125ms)
+  ✔ live pending session is rejected (0.790375ms)
+  ✔ live revoked session is rejected (0.759667ms)
+  ✔ live ended session is rejected (0.755ms)
+  ✔ live expired session is rejected (0.705541ms)
+  ✔ live unexpected session is rejected (0.73075ms)
+  ✔ live ownership and session ID must match (1.531667ms)
+  ✔ missing session is unauthorized but provider outages/config faults unavailable (3.712916ms)
+✔ S11 real Clerk signature validation plus live session authority (118.368083ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 20
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 223.0405

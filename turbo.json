@@ -42,6 +42,11 @@
       "dependsOn": ["^lint"],
       "outputs": [],
       "inputs": ["$TURBO_DEFAULT$", "$TURBO_ROOT$/eslint.config.mjs"]
+    },
+    "@weave/api#test": {
+      "dependsOn": ["^typecheck"],
+      "outputs": [],
+      "env": ["DATABASE_URL"]
     }
   },
   "globalDependencies": ["pnpm-lock.yaml"]

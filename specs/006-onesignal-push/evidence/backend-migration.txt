@@ -1,0 +1,20 @@
+$ prisma migrate deploy
+Loaded Prisma config from prisma.config.ts.
+
+Prisma schema loaded from prisma/schema.prisma.
+Datasource "db": PostgreSQL database "wea29_verify", schema "public" at "127.0.0.1:55449"
+
+2 migrations found in prisma/migrations
+
+Applying migration `20261002000000_init`
+Applying migration `20261016050000_notification_request_budget`
+
+The following migration(s) have been applied:
+
+migrations/
+  └─ 20261002000000_init/
+    └─ migration.sql
+  └─ 20261016050000_notification_request_budget/
+    └─ migration.sql
+
+All migrations have been successfully applied.

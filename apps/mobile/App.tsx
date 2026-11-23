@@ -1,3 +1,6 @@
+import {createNativeNotificationRuntime} from './src/features/notifications/native-notification-runtime';
+import {NotificationRoot} from './src/features/notifications';
+import type {NotificationFactory} from './src/features/notifications';
 import {createLocalizationRuntime} from './src/localization/localization-runtime';
 import {LocalizationProvider} from './src/localization/presentation/localization-context';
 import type {LocalizationFactory} from './src/localization/localization-runtime';
@@ -16,6 +19,7 @@ import {RootNavigator} from './src/navigation/root-navigator';
 import {AppErrorBoundary} from './src/recovery/app-error-boundary';
 
 export interface AppProps {
+  readonly createNotifications?: NotificationFactory;
   readonly createLocalization?: LocalizationFactory;
   readonly createRuntime?: () => AuthRuntime;
 }
@@ -26,6 +30,7 @@ function createRuntime(): AuthRuntime {
 
 export function App({
   createRuntime: factory = createRuntime,
+  createNotifications = createNativeNotificationRuntime,
   createLocalization = createLocalizationRuntime,
 }: AppProps): React.JSX.Element {
   return (
@@ -34,7 +39,9 @@ export function App({
         <SafeAreaProvider>
           <LocalizationProvider createRuntime={createLocalization}>
             <AuthProvider createRuntime={factory}>
-              <RootNavigator />
+              <NotificationRoot createRuntime={createNotifications}>
+                <RootNavigator />
+              </NotificationRoot>
               <StatusBar barStyle={STATUS_BAR_STYLE.DARK_CONTENT} />
             </AuthProvider>
           </LocalizationProvider>

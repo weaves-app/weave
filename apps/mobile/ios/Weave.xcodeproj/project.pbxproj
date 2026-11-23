@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00C395AE9C40BECD4822F8B6 /* NotificationFakes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4619A9138F3825459419345 /* NotificationFakes.swift */; };
 		0260DCD71DEBBC286CF4964F /* WeaveAuthBehaviorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5758615D6F396873E2368E /* WeaveAuthBehaviorTests.swift */; };
 		0503CCA505CFE7242CD38F52 /* KeychainHealthCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439FBBAEC659D64F9A8EF51C /* KeychainHealthCheck.swift */; };
 		0C80B921A6F3F58F76C31292 /* libPods-Weave.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-Weave.a */; };
@@ -14,22 +15,51 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		1A8070D8AA9EA574AB62AF6F /* WeaveAuthConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3853B54B9CF7D65538F22A10 /* WeaveAuthConfiguration.swift */; };
 		20E2D065D39823C6670EA0B1 /* ClerkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B2399E45410C3B586BC61E /* ClerkProvider.swift */; };
+		245A33E9EFF8EC4238929EF7 /* NotificationPresentationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40BFEEF11BFA6A2A4EDAE93 /* NotificationPresentationAdapter.swift */; };
+		257DFADA0E265431084ACAD4 /* NotificationCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E260671CD244AE987A6B39 /* NotificationCoordinatorTests.swift */; };
 		28785F00A91D0DD6CCD6E753 /* KeychainHealthCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439FBBAEC659D64F9A8EF51C /* KeychainHealthCheck.swift */; };
+		2C59588CE4E381B0838A014E /* NotificationPermissionAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5062373E577BC6BE14784F94 /* NotificationPermissionAdapter.swift */; };
 		2CD56B97279EC767780619AA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D1AAF1B061E25179705C450 /* Foundation.framework */; };
+		2D8905D2625798BFC3D89ACF /* NotificationPermissionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4A3EABCFEB48BC45918470 /* NotificationPermissionTests.swift */; };
+		3AD1AB81A85A0DE837BADD8C /* SessionAuthorizedTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56927A8AD66568CDF071C05A /* SessionAuthorizedTransport.swift */; };
 		40AD765419521D83977D0D6B /* Figtree-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 076A686AC70D44A179B309A1 /* Figtree-Regular.ttf */; };
+		4410643CB2206BC313000F15 /* NotificationWire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7227656F3BE09F82037992 /* NotificationWire.swift */; };
+		4819974CA9453A6BCCA14025 /* NotificationDeadline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B40DE60A691F577EDFCD0D3 /* NotificationDeadline.swift */; };
+		4B53CA2CAF304960D42EA240 /* NotificationConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4973A66EB3B9F0F945CC47 /* NotificationConfiguration.swift */; };
 		50DB323F18881246E5405A37 /* ClerkProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2F00969ED1146DADF415C1 /* ClerkProviderTests.swift */; };
+		535084871E967A76D6BF7A87 /* NotificationAuthorityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EE8C94186B225D2686420A /* NotificationAuthorityTests.swift */; };
+		642CFE818327C3FFCE9ED244 /* ClerkSessionAuthorizedTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8A3CAEDA13E31CB4331C75 /* ClerkSessionAuthorizedTransport.swift */; };
 		67C2A94C5AFD885E8B2DF5C0 /* WeaveAuthModule.mm in Sources */ = {isa = PBXBuildFile; fileRef = 685C1A9CEFE47615B69FCA52 /* WeaveAuthModule.mm */; };
 		6CA0D2E9F0F55F8332D3C980 /* Figtree-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9335A9E2ED2007B30098CB06 /* Figtree-Bold.ttf */; };
+		6D471B1AB4E9962F883F9553 /* NotificationAccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CFF0812ABAFABB9A6D8622 /* NotificationAccountTests.swift */; };
+		6DBEDB0ACE0A6A58B5CEC910 /* NotificationRuntimeContracts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445CD84A8EA65B0E68305387 /* NotificationRuntimeContracts.swift */; };
+		735C3AC704DAACDD69D2CCA2 /* NotificationRuntimeContracts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445CD84A8EA65B0E68305387 /* NotificationRuntimeContracts.swift */; };
+		73E932D229BAFE97A029B9D4 /* NotificationPresentationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40BFEEF11BFA6A2A4EDAE93 /* NotificationPresentationAdapter.swift */; };
 		759EE23EED99DB57D89C7543 /* KeychainHealthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061718AE5E97C6081DA92F1B /* KeychainHealthTests.swift */; };
 		761780ED2CA45674006654EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654EE /* AppDelegate.swift */; };
+		76B8B3A4D10ED5A8E23E71C0 /* NotificationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E9FF877792E7CA0BA2953A /* NotificationCoordinator.swift */; };
 		77AFD2D6AE264A84260C244E /* WeaveAuthModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA35BB2DB9B5555F82A06D5 /* WeaveAuthModule.swift */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		8EE7A3FCB54361DC7191393A /* NotificationDeadline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B40DE60A691F577EDFCD0D3 /* NotificationDeadline.swift */; };
+		99BD417CFF451900B2E110DB /* SessionAuthorizedTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56927A8AD66568CDF071C05A /* SessionAuthorizedTransport.swift */; };
 		9D6F0CE974C70175F8D2330C /* WeaveAuthConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3853B54B9CF7D65538F22A10 /* WeaveAuthConfiguration.swift */; };
 		9E656FA5E45A3857EE187904 /* WeaveAuthRuntime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05ED1A003A283B4B9577AEBD /* WeaveAuthRuntime.swift */; };
+		A00B2C6037300A2468620B97 /* NotificationConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4973A66EB3B9F0F945CC47 /* NotificationConfiguration.swift */; };
+		A2CF11B3025FA7436B36EFBF /* NotificationURLHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F6625D33441AFC6C02E329 /* NotificationURLHTTPClient.swift */; };
 		AC9E20C17F6E34A20F303AAB /* WeaveAuthRuntime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05ED1A003A283B4B9577AEBD /* WeaveAuthRuntime.swift */; };
 		AD1319AA28B8FC5FF4C1E6E2 /* AuthContracts.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41815E5846B99B9D993227B /* AuthContracts.swift */; };
+		B375A4C3F226F4A49E148AA4 /* NotificationPermissionAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5062373E577BC6BE14784F94 /* NotificationPermissionAdapter.swift */; };
+		BA250E89563FF978A9AF4BE7 /* NativeNotificationSessionAuthority.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF3BFEA95E9178F0107590C /* NativeNotificationSessionAuthority.swift */; };
 		BF5353D49680987A1D732157 /* ClerkAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE25D3665F13A229C070F6C1 /* ClerkAuthService.swift */; };
+		C5CECC4A478201BF5B39907C /* NotificationPresentationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B20A02ADED142C2CE50CAE9 /* NotificationPresentationTests.swift */; };
+		D2F344C9A6D2CA5987A389B9 /* ClerkSessionAuthorizedTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8A3CAEDA13E31CB4331C75 /* ClerkSessionAuthorizedTransport.swift */; };
 		D835C8F0B272ACFC351D1090 /* WeaveAuthModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7570501CE18DA7FD191CB5 /* WeaveAuthModuleTests.swift */; };
+		D8723F9A76DD7CD63DD9F568 /* NotificationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E9FF877792E7CA0BA2953A /* NotificationCoordinator.swift */; };
+		DE100D7E26A2933BBAADC5B6 /* libPods-Weave-WeaveTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9401D34E8D3488C60965CABA /* libPods-Weave-WeaveTests.a */; };
+		E51260D96F86870543AC3EAD /* WeaveNotificationsModule.mm in Sources */ = {isa = PBXBuildFile; fileRef = A2D400530E34691A89969F1F /* WeaveNotificationsModule.mm */; };
+		E5A5DEE995633180E28EABD0 /* NotificationWire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7227656F3BE09F82037992 /* NotificationWire.swift */; };
+		E624B408A28C4900E47F0A39 /* NativeNotificationSessionAuthority.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF3BFEA95E9178F0107590C /* NativeNotificationSessionAuthority.swift */; };
+		E7CBF82948155D08BBB57682 /* NotificationURLHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F6625D33441AFC6C02E329 /* NotificationURLHTTPClient.swift */; };
 		ECB426B43881D1C2B4C0C735 /* WeaveAuthModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA35BB2DB9B5555F82A06D5 /* WeaveAuthModule.swift */; };
 		F01F94131A9BF2431FD380EB /* AuthConfigurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF65D5B41BB5B8A61EE2678 /* AuthConfigurationTests.swift */; };
 		F0A64F74A83B96797830FFEA /* ClerkKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8413339310F12AFB6EB5586F /* ClerkKit */; };
@@ -38,9 +68,17 @@
 		F212618307BEC7C314BB8EC8 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */; };
 		F2BBA4DD8F5A97F243242F3C /* ClerkKit in Frameworks */ = {isa = PBXBuildFile; productRef = 0B07679AAAD96D60B716FC3B /* ClerkKit */; };
 		F75F13146DC7BFA44EBFA99C /* ClerkAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE25D3665F13A229C070F6C1 /* ClerkAuthService.swift */; };
+		EB475DAA1B18F6FFB9836578 /* WeaveNotificationsModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504CB5F3C5572755AF3CBCC9 /* WeaveNotificationsModule.swift */; };
+		8A73121C8A4D380A9E243229 /* WeaveNotificationsModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504CB5F3C5572755AF3CBCC9 /* WeaveNotificationsModule.swift */; };
+		FA076F41AFB9F38928F85769 /* NotificationBridgeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175A46C5A580B5BE0D2721D /* NotificationBridgeTests.swift */; };
+		CBC54572D976C507CEDF5A54 /* OneSignalNotificationSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2BCC5F3D0989C82ACADE11 /* OneSignalNotificationSDK.swift */; };
+		C448348A6D5D6E03F19DA9A7 /* OneSignalNotificationSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2BCC5F3D0989C82ACADE11 /* OneSignalNotificationSDK.swift */; };
+		FADFB0F9A517D22746E910CC /* WeaveNotificationsRuntime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7F0CCA3E986D05BF738969 /* WeaveNotificationsRuntime.swift */; };
+		B4E74948826EF013B199FE59 /* WeaveNotificationsRuntime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7F0CCA3E986D05BF738969 /* WeaveNotificationsRuntime.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		00CFF0812ABAFABB9A6D8622 /* NotificationAccountTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NotificationAccountTests.swift; path = WeaveTests/NotificationAccountTests.swift; sourceTree = "<group>"; };
 		05ED1A003A283B4B9577AEBD /* WeaveAuthRuntime.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WeaveAuthRuntime.swift; path = Weave/Auth/WeaveAuthRuntime.swift; sourceTree = "<group>"; };
 		061718AE5E97C6081DA92F1B /* KeychainHealthTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = KeychainHealthTests.swift; path = WeaveTests/KeychainHealthTests.swift; sourceTree = "<group>"; };
 		076A686AC70D44A179B309A1 /* Figtree-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Figtree-Regular.ttf"; path = "../assets/fonts/Figtree-Regular.ttf"; sourceTree = SOURCE_ROOT; };
@@ -48,27 +86,51 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Weave/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Weave/Info.plist; sourceTree = "<group>"; };
 		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = Weave/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		1C4973A66EB3B9F0F945CC47 /* NotificationConfiguration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NotificationConfiguration.swift; path = Weave/Notifications/NotificationConfiguration.swift; sourceTree = "<group>"; };
 		3853B54B9CF7D65538F22A10 /* WeaveAuthConfiguration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WeaveAuthConfiguration.swift; path = Weave/Auth/WeaveAuthConfiguration.swift; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-Weave.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weave.debug.xcconfig"; path = "Target Support Files/Pods-Weave/Pods-Weave.debug.xcconfig"; sourceTree = "<group>"; };
 		3B5758615D6F396873E2368E /* WeaveAuthBehaviorTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WeaveAuthBehaviorTests.swift; path = WeaveTests/WeaveAuthBehaviorTests.swift; sourceTree = "<group>"; };
 		439FBBAEC659D64F9A8EF51C /* KeychainHealthCheck.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = KeychainHealthCheck.swift; path = Weave/Auth/KeychainHealthCheck.swift; sourceTree = "<group>"; };
+		445CD84A8EA65B0E68305387 /* NotificationRuntimeContracts.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NotificationRuntimeContracts.swift; path = Weave/Notifications/NotificationRuntimeContracts.swift; sourceTree = "<group>"; };
+		48E260671CD244AE987A6B39 /* NotificationCoordinatorTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NotificationCoordinatorTests.swift; path = WeaveTests/NotificationCoordinatorTests.swift; sourceTree = "<group>"; };
 		4A7570501CE18DA7FD191CB5 /* WeaveAuthModuleTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WeaveAuthModuleTests.swift; path = WeaveTests/WeaveAuthModuleTests.swift; sourceTree = "<group>"; };
 		4EA35BB2DB9B5555F82A06D5 /* WeaveAuthModule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WeaveAuthModule.swift; path = Weave/Auth/WeaveAuthModule.swift; sourceTree = "<group>"; };
+		4EF3BFEA95E9178F0107590C /* NativeNotificationSessionAuthority.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NativeNotificationSessionAuthority.swift; path = Weave/Auth/NativeNotificationSessionAuthority.swift; sourceTree = "<group>"; };
+		5011CE6DC0B9E6DF62D0B6C2 /* Pods-Weave-WeaveTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weave-WeaveTests.release.xcconfig"; path = "Target Support Files/Pods-Weave-WeaveTests/Pods-Weave-WeaveTests.release.xcconfig"; sourceTree = "<group>"; };
+		5062373E577BC6BE14784F94 /* NotificationPermissionAdapter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NotificationPermissionAdapter.swift; path = Weave/Notifications/NotificationPermissionAdapter.swift; sourceTree = "<group>"; };
+		53A3DB647A98595EC27C9713 /* Pods-Weave-WeaveTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weave-WeaveTests.debug.xcconfig"; path = "Target Support Files/Pods-Weave-WeaveTests/Pods-Weave-WeaveTests.debug.xcconfig"; sourceTree = "<group>"; };
+		56927A8AD66568CDF071C05A /* SessionAuthorizedTransport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SessionAuthorizedTransport.swift; path = Weave/Auth/SessionAuthorizedTransport.swift; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-Weave.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weave.release.xcconfig"; path = "Target Support Files/Pods-Weave/Pods-Weave.release.xcconfig"; sourceTree = "<group>"; };
+		57EE8C94186B225D2686420A /* NotificationAuthorityTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NotificationAuthorityTests.swift; path = WeaveTests/NotificationAuthorityTests.swift; sourceTree = "<group>"; };
 		5D2F00969ED1146DADF415C1 /* ClerkProviderTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ClerkProviderTests.swift; path = WeaveTests/ClerkProviderTests.swift; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-Weave.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Weave.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		685C1A9CEFE47615B69FCA52 /* WeaveAuthModule.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = WeaveAuthModule.mm; path = Weave/Auth/WeaveAuthModule.mm; sourceTree = "<group>"; };
+		6B20A02ADED142C2CE50CAE9 /* NotificationPresentationTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NotificationPresentationTests.swift; path = WeaveTests/NotificationPresentationTests.swift; sourceTree = "<group>"; };
+		6B40DE60A691F577EDFCD0D3 /* NotificationDeadline.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NotificationDeadline.swift; path = Weave/Notifications/NotificationDeadline.swift; sourceTree = "<group>"; };
 		73B2399E45410C3B586BC61E /* ClerkProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ClerkProvider.swift; path = Weave/Auth/ClerkProvider.swift; sourceTree = "<group>"; };
 		761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Weave/AppDelegate.swift; sourceTree = "<group>"; };
+		7F7227656F3BE09F82037992 /* NotificationWire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NotificationWire.swift; path = Weave/Notifications/NotificationWire.swift; sourceTree = "<group>"; };
+		80E9FF877792E7CA0BA2953A /* NotificationCoordinator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NotificationCoordinator.swift; path = Weave/Notifications/NotificationCoordinator.swift; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Weave/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		83F6625D33441AFC6C02E329 /* NotificationURLHTTPClient.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NotificationURLHTTPClient.swift; path = Weave/Notifications/NotificationURLHTTPClient.swift; sourceTree = "<group>"; };
 		8D1AAF1B061E25179705C450 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		9335A9E2ED2007B30098CB06 /* Figtree-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Figtree-Bold.ttf"; path = "../assets/fonts/Figtree-Bold.ttf"; sourceTree = SOURCE_ROOT; };
+		9401D34E8D3488C60965CABA /* libPods-Weave-WeaveTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Weave-WeaveTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A2D400530E34691A89969F1F /* WeaveNotificationsModule.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = WeaveNotificationsModule.mm; path = Weave/Notifications/WeaveNotificationsModule.mm; sourceTree = "<group>"; };
+		A4619A9138F3825459419345 /* NotificationFakes.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NotificationFakes.swift; path = WeaveTests/NotificationFakes.swift; sourceTree = "<group>"; };
 		AB971A9DA5AD307A6A6B6C4D /* WeaveTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeaveTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE8A3CAEDA13E31CB4331C75 /* ClerkSessionAuthorizedTransport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ClerkSessionAuthorizedTransport.swift; path = Weave/Auth/ClerkSessionAuthorizedTransport.swift; sourceTree = "<group>"; };
 		BE25D3665F13A229C070F6C1 /* ClerkAuthService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ClerkAuthService.swift; path = Weave/Auth/ClerkAuthService.swift; sourceTree = "<group>"; };
 		C41815E5846B99B9D993227B /* AuthContracts.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AuthContracts.swift; path = Weave/Auth/AuthContracts.swift; sourceTree = "<group>"; };
 		E7C32B7A8A9D5BD0E10610B9 /* Figtree-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Figtree-SemiBold.ttf"; path = "../assets/fonts/Figtree-SemiBold.ttf"; sourceTree = SOURCE_ROOT; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		F40BFEEF11BFA6A2A4EDAE93 /* NotificationPresentationAdapter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NotificationPresentationAdapter.swift; path = Weave/Notifications/NotificationPresentationAdapter.swift; sourceTree = "<group>"; };
 		FBF65D5B41BB5B8A61EE2678 /* AuthConfigurationTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AuthConfigurationTests.swift; path = WeaveTests/AuthConfigurationTests.swift; sourceTree = "<group>"; };
+		FF4A3EABCFEB48BC45918470 /* NotificationPermissionTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NotificationPermissionTests.swift; path = WeaveTests/NotificationPermissionTests.swift; sourceTree = "<group>"; };
+		504CB5F3C5572755AF3CBCC9 /* WeaveNotificationsModule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "WeaveNotificationsModule.swift"; path = "Weave/Notifications/WeaveNotificationsModule.swift"; sourceTree = "<group>"; };
+		E175A46C5A580B5BE0D2721D /* NotificationBridgeTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NotificationBridgeTests.swift"; path = "WeaveTests/NotificationBridgeTests.swift"; sourceTree = "<group>"; };
+		EC2BCC5F3D0989C82ACADE11 /* OneSignalNotificationSDK.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "OneSignalNotificationSDK.swift"; path = "Weave/Notifications/OneSignalNotificationSDK.swift"; sourceTree = "<group>"; };
+		6E7F0CCA3E986D05BF738969 /* WeaveNotificationsRuntime.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "WeaveNotificationsRuntime.swift"; path = "Weave/Notifications/WeaveNotificationsRuntime.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +149,7 @@
 			files = (
 				2CD56B97279EC767780619AA /* Foundation.framework in Frameworks */,
 				F2BBA4DD8F5A97F243242F3C /* ClerkKit in Frameworks */,
+				DE100D7E26A2933BBAADC5B6 /* libPods-Weave-WeaveTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,6 +177,7 @@
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				5DCACB8F33CDC322A6C60F78 /* libPods-Weave.a */,
 				C75CC7836FF4EFE2BED347EC /* iOS */,
+				9401D34E8D3488C60965CABA /* libPods-Weave-WeaveTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -146,6 +210,28 @@
 				FBF65D5B41BB5B8A61EE2678 /* AuthConfigurationTests.swift */,
 				5D2F00969ED1146DADF415C1 /* ClerkProviderTests.swift */,
 				061718AE5E97C6081DA92F1B /* KeychainHealthTests.swift */,
+				56927A8AD66568CDF071C05A /* SessionAuthorizedTransport.swift */,
+				A4619A9138F3825459419345 /* NotificationFakes.swift */,
+				5062373E577BC6BE14784F94 /* NotificationPermissionAdapter.swift */,
+				FF4A3EABCFEB48BC45918470 /* NotificationPermissionTests.swift */,
+				A2D400530E34691A89969F1F /* WeaveNotificationsModule.mm */,
+				AE8A3CAEDA13E31CB4331C75 /* ClerkSessionAuthorizedTransport.swift */,
+				445CD84A8EA65B0E68305387 /* NotificationRuntimeContracts.swift */,
+				00CFF0812ABAFABB9A6D8622 /* NotificationAccountTests.swift */,
+				6B40DE60A691F577EDFCD0D3 /* NotificationDeadline.swift */,
+				80E9FF877792E7CA0BA2953A /* NotificationCoordinator.swift */,
+				48E260671CD244AE987A6B39 /* NotificationCoordinatorTests.swift */,
+				7F7227656F3BE09F82037992 /* NotificationWire.swift */,
+				4EF3BFEA95E9178F0107590C /* NativeNotificationSessionAuthority.swift */,
+				57EE8C94186B225D2686420A /* NotificationAuthorityTests.swift */,
+				1C4973A66EB3B9F0F945CC47 /* NotificationConfiguration.swift */,
+				F40BFEEF11BFA6A2A4EDAE93 /* NotificationPresentationAdapter.swift */,
+				83F6625D33441AFC6C02E329 /* NotificationURLHTTPClient.swift */,
+				6B20A02ADED142C2CE50CAE9 /* NotificationPresentationTests.swift */,
+				504CB5F3C5572755AF3CBCC9 /* WeaveNotificationsModule.swift */,
+				E175A46C5A580B5BE0D2721D /* NotificationBridgeTests.swift */,
+				EC2BCC5F3D0989C82ACADE11 /* OneSignalNotificationSDK.swift */,
+				6E7F0CCA3E986D05BF738969 /* WeaveNotificationsRuntime.swift */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -166,6 +252,8 @@
 			children = (
 				3B4392A12AC88292D35C810B /* Pods-Weave.debug.xcconfig */,
 				5709B34CF0A7D63546082F79 /* Pods-Weave.release.xcconfig */,
+				5011CE6DC0B9E6DF62D0B6C2 /* Pods-Weave-WeaveTests.release.xcconfig */,
+				53A3DB647A98595EC27C9713 /* Pods-Weave-WeaveTests.debug.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -209,9 +297,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 39FD2645E76B197F2208BB80 /* Build configuration list for PBXNativeTarget "WeaveTests" */;
 			buildPhases = (
+				3D5985C338EE96795D1AFEC3 /* [CP] Check Pods Manifest.lock */,
 				89EA6FE05CA0015491BC102B /* Sources */,
 				9DBB6B717417A79C6BE4C920 /* Frameworks */,
 				E3AAFA9C9ABA05A432A4794F /* Resources */,
+				895DAF3D63E790520FE2B701 /* [CP] Embed Pods Frameworks */,
+				204159DB9E7A96F06FBE7D4E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -235,6 +326,10 @@
 				TargetAttributes = {
 					13B07F861A680F5B00A75B9A = {
 						LastSwiftMigration = 1120;
+						SystemCapabilities = {
+							com.apple.Push = { enabled = 1; };
+							com.apple.BackgroundModes = { enabled = 1; };
+						};
 					};
 				};
 			};
@@ -248,7 +343,7 @@
 			);
 			mainGroup = 83CBB9F61A601CBA00E9B192;
 			packageReferences = (
-				2F3D19D779D46BE9D0DA99A4 /* XCLocalSwiftPackageReference "../vendor/clerk-ios" */,
+				2F3D19D779D46BE9D0DA99A4 /* XCLocalSwiftPackageReference "clerk-ios" */,
 			);
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
@@ -308,17 +403,69 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Weave/Pods-Weave-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Weave/Pods-Weave-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
-			outputPaths = (
-			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Weave/Pods-Weave-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		204159DB9E7A96F06FBE7D4E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Weave-WeaveTests/Pods-Weave-WeaveTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Weave-WeaveTests/Pods-Weave-WeaveTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Weave-WeaveTests/Pods-Weave-WeaveTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3D5985C338EE96795D1AFEC3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Weave-WeaveTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		895DAF3D63E790520FE2B701 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Weave-WeaveTests/Pods-Weave-WeaveTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Weave-WeaveTests/Pods-Weave-WeaveTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Weave-WeaveTests/Pods-Weave-WeaveTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C38B50BA6285516D6DCD4F65 /* [CP] Check Pods Manifest.lock */ = {
@@ -351,13 +498,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Weave/Pods-Weave-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Weave/Pods-Weave-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -380,6 +523,21 @@
 				0503CCA505CFE7242CD38F52 /* KeychainHealthCheck.swift in Sources */,
 				9D6F0CE974C70175F8D2330C /* WeaveAuthConfiguration.swift in Sources */,
 				AC9E20C17F6E34A20F303AAB /* WeaveAuthRuntime.swift in Sources */,
+				3AD1AB81A85A0DE837BADD8C /* SessionAuthorizedTransport.swift in Sources */,
+				2C59588CE4E381B0838A014E /* NotificationPermissionAdapter.swift in Sources */,
+				E51260D96F86870543AC3EAD /* WeaveNotificationsModule.mm in Sources */,
+				642CFE818327C3FFCE9ED244 /* ClerkSessionAuthorizedTransport.swift in Sources */,
+				6DBEDB0ACE0A6A58B5CEC910 /* NotificationRuntimeContracts.swift in Sources */,
+				8EE7A3FCB54361DC7191393A /* NotificationDeadline.swift in Sources */,
+				76B8B3A4D10ED5A8E23E71C0 /* NotificationCoordinator.swift in Sources */,
+				4410643CB2206BC313000F15 /* NotificationWire.swift in Sources */,
+				E624B408A28C4900E47F0A39 /* NativeNotificationSessionAuthority.swift in Sources */,
+				4B53CA2CAF304960D42EA240 /* NotificationConfiguration.swift in Sources */,
+				73E932D229BAFE97A029B9D4 /* NotificationPresentationAdapter.swift in Sources */,
+				A2CF11B3025FA7436B36EFBF /* NotificationURLHTTPClient.swift in Sources */,
+				EB475DAA1B18F6FFB9836578 /* WeaveNotificationsModule.swift in Sources */,
+				CBC54572D976C507CEDF5A54 /* OneSignalNotificationSDK.swift in Sources */,
+				FADFB0F9A517D22746E910CC /* WeaveNotificationsRuntime.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,6 +557,27 @@
 				F01F94131A9BF2431FD380EB /* AuthConfigurationTests.swift in Sources */,
 				50DB323F18881246E5405A37 /* ClerkProviderTests.swift in Sources */,
 				759EE23EED99DB57D89C7543 /* KeychainHealthTests.swift in Sources */,
+				99BD417CFF451900B2E110DB /* SessionAuthorizedTransport.swift in Sources */,
+				00C395AE9C40BECD4822F8B6 /* NotificationFakes.swift in Sources */,
+				B375A4C3F226F4A49E148AA4 /* NotificationPermissionAdapter.swift in Sources */,
+				2D8905D2625798BFC3D89ACF /* NotificationPermissionTests.swift in Sources */,
+				D2F344C9A6D2CA5987A389B9 /* ClerkSessionAuthorizedTransport.swift in Sources */,
+				735C3AC704DAACDD69D2CCA2 /* NotificationRuntimeContracts.swift in Sources */,
+				6D471B1AB4E9962F883F9553 /* NotificationAccountTests.swift in Sources */,
+				4819974CA9453A6BCCA14025 /* NotificationDeadline.swift in Sources */,
+				D8723F9A76DD7CD63DD9F568 /* NotificationCoordinator.swift in Sources */,
+				257DFADA0E265431084ACAD4 /* NotificationCoordinatorTests.swift in Sources */,
+				E5A5DEE995633180E28EABD0 /* NotificationWire.swift in Sources */,
+				BA250E89563FF978A9AF4BE7 /* NativeNotificationSessionAuthority.swift in Sources */,
+				535084871E967A76D6BF7A87 /* NotificationAuthorityTests.swift in Sources */,
+				A00B2C6037300A2468620B97 /* NotificationConfiguration.swift in Sources */,
+				245A33E9EFF8EC4238929EF7 /* NotificationPresentationAdapter.swift in Sources */,
+				E7CBF82948155D08BBB57682 /* NotificationURLHTTPClient.swift in Sources */,
+				C5CECC4A478201BF5B39907C /* NotificationPresentationTests.swift in Sources */,
+				8A73121C8A4D380A9E243229 /* WeaveNotificationsModule.swift in Sources */,
+				FA076F41AFB9F38928F85769 /* NotificationBridgeTests.swift in Sources */,
+				C448348A6D5D6E03F19DA9A7 /* OneSignalNotificationSDK.swift in Sources */,
+				B4E74948826EF013B199FE59 /* WeaveNotificationsRuntime.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -409,6 +588,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3B4392A12AC88292D35C810B /* Pods-Weave.debug.xcconfig */;
 			buildSettings = {
+				APS_ENVIRONMENT = development;
+				CODE_SIGN_ENTITLEMENTS = Weave/Weave.entitlements;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -443,6 +624,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5709B34CF0A7D63546082F79 /* Pods-Weave.release.xcconfig */;
 			buildSettings = {
+				APS_ENVIRONMENT = production;
+				CODE_SIGN_ENTITLEMENTS = Weave/Weave.entitlements;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -631,10 +814,12 @@
 		};
 		A87245490F6FEF9C973E590D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5011CE6DC0B9E6DF62D0B6C2 /* Pods-Weave-WeaveTests.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGNING_ALLOWED = NO;
 				GENERATE_INFOPLIST_FILE = YES;
+				OTHER_LDFLAGS = ("$(inherited)", "-lc++");
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				PRODUCT_BUNDLE_IDENTIFIER = si.tryweave.auth.contract.tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -646,10 +831,12 @@
 		};
 		E8F928ABD7B3781160FB59FD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 53A3DB647A98595EC27C9713 /* Pods-Weave-WeaveTests.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGNING_ALLOWED = NO;
 				GENERATE_INFOPLIST_FILE = YES;
+				OTHER_LDFLAGS = ("$(inherited)", "-lc++");
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				PRODUCT_BUNDLE_IDENTIFIER = si.tryweave.auth.contract.tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -691,7 +878,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
-		2F3D19D779D46BE9D0DA99A4 /* XCLocalSwiftPackageReference "../vendor/clerk-ios" */ = {
+		2F3D19D779D46BE9D0DA99A4 /* XCLocalSwiftPackageReference "clerk-ios" */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = "../vendor/clerk-ios";
 		};
@@ -700,12 +887,12 @@
 /* Begin XCSwiftPackageProductDependency section */
 		0B07679AAAD96D60B716FC3B /* ClerkKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2F3D19D779D46BE9D0DA99A4 /* XCLocalSwiftPackageReference "../vendor/clerk-ios" */;
+			package = 2F3D19D779D46BE9D0DA99A4 /* XCLocalSwiftPackageReference "clerk-ios" */;
 			productName = ClerkKit;
 		};
 		8413339310F12AFB6EB5586F /* ClerkKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2F3D19D779D46BE9D0DA99A4 /* XCLocalSwiftPackageReference "../vendor/clerk-ios" */;
+			package = 2F3D19D779D46BE9D0DA99A4 /* XCLocalSwiftPackageReference "clerk-ios" */;
 			productName = ClerkKit;
 		};
 /* End XCSwiftPackageProductDependency section */

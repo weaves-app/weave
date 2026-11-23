@@ -1,0 +1,38 @@
+[
+  {
+    "name": "S02 explicit settings double tap dispatches once and return only reobserves",
+    "failure": "java.lang.AssertionError: expected:<1> but was:<0>"
+  },
+  {
+    "name": "S01 observation and foreground settings return remain silent",
+    "failure": "java.lang.AssertionError: expected:<UNDETERMINED> but was:<UNAVAILABLE>"
+  },
+  {
+    "name": "S02 denial and dismissal use observed OS state without automatically opening settings",
+    "failure": "java.lang.AssertionError: expected:<1> but was:<0>"
+  },
+  {
+    "name": "S01 explicit Enable double tap coalesces one request without settings fallback",
+    "failure": "java.lang.AssertionError: expected:<1> but was:<0>"
+  },
+  {
+    "name": "S02 Android runtime permission normalizes OS observations and native request history",
+    "failure": "java.lang.AssertionError: expected:<NotificationPermissionObservation(permission=UNDETERMINED, canRequest=true)> but was:<NotificationPermissionObservation(permission=UNAVAILABLE, canRequest=false)>"
+  },
+  {
+    "name": "S02 unavailable platform does not prompt or dispatch settings",
+    "failure": null
+  },
+  {
+    "name": "S02 platform failures are sanitized and a later explicit Enable can retry",
+    "failure": "java.lang.AssertionError: expected:<ALLOWED> but was:<UNAVAILABLE>"
+  },
+  {
+    "name": "S02 Android before 33 never offers runtime permission even if SDK says requestable",
+    "failure": "java.lang.AssertionError: expected:<ALLOWED> but was:<UNAVAILABLE>"
+  },
+  {
+    "name": "S02 denied nonrequestable and restricted permissions never request or fall back to settings",
+    "failure": "java.lang.AssertionError: expected:<DENIED> but was:<UNAVAILABLE>"
+  }
+]

@@ -1,0 +1,46 @@
+PASS src/auth/app-recovery.test.tsx
+PASS src/auth/login.test.tsx
+PASS src/localization/presentation/localization-journey.test.tsx
+PASS src/localization/testing/native-fixture.test.tsx
+PASS src/features/notifications/recovery-lifecycle.test.tsx
+PASS src/auth/localization-layout.test.tsx
+PASS src/navigation/root-navigator.test.tsx
+PASS src/features/notifications/readiness.test.ts
+PASS src/features/notifications/notification-root.test.tsx
+PASS src/localization/presentation/localization-context.test.tsx
+PASS src/features/notifications/account-delivery.test.tsx
+PASS src/navigation/notification-open.test.tsx
+PASS src/auth/home.test.tsx
+PASS src/features/notifications/accessibility.test.tsx
+PASS src/auth/presentation/auth-context.test.tsx
+PASS src/auth/presentation/auth-lifecycle.test.tsx
+PASS src/recovery/app-error-boundary.test.tsx
+PASS src/components/registration.test.ts
+PASS src/components/code-field.test.tsx
+PASS src/recovery/recovery-screen.test.tsx
+PASS src/components/button.test.tsx
+PASS src/features/notifications/notification-controls.test.tsx
+PASS src/components/form-field.test.tsx
+PASS src/auth/auth-controller.test.ts
+PASS src/components/typography.test.tsx
+PASS src/components/feedback.test.tsx
+PASS src/localization/catalog.test.ts
+PASS src/features/notifications/privacy.test.ts
+PASS src/localization/infrastructure/i18next-translator.test.ts
+PASS src/features/notifications/native-notification-gateway.test.ts
+PASS src/features/notifications/notification-runtime.test.ts
+PASS src/localization/safe-english.test.ts
+PASS src/localization/localization-runtime.test.ts
+PASS src/features/notifications/permission.test.ts
+PASS src/auth/auth-runtime.test.ts
+PASS src/localization/retry-feedback.test.ts
+PASS src/auth/presentation/auth-messages.test.ts
+PASS src/auth/auth-gateway.contract.test.ts
+PASS src/localization/infrastructure/runtime-locale-source.test.ts
+PASS src/auth/infrastructure/zustand-auth-state-store.test.ts
+
+Test Suites: 40 passed, 40 total
+Tests:       303 passed, 303 total
+Snapshots:   0 total
+Time:        8.811 s, estimated 9 s
+Ran all test suites.

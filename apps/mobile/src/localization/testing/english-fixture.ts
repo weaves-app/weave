@@ -1,4 +1,19 @@
 export const completeEnglishFixture = {
+  'notifications.title': 'Notifications',
+  'notifications.explanation':
+    'Enable notifications to receive updates on this device. You can keep using Weave without them.',
+  'notifications.enable': 'Enable notifications',
+  'notifications.settings': 'Open notification settings',
+  'notifications.retry': 'Retry notification setup',
+  'notifications.checking': 'Checking notification setup…',
+  'notifications.pending': 'Notification setup is pending.',
+  'notifications.ready': 'Notifications are ready on this device.',
+  'notifications.disabled': 'Notifications are turned off on this device.',
+  'notifications.restricted': 'Notifications are restricted on this device.',
+  'notifications.unavailable': 'Notifications are unavailable right now.',
+  'notifications.configurationUnavailable': 'Notifications are not configured for this app.',
+  'notifications.retryLater': 'Please try again shortly.',
+
   'brand.tagline': 'Everything, woven together.',
   'brand.story': 'No more loose threads.\nFrom order to shelf.',
   'login.title': 'Welcome back',

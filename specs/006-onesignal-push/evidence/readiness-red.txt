@@ -1,0 +1,269 @@
+FAIL src/features/notifications/readiness.test.ts
+  ✕ S11 only correlated server proof enables ready and expiration never polls (3 ms)
+  ✕ S11 separate native origin cannot extend JS attempt-start cap across a delayed response
+  ✕ S11 rejects invalid or wrong-context proof {"remainingValidityMs": 0}
+  ✕ S11 rejects invalid or wrong-context proof {"remainingValidityMs": 60001}
+  ✕ S11 rejects invalid or wrong-context proof {"remainingValidityMs": 1.5}
+  ✕ S11 rejects invalid or wrong-context proof {"attemptId": "unknown"} (1 ms)
+  ✕ S11 rejects invalid or wrong-context proof {"rootLease": "other-root"}
+  ✕ S11 rejects invalid or wrong-context proof {"generation": 99}
+  ✕ S11 rejects invalid or wrong-context proof {"revision": 99} (1 ms)
+  ✓ S11 never verifies ineligible local installation {"registrationPresent": false} (2 ms)
+  ✓ S11 never verifies ineligible local installation {"enabled": false}
+  ✓ S11 never verifies ineligible local installation {"matchesCurrentAccount": false}
+  ✓ S11 never verifies ineligible local installation {"permission": "denied"}
+  ✕ S11 revocation, rotation, background and root disposal invalidate proof immediately
+  ✕ S11 late proof after expiry or A→B→A never restores ready
+  ✕ S11 same-revision duplicate observations retain but never renew a proof (1 ms)
+  ✕ S11 retry guidance blocks rapid attempts without a scheduled retry
+
+  ● S11 only correlated server proof enables ready and expiration never polls
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "ready"
+    Received: "pending"
+
+      25 |   controller.start(TEST_CONTEXT);
+      26 |   await tick();
+    > 27 |   expect(state.getState().status).toBe('ready');
+         |                                   ^
+      28 |   clock.advance(59999);
+      29 |   expect(state.getState().status).toBe('ready');
+      30 |   clock.advance(1);
+
+      at Object.toBe (src/features/notifications/readiness.test.ts:27:35)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● S11 separate native origin cannot extend JS attempt-start cap across a delayed response
+
+    expect(received).toBeDefined()
+
+    Received: undefined
+
+      41 |   await tick();
+      42 |   const attempt = jest.mocked(platform.checkReadiness).mock.calls[0]?.[2];
+    > 43 |   expect(attempt).toBeDefined();
+         |                   ^
+      44 |   clock.advance(45000);
+      45 |   response.resolve(reply(String(attempt), {remainingValidityMs: 60000}));
+      46 |   await tick();
+
+      at Object.toBeDefined (src/features/notifications/readiness.test.ts:43:19)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● S11 rejects invalid or wrong-context proof {"remainingValidityMs": 0}
+
+    expect(jest.fn()).toHaveBeenCalledTimes(expected)
+
+    Expected number of calls: 1
+    Received number of calls: 0
+
+      60 |   controller.start(TEST_CONTEXT);
+      61 |   await tick();
+    > 62 |   expect(platform.checkReadiness).toHaveBeenCalledTimes(1);
+         |                                   ^
+      63 |   expect(state.getState().status).toBe('pending');
+      64 |   controller.dispose();
+      65 | });
+
+      at toHaveBeenCalledTimes (src/features/notifications/readiness.test.ts:62:35)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● S11 rejects invalid or wrong-context proof {"remainingValidityMs": 60001}
+
+    expect(jest.fn()).toHaveBeenCalledTimes(expected)
+
+    Expected number of calls: 1
+    Received number of calls: 0
+
+      60 |   controller.start(TEST_CONTEXT);
+      61 |   await tick();
+    > 62 |   expect(platform.checkReadiness).toHaveBeenCalledTimes(1);
+         |                                   ^
+      63 |   expect(state.getState().status).toBe('pending');
+      64 |   controller.dispose();
+      65 | });
+
+      at toHaveBeenCalledTimes (src/features/notifications/readiness.test.ts:62:35)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● S11 rejects invalid or wrong-context proof {"remainingValidityMs": 1.5}
+
+    expect(jest.fn()).toHaveBeenCalledTimes(expected)
+
+    Expected number of calls: 1
+    Received number of calls: 0
+
+      60 |   controller.start(TEST_CONTEXT);
+      61 |   await tick();
+    > 62 |   expect(platform.checkReadiness).toHaveBeenCalledTimes(1);
+         |                                   ^
+      63 |   expect(state.getState().status).toBe('pending');
+      64 |   controller.dispose();
+      65 | });
+
+      at toHaveBeenCalledTimes (src/features/notifications/readiness.test.ts:62:35)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● S11 rejects invalid or wrong-context proof {"attemptId": "unknown"}
+
+    expect(jest.fn()).toHaveBeenCalledTimes(expected)
+
+    Expected number of calls: 1
+    Received number of calls: 0
+
+      60 |   controller.start(TEST_CONTEXT);
+      61 |   await tick();
+    > 62 |   expect(platform.checkReadiness).toHaveBeenCalledTimes(1);
+         |                                   ^
+      63 |   expect(state.getState().status).toBe('pending');
+      64 |   controller.dispose();
+      65 | });
+
+      at toHaveBeenCalledTimes (src/features/notifications/readiness.test.ts:62:35)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● S11 rejects invalid or wrong-context proof {"rootLease": "other-root"}
+
+    expect(jest.fn()).toHaveBeenCalledTimes(expected)
+
+    Expected number of calls: 1
+    Received number of calls: 0
+
+      60 |   controller.start(TEST_CONTEXT);
+      61 |   await tick();
+    > 62 |   expect(platform.checkReadiness).toHaveBeenCalledTimes(1);
+         |                                   ^
+      63 |   expect(state.getState().status).toBe('pending');
+      64 |   controller.dispose();
+      65 | });
+
+      at toHaveBeenCalledTimes (src/features/notifications/readiness.test.ts:62:35)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● S11 rejects invalid or wrong-context proof {"generation": 99}
+
+    expect(jest.fn()).toHaveBeenCalledTimes(expected)
+
+    Expected number of calls: 1
+    Received number of calls: 0
+
+      60 |   controller.start(TEST_CONTEXT);
+      61 |   await tick();
+    > 62 |   expect(platform.checkReadiness).toHaveBeenCalledTimes(1);
+         |                                   ^
+      63 |   expect(state.getState().status).toBe('pending');
+      64 |   controller.dispose();
+      65 | });
+
+      at toHaveBeenCalledTimes (src/features/notifications/readiness.test.ts:62:35)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● S11 rejects invalid or wrong-context proof {"revision": 99}
+
+    expect(jest.fn()).toHaveBeenCalledTimes(expected)
+
+    Expected number of calls: 1
+    Received number of calls: 0
+
+      60 |   controller.start(TEST_CONTEXT);
+      61 |   await tick();
+    > 62 |   expect(platform.checkReadiness).toHaveBeenCalledTimes(1);
+         |                                   ^
+      63 |   expect(state.getState().status).toBe('pending');
+      64 |   controller.dispose();
+      65 | });
+
+      at toHaveBeenCalledTimes (src/features/notifications/readiness.test.ts:62:35)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● S11 revocation, rotation, background and root disposal invalidate proof immediately
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "ready"
+    Received: "pending"
+
+      82 |   controller.start(TEST_CONTEXT);
+      83 |   await tick();
+    > 84 |   expect(state.getState().status).toBe('ready');
+         |                                   ^
+      85 |   platform.emit({...observed, revision: 8});
+      86 |   expect(state.getState().status).toBe('pending');
+      87 |   expect(platform.checkReadiness).toHaveBeenCalledTimes(1);
+
+      at Object.toBe (src/features/notifications/readiness.test.ts:84:35)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● S11 late proof after expiry or A→B→A never restores ready
+
+    expect(received).toBeDefined()
+
+    Received: undefined
+
+      106 |   await tick();
+      107 |   const attempt = jest.mocked(platform.checkReadiness).mock.calls[0]?.[2];
+    > 108 |   expect(attempt).toBeDefined();
+          |                   ^
+      109 |   clock.advance(60001);
+      110 |   old.resolve(reply(String(attempt)));
+      111 |   await tick();
+
+      at Object.toBeDefined (src/features/notifications/readiness.test.ts:108:19)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● S11 same-revision duplicate observations retain but never renew a proof
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "ready"
+    Received: "pending"
+
+      131 |   clock.advance(45000);
+      132 |   platform.emit(observed);
+    > 133 |   expect(state.getState().status).toBe('ready');
+          |                                   ^
+      134 |   clock.advance(15000);
+      135 |   expect(state.getState().status).toBe('pending');
+      136 |   controller.dispose();
+
+      at Object.toBe (src/features/notifications/readiness.test.ts:133:35)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● S11 retry guidance blocks rapid attempts without a scheduled retry
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      142 |   controller.start(TEST_CONTEXT);
+      143 |   await tick();
+    > 144 |   expect(state.getState().retryBlocked).toBe(true);
+          |                                         ^
+      145 |   await controller.refresh();
+      146 |   expect(platform.checkReadiness).toHaveBeenCalledTimes(1);
+      147 |   clock.advance(5000);
+
+      at Object.toBe (src/features/notifications/readiness.test.ts:144:41)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+Test Suites: 1 failed, 1 total
+Tests:       13 failed, 4 passed, 17 total
+Snapshots:   0 total
+Time:        0.405 s
+Ran all test suites matching /src\/features\/notifications\/readiness.test.ts/i.

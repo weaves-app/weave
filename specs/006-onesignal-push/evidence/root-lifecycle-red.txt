@@ -1,0 +1,44 @@
+FAIL src/features/notifications/notification-root.test.tsx
+  ● S09 removing a notification factory clears its panel and releases its root
+
+    expect(received).toBeNull()
+
+    Received: {"_fiber": {"_debugHookTypes": null, "_debugInfo": null, "_debugNeedsRemount": false, "_debugOwner": [FiberNode], "_debugStack": [Error: react-stack-top-frame], "_debugTask": null, "actualDuration": 0, "actualStartTime": 1792211404776, "alternate": [FiberNode], "child": [FiberNode], "childLanes": 0, "deletions": null, "dependencies": null, "elementType": "Text", "flags": 0, "index": 0, "key": null, "lanes": 0, "memoizedProps": [Object], "memoizedState": null, "mode": 3, "pendingProps": [Object], "ref": null, "refCleanup": null, "return": [FiberNode], "selfBaseDuration": 0, "sibling": null, "stateNode": [Object], "subtreeFlags": 0, "tag": 5, "treeBaseDuration": 0, "type": "Text", "updateQueue": null}}
+
+      62 |   await waitFor(() => expect(screen.getByText('Notifications')).toBeTruthy());
+      63 |   rerender(<AuthProvider createRuntime={authFactory}><NotificationRoot><HomeScreen /></NotificationRoot></AuthProvider>);
+    > 64 |   expect(screen.queryByText('Notifications')).toBeNull();
+         |                                               ^
+      65 |   expect(platform.release).toHaveBeenCalledTimes(1);
+      66 | });
+      67 |
+
+      at Object.toBeNull (src/features/notifications/notification-root.test.tsx:64:47)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+FAIL src/features/notifications/notification-runtime.test.ts
+  ● S04 logout begins by suspending notifications before native auth completion
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "hidden"
+    Received: "permission-needed"
+
+      70 |   expect(runtime.state.getState().status).toBe('permission-needed');
+      71 |   auth.replace({...auth.getState(), pending: true});
+    > 72 |   expect(runtime.state.getState().status).toBe('hidden');
+         |                                           ^
+      73 |   expect(platform.reconcile).toHaveBeenLastCalledWith(null, 'root-a');
+      74 |   auth.replace({...auth.getState(), pending: false});
+      75 |   await tick();
+
+      at Object.toBe (src/features/notifications/notification-runtime.test.ts:72:43)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+Test Suites: 2 failed, 2 total
+Tests:       2 failed, 3 passed, 5 total
+Snapshots:   0 total
+Time:        0.922 s, estimated 1 s
+Ran all test suites matching /src\/features\/notifications\/notification-runtime.test.ts|src\/features\/notifications\/notification-root.test.tsx/i.

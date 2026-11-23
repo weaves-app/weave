@@ -47,6 +47,8 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
+        buildConfigField "String", "ONESIGNAL_APP_ID", groovy.json.JsonOutput.toJson(System.getenv("ONESIGNAL_APP_ID") ?: "")
+        buildConfigField "String", "NOTIFICATIONS_API_ORIGIN", groovy.json.JsonOutput.toJson(System.getenv("NOTIFICATIONS_API_ORIGIN") ?: "")
         buildConfigField "String", "CLERK_PUBLISHABLE_KEY", groovy.json.JsonOutput.toJson(System.getenv("CLERK_PUBLISHABLE_KEY") ?: "")
     }
     buildTypes {

@@ -1,0 +1,87 @@
+$ pnpm run lint && pnpm run format:check && pnpm run typecheck && pnpm test && pnpm run build
+$ turbo run lint && eslint scripts tests && node scripts/check-architecture.mjs
+
+   • turbo 2.11.7
+   • Packages in scope: @weave/api, @weave/design-tokens, @weave/eslint-config, @weave/mobile, @weave/typescript-config, @weave/web
+   • Running lint in 6 packages
+   • Remote caching disabled
+
+@weave/eslint-config:lint: cache miss, executing a569778453de62d1
+@weave/api:db:generate: cache miss, executing cc9a970cab5697f4
+@weave/eslint-config:lint: $ eslint .
+@weave/api:db:generate: $ prisma generate
+@weave/api:db:generate: Loaded Prisma config from prisma.config.ts.
+@weave/api:db:generate:
+@weave/api:db:generate: Prisma schema loaded from prisma/schema.prisma.
+@weave/api:db:generate:
+@weave/api:db:generate: ✔ Generated Prisma Client (7.10.0) to ./src/generated/prisma in 20ms
+@weave/api:db:generate:
+@weave/design-tokens:lint: cache miss, executing 08e20204426c7149
+@weave/api:lint: cache miss, executing 5dc168d4077344f8
+@weave/api:lint: $ eslint .
+@weave/design-tokens:lint: $ eslint .
+@weave/mobile:lint: cache miss, executing d599cbadccbc05f8
+@weave/web:lint: cache miss, executing be273217bf1ad8f2
+@weave/web:lint: $ eslint .
+@weave/mobile:lint: $ eslint .
+@weave/mobile:lint:
+@weave/mobile:lint: /Users/pravinraj/workspace/weave/apps/mobile/src/auth/presentation/auth-context.tsx
+@weave/mobile:lint:   103:39  error  `import()` type annotations are forbidden  @typescript-eslint/consistent-type-imports
+@weave/mobile:lint:
+@weave/mobile:lint: /Users/pravinraj/workspace/weave/apps/mobile/src/features/notifications/accessibility.test.tsx
+@weave/mobile:lint:   47:51  error  Unsafe return of a value of type `any`  @typescript-eslint/no-unsafe-return
+@weave/mobile:lint:
+@weave/mobile:lint: /Users/pravinraj/workspace/weave/apps/mobile/src/features/notifications/infrastructure/native-notification-gateway.ts
+@weave/mobile:lint:   284:60  error  This assertion is unnecessary since it does not change the type of the expression  @typescript-eslint/no-unnecessary-type-assertion
+@weave/mobile:lint:
+@weave/mobile:lint: /Users/pravinraj/workspace/weave/apps/mobile/src/features/notifications/native-notification-gateway.test.ts
+@weave/mobile:lint:   113:35  error  Unsafe member access [0] on an `any` value  @typescript-eslint/no-unsafe-member-access
+@weave/mobile:lint:
+@weave/mobile:lint: /Users/pravinraj/workspace/weave/apps/mobile/src/features/notifications/notification-controls.test.tsx
+@weave/mobile:lint:   87:8  error  Unsafe member access .disabled on an `any` value  @typescript-eslint/no-unsafe-member-access
+@weave/mobile:lint:
+@weave/mobile:lint: /Users/pravinraj/workspace/weave/apps/mobile/src/features/notifications/notification-root.test.tsx
+@weave/mobile:lint:   67:18  error  `import()` type annotations are forbidden  @typescript-eslint/consistent-type-imports
+@weave/mobile:lint:
+@weave/mobile:lint: /Users/pravinraj/workspace/weave/apps/mobile/src/features/notifications/presentation/notification-context.tsx
+@weave/mobile:lint:   56:7  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+@weave/mobile:lint:
+@weave/mobile:lint: Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+@weave/mobile:lint: * Update external systems with the latest state from React.
+@weave/mobile:lint: * Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+@weave/mobile:lint:
+@weave/mobile:lint: Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+@weave/mobile:lint:
+@weave/mobile:lint: /Users/pravinraj/workspace/weave/apps/mobile/src/features/notifications/presentation/notification-context.tsx:56:7
+@weave/mobile:lint:   54 |
+@weave/mobile:lint:   55 |       removeListener = () => subscription.remove();
+@weave/mobile:lint: > 56 |       setActivation(next);
+@weave/mobile:lint:      |       ^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+@weave/mobile:lint:   57 |     } catch (error: unknown) {
+@weave/mobile:lint:   58 |       cleanup();
+@weave/mobile:lint:   59 |  react-hooks/set-state-in-effect
+@weave/mobile:lint:
+@weave/mobile:lint: /Users/pravinraj/workspace/weave/apps/mobile/src/features/notifications/readiness.test.ts
+@weave/mobile:lint:   227:3  error  Add a blank line between these logical blocks  weave/readability
+@weave/mobile:lint:   244:3  error  Add a blank line between these logical blocks  weave/readability
+@weave/mobile:lint:
+@weave/mobile:lint: /Users/pravinraj/workspace/weave/apps/mobile/src/features/notifications/recovery-lifecycle.test.tsx
+@weave/mobile:lint:   124:12  error  Unsafe member access .busy on an `any` value  @typescript-eslint/no-unsafe-member-access
+@weave/mobile:lint:
+@weave/mobile:lint: /Users/pravinraj/workspace/weave/apps/mobile/src/navigation/notification-open.test.tsx
+@weave/mobile:lint:   36:15  error  Unsafe assignment of an `any` value  @typescript-eslint/no-unsafe-assignment
+@weave/mobile:lint:
+@weave/mobile:lint: ✖ 11 problems (11 errors, 0 warnings)
+@weave/mobile:lint:   3 errors and 0 warnings potentially fixable with the `--fix` option.
+@weave/mobile:lint:
+@weave/mobile:lint: [ELIFECYCLE] Command failed with exit code 1.
+@weave/mobile#lint:  ERROR  command (/Users/pravinraj/workspace/weave/apps/mobile) /opt/homebrew/bin/pnpm run lint exited (1)
+
+ Tasks:    5 successful, 6 total
+Cached:    0 cached, 6 total
+  Time:    4.836s
+Failed:    @weave/mobile#lint
+
+ ERROR  run failed: command  exited (1)
+[ELIFECYCLE] Command failed with exit code 1.
+[ELIFECYCLE] Command failed with exit code 1.

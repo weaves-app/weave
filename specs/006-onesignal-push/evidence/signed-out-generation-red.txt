@@ -1,0 +1,43 @@
+FAIL src/features/notifications/permission.test.ts
+  ✕ S04 signed-out native intents carry a newer generation and stale contexts cannot restart setup (1 ms)
+  S01–S02 explicit notification permission
+    ✓ launch, sign-in, foreground and Retry never request permission (1 ms)
+    ✓ Enable double-tap requests once, clears busy, and allowed registration is only pending (1 ms)
+    ✓ denied observation preserves the appropriate explicit action
+    ✓ restricted observation preserves the appropriate explicit action (1 ms)
+    ✓ undetermined observation preserves the appropriate explicit action
+    ✓ unavailable observation preserves the appropriate explicit action
+    ✓ settings return refreshes observations without prompting; duplicate active events coalesce
+    ✓ sign-out clears immediately and a late permission completion cannot show signed-in UI
+    ✓ native failures become safe unavailable state and preserve retry (1 ms)
+
+  ● S04 signed-out native intents carry a newer generation and stale contexts cannot restart setup
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 0
+
+      Array [
+        null,
+        "root-a",
+    -   2,
+      ]
+
+      139 |   controller.start(null);
+      140 |   const suspension = jest.mocked(platform.reconcile).mock.calls.at(-1);
+    > 141 |   expect(suspension).toEqual([null, 'root-a', 2]);
+          |                      ^
+      142 |   const count = jest.mocked(platform.reconcile).mock.calls.length;
+      143 |   controller.start(TEST_CONTEXT);
+      144 |   await tick();
+
+      at Object.toEqual (src/features/notifications/permission.test.ts:141:22)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 9 passed, 10 total
+Snapshots:   0 total
+Time:        0.257 s, estimated 1 s
+Ran all test suites matching /src\/features\/notifications\/permission.test.ts/i.

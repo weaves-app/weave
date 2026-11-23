@@ -1,0 +1,470 @@
+▶ S11 real Clerk signature validation plus live session authority
+  ✖ native bearer without azp and permitted web azp derive account and expiry (1.934708ms)
+  ✖ rejects issuer before live lookup (1.66525ms)
+  ✖ rejects emptySubject before live lookup (0.605792ms)
+  ✖ rejects emptySession before live lookup (0.567833ms)
+  ✖ rejects expired before live lookup (0.529583ms)
+  ✖ rejects future before live lookup (0.533791ms)
+  ✖ rejects pending before live lookup (0.521541ms)
+  ✖ rejects unknownStatus before live lookup (0.540417ms)
+  ✖ rejects origin before live lookup (0.529417ms)
+  ✖ rejects malformedOrigin before live lookup (0.54925ms)
+  ✖ invalid signature and machine bearer rejected (7.91175ms)
+  ✖ configured audience is mandatory and must match (0.560417ms)
+  ✖ live pending session is rejected (0.5275ms)
+  ✖ live revoked session is rejected (0.509334ms)
+  ✖ live ended session is rejected (0.933208ms)
+  ✖ live expired session is rejected (0.508084ms)
+  ✖ live unexpected session is rejected (0.480458ms)
+  ✖ live ownership and session ID must match (0.50325ms)
+  ✖ missing session is unauthorized but provider outages/config faults unavailable (0.50875ms)
+✖ S11 real Clerk signature validation plus live session authority (81.340791ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 0
+ℹ fail 20
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 231.540042
+
+✖ failing tests:
+
+test at apps/api/test/notification-authentication.test.ts:2:2474
+✖ native bearer without azp and permitted web azp derive account and expiry (1.934708ms)
+  Error: Not implemented
+      at ClerkSessionAuthenticator.authenticate (/Users/pravinraj/workspace/weave/apps/api/src/modules/authentication/infrastructure/clerk-session-authenticator.ts:16:11)
+      at TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-authentication.test.ts:27:33)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+
+test at apps/api/test/notification-authentication.test.ts:2:3110
+✖ rejects issuer before live lookup (1.66525ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+  + Comparison {}
+  - Comparison {
+  -   code: 'authentication_required'
+  - }
+
+      at async TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-authentication.test.ts:33:7)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: Not implemented
+        at ClerkSessionAuthenticator.authenticate (/Users/pravinraj/workspace/weave/apps/api/src/modules/authentication/infrastructure/clerk-session-authenticator.ts:16:11)
+        at TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-authentication.test.ts:33:33)
+        at async Test.run (node:internal/test_runner/test:1069:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:752:7),
+    expected: { code: 'authentication_required' },
+    operator: 'rejects'
+  }
+
+test at apps/api/test/notification-authentication.test.ts:2:3110
+✖ rejects emptySubject before live lookup (0.605792ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+  + Comparison {}
+  - Comparison {
+  -   code: 'authentication_required'
+  - }
+
+      at async TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-authentication.test.ts:33:7)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: Not implemented
+        at ClerkSessionAuthenticator.authenticate (/Users/pravinraj/workspace/weave/apps/api/src/modules/authentication/infrastructure/clerk-session-authenticator.ts:16:11)
+        at TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-authentication.test.ts:33:33)
+        at async Test.run (node:internal/test_runner/test:1069:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:752:7),
+    expected: { code: 'authentication_required' },
+    operator: 'rejects'
+  }
+
+test at apps/api/test/notification-authentication.test.ts:2:3110
+✖ rejects emptySession before live lookup (0.567833ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+  + Comparison {}
+  - Comparison {
+  -   code: 'authentication_required'
+  - }
+
+      at async TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-authentication.test.ts:33:7)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: Not implemented
+        at ClerkSessionAuthenticator.authenticate (/Users/pravinraj/workspace/weave/apps/api/src/modules/authentication/infrastructure/clerk-session-authenticator.ts:16:11)
+        at TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-authentication.test.ts:33:33)
+        at async Test.run (node:internal/test_runner/test:1069:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:752:7),
+    expected: { code: 'authentication_required' },
+    operator: 'rejects'
+  }
+
+test at apps/api/test/notification-authentication.test.ts:2:3110
+✖ rejects expired before live lookup (0.529583ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+  + Comparison {}
+  - Comparison {
+  -   code: 'authentication_required'
+  - }
+
+      at async TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-authentication.test.ts:33:7)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: Not implemented
+        at ClerkSessionAuthenticator.authenticate (/Users/pravinraj/workspace/weave/apps/api/src/modules/authentication/infrastructure/clerk-session-authenticator.ts:16:11)
+        at TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-authentication.test.ts:33:33)
+        at async Test.run (node:internal/test_runner/test:1069:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:752:7),
+    expected: { code: 'authentication_required' },
+    operator: 'rejects'
+  }
+
+test at apps/api/test/notification-authentication.test.ts:2:3110
+✖ rejects future before live lookup (0.533791ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+  + Comparison {}
+  - Comparison {
+  -   code: 'authentication_required'
+  - }
+
+      at async TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-authentication.test.ts:33:7)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: Not implemented
+        at ClerkSessionAuthenticator.authenticate (/Users/pravinraj/workspace/weave/apps/api/src/modules/authentication/infrastructure/clerk-session-authenticator.ts:16:11)
+        at TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-authentication.test.ts:33:33)
+        at async Test.run (node:internal/test_runner/test:1069:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:752:7),
+    expected: { code: 'authentication_required' },
+    operator: 'rejects'
+  }
+
+test at apps/api/test/notification-authentication.test.ts:2:3110
+✖ rejects pending before live lookup (0.521541ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+  + Comparison {}
+  - Comparison {
+  -   code: 'authentication_required'
+  - }
+
+      at async TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-authentication.test.ts:33:7)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: Not implemented
+        at ClerkSessionAuthenticator.authenticate (/Users/pravinraj/workspace/weave/apps/api/src/modules/authentication/infrastructure/clerk-session-authenticator.ts:16:11)
+        at TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-authentication.test.ts:33:33)
+        at async Test.run (node:internal/test_runner/test:1069:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:752:7),
+    expected: { code: 'authentication_required' },
+    operator: 'rejects'
+  }
+
+test at apps/api/test/notification-authentication.test.ts:2:3110
+✖ rejects unknownStatus before live lookup (0.540417ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+  + Comparison {}
+  - Comparison {
+  -   code: 'authentication_required'
+  - }
+
+      at async TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-authentication.test.ts:33:7)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: Not implemented
+        at ClerkSessionAuthenticator.authenticate (/Users/pravinraj/workspace/weave/apps/api/src/modules/authentication/infrastructure/clerk-session-authenticator.ts:16:11)
+        at TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-authentication.test.ts:33:33)
+        at async Test.run (node:internal/test_runner/test:1069:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:752:7),
+    expected: { code: 'authentication_required' },
+    operator: 'rejects'
+  }
+
+test at apps/api/test/notification-authentication.test.ts:2:3110
+✖ rejects origin before live lookup (0.529417ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+  + Comparison {}
+  - Comparison {
+  -   code: 'authentication_required'
+  - }
+
+      at async TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-authentication.test.ts:33:7)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: Not implemented
+        at ClerkSessionAuthenticator.authenticate (/Users/pravinraj/workspace/weave/apps/api/src/modules/authentication/infrastructure/clerk-session-authenticator.ts:16:11)
+        at TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-authentication.test.ts:33:33)
+        at async Test.run (node:internal/test_runner/test:1069:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:752:7),
+    expected: { code: 'authentication_required' },
+    operator: 'rejects'
+  }
+
+test at apps/api/test/notification-authentication.test.ts:2:3110
+✖ rejects malformedOrigin before live lookup (0.54925ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+  + Comparison {}
+  - Comparison {
+  -   code: 'authentication_required'
+  - }
+
+      at async TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-authentication.test.ts:33:7)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: Not implemented
+        at ClerkSessionAuthenticator.authenticate (/Users/pravinraj/workspace/weave/apps/api/src/modules/authentication/infrastructure/clerk-session-authenticator.ts:16:11)
+        at TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-authentication.test.ts:33:33)
+        at async Test.run (node:internal/test_runner/test:1069:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:752:7),
+    expected: { code: 'authentication_required' },
+    operator: 'rejects'
+  }
+
+test at apps/api/test/notification-authentication.test.ts:2:3343
+✖ invalid signature and machine bearer rejected (7.91175ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+  + Comparison {}
+  - Comparison {
+  -   code: 'authentication_required'
+  - }
+
+      at async TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-authentication.test.ts:40:5)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: Not implemented
+        at ClerkSessionAuthenticator.authenticate (/Users/pravinraj/workspace/weave/apps/api/src/modules/authentication/infrastructure/clerk-session-authenticator.ts:16:11)
+        at TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-authentication.test.ts:40:31)
+        at async Test.run (node:internal/test_runner/test:1069:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:752:7),
+    expected: { code: 'authentication_required' },
+    operator: 'rejects'
+  }
+
+test at apps/api/test/notification-authentication.test.ts:2:3771
+✖ configured audience is mandatory and must match (0.560417ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+  + Comparison {}
+  - Comparison {
+  -   code: 'authentication_required'
+  - }
+
+      at async TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-authentication.test.ts:45:53)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: Not implemented
+        at ClerkSessionAuthenticator.authenticate (/Users/pravinraj/workspace/weave/apps/api/src/modules/authentication/infrastructure/clerk-session-authenticator.ts:16:11)
+        at TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-authentication.test.ts:45:87)
+        at async Test.run (node:internal/test_runner/test:1069:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:752:7),
+    expected: { code: 'authentication_required' },
+    operator: 'rejects'
+  }
+
+test at apps/api/test/notification-authentication.test.ts:2:4305
+✖ live pending session is rejected (0.5275ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+  + Comparison {}
+  - Comparison {
+  -   code: 'authentication_required'
+  - }
+
+      at async TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-authentication.test.ts:50:5)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: Not implemented
+        at ClerkSessionAuthenticator.authenticate (/Users/pravinraj/workspace/weave/apps/api/src/modules/authentication/infrastructure/clerk-session-authenticator.ts:16:11)
+        at TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-authentication.test.ts:50:31)
+        at async Test.run (node:internal/test_runner/test:1069:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:752:7),
+    expected: { code: 'authentication_required' },
+    operator: 'rejects'
+  }
+
+test at apps/api/test/notification-authentication.test.ts:2:4305
+✖ live revoked session is rejected (0.509334ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+  + Comparison {}
+  - Comparison {
+  -   code: 'authentication_required'
+  - }
+
+      at async TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-authentication.test.ts:50:5)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: Not implemented
+        at ClerkSessionAuthenticator.authenticate (/Users/pravinraj/workspace/weave/apps/api/src/modules/authentication/infrastructure/clerk-session-authenticator.ts:16:11)
+        at TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-authentication.test.ts:50:31)
+        at async Test.run (node:internal/test_runner/test:1069:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:752:7),
+    expected: { code: 'authentication_required' },
+    operator: 'rejects'
+  }
+
+test at apps/api/test/notification-authentication.test.ts:2:4305
+✖ live ended session is rejected (0.933208ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+  + Comparison {}
+  - Comparison {
+  -   code: 'authentication_required'
+  - }
+
+      at async TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-authentication.test.ts:50:5)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: Not implemented
+        at ClerkSessionAuthenticator.authenticate (/Users/pravinraj/workspace/weave/apps/api/src/modules/authentication/infrastructure/clerk-session-authenticator.ts:16:11)
+        at TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-authentication.test.ts:50:31)
+        at async Test.run (node:internal/test_runner/test:1069:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:752:7),
+    expected: { code: 'authentication_required' },
+    operator: 'rejects'
+  }
+
+test at apps/api/test/notification-authentication.test.ts:2:4305
+✖ live expired session is rejected (0.508084ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+  + Comparison {}
+  - Comparison {
+  -   code: 'authentication_required'
+  - }
+
+      at async TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-authentication.test.ts:50:5)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: Not implemented
+        at ClerkSessionAuthenticator.authenticate (/Users/pravinraj/workspace/weave/apps/api/src/modules/authentication/infrastructure/clerk-session-authenticator.ts:16:11)
+        at TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-authentication.test.ts:50:31)
+        at async Test.run (node:internal/test_runner/test:1069:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:752:7),
+    expected: { code: 'authentication_required' },
+    operator: 'rejects'
+  }
+
+test at apps/api/test/notification-authentication.test.ts:2:4305
+✖ live unexpected session is rejected (0.480458ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+  + Comparison {}
+  - Comparison {
+  -   code: 'authentication_required'
+  - }
+
+      at async TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-authentication.test.ts:50:5)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: Not implemented
+        at ClerkSessionAuthenticator.authenticate (/Users/pravinraj/workspace/weave/apps/api/src/modules/authentication/infrastructure/clerk-session-authenticator.ts:16:11)
+        at TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-authentication.test.ts:50:31)
+        at async Test.run (node:internal/test_runner/test:1069:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:752:7),
+    expected: { code: 'authentication_required' },
+    operator: 'rejects'
+  }
+
+test at apps/api/test/notification-authentication.test.ts:2:4498
+✖ live ownership and session ID must match (0.50325ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+  + Comparison {}
+  - Comparison {
+  -   code: 'authentication_required'
+  - }
+
+      at async TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-authentication.test.ts:54:5)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: Not implemented
+        at ClerkSessionAuthenticator.authenticate (/Users/pravinraj/workspace/weave/apps/api/src/modules/authentication/infrastructure/clerk-session-authenticator.ts:16:11)
+        at TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-authentication.test.ts:54:31)
+        at async Test.run (node:internal/test_runner/test:1069:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:752:7),
+    expected: { code: 'authentication_required' },
+    operator: 'rejects'
+  }
+
+test at apps/api/test/notification-authentication.test.ts:2:4874
+✖ missing session is unauthorized but provider outages/config faults unavailable (0.50875ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+  + Comparison {}
+  - Comparison {
+  -   code: 'authentication_required'
+  - }
+
+      at async TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-authentication.test.ts:60:5)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: Not implemented
+        at ClerkSessionAuthenticator.authenticate (/Users/pravinraj/workspace/weave/apps/api/src/modules/authentication/infrastructure/clerk-session-authenticator.ts:16:11)
+        at TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-authentication.test.ts:60:31)
+        at async Test.run (node:internal/test_runner/test:1069:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:752:7),
+    expected: { code: 'authentication_required' },
+    operator: 'rejects'
+  }

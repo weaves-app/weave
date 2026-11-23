@@ -1,0 +1,67 @@
+FAIL src/features/notifications/notification-runtime.test.ts
+  ✓ S01/S03 runtime follows validated auth and clears on sign-out without modifying authentication (2 ms)
+  ✓ S09 disposed root unsubscribes and cannot reconcile future auth changes
+  ✕ S04 logout begins by suspending notifications before native auth completion (1 ms)
+  ✕ S09 partial native acquisition and listener setup failures release the root (3 ms)
+  ✕ S09 native release still runs if listener cleanup throws
+
+  ● S04 logout begins by suspending notifications before native auth completion
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "hidden"
+    Received: "permission-needed"
+
+      70 |   expect(runtime.state.getState().status).toBe('permission-needed');
+      71 |   auth.replace({...auth.getState(), pending: true});
+    > 72 |   expect(runtime.state.getState().status).toBe('hidden');
+         |                                           ^
+      73 |   expect(platform.reconcile).toHaveBeenLastCalledWith(null, 'root-a');
+      74 |   auth.replace({...auth.getState(), pending: false});
+      75 |   await tick();
+
+      at Object.toBe (src/features/notifications/notification-runtime.test.ts:72:43)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● S09 partial native acquisition and listener setup failures release the root
+
+    expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+    Expected: "root-a"
+
+    Number of calls: 0
+
+      84 |     platform[seam] = jest.fn(() => { throw new Error('setup failed'); });
+      85 |     expect(() => createNotificationRuntime(auth, platform, new FakeClock(), 'root-a')).toThrow('setup failed');
+    > 86 |     expect(platform.release).toHaveBeenCalledWith('root-a');
+         |                              ^
+      87 |   }
+      88 | });
+      89 |
+
+      at toHaveBeenCalledWith (src/features/notifications/notification-runtime.test.ts:86:30)
+      at Object._loop (src/features/notifications/notification-runtime.test.ts:81:44)
+
+  ● S09 native release still runs if listener cleanup throws
+
+    expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+    Expected: "root-a"
+
+    Number of calls: 0
+
+      94 |   const runtime = createNotificationRuntime(auth, platform, new FakeClock(), 'root-a');
+      95 |   expect(() => runtime.dispose()).toThrow('cleanup failed');
+    > 96 |   expect(platform.release).toHaveBeenCalledWith('root-a');
+         |                            ^
+      97 | });
+      98 |
+
+      at Object.toHaveBeenCalledWith (src/features/notifications/notification-runtime.test.ts:96:28)
+
+Test Suites: 1 failed, 1 total
+Tests:       3 failed, 2 passed, 5 total
+Snapshots:   0 total
+Time:        0.252 s, estimated 1 s
+Ran all test suites matching /src\/features\/notifications\/notification-runtime.test.ts/i.

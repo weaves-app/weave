@@ -1,0 +1,31 @@
+PASS src/features/notifications/native-notification-gateway.test.ts
+  ✓ binds versioned intents and returns only public observation fields (2 ms)
+  ✓ rejects malformed or stale observations {"token":"secret-token"} (3 ms)
+  ✓ rejects malformed or stale observations {"externalId":"private-account"}
+  ✓ rejects malformed or stale observations {"kind":"click","url":"https://evil.test"} (1 ms)
+  ✓ rejects malformed or stale observations {"revision":-1}
+  ✓ rejects malformed or stale observations {"generation":0}
+  ✓ rejects malformed or stale observations {"permission":"provisional"}
+  ✓ rejects malformed or stale observations {"enabled":"true"}
+  ✓ rejects malformed or stale observations {"rootLease":"old-root"} (1 ms)
+  ✓ rejects malformed or stale observations {"version":2}
+  ✓ filters events and stops the native subscription on removal
+  ✓ accepts only correlated bounded readiness and no native clock origin
+  ✓ rejects invalid readiness {"attemptId":"old"}
+  ✓ rejects invalid readiness {"revision":1}
+  ✓ rejects invalid readiness {"remainingValidityMs":60001}
+  ✓ rejects invalid readiness {"remainingValidityMs":1.5}
+  ✓ rejects invalid readiness {"remainingValidityMs":0}
+  ✓ rejects invalid readiness {"status":"pending"}
+  ✓ rejects invalid readiness {"retryAfterSeconds":0}
+  ✓ rejects invalid readiness {"retryAfterSeconds":61}
+  ✓ rejects invalid readiness {"deadline":999999} (2 ms)
+  ✓ rejects invalid readiness {"token":"private"}
+  ✓ drops delayed results after signed-out intent and ignores stale release
+  ✓ sanitizes native failures and never forwards their private details
+
+Test Suites: 1 passed, 1 total
+Tests:       24 passed, 24 total
+Snapshots:   0 total
+Time:        0.249 s, estimated 1 s
+Ran all test suites matching /native-notification-gateway.test.ts/i.

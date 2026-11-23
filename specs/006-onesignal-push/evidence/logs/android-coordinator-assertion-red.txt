@@ -1,0 +1,187 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.3.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build
+> Task :gradle-plugin:settings-plugin:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :gradle-plugin:shared:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :gradle-plugin:shared:compileKotlin UP-TO-DATE
+> Task :gradle-plugin:shared:compileJava NO-SOURCE
+> Task :gradle-plugin:shared:processResources NO-SOURCE
+> Task :gradle-plugin:shared:classes UP-TO-DATE
+> Task :gradle-plugin:shared:jar UP-TO-DATE
+> Task :gradle-plugin:settings-plugin:compileKotlin UP-TO-DATE
+> Task :gradle-plugin:settings-plugin:compileJava NO-SOURCE
+> Task :gradle-plugin:settings-plugin:pluginDescriptors UP-TO-DATE
+> Task :gradle-plugin:settings-plugin:processResources UP-TO-DATE
+> Task :gradle-plugin:settings-plugin:classes UP-TO-DATE
+> Task :gradle-plugin:settings-plugin:jar UP-TO-DATE
+> Task :gradle-plugin:react-native-gradle-plugin:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :gradle-plugin:react-native-gradle-plugin:compileKotlin UP-TO-DATE
+> Task :gradle-plugin:react-native-gradle-plugin:compileJava NO-SOURCE
+> Task :gradle-plugin:react-native-gradle-plugin:pluginDescriptors UP-TO-DATE
+> Task :gradle-plugin:react-native-gradle-plugin:processResources UP-TO-DATE
+> Task :gradle-plugin:react-native-gradle-plugin:classes UP-TO-DATE
+> Task :gradle-plugin:react-native-gradle-plugin:jar UP-TO-DATE
+> Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :app:generateAutolinkingNewArchitectureFiles UP-TO-DATE
+> Task :app:generateAutolinkingPackageList UP-TO-DATE
+> Task :app:generateCodegenSchemaFromJavaScript UP-TO-DATE
+> Task :app:generateCodegenArtifactsFromSchema UP-TO-DATE
+> Task :app:generateReactNativeEntryPoint UP-TO-DATE
+> Task :clerk-api:preBuild UP-TO-DATE
+> Task :react-native-onesignal:generateCodegenSchemaFromJavaScript UP-TO-DATE
+> Task :react-native-onesignal:generateCodegenArtifactsFromSchema UP-TO-DATE
+> Task :react-native-onesignal:preBuild UP-TO-DATE
+> Task :react-native-safe-area-context:generateCodegenSchemaFromJavaScript UP-TO-DATE
+> Task :react-native-safe-area-context:generateCodegenArtifactsFromSchema UP-TO-DATE
+> Task :react-native-safe-area-context:preBuild UP-TO-DATE
+> Task :react-native-screens:generateCodegenSchemaFromJavaScript UP-TO-DATE
+> Task :react-native-screens:generateCodegenArtifactsFromSchema UP-TO-DATE
+> Task :react-native-screens:preBuild UP-TO-DATE
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preDebugBuild UP-TO-DATE
+> Task :app:generateDebugBuildConfig UP-TO-DATE
+> Task :clerk-api:preDebugBuild UP-TO-DATE
+> Task :clerk-api:writeDebugAarMetadata UP-TO-DATE
+> Task :react-native-onesignal:preDebugBuild UP-TO-DATE
+> Task :react-native-onesignal:writeDebugAarMetadata UP-TO-DATE
+> Task :react-native-safe-area-context:preDebugBuild UP-TO-DATE
+> Task :react-native-safe-area-context:writeDebugAarMetadata UP-TO-DATE
+> Task :react-native-screens:preDebugBuild UP-TO-DATE
+> Task :react-native-screens:writeDebugAarMetadata UP-TO-DATE
+> Task :app:checkDebugAarMetadata UP-TO-DATE
+> Task :app:generateDebugResValues UP-TO-DATE
+> Task :clerk-api:generateDebugResValues UP-TO-DATE
+> Task :clerk-api:generateDebugResources UP-TO-DATE
+> Task :clerk-api:packageDebugResources UP-TO-DATE
+> Task :react-native-onesignal:generateDebugResValues UP-TO-DATE
+> Task :react-native-onesignal:generateDebugResources UP-TO-DATE
+> Task :react-native-onesignal:packageDebugResources UP-TO-DATE
+> Task :react-native-safe-area-context:generateDebugResValues UP-TO-DATE
+> Task :react-native-safe-area-context:generateDebugResources UP-TO-DATE
+> Task :react-native-safe-area-context:packageDebugResources UP-TO-DATE
+> Task :react-native-screens:generateDebugResValues UP-TO-DATE
+> Task :react-native-screens:generateDebugResources UP-TO-DATE
+> Task :react-native-screens:packageDebugResources UP-TO-DATE
+> Task :app:mapDebugSourceSetPaths UP-TO-DATE
+> Task :app:generateDebugResources UP-TO-DATE
+> Task :app:mergeDebugResources UP-TO-DATE
+> Task :app:packageDebugResources UP-TO-DATE
+> Task :app:parseDebugLocalResources UP-TO-DATE
+> Task :app:createDebugCompatibleScreenManifests UP-TO-DATE
+> Task :app:extractDeepLinksDebug UP-TO-DATE
+> Task :clerk-api:extractDeepLinksDebug UP-TO-DATE
+> Task :clerk-api:processDebugManifest UP-TO-DATE
+> Task :react-native-onesignal:extractDeepLinksDebug UP-TO-DATE
+> Task :react-native-onesignal:processDebugManifest UP-TO-DATE
+> Task :react-native-safe-area-context:extractDeepLinksDebug UP-TO-DATE
+> Task :react-native-safe-area-context:processDebugManifest UP-TO-DATE
+> Task :react-native-screens:extractDeepLinksDebug UP-TO-DATE
+> Task :react-native-screens:processDebugManifest UP-TO-DATE
+> Task :app:processDebugMainManifest UP-TO-DATE
+> Task :app:processDebugManifest UP-TO-DATE
+> Task :app:processDebugManifestForPackage UP-TO-DATE
+> Task :clerk-api:compileDebugLibraryResources UP-TO-DATE
+> Task :clerk-api:parseDebugLocalResources UP-TO-DATE
+> Task :clerk-api:generateDebugRFile UP-TO-DATE
+> Task :react-native-onesignal:compileDebugLibraryResources UP-TO-DATE
+> Task :react-native-onesignal:parseDebugLocalResources UP-TO-DATE
+> Task :react-native-onesignal:generateDebugRFile UP-TO-DATE
+> Task :react-native-safe-area-context:compileDebugLibraryResources UP-TO-DATE
+> Task :react-native-safe-area-context:parseDebugLocalResources UP-TO-DATE
+> Task :react-native-safe-area-context:generateDebugRFile UP-TO-DATE
+> Task :react-native-screens:compileDebugLibraryResources UP-TO-DATE
+> Task :react-native-screens:parseDebugLocalResources UP-TO-DATE
+> Task :react-native-screens:generateDebugRFile UP-TO-DATE
+> Task :app:processDebugResources UP-TO-DATE
+> Task :clerk-api:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :clerk-api:generateDebugBuildConfig UP-TO-DATE
+> Task :clerk-api:kspDebugKotlin UP-TO-DATE
+> Task :clerk-api:compileDebugKotlin UP-TO-DATE
+> Task :clerk-api:javaPreCompileDebug UP-TO-DATE
+> Task :clerk-api:compileDebugJavaWithJavac UP-TO-DATE
+> Task :clerk-api:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :react-native-onesignal:generateDebugBuildConfig UP-TO-DATE
+> Task :react-native-onesignal:javaPreCompileDebug UP-TO-DATE
+> Task :react-native-onesignal:compileDebugJavaWithJavac UP-TO-DATE
+> Task :react-native-onesignal:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :react-native-safe-area-context:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :react-native-safe-area-context:generateDebugBuildConfig UP-TO-DATE
+> Task :react-native-safe-area-context:compileDebugKotlin UP-TO-DATE
+> Task :react-native-safe-area-context:javaPreCompileDebug UP-TO-DATE
+> Task :react-native-safe-area-context:compileDebugJavaWithJavac UP-TO-DATE
+> Task :react-native-safe-area-context:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :react-native-screens:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :react-native-screens:generateDebugBuildConfig UP-TO-DATE
+> Task :react-native-screens:compileDebugKotlin UP-TO-DATE
+> Task :react-native-screens:javaPreCompileDebug UP-TO-DATE
+> Task :react-native-screens:compileDebugJavaWithJavac UP-TO-DATE
+> Task :react-native-screens:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :app:javaPreCompileDebug UP-TO-DATE
+> Task :app:preDebugUnitTestBuild UP-TO-DATE
+> Task :app:javaPreCompileDebugUnitTest UP-TO-DATE
+> Task :clerk-api:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :clerk-api:processDebugJavaRes UP-TO-DATE
+> Task :react-native-onesignal:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :react-native-onesignal:processDebugJavaRes NO-SOURCE
+> Task :react-native-safe-area-context:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :react-native-safe-area-context:processDebugJavaRes UP-TO-DATE
+> Task :react-native-screens:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :react-native-screens:processDebugJavaRes UP-TO-DATE
+> Task :app:compileDebugKotlin
+> Task :app:compileDebugJavaWithJavac UP-TO-DATE
+> Task :app:processDebugJavaRes UP-TO-DATE
+> Task :app:bundleDebugClassesToCompileJar
+> Task :app:bundleDebugClassesToRuntimeJar
+> Task :app:compileDebugUnitTestKotlin UP-TO-DATE
+> Task :app:compileDebugUnitTestJavaWithJavac NO-SOURCE
+> Task :app:processDebugUnitTestJavaRes UP-TO-DATE
+
+> Task :app:testDebugUnitTest FAILED
+
+NotificationCoordinatorTest > S10 strict wire rejects unknown commands keys identities unsafe counters oversized and trailing JSON FAILED
+    org.junit.ComparisonFailure at NotificationCoordinatorTest.kt:113
+
+NotificationCoordinatorTest > S09 new lease survives stale release with singleton provider observers FAILED
+    org.junit.ComparisonFailure at NotificationCoordinatorTest.kt:44
+
+NotificationCoordinatorTest > S01 only explicit enable opts in and prompts while refresh and reconcile remain silent FAILED
+    java.lang.AssertionError at NotificationCoordinatorTest.kt:102
+
+NotificationCoordinatorTest > S03 signed binding needs native authority and grant with matching current account FAILED
+    org.junit.ComparisonFailure at NotificationCoordinatorTest.kt:16
+
+NotificationCoordinatorTest > S11 short mismatched malformed grants never bind or refresh tokens in a loop FAILED
+    java.lang.AssertionError at NotificationCoordinatorTest.kt:80
+
+NotificationCoordinatorTest > S11 exact readiness echoes attempt and deducts elapsed native request duration FAILED
+    org.junit.ComparisonFailure at NotificationCoordinatorTest.kt:55
+
+NotificationCoordinatorTest > S04 signed out higher generation fences delayed grant and older reconcile FAILED
+    org.junit.ComparisonFailure at NotificationCoordinatorTest.kt:31
+
+NotificationCoordinatorTest > S09 JWT invalidation ignores other account and coalesces current account callbacks FAILED
+    java.util.NoSuchElementException at NotificationCoordinatorTest.kt:90
+
+NotificationCoordinatorTest > S04 native invalidation clears eligibility during JS suspension and stale HTTP response FAILED
+    org.junit.ComparisonFailure at NotificationCoordinatorTest.kt:68
+
+10 tests completed, 9 failed
+
+[Incubating] Problems report is available at: file:///Users/pravinraj/workspace/weave/apps/mobile/android/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':app:testDebugUnitTest'.
+> There were failing tests. See the report at: file:///Users/pravinraj/workspace/weave/apps/mobile/android/app/build/reports/tests/testDebugUnitTest/index.html
+
+* Try:
+> Run with --scan to get full insights from a Build Scan (powered by Develocity).
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 10.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/9.3.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD FAILED in 9s
+108 actionable tasks: 4 executed, 104 up-to-date

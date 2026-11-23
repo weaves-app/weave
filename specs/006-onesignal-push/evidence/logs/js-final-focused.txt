@@ -1,0 +1,17 @@
+PASS src/features/notifications/account-delivery.test.tsx
+PASS src/features/notifications/recovery-lifecycle.test.tsx
+PASS src/features/notifications/readiness.test.ts
+PASS src/features/notifications/notification-root.test.tsx
+PASS src/features/notifications/accessibility.test.tsx
+PASS src/navigation/notification-open.test.tsx
+PASS src/features/notifications/native-notification-gateway.test.ts
+PASS src/features/notifications/notification-controls.test.tsx
+PASS src/features/notifications/notification-runtime.test.ts
+PASS src/features/notifications/permission.test.ts
+PASS src/features/notifications/privacy.test.ts
+
+Test Suites: 11 passed, 11 total
+Tests:       84 passed, 84 total
+Snapshots:   0 total
+Time:        1.898 s, estimated 3 s
+Ran all test suites matching /src\/features\/notifications|src\/navigation\/notification-open.test.tsx/i.

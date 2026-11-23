@@ -1,0 +1,11 @@
+OneSignalCore.framework: bundled privacy manifest, tracking=false
+OneSignalExtension.framework: bundled privacy manifest, tracking=false
+OneSignalFramework.framework: bundled privacy manifest, tracking=false
+OneSignalLiveActivities.framework: bundled privacy manifest, tracking=false
+OneSignalNotifications.framework: bundled privacy manifest, tracking=false
+OneSignalOSCore.framework: bundled privacy manifest, tracking=false
+OneSignalOutcomes.framework: bundled privacy manifest, tracking=false
+OneSignalUser.framework: bundled privacy manifest, tracking=false
+PASS: exact modular5.8.0; iOS wrapper excluded/Android retained;8 linked SDK frameworks; no location/IAM; app and SDK privacy manifests present; suppression true; remote-notification mode; push entitlement paths/environments.
+PASS: built app public notification configuration is empty, preserving unavailable/missing-configuration path. No SDK/provider initialization was exercised by this build audit.
+LIMIT: simulator build CODE_SIGNING_ALLOWED=NO; signing/provisioning, provider remote logging configuration, IV/APNs and physical delivery/open acceptance remain external.

@@ -1,0 +1,39 @@
+$ pnpm run lint && pnpm run format:check && pnpm run typecheck && pnpm test && pnpm run build
+$ turbo run lint && eslint scripts tests && node scripts/check-architecture.mjs
+
+   • turbo 2.11.7
+   • Packages in scope: @weave/api, @weave/design-tokens, @weave/eslint-config, @weave/mobile, @weave/typescript-config, @weave/web
+   • Running lint in 6 packages
+   • Remote caching disabled
+
+@weave/eslint-config:lint: cache hit, replaying logs a569778453de62d1
+@weave/eslint-config:lint: $ eslint .
+@weave/design-tokens:lint: cache hit, replaying logs 08e20204426c7149
+@weave/design-tokens:lint: $ eslint .
+@weave/mobile:lint: cache miss, executing 44d23301165d33b4
+@weave/web:lint: cache hit, replaying logs be273217bf1ad8f2
+@weave/web:lint: $ eslint .
+@weave/api:db:generate: cache hit, replaying logs cc9a970cab5697f4
+@weave/api:db:generate: $ prisma generate
+@weave/api:db:generate: Loaded Prisma config from prisma.config.ts.
+@weave/api:db:generate:
+@weave/api:db:generate: Prisma schema loaded from prisma/schema.prisma.
+@weave/api:db:generate:
+@weave/api:db:generate: ✔ Generated Prisma Client (7.10.0) to ./src/generated/prisma in 20ms
+@weave/api:db:generate:
+@weave/api:lint: cache hit, replaying logs 5dc168d4077344f8
+@weave/api:lint: $ eslint .
+@weave/mobile:lint: $ eslint .
+
+ Tasks:    6 successful, 6 total
+Cached:    5 cached, 6 total
+  Time:    3.132s
+
+Architecture and interface injection checks passed.
+$ prettier --check .
+Checking formatting...
+[warn] apps/mobile/src/features/notifications/account-delivery.test.tsx
+[warn] specs/006-onesignal-push/evidence/logs/android-implementation-location-audit.json
+[warn] Code style issues found in 2 files. Run Prettier with --write to fix.
+[ELIFECYCLE] Command failed with exit code 1.
+[ELIFECYCLE] Command failed with exit code 1.

@@ -1,0 +1,8 @@
+PASS src/features/notifications/readiness.test.ts
+PASS src/features/notifications/native-notification-gateway.test.ts
+
+Test Suites: 2 passed, 2 total
+Tests:       50 passed, 50 total
+Snapshots:   0 total
+Time:        0.488 s, estimated 1 s
+Ran all test suites matching /native-notification-gateway.test.ts|readiness.test.ts/i.

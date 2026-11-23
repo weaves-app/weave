@@ -1,0 +1,407 @@
+▶ S11 live HTTP enforces bearer, strict DTOs, limits and safe result mapping
+  ✖ both exact routes produce no-store 200 responses (17.028791ms)
+  ✖ invalid or absent bearer cannot use cookies (1.660709ms)
+  ✖ invalid or absent bearer cannot use cookies (0.849083ms)
+  ✖ invalid or absent bearer cannot use cookies (0.703542ms)
+  ✖ strict grant body rejects input without calling provider (0.678ms)
+  ✖ strict grant body rejects input without calling provider (0.595333ms)
+  ✖ strict grant body rejects input without calling provider (0.58025ms)
+  ✖ strict grant body rejects input without calling provider (0.523959ms)
+  ✖ strict grant body rejects input without calling provider (0.649958ms)
+  ✖ strict grant body rejects input without calling provider (0.772208ms)
+  ✖ strict grant body rejects input without calling provider (0.529791ms)
+  ✖ readiness rejects malformed and caller-owned account fields (0.533291ms)
+  ✖ readiness rejects malformed and caller-owned account fields (0.510541ms)
+  ✖ readiness rejects malformed and caller-owned account fields (0.40025ms)
+  ✖ readiness rejects malformed and caller-owned account fields (0.397833ms)
+  ✖ readiness rejects malformed and caller-owned account fields (0.428584ms)
+  ✖ caller query, wrong media type and malformed JSON rejected (0.460917ms)
+  ✖ 4 KiB enforced before use case including unknown-size bodies (0.427958ms)
+  ✖ safe errors and Retry-After agree (0.420125ms)
+  ✖ safe errors and Retry-After agree (0.425208ms)
+  ✖ safe errors and Retry-After agree (2.025542ms)
+  ✖ safe errors and Retry-After agree (0.445333ms)
+✖ S11 live HTTP enforces bearer, strict DTOs, limits and safe result mapping (112.554709ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 0
+ℹ fail 23
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 306.484625
+
+✖ failing tests:
+
+test at apps/api/test/notification-http.test.ts:2:3213
+✖ both exact routes produce no-store 200 responses (17.028791ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  201 !== 200
+
+      at TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-http.test.ts:27:53)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async Test.run (node:internal/test_runner/test:1069:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 201,
+    expected: 200,
+    operator: 'strictEqual'
+  }
+
+test at apps/api/test/notification-http.test.ts:2:3808
+✖ invalid or absent bearer cannot use cookies (1.660709ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  201 !== 401
+
+      at TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-http.test.ts:31:131)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 201,
+    expected: 401,
+    operator: 'strictEqual'
+  }
+
+test at apps/api/test/notification-http.test.ts:2:3808
+✖ invalid or absent bearer cannot use cookies (0.849083ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  201 !== 401
+
+      at TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-http.test.ts:31:131)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 201,
+    expected: 401,
+    operator: 'strictEqual'
+  }
+
+test at apps/api/test/notification-http.test.ts:2:3808
+✖ invalid or absent bearer cannot use cookies (0.703542ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  201 !== 401
+
+      at TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-http.test.ts:31:131)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 201,
+    expected: 401,
+    operator: 'strictEqual'
+  }
+
+test at apps/api/test/notification-http.test.ts:2:4307
+✖ strict grant body rejects input without calling provider (0.678ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  201 !== 400
+
+      at TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-http.test.ts:34:80)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 201,
+    expected: 400,
+    operator: 'strictEqual'
+  }
+
+test at apps/api/test/notification-http.test.ts:2:4307
+✖ strict grant body rejects input without calling provider (0.595333ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  201 !== 400
+
+      at TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-http.test.ts:34:80)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 201,
+    expected: 400,
+    operator: 'strictEqual'
+  }
+
+test at apps/api/test/notification-http.test.ts:2:4307
+✖ strict grant body rejects input without calling provider (0.58025ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  201 !== 400
+
+      at TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-http.test.ts:34:80)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 201,
+    expected: 400,
+    operator: 'strictEqual'
+  }
+
+test at apps/api/test/notification-http.test.ts:2:4307
+✖ strict grant body rejects input without calling provider (0.523959ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  201 !== 400
+
+      at TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-http.test.ts:34:80)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 201,
+    expected: 400,
+    operator: 'strictEqual'
+  }
+
+test at apps/api/test/notification-http.test.ts:2:4307
+✖ strict grant body rejects input without calling provider (0.649958ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  201 !== 400
+
+      at TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-http.test.ts:34:80)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 201,
+    expected: 400,
+    operator: 'strictEqual'
+  }
+
+test at apps/api/test/notification-http.test.ts:2:4307
+✖ strict grant body rejects input without calling provider (0.772208ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  201 !== 400
+
+      at TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-http.test.ts:34:80)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 201,
+    expected: 400,
+    operator: 'strictEqual'
+  }
+
+test at apps/api/test/notification-http.test.ts:2:4307
+✖ strict grant body rejects input without calling provider (0.529791ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  201 !== 400
+
+      at TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-http.test.ts:34:80)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 201,
+    expected: 400,
+    operator: 'strictEqual'
+  }
+
+test at apps/api/test/notification-http.test.ts:2:4845
+✖ readiness rejects malformed and caller-owned account fields (0.533291ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  201 !== 400
+
+      at TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-http.test.ts:36:436)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 201,
+    expected: 400,
+    operator: 'strictEqual'
+  }
+
+test at apps/api/test/notification-http.test.ts:2:4845
+✖ readiness rejects malformed and caller-owned account fields (0.510541ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  201 !== 400
+
+      at TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-http.test.ts:36:436)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 201,
+    expected: 400,
+    operator: 'strictEqual'
+  }
+
+test at apps/api/test/notification-http.test.ts:2:4845
+✖ readiness rejects malformed and caller-owned account fields (0.40025ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  201 !== 400
+
+      at TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-http.test.ts:36:436)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 201,
+    expected: 400,
+    operator: 'strictEqual'
+  }
+
+test at apps/api/test/notification-http.test.ts:2:4845
+✖ readiness rejects malformed and caller-owned account fields (0.397833ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  201 !== 400
+
+      at TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-http.test.ts:36:436)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 201,
+    expected: 400,
+    operator: 'strictEqual'
+  }
+
+test at apps/api/test/notification-http.test.ts:2:4845
+✖ readiness rejects malformed and caller-owned account fields (0.428584ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  201 !== 400
+
+      at TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-http.test.ts:36:436)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 201,
+    expected: 400,
+    operator: 'strictEqual'
+  }
+
+test at apps/api/test/notification-http.test.ts:2:5025
+✖ caller query, wrong media type and malformed JSON rejected (0.460917ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  201 !== 400
+
+      at TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-http.test.ts:38:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 201,
+    expected: 400,
+    operator: 'strictEqual'
+  }
+
+test at apps/api/test/notification-http.test.ts:2:5692
+✖ 4 KiB enforced before use case including unknown-size bodies (0.427958ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  201 !== 413
+
+      at TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-http.test.ts:44:99)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 201,
+    expected: 413,
+    operator: 'strictEqual'
+  }
+
+test at apps/api/test/notification-http.test.ts:2:6661
+✖ safe errors and Retry-After agree (0.420125ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  201 !== 429
+
+      at TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-http.test.ts:47:70)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 201,
+    expected: 429,
+    operator: 'strictEqual'
+  }
+
+test at apps/api/test/notification-http.test.ts:2:6661
+✖ safe errors and Retry-After agree (0.425208ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  201 !== 503
+
+      at TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-http.test.ts:47:70)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 201,
+    expected: 503,
+    operator: 'strictEqual'
+  }
+
+test at apps/api/test/notification-http.test.ts:2:6661
+✖ safe errors and Retry-After agree (2.025542ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  201 !== 503
+
+      at TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-http.test.ts:47:70)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 201,
+    expected: 503,
+    operator: 'strictEqual'
+  }
+
+test at apps/api/test/notification-http.test.ts:2:6661
+✖ safe errors and Retry-After agree (0.445333ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  201 !== 503
+
+      at TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-http.test.ts:47:70)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 201,
+    expected: 503,
+    operator: 'strictEqual'
+  }

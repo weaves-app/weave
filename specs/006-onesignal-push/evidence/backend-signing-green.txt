@@ -1,0 +1,19 @@
+▶ S11 ES256 identity grant contains only identity/issuer/expiry and never outlives bearer
+  ✔ signs 15 seconds with exact constrained claims (3.226542ms)
+  ✔ signs 16 seconds with exact constrained claims (1.319ms)
+  ✔ signs 60 seconds with exact constrained claims (0.440333ms)
+  ✔ signs 1000 seconds with exact constrained claims (0.378417ms)
+  ✔ remaining -1 refuses signing with bounded retry (0.382041ms)
+  ✔ remaining 0 refuses signing with bounded retry (0.211625ms)
+  ✔ remaining 14 refuses signing with bounded retry (0.216917ms)
+  ✔ time advancing after session validation is counted at signing (0.240333ms)
+  ✔ invalid/missing key fails safely without leaking material (0.37875ms)
+✔ S11 ES256 identity grant contains only identity/issuer/expiry and never outlives bearer (23.856375ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 129.003458

@@ -1,0 +1,11 @@
+PASS src/features/notifications/notification-root.test.tsx
+PASS src/features/notifications/readiness.test.ts
+PASS src/features/notifications/notification-runtime.test.ts
+PASS src/features/notifications/notification-controls.test.tsx
+PASS src/features/notifications/permission.test.ts
+
+Test Suites: 5 passed, 5 total
+Tests:       37 passed, 37 total
+Snapshots:   0 total
+Time:        0.649 s, estimated 1 s
+Ran all test suites matching /src\/features\/notifications/i.

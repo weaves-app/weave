@@ -1,0 +1,171 @@
+FAIL src/auth/app-recovery.test.tsx
+  ● S13 a mounted auth failure disposes old subscriptions and prevents late old-root activation after Reload
+
+    auth-state-render-fault
+
+      111 |
+      112 |                 getState: () => {
+    > 113 |                   if (fault) throw new Error('auth-state-render-fault');
+          |                                    ^
+      114 |
+      115 |                   return runtime.state.getState();
+      116 |                 },
+
+      at Object.getState (src/auth/app-recovery.test.tsx:113:36)
+      at getState (src/features/notifications/notification-runtime.ts:55:25)
+      at ../../node_modules/zustand/vanilla.js:11:39
+          at Set.forEach (<anonymous>)
+      at Object.setState (../../node_modules/zustand/vanilla.js:11:17)
+      at Object.setState [as replace] (src/auth/infrastructure/zustand-auth-state-store.ts:16:28)
+      at replace (src/auth/application/auth-controller.ts:56:11)
+      at publish (src/auth/application/auth-controller.ts:87:5)
+      at TestGateway.accept (src/auth/application/auth-controller.ts:381:53)
+      at TestGateway.emit (src/auth/testing/fakes.ts:88:18)
+      at emit (src/auth/app-recovery.test.tsx:131:11)
+      at callback (../../node_modules/@testing-library/react-native/src/act.ts:31:24)
+      at Object.<anonymous>.process.env.NODE_ENV.exports.act (../../node_modules/react/cjs/react.development.js:814:22)
+      at actImplementation (../../node_modules/@testing-library/react-native/src/act.ts:30:25)
+      at Object.<anonymous> (src/auth/app-recovery.test.tsx:129:6)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● WEA-27 S05 twenty Reloads close old stores and reject old native callbacks
+
+    controlled render failure
+
+      167 |
+      168 |         getState: () => {
+    > 169 |           if (fault) throw new Error('controlled render failure');
+          |                            ^
+      170 |
+      171 |           return runtime.state.getState();
+      172 |         },
+
+      at Object.getState (src/auth/app-recovery.test.tsx:169:28)
+      at getState (src/features/notifications/notification-runtime.ts:55:25)
+      at ../../node_modules/zustand/vanilla.js:11:39
+          at Set.forEach (<anonymous>)
+      at Object.setState (../../node_modules/zustand/vanilla.js:11:17)
+      at Object.setState [as replace] (src/auth/infrastructure/zustand-auth-state-store.ts:16:28)
+      at replace (src/auth/application/auth-controller.ts:56:11)
+      at publish (src/auth/application/auth-controller.ts:87:5)
+      at TestGateway.accept (src/auth/application/auth-controller.ts:381:53)
+      at TestGateway.emit (src/auth/testing/fakes.ts:88:18)
+      at emit (src/auth/app-recovery.test.tsx:190:18)
+      at callback (../../node_modules/@testing-library/react-native/src/act.ts:31:24)
+      at Object.<anonymous>.process.env.NODE_ENV.exports.act (../../node_modules/react/cjs/react.development.js:814:22)
+      at actImplementation (../../node_modules/@testing-library/react-native/src/act.ts:30:25)
+      at _loop (src/auth/app-recovery.test.tsx:188:8)
+          at _loop.next (<anonymous>)
+      at Object._loop (src/auth/app-recovery.test.tsx:179:56)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+PASS src/auth/login.test.tsx
+PASS src/navigation/notification-open.test.tsx
+PASS src/localization/presentation/localization-journey.test.tsx
+PASS src/localization/testing/native-fixture.test.tsx
+PASS src/features/notifications/account-delivery.test.tsx
+PASS src/auth/localization-layout.test.tsx
+PASS src/features/notifications/accessibility.test.tsx
+PASS src/features/notifications/notification-root.test.tsx
+PASS src/navigation/root-navigator.test.tsx
+PASS src/features/notifications/permission.test.ts
+PASS src/features/notifications/native-notification-gateway.test.ts
+PASS src/localization/presentation/localization-context.test.tsx
+PASS src/auth/home.test.tsx
+PASS src/auth/presentation/auth-context.test.tsx
+PASS src/auth/presentation/auth-lifecycle.test.tsx
+PASS src/recovery/recovery-screen.test.tsx
+PASS src/recovery/app-error-boundary.test.tsx
+PASS src/components/registration.test.ts
+PASS src/features/notifications/readiness.test.ts
+PASS src/components/code-field.test.tsx
+PASS src/features/notifications/notification-controls.test.tsx
+PASS src/components/form-field.test.tsx
+PASS src/features/notifications/notification-runtime.test.ts
+PASS src/components/button.test.tsx
+PASS src/components/feedback.test.tsx
+PASS src/localization/catalog.test.ts
+PASS src/components/typography.test.tsx
+PASS src/auth/auth-controller.test.ts
+PASS src/localization/infrastructure/i18next-translator.test.ts
+PASS src/localization/localization-runtime.test.ts
+PASS src/auth/auth-runtime.test.ts
+PASS src/localization/safe-english.test.ts
+PASS src/auth/presentation/auth-messages.test.ts
+PASS src/localization/retry-feedback.test.ts
+PASS src/auth/auth-gateway.contract.test.ts
+PASS src/localization/infrastructure/runtime-locale-source.test.ts
+PASS src/auth/infrastructure/zustand-auth-state-store.test.ts
+
+Summary of all failing tests
+FAIL src/auth/app-recovery.test.tsx
+  ● S13 a mounted auth failure disposes old subscriptions and prevents late old-root activation after Reload
+
+    auth-state-render-fault
+
+      111 |
+      112 |                 getState: () => {
+    > 113 |                   if (fault) throw new Error('auth-state-render-fault');
+          |                                    ^
+      114 |
+      115 |                   return runtime.state.getState();
+      116 |                 },
+
+      at Object.getState (src/auth/app-recovery.test.tsx:113:36)
+      at getState (src/features/notifications/notification-runtime.ts:55:25)
+      at ../../node_modules/zustand/vanilla.js:11:39
+          at Set.forEach (<anonymous>)
+      at Object.setState (../../node_modules/zustand/vanilla.js:11:17)
+      at Object.setState [as replace] (src/auth/infrastructure/zustand-auth-state-store.ts:16:28)
+      at replace (src/auth/application/auth-controller.ts:56:11)
+      at publish (src/auth/application/auth-controller.ts:87:5)
+      at TestGateway.accept (src/auth/application/auth-controller.ts:381:53)
+      at TestGateway.emit (src/auth/testing/fakes.ts:88:18)
+      at emit (src/auth/app-recovery.test.tsx:131:11)
+      at callback (../../node_modules/@testing-library/react-native/src/act.ts:31:24)
+      at Object.<anonymous>.process.env.NODE_ENV.exports.act (../../node_modules/react/cjs/react.development.js:814:22)
+      at actImplementation (../../node_modules/@testing-library/react-native/src/act.ts:30:25)
+      at Object.<anonymous> (src/auth/app-recovery.test.tsx:129:6)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● WEA-27 S05 twenty Reloads close old stores and reject old native callbacks
+
+    controlled render failure
+
+      167 |
+      168 |         getState: () => {
+    > 169 |           if (fault) throw new Error('controlled render failure');
+          |                            ^
+      170 |
+      171 |           return runtime.state.getState();
+      172 |         },
+
+      at Object.getState (src/auth/app-recovery.test.tsx:169:28)
+      at getState (src/features/notifications/notification-runtime.ts:55:25)
+      at ../../node_modules/zustand/vanilla.js:11:39
+          at Set.forEach (<anonymous>)
+      at Object.setState (../../node_modules/zustand/vanilla.js:11:17)
+      at Object.setState [as replace] (src/auth/infrastructure/zustand-auth-state-store.ts:16:28)
+      at replace (src/auth/application/auth-controller.ts:56:11)
+      at publish (src/auth/application/auth-controller.ts:87:5)
+      at TestGateway.accept (src/auth/application/auth-controller.ts:381:53)
+      at TestGateway.emit (src/auth/testing/fakes.ts:88:18)
+      at emit (src/auth/app-recovery.test.tsx:190:18)
+      at callback (../../node_modules/@testing-library/react-native/src/act.ts:31:24)
+      at Object.<anonymous>.process.env.NODE_ENV.exports.act (../../node_modules/react/cjs/react.development.js:814:22)
+      at actImplementation (../../node_modules/@testing-library/react-native/src/act.ts:30:25)
+      at _loop (src/auth/app-recovery.test.tsx:188:8)
+          at _loop.next (<anonymous>)
+      at Object._loop (src/auth/app-recovery.test.tsx:179:56)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+
+Test Suites: 1 failed, 37 passed, 38 total
+Tests:       2 failed, 294 passed, 296 total
+Snapshots:   0 total
+Time:        6.642 s, estimated 11 s
+Ran all test suites.

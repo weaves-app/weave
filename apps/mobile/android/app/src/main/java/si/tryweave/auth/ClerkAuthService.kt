@@ -8,12 +8,48 @@ import kotlinx.coroutines.withContext
 import org.json.JSONObject
 
 /** Session policy owns epochs and safe results; the SDK seam owns provider resources. */
-class ClerkAuthService(private val sdk: AuthSdk) : AuthenticationService {
+class ClerkAuthService(private val sdk: AuthSdk) : AuthenticationService, NativeNotificationAuthAuthority {
+  @Volatile private var notificationEpoch = 0L
+  @Volatile private var notificationBlocked = false
+  private val notificationListeners = mutableSetOf<() -> Unit>()
+  private var stopNotificationObservation: (() -> Unit)? = null
+
+  override fun capture(): AuthorizedNotificationSession? {
+    if (busy || notificationBlocked) return null
+    val known = validated ?: return null
+    val actual = try { sdk.currentSession() } catch (_: Exception) { null }
+    if (actual != known || !known.active || known.hasTasks) return null
+    return AuthorizedNotificationSession(known.id, known.accountId, notificationEpoch)
+  }
+
+  override suspend fun token(session: AuthorizedNotificationSession): String? {
+    if (capture() != session) return null
+    val token = sdk.tokenForSession(session.sessionId)
+    return token.takeIf { capture() == session }
+  }
+
+  override fun observeInvalidation(listener: () -> Unit): () -> Unit {
+    notificationListeners.add(listener)
+    if (stopNotificationObservation == null) stopNotificationObservation = sdk.observeInvalidation {
+      val actual = try { sdk.currentSession() } catch (_: Exception) { null }
+      if (actual == null || actual != validated || !actual.active || actual.hasTasks) invalidateNotifications()
+    }
+    return {
+      notificationListeners.remove(listener)
+      if (notificationListeners.isEmpty()) { stopNotificationObservation?.invoke(); stopNotificationObservation = null }
+    }
+  }
+
+  private fun invalidateNotifications() {
+    notificationEpoch++
+    notificationBlocked = true
+    notificationListeners.toList().forEach { try { it() } catch (_: Exception) {} }
+  }
   private var generation = 0L
   private var epoch = 0L
   private var revision = 0L
-  private var validated: ProviderSession? = null
-  private var busy = false
+  @Volatile private var validated: ProviderSession? = null
+  @Volatile private var busy = false
   private var validatedAt: Long? = null
   private val obsoleteSessions = mutableSetOf<String>()
 
@@ -33,6 +69,7 @@ class ClerkAuthService(private val sdk: AuthSdk) : AuthenticationService {
     if (requestedGeneration < generation || requestedGeneration < 0) return error("cancelled")
     generation = requestedGeneration
     epoch++
+    invalidateNotifications()
     val operationEpoch = epoch
     if (command == "abandon") {
       attempt = null
@@ -110,6 +147,7 @@ class ClerkAuthService(private val sdk: AuthSdk) : AuthenticationService {
       else error("unexpected")
     } finally {
       busy = false
+      notificationBlocked = false
     }
   }
 
@@ -311,6 +349,7 @@ class ClerkAuthService(private val sdk: AuthSdk) : AuthenticationService {
   }
 
   override fun release() {
+    invalidateNotifications()
     epoch++
     clearAttempt()
     sdk.cancelPendingSignIn()

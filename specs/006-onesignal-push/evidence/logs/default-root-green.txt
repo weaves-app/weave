@@ -1,0 +1,8 @@
+PASS src/features/notifications/account-delivery.test.tsx
+  ✓ S03/S08 the production root exposes safe notification recovery when the native module is unavailable (80 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        0.754 s
+Ran all test suites matching /account-delivery.test.tsx/i.

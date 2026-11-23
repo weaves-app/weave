@@ -1,0 +1,25 @@
+FAIL src/features/notifications/accessibility.test.tsx
+  ✕ S10 Home keeps Logout and notification actions inside an unconstrained scroll container (135 ms)
+  ✓ S10 announces one meaningful state without a countdown and exposes explicit enabled/busy actions (3 ms)
+
+  ● S10 Home keeps Logout and notification actions inside an unconstrained scroll container
+
+    No instances found with node type: "ScrollView"
+
+      22 |   const view = render(<AuthProvider createRuntime={() => auth}><NotificationRoot createRuntime={(reader) => createNotificationRuntime(reader, platform, new FakeClock(), 'root-a')}><HomeScreen /></NotificationRoot></AuthProvider>);
+      23 |   await waitFor(() => expect(screen.getByRole('button', {name: 'Enable notifications'})).toBeTruthy());
+    > 24 |   const scroll = view.UNSAFE_getByType(ScrollView);
+         |                       ^
+      25 |   expect(scroll.findAllByType(Text).map((node) => node.props.children)).toEqual(expect.arrayContaining(['Logout', 'Enable notifications']));
+      26 |   expect(scroll.props.contentContainerStyle).toMatchObject({flexGrow: 1});
+      27 |   for (const label of view.UNSAFE_getAllByType(Text)) {
+
+      at Object.UNSAFE_getByType (src/features/notifications/accessibility.test.tsx:24:23)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 passed, 2 total
+Snapshots:   0 total
+Time:        0.46 s, estimated 2 s
+Ran all test suites matching /accessibility.test.tsx/i.

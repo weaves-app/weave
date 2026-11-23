@@ -1,0 +1,91 @@
+FAIL src/features/notifications/accessibility.test.tsx
+  ✕ S10 Home keeps Logout and notification actions inside an unconstrained scroll container (1029 ms)
+  ✓ S10 announces one meaningful state without a countdown and exposes explicit enabled/busy actions (2 ms)
+
+  ● S10 Home keeps Logout and notification actions inside an unconstrained scroll container
+
+    Unable to find an element with role: button, name: Enable notifications
+
+    [36m<RNCSafeAreaView>[39m
+      [36m<View>[39m
+        [36m<Text[39m
+          [33maccessibilityRole[39m=[32m"header"[39m
+        [36m>[39m
+          [0mHome[0m
+        [36m</Text>[39m
+        [36m<View[39m
+          [33maccessibilityLabel[39m=[32m"Logout"[39m
+          [33maccessibilityRole[39m=[32m"button"[39m
+          [33maccessibilityState[39m=[32m{
+            {
+              "busy": false,
+              "disabled": false,
+            }
+          }[39m
+          [33maccessible[39m=[32m{true}[39m
+        [36m>[39m
+          [36m<View>[39m
+            [36m<Text>[39m
+              [0mLogout[0m
+            [36m</Text>[39m
+          [36m</View>[39m
+        [36m</View>[39m
+        [36m<View>[39m
+          [36m<Text[39m
+            [33maccessibilityRole[39m=[32m"header"[39m
+          [36m>[39m
+            [0mNotifications[0m
+          [36m</Text>[39m
+          [36m<Text>[39m
+            [0mEnable notifications to receive updates on this device. You can keep using Weave without them.[0m
+          [36m</Text>[39m
+          [36m<Text[39m
+            [33maccessibilityRole[39m=[32m"alert"[39m
+            [33maccessibilityState[39m=[32m{
+              {
+                "busy": false,
+              }
+            }[39m
+          [36m>[39m
+            [0mNotification setup is pending.[0m
+          [36m</Text>[39m
+          [36m<View[39m
+            [33maccessibilityLabel[39m=[32m"Retry notification setup"[39m
+            [33maccessibilityRole[39m=[32m"button"[39m
+            [33maccessibilityState[39m=[32m{
+              {
+                "busy": false,
+                "disabled": false,
+              }
+            }[39m
+            [33maccessible[39m=[32m{true}[39m
+          [36m>[39m
+            [36m<View>[39m
+              [36m<Text>[39m
+                [0mRetry notification setup[0m
+              [36m</Text>[39m
+            [36m</View>[39m
+          [36m</View>[39m
+        [36m</View>[39m
+      [36m</View>[39m
+    [36m</RNCSafeAreaView>[39m
+
+      17 |   const platform = fakePlatform();
+      18 |   const view = render(<AuthProvider createRuntime={() => auth}><NotificationRoot createRuntime={(reader) => createNotificationRuntime(reader, platform, new FakeClock(), 'root-a')}><HomeScreen /></NotificationRoot></AuthProvider>);
+    > 19 |   await waitFor(() => expect(screen.getByRole('button', {name: 'Enable notifications'})).toBeTruthy());
+         |                ^
+      20 |   const scroll = view.UNSAFE_getByType(ScrollView);
+      21 |   expect(scroll.findAllByType(Text).map((node) => node.props.children)).toEqual(expect.arrayContaining(['Logout', 'Enable notifications']));
+      22 |   expect(scroll.props.contentContainerStyle).toMatchObject({flexGrow: 1});
+
+      at Object.<anonymous> (src/features/notifications/accessibility.test.tsx:19:16)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at Object.<anonymous> (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 passed, 2 total
+Snapshots:   0 total
+Time:        1.391 s
+Ran all test suites matching /accessibility.test.tsx/i.

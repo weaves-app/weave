@@ -1,0 +1,13 @@
+▶ S10 HTTP, provider errors and maintenance logs retain no private sentinel
+  ✔ HTTP suppresses raw errors from both authentication and use cases (93.906708ms)
+  ✔ provider error body stays unread and identity credential reaches only fixed authorization (1.535541ms)
+  ✔ storage failures redact underlying errors and cleanup emits aggregate diagnostic only (0.222167ms)
+✔ S10 HTTP, provider errors and maintenance logs retain no private sentinel (96.190083ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 452.326833

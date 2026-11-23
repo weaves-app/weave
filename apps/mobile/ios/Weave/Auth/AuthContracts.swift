@@ -30,6 +30,12 @@ protocol ObsoleteSessionStore {
 }
 
 @MainActor
+protocol NotificationSessionValidationObserver: AnyObject {
+  func validated(_ session: ProviderSession)
+  func invalidate()
+}
+
+@MainActor
 protocol AuthProvider: AnyObject {
   func abandonAttempts()
   func validateSessionFresh() async throws -> ProviderSession?

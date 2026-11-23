@@ -1,0 +1,9 @@
+PASS src/features/notifications/accessibility.test.tsx
+  ✓ S10 Home keeps Logout and notification actions inside an unconstrained scroll container (141 ms)
+  ✓ S10 announces one meaningful state without a countdown and exposes explicit enabled/busy actions (2 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       2 passed, 2 total
+Snapshots:   0 total
+Time:        0.445 s, estimated 1 s
+Ran all test suites matching /accessibility.test.tsx/i.

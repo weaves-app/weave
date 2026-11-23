@@ -9,6 +9,7 @@ import {useStore} from 'zustand';
 import {APP_STATE, NATIVE_EVENT} from '../../components/native-options';
 import {Feedback} from '../../components/feedback';
 import {Screen} from '../../components/screen';
+import type {AuthStateReader} from '../application/auth-state-store';
 import type {AuthRuntime} from '../auth-runtime';
 import type {AuthController} from '../application/auth-controller';
 import type {AuthViewState} from '../domain/auth-models';
@@ -97,4 +98,9 @@ export function useAuthState(): AuthViewState {
 
 export function useAuthSelector<T>(selector: (state: AuthViewState) => T): T {
   return useStore(useAuthRuntime().state, selector);
+}
+
+// Public read-only integration seam; consumers cannot mutate auth state.
+export function useAuthStateReader(): AuthStateReader {
+  return useAuthRuntime().state;
 }

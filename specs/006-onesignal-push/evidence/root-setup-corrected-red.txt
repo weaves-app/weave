@@ -1,0 +1,29 @@
+FAIL src/features/notifications/notification-root.test.tsx
+  ✓ S01 Home composes notification controls without replacing Logout or invoking auth commands (79 ms)
+  ✓ S09 removing a notification factory clears its panel and releases its root (53 ms)
+  ✕ S09 a native listener setup failure releases the already-created notification runtime (71 ms)
+
+  ● S09 a native listener setup failure releases the already-created notification runtime
+
+    expect(jest.fn()).toHaveBeenCalledTimes(expected)
+
+    Expected number of calls: 1
+    Received number of calls: 0
+
+      111 |     await waitFor(() => expect(screen.getByRole('button', {name: 'Reload'})).toBeTruthy());
+      112 |     expect(platform.acquire).toHaveBeenCalledTimes(1);
+    > 113 |     expect(platform.release).toHaveBeenCalledTimes(1);
+          |                              ^
+      114 |   } finally {
+      115 |     add.mockRestore();
+      116 |     errorLog.mockRestore();
+
+      at Object.toHaveBeenCalledTimes (src/features/notifications/notification-root.test.tsx:113:30)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 2 passed, 3 total
+Snapshots:   0 total
+Time:        0.535 s, estimated 1 s
+Ran all test suites matching /src\/features\/notifications\/notification-root.test.tsx/i.

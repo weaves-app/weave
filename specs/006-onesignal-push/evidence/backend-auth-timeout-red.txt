@@ -1,0 +1,94 @@
+▶ S11 real Clerk signature validation plus live session authority
+  ✔ native bearer without azp and permitted web azp derive account and expiry (8.381958ms)
+  ✔ rejects issuer before live lookup (1.010208ms)
+  ✔ rejects emptySubject before live lookup (0.723584ms)
+  ✔ rejects emptySession before live lookup (0.841ms)
+  ✖ rejects numericSession before live lookup (1.6865ms)
+  ✔ rejects expired before live lookup (1.645709ms)
+  ✔ rejects future before live lookup (0.731375ms)
+  ✔ rejects pending before live lookup (0.721416ms)
+  ✔ rejects unknownStatus before live lookup (0.821292ms)
+  ✔ rejects origin before live lookup (0.696958ms)
+  ✔ rejects malformedOrigin before live lookup (0.638916ms)
+  ✔ invalid signature and machine bearer rejected (7.302084ms)
+  ✔ configured audience is mandatory and must match (3.110708ms)
+  ✔ live pending session is rejected (0.702875ms)
+  ✔ live revoked session is rejected (0.903625ms)
+  ✔ live ended session is rejected (0.819125ms)
+  ✔ live expired session is rejected (0.72225ms)
+  ✔ live unexpected session is rejected (0.728542ms)
+  ✔ live ownership and session ID must match (1.423416ms)
+  ✖ live lookup is bounded at five seconds and fails unavailable (5203.259542ms)
+  ✖ missing trusted public key is unavailable without key-discovery retries (2503.619916ms)
+  ✔ missing session is unauthorized but provider outages/config faults unavailable (14.543167ms)
+✖ S11 real Clerk signature validation plus live session authority (7837.258416ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 19
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7946.532833
+
+✖ failing tests:
+
+test at apps/api/test/notification-authentication.test.ts:2:3344
+✖ rejects numericSession before live lookup (1.6865ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+    Comparison {
+  +   code: 'authentication_unavailable'
+  -   code: 'authentication_required'
+    }
+
+      at async TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-authentication.test.ts:35:7)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: authentication_unavailable
+        at ClerkSessionAuthenticator.authenticate (/Users/pravinraj/workspace/weave/apps/api/src/modules/authentication/infrastructure/clerk-session-authenticator.ts:46:13)
+        at async waitForActual (node:assert:565:5)
+        at async strict.rejects (node:assert:686:25)
+        at async TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-authentication.test.ts:35:7)
+        at async Test.run (node:internal/test_runner/test:1069:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:752:7),
+    expected: { code: 'authentication_required' },
+    operator: 'rejects'
+  }
+
+test at apps/api/test/notification-authentication.test.ts:2:5073
+✖ live lookup is bounded at five seconds and fails unavailable (5203.259542ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+
+  + 'unbounded'
+  - 'authentication_unavailable'
+
+      at TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-authentication.test.ts:64:12)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'unbounded',
+    expected: 'authentication_unavailable',
+    operator: 'strictEqual'
+  }
+
+test at apps/api/test/notification-authentication.test.ts:2:5486
+✖ missing trusted public key is unavailable without key-discovery retries (2503.619916ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  15 !== 10
+
+      at TestContext.<anonymous> (/Users/pravinraj/workspace/weave/apps/api/test/notification-authentication.test.ts:69:12)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 15,
+    expected: 10,
+    operator: 'strictEqual'
+  }

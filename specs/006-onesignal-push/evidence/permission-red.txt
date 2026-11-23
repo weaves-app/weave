@@ -1,0 +1,256 @@
+FAIL src/features/notifications/permission.test.ts
+  ● S01–S02 explicit notification permission › launch, sign-in, foreground and Retry never request permission
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "permission-needed"
+    Received: "hidden"
+
+      24 |     controller.start(TEST_CONTEXT);
+      25 |     await tick();
+    > 26 |     expect(state.getState().status).toBe('permission-needed');
+         |                                     ^
+      27 |     await controller.refresh();
+      28 |     controller.setForeground(false);
+      29 |     controller.setForeground(true);
+
+      at Object.toBe (src/features/notifications/permission.test.ts:26:37)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● S01–S02 explicit notification permission › Enable double-tap requests once, clears busy, and allowed registration is only pending
+
+    expect(jest.fn()).toHaveBeenCalledTimes(expected)
+
+    Expected number of calls: 1
+    Received number of calls: 0
+
+      41 |     const first = controller.enable();
+      42 |     const second = controller.enable();
+    > 43 |     expect(platform.enable).toHaveBeenCalledTimes(1);
+         |                             ^
+      44 |     expect(state.getState().busy).toBe(true);
+      45 |     permission.resolve(allowed);
+      46 |     await Promise.all([first, second]);
+
+      at Object.toHaveBeenCalledTimes (src/features/notifications/permission.test.ts:43:29)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● S01–S02 explicit notification permission › denied observation preserves the appropriate explicit action
+
+    expect(received).toMatchObject(expected)
+
+    - Expected  - 1
+    + Received  + 1
+
+      Object {
+        "busy": false,
+        "canRequest": false,
+    -   "status": "disabled",
+    +   "status": "hidden",
+      }
+
+      57 |     controller.start(TEST_CONTEXT);
+      58 |     await tick();
+    > 59 |     expect(state.getState()).toMatchObject({status, canRequest, busy: false});
+         |                              ^
+      60 |     expect(platform.enable).not.toHaveBeenCalled();
+      61 |     await controller.openSettings();
+      62 |     expect(platform.openSettings).toHaveBeenCalledWith(TEST_CONTEXT);
+
+      at toMatchObject (src/features/notifications/permission.test.ts:59:30)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● S01–S02 explicit notification permission › restricted observation preserves the appropriate explicit action
+
+    expect(received).toMatchObject(expected)
+
+    - Expected  - 1
+    + Received  + 1
+
+      Object {
+        "busy": false,
+        "canRequest": false,
+    -   "status": "disabled",
+    +   "status": "hidden",
+      }
+
+      57 |     controller.start(TEST_CONTEXT);
+      58 |     await tick();
+    > 59 |     expect(state.getState()).toMatchObject({status, canRequest, busy: false});
+         |                              ^
+      60 |     expect(platform.enable).not.toHaveBeenCalled();
+      61 |     await controller.openSettings();
+      62 |     expect(platform.openSettings).toHaveBeenCalledWith(TEST_CONTEXT);
+
+      at toMatchObject (src/features/notifications/permission.test.ts:59:30)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● S01–S02 explicit notification permission › undetermined observation preserves the appropriate explicit action
+
+    expect(received).toMatchObject(expected)
+
+    - Expected  - 2
+    + Received  + 2
+
+      Object {
+        "busy": false,
+    -   "canRequest": true,
+    -   "status": "permission-needed",
+    +   "canRequest": false,
+    +   "status": "hidden",
+      }
+
+      57 |     controller.start(TEST_CONTEXT);
+      58 |     await tick();
+    > 59 |     expect(state.getState()).toMatchObject({status, canRequest, busy: false});
+         |                              ^
+      60 |     expect(platform.enable).not.toHaveBeenCalled();
+      61 |     await controller.openSettings();
+      62 |     expect(platform.openSettings).toHaveBeenCalledWith(TEST_CONTEXT);
+
+      at toMatchObject (src/features/notifications/permission.test.ts:59:30)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● S01–S02 explicit notification permission › unavailable observation preserves the appropriate explicit action
+
+    expect(received).toMatchObject(expected)
+
+    - Expected  - 1
+    + Received  + 1
+
+      Object {
+        "busy": false,
+        "canRequest": false,
+    -   "status": "unavailable",
+    +   "status": "hidden",
+      }
+
+      57 |     controller.start(TEST_CONTEXT);
+      58 |     await tick();
+    > 59 |     expect(state.getState()).toMatchObject({status, canRequest, busy: false});
+         |                              ^
+      60 |     expect(platform.enable).not.toHaveBeenCalled();
+      61 |     await controller.openSettings();
+      62 |     expect(platform.openSettings).toHaveBeenCalledWith(TEST_CONTEXT);
+
+      at toMatchObject (src/features/notifications/permission.test.ts:59:30)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● S01–S02 explicit notification permission › settings return refreshes observations without prompting; duplicate active events coalesce
+
+    expect(jest.fn()).toHaveBeenCalledTimes(expected)
+
+    Expected number of calls: 2
+    Received number of calls: 0
+
+      73 |     controller.setForeground(true);
+      74 |     await tick();
+    > 75 |     expect(platform.reconcile).toHaveBeenCalledTimes(2);
+         |                                ^
+      76 |     expect(state.getState().status).toBe('pending');
+      77 |     expect(platform.enable).not.toHaveBeenCalled();
+      78 |     controller.dispose();
+
+      at Object.toHaveBeenCalledTimes (src/features/notifications/permission.test.ts:75:32)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● S01–S02 explicit notification permission › sign-out clears immediately and a late permission completion cannot show signed-in UI
+
+    expect(jest.fn()).toHaveBeenLastCalledWith(...expected)
+
+    Expected: null, "root-a"
+
+    Number of calls: 0
+
+      91 |     await request;
+      92 |     expect(state.getState().status).toBe('hidden');
+    > 93 |     expect(platform.reconcile).toHaveBeenLastCalledWith(null, 'root-a');
+         |                                ^
+      94 |     controller.dispose();
+      95 |   });
+      96 |
+
+      at Object.toHaveBeenLastCalledWith (src/features/notifications/permission.test.ts:93:32)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● S01–S02 explicit notification permission › native failures become safe unavailable state and preserve retry
+
+    expect(received).toMatchObject(expected)
+
+    - Expected  - 1
+    + Received  + 1
+
+      Object {
+        "busy": false,
+    -   "status": "unavailable",
+    +   "status": "hidden",
+      }
+
+      100 |     controller.start(TEST_CONTEXT);
+      101 |     await tick();
+    > 102 |     expect(state.getState()).toMatchObject({status: 'unavailable', busy: false});
+          |                              ^
+      103 |     expect(JSON.stringify(state.getState())).not.toContain('private-sdk-detail');
+      104 |     jest.mocked(platform.reconcile).mockResolvedValue(allowed);
+      105 |     await controller.refresh();
+
+      at Object.toMatchObject (src/features/notifications/permission.test.ts:102:30)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+FAIL src/features/notifications/notification-controls.test.tsx
+  ● S01 hidden for signed-out users; explicit explained Enable has an accessible action
+
+    Unable to find an element with text: /You can keep using Weave without them/
+
+      19 |   expect(screen.queryByText('Notifications')).toBeNull();
+      20 |   act(() => state.replace({status: 'permission-needed', permission: 'undetermined', canRequest: true, busy: false, retryBlocked: false}));
+    > 21 |   expect(screen.getByText(/You can keep using Weave without them/)).toBeTruthy();
+         |                 ^
+      22 |   fireEvent.press(screen.getByRole('button', {name: 'Enable notifications'}));
+      23 |   expect(controller.enable).toHaveBeenCalledTimes(1);
+      24 | });
+
+      at Object.getByText (src/features/notifications/notification-controls.test.tsx:21:17)
+
+  ● S01 busy disables Enable and shows checking instead of ready
+
+    Unable to find an element with role: button, name: Enable notifications
+
+      27 |   const {state, controller} = setup();
+      28 |   act(() => state.replace({status: 'permission-needed', permission: 'undetermined', canRequest: true, busy: true, retryBlocked: false}));
+    > 29 |   const button = screen.getByRole('button', {name: 'Enable notifications'});
+         |                         ^
+      30 |   expect(button.props.accessibilityState).toEqual({busy: true, disabled: true});
+      31 |   fireEvent.press(button);
+      32 |   expect(controller.enable).not.toHaveBeenCalled();
+
+      at Object.getByRole (src/features/notifications/notification-controls.test.tsx:29:25)
+
+  ● S02 denial offers explicit settings; pending offers Retry with a bounded disabled state
+
+    Unable to find an element with role: button, name: Open notification settings
+
+      37 |   const {state, controller} = setup();
+      38 |   act(() => state.replace({status: 'disabled', permission: 'denied', canRequest: false, busy: false, retryBlocked: false}));
+    > 39 |   fireEvent.press(screen.getByRole('button', {name: 'Open notification settings'}));
+         |                          ^
+      40 |   expect(controller.openSettings).toHaveBeenCalledTimes(1);
+      41 |   act(() => state.replace({status: 'pending', permission: 'allowed', canRequest: false, busy: false, retryBlocked: true}));
+      42 |   expect(screen.getByRole('button', {name: 'Retry notification setup'}).props.accessibilityState.disabled).toBe(true);
+
+      at Object.getByRole (src/features/notifications/notification-controls.test.tsx:39:26)
+
+Test Suites: 2 failed, 2 total
+Tests:       12 failed, 12 total
+Snapshots:   0 total
+Time:        0.418 s
+Ran all test suites matching /src\/features\/notifications/i.

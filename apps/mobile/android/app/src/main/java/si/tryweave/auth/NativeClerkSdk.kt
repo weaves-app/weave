@@ -4,6 +4,8 @@ import com.clerk.api.Clerk
 import com.clerk.api.network.model.error.ClerkErrorResponse
 import com.clerk.api.network.serialization.ClerkResult
 import com.clerk.api.session.Session
+import com.clerk.api.session.GetTokenOptions
+import com.clerk.api.session.fetchToken
 import com.clerk.api.signin.SignIn
 import com.clerk.api.signin.attemptFirstFactor
 import com.clerk.api.signin.attemptSecondFactor
@@ -74,6 +76,15 @@ class NativeClerkSdk : AuthSdk {
         session.currentTask != null || session.tasks.isNotEmpty(),
       )
     }
+
+  override suspend fun tokenForSession(sessionId: String): String? {
+    val captured = Clerk.session ?: return null
+    if (captured.id != sessionId || captured.status != Session.SessionStatus.ACTIVE || captured.currentTask != null || captured.tasks.isNotEmpty()) return null
+    return when (val result = captured.fetchToken(GetTokenOptions())) {
+      is ClerkResult.Success -> result.value.jwt
+      is ClerkResult.Failure -> null
+    }
+  }
 
   override suspend fun password(email: String, password: String): ProviderAttempt {
     ready()

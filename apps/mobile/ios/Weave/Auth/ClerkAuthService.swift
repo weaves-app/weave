@@ -9,6 +9,7 @@ final class ClerkAuthService: WeaveAuthExecuting {
   }
   private let provider: any AuthProvider
   private let obsoleteSessionStore: any ObsoleteSessionStore
+  private let notificationAuthority: (any NotificationSessionValidationObserver)?
   private var attempts: [String: Attempt] = [:]
   private var generation = -1
   private var revision = 0
@@ -19,10 +20,16 @@ final class ClerkAuthService: WeaveAuthExecuting {
   private var pendingSignOuts: Set<Int> = []
   private var pendingAuthentications: Set<Int> = []
 
-  init(provider: any AuthProvider, obsoleteSessionStore: any ObsoleteSessionStore) {
+  init(
+    provider: any AuthProvider,
+    obsoleteSessionStore: any ObsoleteSessionStore,
+    notificationAuthority: (any NotificationSessionValidationObserver)? = nil
+  ) {
     self.provider = provider
     self.obsoleteSessionStore = obsoleteSessionStore
+    self.notificationAuthority = notificationAuthority
     provider.invalidationHandler = { [weak self] in
+      self?.notificationAuthority?.invalidate()
       guard let self, self.eventsEnabled, self.hasActiveSnapshot, self.generation >= 0 else { return }
       if self.pendingSignOuts.isEmpty { self.epoch += 1 }
       self.attempts.removeAll()
@@ -36,6 +43,7 @@ final class ClerkAuthService: WeaveAuthExecuting {
       return error(.invalidInput)
     }
     if command == "dispose" {
+      notificationAuthority?.invalidate()
       eventsEnabled = false
       epoch += 1
       attempts.removeAll()
@@ -48,6 +56,7 @@ final class ClerkAuthService: WeaveAuthExecuting {
       return error(.invalidInput)
     }
     guard nextGeneration >= generation else { return error(.cancelled) }
+    notificationAuthority?.invalidate()
     generation = nextGeneration
     eventsEnabled = true
     epoch += 1
@@ -189,6 +198,8 @@ final class ClerkAuthService: WeaveAuthExecuting {
   private func snapshot(status: String, session: ProviderSession? = nil, failure: AuthFailure? = nil) -> String {
     revision += 1
     hasActiveSnapshot = status == "active"
+    if status == "active", let session { notificationAuthority?.validated(session) }
+    else { notificationAuthority?.invalidate() }
     var value: [String: Any] = ["status": status, "generation": generation, "revision": revision]
     if let session {
       value["sessionId"] = session.sessionId
