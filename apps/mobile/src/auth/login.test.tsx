@@ -126,6 +126,46 @@ test('S17 cancelled Google returns a working visible password form', async () =>
   await waitFor(() => expect(gateway.requests.at(-1)?.method).toBe('password'));
 });
 
+test('S16 shows the resend error wait time and clears it after a successful resend', async () => {
+  const gateway = new TestGateway();
+  const challenge: AuthResult = {
+    kind: 'challenge',
+    attemptId: 'resend-attempt',
+    codePurpose: CODE_PURPOSE.SIGN_IN,
+  };
+
+  gateway.loginResult = async () => challenge;
+  setup(gateway);
+  await waitFor(() => expect(gateway.requests).toHaveLength(1));
+  fireEvent.changeText(screen.getByLabelText('Email'), 'person@example.com');
+  fireEvent.press(screen.getByRole('button', {name: 'Email code'}));
+  fireEvent.press(screen.getByRole('button', {name: 'Send code'}));
+  await waitFor(() => expect(screen.getByLabelText('Verification code')).toBeTruthy());
+
+  gateway.loginResult = async () => ({
+    kind: 'error',
+    code: 'rateLimited',
+    messageKey: 'rateLimited',
+    retryAfterSeconds: 60,
+  });
+  fireEvent.press(screen.getByRole('button', {name: 'Resend code'}));
+  await waitFor(() => expect(screen.getByText('Try again after 60 seconds.')).toBeTruthy());
+
+  gateway.loginResult = async () => challenge;
+  fireEvent.press(screen.getByRole('button', {name: 'Resend code'}));
+  await waitFor(() => expect(screen.getByRole('button', {name: 'Resend code'})).not.toBeDisabled());
+  expect(screen.queryByText('Try again after 60 seconds.')).toBeNull();
+
+  gateway.loginResult = async () => ({
+    kind: 'error',
+    code: 'rateLimited',
+    messageKey: 'rateLimited',
+  });
+  fireEvent.press(screen.getByRole('button', {name: 'Resend code'}));
+  await waitFor(() => expect(screen.getByText('Please wait before trying again.')).toBeTruthy());
+  expect(screen.queryByText('Try again after 60 seconds.')).toBeNull();
+});
+
 test('S15 the complete login form applies safe-area edges around its keyboard-aware scroll layout', async () => {
   setup();
   await waitFor(() => expect(screen.getByLabelText('Email')).toBeTruthy());

@@ -22,6 +22,30 @@ struct KeychainHealthCheck {
   }
 }
 
+struct KeychainObsoleteSessionStore: ObsoleteSessionStore {
+  let access: any KeychainAccess
+
+  func contains(_ sessionId: String) throws -> Bool {
+    let (status, data) = access.read(account: account(for: sessionId))
+    if status == errSecItemNotFound { return false }
+    guard status == errSecSuccess, data == Data([1]) else { throw AuthFailure.storage }
+    return true
+  }
+
+  func insert(_ sessionId: String) throws {
+    let status = access.write(Data([1]), account: account(for: sessionId))
+    guard status == errSecSuccess || status == errSecDuplicateItem else { throw AuthFailure.storage }
+  }
+
+  func remove(_ sessionId: String) throws {
+    let status = access.delete(account: account(for: sessionId))
+    guard status == errSecSuccess || status == errSecItemNotFound else { throw AuthFailure.storage }
+  }
+
+  private func account(for sessionId: String) -> String {
+    "weave.auth.obsolete." + sessionId
+  }
+}
 
 struct SystemKeychainAccess: KeychainAccess {
   let service: String

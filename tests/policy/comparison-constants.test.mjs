@@ -18,7 +18,13 @@ for (const [label, cwd, filePath] of [
       files: ['**/*.ts', '**/*.tsx', '**/*.mjs'],
       languageOptions: {
         parser: tseslint.parser,
-        parserOptions: {project: false, tsconfigRootDir: cwd},
+        // lintText replaces the same file with different snippets. The CI parser's
+        // single-run cache assumes the on-disk source is the lint input.
+        parserOptions: {
+          project: false,
+          tsconfigRootDir: cwd,
+          disallowAutomaticSingleRunInference: true,
+        },
       },
       rules: {
         '@typescript-eslint/no-floating-promises': 'off',

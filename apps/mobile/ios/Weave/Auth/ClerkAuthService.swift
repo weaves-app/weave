@@ -8,6 +8,7 @@ final class ClerkAuthService: WeaveAuthExecuting {
     let purpose: String
   }
   private let provider: any AuthProvider
+  private let obsoleteSessionStore: any ObsoleteSessionStore
   private var attempts: [String: Attempt] = [:]
   private var generation = -1
   private var revision = 0
@@ -18,8 +19,9 @@ final class ClerkAuthService: WeaveAuthExecuting {
   private var pendingSignOuts: Set<Int> = []
   private var pendingAuthentications: Set<Int> = []
 
-  init(provider: any AuthProvider) {
+  init(provider: any AuthProvider, obsoleteSessionStore: any ObsoleteSessionStore) {
     self.provider = provider
+    self.obsoleteSessionStore = obsoleteSessionStore
     provider.invalidationHandler = { [weak self] in
       guard let self, self.eventsEnabled, self.hasActiveSnapshot, self.generation >= 0 else { return }
       if self.pendingSignOuts.isEmpty { self.epoch += 1 }
@@ -64,8 +66,13 @@ final class ClerkAuthService: WeaveAuthExecuting {
         guard inputs["forceFresh"] as? Bool == true else { throw AuthFailure.invalidInput }
         guard pendingAuthentications.isEmpty, pendingSignOuts.isEmpty else { return snapshot(status: "unavailable", failure: .cancelled) }
         do {
-          let session = try await provider.validateSessionFresh()
+          var session = try await provider.validateSessionFresh()
           try requireCurrent(operationEpoch)
+          if let sessionId = session?.sessionId ?? provider.storedSessionId,
+             try isObsolete(sessionId) {
+            session = try await endObsoleteSession(sessionId, operationEpoch: operationEpoch)
+            try requireCurrent(operationEpoch)
+          }
           return try validatedSnapshot(session)
         } catch {
           try requireCurrent(operationEpoch)
@@ -146,16 +153,33 @@ final class ClerkAuthService: WeaveAuthExecuting {
   private func compensateIfObsolete(_ attempt: ProviderAttempt, operationEpoch: Int) async throws {
     guard epoch != operationEpoch else { return }
     if let createdId = attempt.createdSessionId {
-      obsoleteSessions.insert(createdId)
-      try await provider.signOut(sessionId: createdId)
-      obsoleteSessions.remove(createdId)
+      _ = try await endObsoleteSession(createdId, operationEpoch: operationEpoch)
     }
     throw AuthFailure.cancelled
   }
 
+  private func endObsoleteSession(_ sessionId: String, operationEpoch: Int) async throws -> ProviderSession? {
+    obsoleteSessions.insert(sessionId)
+    try obsoleteSessionStore.insert(sessionId)
+    pendingSignOuts.insert(operationEpoch)
+    defer { pendingSignOuts.remove(operationEpoch) }
+    try await provider.signOut(sessionId: sessionId)
+    let session = try await provider.validateSessionFresh()
+    guard session?.sessionId != sessionId, provider.storedSessionId != sessionId else {
+      throw AuthFailure.storage
+    }
+    try obsoleteSessionStore.remove(sessionId)
+    obsoleteSessions.remove(sessionId)
+    return session
+  }
+
+  private func isObsolete(_ sessionId: String) throws -> Bool {
+    try obsoleteSessions.contains(sessionId) || obsoleteSessionStore.contains(sessionId)
+  }
+
   private func validatedSnapshot(_ session: ProviderSession?) throws -> String {
     guard let session else { return snapshot(status: "signedOut") }
-    guard !obsoleteSessions.contains(session.sessionId) else { throw AuthFailure.cancelled }
+    guard try !isObsolete(session.sessionId) else { throw AuthFailure.cancelled }
     guard session.active, !session.hasPendingTasks, !session.sessionId.isEmpty, !session.accountId.isEmpty else {
       throw AuthFailure.verificationRequired
     }
