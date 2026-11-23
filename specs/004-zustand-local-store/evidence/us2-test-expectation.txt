@@ -1,0 +1,48 @@
+FAIL src/auth/auth-runtime.test.ts
+  ● WEA-27 S07 restart discards pending secrets and revalidates native session
+
+    expect(received).not.toHaveProperty(path)
+
+    Expected path: not "error"
+
+    Received value: undefined
+
+      89 |   expect(fresh.state.getState().session.status).toBe('resolving');
+      90 |   expect(fresh.state.getState()).toMatchObject({attempt: {stage: 'idle'}, pending: false});
+    > 91 |   expect(fresh.state.getState()).not.toHaveProperty('error');
+         |                                      ^
+      92 |
+      93 |   const old = gateway.requests[1]?.input;
+      94 |   const current = restored.requests[0]?.input;
+
+      at Object.toHaveProperty (src/auth/auth-runtime.test.ts:91:38)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+PASS src/auth/login.test.tsx
+PASS src/auth/app-recovery.test.tsx
+PASS src/navigation/root-navigator.test.tsx
+PASS src/auth/home.test.tsx
+PASS src/auth/presentation/auth-lifecycle.test.tsx
+PASS src/recovery/app-error-boundary.test.tsx
+PASS src/components/registration.test.ts
+PASS src/components/form-field.test.tsx
+PASS src/components/code-field.test.tsx
+PASS src/auth/auth-controller.test.ts
+PASS src/components/typography.test.tsx
+PASS src/components/button.test.tsx
+PASS src/components/feedback.test.tsx
+PASS src/auth/auth-gateway.contract.test.ts
+PASS src/auth/infrastructure/zustand-auth-state-store.test.ts
+
+Test Suites: 1 failed, 15 passed, 16 total
+Tests:       1 failed, 104 passed, 105 total
+Snapshots:   0 total
+Time:        3.951 s, estimated 5 s
+Ran all test suites.
+Jest did not exit one second after the test run has completed.
+
+'This usually means that there are asynchronous operations that weren't stopped in your tests. Consider running Jest with `--detectOpenHandles` to troubleshoot this issue.
+undefined
+/Users/pravinraj/workspace/weave/apps/mobile:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: jest --runInBand '--watchman=false'

@@ -36,3 +36,6 @@ apps/mobile/ios/
 # Pinned upstream SDKs retain upstream formatting.
 apps/mobile/vendor/clerk-ios/
 apps/mobile/vendor/clerk-android/
+
+# Developer-local pnpm cache.
+.pnpm-store/

@@ -1,6 +1,8 @@
-import {createAuthController} from './application/auth-controller';
+import {createAuthController as createControllerWithStore} from './application/auth-controller';
+import {createTestAuthController as createAuthController} from './testing/fakes';
+import {createZustandAuthStateStore} from './infrastructure/zustand-auth-state-store';
 import {active, deferred, signedOut, TestClock, TestGateway} from './testing/fakes';
-import type {AuthResult, SessionSnapshot} from './domain/auth-models';
+import type {AuthResult, SessionSnapshot, AuthViewState} from './domain/auth-models';
 
 import {SESSION_STATUS, AUTH_METHOD, CODE_PURPOSE} from './domain/auth-models';
 
@@ -534,4 +536,31 @@ test('S04/S07 retry after subscription failure reinstalls invalidation before gr
     revision: 2,
   });
   expect(controller.getSnapshot().session.status).toBe('signedOut');
+});
+
+test('WEA-27 S01/S02/S03 injected store owns accepted state and rejects replaced callbacks', async () => {
+  const gateway = new TestGateway();
+  const store = createZustandAuthStateStore({
+    session: {status: 'resolving', generation: 0, revision: 0},
+    attempt: {method: 'password', stage: 'idle'},
+    pending: false,
+  });
+  const controller = createControllerWithStore(gateway, new TestClock(), store);
+  const snapshots: AuthViewState[] = [];
+
+  store.subscribe(() => snapshots.push(store.getState()));
+  await controller.start();
+  expect(store.getState().session.status).toBe('signedOut');
+  expect(controller.getSnapshot()).toBe(store.getState());
+  await controller.login('password', '', 'private-password');
+  expect(store.getState().error?.code).toBe('invalidInput');
+  expect(JSON.stringify(snapshots)).not.toContain('private-password');
+
+  const old = requestContext(gateway, 0);
+
+  controller.selectMethod('emailCode');
+  expect(store.getState()).not.toHaveProperty('error');
+  gateway.emit(active(old, 99));
+  expect(store.getState().session.status).toBe('signedOut');
+  controller.dispose();
 });

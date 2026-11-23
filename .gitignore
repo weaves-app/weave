@@ -44,3 +44,6 @@ apps/mobile/vendor/**/.build/
 apps/mobile/vendor/**/.gradle/
 apps/mobile/vendor/**/.kotlin/
 apps/mobile/vendor/**/build/
+
+# Developer-local pnpm cache.
+.pnpm-store/

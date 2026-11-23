@@ -3,7 +3,7 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 import {AuthProvider} from './presentation/auth-context';
 import {HomeScreen} from './presentation/home-screen';
-import {createAuthController} from './application/auth-controller';
+import {createAuthRuntime} from './auth-runtime';
 import {active, TestClock, TestGateway} from './testing/fakes';
 
 export const SIGN_OUT_COMMAND = 'signOut';
@@ -14,7 +14,8 @@ test('S09/S11 Home has one Logout action with accessible pending feedback and on
   gateway.resolveResult = async (input) => active(input);
   gateway.signOutResult = () => new Promise(() => undefined);
 
-  const controller = createAuthController(gateway, new TestClock());
+  const runtime = createAuthRuntime(gateway, new TestClock());
+  const controller = runtime.controller;
   const {unmount} = render(
     <SafeAreaProvider
       initialMetrics={{
@@ -22,7 +23,7 @@ test('S09/S11 Home has one Logout action with accessible pending feedback and on
         insets: {top: 0, left: 0, right: 0, bottom: 0},
       }}
     >
-      <AuthProvider createController={() => controller}>
+      <AuthProvider createRuntime={() => runtime}>
         <HomeScreen />
       </AuthProvider>
     </SafeAreaProvider>,

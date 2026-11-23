@@ -1,0 +1,30 @@
+FAIL src/auth/presentation/auth-context.test.tsx
+  ✕ WEA-27 S06 one hundred unrelated changes never commit unchanged selected consumers (83 ms)
+
+  ● WEA-27 S06 one hundred unrelated changes never commit unchanged selected consumers
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 2
+    Received: 102
+
+      47 |     act(() => store.replace({...store.getState(), pending: index % 2 === 0}));
+      48 |   }
+    > 49 |   expect(selectedUpdates).toBe(before);
+         |                           ^
+      50 |   expect(pendingUpdates - beforePending).toBe(100);
+      51 |   expect(independentUpdates).toBe(beforeIndependent);
+      52 |   first.unmount();
+
+      at Object.toBe (src/auth/presentation/auth-context.test.tsx:49:27)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        0.387 s
+Ran all test suites matching /src\/auth\/presentation\/auth-context.test.tsx/i.
+undefined
+/Users/pravinraj/workspace/weave/apps/mobile:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: jest --runInBand '--watchman=false' src/auth/presentation/auth-context.test.tsx

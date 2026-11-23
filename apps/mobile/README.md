@@ -102,3 +102,9 @@ pnpm --filter @weave/mobile run native:ios \
 ```
 
 Install and launch the app on your selected simulator using Xcode or `simctl`. The build must generate the simulator `application-identifier` entitlement; manually signing a copied unsigned app is not equivalent. This local simulator path was verified on iPhone17Pro/iOS26.2 after the owner selected their team. It does not verify device provisioning, paid membership, store distribution, or live login acceptance.
+
+### Local authentication state
+
+WEA-27 uses Zustand 5.0.15 as an in-memory store, constructed for each provider activation. The framework-free auth controller reads and replaces snapshots through `AuthStateStore`; only the composition runtime creates the concrete adapter. `useAuthSelector` observes selected values, while Login keeps a whole-state view and component-local form inputs. Native authentication remains authoritative for session validity and secure credential persistence.
+
+Provider effect setup creates and starts a fresh runtime. Cleanup disposes controller/native subscriptions before closing the store; development effect replay and recovery Reload allocate new instances. No global store, persistence middleware, credential serialization or reset-based session authority is introduced. See [WEA-27 contracts](../../specs/004-zustand-local-store/contracts/local-state.md) and [verification evidence](../../specs/004-zustand-local-store/evidence.md).

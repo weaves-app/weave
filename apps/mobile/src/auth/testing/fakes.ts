@@ -1,3 +1,8 @@
+import type {AuthController} from '../application/auth-controller';
+
+import {createAuthController} from '../application/auth-controller';
+import {createInitialAuthState} from '../application/auth-state-store';
+import {createZustandAuthStateStore} from '../infrastructure/zustand-auth-state-store';
 import type {AuthenticationGateway, OperationContext} from '../application/authentication-gateway';
 import type {Clock} from '../application/clock';
 import type {AuthResult, SessionSnapshot} from '../domain/auth-models';
@@ -127,4 +132,15 @@ export class TestGateway implements AuthenticationGateway {
     this.disposed = true;
     this.observer = undefined;
   }
+}
+
+export function createTestAuthController(
+  gateway: AuthenticationGateway,
+  clock: Clock,
+): AuthController {
+  return createAuthController(
+    gateway,
+    clock,
+    createZustandAuthStateStore(createInitialAuthState()),
+  );
 }

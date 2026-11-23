@@ -4,7 +4,7 @@ import {act, fireEvent, render, screen, waitFor, within} from '@testing-library/
 
 import {AuthProvider} from './presentation/auth-context';
 import {LoginScreen} from './presentation/login-screen';
-import {createAuthController} from './application/auth-controller';
+import {createAuthRuntime} from './auth-runtime';
 import {active, deferred, TestClock, TestGateway} from './testing/fakes';
 import type {AuthResult} from './domain/auth-models';
 
@@ -17,10 +17,11 @@ export const VERIFY_CODE_COMMAND = 'verifyCode';
 export const REQUEST_CODE_COMMAND = 'requestCode';
 
 function setup(gateway = new TestGateway()) {
-  const controller = createAuthController(gateway, new TestClock());
+  const runtime = createAuthRuntime(gateway, new TestClock());
+  const controller = runtime.controller;
 
   render(
-    <AuthProvider createController={() => controller}>
+    <AuthProvider createRuntime={() => runtime}>
       <LoginScreen />
     </AuthProvider>,
   );

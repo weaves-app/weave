@@ -1,0 +1,64 @@
+FAIL src/auth/infrastructure/zustand-auth-state-store.test.ts
+  ✕ WEA-27 S01/S06 replacement synchronously updates both readers and removes old error (2 ms)
+  ✕ WEA-27 S06 unsubscribe and disposal isolate lifetimes and reject later writes
+  ✕ WEA-27 S06 identical replacement preserves snapshot identity without notification
+
+  ● WEA-27 S01/S06 replacement synchronously updates both readers and removes old error
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "network"
+    Received: undefined
+
+      18 |   store.subscribe(() => other.push(store.getState()));
+      19 |   store.replace({...initial(), error: {code: 'network', messageKey: 'network'}});
+    > 20 |   expect(store.getState().error?.code).toBe('network');
+         |                                        ^
+      21 |   store.replace({...initial(), pending: true});
+      22 |   expect(store.getState()).toMatchObject({pending: true});
+      23 |   expect(store.getState()).not.toHaveProperty('error');
+
+      at Object.toBe (src/auth/infrastructure/zustand-auth-state-store.test.ts:20:40)
+
+  ● WEA-27 S06 unsubscribe and disposal isolate lifetimes and reject later writes
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 1
+    Received: 0
+
+      35 |
+      36 |   store.replace({...initial(), pending: true});
+    > 37 |   expect(updates).toBe(1);
+         |                   ^
+      38 |   expect(independent.getState().pending).toBe(false);
+      39 |   unsubscribe();
+      40 |   unsubscribe();
+
+      at Object.toBe (src/auth/infrastructure/zustand-auth-state-store.test.ts:37:19)
+
+  ● WEA-27 S06 identical replacement preserves snapshot identity without notification
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 1
+    Received: 0
+
+      64 |
+      65 |   store.replace(snapshot);
+    > 66 |   expect(updates).toBe(1);
+         |                   ^
+      67 |   expect(store.getState()).toBe(snapshot);
+      68 |   expect(store.getInitialState()).toBe(seed);
+      69 | });
+
+      at Object.toBe (src/auth/infrastructure/zustand-auth-state-store.test.ts:66:19)
+
+Test Suites: 1 failed, 1 total
+Tests:       3 failed, 3 total
+Snapshots:   0 total
+Time:        0.394 s
+Ran all test suites matching /src\/auth\/infrastructure\/zustand-auth-state-store.test.ts/i.
+undefined
+/Users/pravinraj/workspace/weave/apps/mobile:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: jest --runInBand '--watchman=false' src/auth/infrastructure/zustand-auth-state-store.test.ts

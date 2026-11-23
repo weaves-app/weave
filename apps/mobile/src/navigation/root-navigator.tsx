@@ -6,7 +6,7 @@ import {NAVIGATION_KEY, ROUTE_NAME} from './routes';
 import {Screen} from '../components/screen';
 import {Button} from '../components/button';
 import {Feedback} from '../components/feedback';
-import {useAuthController, useAuthState} from '../auth/presentation/auth-context';
+import {useAuthController, useAuthSelector} from '../auth/presentation/auth-context';
 import {authMessages} from '../auth/presentation/auth-messages';
 import {LoginScreen} from '../auth/presentation/login-screen';
 import {HomeScreen} from '../auth/presentation/home-screen';
@@ -26,20 +26,21 @@ export interface RootNavigatorProps {
 const Stack = createNativeStackNavigator<RootParams>();
 
 export function RootNavigator({navigationRef}: RootNavigatorProps): React.JSX.Element {
-  const state = useAuthState();
+  const status = useAuthSelector((state) => state.session.status);
+  const error = useAuthSelector((state) => state.error);
   const controller = useAuthController();
 
-  if (state.session.status === SESSION_STATUS.RESOLVING)
+  if (status === SESSION_STATUS.RESOLVING)
     return (
       <Screen>
         <Feedback message="Checking your session…" busy />
       </Screen>
     );
 
-  if (state.session.status === SESSION_STATUS.UNAVAILABLE)
+  if (status === SESSION_STATUS.UNAVAILABLE)
     return (
       <Screen>
-        <Feedback message={authMessages[state.error?.code ?? AUTH_ERROR_CODE.UNEXPECTED]} />
+        <Feedback message={authMessages[error?.code ?? AUTH_ERROR_CODE.UNEXPECTED]} />
         <Button
           label="Try again"
           onPress={() => {
@@ -52,7 +53,7 @@ export function RootNavigator({navigationRef}: RootNavigatorProps): React.JSX.El
   return (
     <NavigationContainer ref={navigationRef}>
       <Stack.Navigator screenOptions={{headerShown: false}}>
-        {state.session.status === SESSION_STATUS.ACTIVE ? (
+        {status === SESSION_STATUS.ACTIVE ? (
           <Stack.Screen
             name={ROUTE_NAME.HOME}
             component={HomeScreen}
