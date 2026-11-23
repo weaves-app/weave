@@ -193,3 +193,7 @@ Tasks are intentionally unchecked. Generated task count: **61** — setup 4, fou
 ## Phase 9: Convergence
 
 - [ ] T062 Complete the controlled provider and physical Android/iOS acceptance tracked in T043, T048 and T056, per FR-012, FR-001–FR-011, FR-013, SC-001–SC-008 and S01–S11 (partial; HIGH): configure the isolated IV/APNs/FCM/API/signing environment from specs/006-onesignal-push/quickstart.md, disable provider remote diagnostics, and record actual permission, exact readiness, two-account/two-installation targeting, foreground/background/terminated receipt, cold/warm safe taps, offline/logout/Reload, enlarged-text/screen-reader and sanitized-log outcomes in specs/006-onesignal-push/evidence.md. Keep unperformed or failed outcomes open; the user explicitly deferred this setup.
+
+## Review follow-up
+
+- [x] T066 Given a freshly validated session, publish its eligibility through the injected interface. If the session becomes invalid or validation fails, remove eligibility. Keep the live notification implementation wired at the composition root. Verify through ClerkAuthService.execute and provider invalidation with an independent notification observer fixture and record the results.

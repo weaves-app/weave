@@ -151,3 +151,7 @@ Owner requested a complete mobile check after identifying the `verifying` submit
 S21–S23 now include type-aware `weave-values/no-inline-option-values` in mobile and root staged-file lint. It rejects finite-string options using contextual TypeScript types, including local static aliases and mixed boolean/string options.18 meaningful RED failures preceded implementation;6 edge failures preceded alias/mixed-union handling;48 typed-rule cases pass. All279 policy,94 mobile,58 web and2 API tests pass; mobile/root lint, mobile typecheck and both production Metro bundles pass. See [audit evidence](evidence/comparison-constants/mobile-audit.md). No native/provider/database acceptance was repeated or claimed; prior open tasks remain open.
 
 T055 publication verification (2026-10-10): full `pnpm run verify` passes with279 policy,94 mobile,58 web and2 API tests, all lint/format/type checks and API/web/both Metro production builds.3/3 integration tests pass on isolated PostgreSQL18. See `evidence/comparison-constants/publish-verify.txt` and `publish-integration.txt`. No native/provider acceptance gaps are closed by this refactor; CI and code-owner review remain required.
+
+## Review follow-up
+
+The cancelled-session and rate-limit regressions are covered through the native service and LoginScreen respectively. CI-style policy tests pass locally. The existing provider, real-device accessibility and secure SDK storage acceptance items remain open.

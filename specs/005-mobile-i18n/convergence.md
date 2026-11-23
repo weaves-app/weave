@@ -27,3 +27,7 @@ No extensions.yml exists; before/after convergence hooks are absent. Convergence
 ## Delivery follow-up
 
 F2 is resolved: [draft PR #13](https://github.com/weaves-app/weave/pull/13) was created above PR #12, attached to this chat, and linked to existing Linear WEA-28 with status In Progress. Personal author/committer and GitHub credential were verified, and required pre-push lint/typecheck/tests passed. See workflow.json. F1 and F3 remain open. No check results or review decision were reported at the delivery snapshot. This follow-up is implementation bookkeeping, not a clean rerun of convergence.
+
+## Review follow-up
+
+The translated wait-time regression is covered at the LoginScreen using the error returned by the native gateway. Parent authentication fixes are included. Device acceptance, retargeting after the parent merges, required checks and code-owner review remain open.

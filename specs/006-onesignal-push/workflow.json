@@ -312,5 +312,16 @@
     "date": "2026-10-17",
     "userStatement": "confirm",
     "confirms": "S01\u2013S11 and stacking WEA-29 on PR #13, in response to the explicit joint confirmation request"
+  },
+  "reviewFollowup": {
+    "date": "2026-11-23",
+    "authorization": "Can you fix the comments posted in these PRs and update them",
+    "scenarioIds": ["S04", "S06"],
+    "scope": "Given a freshly validated session, publish its eligibility through the injected interface. If the session becomes invalid or validation fails, remove eligibility. Keep the live notification implementation wired at the composition root.",
+    "task": "T066",
+    "publicTestSeams": [
+      "ClerkAuthService.execute and provider invalidation with an independent notification observer fixture"
+    ],
+    "evidence": "evidence.md#review-follow-up"
   }
 }

@@ -83,3 +83,7 @@ Convergence assessed source against all original intent; appended T052 device ac
 ## T051, T053
 
 Published and attached draft PR #13 above #12 with verified personal identity and passing pre-push hooks. Linear WEA-28 updated In Progress with PR/spec/evidence/convergence links on the one permitted retry. No CI checks/review decision reported; T047/T052/T054 remain open.
+
+## Review follow-up
+
+The S04 LoginScreen tests send native-shaped rate-limit errors during Resend. Both cases failed before the fix because the wait text was missing. The localized screen now shows "1 second" and "60 seconds" through the scoped translator and clears the wait on a successful resend. The tests also retain the separately displayed email. All 230 mobile Jest tests passed after integrating the parent fixes.

@@ -143,5 +143,14 @@
     "retargetAfterParentMerge": "develop",
     "localHooks": "pre-commit, commit-msg and pre-push passed without bypass"
   },
-  "remainingTasks": ["T034", "T037"]
+  "remainingTasks": ["T034", "T037"],
+  "reviewFollowup": {
+    "date": "2026-11-23",
+    "authorization": "Can you fix the comments posted in these PRs and update them",
+    "scenarioIds": [],
+    "scope": "Carry the parent sign-in corrections through the stack and rerun the existing store and recovery tests.",
+    "task": "T039",
+    "publicTestSeams": ["Root-scoped authentication runtime and LoginScreen"],
+    "evidence": "evidence.md#review-follow-up"
+  }
 }

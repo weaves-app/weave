@@ -57,3 +57,7 @@ Independent code review found no production defects. It identified missing verif
 ## Stacked PR policy
 
 The existing `scripts/policy.mjs` accepts only develop/main PR targets. The user-requested draft targets PR #11's ticket branch, so the PR-target policy check is expected to block that stacked target. Keep the check enforced; retarget develop after the parent merges and rerun required CI. No policy or protection bypass is part of WEA-27.
+
+## Review follow-up
+
+This branch integrates the parent fixes for cancelled iOS sign-in cleanup, resend wait feedback, and policy tests under CI. The parent's [review follow-up evidence](../003-mobile-auth-recovery/evidence.md#review-follow-up) covers reproduction and correction. The existing Zustand ownership and Reload tests are the relevant integration coverage for this branch.

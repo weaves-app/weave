@@ -39,7 +39,8 @@ final class NotificationAuthorityTests: XCTestCase {
   @MainActor func testS04PendingNativeSignOutInvalidatesBeforeNetworkCompletion() async {
     let provider = NotificationAuthProviderFixture()
     let authority = NativeNotificationSessionAuthority(live: { provider.session }, token: { _, _ in { "native-secret" } })
-    let service = ClerkAuthService(provider: provider, notificationAuthority: authority)
+    let store = KeychainObsoleteSessionStore(access: KeychainFixture())
+    let service = ClerkAuthService(provider: provider, obsoleteSessionStore: store, notificationAuthority: authority)
     _ = await service.execute(command: "resolveSession", payload: "{\"generation\":1,\"operationId\":\"resolve\",\"forceFresh\":true}")
     let context = NotificationSessionContext(sessionId: "session-a", accountId: "account-a", generation: 77)
     XCTAssertNotNil(authority.capture(context))
@@ -49,6 +50,33 @@ final class NotificationAuthorityTests: XCTestCase {
     provider.logoutGate.resolve(true)
     _ = await logout.value
   }
+
+  @MainActor func testS04AuthenticationReportsValidationAndInvalidationThroughObserver() async {
+    let provider = ProviderFixture()
+    let observer = NotificationValidationFixture()
+    let store = KeychainObsoleteSessionStore(access: KeychainFixture())
+    let service = ClerkAuthService(provider: provider, obsoleteSessionStore: store, notificationAuthority: observer)
+    let resolve = "{\"generation\":1,\"operationId\":\"resolve\",\"forceFresh\":true}"
+
+    _ = await service.execute(command: "resolveSession", payload: resolve)
+    XCTAssertEqual(observer.validatedSessionId, "sess_1")
+
+    provider.failure = .network
+    _ = await service.execute(command: "resolveSession", payload: resolve)
+    XCTAssertNil(observer.validatedSessionId)
+
+    provider.failure = nil
+    _ = await service.execute(command: "resolveSession", payload: resolve)
+    XCTAssertEqual(observer.validatedSessionId, "sess_1")
+    provider.invalidationHandler?()
+    XCTAssertNil(observer.validatedSessionId)
+  }
+}
+
+@MainActor private final class NotificationValidationFixture: NotificationSessionValidationObserver {
+  private(set) var validatedSessionId: String?
+  func validated(_ session: ProviderSession) { validatedSessionId = session.sessionId }
+  func invalidate() { validatedSessionId = nil }
 }
 
 @MainActor private final class NotificationAuthProviderFixture: AuthProvider {

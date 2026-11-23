@@ -25,3 +25,7 @@ No actual permission/delivery/tap/physical accessibility or provider diagnostic 
 Ticket: [WEA-29](https://linear.app/weaveapp/issue/WEA-29/integrate-onesignal-push-notifications-in-the-react-native-app). Branch: `feat/WEA-29/onesignal-push`; approved parent: `feat/WEA-28/mobile-i18n`, PR #13 at `75814ad85894460ddeae46c9aa337f0d09463f5c`. Personal author/committer verified as Pravin Raj <pravinrajmb@gmail.com>. Draft stacked PR requested.
 
 Current CI/PR base policy targets develop/main, so required CI is not available on this feature-branch stack. Retarget to develop after ancestors merge, then obtain required checks and code-owner review. No protection/policy bypass. No extensions.yml exists; before/after convergence and final after-implement hooks have no registered work.
+
+## Review follow-up
+
+Authentication uses a narrow session-validation observer interface. The parent authentication and localized resend fixes are included. The existing controlled push delivery, provider setup, device accessibility, required CI and code-owner gates remain open.

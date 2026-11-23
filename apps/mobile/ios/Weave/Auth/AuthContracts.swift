@@ -23,6 +23,18 @@ struct ProviderAttempt {
   let createdSessionId: String?
 }
 
+protocol ObsoleteSessionStore {
+  func contains(_ sessionId: String) throws -> Bool
+  func insert(_ sessionId: String) throws
+  func remove(_ sessionId: String) throws
+}
+
+@MainActor
+protocol NotificationSessionValidationObserver: AnyObject {
+  func validated(_ session: ProviderSession)
+  func invalidate()
+}
+
 @MainActor
 protocol AuthProvider: AnyObject {
   func abandonAttempts()

@@ -134,3 +134,7 @@ Implementation/source review is complete. T043, T048 and T056 remain unperformed
 Final SDD hook initially rejected the workflow because the recorded user confirmation was under scenarioAgreement without the canonical confirmation field. Copied that existing explicit agreement into the required field; no new or inferred approval. Re-ran SDD validation successfully.
 
 Publication hygiene: trailing whitespace and surplus final blank lines were normalized in captured text transcripts; command output/assertions/results were preserved. The staged diff check includes newly added files, unlike an unstaged check of tracked files alone.
+
+## Review follow-up
+
+An independent observer fixture now verifies that the existing authentication service publishes a validated session and clears notification eligibility after validation fails or the provider invalidates the session (S04/S06). The live implementation is still wired at the composition root. All 74 Swift host contract tests passed, including the parent cancelled-session regressions. This validates native service behavior with controlled fixtures.

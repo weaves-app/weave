@@ -15,3 +15,7 @@ T035 records this assessment, not complete user acceptance. T036 may publish a *
 ## Stacked PR policy
 
 The existing `scripts/policy.mjs` accepts only develop/main PR targets. The user-requested draft targets PR #11's ticket branch, so the PR-target policy check is expected to block that stacked target. Keep the check enforced; retarget develop after the parent merges and rerun required CI. No policy or protection bypass is part of WEA-27.
+
+## Review follow-up
+
+The branch now includes the parent authentication corrections. Live provider, device accessibility, required checks and code-owner acceptance remain open. Keep the stacked base until its parent merges.

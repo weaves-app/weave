@@ -10,9 +10,10 @@ enum WeaveAuthRuntime {
 
   static func configure(info: [String: Any]) {
     guard !configured, let configuration = WeaveAuthConfiguration.read(info) else { return }
+    let serviceName = Bundle.main.bundleIdentifier ?? "si.tryweave.auth"
     let clerk = Clerk.configure(publishableKey: configuration.publishableKey, options: .init(
       logLevel: .error, telemetryEnabled: false,
-      keychainConfig: .init(service: Bundle.main.bundleIdentifier ?? "si.tryweave.auth"),
+      keychainConfig: .init(service: serviceName),
       redirectConfig: .init(redirectUrl: configuration.callbackURL, callbackUrlScheme: configuration.callbackScheme)
     ))
     notificationAuthority = NativeNotificationSessionAuthority(live: {
@@ -23,7 +24,10 @@ enum WeaveAuthRuntime {
             captured.status == .active, (captured.tasks ?? []).isEmpty, clerk.isAuthFlowComplete else { return nil }
       return { try await captured.getToken(.init()) }
     })
-    service = ClerkAuthService(provider: ClerkProvider(clerk: clerk), notificationAuthority: notificationAuthority)
+    let store = KeychainObsoleteSessionStore(access: SystemKeychainAccess(service: serviceName, accessGroup: nil))
+    service = ClerkAuthService(
+      provider: ClerkProvider(clerk: clerk), obsoleteSessionStore: store, notificationAuthority: notificationAuthority
+    )
     let events = clerk.auth.events
     notificationObservation = Task { @MainActor in
       for await event in events {

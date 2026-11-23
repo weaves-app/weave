@@ -44,7 +44,7 @@ import {AuthLayout} from './auth-layout';
 import {PasswordTransition} from './password-transition';
 import type {LoginBindings} from './use-login';
 import {useLogin} from './use-login';
-import {AUTH_METHOD, CODE_PURPOSE, LOGIN_STAGE} from '../domain/auth-models';
+import {AUTH_ERROR_CODE, AUTH_METHOD, CODE_PURPOSE, LOGIN_STAGE} from '../domain/auth-models';
 
 interface LoginPresentationProps {
   readonly login: LoginBindings;
@@ -230,6 +230,15 @@ export function LoginScreen(): React.JSX.Element {
   const {state} = login;
   const challenge = Boolean(state.attempt.attemptId);
   const {width, fontScale} = useWindowDimensions();
+  const retryAfterSeconds = state.error
+    ? state.error.code === AUTH_ERROR_CODE.RATE_LIMITED
+      ? state.error.retryAfterSeconds
+      : undefined
+    : state.attempt.retryAfterSeconds;
+  const feedback =
+    retryAfterSeconds === undefined
+      ? state.error && resolveAuthMessage(state.error.code, text)
+      : text.retryAfterSeconds(retryAfterSeconds);
 
   return (
     <AuthLayout>
@@ -253,10 +262,7 @@ export function LoginScreen(): React.JSX.Element {
                 busy
               />
             )}
-            {state.error && <Feedback message={resolveAuthMessage(state.error.code, text)} />}
-            {state.attempt.retryAfterSeconds !== undefined && (
-              <Feedback message={text.retryAfterSeconds(state.attempt.retryAfterSeconds)} />
-            )}
+            {feedback && <Feedback message={feedback} />}
           </View>
         </LoginScroll>
       </KeyboardAvoidingView>

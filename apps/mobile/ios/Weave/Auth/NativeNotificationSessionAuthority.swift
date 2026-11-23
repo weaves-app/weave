@@ -1,6 +1,6 @@
 import Foundation
 
-@MainActor final class NativeNotificationSessionAuthority: NotificationSessionAuthority {
+@MainActor final class NativeNotificationSessionAuthority: NotificationSessionAuthority, NotificationSessionValidationObserver {
   private let live: () -> ProviderSession?
   private let token: (String, String) -> (@MainActor () async throws -> String?)?
   private var session: ProviderSession?
