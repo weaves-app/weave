@@ -1,3 +1,17 @@
+export const FUNCTION_DECLARATION = 'FunctionDeclaration';
+
+export const METHOD_DEFINITION = 'MethodDefinition';
+
+export const TS_DECLARE_FUNCTION = 'TSDeclareFunction';
+
+export const VARIABLE_DECLARATION = 'VariableDeclaration';
+
+export const IMPORT_DECLARATION = 'ImportDeclaration';
+
+export const RETURN_STATEMENT = 'ReturnStatement';
+
+export const THROW_STATEMENT = 'ThrowStatement';
+
 function importGroup(node) {
   const source = node.source.value;
 
@@ -16,12 +30,12 @@ function callable(node) {
   const value = unwrap(node);
 
   return (
-    value.type === 'FunctionDeclaration' ||
-    value.type === 'MethodDefinition' ||
-    value.type === 'TSDeclareFunction' ||
+    value.type === FUNCTION_DECLARATION ||
+    value.type === METHOD_DEFINITION ||
+    value.type === TS_DECLARE_FUNCTION ||
     value.method ||
     ['ArrowFunctionExpression', 'FunctionExpression'].includes(value.value?.type) ||
-    (value.type === 'VariableDeclaration' &&
+    (value.type === VARIABLE_DECLARATION &&
       value.declarations.some((declaration) =>
         ['ArrowFunctionExpression', 'FunctionExpression'].includes(declaration.init?.type),
       ))
@@ -84,7 +98,7 @@ export const readabilityConfig = {
                 const previous = nodes[index - 1];
                 const next = nodes[index];
 
-                if (previous.type === 'ImportDeclaration' && next.type === 'ImportDeclaration') {
+                if (previous.type === IMPORT_DECLARATION && next.type === IMPORT_DECLARATION) {
                   if (importGroup(previous) !== importGroup(next)) separate(previous, next);
 
                   continue;
@@ -97,10 +111,10 @@ export const readabilityConfig = {
                   (!members &&
                     (control(previous) ||
                       control(next) ||
-                      next.type === 'ReturnStatement' ||
-                      next.type === 'ThrowStatement' ||
-                      (previous.type === 'VariableDeclaration') !==
-                        (next.type === 'VariableDeclaration')))
+                      next.type === RETURN_STATEMENT ||
+                      next.type === THROW_STATEMENT ||
+                      (previous.type === VARIABLE_DECLARATION) !==
+                        (next.type === VARIABLE_DECLARATION)))
                 ) {
                   separate(previous, next);
                 }

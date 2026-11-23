@@ -1,0 +1,45 @@
+appId: si.tryweave
+name: WEA-10 T049 enlarged text OTP presentation
+---
+- launchApp:
+    stopApp: true
+- extendedWaitUntil:
+    visible: Welcome back
+    timeout: 30000
+- scrollUntilVisible:
+    element: Email code
+- tapOn: Email code
+- scrollUntilVisible:
+    element:
+      id: field-email
+- tapOn:
+    id: field-email
+- inputText: preview@example.com
+- pressKey: Enter
+- scrollUntilVisible:
+    element: Send code
+- tapOn: Send code
+- extendedWaitUntil:
+    visible: Check your email
+    timeout: 15000
+- scrollUntilVisible:
+    element:
+      id: field-verification-code
+- tapOn:
+    id: field-verification-code
+- inputText: '123456'
+- assertVisible: '123456'
+- takeScreenshot: otp-large-keyboard
+- swipe:
+    start: '50%, 40%'
+    end: '50%, 20%'
+- scrollUntilVisible:
+    element: Verify code
+    centerElement: true
+- tapOn: Verify code
+- scrollUntilVisible:
+    element: That code was not accepted. Check it and try again.
+    timeout: 20000
+    centerElement: true
+- takeScreenshot: otp-large-invalid
+- assertNotVisible: Logout

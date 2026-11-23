@@ -6,6 +6,8 @@ import {cleanup, render, waitFor} from '@testing-library/react';
 
 import {CallbackView} from '../src/features/auth/presentation/callback-view';
 
+import {EMPTY_TEXT} from './test-constants';
+
 afterEach(cleanup);
 
 void test('WEA-10 S11 callback without a completed attempt shows retry rather than endless verification', async () => {
@@ -16,7 +18,9 @@ void test('WEA-10 S11 callback without a completed attempt shows retry rather th
     />,
   );
 
-  await waitFor(() => assert.match(view.getByRole('alert').textContent ?? '', /try again/i));
+  await waitFor(() =>
+    assert.match(view.getByRole('alert').textContent ?? EMPTY_TEXT, /try again/i),
+  );
   assert.equal(view.queryByRole('status'), null);
   assert.ok(view.getByRole('link', {name: 'Try Google again'}));
 });
@@ -58,7 +62,9 @@ void test('WEA-10 S11 only completed callback navigates; additional requirements
     />,
   );
 
-  await waitFor(() => assert.match(incomplete.getByRole('alert').textContent ?? '', /first name/));
+  await waitFor(() =>
+    assert.match(incomplete.getByRole('alert').textContent ?? EMPTY_TEXT, /first name/),
+  );
 });
 
 void test('WEA-10 S11 callback waits for browser SDK readiness before resolving hydrated server auth', async () => {
@@ -75,7 +81,7 @@ void test('WEA-10 S11 callback waits for browser SDK readiness before resolving 
   const view = render(<CallbackView loaded={false} finish={finish} navigate={navigate} />);
 
   assert.equal(calls, 0);
-  assert.match(view.getByRole('status').textContent ?? '', /loading/i);
+  assert.match(view.getByRole('status').textContent ?? EMPTY_TEXT, /loading/i);
   view.rerender(<CallbackView loaded finish={finish} navigate={navigate} />);
   await waitFor(() => assert.ok(view.getByRole('alert')));
   assert.equal(calls, 1);

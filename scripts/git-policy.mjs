@@ -5,11 +5,15 @@ import {readFileSync} from 'node:fs';
 
 import {validateBranch, validateCommit, validateGithubAccount} from './policy.mjs';
 
+export const COMMIT_ACTION = 'commit';
+
+export const PUSH_ACTION = 'push';
+
 const branch = execFileSync('git', ['branch', '--show-current'], {encoding: 'utf8'}).trim();
 
 let error = validateBranch(branch);
 
-if (process.argv[2] === 'commit') {
+if (process.argv[2] === COMMIT_ACTION) {
   const message = readFileSync(process.argv[3], 'utf8').replace(/\n$/, '');
 
   error ??= validateCommit(message);
@@ -48,7 +52,7 @@ if (error) {
   process.exitCode = 1;
 }
 
-if (!error && process.argv[2] === 'push') {
+if (!error && process.argv[2] === PUSH_ACTION) {
   const expected = localConfig('weave.githubUser');
 
   if (!expected)

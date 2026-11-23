@@ -1,8 +1,10 @@
+import {GIT_BRANCH} from './policy-constants.mjs';
+
 export function validateDependencyProposal({author, sameRepository, base, files}) {
   if (
     !['dependabot[bot]', 'app/dependabot'].includes(author) ||
     !sameRepository ||
-    base !== 'develop'
+    base !== GIT_BRANCH.DEVELOP
   )
     return 'Only same-repository Dependabot proposals into develop may be adopted.';
 

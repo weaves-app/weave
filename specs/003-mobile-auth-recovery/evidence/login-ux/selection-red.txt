@@ -1,0 +1,66 @@
+
+> @weave/mobile@0.0.0 test
+> npm run test:privacy && jest --runInBand --watchman=false --runTestsByPath src/components/code-field.test.tsx
+
+
+> @weave/mobile@0.0.0 test:privacy
+> node scripts/apply-renderer-privacy.mjs && node scripts/renderer-privacy-probe.mjs
+
+Applied pinned React Native renderer diagnostics privacy patch.
+Renderer privacy probe: three severities sanitized; fatality preserved.
+FAIL src/components/code-field.test.tsx
+  ✕ S15/S16 moving the native cursor highlights the digit being corrected (71 ms)
+  ✕ S15/S16 a native selection range highlights only its code digits (2 ms)
+
+  ● S15/S16 moving the native cursor highlights the digit being corrected
+
+    expect(element).toHaveStyle()
+
+    - Expected
+    + Received
+
+    - borderColor: "#6B7F58";
+    + borderColor: "#D9C9B2";
+
+      24 |   fireEvent(input, 'focus');
+      25 |   fireEvent(input, 'selectionChange', {nativeEvent: {selection: {start: 2, end: 2}}});
+    > 26 |   expect(screen.getByTestId('code-slot-2', {includeHiddenElements: true})).toHaveStyle({borderColor: tokens.colors.focus});
+         |                                                                            ^
+      27 |   expect(screen.getByTestId('code-slot-5', {includeHiddenElements: true})).toHaveStyle({borderColor: tokens.colors.border});
+      28 |   fireEvent.changeText(input, '129456');
+      29 |   fireEvent(input, 'selectionChange', {nativeEvent: {selection: {start: 3, end: 3}}});
+
+      at Object.toHaveStyle (src/components/code-field.test.tsx:26:76)
+
+  ● S15/S16 a native selection range highlights only its code digits
+
+    expect(element).toHaveStyle()
+
+    - Expected
+    + Received
+
+    - borderColor: "#6B7F58";
+    + borderColor: "#D9C9B2";
+
+      38 |   fireEvent(input, 'selectionChange', {nativeEvent: {selection: {start: 1, end: 4}}});
+      39 |   for (const index of [1, 2, 3]) {
+    > 40 |     expect(screen.getByTestId(`code-slot-${index}`, {includeHiddenElements: true})).toHaveStyle({borderColor: tokens.colors.focus});
+         |                                                                                     ^
+      41 |   }
+      42 |   expect(screen.getByTestId('code-slot-0', {includeHiddenElements: true})).toHaveStyle({borderColor: tokens.colors.border});
+      43 |   expect(screen.getByTestId('code-slot-5', {includeHiddenElements: true})).toHaveStyle({borderColor: tokens.colors.border});
+
+      at Object.toHaveStyle (src/components/code-field.test.tsx:40:85)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        0.475 s, estimated 1 s
+Ran all test suites within paths "src/components/code-field.test.tsx".
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path /Users/pravinraj/workspace/weave/apps/mobile
+npm error workspace @weave/mobile@0.0.0
+npm error location /Users/pravinraj/workspace/weave/apps/mobile
+npm error command failed
+npm error command sh -c npm run test:privacy && jest --runInBand --watchman=false --runTestsByPath src/components/code-field.test.tsx

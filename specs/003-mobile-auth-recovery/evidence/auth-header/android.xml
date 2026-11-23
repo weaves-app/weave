@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testsuites>
+  <testsuite name="Test Suite" device="weave-e2e-api35" tests="1" failures="0" time="37.719" timestamp="2026-10-09T13:04:35">
+    <testcase id="WEA-10 T052 shared authentication header" name="WEA-10 T052 shared authentication header" classname="WEA-10 T052 shared authentication header" file="/private/tmp/weave-auth-header-flow.yaml" time="37.708" timestamp="2026-10-09T13:04:35" status="SUCCESS"/>
+  </testsuite>
+</testsuites>

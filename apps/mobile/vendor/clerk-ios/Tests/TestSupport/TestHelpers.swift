@@ -1,0 +1,172 @@
+@testable import ClerkKit
+import Foundation
+import Mocker
+
+let mockBaseUrl = URL(string: "https://mock.clerk.accounts.dev")!
+
+/// Test publishable key that decodes to mock.clerk.accounts.dev
+let testPublishableKey = "pk_test_bW9jay5jbGVyay5hY2NvdW50cy5kZXYk"
+
+extension Clerk {
+  @MainActor
+  func seedIdentity(deviceToken: String?, client: Client? = nil, serverDate: Date? = nil) throws {
+    try dependencies.identityStore.save(ClerkIdentitySnapshot(
+      state: client == nil ? .cleared : .present,
+      deviceToken: deviceToken,
+      client: client,
+      serverDate: serverDate
+    ))
+    identityController.hydrate()
+  }
+
+  @MainActor
+  func applyResponseClient(
+    _ incoming: Client?,
+    responseSequence: Int? = nil,
+    serverDate: Date? = nil,
+    clientResponseGeneration: ClientResponseGeneration? = nil,
+    completedAuthFlow: TransferFlowResult? = nil
+  ) {
+    identityController.applyResponseClient(
+      incoming,
+      responseSequence: responseSequence,
+      serverDate: serverDate,
+      clientResponseGeneration: clientResponseGeneration,
+      completedAuthFlow: completedAuthFlow,
+      completedAuthFlowOwnerId: authFlowRegistrationId
+    )
+  }
+}
+
+/// Configures Clerk for testing and replaces the API client with one that uses MockingURLProtocol.
+/// This ensures that HTTP requests are intercepted by Mocker instead of reaching the real API.
+///
+/// This function should be called at the start of each test suite or test to ensure proper isolation.
+@MainActor
+func configureClerkForTesting() {
+  Clerk.configure(publishableKey: testPublishableKey)
+
+  setupMockAPIClient()
+
+  // Unit tests should not inherit startup refreshes or session polling from configure().
+  Clerk.shared.cleanupManagers()
+}
+
+/// Replaces the API client with MockingURLProtocol after Clerk.configure() creates the container.
+/// This ensures that HTTP requests are intercepted by Mocker instead of reaching the real API.
+@MainActor
+func setupMockAPIClient() {
+  let mockAPIClient = createMockAPIClient(runtimeScope: Clerk.shared.runtimeScope)
+
+  // Replace the container with a mock container that uses the mock API client
+  // Explicitly pass real services so tests can intercept HTTP requests through MockingURLProtocol
+  Clerk.shared.dependencies = MockDependencyContainer(
+    apiClient: mockAPIClient,
+    transport: mockAPIClient,
+    telemetryCollector: Clerk.shared.dependencies.telemetryCollector
+  )
+}
+
+@MainActor
+func createMockAPIClient(
+  baseURL: URL = mockBaseUrl,
+  runtimeScope: ClerkRuntimeScope? = nil
+) -> APIClient {
+  let runtimeScope = runtimeScope ?? Clerk.shared.runtimeScope
+  return APIClient(baseURL: baseURL, runtimeScope: runtimeScope) { @Sendable configuration in
+    configuration.pipeline = .clerkDefault(runtimeScope: runtimeScope)
+    configuration.decoder = .clerkDecoder
+    configuration.encoder = .clerkEncoder
+    configuration.sessionConfiguration.protocolClasses = [MockingURLProtocol.self]
+    configuration.sessionConfiguration.httpAdditionalHeaders = [
+      "Content-Type": "application/x-www-form-urlencoded",
+      "clerk-api-version": Clerk.apiVersion,
+      "x-ios-sdk-version": Clerk.sdkVersion,
+      "x-mobile": DependencyContainer.mobileHeaderValue,
+    ]
+  }
+}
+
+extension URLRequest {
+  private var requestBodyData: Data? {
+    if let body = httpBody {
+      return body
+    }
+
+    guard let bodyStream = httpBodyStream else {
+      return nil
+    }
+
+    var data = Data()
+    bodyStream.open()
+    defer { bodyStream.close() }
+    let bufferSize = 4096
+    let buffer = UnsafeMutablePointer<UInt8>.allocate(capacity: bufferSize)
+    defer { buffer.deallocate() }
+    while bodyStream.hasBytesAvailable {
+      let read = bodyStream.read(buffer, maxLength: bufferSize)
+      if read > 0 {
+        data.append(buffer, count: read)
+      } else {
+        break
+      }
+    }
+
+    return data.isEmpty ? nil : data
+  }
+
+  /// Extracts the URL-encoded form data from the request body as a dictionary.
+  ///
+  /// Handles both `httpBody` and `httpBodyStream` properties, as URLSession may use either.
+  /// Returns `nil` if the body cannot be read or parsed.
+  var urlEncodedFormBody: [String: String]? {
+    guard let requestBodyData,
+          let bodyString = String(data: requestBodyData, encoding: .utf8)
+    else {
+      return nil
+    }
+
+    var bodyDict: [String: String] = [:]
+    let pairs = bodyString.split(separator: "&")
+    for pair in pairs {
+      let parts = pair.split(separator: "=", maxSplits: 1, omittingEmptySubsequences: false)
+      if parts.count == 2 {
+        let key = String(parts[0])
+        let value = String(parts[1])
+        bodyDict[key] = value.removingPercentEncoding ?? value
+      }
+    }
+
+    return bodyDict.isEmpty ? nil : bodyDict
+  }
+
+  /// Extracts URL-encoded form data preserving repeated keys as arrays.
+  ///
+  /// Use this instead of `urlEncodedFormBody` when the request may contain
+  /// repeated keys (e.g. `additional_scope=write&additional_scope=view`).
+  var urlEncodedFormBodyMultiValue: [String: [String]]? {
+    guard let requestBodyData,
+          let bodyString = String(data: requestBodyData, encoding: .utf8)
+    else {
+      return nil
+    }
+
+    var bodyDict: [String: [String]] = [:]
+    let pairs = bodyString.split(separator: "&")
+    for pair in pairs {
+      let parts = pair.split(separator: "=", maxSplits: 1, omittingEmptySubsequences: false)
+      if parts.count == 2 {
+        let key = String(parts[0])
+        let value = String(parts[1]).removingPercentEncoding ?? String(parts[1])
+        bodyDict[key, default: []].append(value)
+      }
+    }
+
+    return bodyDict.isEmpty ? nil : bodyDict
+  }
+
+  var jsonBody: JSON? {
+    guard let requestBodyData else { return nil }
+    return try? JSONDecoder.clerkDecoder.decode(JSON.self, from: requestBodyData)
+  }
+}

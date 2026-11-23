@@ -1,0 +1,26 @@
+Starting: Intent { cmp=si.tryweave/.MainActivity }
+Status: ok
+LaunchState: COLD
+Activity: si.tryweave/.MainActivity
+TotalTime: 1147
+WaitTime: 1151
+Complete
+
+Waiting for flows to complete...
+[Passed] WEA-10 T050 T051 method transition and automatic OTP (46s)
+
+1/1 Flow Passed in 46s
+
+FIXTURE_RESULT 0
+PRODUCTION_ENTRY_RESTORED
+Deleted 1 rows
+EMULATOR_HANDWRITING_PREFERENCE_RESTORED
+EMULATOR_KEYBOARD_PREFERENCE_RESTORED
+TEXT_SIZE_RESTORED 1.0
+Starting: Intent { cmp=si.tryweave/.MainActivity }
+Status: ok
+LaunchState: COLD
+Activity: si.tryweave/.MainActivity
+TotalTime: 1387
+WaitTime: 1391
+Complete

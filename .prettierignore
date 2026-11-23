@@ -32,3 +32,7 @@ apps/web/next-env.d.ts
 **/.xcode.env.local
 apps/mobile/android/
 apps/mobile/ios/
+
+# Pinned upstream SDKs retain upstream formatting.
+apps/mobile/vendor/clerk-ios/
+apps/mobile/vendor/clerk-android/

@@ -3,20 +3,15 @@
   "version": "0.0.0",
   "main": "index.ts",
   "dependencies": {
+    "@react-navigation/native": "7.5.0",
+    "@react-navigation/native-stack": "7.20.0",
+    "@weave/design-tokens": "workspace:*",
     "react": "19.2.3",
     "react-native": "0.86.3",
-    "@weave/design-tokens": "workspace:*",
-    "react-native-safe-area-context": "~5.7.0"
+    "react-native-safe-area-context": "~5.7.0",
+    "react-native-screens": "4.28.0"
   },
   "devDependencies": {
-    "@types/react": "~19.2.2",
-    "typescript": "6.0.3",
-    "jest": "^29.7.0",
-    "@types/jest": "^29.5.14",
-    "react-test-renderer": "19.2.3",
-    "@testing-library/react-native": "^13.3.3",
-    "@weave/typescript-config": "workspace:*",
-    "@weave/eslint-config": "workspace:*",
     "@babel/core": "^7.25.2",
     "@babel/preset-env": "^7.25.3",
     "@babel/runtime": "^7.25.0",
@@ -26,7 +21,16 @@
     "@react-native/babel-preset": "0.86.3",
     "@react-native/jest-preset": "0.86.3",
     "@react-native/metro-config": "0.86.3",
-    "@react-native/typescript-config": "0.86.3"
+    "@react-native/typescript-config": "0.86.3",
+    "@testing-library/react-native": "^13.3.3",
+    "@types/jest": "^29.5.14",
+    "@types/react": "~19.2.2",
+    "@types/react-test-renderer": "19.3.0",
+    "@weave/eslint-config": "workspace:*",
+    "@weave/typescript-config": "workspace:*",
+    "jest": "^29.7.0",
+    "react-test-renderer": "19.2.3",
+    "typescript": "6.0.3"
   },
   "scripts": {
     "start": "react-native start",
@@ -34,14 +38,19 @@
     "ios": "react-native run-ios",
     "dev": "react-native start",
     "typecheck": "tsc --noEmit",
-    "test": "jest --runInBand",
+    "test": "pnpm run test:privacy && jest --runInBand",
     "build": "pnpm run clean && pnpm run bundle:android && pnpm run bundle:ios",
     "lint": "eslint .",
     "bundle:android": "react-native bundle --entry-file index.ts --platform android --dev false --bundle-output dist/android/index.android.bundle --assets-dest dist/android --sourcemap-output dist/android/index.android.bundle.map",
     "bundle:ios": "react-native bundle --entry-file index.ts --platform ios --dev false --bundle-output dist/ios/main.jsbundle --assets-dest dist/ios --sourcemap-output dist/ios/main.jsbundle.map",
     "native:android": "cd android && ./gradlew :app:assembleDebug --no-daemon",
-    "native:ios": "xcodebuild -workspace ios/Weave.xcworkspace -scheme Weave -configuration Debug -sdk iphonesimulator -destination \"generic/platform=iOS Simulator\" -derivedDataPath ios/build CODE_SIGNING_ALLOWED=NO build",
-    "clean": "node -e \"require('node:fs').rmSync('dist',{recursive:true,force:true})\""
+    "native:ios": "xcodebuild -workspace ios/Weave.xcworkspace -scheme Weave -configuration Debug -sdk iphonesimulator -destination \"generic/platform=iOS Simulator\" -derivedDataPath ios/build CODE_SIGNING_ALLOWED=NO build -disableAutomaticPackageResolution -onlyUsePackageVersionsFromResolvedFile",
+    "clean": "node -e \"require('node:fs').rmSync('dist',{recursive:true,force:true})\"",
+    "test:native:android": "cd android && ./gradlew :app:testDebugUnitTest :clerk-api:testDebugUnitTest --no-daemon",
+    "test:native:ios": "sh scripts/ios-native-tests.sh",
+    "test:native:ios:host": "sh scripts/ios-host-contracts.sh",
+    "postinstall": "node scripts/apply-renderer-privacy.mjs",
+    "test:privacy": "node scripts/apply-renderer-privacy.mjs && node scripts/renderer-privacy-probe.mjs"
   },
   "private": true,
   "jest": {
@@ -51,7 +60,22 @@
       "**/*.test.tsx"
     ],
     "transformIgnorePatterns": [
-      "node_modules/(?!((jest-)?react-native|@react-native(-community)?|react-native-safe-area-context)/)"
+      "node_modules/(?!((jest-)?react-native|@react-native(-community)?|react-native-safe-area-context|react-native-screens|@react-navigation)/)"
     ]
+  },
+  "codegenConfig": {
+    "name": "WeaveAuthSpec",
+    "type": "modules",
+    "jsSrcsDir": "src/native",
+    "android": {
+      "javaPackageName": "si.tryweave.auth"
+    },
+    "ios": {
+      "modules": {
+        "WeaveAuth": {
+          "className": "WeaveAuthModule"
+        }
+      }
+    }
   }
 }

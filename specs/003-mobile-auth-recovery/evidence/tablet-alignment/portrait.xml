@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testsuites>
+  <testsuite name="Test Suite" device="iPad Pro 13-inch (M5) - iOS 26.2 - CBFFC726-1D7E-46ED-AFA9-2CB10B0E9EF5" tests="1" failures="0" time="26.979" timestamp="2026-10-09T13:18:31">
+    <testcase id="WEA-10 T053 tablet common form origin" name="WEA-10 T053 tablet common form origin" classname="WEA-10 T053 tablet common form origin" file="/private/tmp/weave-ipad-alignment-flow.yaml" time="26.969" timestamp="2026-10-09T13:18:31" status="SUCCESS"/>
+  </testsuite>
+</testsuites>

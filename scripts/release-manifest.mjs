@@ -1,18 +1,23 @@
 import {writeFileSync} from 'node:fs';
 import {pathToFileURL} from 'node:url';
 
+import {MISSING_VALUE} from './policy-constants.mjs';
+
+export const PRODUCTION_ENVIRONMENT = 'production';
+
 const stable = /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/;
 
 export function createManifest({repository, commit, version = null, apiDigest, webDigest}) {
   if (
-    !/^[a-z0-9][a-z0-9_.-]*\/[a-z0-9][a-z0-9_.-]*$/.test(repository ?? '') ||
-    !/^[a-f0-9]{40}$/.test(commit ?? '') ||
+    !/^[a-z0-9][a-z0-9_.-]*\/[a-z0-9][a-z0-9_.-]*$/.test(repository ?? MISSING_VALUE) ||
+    !/^[a-f0-9]{40}$/.test(commit ?? MISSING_VALUE) ||
     (version !== null && !stable.test(version))
   )
     throw new Error('Invalid release metadata.');
 
   for (const digest of [apiDigest, webDigest])
-    if (!/^sha256:[a-f0-9]{64}$/.test(digest ?? '')) throw new Error('Invalid immutable digest.');
+    if (!/^sha256:[a-f0-9]{64}$/.test(digest ?? MISSING_VALUE))
+      throw new Error('Invalid immutable digest.');
 
   return {
     repository,
@@ -52,7 +57,7 @@ export function validatePromotion(manifest, {repository, version, environment, q
   )
     throw new Error('Release manifest mismatch.');
 
-  if (environment === 'production')
+  if (environment === PRODUCTION_ENVIRONMENT)
     for (const app of ['api', 'web'])
       if (qa[app] !== manifest.images[app].split('@')[1])
         throw new Error(`Production requires matching QA digest for ${app}.`);

@@ -1,6 +1,8 @@
 import {existsSync, chmodSync, readdirSync} from 'node:fs';
 import {spawnSync} from 'node:child_process';
 
+import {PROCESS_EXIT} from './policy-constants.mjs';
+
 if (existsSync('.git') && !process.env.CI) {
   for (const file of readdirSync('.githooks')) chmodSync(`.githooks/${file}`, 0o755);
 
@@ -8,5 +10,5 @@ if (existsSync('.git') && !process.env.CI) {
     stdio: 'inherit',
   });
 
-  if (result.status !== 0) process.exitCode = 1;
+  if (result.status !== PROCESS_EXIT.SUCCESS) process.exitCode = 1;
 }

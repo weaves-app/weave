@@ -1,0 +1,17 @@
+si.tryweave: 92997
+
+Waiting for flows to complete...
+[Passed] WEA-10 T050 T051 method transition and automatic OTP (52s)
+
+1/1 Flow Passed in 52s
+
+FIXTURE_RESULT 0
+PRODUCTION_ENTRY_RESTORED
+TEXT_SIZE_RESTORED large
+An error was encountered processing the command (domain=NSPOSIXErrorDomain, code=3):
+Simulator device failed to terminate si.tryweave.
+found nothing to terminate
+Underlying error (domain=NSPOSIXErrorDomain, code=3):
+	The request to terminate "si.tryweave" failed. found nothing to terminate
+	found nothing to terminate
+si.tryweave: 93865

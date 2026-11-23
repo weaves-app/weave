@@ -1,0 +1,7 @@
+Scoped read-only review of T049 presentation files.
+Initial finding: Important — six-slot visual cursor followed value length instead of native selection, misleading middle-digit correction.
+Correction: observe native selection; draw focus/range and insertion caret from its position while retaining normal native editing.
+Meaningful RED: two expected focus-colour failures at normal font size.
+GREEN: 86 tests /13 suites, TypeScript passed.
+Reviewer follow-up: Important finding resolved; no new actionable Critical, Important or Minor issue.
+Excluded from this bounded review: provider/session/storage integration, actual VoiceOver/TalkBack/autofill, iOS17, CI and full WEA-10 acceptance.

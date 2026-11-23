@@ -1,0 +1,78 @@
+
+> @weave/mobile@0.0.0 test
+> npm run test:privacy && jest --runInBand --watchman=false auth-controller.test.ts
+
+
+> @weave/mobile@0.0.0 test:privacy
+> node scripts/apply-renderer-privacy.mjs && node scripts/renderer-privacy-probe.mjs
+
+Applied pinned React Native renderer diagnostics privacy patch.
+Renderer privacy probe: three severities sanitized; fatality preserved.
+FAIL src/auth/auth-controller.test.ts
+  ✓ S05 hides routes until fresh resolution completes, then restores valid Home (1 ms)
+  ✓ S04 initialization deadline fails closed and allows a fresh retry (1 ms)
+  ✓ S07 ignores old revisions but removes access on ordered revocation
+  ✓ S05 foreground validation hides protected content while rechecking (1 ms)
+  ✓ S07 disposal abandons pending resolution and prevents late activation (1 ms)
+  ✓ S02 completes password and publishes active only from gateway result
+  ✓ S02 completes emailCode and publishes active only from gateway result
+  ✓ S02 completes google and publishes active only from gateway result
+  ✓ S03 validates input without trimming password or retaining secrets
+  ✓ S08 duplicate cross-method submissions send one request
+  ✓ S16/S19 keeps opaque signIn challenge across verify and resend generations
+  ✓ S16/S19 keeps opaque deviceTrust challenge across verify and resend generations
+  ✓ S17/S18/S20 handles existingAccountRequired without unlocking Home
+  ✓ S17/S18/S20 handles verificationRequired without unlocking Home
+  ✓ S17/S18/S20 handles cancelled without unlocking Home
+  ✓ S17/S18/S20 handles codeExpired without unlocking Home (1 ms)
+  ✓ S17/S18/S20 handles rateLimited without unlocking Home
+  ✓ S08 method switch abandons pending work and ignores late activation
+  ✓ S04 password times out after30seconds and abandons native work
+  ✓ S17 Google deadline counts120seconds in foreground and resumes without replacing its operation (1 ms)
+  ✓ S09/S11 logout prevents duplicates and removes the active session on confirmed clear
+  ✓ S10 logout partial failure truthfully reports active
+  ✓ S10 logout partial failure truthfully reports signedOut
+  ✓ S10 logout partial failure truthfully reports unavailable
+  ✓ S10 logout deadline hides uncertain protected access until revalidation (1 ms)
+  ✓ S05/S16/S19 foreground revalidation preserves idle signIn challenge for resend and verify
+  ✓ S05/S16/S19 foreground revalidation preserves idle deviceTrust challenge for resend and verify
+  ✓ S04 timed-out verification discards the abandoned opaque challenge and restores method selection
+  ✓ S09/S10 foreground does not supersede an in-flight logout reconciliation
+  ✓ S07 equal revision callbacks cannot reverse a revocation
+  ✓ S10 unavailable command outcome at revision zero fails closed during logout
+  ✓ S10 malformed logout failure overrides a higher revision intermediate active event
+  ✕ S04 subscription initialization failure mounts unavailable without a rejected startup promise (1 ms)
+
+  ● S04 subscription initialization failure mounts unavailable without a rejected startup promise
+
+    expect(received).resolves.toBeUndefined()
+
+    Received promise rejected instead of resolved
+    Rejected to value: [Error: synthetic-native-subscription-fault]
+
+      360 | test('S04 subscription initialization failure mounts unavailable without a rejected startup promise',async()=>{
+      361 |  const gateway=new TestGateway();gateway.subscribe=()=>{throw new Error('synthetic-native-subscription-fault');};const controller=createAuthController(gateway,new TestClock());
+    > 362 |  await expect(controller.start()).resolves.toBeUndefined();expect(controller.getSnapshot().session.status).toBe('unavailable');expect(controller.getSnapshot().error?.code).toBe('unexpected');
+          |        ^
+      363 | });
+      364 |
+
+      at expect (../../node_modules/expect/build/index.js:113:15)
+      at Object.expect (src/auth/auth-controller.test.ts:362:8)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at Object.<anonymous> (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 32 passed, 33 total
+Snapshots:   0 total
+Time:        0.551 s, estimated 1 s
+Ran all test suites matching /auth-controller.test.ts/i.
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path /Users/pravinraj/workspace/weave/apps/mobile
+npm error workspace @weave/mobile@0.0.0
+npm error location /Users/pravinraj/workspace/weave/apps/mobile
+npm error command failed
+npm error command sh -c npm run test:privacy && jest --runInBand --watchman=false auth-controller.test.ts

@@ -1,0 +1,356 @@
+
+> verify
+> npm run lint && npm run format:check && npm run typecheck && npm test && npm run build
+
+
+> lint
+> turbo run lint && eslint scripts tests && node scripts/check-architecture.mjs
+
+
+   • turbo 2.11.7
+   • Packages in scope: @weave/api, @weave/design-tokens, @weave/eslint-config, @weave/mobile, @weave/typescript-config, @weave/web
+   • Running lint in 6 packages
+   • Remote caching disabled
+
+@weave/eslint-config:lint: cache hit, replaying logs 696e42b13ffda193
+@weave/api:db:generate: cache hit, replaying logs 98558b3a3aeef8fa
+@weave/api:db:generate: 
+@weave/api:db:generate: > @weave/api@0.0.0 db:generate
+@weave/api:db:generate: > prisma generate
+@weave/api:db:generate: 
+@weave/api:db:generate: Loaded Prisma config from prisma.config.ts.
+@weave/api:db:generate: 
+@weave/api:db:generate: Prisma schema loaded from prisma/schema.prisma.
+@weave/api:db:generate: 
+@weave/api:db:generate: ✔ Generated Prisma Client (7.10.0) to ./src/generated/prisma in 17ms
+@weave/api:db:generate: 
+@weave/eslint-config:lint: 
+@weave/eslint-config:lint: > @weave/eslint-config@0.0.0 lint
+@weave/eslint-config:lint: > eslint .
+@weave/eslint-config:lint: 
+@weave/design-tokens:lint: cache hit, replaying logs e2741dd7583da27d
+@weave/api:lint: cache hit, replaying logs 6550351b1a9484e3
+@weave/design-tokens:lint: 
+@weave/design-tokens:lint: > @weave/design-tokens@0.0.0 lint
+@weave/design-tokens:lint: > eslint .
+@weave/design-tokens:lint: 
+@weave/api:lint: 
+@weave/api:lint: > @weave/api@0.0.0 lint
+@weave/api:lint: > eslint .
+@weave/api:lint: 
+@weave/mobile:lint: cache miss, executing a2420c226c2e445f
+@weave/web:lint: cache hit, replaying logs 6511d7a8bcdf7283
+@weave/web:lint: 
+@weave/web:lint: > @weave/web@0.0.0 lint
+@weave/web:lint: > eslint .
+@weave/web:lint: 
+@weave/mobile:lint: 
+@weave/mobile:lint: > @weave/mobile@0.0.0 lint
+@weave/mobile:lint: > eslint .
+@weave/mobile:lint: 
+
+ Tasks:    6 successful, 6 total
+Cached:    5 cached, 6 total
+  Time:    2.844s 
+
+Architecture and interface injection checks passed.
+
+> format:check
+> prettier --check .
+
+Checking formatting...
+All matched files use Prettier code style!
+
+> typecheck
+> turbo run typecheck
+
+
+   • turbo 2.11.7
+   • Packages in scope: @weave/api, @weave/design-tokens, @weave/eslint-config, @weave/mobile, @weave/typescript-config, @weave/web
+   • Running typecheck in 6 packages
+   • Remote caching disabled
+
+@weave/design-tokens:typecheck: cache miss, executing a65bd36675ecddd9
+@weave/api:db:generate: cache hit, replaying logs 98558b3a3aeef8fa
+@weave/api:db:generate: 
+@weave/api:db:generate: > @weave/api@0.0.0 db:generate
+@weave/api:db:generate: > prisma generate
+@weave/api:db:generate: 
+@weave/api:db:generate: Loaded Prisma config from prisma.config.ts.
+@weave/api:db:generate: 
+@weave/api:db:generate: Prisma schema loaded from prisma/schema.prisma.
+@weave/api:db:generate: 
+@weave/api:db:generate: ✔ Generated Prisma Client (7.10.0) to ./src/generated/prisma in 17ms
+@weave/api:db:generate: 
+@weave/api:typecheck: cache hit, replaying logs 106e9cd021276d10
+@weave/api:typecheck: 
+@weave/api:typecheck: > @weave/api@0.0.0 typecheck
+@weave/api:typecheck: > tsc --noEmit
+@weave/api:typecheck: 
+@weave/design-tokens:typecheck: 
+@weave/design-tokens:typecheck: > @weave/design-tokens@0.0.0 typecheck
+@weave/design-tokens:typecheck: > tsc --noEmit
+@weave/design-tokens:typecheck: 
+@weave/mobile:typecheck: cache miss, executing a4397126436aa221
+@weave/web:typecheck: cache miss, executing 0a71208d5da576c1
+@weave/web:typecheck: 
+@weave/web:typecheck: > @weave/web@0.0.0 typecheck
+@weave/web:typecheck: > next typegen && tsc --noEmit
+@weave/web:typecheck: 
+@weave/mobile:typecheck: 
+@weave/mobile:typecheck: > @weave/mobile@0.0.0 typecheck
+@weave/mobile:typecheck: > tsc --noEmit
+@weave/mobile:typecheck: 
+@weave/web:typecheck: Generating route types...
+@weave/web:typecheck: ✓ Types generated successfully
+
+ Tasks:    5 successful, 5 total
+Cached:    2 cached, 5 total
+  Time:    1.469s 
+
+
+> test
+> npm run test:policy && turbo run test
+
+
+> test:policy
+> node --test tests/policy/*.test.mjs
+
+✔ S10 tool guard permits investigation and specs, gates source edits (1.302792ms)
+✔ S10 missing/foreign feature state cannot authorize an implementation branch (0.357208ms)
+✔ S15 read-only shell syntax passes while output files remain gated (0.416541ms)
+✔ S15 edit tools inspect destinations rather than documentation contents (0.13625ms)
+✔ S04 rejects outward domain dependencies and cross-module internals (830.567875ms)
+✔ S05 requires interface types for injected dependencies (496.310292ms)
+✔ S04 rejects resolved controller imports from the application layer (162.699875ms)
+✔ S14 resolves aliases within their owning workspace (629.524583ms)
+✔ S01 accepts ticket branches and rejects shared/malformed names (0.719375ms)
+✔ S15 Claude hook envelopes use shared rules without Stop loops (325.18575ms)
+✔ S02 conventional commits are single-line, imperative and traceable (0.558ms)
+✔ S03 release PRs only originate from same-repository develop (0.129333ms)
+✔ S17 dependency adoption accepts only genuine scoped proposals (0.44175ms)
+✔ S21 dependency adoption permits the default personal CLI profile when the optional key is absent (592.304875ms)
+✔ S21 local config distinguishes absent keys, explicit profiles and Git errors (52.553833ms)
+✔ S10 publishing verifies actual account instead of trusting credential labels (0.349333ms)
+✔ S13 forbidden identities are local policy, not a hard-coded account (0.053125ms)
+✔ S16 creates an immutable manifest and rejects malformed boundaries (1.304ms)
+✔ S16 production requires the matching QA digests for every app (0.236583ms)
+✔ S16 retries accept the same release and reject artifact replacement (0.126667ms)
+✔ S16 only matching incomplete drafts may recover missing assets (0.147ms)
+✔ S22 missing QA aliases fail with the production policy message before mutation (599.873042ms)
+✔ S12 main releases classify Conventional Commits by highest impact (0.534458ms)
+✔ S17 breaking changes stay in development versions until explicit 1.0 (0.052167ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 24
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2347.142708
+
+   • turbo 2.11.7
+   • Packages in scope: @weave/api, @weave/design-tokens, @weave/eslint-config, @weave/mobile, @weave/typescript-config, @weave/web
+   • Running test in 6 packages
+   • Remote caching disabled
+
+@weave/design-tokens:typecheck: cache hit, replaying logs a65bd36675ecddd9
+@weave/design-tokens:typecheck: 
+@weave/design-tokens:typecheck: > @weave/design-tokens@0.0.0 typecheck
+@weave/design-tokens:typecheck: > tsc --noEmit
+@weave/design-tokens:typecheck: 
+@weave/mobile:test: cache miss, executing 7e3896110ef40031
+@weave/web:test: cache miss, executing b79476bc7a7b3015
+@weave/api:test: cache hit, replaying logs c8ec2f232601333d
+@weave/api:test: 
+@weave/api:test: > @weave/api@0.0.0 test
+@weave/api:test: > node --import tsx --test test/*.test.ts
+@weave/api:test: 
+@weave/api:test: ✔ S06 liveness does not depend on database; readiness checks database (0.589ms)
+@weave/api:test: ✔ S06 unavailable database rejects readiness but preserves liveness (0.203084ms)
+@weave/api:test: ℹ tests 2
+@weave/api:test: ℹ suites 0
+@weave/api:test: ℹ pass 2
+@weave/api:test: ℹ fail 0
+@weave/api:test: ℹ cancelled 0
+@weave/api:test: ℹ skipped 0
+@weave/api:test: ℹ todo 0
+@weave/api:test: ℹ duration_ms 108.760375
+@weave/mobile:test: 
+@weave/mobile:test: > @weave/mobile@0.0.0 test
+@weave/mobile:test: > npm run test:privacy && jest --runInBand
+@weave/mobile:test: 
+@weave/web:test: 
+@weave/web:test: > @weave/web@0.0.0 test
+@weave/web:test: > node --import tsx --test test/*.test.ts
+@weave/web:test: 
+@weave/mobile:test: 
+@weave/mobile:test: > @weave/mobile@0.0.0 test:privacy
+@weave/mobile:test: > node scripts/apply-renderer-privacy.mjs && node scripts/renderer-privacy-probe.mjs
+@weave/mobile:test: 
+@weave/mobile:test: Applied pinned React Native renderer diagnostics privacy patch.
+@weave/web:test: ✔ S07 client accepts valid health and rejects bad responses safely (0.411833ms)
+@weave/web:test: ℹ tests 1
+@weave/web:test: ℹ suites 0
+@weave/web:test: ℹ pass 1
+@weave/web:test: ℹ fail 0
+@weave/web:test: ℹ cancelled 0
+@weave/web:test: ℹ skipped 0
+@weave/web:test: ℹ todo 0
+@weave/web:test: ℹ duration_ms 117.154292
+@weave/mobile:test: Renderer privacy probe: three severities sanitized; fatality preserved.
+@weave/mobile:test: PASS src/auth/login.test.tsx
+@weave/mobile:test: PASS src/components/code-field.test.tsx
+@weave/mobile:test: PASS src/navigation/root-navigator.test.tsx
+@weave/mobile:test: PASS src/auth/app-recovery.test.tsx
+@weave/mobile:test: PASS src/auth/home.test.tsx
+@weave/mobile:test: PASS src/recovery/app-error-boundary.test.tsx
+@weave/mobile:test: PASS src/components/registration.test.ts
+@weave/mobile:test: PASS src/components/typography.test.tsx
+@weave/mobile:test: PASS src/components/button.test.tsx
+@weave/mobile:test: PASS src/components/form-field.test.tsx
+@weave/mobile:test: PASS src/auth/auth-controller.test.ts
+@weave/mobile:test: PASS src/components/feedback.test.tsx
+@weave/mobile:test: PASS src/auth/auth-gateway.contract.test.ts
+@weave/mobile:test: 
+@weave/mobile:test: Test Suites: 13 passed, 13 total
+@weave/mobile:test: Tests:       89 passed, 89 total
+@weave/mobile:test: Snapshots:   0 total
+@weave/mobile:test: Time:        2.4 s, estimated 3 s
+@weave/mobile:test: Ran all test suites.
+
+ Tasks:    4 successful, 4 total
+Cached:    2 cached, 4 total
+  Time:    3.42s 
+
+
+> build
+> turbo run build
+
+
+   • turbo 2.11.7
+   • Packages in scope: @weave/api, @weave/design-tokens, @weave/eslint-config, @weave/mobile, @weave/typescript-config, @weave/web
+   • Running build in 6 packages
+   • Remote caching disabled
+
+@weave/web:build: cache miss, executing be6c390a8a95ba47
+@weave/mobile:build: cache miss, executing 70094b849dfbd49c
+@weave/api:build: cache hit, replaying logs 2d70ddf091629653
+@weave/api:build: 
+@weave/api:build: > @weave/api@0.0.0 build
+@weave/api:build: > prisma generate && nest build
+@weave/api:build: 
+@weave/api:build: Loaded Prisma config from prisma.config.ts.
+@weave/api:build: 
+@weave/api:build: Prisma schema loaded from prisma/schema.prisma.
+@weave/api:build: 
+@weave/api:build: ✔ Generated Prisma Client (7.10.0) to ./src/generated/prisma in 17ms
+@weave/api:build: 
+@weave/web:build: 
+@weave/web:build: > @weave/web@0.0.0 build
+@weave/web:build: > next build
+@weave/web:build: 
+@weave/mobile:build: 
+@weave/mobile:build: > @weave/mobile@0.0.0 build
+@weave/mobile:build: > npm run clean && npm run bundle:android && npm run bundle:ios
+@weave/mobile:build: 
+@weave/mobile:build: 
+@weave/mobile:build: > @weave/mobile@0.0.0 clean
+@weave/mobile:build: > node -e "require('node:fs').rmSync('dist',{recursive:true,force:true})"
+@weave/mobile:build: 
+@weave/mobile:build: 
+@weave/mobile:build: > @weave/mobile@0.0.0 bundle:android
+@weave/mobile:build: > react-native bundle --entry-file index.ts --platform android --dev false --bundle-output dist/android/index.android.bundle --assets-dest dist/android --sourcemap-output dist/android/index.android.bundle.map
+@weave/mobile:build: 
+@weave/web:build: ▲ Next.js 16.3.8 (Turbopack)
+@weave/web:build: ✓ Running next.config.ts took 11ms
+@weave/web:build: 
+@weave/web:build:   Creating an optimized production build ...
+@weave/mobile:build: 
+@weave/mobile:build:                         ▒▒▓▓▓▓▒▒
+@weave/mobile:build:                      ▒▓▓▓▒▒░░▒▒▓▓▓▒
+@weave/mobile:build:                   ▒▓▓▓▓░░░▒▒▒▒░░░▓▓▓▓▒
+@weave/mobile:build:                  ▓▓▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▒▒▒▓▓
+@weave/mobile:build:                  ▓▓░░░░░▒▓▓▓▓▓▓▒░░░░░▓▓
+@weave/mobile:build:                  ▓▓░░▓▓▒░░░▒▒░░░▒▓▒░░▓▓
+@weave/mobile:build:                  ▓▓░░▓▓▓▓▓▒▒▒▒▓▓▓▓▒░░▓▓
+@weave/mobile:build:                  ▓▓░░▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░▓▓
+@weave/mobile:build:                  ▓▓▒░░▒▒▓▓▓▓▓▓▓▓▒░░░▒▓▓
+@weave/mobile:build:                   ▒▓▓▓▒░░░▒▓▓▒░░░▒▓▓▓▒
+@weave/mobile:build:                      ▒▓▓▓▒░░░░▒▓▓▓▒
+@weave/mobile:build:                         ▒▒▓▓▓▓▒▒
+@weave/mobile:build: 
+@weave/mobile:build: 
+@weave/mobile:build:                 Welcome to Metro v0.84.5
+@weave/mobile:build:               Fast - Scalable - Integrated
+@weave/mobile:build: 
+@weave/mobile:build: 
+@weave/mobile:build: transform[stderr]: (node:69824) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+@weave/mobile:build: transform[stderr]: (Use `node --trace-warnings ...` to show where the warning was created)
+@weave/mobile:build: transform[stderr]: (node:69825) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+@weave/mobile:build: transform[stderr]: (Use `node --trace-warnings ...` to show where the warning was created)
+@weave/mobile:build: LOG:Writing bundle output to: dist/android/index.android.bundle
+@weave/mobile:build: LOG:Writing sourcemap output to: dist/android/index.android.bundle.map
+@weave/mobile:build: LOG:Done writing bundle output
+@weave/mobile:build: LOG:Done writing sourcemap output
+@weave/mobile:build: Copying 21 asset files
+@weave/mobile:build: Done copying assets
+@weave/mobile:build: 
+@weave/mobile:build: > @weave/mobile@0.0.0 bundle:ios
+@weave/mobile:build: > react-native bundle --entry-file index.ts --platform ios --dev false --bundle-output dist/ios/main.jsbundle --assets-dest dist/ios --sourcemap-output dist/ios/main.jsbundle.map
+@weave/mobile:build: 
+@weave/web:build: ✓ Compiled successfully in 790ms
+@weave/web:build:   Running TypeScript ...
+@weave/mobile:build: 
+@weave/mobile:build:                         ▒▒▓▓▓▓▒▒
+@weave/mobile:build:                      ▒▓▓▓▒▒░░▒▒▓▓▓▒
+@weave/mobile:build:                   ▒▓▓▓▓░░░▒▒▒▒░░░▓▓▓▓▒
+@weave/mobile:build:                  ▓▓▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▒▒▒▓▓
+@weave/mobile:build:                  ▓▓░░░░░▒▓▓▓▓▓▓▒░░░░░▓▓
+@weave/mobile:build:                  ▓▓░░▓▓▒░░░▒▒░░░▒▓▒░░▓▓
+@weave/mobile:build:                  ▓▓░░▓▓▓▓▓▒▒▒▒▓▓▓▓▒░░▓▓
+@weave/mobile:build:                  ▓▓░░▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░▓▓
+@weave/mobile:build:                  ▓▓▒░░▒▒▓▓▓▓▓▓▓▓▒░░░▒▓▓
+@weave/mobile:build:                   ▒▓▓▓▒░░░▒▓▓▒░░░▒▓▓▓▒
+@weave/mobile:build:                      ▒▓▓▓▒░░░░▒▓▓▓▒
+@weave/mobile:build:                         ▒▒▓▓▓▓▒▒
+@weave/mobile:build: 
+@weave/mobile:build: 
+@weave/mobile:build:                 Welcome to Metro v0.84.5
+@weave/mobile:build:               Fast - Scalable - Integrated
+@weave/mobile:build: 
+@weave/mobile:build: 
+@weave/web:build:   Finished TypeScript in 626ms ...
+@weave/web:build:   Collecting page data using 7 workers ...
+@weave/mobile:build: transform[stderr]: (node:69992) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+@weave/mobile:build: transform[stderr]: (Use `node --trace-warnings ...` to show where the warning was created)
+@weave/mobile:build: transform[stderr]: (node:69991) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+@weave/mobile:build: transform[stderr]: (Use `node --trace-warnings ...` to show where the warning was created)
+@weave/web:build:   Generating static pages using 7 workers (0/5) ...
+@weave/mobile:build: LOG:Writing bundle output to: dist/ios/main.jsbundle
+@weave/mobile:build: LOG:Writing sourcemap output to: dist/ios/main.jsbundle.map
+@weave/mobile:build: LOG:Done writing bundle output
+@weave/mobile:build: LOG:Done writing sourcemap output
+@weave/mobile:build: Copying 17 asset files
+@weave/mobile:build: Done copying assets
+@weave/web:build:   Generating static pages using 7 workers (1/5) 
+@weave/web:build:   Generating static pages using 7 workers (2/5) 
+@weave/web:build:   Generating static pages using 7 workers (3/5) 
+@weave/web:build: ✓ Generating static pages using 7 workers (5/5) in 235ms
+@weave/web:build:   Finalizing page optimization ...
+@weave/web:build: 
+@weave/web:build: Route (app)
+@weave/web:build: ┌ ƒ /
+@weave/web:build: ├ ○ /_not-found
+@weave/web:build: ├ ○ /apple-icon.png
+@weave/web:build: └ ○ /icon.svg
+@weave/web:build: 
+@weave/web:build: 
+@weave/web:build: ○  (Static)   prerendered as static content
+@weave/web:build: ƒ  (Dynamic)  server-rendered on demand
+@weave/web:build: 
+
+ Tasks:    3 successful, 3 total
+Cached:    1 cached, 3 total
+  Time:    3.666s 
+

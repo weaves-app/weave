@@ -1,0 +1,29 @@
+
+> @weave/mobile@0.0.0 test
+> npm run test:privacy && jest --runInBand --watchman=false
+
+
+> @weave/mobile@0.0.0 test:privacy
+> node scripts/apply-renderer-privacy.mjs && node scripts/renderer-privacy-probe.mjs
+
+Applied pinned React Native renderer diagnostics privacy patch.
+Renderer privacy probe: three severities sanitized; fatality preserved.
+PASS src/auth/login.test.tsx
+PASS src/auth/app-recovery.test.tsx
+PASS src/navigation/root-navigator.test.tsx
+PASS src/auth/home.test.tsx
+PASS src/recovery/app-error-boundary.test.tsx
+PASS src/components/registration.test.ts
+PASS src/components/code-field.test.tsx
+PASS src/components/typography.test.tsx
+PASS src/components/form-field.test.tsx
+PASS src/components/button.test.tsx
+PASS src/auth/auth-gateway.contract.test.ts
+PASS src/components/feedback.test.tsx
+PASS src/auth/auth-controller.test.ts
+
+Test Suites: 13 passed, 13 total
+Tests:       94 passed, 94 total
+Snapshots:   0 total
+Time:        2.747 s, estimated 3 s
+Ran all test suites.

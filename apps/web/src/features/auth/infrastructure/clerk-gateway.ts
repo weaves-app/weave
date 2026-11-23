@@ -1,6 +1,18 @@
+import {
+  CLERK_COMPLETE_STATUS,
+  CLERK_VERIFIED_STATUS,
+  CLERK_MISSING_REQUIREMENTS_STATUS,
+  NO_MISSING_FIELDS,
+  CLERK_CLIENT_TRUST_STATUS,
+  CLERK_SECOND_FACTOR_STATUS,
+  CLERK_EMAIL_CODE_STRATEGY,
+} from './clerk-constants';
+
 import type {SignInFutureResource, SignUpFutureResource} from '@clerk/nextjs/types';
 
 import type {Attempt, AuthGateway} from '../application/contracts';
+
+import {AUTH_MODE, AUTH_STAGE, SESSION_TASK} from '../application/auth-constants';
 
 export interface ClerkResources {
   readonly signUp: Pick<
@@ -33,12 +45,15 @@ export function createClerkGateway(resources: ClerkResources): AuthGateway {
   const signupState = (): Attempt => {
     const up = resources.signUp;
 
-    if (up.status === 'complete')
-      return {stage: 'ready', verified: up.verifications.emailAddress.status === 'verified'};
+    if (up.status === CLERK_COMPLETE_STATUS)
+      return {
+        stage: 'ready',
+        verified: up.verifications.emailAddress.status === CLERK_VERIFIED_STATUS,
+      };
 
     if (
-      up.status === 'missing_requirements' &&
-      up.missingFields.length === 0 &&
+      up.status === CLERK_MISSING_REQUIREMENTS_STATUS &&
+      up.missingFields.length === NO_MISSING_FIELDS &&
       up.unverifiedFields.includes('email_address')
     )
       return {stage: 'verification'};
@@ -49,11 +64,12 @@ export function createClerkGateway(resources: ClerkResources): AuthGateway {
   const signinState = (): Attempt => {
     const signin = resources.signIn;
 
-    if (signin.status === 'complete') return {stage: 'ready', verified: true};
+    if (signin.status === CLERK_COMPLETE_STATUS) return {stage: 'ready', verified: true};
 
     if (
-      (signin.status === 'needs_client_trust' || signin.status === 'needs_second_factor') &&
-      signin.supportedSecondFactors?.some((factor) => factor.strategy === 'email_code')
+      (signin.status === CLERK_CLIENT_TRUST_STATUS ||
+        signin.status === CLERK_SECOND_FACTOR_STATUS) &&
+      signin.supportedSecondFactors?.some((factor) => factor.strategy === CLERK_EMAIL_CODE_STRATEGY)
     )
       return {stage: 'verification'};
 
@@ -62,9 +78,9 @@ export function createClerkGateway(resources: ClerkResources): AuthGateway {
 
   return {
     current: (mode) =>
-      mode === 'invitation'
+      mode === AUTH_MODE.INVITATION
         ? {stage: 'credentials'}
-        : mode === 'signin'
+        : mode === AUTH_MODE.SIGN_IN
           ? signinState()
           : signupState(),
 
@@ -81,7 +97,7 @@ export function createClerkGateway(resources: ClerkResources): AuthGateway {
     },
 
     google: async (mode) => {
-      if (mode === 'invitation') throw new Error('Invitation authentication is deferred');
+      if (mode === AUTH_MODE.INVITATION) throw new Error('Invitation authentication is deferred');
 
       const input = {
         strategy: 'oauth_google' as const,
@@ -90,7 +106,7 @@ export function createClerkGateway(resources: ClerkResources): AuthGateway {
       };
 
       await requireSuccess(
-        mode === 'signin' ? resources.signIn.sso(input) : resources.signUp.sso(input),
+        mode === AUTH_MODE.SIGN_IN ? resources.signIn.sso(input) : resources.signUp.sso(input),
       );
     },
 
@@ -103,7 +119,7 @@ export function createClerkGateway(resources: ClerkResources): AuthGateway {
 
     sendCode: async (mode) => {
       await requireSuccess(
-        mode === 'signin'
+        mode === AUTH_MODE.SIGN_IN
           ? resources.signIn.mfa.sendEmailCode()
           : resources.signUp.verifications.sendEmailCode(),
       );
@@ -111,32 +127,33 @@ export function createClerkGateway(resources: ClerkResources): AuthGateway {
 
     verify: async (mode, code) => {
       await requireSuccess(
-        mode === 'signin'
+        mode === AUTH_MODE.SIGN_IN
           ? resources.signIn.mfa.verifyEmailCode({code})
           : resources.signUp.verifications.verifyEmailCode({code}),
       );
 
-      return mode === 'signin' ? signinState() : signupState();
+      return mode === AUTH_MODE.SIGN_IN ? signinState() : signupState();
     },
 
     activate: async (mode) => {
-      const state = mode === 'signin' ? signinState() : signupState();
+      const state = mode === AUTH_MODE.SIGN_IN ? signinState() : signupState();
 
-      if (state.stage !== 'ready' || !state.verified) throw new Error('Incomplete authentication');
+      if (state.stage !== AUTH_STAGE.READY || !state.verified)
+        throw new Error('Incomplete authentication');
 
       let destination = '/organizations';
 
       const navigate: NonNullable<
         Parameters<ClerkResources['signUp']['finalize']>[0]
       >['navigate'] = ({session, decorateUrl}) => {
-        if (session?.currentTask && session.currentTask.key !== 'choose-organization')
+        if (session?.currentTask && session.currentTask.key !== SESSION_TASK.CHOOSE_ORGANIZATION)
           throw new Error('Unsupported session task');
 
         destination = decorateUrl('/organizations');
       };
 
       await requireSuccess(
-        mode === 'signin'
+        mode === AUTH_MODE.SIGN_IN
           ? resources.signIn.finalize({navigate})
           : resources.signUp.finalize({navigate}),
       );

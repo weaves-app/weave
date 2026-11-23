@@ -5,6 +5,8 @@ import {useEffect, useState} from 'react';
 import type {CallbackResult} from '../application/contracts';
 import {AuthShell} from './auth-shell';
 
+export const GOOGLE_CALLBACK_ERROR = 'Google authentication could not finish. Please try again.';
+
 export interface CallbackViewProps {
   readonly loaded?: boolean;
   readonly finish: () => Promise<CallbackResult>;
@@ -36,7 +38,7 @@ export function CallbackView({
         clearTimeout(timer);
 
         if (result.destination) navigate(result.destination);
-        else setError(result.error ?? 'Google authentication could not finish. Please try again.');
+        else setError(result.error ?? GOOGLE_CALLBACK_ERROR);
       })
       .catch(() => {
         if (cancelled) return;

@@ -1,3 +1,5 @@
+import {CLERK_VERIFIED_STATUS, CLERK_PENDING_STATUS} from './clerk-constants';
+
 import type {SessionGateway} from '../application/policy';
 
 export interface ServerSessionPort {
@@ -23,13 +25,17 @@ export function createSessionGateway(port: ServerSessionPort): SessionGateway {
 
       const email = user.primaryEmailAddress;
       const verified =
-        record(email) && record(email.verification) && email.verification.status === 'verified';
+        record(email) &&
+        record(email.verification) &&
+        email.verification.status === CLERK_VERIFIED_STATUS;
 
       return {
         userId: auth.userId,
         verified,
         organizationId:
-          auth.sessionStatus !== 'pending' && typeof auth.orgId === 'string' && auth.orgId
+          auth.sessionStatus !== CLERK_PENDING_STATUS &&
+          typeof auth.orgId === 'string' &&
+          auth.orgId
             ? auth.orgId
             : null,
       };

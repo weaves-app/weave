@@ -11,6 +11,8 @@ import {createAuthFlow} from '../application/flow';
 import type {AuthGateway, AuthMode} from '../application/contracts';
 import type {AuthEntry} from '../application/policy';
 
+import {AUTH_STAGE, AUTH_MODE, SESSION_TASK} from '../application/auth-constants';
+
 export interface AuthViewProps {
   readonly gateway: AuthGateway;
   readonly mode: AuthMode;
@@ -32,10 +34,10 @@ function AuthForm({gateway, mode, complete}: AuthViewProps): React.JSX.Element {
 
   useEffect(() => () => flow.cancel(), [flow]);
 
-  const verification = state.stage === 'verification';
-  const signin = mode === 'signin';
+  const verification = state.stage === AUTH_STAGE.VERIFICATION;
+  const signin = mode === AUTH_MODE.SIGN_IN;
   const title = verification ? 'Check your inbox' : signin ? 'Welcome back' : 'Create your account';
-  const disabled = state.pending || state.stage === 'complete';
+  const disabled = state.pending || state.stage === AUTH_STAGE.COMPLETE;
 
   const submit = (event: FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
@@ -54,7 +56,7 @@ function AuthForm({gateway, mode, complete}: AuthViewProps): React.JSX.Element {
       : flow.submit({email: field('email'), password: field('password')});
 
     void operation.then(() => {
-      if (flow.getSnapshot().stage !== 'credentials') form.reset();
+      if (flow.getSnapshot().stage !== AUTH_STAGE.CREDENTIALS) form.reset();
     });
   };
 
@@ -86,7 +88,7 @@ function AuthForm({gateway, mode, complete}: AuthViewProps): React.JSX.Element {
               autoFocus
             />
           </label>
-        ) : state.stage === 'ready' ? (
+        ) : state.stage === AUTH_STAGE.READY ? (
           <p>Authentication is ready. Continue to Home.</p>
         ) : (
           <>
@@ -147,14 +149,18 @@ function AuthForm({gateway, mode, complete}: AuthViewProps): React.JSX.Element {
         <button className="auth-primary" type="submit" disabled={disabled}>
           {verification
             ? 'Verify email'
-            : state.stage === 'ready'
+            : state.stage === AUTH_STAGE.READY
               ? 'Continue'
               : signin
                 ? 'Sign in'
                 : 'Create account'}
         </button>
         <p className="auth-status" role="status" aria-live="polite">
-          {state.pending ? 'Please wait…' : state.stage === 'complete' ? 'Opening Home…' : ''}
+          {state.pending
+            ? 'Please wait…'
+            : state.stage === AUTH_STAGE.COMPLETE
+              ? 'Opening Home…'
+              : ''}
         </p>
       </form>
       {verification && (
@@ -203,7 +209,7 @@ export function AuthView(props: AuthViewProps): React.JSX.Element {
     if (
       loaded &&
       sdkLoaded !== false &&
-      (pendingTask === 'choose-organization' || (signedIn && !pendingTask))
+      (pendingTask === SESSION_TASK.CHOOSE_ORGANIZATION || (signedIn && !pendingTask))
     )
       complete('/organizations');
   }, [loaded, sdkLoaded, pendingTask, signedIn, complete]);
@@ -215,7 +221,10 @@ export function AuthView(props: AuthViewProps): React.JSX.Element {
       </AuthShell>
     );
 
-  if (props.pendingTask === 'choose-organization' || (props.signedIn && !props.pendingTask))
+  if (
+    props.pendingTask === SESSION_TASK.CHOOSE_ORGANIZATION ||
+    (props.signedIn && !props.pendingTask)
+  )
     return (
       <AuthShell>
         <p role="status">Opening your organizations…</p>

@@ -1,0 +1,5 @@
+Scoped read-only review of T050/T051 presentation/hook/tests/tokens.
+P2: collapsing password shrinks scroll extent and can clamp offset; fixed by reserving measured password+action extent.
+P2: removing error/retry feedback also shrinks scroll extent; fixed by retaining peak Login content height until challenge/width/font-scale changes.
+Final re-review: no remaining actionable scoped issues. Animation measurement, Reduce Motion stop/snap and automatic verify/pending guard are sound.
+Full provider/session/storage/CI and device screen-reader acceptance are excluded from this scoped review.

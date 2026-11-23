@@ -5,6 +5,10 @@ import tseslint from 'typescript-eslint';
 
 import {createConfig} from '../../packages/eslint-config/index.mjs';
 
+export const READABILITY_RULE_ID = 'weave/readability';
+
+export const COMMENT_FIXTURE = 'attached comments and directives';
+
 const config = [
   {languageOptions: {parser: tseslint.parser}},
   ...createConfig(process.cwd()).filter((item) => item.rules?.['weave/readability']),
@@ -35,7 +39,7 @@ for (const [label, source] of [
   test(`R01/R03: rejects and fixes missing spacing: ${label}`, () => {
     const messages = linter.verify(source, config);
 
-    assert.ok(messages.some((message) => message.ruleId === 'weave/readability'));
+    assert.ok(messages.some((message) => message.ruleId === READABILITY_RULE_ID));
 
     const fixed = linter.verifyAndFix(source, config);
 
@@ -43,7 +47,7 @@ for (const [label, source] of [
     assert.equal(linter.verifyAndFix(fixed.output, config).fixed, false);
     assert.equal(fixed.output.replace(/\s/g, ''), source.replace(/\s/g, ''));
 
-    if (label === 'attached comments and directives') {
+    if (label === COMMENT_FIXTURE) {
       assert.match(fixed.output, /\n\n\/\/ Public contract\nexport interface/);
     }
   });

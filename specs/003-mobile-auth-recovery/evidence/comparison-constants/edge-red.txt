@@ -1,0 +1,394 @@
+✔ S22/S23 mobile: rejects comparison magic values: state.session.status === 'resolving'; (153.552166ms)
+✔ S22/S23 mobile: rejects comparison magic values: 'active' !== state.session.status; (1.628208ms)
+✔ S22/S23 mobile: rejects comparison magic values: session?.['status'] == `signedOut`; (1.491959ms)
+✔ S22/S23 mobile: rejects comparison magic values: mode !== 'password'; (0.689708ms)
+✔ S22/S23 mobile: rejects comparison magic values: count >= 6; (0.991417ms)
+✔ S22/S23 mobile: rejects comparison magic values: -1 < index; (1.075041ms)
+✔ S22/S23 mobile: rejects comparison magic values: offset === 0; (0.671625ms)
+✖ S22/S23 mobile: rejects comparison magic values: offset === +1; (0.898ms)
+✖ S22/S23 mobile: rejects comparison magic values: status === ('active' satisfies string); (0.858417ms)
+✖ S22/S23 mobile: rejects comparison magic values: const statuses = {active: 'active'} as const; status === statuses.active; (2.793458ms)
+✔ S22/S23 mobile: rejects comparison magic values: switch (kind) {case 'complete': break;} (1.26775ms)
+✔ S22/S23 mobile: rejects comparison magic values: switch (code) {case 200: break;} (0.7665ms)
+✔ S22/S23 mobile: rejects comparison magic values: status === ('active' as const); (0.740541ms)
+✔ S22/S23 mobile: rejects comparison magic values: const LIMIT = 6; count > LIMIT; (0.9135ms)
+✔ S22/S23 mobile: rejects comparison magic values: const STATUS = {ACTIVE: 'active'} as const; status === STATUS.ACTIVE; (0.734417ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: export const STATUS = {ACTIVE: 'active'} as const; status === STATUS.ACTIVE; (1.211084ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: export const LIMIT = 6; count >= LIMIT; (0.860125ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: const LIMIT = 6; export {LIMIT}; count >= LIMIT; (0.950125ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: import {STATUS} from './constants'; status === STATUS.ACTIVE; (0.868ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: switch (status) {case SESSION_STATUS.ACTIVE: break;} (0.469292ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: typeof value === 'string'; (0.447959ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: 'object' !== typeof value; (0.368125ms)
+✖ S21/S23 mobile: allows constants and agreed exceptions: switch (typeof value) {case 'string': break;} (0.535125ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: value === null; (0.3525ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: value !== undefined; (0.364625ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: ready === false; (0.350041ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: count > otherCount; (0.341625ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: const label = 'active'; (0.640042ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: const size = 6; (0.411083ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: const limit = getLimit(); count > limit; (0.83275ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: expect(status).toBe('active'); (0.486083ms)
+✔ S21/S23 mobile: allows constants and agreed exceptions: assert.equal(count, 6); (0.468625ms)
+✔ S22/S23 web: rejects comparison magic values: state.session.status === 'resolving'; (5.670625ms)
+✔ S22/S23 web: rejects comparison magic values: 'active' !== state.session.status; (0.467083ms)
+✔ S22/S23 web: rejects comparison magic values: session?.['status'] == `signedOut`; (0.441125ms)
+✔ S22/S23 web: rejects comparison magic values: mode !== 'password'; (0.327792ms)
+✔ S22/S23 web: rejects comparison magic values: count >= 6; (0.319417ms)
+✔ S22/S23 web: rejects comparison magic values: -1 < index; (0.353583ms)
+✔ S22/S23 web: rejects comparison magic values: offset === 0; (0.290208ms)
+✖ S22/S23 web: rejects comparison magic values: offset === +1; (0.377375ms)
+✖ S22/S23 web: rejects comparison magic values: status === ('active' satisfies string); (0.409458ms)
+✖ S22/S23 web: rejects comparison magic values: const statuses = {active: 'active'} as const; status === statuses.active; (0.602625ms)
+✔ S22/S23 web: rejects comparison magic values: switch (kind) {case 'complete': break;} (0.351125ms)
+✔ S22/S23 web: rejects comparison magic values: switch (code) {case 200: break;} (0.334416ms)
+✔ S22/S23 web: rejects comparison magic values: status === ('active' as const); (0.352958ms)
+✔ S22/S23 web: rejects comparison magic values: const LIMIT = 6; count > LIMIT; (0.380292ms)
+✔ S22/S23 web: rejects comparison magic values: const STATUS = {ACTIVE: 'active'} as const; status === STATUS.ACTIVE; (0.450791ms)
+✔ S21/S23 web: allows constants and agreed exceptions: export const STATUS = {ACTIVE: 'active'} as const; status === STATUS.ACTIVE; (0.471791ms)
+✔ S21/S23 web: allows constants and agreed exceptions: export const LIMIT = 6; count >= LIMIT; (0.347666ms)
+✔ S21/S23 web: allows constants and agreed exceptions: const LIMIT = 6; export {LIMIT}; count >= LIMIT; (0.405583ms)
+✔ S21/S23 web: allows constants and agreed exceptions: import {STATUS} from './constants'; status === STATUS.ACTIVE; (0.399041ms)
+✔ S21/S23 web: allows constants and agreed exceptions: switch (status) {case SESSION_STATUS.ACTIVE: break;} (0.346583ms)
+✔ S21/S23 web: allows constants and agreed exceptions: typeof value === 'string'; (0.330792ms)
+✔ S21/S23 web: allows constants and agreed exceptions: 'object' !== typeof value; (0.278209ms)
+✖ S21/S23 web: allows constants and agreed exceptions: switch (typeof value) {case 'string': break;} (0.392458ms)
+✔ S21/S23 web: allows constants and agreed exceptions: value === null; (0.288083ms)
+✔ S21/S23 web: allows constants and agreed exceptions: value !== undefined; (0.304292ms)
+✔ S21/S23 web: allows constants and agreed exceptions: ready === false; (0.27025ms)
+✔ S21/S23 web: allows constants and agreed exceptions: count > otherCount; (0.262625ms)
+✔ S21/S23 web: allows constants and agreed exceptions: const label = 'active'; (0.315458ms)
+✔ S21/S23 web: allows constants and agreed exceptions: const size = 6; (0.307417ms)
+✔ S21/S23 web: allows constants and agreed exceptions: const limit = getLimit(); count > limit; (0.349208ms)
+✔ S21/S23 web: allows constants and agreed exceptions: expect(status).toBe('active'); (0.379584ms)
+✔ S21/S23 web: allows constants and agreed exceptions: assert.equal(count, 6); (0.323458ms)
+✔ S22/S23 root staged files: rejects comparison magic values: state.session.status === 'resolving'; (11.3015ms)
+✔ S22/S23 root staged files: rejects comparison magic values: 'active' !== state.session.status; (0.373209ms)
+✔ S22/S23 root staged files: rejects comparison magic values: session?.['status'] == `signedOut`; (0.350125ms)
+✔ S22/S23 root staged files: rejects comparison magic values: mode !== 'password'; (0.24175ms)
+✔ S22/S23 root staged files: rejects comparison magic values: count >= 6; (0.2525ms)
+✔ S22/S23 root staged files: rejects comparison magic values: -1 < index; (0.281ms)
+✔ S22/S23 root staged files: rejects comparison magic values: offset === 0; (0.237792ms)
+✖ S22/S23 root staged files: rejects comparison magic values: offset === +1; (0.345208ms)
+✖ S22/S23 root staged files: rejects comparison magic values: status === ('active' satisfies string); (0.313417ms)
+✖ S22/S23 root staged files: rejects comparison magic values: const statuses = {active: 'active'} as const; status === statuses.active; (0.5865ms)
+✔ S22/S23 root staged files: rejects comparison magic values: switch (kind) {case 'complete': break;} (0.321916ms)
+✔ S22/S23 root staged files: rejects comparison magic values: switch (code) {case 200: break;} (0.267209ms)
+✔ S22/S23 root staged files: rejects comparison magic values: status === ('active' as const); (0.271333ms)
+✔ S22/S23 root staged files: rejects comparison magic values: const LIMIT = 6; count > LIMIT; (0.316125ms)
+✔ S22/S23 root staged files: rejects comparison magic values: const STATUS = {ACTIVE: 'active'} as const; status === STATUS.ACTIVE; (0.3595ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: export const STATUS = {ACTIVE: 'active'} as const; status === STATUS.ACTIVE; (0.372167ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: export const LIMIT = 6; count >= LIMIT; (0.283125ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: const LIMIT = 6; export {LIMIT}; count >= LIMIT; (0.325ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: import {STATUS} from './constants'; status === STATUS.ACTIVE; (0.347125ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: switch (status) {case SESSION_STATUS.ACTIVE: break;} (0.351958ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: typeof value === 'string'; (0.311167ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: 'object' !== typeof value; (0.298625ms)
+✖ S21/S23 root staged files: allows constants and agreed exceptions: switch (typeof value) {case 'string': break;} (0.37475ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: value === null; (0.266333ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: value !== undefined; (0.276875ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: ready === false; (0.321666ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: count > otherCount; (0.28425ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: const label = 'active'; (0.334333ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: const size = 6; (0.241458ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: const limit = getLimit(); count > limit; (0.3145ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: expect(status).toBe('active'); (0.251791ms)
+✔ S21/S23 root staged files: allows constants and agreed exceptions: assert.equal(count, 6); (0.238666ms)
+✔ S22/S23 scripts: rejects comparison magic values: state.session.status === 'resolving'; (3.007458ms)
+✔ S22/S23 scripts: rejects comparison magic values: 'active' !== state.session.status; (0.282792ms)
+✔ S22/S23 scripts: rejects comparison magic values: session?.['status'] == `signedOut`; (0.2625ms)
+✔ S22/S23 scripts: rejects comparison magic values: mode !== 'password'; (0.226584ms)
+✔ S22/S23 scripts: rejects comparison magic values: count >= 6; (0.217167ms)
+✔ S22/S23 scripts: rejects comparison magic values: -1 < index; (0.218541ms)
+✔ S22/S23 scripts: rejects comparison magic values: offset === 0; (0.1955ms)
+✖ S22/S23 scripts: rejects comparison magic values: offset === +1; (0.236666ms)
+✖ S22/S23 scripts: rejects comparison magic values: status === ('active' satisfies string); (0.251ms)
+✖ S22/S23 scripts: rejects comparison magic values: const statuses = {active: 'active'} as const; status === statuses.active; (0.396792ms)
+✔ S22/S23 scripts: rejects comparison magic values: switch (kind) {case 'complete': break;} (0.257791ms)
+✔ S22/S23 scripts: rejects comparison magic values: switch (code) {case 200: break;} (0.287833ms)
+✔ S22/S23 scripts: rejects comparison magic values: status === ('active' as const); (0.226667ms)
+✔ S22/S23 scripts: rejects comparison magic values: const LIMIT = 6; count > LIMIT; (0.256792ms)
+✔ S22/S23 scripts: rejects comparison magic values: const STATUS = {ACTIVE: 'active'} as const; status === STATUS.ACTIVE; (0.330375ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: export const STATUS = {ACTIVE: 'active'} as const; status === STATUS.ACTIVE; (0.329292ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: export const LIMIT = 6; count >= LIMIT; (0.249417ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: const LIMIT = 6; export {LIMIT}; count >= LIMIT; (0.284458ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: import {STATUS} from './constants'; status === STATUS.ACTIVE; (0.263667ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: switch (status) {case SESSION_STATUS.ACTIVE: break;} (0.223792ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: typeof value === 'string'; (0.211375ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: 'object' !== typeof value; (0.204875ms)
+✖ S21/S23 scripts: allows constants and agreed exceptions: switch (typeof value) {case 'string': break;} (0.237667ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: value === null; (0.192583ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: value !== undefined; (0.188875ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: ready === false; (0.194875ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: count > otherCount; (0.193583ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: const label = 'active'; (0.220167ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: const size = 6; (0.281834ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: const limit = getLimit(); count > limit; (0.294208ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: expect(status).toBe('active'); (0.24525ms)
+✔ S21/S23 scripts: allows constants and agreed exceptions: assert.equal(count, 6); (0.246834ms)
+ℹ tests 128
+ℹ suites 0
+ℹ pass 112
+ℹ fail 16
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 803.243834
+
+✖ failing tests:
+
+test at tests/policy/comparison-constants.test.mjs:51:5
+✖ S22/S23 mobile: rejects comparison magic values: offset === +1; (0.898ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  0 !== 1
+
+      at TestContext.<anonymous> (file:///Users/pravinraj/workspace/weave/tests/policy/comparison-constants.test.mjs:55:14)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual'
+  }
+
+test at tests/policy/comparison-constants.test.mjs:51:5
+✖ S22/S23 mobile: rejects comparison magic values: status === ('active' satisfies string); (0.858417ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  0 !== 1
+
+      at TestContext.<anonymous> (file:///Users/pravinraj/workspace/weave/tests/policy/comparison-constants.test.mjs:55:14)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual'
+  }
+
+test at tests/policy/comparison-constants.test.mjs:51:5
+✖ S22/S23 mobile: rejects comparison magic values: const statuses = {active: 'active'} as const; status === statuses.active; (2.793458ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  0 !== 1
+
+      at TestContext.<anonymous> (file:///Users/pravinraj/workspace/weave/tests/policy/comparison-constants.test.mjs:55:14)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual'
+  }
+
+test at tests/policy/comparison-constants.test.mjs:78:5
+✖ S21/S23 mobile: allows constants and agreed exceptions: switch (typeof value) {case 'string': break;} (0.535125ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  1 !== 0
+
+      at TestContext.<anonymous> (file:///Users/pravinraj/workspace/weave/tests/policy/comparison-constants.test.mjs:82:14)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual'
+  }
+
+test at tests/policy/comparison-constants.test.mjs:51:5
+✖ S22/S23 web: rejects comparison magic values: offset === +1; (0.377375ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  0 !== 1
+
+      at TestContext.<anonymous> (file:///Users/pravinraj/workspace/weave/tests/policy/comparison-constants.test.mjs:55:14)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual'
+  }
+
+test at tests/policy/comparison-constants.test.mjs:51:5
+✖ S22/S23 web: rejects comparison magic values: status === ('active' satisfies string); (0.409458ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  0 !== 1
+
+      at TestContext.<anonymous> (file:///Users/pravinraj/workspace/weave/tests/policy/comparison-constants.test.mjs:55:14)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual'
+  }
+
+test at tests/policy/comparison-constants.test.mjs:51:5
+✖ S22/S23 web: rejects comparison magic values: const statuses = {active: 'active'} as const; status === statuses.active; (0.602625ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  0 !== 1
+
+      at TestContext.<anonymous> (file:///Users/pravinraj/workspace/weave/tests/policy/comparison-constants.test.mjs:55:14)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual'
+  }
+
+test at tests/policy/comparison-constants.test.mjs:78:5
+✖ S21/S23 web: allows constants and agreed exceptions: switch (typeof value) {case 'string': break;} (0.392458ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  1 !== 0
+
+      at TestContext.<anonymous> (file:///Users/pravinraj/workspace/weave/tests/policy/comparison-constants.test.mjs:82:14)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual'
+  }
+
+test at tests/policy/comparison-constants.test.mjs:51:5
+✖ S22/S23 root staged files: rejects comparison magic values: offset === +1; (0.345208ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  0 !== 1
+
+      at TestContext.<anonymous> (file:///Users/pravinraj/workspace/weave/tests/policy/comparison-constants.test.mjs:55:14)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual'
+  }
+
+test at tests/policy/comparison-constants.test.mjs:51:5
+✖ S22/S23 root staged files: rejects comparison magic values: status === ('active' satisfies string); (0.313417ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  0 !== 1
+
+      at TestContext.<anonymous> (file:///Users/pravinraj/workspace/weave/tests/policy/comparison-constants.test.mjs:55:14)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual'
+  }
+
+test at tests/policy/comparison-constants.test.mjs:51:5
+✖ S22/S23 root staged files: rejects comparison magic values: const statuses = {active: 'active'} as const; status === statuses.active; (0.5865ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  0 !== 1
+
+      at TestContext.<anonymous> (file:///Users/pravinraj/workspace/weave/tests/policy/comparison-constants.test.mjs:55:14)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual'
+  }
+
+test at tests/policy/comparison-constants.test.mjs:78:5
+✖ S21/S23 root staged files: allows constants and agreed exceptions: switch (typeof value) {case 'string': break;} (0.37475ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  1 !== 0
+
+      at TestContext.<anonymous> (file:///Users/pravinraj/workspace/weave/tests/policy/comparison-constants.test.mjs:82:14)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual'
+  }
+
+test at tests/policy/comparison-constants.test.mjs:51:5
+✖ S22/S23 scripts: rejects comparison magic values: offset === +1; (0.236666ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  0 !== 1
+
+      at TestContext.<anonymous> (file:///Users/pravinraj/workspace/weave/tests/policy/comparison-constants.test.mjs:55:14)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual'
+  }
+
+test at tests/policy/comparison-constants.test.mjs:51:5
+✖ S22/S23 scripts: rejects comparison magic values: status === ('active' satisfies string); (0.251ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  0 !== 1
+
+      at TestContext.<anonymous> (file:///Users/pravinraj/workspace/weave/tests/policy/comparison-constants.test.mjs:55:14)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual'
+  }
+
+test at tests/policy/comparison-constants.test.mjs:51:5
+✖ S22/S23 scripts: rejects comparison magic values: const statuses = {active: 'active'} as const; status === statuses.active; (0.396792ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  0 !== 1
+
+      at TestContext.<anonymous> (file:///Users/pravinraj/workspace/weave/tests/policy/comparison-constants.test.mjs:55:14)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual'
+  }
+
+test at tests/policy/comparison-constants.test.mjs:78:5
+✖ S21/S23 scripts: allows constants and agreed exceptions: switch (typeof value) {case 'string': break;} (0.237667ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  1 !== 0
+
+      at TestContext.<anonymous> (file:///Users/pravinraj/workspace/weave/tests/policy/comparison-constants.test.mjs:82:14)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual'
+  }

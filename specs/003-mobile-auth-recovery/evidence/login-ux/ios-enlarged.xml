@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testsuites>
+  <testsuite name="Test Suite" device="iPhone 17 Pro - iOS 26.2 - C4BFD4BD-394C-459F-8A0D-A7C04178C96B" tests="1" failures="0" time="43.512" timestamp="2026-10-08T18:50:31">
+    <testcase id="WEA-10 T049 enlarged text OTP presentation" name="WEA-10 T049 enlarged text OTP presentation" classname="WEA-10 T049 enlarged text OTP presentation" file="/private/tmp/weave-ux-large-flow.yaml" time="43.501" timestamp="2026-10-08T18:50:31" status="SUCCESS"/>
+  </testsuite>
+</testsuites>

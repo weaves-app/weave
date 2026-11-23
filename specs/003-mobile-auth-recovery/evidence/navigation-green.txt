@@ -1,0 +1,16 @@
+
+> @weave/mobile@0.0.0 test
+> jest --runInBand --watchman=false root-navigator.test.tsx
+
+PASS src/navigation/root-navigator.test.tsx
+  ✓ S01/S06 signed-out stack has only Login and rejects direct Home navigation (74 ms)
+  ✓ S05 no Login or Home flash during unresolved validation (1 ms)
+  ✓ S02/S07 session changes replace route history and revocation removes Home (63 ms)
+  ✓ S04 unavailable validation exposes retry outside routes (52 ms)
+  ✓ S05 restored active session starts directly at Home after resolution (4 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       5 passed, 5 total
+Snapshots:   0 total
+Time:        1.609 s, estimated 5 s
+Ran all test suites matching /root-navigator.test.tsx/i.

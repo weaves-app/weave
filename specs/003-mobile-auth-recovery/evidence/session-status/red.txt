@@ -1,0 +1,372 @@
+✖ S22/S23 mobile: rejects inline session status: state.session.status === 'resolving'; (128.678916ms)
+✖ S22/S23 mobile: rejects inline session status: 'active' !== state.session.status; (1.524917ms)
+✖ S22/S23 mobile: rejects inline session status: session?.['status'] == `signedOut`; (2.517333ms)
+✖ S22/S23 mobile: rejects inline session status: status !== 'unavailable'; (1.242917ms)
+✖ S22/S23 mobile: rejects inline session status: const session = {status: 'resolving'}; (2.322959ms)
+✖ S22/S23 mobile: rejects inline session status: session.status = 'signedOut'; (0.805208ms)
+✖ S22/S23 mobile: rejects inline session status: let sessionStatus = 'active'; (1.11525ms)
+✖ S22/S23 mobile: rejects inline session status: switch (session.status) {case 'active': break;} (1.491334ms)
+✖ S22/S23 mobile: rejects inline session status: switch (status) {case `unavailable`: break;} (0.935375ms)
+✖ S22/S23 mobile: rejects inline session status: const session = {'status': 'signedOut' as const}; (1.638708ms)
+✔ S21/S23 mobile: permits constants and unrelated values: state.session.status === SESSION_STATUS.RESOLVING; (0.677959ms)
+✔ S21/S23 mobile: permits constants and unrelated values: const session = {status: SESSION_STATUS.ACTIVE}; (0.563375ms)
+✔ S21/S23 mobile: permits constants and unrelated values: session.status = SESSION_STATUS.SIGNED_OUT; (0.541333ms)
+✔ S21/S23 mobile: permits constants and unrelated values: switch (session.status) {case SESSION_STATUS.ACTIVE: break;} (0.581625ms)
+✔ S21/S23 mobile: permits constants and unrelated values: const SESSION_STATUS = {RESOLVING: 'resolving', ACTIVE: 'active'} as const; (0.741625ms)
+✔ S21/S23 mobile: permits constants and unrelated values: type Status = 'active' | 'signedOut'; (0.739625ms)
+✔ S21/S23 mobile: permits constants and unrelated values: appState === 'active'; (0.473542ms)
+✔ S21/S23 mobile: permits constants and unrelated values: const label = 'unavailable'; (0.462875ms)
+✔ S21/S23 mobile: permits constants and unrelated values: const response = {status: 200}; (0.586084ms)
+✔ S21/S23 mobile: permits constants and unrelated values: const malformed = {status: 'unknown'}; (0.487083ms)
+✔ S21/S23 mobile: permits constants and unrelated values: switch (method) {case 'active': break;} (0.569916ms)
+✖ S22/S23 root staged files: rejects inline session status: state.session.status === 'resolving'; (6.462792ms)
+✖ S22/S23 root staged files: rejects inline session status: 'active' !== state.session.status; (0.965208ms)
+✖ S22/S23 root staged files: rejects inline session status: session?.['status'] == `signedOut`; (1.363833ms)
+✖ S22/S23 root staged files: rejects inline session status: status !== 'unavailable'; (1.004ms)
+✖ S22/S23 root staged files: rejects inline session status: const session = {status: 'resolving'}; (0.754042ms)
+✖ S22/S23 root staged files: rejects inline session status: session.status = 'signedOut'; (0.640667ms)
+✖ S22/S23 root staged files: rejects inline session status: let sessionStatus = 'active'; (0.762667ms)
+✖ S22/S23 root staged files: rejects inline session status: switch (session.status) {case 'active': break;} (0.662292ms)
+✖ S22/S23 root staged files: rejects inline session status: switch (status) {case `unavailable`: break;} (0.513958ms)
+✖ S22/S23 root staged files: rejects inline session status: const session = {'status': 'signedOut' as const}; (0.706583ms)
+✔ S21/S23 root staged files: permits constants and unrelated values: state.session.status === SESSION_STATUS.RESOLVING; (1.021625ms)
+✔ S21/S23 root staged files: permits constants and unrelated values: const session = {status: SESSION_STATUS.ACTIVE}; (2.365291ms)
+✔ S21/S23 root staged files: permits constants and unrelated values: session.status = SESSION_STATUS.SIGNED_OUT; (1.914416ms)
+✔ S21/S23 root staged files: permits constants and unrelated values: switch (session.status) {case SESSION_STATUS.ACTIVE: break;} (2.08425ms)
+✔ S21/S23 root staged files: permits constants and unrelated values: const SESSION_STATUS = {RESOLVING: 'resolving', ACTIVE: 'active'} as const; (1.734333ms)
+✔ S21/S23 root staged files: permits constants and unrelated values: type Status = 'active' | 'signedOut'; (0.984667ms)
+✔ S21/S23 root staged files: permits constants and unrelated values: appState === 'active'; (0.900791ms)
+✔ S21/S23 root staged files: permits constants and unrelated values: const label = 'unavailable'; (1.947458ms)
+✔ S21/S23 root staged files: permits constants and unrelated values: const response = {status: 200}; (1.155625ms)
+✔ S21/S23 root staged files: permits constants and unrelated values: const malformed = {status: 'unknown'}; (0.823208ms)
+✔ S21/S23 root staged files: permits constants and unrelated values: switch (method) {case 'active': break;} (1.0415ms)
+ℹ tests 42
+ℹ suites 0
+ℹ pass 22
+ℹ fail 20
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 650.390333
+
+✖ failing tests:
+
+test at tests/policy/session-status.test.mjs:45:5
+✖ S22/S23 mobile: rejects inline session status: state.session.status === 'resolving'; (128.678916ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  0 !== 1
+
+      at TestContext.<anonymous> (file:///Users/pravinraj/workspace/weave/tests/policy/session-status.test.mjs:49:14)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:332:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual'
+  }
+
+test at tests/policy/session-status.test.mjs:45:5
+✖ S22/S23 mobile: rejects inline session status: 'active' !== state.session.status; (1.524917ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  0 !== 1
+
+      at TestContext.<anonymous> (file:///Users/pravinraj/workspace/weave/tests/policy/session-status.test.mjs:49:14)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual'
+  }
+
+test at tests/policy/session-status.test.mjs:45:5
+✖ S22/S23 mobile: rejects inline session status: session?.['status'] == `signedOut`; (2.517333ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  0 !== 1
+
+      at TestContext.<anonymous> (file:///Users/pravinraj/workspace/weave/tests/policy/session-status.test.mjs:49:14)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual'
+  }
+
+test at tests/policy/session-status.test.mjs:45:5
+✖ S22/S23 mobile: rejects inline session status: status !== 'unavailable'; (1.242917ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  0 !== 1
+
+      at TestContext.<anonymous> (file:///Users/pravinraj/workspace/weave/tests/policy/session-status.test.mjs:49:14)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual'
+  }
+
+test at tests/policy/session-status.test.mjs:45:5
+✖ S22/S23 mobile: rejects inline session status: const session = {status: 'resolving'}; (2.322959ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  0 !== 1
+
+      at TestContext.<anonymous> (file:///Users/pravinraj/workspace/weave/tests/policy/session-status.test.mjs:49:14)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual'
+  }
+
+test at tests/policy/session-status.test.mjs:45:5
+✖ S22/S23 mobile: rejects inline session status: session.status = 'signedOut'; (0.805208ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  0 !== 1
+
+      at TestContext.<anonymous> (file:///Users/pravinraj/workspace/weave/tests/policy/session-status.test.mjs:49:14)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual'
+  }
+
+test at tests/policy/session-status.test.mjs:45:5
+✖ S22/S23 mobile: rejects inline session status: let sessionStatus = 'active'; (1.11525ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  0 !== 1
+
+      at TestContext.<anonymous> (file:///Users/pravinraj/workspace/weave/tests/policy/session-status.test.mjs:49:14)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual'
+  }
+
+test at tests/policy/session-status.test.mjs:45:5
+✖ S22/S23 mobile: rejects inline session status: switch (session.status) {case 'active': break;} (1.491334ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  0 !== 1
+
+      at TestContext.<anonymous> (file:///Users/pravinraj/workspace/weave/tests/policy/session-status.test.mjs:49:14)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual'
+  }
+
+test at tests/policy/session-status.test.mjs:45:5
+✖ S22/S23 mobile: rejects inline session status: switch (status) {case `unavailable`: break;} (0.935375ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  0 !== 1
+
+      at TestContext.<anonymous> (file:///Users/pravinraj/workspace/weave/tests/policy/session-status.test.mjs:49:14)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual'
+  }
+
+test at tests/policy/session-status.test.mjs:45:5
+✖ S22/S23 mobile: rejects inline session status: const session = {'status': 'signedOut' as const}; (1.638708ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  0 !== 1
+
+      at TestContext.<anonymous> (file:///Users/pravinraj/workspace/weave/tests/policy/session-status.test.mjs:49:14)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual'
+  }
+
+test at tests/policy/session-status.test.mjs:45:5
+✖ S22/S23 root staged files: rejects inline session status: state.session.status === 'resolving'; (6.462792ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  0 !== 1
+
+      at TestContext.<anonymous> (file:///Users/pravinraj/workspace/weave/tests/policy/session-status.test.mjs:49:14)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual'
+  }
+
+test at tests/policy/session-status.test.mjs:45:5
+✖ S22/S23 root staged files: rejects inline session status: 'active' !== state.session.status; (0.965208ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  0 !== 1
+
+      at TestContext.<anonymous> (file:///Users/pravinraj/workspace/weave/tests/policy/session-status.test.mjs:49:14)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual'
+  }
+
+test at tests/policy/session-status.test.mjs:45:5
+✖ S22/S23 root staged files: rejects inline session status: session?.['status'] == `signedOut`; (1.363833ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  0 !== 1
+
+      at TestContext.<anonymous> (file:///Users/pravinraj/workspace/weave/tests/policy/session-status.test.mjs:49:14)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual'
+  }
+
+test at tests/policy/session-status.test.mjs:45:5
+✖ S22/S23 root staged files: rejects inline session status: status !== 'unavailable'; (1.004ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  0 !== 1
+
+      at TestContext.<anonymous> (file:///Users/pravinraj/workspace/weave/tests/policy/session-status.test.mjs:49:14)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual'
+  }
+
+test at tests/policy/session-status.test.mjs:45:5
+✖ S22/S23 root staged files: rejects inline session status: const session = {status: 'resolving'}; (0.754042ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  0 !== 1
+
+      at TestContext.<anonymous> (file:///Users/pravinraj/workspace/weave/tests/policy/session-status.test.mjs:49:14)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual'
+  }
+
+test at tests/policy/session-status.test.mjs:45:5
+✖ S22/S23 root staged files: rejects inline session status: session.status = 'signedOut'; (0.640667ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  0 !== 1
+
+      at TestContext.<anonymous> (file:///Users/pravinraj/workspace/weave/tests/policy/session-status.test.mjs:49:14)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual'
+  }
+
+test at tests/policy/session-status.test.mjs:45:5
+✖ S22/S23 root staged files: rejects inline session status: let sessionStatus = 'active'; (0.762667ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  0 !== 1
+
+      at TestContext.<anonymous> (file:///Users/pravinraj/workspace/weave/tests/policy/session-status.test.mjs:49:14)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual'
+  }
+
+test at tests/policy/session-status.test.mjs:45:5
+✖ S22/S23 root staged files: rejects inline session status: switch (session.status) {case 'active': break;} (0.662292ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  0 !== 1
+
+      at TestContext.<anonymous> (file:///Users/pravinraj/workspace/weave/tests/policy/session-status.test.mjs:49:14)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual'
+  }
+
+test at tests/policy/session-status.test.mjs:45:5
+✖ S22/S23 root staged files: rejects inline session status: switch (status) {case `unavailable`: break;} (0.513958ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  0 !== 1
+
+      at TestContext.<anonymous> (file:///Users/pravinraj/workspace/weave/tests/policy/session-status.test.mjs:49:14)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual'
+  }
+
+test at tests/policy/session-status.test.mjs:45:5
+✖ S22/S23 root staged files: rejects inline session status: const session = {'status': 'signedOut' as const}; (0.706583ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  0 !== 1
+
+      at TestContext.<anonymous> (file:///Users/pravinraj/workspace/weave/tests/policy/session-status.test.mjs:49:14)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual'
+  }

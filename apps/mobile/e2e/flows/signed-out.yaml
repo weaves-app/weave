@@ -1,0 +1,22 @@
+appId: si.tryweave
+name: WEA-10 S01 S03 signed-out launch and empty input
+---
+- launchApp
+- extendedWaitUntil:
+    visible: Welcome back
+    timeout: 30000
+- assertNotVisible: Logout
+- tapOn: '^Log in$'
+- assertVisible: Enter a valid email address and the required password or code.
+- assertNotVisible: Logout
+- tapOn: Email code
+- assertVisible: Send code
+- assertNotVisible:
+    id: field-password
+- tapOn: Send code
+- assertVisible: Enter a valid email address and the required password or code.
+- assertNotVisible: Logout
+- tapOn: Email and password
+- assertVisible:
+    id: field-password
+- takeScreenshot: signed-out-validation

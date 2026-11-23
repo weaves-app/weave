@@ -1,0 +1,25 @@
+Starting: Intent { cmp=si.tryweave/.MainActivity }
+Status: ok
+LaunchState: COLD
+Activity: si.tryweave/.MainActivity
+TotalTime: 885
+WaitTime: 892
+Complete
+
+Waiting for flows to complete...
+[Passed] WEA-10 T052 shared authentication header (38s)
+
+1/1 Flow Passed in 38s
+
+FIXTURE_RESULT 0
+PRODUCTION_ENTRY_RESTORED
+Deleted 1 rows
+EMULATOR_HANDWRITING_PREFERENCE_RESTORED
+EMULATOR_KEYBOARD_PREFERENCE_RESTORED
+Starting: Intent { cmp=si.tryweave/.MainActivity }
+Status: ok
+LaunchState: COLD
+Activity: si.tryweave/.MainActivity
+TotalTime: 1391
+WaitTime: 1452
+Complete

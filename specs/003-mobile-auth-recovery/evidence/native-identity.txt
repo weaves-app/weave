@@ -1,0 +1,21 @@
+T046 native identity configuration verification — 2026-10-08
+Owner domain: tryweave.si; requested Android/iOS package-name changes.
+Configuration/package rename only; existing S01–S20 scope. No new behavioral RED claimed.
+Android Gradle tests + assembleDebug: exit 0; BUILD SUCCESSFUL in 2m 59s
+Android JUnit totals: {"tests": 30, "failures": 0, "errors": 0, "skipped": 0}
+Android APK: package: name='si.tryweave' versionCode='1' versionName='1.0' platformBuildVersionName='16' platformBuildVersionCode='36' compileSdkVersion='36' compileSdkVersionCodename='16'
+Android ABI libraries: arm64-v8a, armeabi-v7a, x86, x86_64
+Android merged manifest callbacks: clerk://si.tryweave.callback, clerk://si.tryweave.oauth
+Android codegen package: si.tryweave.auth; native compilation passed.
+iOS simulator native tests: exit 0; Executed 31 tests, with 0 failures; ** TEST SUCCEEDED **
+iOS generic simulator app build: exit 0; ** BUILD SUCCEEDED **; architectures: x86_64 arm64
+iOS built CFBundleIdentifier: si.tryweave
+iOS built WeaveAuthCallbackScheme: si.tryweave
+iOS built WeaveAuthCallbackURL: si.tryweave://callback
+iOS Debug/Release app identifiers: si.tryweave; test identifiers: si.tryweave.auth.contract.tests.
+Mobile Jest: exit 0; 12 suites, 81 tests passed.
+Root npm run verify: exit 0 (session 68613); documented sample local DATABASE_URL; existing Prisma/tool cache access approved.
+Initial sandbox attempts could not access Gradle lock/CoreSimulator; approved native retries passed. These tooling failures are not behavioral RED.
+Existing upstream native deprecation/script-phase and Watchman recrawl warnings did not fail checks.
+Full logs: /private/tmp/weave-identity-{android,ios-tests,ios-build,mobile-tests,verify}.log
+No remote Clerk registration, DNS change, account provisioning, release signing, commit, push or deployment.

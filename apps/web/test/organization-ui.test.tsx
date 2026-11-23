@@ -8,6 +8,8 @@ import {OrganizationView} from '../src/features/organizations/presentation/organ
 import {createOrganizationFlow} from '../src/features/organizations/application/flow';
 import type {OrganizationGateway} from '../src/features/organizations/application/contracts';
 
+import {EMPTY_TEXT} from './test-constants';
+
 afterEach(cleanup);
 
 const gateway: OrganizationGateway = {
@@ -100,7 +102,7 @@ void test('WEA-10 S14 empty picker offers create; create form has required label
   fireEvent.submit(
     view.getByRole('button', {name: 'Create organization'}).closest('form') ?? assert.fail(),
   );
-  await waitFor(() => assert.match(view.getByRole('alert').textContent ?? '', /retry/i));
+  await waitFor(() => assert.match(view.getByRole('alert').textContent ?? EMPTY_TEXT, /retry/i));
   assert.equal(
     view.getByRole('button', {name: 'Create organization'}).hasAttribute('disabled'),
     false,

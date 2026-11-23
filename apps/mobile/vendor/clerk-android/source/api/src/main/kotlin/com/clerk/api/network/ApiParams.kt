@@ -1,0 +1,34 @@
+package com.clerk.api.network
+
+internal object ApiParams {
+  internal const val ID = "id"
+  internal const val SESSION_ID = "session_id"
+  internal const val EMAIL_ID = "email_id"
+  internal const val PHONE_NUMBER_ID = "phone_number_id"
+  internal const val PASSKEY_ID = "passkey_id"
+  internal const val EXTERNAL_ACCOUNT_ID = "external_account_id"
+  internal const val ORGANIZATION_ID = "organization_id"
+  internal const val DOMAIN_ID = "domain_id"
+  internal const val USER_ID = "user_id"
+  internal const val INVITATION_ID = "invitation_id"
+  internal const val SUGGESTION_ID = "suggestion_id"
+  internal const val TEMPLATE = "template"
+
+  internal const val STRATEGY = "strategy"
+  internal const val CODE = "code"
+  internal const val REDIRECT_URL = "redirect_url"
+  internal const val REDIRECT_URI = "redirect_uri"
+  internal const val CODE_CHALLENGE = "code_challenge"
+  internal const val CODE_CHALLENGE_METHOD = "code_challenge_method"
+  internal const val CLERK_SESSION_ID = "_clerk_session_id"
+
+  internal const val ROLE = "role"
+
+  internal const val STATUS = "status"
+
+  internal const val LIMIT = "limit"
+  internal const val OFFSET = "offset"
+  internal const val PAYER_TYPE = "payer_type"
+  internal const val ORG_ID = "org_id"
+  internal const val MIN_SEATS = "min_seats"
+}

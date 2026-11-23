@@ -9,6 +9,8 @@ import {AuthUnavailable} from '../src/features/auth/presentation/auth-unavailabl
 import {resolveEntry} from '../src/features/auth/application/policy';
 import type {AuthGateway, AuthMode} from '../src/features/auth/application/contracts';
 
+import {EMPTY_TEXT} from './test-constants';
+
 afterEach(cleanup);
 
 function port(google: (mode: AuthMode) => Promise<void>): AuthGateway {
@@ -68,7 +70,9 @@ void test('WEA-10 S11/S12 branded Google signup rejects duplicate clicks, then r
   assert.ok(button.hasAttribute('disabled'));
   assert.ok(view.getByRole('button', {name: 'Create account'}).hasAttribute('disabled'));
   reject({code: 'oauth_access_denied'});
-  await waitFor(() => assert.match(view.getByRole('alert').textContent ?? '', /try again/i));
+  await waitFor(() =>
+    assert.match(view.getByRole('alert').textContent ?? EMPTY_TEXT, /try again/i),
+  );
   assert.equal(button.hasAttribute('disabled'), false);
 });
 

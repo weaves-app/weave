@@ -1,0 +1,18 @@
+
+> @weave/mobile@0.0.0 test
+> jest --runInBand --watchman=false login.test.tsx
+
+PASS src/auth/login.test.tsx
+  ✓ S02/S03 offers exactly three methods and accessible password validation (180 ms)
+  ✓ S08 password stays untrimmed in request, fields clear and pending actions disable (19 ms)
+  ✓ S16/S19 supports signIn verification and method return (67 ms)
+  ✓ S16/S19 supports deviceTrust verification and method return (64 ms)
+  ✓ S17/S18/S20 displays safe existingAccountRequired feedback and usable method controls (56 ms)
+  ✓ S17/S18/S20 displays safe verificationRequired feedback and usable method controls (57 ms)
+  ✓ S17/S18/S20 displays safe cancelled feedback and usable method controls (56 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       7 passed, 7 total
+Snapshots:   0 total
+Time:        1.089 s, estimated 5 s
+Ran all test suites matching /login.test.tsx/i.

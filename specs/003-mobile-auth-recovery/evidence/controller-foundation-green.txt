@@ -1,0 +1,16 @@
+
+> @weave/mobile@0.0.0 test
+> jest --runInBand --watchman=false auth-controller.test.ts
+
+PASS src/auth/auth-controller.test.ts
+  ✓ S05 hides routes until fresh resolution completes, then restores valid Home (1 ms)
+  ✓ S04 initialization deadline fails closed and allows a fresh retry (5 ms)
+  ✓ S07 ignores old revisions but removes access on ordered revocation
+  ✓ S05 foreground validation hides protected content while rechecking
+  ✓ S07 disposal abandons pending resolution and prevents late activation
+
+Test Suites: 1 passed, 1 total
+Tests:       5 passed, 5 total
+Snapshots:   0 total
+Time:        0.347 s, estimated 1 s
+Ran all test suites matching /auth-controller.test.ts/i.

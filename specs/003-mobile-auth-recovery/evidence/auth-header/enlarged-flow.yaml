@@ -1,0 +1,71 @@
+appId: si.tryweave
+name: WEA-10 T050 T051 method transition and automatic OTP
+---
+- launchApp:
+    stopApp: true
+- extendedWaitUntil:
+    visible: Welcome back
+    timeout: 30000
+- takeScreenshot: login-password
+- scrollUntilVisible:
+    element:
+      id: field-password
+    centerElement: true
+- tapOn:
+    id: field-password
+- inputText: preview
+- scrollUntilVisible:
+    element: Email code
+    direction: UP
+    centerElement: true
+- takeScreenshot: method-keyboard-before
+- tapOn: Email code
+- takeScreenshot: method-keyboard-after
+- takeScreenshot: login-email-code
+- tapOn:
+    id: field-email
+- inputText: preview@example.com
+- pressKey: enter
+- tapOn: Send code
+- extendedWaitUntil:
+    visible: Check your email
+    timeout: 15000
+- assertVisible: preview@example.com
+- assertVisible:
+    id: field-verification-code
+- takeScreenshot: otp-keyboard
+- tapOn:
+    id: field-verification-code
+- inputText: '12345'
+- assertVisible: '12345'
+- takeScreenshot: otp-partial
+- inputText: '6'
+- scrollUntilVisible:
+    element: That code was not accepted. Check it and try again.
+    timeout: 60000
+    centerElement: true
+- takeScreenshot: otp-invalid
+- scrollUntilVisible:
+    element: Resend code
+    direction: UP
+- tapOn: Resend code
+- extendedWaitUntil:
+    visible: Check your email
+    timeout: 15000
+- assertNotVisible: That code was not accepted. Check it and try again.
+- assertNotVisible: Logout
+- scrollUntilVisible:
+    element: Choose another method
+    direction: UP
+- tapOn: Choose another method
+- scrollUntilVisible:
+    element: Welcome back
+    direction: UP
+- scrollUntilVisible:
+    element:
+      id: field-password
+- assertVisible:
+    id: field-password
+- assertNotVisible:
+    id: field-verification-code
+- takeScreenshot: login-restored

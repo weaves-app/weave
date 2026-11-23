@@ -1,3 +1,7 @@
+export const HEALTHY_STATUS = 'ok';
+
+export const API_SERVICE_NAME = 'weave-api';
+
 export interface HealthTransport {
   get(url: string): Promise<{ok: boolean; json(): Promise<unknown>}>;
 }
@@ -16,9 +20,9 @@ export async function readHealth(
     return typeof body === 'object' &&
       body !== null &&
       'status' in body &&
-      body.status === 'ok' &&
+      body.status === HEALTHY_STATUS &&
       'service' in body &&
-      body.service === 'weave-api'
+      body.service === API_SERVICE_NAME
       ? 'Connected'
       : 'Unavailable';
   } catch {

@@ -1,0 +1,38 @@
+--- a/Sources/ClerkKit/Logging/ClerkLogger.swift
++++ b/Sources/ClerkKit/Logging/ClerkLogger.swift
+@@ -240,32 +240,15 @@
+     let timestampString = DateFormatter.logFormatter.string(from: Date())
+     let timestamp = Date()
+ 
+-    let forceIndicator = forceLog ? "🚨 " : ""
+-    var logMessage = "\(level.emoji) [\(level.rawValue)] \(timestampString) \(fileName):\(line) \(function) - \(forceIndicator)\(message)"
+-
+-    if let error {
+-      logMessage += "\n   Error: \(error)"
+-
+-      if let localizedError = error as? LocalizedError,
+-         let description = localizedError.errorDescription
+-      {
+-        logMessage += "\n   Description: \(description)"
+-      }
+-
+-      if let localizedError = error as? LocalizedError,
+-         let failureReason = localizedError.failureReason
+-      {
+-        logMessage += "\n   Reason: \(failureReason)"
+-      }
+-    }
++    let logMessage = "Clerk SDK diagnostic: \(level.rawValue)"
+ 
+     sink(level, logMessage)
+ 
+     if level == .error {
+       let logEntry = LogEntry(
+         level: level,
+-        message: message,
+-        error: error,
++        message: "Clerk SDK diagnostic",
++        error: nil,
+         file: fileName,
+         function: function,
+         line: line,

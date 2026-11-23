@@ -1,0 +1,80 @@
+
+> @weave/mobile@0.0.0 test
+> jest --runInBand --watchman=false auth-gateway.contract.test.ts
+
+FAIL src/auth/auth-gateway.contract.test.ts
+  ✓ S05 validates a fresh native session and removes unrecognized credential fields (1 ms)
+  ✓ S04 malformed native result fails closed: null
+  ✓ S04 malformed native result fails closed: [] (1 ms)
+  ✓ S04 malformed native result fails closed: {"status": "active"}
+  ✓ S04 malformed native result fails closed: {"accountId": "account", "generation": 1, "revision": 1, "sessionId": "session", "status": "active", "validatedAt": undefined}
+  ✓ S04 malformed native result fails closed: {"accountId": "account", "generation": -1, "revision": 1, "sessionId": "session", "status": "active", "validatedAt": 1000}
+  ✓ S04 malformed native result fails closed: {"accountId": "account", "generation": 1, "revision": 1, "sessionId": "session", "status": "unknown", "validatedAt": 1000}
+  ✓ S04 malformed native result fails closed: {"accountId": 1, "generation": 1, "revision": 1, "sessionId": "session", "status": "active", "validatedAt": 1000}
+  ✓ FR-012 native rejection never exposes provider message or stack (1 ms)
+  ✓ FR-012 secure-storage rejection has safe feedback
+  ✓ S19 retains the opaque device-trust challenge without provider objects
+  ✓ S07 subscription validates native events and disposes listener
+  ✕ S04 mismatched response generation fails closed instead of leaving resolution stuck (2 ms)
+  ✕ S07 malformed event revokes protected access with a safe current-generation snapshot
+
+  ● S04 mismatched response generation fails closed instead of leaving resolution stuck
+
+    expect(received).toMatchObject(expected)
+
+    - Expected  - 5
+    + Received  + 2
+
+      Object {
+    -   "error": Object {
+    -     "code": "unexpected",
+    -   },
+    -   "generation": 1,
+    -   "status": "unavailable",
+    +   "generation": 0,
+    +   "status": "active",
+      }
+
+      43 | test('S04 mismatched response generation fails closed instead of leaving resolution stuck',async()=>{
+      44 |   const gateway=createNativeAuthGateway(transport({...active,generation:0}));
+    > 45 |   expect(await gateway.resolveSession(context)).toMatchObject({status:'unavailable',generation:1,error:{code:'unexpected'}});
+         |                                                 ^
+      46 | });
+      47 | test('S07 malformed event revokes protected access with a safe current-generation snapshot',async()=>{
+      48 |   let observer:(value:unknown)=>void=()=>undefined;
+
+      at Object.toMatchObject (src/auth/auth-gateway.contract.test.ts:45:49)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● S07 malformed event revokes protected access with a safe current-generation snapshot
+
+    expect(received).toMatchObject(expected)
+
+    Matcher error: received value must be a non-null object
+
+    Received has value: undefined
+
+      49 |   const gateway=createNativeAuthGateway({execute:async()=>JSON.stringify(active),subscribe:listener=>{observer=listener;return ()=>undefined;}});
+      50 |   await gateway.resolveSession(context);const received:unknown[]=[];gateway.subscribe(value=>received.push(value));observer('{invalid-event');
+    > 51 |   expect(received[0]).toMatchObject({status:'unavailable',generation:1,error:{code:'unexpected'}});
+         |                       ^
+      52 | });
+      53 |
+
+      at Object.toMatchObject (src/auth/auth-gateway.contract.test.ts:51:23)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 12 passed, 14 total
+Snapshots:   0 total
+Time:        0.378 s, estimated 1 s
+Ran all test suites matching /auth-gateway.contract.test.ts/i.
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path /Users/pravinraj/workspace/weave/apps/mobile
+npm error workspace @weave/mobile@0.0.0
+npm error location /Users/pravinraj/workspace/weave/apps/mobile
+npm error command failed
+npm error command sh -c jest --runInBand --watchman=false auth-gateway.contract.test.ts

@@ -1,0 +1,72 @@
+//
+//  UserProfilePasskeySection.swift
+//  Clerk
+//
+
+#if os(iOS) || os(macOS)
+
+import ClerkKit
+import Foundation
+import SwiftUI
+
+struct UserProfilePasskeySection: View {
+  @Environment(Clerk.self) private var clerk
+  @Environment(\.clerkTheme) private var theme
+
+  @State private var error: Error?
+
+  var user: User? {
+    clerk.user
+  }
+
+  var sortedPasskeys: [Passkey] {
+    guard let user else { return [] }
+    return user.passkeys.sorted { lhs, rhs in
+      lhs.createdAt < rhs.createdAt
+    }
+  }
+
+  var body: some View {
+    Section {
+      VStack(spacing: 0) {
+        ForEach(sortedPasskeys) {
+          UserProfilePasskeyRow(passkey: $0)
+        }
+
+        UserProfileButtonRow(text: "Add a passkey") {
+          await createPasskey()
+        }
+      }
+      .background(theme.colors.background)
+    } header: {
+      UserProfileSectionHeader(text: "PASSKEYS")
+    }
+    .clerkErrorPresenting($error)
+  }
+}
+
+extension UserProfilePasskeySection {
+  func createPasskey() async {
+    guard let user else { return }
+
+    do {
+      try await user.createPasskey()
+    } catch {
+      if error.isUserCancelledError { return }
+      self.error = error
+      let nsError = error as NSError
+      ClerkLogger.error(
+        "Failed to create passkey (phase: passkey_registration, domain: \(nsError.domain), code: \(nsError.code))",
+        error: error
+      )
+    }
+  }
+}
+
+#Preview {
+  UserProfilePasskeySection()
+    .clerkPreview()
+    .environment(\.clerkTheme, .clerk)
+}
+
+#endif

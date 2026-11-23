@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testsuites>
+  <testsuite name="Test Suite" device="weave-e2e-api35" tests="1" failures="0" time="38.694" timestamp="2026-10-08T16:41:13">
+    <testcase id="WEA-10 S17 Android Google browser cancellation" name="WEA-10 S17 Android Google browser cancellation" classname="WEA-10 S17 Android Google browser cancellation" file="apps/mobile/e2e/flows/google-cancel-android.yaml" time="38.672" timestamp="2026-10-08T16:41:13" status="SUCCESS"/>
+  </testsuite>
+</testsuites>

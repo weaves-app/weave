@@ -1,0 +1,28 @@
+android
+login-password (1080, 2400) (372, 187, 707, 293)
+login-email-code (1080, 2400) (372, 187, 707, 293)
+otp-keyboard (1080, 2400) (372, 187, 707, 293)
+otp-invalid (1080, 2400) (372, 187, 707, 293)
+login-restored (1080, 2400) (372, 187, 707, 293)
+PASS: identical centered native logo bounds across 5 rendered states
+ios
+login-password (1206, 2622) (411, 244, 794, 365)
+login-email-code (1206, 2622) (411, 244, 794, 365)
+otp-keyboard (1206, 2622) (411, 244, 794, 365)
+otp-invalid (1206, 2622) (411, 244, 794, 365)
+login-restored (1206, 2622) (411, 244, 794, 365)
+PASS: identical centered native logo bounds across 5 rendered states
+ios-large
+login-password (1206, 2622) (411, 244, 794, 365)
+login-email-code (1206, 2622) (411, 244, 794, 365)
+otp-keyboard (1206, 2622) (411, 244, 794, 365)
+otp-invalid (1206, 2622) (411, 244, 794, 365)
+login-restored (1206, 2622) (411, 244, 794, 365)
+PASS: identical centered native logo bounds across 5 rendered states
+android-large
+Initial Android enlarged Login capture precedes asset fade completion; comparing the four fully rendered states below.
+login-email-code (1080, 2400) (372, 187, 707, 293)
+otp-keyboard (1080, 2400) (372, 187, 707, 293)
+otp-invalid (1080, 2400) (372, 187, 707, 293)
+login-restored (1080, 2400) (372, 187, 707, 293)
+PASS: identical centered native logo bounds across 4 rendered states

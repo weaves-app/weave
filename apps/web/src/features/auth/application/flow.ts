@@ -7,6 +7,10 @@ import type {
   FlowOptions,
 } from './contracts';
 
+import {AUTH_STAGE, AUTH_MODE} from './auth-constants';
+
+export const DEFAULT_AUTH_TIMEOUT_MS = 30000;
+
 function errorCode(error: unknown): string {
   if (!error || typeof error !== 'object') return '';
 
@@ -56,7 +60,7 @@ class AuthenticationFlow implements AuthFlow {
 
     this.lastAttempt = initial;
     this.state = {
-      stage: initial.stage === 'unsupported' ? 'credentials' : initial.stage,
+      stage: initial.stage === AUTH_STAGE.UNSUPPORTED ? 'credentials' : initial.stage,
       pending: false,
       error: null,
     };
@@ -85,7 +89,7 @@ class AuthenticationFlow implements AuthFlow {
   }
 
   private async run(work: (generation: number) => Promise<void>): Promise<void> {
-    if (this.state.pending || this.state.stage === 'complete') return;
+    if (this.state.pending || this.state.stage === AUTH_STAGE.COMPLETE) return;
 
     const generation = this.generation;
 
@@ -94,7 +98,7 @@ class AuthenticationFlow implements AuthFlow {
     let timer: ReturnType<typeof setTimeout> | undefined;
     const operation = work(generation).catch((error: unknown) => {
       if (generation === this.generation)
-        this.update({error: recovery(error, this.options.mode === 'invitation')});
+        this.update({error: recovery(error, this.options.mode === AUTH_MODE.INVITATION)});
     });
     const timeout = new Promise<void>((resolve) => {
       timer = setTimeout(() => {
@@ -107,7 +111,7 @@ class AuthenticationFlow implements AuthFlow {
         }
 
         resolve();
-      }, this.options.timeoutMilliseconds ?? 30000);
+      }, this.options.timeoutMilliseconds ?? DEFAULT_AUTH_TIMEOUT_MS);
     });
 
     try {
@@ -122,13 +126,16 @@ class AuthenticationFlow implements AuthFlow {
   private async advance(attempt: Attempt, generation: number): Promise<void> {
     if (generation !== this.generation) return;
 
-    if (attempt.stage === 'verification') {
+    if (attempt.stage === AUTH_STAGE.VERIFICATION) {
       this.update({stage: 'verification'});
 
       return;
     }
 
-    if (attempt.stage !== 'ready' || (this.options.mode !== 'signin' && !attempt.verified)) {
+    if (
+      attempt.stage !== AUTH_STAGE.READY ||
+      (this.options.mode !== AUTH_MODE.SIGN_IN && !attempt.verified)
+    ) {
       this.update({
         error: 'Authentication requirements are incomplete. Verify your email or contact support.',
       });
@@ -152,9 +159,9 @@ class AuthenticationFlow implements AuthFlow {
   }
 
   readonly submit = async (input: Credentials): Promise<void> => {
-    if (this.state.pending || this.state.stage === 'complete') return;
+    if (this.state.pending || this.state.stage === AUTH_STAGE.COMPLETE) return;
 
-    if (this.state.stage === 'ready') {
+    if (this.state.stage === AUTH_STAGE.READY) {
       await this.run((generation) => this.advance(this.lastAttempt, generation));
 
       return;
@@ -162,14 +169,15 @@ class AuthenticationFlow implements AuthFlow {
 
     if (
       !input.password ||
-      (this.options.mode !== 'invitation' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.email.trim()))
+      (this.options.mode !== AUTH_MODE.INVITATION &&
+        !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.email.trim()))
     ) {
       this.update({error: 'Enter a valid email address and password.'});
 
       return;
     }
 
-    if (this.options.mode === 'invitation' && !this.options.ticket) {
+    if (this.options.mode === AUTH_MODE.INVITATION && !this.options.ticket) {
       this.update({error: 'This invitation is invalid. Ask for a new invitation.'});
 
       return;
@@ -178,9 +186,9 @@ class AuthenticationFlow implements AuthFlow {
     await this.run(async (generation) => {
       let attempt: Attempt;
 
-      if (this.options.mode === 'invitation' && this.options.ticket) {
+      if (this.options.mode === AUTH_MODE.INVITATION && this.options.ticket) {
         attempt = await this.gateway.invite(this.options.ticket, input.password);
-      } else if (this.options.mode === 'signin') {
+      } else if (this.options.mode === AUTH_MODE.SIGN_IN) {
         attempt = await this.gateway.signin({...input, email: input.email.trim()});
       } else {
         attempt = await this.gateway.signup({...input, email: input.email.trim()});
@@ -189,7 +197,7 @@ class AuthenticationFlow implements AuthFlow {
       if (generation !== this.generation) return;
 
       // Keep verification recoverable even if sending the first code fails.
-      if (attempt.stage === 'verification') {
+      if (attempt.stage === AUTH_STAGE.VERIFICATION) {
         this.update({stage: 'verification'});
         await this.gateway.sendCode(this.options.mode);
       }
@@ -199,7 +207,7 @@ class AuthenticationFlow implements AuthFlow {
   };
 
   readonly verify = async (code: string): Promise<void> => {
-    if (this.state.pending || this.state.stage !== 'verification') return;
+    if (this.state.pending || this.state.stage !== AUTH_STAGE.VERIFICATION) return;
 
     if (!code.trim()) {
       this.update({error: 'Enter the verification code.'});
@@ -213,7 +221,8 @@ class AuthenticationFlow implements AuthFlow {
   };
 
   readonly google = async (): Promise<void> => {
-    if (this.options.mode === 'invitation' || this.state.stage !== 'credentials') return;
+    if (this.options.mode === AUTH_MODE.INVITATION || this.state.stage !== AUTH_STAGE.CREDENTIALS)
+      return;
 
     await this.run(async () => {
       await this.gateway.google(this.options.mode);
@@ -221,7 +230,7 @@ class AuthenticationFlow implements AuthFlow {
   };
 
   readonly resend = async (): Promise<void> => {
-    if (this.state.stage !== 'verification') return;
+    if (this.state.stage !== AUTH_STAGE.VERIFICATION) return;
 
     await this.run(async () => {
       await this.gateway.sendCode(this.options.mode);

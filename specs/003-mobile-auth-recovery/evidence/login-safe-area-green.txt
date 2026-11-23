@@ -1,0 +1,47 @@
+
+> @weave/mobile@0.0.0 test
+> jest --runInBand --watchman=false login.test.tsx
+
+FAIL src/auth/login.test.tsx
+  ✓ S02/S03 offers exactly three methods and accessible password validation (90 ms)
+  ✓ S08 password stays untrimmed in request, fields clear and pending actions disable (12 ms)
+  ✓ S16/S19 supports signIn verification and method return (70 ms)
+  ✓ S16/S19 supports deviceTrust verification and method return (66 ms)
+  ✓ S17/S18/S20 displays safe existingAccountRequired feedback and usable method controls (59 ms)
+  ✓ S17/S18/S20 displays safe verificationRequired feedback and usable method controls (59 ms)
+  ✓ S17/S18/S20 displays safe cancelled feedback and usable method controls (59 ms)
+  ✓ S17 cancelled Google returns a working visible password form (62 ms)
+  ✕ S15 the complete login form applies safe-area edges around its keyboard-aware scroll layout (8 ms)
+
+  ● S15 the complete login form applies safe-area edges around its keyboard-aware scroll layout
+
+    expect(element).toHaveProp("edges", ["top", "bottom", "left", "right"])
+
+    Expected element to have prop:
+      edges={["top", "bottom", "left", "right"]}
+    Received:
+      edges={{"bottom": "additive", "left": "additive", "right": "additive", "top": "additive"}}
+
+      67 | test('S15 the complete login form applies safe-area edges around its keyboard-aware scroll layout',async()=>{
+      68 |   setup();await waitFor(()=>expect(screen.getByLabelText('Email')).toBeTruthy());
+    > 69 |   expect(screen.getByTestId('login-safe-area')).toHaveProp('edges',['top','bottom','left','right']);
+         |                                                 ^
+      70 | });
+      71 |
+
+      at Object.toHaveProp (src/auth/login.test.tsx:69:49)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 8 passed, 9 total
+Snapshots:   0 total
+Time:        0.792 s, estimated 1 s
+Ran all test suites matching /login.test.tsx/i.
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path /Users/pravinraj/workspace/weave/apps/mobile
+npm error workspace @weave/mobile@0.0.0
+npm error location /Users/pravinraj/workspace/weave/apps/mobile
+npm error command failed
+npm error command sh -c jest --runInBand --watchman=false login.test.tsx

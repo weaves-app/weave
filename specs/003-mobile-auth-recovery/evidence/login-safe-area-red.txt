@@ -1,0 +1,149 @@
+
+> @weave/mobile@0.0.0 test
+> jest --runInBand --watchman=false login.test.tsx
+
+FAIL src/auth/login.test.tsx
+  ✓ S02/S03 offers exactly three methods and accessible password validation (90 ms)
+  ✓ S08 password stays untrimmed in request, fields clear and pending actions disable (13 ms)
+  ✓ S16/S19 supports signIn verification and method return (68 ms)
+  ✓ S16/S19 supports deviceTrust verification and method return (67 ms)
+  ✓ S17/S18/S20 displays safe existingAccountRequired feedback and usable method controls (60 ms)
+  ✓ S17/S18/S20 displays safe verificationRequired feedback and usable method controls (59 ms)
+  ✓ S17/S18/S20 displays safe cancelled feedback and usable method controls (57 ms)
+  ✓ S17 cancelled Google returns a working visible password form (66 ms)
+  ✕ S15 the complete login form applies safe-area edges around its keyboard-aware scroll layout (5 ms)
+
+  ● S15 the complete login form applies safe-area edges around its keyboard-aware scroll layout
+
+    Unable to find an element with testID: login-safe-area
+
+    [36m<View>[39m
+      [36m<RCTScrollView>[39m
+        [36m<View>[39m
+          [36m<Text[39m
+            [33maccessibilityRole[39m=[32m"header"[39m
+          [36m>[39m
+            [0mLog in to Weave[0m
+          [36m</Text>[39m
+          [36m<Text>[39m
+            [0mUse your existing account.[0m
+          [36m</Text>[39m
+          [36m<View>[39m
+            [36m<View[39m
+              [33maccessibilityLabel[39m=[32m"Email and password"[39m
+              [33maccessibilityRole[39m=[32m"button"[39m
+              [33maccessibilityState[39m=[32m{
+                {
+                  "busy": false,
+                  "disabled": false,
+                }
+              }[39m
+              [33maccessible[39m=[32m{true}[39m
+            [36m>[39m
+              [36m<Text>[39m
+                [0mEmail and password[0m
+              [36m</Text>[39m
+            [36m</View>[39m
+            [36m<View[39m
+              [33maccessibilityLabel[39m=[32m"Email code"[39m
+              [33maccessibilityRole[39m=[32m"button"[39m
+              [33maccessibilityState[39m=[32m{
+                {
+                  "busy": false,
+                  "disabled": false,
+                }
+              }[39m
+              [33maccessible[39m=[32m{true}[39m
+            [36m>[39m
+              [36m<Text>[39m
+                [0mEmail code[0m
+              [36m</Text>[39m
+            [36m</View>[39m
+            [36m<View[39m
+              [33maccessibilityLabel[39m=[32m"Continue with Google"[39m
+              [33maccessibilityRole[39m=[32m"button"[39m
+              [33maccessibilityState[39m=[32m{
+                {
+                  "busy": false,
+                  "disabled": false,
+                }
+              }[39m
+              [33maccessible[39m=[32m{true}[39m
+            [36m>[39m
+              [36m<Text>[39m
+                [0mContinue with Google[0m
+              [36m</Text>[39m
+            [36m</View>[39m
+          [36m</View>[39m
+          [36m<View>[39m
+            [36m<Text>[39m
+              [0mEmail[0m
+            [36m</Text>[39m
+            [36m<TextInput[39m
+              [33maccessibilityLabel[39m=[32m"Email"[39m
+              [33maccessibilityState[39m=[32m{
+                {
+                  "disabled": false,
+                }
+              }[39m
+              [33meditable[39m=[32m{true}[39m
+              [33mvalue[39m=[32m""[39m
+            [36m/>[39m
+          [36m</View>[39m
+          [36m<View>[39m
+            [36m<Text>[39m
+              [0mPassword[0m
+            [36m</Text>[39m
+            [36m<TextInput[39m
+              [33maccessibilityLabel[39m=[32m"Password"[39m
+              [33maccessibilityState[39m=[32m{
+                {
+                  "disabled": false,
+                }
+              }[39m
+              [33meditable[39m=[32m{true}[39m
+              [33mvalue[39m=[32m""[39m
+            [36m/>[39m
+          [36m</View>[39m
+          [36m<View[39m
+            [33maccessibilityLabel[39m=[32m"Log in"[39m
+            [33maccessibilityRole[39m=[32m"button"[39m
+            [33maccessibilityState[39m=[32m{
+              {
+                "busy": false,
+                "disabled": false,
+              }
+            }[39m
+            [33maccessible[39m=[32m{true}[39m
+          [36m>[39m
+            [36m<Text>[39m
+              [0mLog in[0m
+            [36m</Text>[39m
+          [36m</View>[39m
+        [36m</View>[39m
+      [36m</RCTScrollView>[39m
+    [36m</View>[39m
+
+      67 | test('S15 the complete login form applies safe-area edges around its keyboard-aware scroll layout',async()=>{
+      68 |   setup();await waitFor(()=>expect(screen.getByLabelText('Email')).toBeTruthy());
+    > 69 |   expect(screen.getByTestId('login-safe-area')).toHaveProp('edges',['top','bottom','left','right']);
+         |                 ^
+      70 | });
+      71 |
+
+      at Object.getByTestId (src/auth/login.test.tsx:69:17)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 8 passed, 9 total
+Snapshots:   0 total
+Time:        0.779 s, estimated 1 s
+Ran all test suites matching /login.test.tsx/i.
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path /Users/pravinraj/workspace/weave/apps/mobile
+npm error workspace @weave/mobile@0.0.0
+npm error location /Users/pravinraj/workspace/weave/apps/mobile
+npm error command failed
+npm error command sh -c jest --runInBand --watchman=false login.test.tsx

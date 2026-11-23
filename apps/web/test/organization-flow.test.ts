@@ -4,6 +4,8 @@ import {test} from 'node:test';
 import {createOrganizationFlow} from '../src/features/organizations/application/flow';
 import type {OrganizationGateway} from '../src/features/organizations/application/contracts';
 
+import {EMPTY_TEXT} from './test-constants';
+
 function fixture() {
   const calls: string[] = [];
   let complete = 0;
@@ -60,7 +62,7 @@ void test('WEA-10 S14 list failure recovers, empty list remains usable', async (
     throw Error('offline');
   };
   await f.flow.load();
-  assert.match(f.flow.getSnapshot().error ?? '', /load/i);
+  assert.match(f.flow.getSnapshot().error ?? EMPTY_TEXT, /load/i);
   assert.equal(f.flow.getSnapshot().loading, false);
   f.gateway.list = async () => [];
   await f.flow.load();
@@ -73,7 +75,7 @@ void test('WEA-10 S14 blank name is rejected; activation retry reuses created or
 
   await f.flow.create('  ');
   assert.equal(f.calls.length, 0);
-  assert.match(f.flow.getSnapshot().error ?? '', /name/i);
+  assert.match(f.flow.getSnapshot().error ?? EMPTY_TEXT, /name/i);
   f.gateway.activate = async () => {
     throw Error('offline');
   };
@@ -99,7 +101,7 @@ void test('WEA-10 S14 acceptance failure denies Home; accepted invitation is not
   };
   await f.flow.open();
   assert.equal(f.completed(), 0);
-  assert.match(f.flow.getSnapshot().error ?? '', /open/i);
+  assert.match(f.flow.getSnapshot().error ?? EMPTY_TEXT, /open/i);
   f.gateway.accept = async (id) => {
     f.calls.push('accept:' + id);
   };
@@ -155,7 +157,7 @@ void test('WEA-10 S14 a stalled list request times out and allows retry without 
   void flow.load();
   await new Promise((done) => setTimeout(done, 20));
   assert.equal(flow.getSnapshot().loading, false);
-  assert.match(flow.getSnapshot().error ?? '', /retry/i);
+  assert.match(flow.getSnapshot().error ?? EMPTY_TEXT, /retry/i);
   f.gateway.list = async () => [];
   await flow.load();
   resolve([{id: 'stale', name: 'Stale', role: 'Member'}]);

@@ -1,0 +1,102 @@
+
+> @weave/mobile@0.0.0 test
+> jest --runInBand --watchman=false auth-controller.test.ts
+
+FAIL src/auth/auth-controller.test.ts
+  ✓ S05 hides routes until fresh resolution completes, then restores valid Home (1 ms)
+  ✓ S04 initialization deadline fails closed and allows a fresh retry (2 ms)
+  ✓ S07 ignores old revisions but removes access on ordered revocation
+  ✓ S05 foreground validation hides protected content while rechecking
+  ✓ S07 disposal abandons pending resolution and prevents late activation (1 ms)
+  ✓ S02 completes password and publishes active only from gateway result (1 ms)
+  ✓ S02 completes emailCode and publishes active only from gateway result
+  ✓ S02 completes google and publishes active only from gateway result
+  ✓ S03 validates input without trimming password or retaining secrets
+  ✓ S08 duplicate cross-method submissions send one request
+  ✓ S16/S19 keeps opaque signIn challenge across verify and resend generations
+  ✓ S16/S19 keeps opaque deviceTrust challenge across verify and resend generations (1 ms)
+  ✓ S17/S18/S20 handles existingAccountRequired without unlocking Home
+  ✓ S17/S18/S20 handles verificationRequired without unlocking Home
+  ✓ S17/S18/S20 handles cancelled without unlocking Home
+  ✓ S17/S18/S20 handles codeExpired without unlocking Home
+  ✓ S17/S18/S20 handles rateLimited without unlocking Home
+  ✓ S08 method switch abandons pending work and ignores late activation
+  ✓ S04 password times out after30seconds and abandons native work (1 ms)
+  ✓ S17 Google deadline counts120seconds in foreground and resumes without replacing its operation
+  ✓ S09/S11 logout prevents duplicates and removes the active session on confirmed clear (1 ms)
+  ✓ S10 logout partial failure truthfully reports active
+  ✓ S10 logout partial failure truthfully reports signedOut
+  ✓ S10 logout partial failure truthfully reports unavailable
+  ✓ S10 logout deadline hides uncertain protected access until revalidation (1 ms)
+  ✕ S05/S16/S19 foreground revalidation preserves idle signIn challenge for resend and verify (1 ms)
+  ✕ S05/S16/S19 foreground revalidation preserves idle deviceTrust challenge for resend and verify
+  ✕ S04 timed-out verification discards the abandoned opaque challenge and restores method selection (9 ms)
+
+  ● S05/S16/S19 foreground revalidation preserves idle signIn challenge for resend and verify
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "active"
+    Received: "signedOut"
+
+      137 |  expect(controller.getSnapshot().attempt.attemptId).toBe('live');
+      138 |  gateway.loginResult=async input=>gateway.abandoned.some(item=>item.generation===challengeContext.generation)?{kind:'error',code:'cancelled',messageKey:'cancelled'}:active(input);
+    > 139 |  await controller.verify('123456');expect(controller.getSnapshot().session.status).toBe('active');
+          |                                                                                    ^
+      140 | });
+      141 | test('S04 timed-out verification discards the abandoned opaque challenge and restores method selection',async()=>{
+      142 |  jest.useFakeTimers();const gateway=new TestGateway();gateway.loginResult=async()=>({kind:'challenge',attemptId:'live',codePurpose:'signIn'});
+
+      at toBe (src/auth/auth-controller.test.ts:139:84)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● S05/S16/S19 foreground revalidation preserves idle deviceTrust challenge for resend and verify
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "active"
+    Received: "signedOut"
+
+      137 |  expect(controller.getSnapshot().attempt.attemptId).toBe('live');
+      138 |  gateway.loginResult=async input=>gateway.abandoned.some(item=>item.generation===challengeContext.generation)?{kind:'error',code:'cancelled',messageKey:'cancelled'}:active(input);
+    > 139 |  await controller.verify('123456');expect(controller.getSnapshot().session.status).toBe('active');
+          |                                                                                    ^
+      140 | });
+      141 | test('S04 timed-out verification discards the abandoned opaque challenge and restores method selection',async()=>{
+      142 |  jest.useFakeTimers();const gateway=new TestGateway();gateway.loginResult=async()=>({kind:'challenge',attemptId:'live',codePurpose:'signIn'});
+
+      at toBe (src/auth/auth-controller.test.ts:139:84)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● S04 timed-out verification discards the abandoned opaque challenge and restores method selection
+
+    expect(received).toBeUndefined()
+
+    Received: "live"
+
+      143 |  const controller=createAuthController(gateway,new TestClock());await controller.start();await controller.login('emailCode','person@example.com');
+      144 |  gateway.loginResult=()=>new Promise(()=>undefined);const ready=controller.verify('123456');await jest.advanceTimersByTimeAsync(30_000);await ready;
+    > 145 |  expect(controller.getSnapshot().attempt.attemptId).toBeUndefined();expect(controller.getSnapshot().error?.code).toBe('timeout');
+          |                                                     ^
+      146 |  const count=gateway.requests.length;await controller.resend();expect(gateway.requests).toHaveLength(count);
+      147 | });
+      148 |
+
+      at Object.toBeUndefined (src/auth/auth-controller.test.ts:145:53)
+      at asyncGeneratorStep (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+Test Suites: 1 failed, 1 total
+Tests:       3 failed, 25 passed, 28 total
+Snapshots:   0 total
+Time:        0.551 s, estimated 1 s
+Ran all test suites matching /auth-controller.test.ts/i.
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path /Users/pravinraj/workspace/weave/apps/mobile
+npm error workspace @weave/mobile@0.0.0
+npm error location /Users/pravinraj/workspace/weave/apps/mobile
+npm error command failed
+npm error command sh -c jest --runInBand --watchman=false auth-controller.test.ts

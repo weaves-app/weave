@@ -1,5 +1,7 @@
 import type {OrganizationFlow, OrganizationGateway, OrganizationSnapshot} from './contracts';
 
+export const MAX_ORGANIZATION_NAME_LENGTH = 80;
+
 export function createOrganizationFlow(
   gateway: OrganizationGateway,
   complete: () => void,
@@ -132,7 +134,7 @@ export function createOrganizationFlow(
       run(async (current) => {
         const value = name.trim();
 
-        if (!value || value.length > 80) {
+        if (!value || value.length > MAX_ORGANIZATION_NAME_LENGTH) {
           update({error: 'Enter an organization name between 1 and 80 characters.'});
 
           return;

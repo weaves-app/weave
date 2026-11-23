@@ -1,0 +1,11 @@
+$ node --import tsx --test test/*.test.ts
+✔ S06 liveness does not depend on database; readiness checks database (0.553542ms)
+✔ S06 unavailable database rejects readiness but preserves liveness (0.195459ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 116.393875

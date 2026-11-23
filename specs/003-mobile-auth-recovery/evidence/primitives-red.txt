@@ -1,0 +1,46 @@
+
+> @weave/mobile@0.0.0 test
+> jest --runInBand --watchman=false form-field.test.tsx feedback.test.tsx
+
+FAIL src/components/form-field.test.tsx
+  ● S03/S15 labels secret fields and disables editing while pending
+
+    Unable to find an element with accessibility label: Password
+
+      4 |   const change = jest.fn();
+      5 |   const {rerender} = render(<FormField label="Password" value="" onChangeText={change} secret />);
+    > 6 |   const field = screen.getByLabelText('Password');
+        |                        ^
+      7 |   expect(field.props.secureTextEntry).toBe(true);
+      8 |   fireEvent.changeText(field, 'unchanged password ');
+      9 |   expect(change).toHaveBeenCalledWith('unchanged password ');
+
+      at Object.getByLabelText (src/components/form-field.test.tsx:6:24)
+
+FAIL src/components/feedback.test.tsx
+  ● S15 feedback announces validation and pending status
+
+    Unable to find an element with role: alert
+
+      3 | test('S15 feedback announces validation and pending status', () => {
+      4 |   render(<Feedback message="Check your email address" busy />);
+    > 5 |   const feedback = screen.getByRole('alert');
+        |                           ^
+      6 |   expect(feedback.props.accessibilityLiveRegion).toBe('polite');
+      7 |   expect(feedback.props.accessibilityState.busy).toBe(true);
+      8 |   expect(screen.getByText('Check your email address')).toBeTruthy();
+
+      at Object.getByRole (src/components/feedback.test.tsx:5:27)
+
+Test Suites: 2 failed, 2 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        0.514 s
+Ran all test suites matching /form-field.test.tsx|feedback.test.tsx/i.
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path /Users/pravinraj/workspace/weave/apps/mobile
+npm error workspace @weave/mobile@0.0.0
+npm error location /Users/pravinraj/workspace/weave/apps/mobile
+npm error command failed
+npm error command sh -c jest --runInBand --watchman=false form-field.test.tsx feedback.test.tsx

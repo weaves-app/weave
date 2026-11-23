@@ -1,0 +1,133 @@
+package com.clerk.api.network.serialization
+
+import com.clerk.api.billing.BillingPayment
+import com.clerk.api.billing.BillingPlan
+import com.clerk.api.log.ClerkLog
+import com.clerk.api.network.ClerkPaginatedResponse
+import com.clerk.api.network.model.environment.Environment
+import com.clerk.api.network.model.response.ClientPiggybackedResponse
+import com.clerk.api.network.model.token.TokenResource
+import com.clerk.api.session.Session
+import java.lang.reflect.ParameterizedType
+import java.lang.reflect.Type
+import java.lang.reflect.WildcardType
+import okhttp3.ResponseBody
+import retrofit2.Converter
+import retrofit2.Retrofit
+
+internal object ClerkApiResultConverterFactory : Converter.Factory() {
+  override fun responseBodyConverter(
+    type: Type,
+    annotations: Array<out Annotation>,
+    retrofit: Retrofit,
+  ): Converter<ResponseBody, *>? {
+
+    if (getRawType(type) != ClerkResult::class.java) {
+      return null
+    }
+
+    // ClerkResult<out T, ...> reaches Retrofit as `? extends T` for suspend functions.
+    val successType =
+      (type as ParameterizedType).actualTypeArguments[0].let {
+        if (it is WildcardType) it.upperBounds.single() else it
+      }
+    val errorType = type.actualTypeArguments[1]
+
+    val errorResultType: Annotation = createResultType(errorType)
+    val nextAnnotations = annotations.toList() + errorResultType
+
+    // For List<Session>, don't wrap in ClientPiggybackedResponse - it comes as plain JSON array
+    val isSessionList =
+      successType is ParameterizedType &&
+        getRawType(successType) == List::class.java &&
+        getRawType(successType.actualTypeArguments.single()) == Session::class.java
+
+    val actualSuccessType =
+      if (isSessionList) {
+        ClerkLog.d(
+          "This is a List<Session> type, using direct type (no ClientPiggybackedResponse wrapper)"
+        )
+        successType
+      } else {
+        val shouldWrap = shouldWrapInClientPiggybackedResponse(successType)
+
+        if (shouldWrap) {
+          createParameterizedType(ClientPiggybackedResponse::class.java, successType)
+        } else {
+          successType
+        }
+      }
+
+    val delegateConverter =
+      retrofit.nextResponseBodyConverter<Any>(
+        this,
+        actualSuccessType,
+        nextAnnotations.toTypedArray(),
+      )
+
+    return ClerkApiResultConverter(delegateConverter)
+  }
+
+  private fun shouldWrapInClientPiggybackedResponse(successType: Type): Boolean {
+    if (isRawBillingEnvelope(successType)) {
+      return false
+    }
+    val rawType = getRawType(successType)
+
+    return rawType.name !in getExcludedTypeNames()
+  }
+
+  /**
+   * clerk-js reads these billing GETs from the raw JSON body (`getPlans`, `getPlan`,
+   * `getPaymentAttempts`, `getPaymentAttempt`). The other billing GETs stay in
+   * [ClientPiggybackedResponse].
+   */
+  private fun isRawBillingEnvelope(successType: Type): Boolean {
+    val rawType = getRawType(successType)
+    val paginatedItemType =
+      if (rawType == ClerkPaginatedResponse::class.java && successType is ParameterizedType) {
+        getRawType(successType.actualTypeArguments.single())
+      } else {
+        null
+      }
+    return rawType == BillingPlan::class.java ||
+      rawType == BillingPayment::class.java ||
+      paginatedItemType == BillingPlan::class.java ||
+      paginatedItemType == BillingPayment::class.java
+  }
+
+  private fun createParameterizedType(rawType: Class<*>, typeArgument: Type): ParameterizedType {
+    return object : ParameterizedType {
+      override fun getRawType(): Type = rawType
+
+      override fun getActualTypeArguments(): Array<Type> = arrayOf(typeArgument)
+
+      override fun getOwnerType(): Type? = null
+    }
+  }
+
+  private class ClerkApiResultConverter(private val delegate: Converter<ResponseBody, Any>) :
+    Converter<ResponseBody, ClerkResult<*, *>> {
+    override fun convert(value: ResponseBody): ClerkResult<*, *>? {
+
+      return delegate.convert(value)?.let { result ->
+        val unwrappedResult =
+          if (result is ClientPiggybackedResponse<*>) {
+            result.response
+          } else {
+            result
+          }
+
+        @Suppress("UNCHECKED_CAST") ClerkResult.success(unwrappedResult as Any)
+      }
+        ?: run {
+          ClerkLog.e("Delegate converter returned null!")
+          null
+        }
+    }
+  }
+}
+
+internal fun getExcludedTypeNames(): List<String> {
+  return listOf(Environment::class.qualifiedName ?: "", TokenResource::class.qualifiedName ?: "")
+}

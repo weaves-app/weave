@@ -9,6 +9,10 @@ import {HomeView} from '../src/features/auth/presentation/home-view';
 import type {AuthGateway} from '../src/features/auth/application/contracts';
 import {resolveEntry} from '../src/features/auth/application/policy';
 
+import {EMPTY_TEXT} from './test-constants';
+
+export const FIRST_ATTEMPT = 1;
+
 const gateway: AuthGateway = {
   google: async () => {},
 
@@ -84,7 +88,9 @@ void test('WEA-10 S08 pending/error states disable duplicates, finish loading an
   fireEvent.submit(view.getByRole('button', {name: 'Sign in'}).closest('form') ?? assert.fail());
   assert.equal(view.getByRole('button', {name: 'Sign in'}).hasAttribute('disabled'), true);
   reject({code: 'form_password_incorrect'});
-  await waitFor(() => assert.match(view.getByRole('alert').textContent ?? '', /incorrect/i));
+  await waitFor(() =>
+    assert.match(view.getByRole('alert').textContent ?? EMPTY_TEXT, /incorrect/i),
+  );
   assert.equal(view.getByRole('button', {name: 'Sign in'}).hasAttribute('disabled'), false);
 });
 
@@ -96,7 +102,7 @@ void test('WEA-10 S07 Home stays hidden until auth resolves and after signout; s
     signedIn: false,
 
     signOut: async () => {
-      if (++calls === 1) throw new Error('offline');
+      if (++calls === FIRST_ATTEMPT) throw new Error('offline');
     },
 
     signedOut: () => {
@@ -140,9 +146,12 @@ void test('WEA-10 S07/S08 signout timeout releases loading and offers a retry', 
   );
 
   fireEvent.click(view.getByRole('button', {name: 'Sign out'}));
-  await waitFor(() => assert.match(view.getByRole('alert').textContent ?? '', /try again/i), {
-    timeout: 100,
-  });
+  await waitFor(
+    () => assert.match(view.getByRole('alert').textContent ?? EMPTY_TEXT, /try again/i),
+    {
+      timeout: 100,
+    },
+  );
   assert.equal(view.getByRole('button', {name: 'Sign out'}).hasAttribute('disabled'), false);
 });
 
@@ -167,7 +176,9 @@ void test('WEA-10 S08 unknown-account error survives refreshed SDK resources and
   fireEvent.change(view.getByLabelText('Email address'), {target: {value: 'missing@example.test'}});
   fireEvent.change(view.getByLabelText('Password'), {target: {value: 'password'}});
   fireEvent.submit(view.getByRole('button', {name: 'Sign in'}).closest('form') ?? assert.fail());
-  await waitFor(() => assert.match(view.getByRole('alert').textContent ?? '', /incorrect/i));
+  await waitFor(() =>
+    assert.match(view.getByRole('alert').textContent ?? EMPTY_TEXT, /incorrect/i),
+  );
   view.rerender(
     <AuthView
       {...props}
@@ -175,7 +186,7 @@ void test('WEA-10 S08 unknown-account error survives refreshed SDK resources and
       complete={() => assert.fail('cannot navigate')}
     />,
   );
-  assert.match(view.getByRole('alert').textContent ?? '', /incorrect/i);
+  assert.match(view.getByRole('alert').textContent ?? EMPTY_TEXT, /incorrect/i);
   assert.equal(view.getByRole('button', {name: 'Sign in'}).hasAttribute('disabled'), false);
 });
 
@@ -192,7 +203,7 @@ void test('WEA-10 S08 pending organization task is explicit and cannot show a fr
     />,
   );
 
-  assert.match(view.getByRole('status').textContent ?? '', /organizations/i);
+  assert.match(view.getByRole('status').textContent ?? EMPTY_TEXT, /organizations/i);
   assert.equal(view.queryByLabelText('Password'), null);
   assert.equal(view.queryByRole('link', {name: 'Go to Home'}), null);
 });
@@ -211,5 +222,5 @@ void test('WEA-10 S07 server auth hydration cannot show credentials before brows
   );
 
   assert.equal(view.queryByLabelText('Password'), null);
-  assert.match(view.getByRole('status').textContent ?? '', /loading/i);
+  assert.match(view.getByRole('status').textContent ?? EMPTY_TEXT, /loading/i);
 });

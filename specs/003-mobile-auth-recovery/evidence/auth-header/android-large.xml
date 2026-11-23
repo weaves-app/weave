@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testsuites>
+  <testsuite name="Test Suite" device="weave-e2e-api35" tests="1" failures="0" time="45.787" timestamp="2026-10-09T13:07:59">
+    <testcase id="WEA-10 T050 T051 method transition and automatic OTP" name="WEA-10 T050 T051 method transition and automatic OTP" classname="WEA-10 T050 T051 method transition and automatic OTP" file="/private/tmp/weave-interaction-ios-large-flow.yaml" time="45.775" timestamp="2026-10-09T13:07:59" status="SUCCESS"/>
+  </testsuite>
+</testsuites>

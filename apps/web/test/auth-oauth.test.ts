@@ -6,6 +6,8 @@ import {createOAuthGateway} from '../src/features/auth/infrastructure/clerk-oaut
 import type {OAuthResources} from '../src/features/auth/infrastructure/clerk-oauth';
 import {createLiveResources} from '../src/features/auth/infrastructure/live-resources';
 
+import {EMPTY_TEXT} from './test-constants';
+
 function fixture() {
   let activations = 0;
 
@@ -85,7 +87,7 @@ function fixture() {
 void test('WEA-10 S11 unresolved callback refuses activation; completed callback finalizes only once', async () => {
   const unresolved = fixture();
 
-  assert.match((await unresolved.gateway.finish()).error ?? '', /try again/i);
+  assert.match((await unresolved.gateway.finish()).error ?? EMPTY_TEXT, /try again/i);
   assert.equal(unresolved.activations(), 0);
 
   const ready = fixture();
@@ -123,7 +125,7 @@ void test('WEA-10 S11 extra fields and verification direct users to actual requi
     ...fields.initial,
     signUp: {...fields.initial.signUp, missingFields: ['first_name']},
   });
-  assert.match((await fields.gateway.finish()).error ?? '', /first name/);
+  assert.match((await fields.gateway.finish()).error ?? EMPTY_TEXT, /first name/);
   assert.equal(fields.activations(), 0);
 
   const email = fixture();

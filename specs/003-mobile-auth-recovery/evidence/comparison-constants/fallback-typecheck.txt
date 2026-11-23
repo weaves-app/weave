@@ -1,0 +1,39 @@
+$ turbo run typecheck
+
+   • turbo 2.11.7
+   • Packages in scope: @weave/api, @weave/design-tokens, @weave/eslint-config, @weave/mobile, @weave/typescript-config, @weave/web
+   • Running typecheck in 6 packages
+   • Remote caching disabled
+
+@weave/design-tokens:typecheck: cache miss, executing 458662ad151bbeba
+@weave/api:db:generate: cache hit, replaying logs 1242c9f50ab5defb
+@weave/api:db:generate: $ prisma generate
+@weave/api:db:generate: Loaded Prisma config from prisma.config.ts.
+@weave/api:db:generate:
+@weave/api:db:generate: Prisma schema loaded from prisma/schema.prisma.
+@weave/api:db:generate: ┌─────────────────────────────────────────────────────────┐
+@weave/api:db:generate: │  Update available 7.10.0 -> 8.0.0-rc.22                 │
+@weave/api:db:generate: │                                                         │
+@weave/api:db:generate: │  This is a major update - please follow the guide at    │
+@weave/api:db:generate: │  https://pris.ly/d/major-version-upgrade                │
+@weave/api:db:generate: │                                                         │
+@weave/api:db:generate: │  Run the following to update                            │
+@weave/api:db:generate: │    npm i --save-dev prisma@latest                       │
+@weave/api:db:generate: │    npm i @prisma/client@latest                          │
+@weave/api:db:generate: └─────────────────────────────────────────────────────────┘
+@weave/api:db:generate:
+@weave/api:db:generate: ✔ Generated Prisma Client (7.10.0) to ./src/generated/prisma in 18ms
+@weave/api:db:generate:
+@weave/api:typecheck: cache miss, executing 493a5a8dcd1d1fb0
+@weave/design-tokens:typecheck: $ tsc --noEmit
+@weave/api:typecheck: $ tsc --noEmit
+@weave/mobile:typecheck: cache miss, executing 6c9b745d5b255f83
+@weave/web:typecheck: cache miss, executing 2cf98565b1887215
+@weave/web:typecheck: $ next typegen && tsc --noEmit
+@weave/mobile:typecheck: $ tsc --noEmit
+@weave/web:typecheck: Generating route types...
+@weave/web:typecheck: ✓ Types generated successfully
+
+ Tasks:    5 successful, 5 total
+Cached:    1 cached, 5 total
+  Time:    2.214s

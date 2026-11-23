@@ -1,0 +1,41 @@
+
+> @weave/mobile@0.0.0 test
+> jest --runInBand --watchman=false auth-controller.test.ts
+
+PASS src/auth/auth-controller.test.ts
+  ✓ S05 hides routes until fresh resolution completes, then restores valid Home (18 ms)
+  ✓ S04 initialization deadline fails closed and allows a fresh retry (5 ms)
+  ✓ S07 ignores old revisions but removes access on ordered revocation (1 ms)
+  ✓ S05 foreground validation hides protected content while rechecking (1 ms)
+  ✓ S07 disposal abandons pending resolution and prevents late activation (2 ms)
+  ✓ S02 completes password and publishes active only from gateway result (9 ms)
+  ✓ S02 completes emailCode and publishes active only from gateway result (17 ms)
+  ✓ S02 completes google and publishes active only from gateway result
+  ✓ S03 validates input without trimming password or retaining secrets
+  ✓ S08 duplicate cross-method submissions send one request (1 ms)
+  ✓ S16/S19 keeps opaque signIn challenge across verify and resend generations (1 ms)
+  ✓ S16/S19 keeps opaque deviceTrust challenge across verify and resend generations
+  ✓ S17/S18/S20 handles existingAccountRequired without unlocking Home (1 ms)
+  ✓ S17/S18/S20 handles verificationRequired without unlocking Home
+  ✓ S17/S18/S20 handles cancelled without unlocking Home (1 ms)
+  ✓ S17/S18/S20 handles codeExpired without unlocking Home
+  ✓ S17/S18/S20 handles rateLimited without unlocking Home
+  ✓ S08 method switch abandons pending work and ignores late activation
+  ✓ S04 password times out after30seconds and abandons native work (1 ms)
+  ✓ S17 Google deadline counts120seconds in foreground and resumes without replacing its operation (3 ms)
+  ✓ S09/S11 logout prevents duplicates and removes the active session on confirmed clear (1 ms)
+  ✓ S10 logout partial failure truthfully reports active (1 ms)
+  ✓ S10 logout partial failure truthfully reports signedOut
+  ✓ S10 logout partial failure truthfully reports unavailable
+  ✓ S10 logout deadline hides uncertain protected access until revalidation (1 ms)
+  ✓ S05/S16/S19 foreground revalidation preserves idle signIn challenge for resend and verify
+  ✓ S05/S16/S19 foreground revalidation preserves idle deviceTrust challenge for resend and verify
+  ✓ S04 timed-out verification discards the abandoned opaque challenge and restores method selection (2 ms)
+  ✓ S09/S10 foreground does not supersede an in-flight logout reconciliation
+  ✓ S07 equal revision callbacks cannot reverse a revocation (1 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       30 passed, 30 total
+Snapshots:   0 total
+Time:        1.111 s, estimated 2 s
+Ran all test suites matching /auth-controller.test.ts/i.
